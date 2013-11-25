@@ -1,8 +1,10 @@
 // GFX_EditorDlg.h : header file
 //
-#include <fstream.h>
+#include <fstream>
 #include <stdio.h>
 #include "winLGX.h"
+
+using namespace std;
 
 #if !defined(AFX_GFX_EDITORDLG_H__21A834A7_2F39_11D4_8760_00A024851A35__INCLUDED_)
 #define AFX_GFX_EDITORDLG_H__21A834A7_2F39_11D4_8760_00A024851A35__INCLUDED_
@@ -56,10 +58,13 @@ protected:
 	void change();
 	void metAJourTitre();
 	void freeMemory();
-	void AfficheImage( BOOL clear = FALSE, 
+	void DisplayImage(BOOL clear = FALSE,
 					   BOOL reinit = FALSE, 
 					   BOOL reload = FALSE,
 					   BOOL spotChange = FALSE);
+
+	void unpackGFX(char* path);
+
 	HICON m_hIcon;
 
 	// Generated message map functions
@@ -93,6 +98,8 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
+public:
+	afx_msg void OnBnClickedBimportgfx();
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+// Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -16,10 +16,8 @@
 // French (France) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
-#ifdef _WIN32
 LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 #pragma code_page(1252)
-#endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -27,18 +25,18 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE 
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE 
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE 
 BEGIN
     "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
     "#define _AFX_NO_OLE_RESOURCES\r\n"
@@ -66,16 +64,16 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON    DISCARDABLE     "res\\GFX_Editor.ico"
+IDR_MAINFRAME           ICON                    "res\\GFX_Editor.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 137, 63
-STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "A propos de GFX_Editor"
+IDD_ABOUTBOX DIALOG 0, 0, 137, 63
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About GFX_Editor"
 FONT 8, "MS Sans Serif"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,7,7,20,20
@@ -84,50 +82,45 @@ BEGIN
 END
 
 IDD_GFX_EDITOR_DIALOG DIALOGEX 0, 0, 512, 346
-STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
-    WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "GFX_Editor"
-FONT 8, "MS Sans Serif"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
 BEGIN
-    LISTBOX         IDC_LIST,5,25,120,190,LBS_NOINTEGRALHEIGHT | 
-                    LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&Ajouter",IDC_BUTTON_ADD,5,220,60,15
-    PUSHBUTTON      "&Insérer",IDC_BUTTON_INSERT,65,220,60,15
-    PUSHBUTTON      "&Supprimer",IDC_BUTTON_SUPP,65,235,60,15
-    PUSHBUTTON      "&Haut",IDC_BUTTON_UP,5,250,60,15
-    PUSHBUTTON      "&Bas",IDC_BUTTON_DOWN,65,250,60,15
-    PUSHBUTTON      "Nouveau",IDC_BUTTON_NEW_PBK,7,7,51,15
-    PUSHBUTTON      "Charger",IDC_BUTTON_LOAD,58,7,51,15
-    PUSHBUTTON      "Sauver",IDC_BUTTON_SAVE,109,7,51,15
-    PUSHBUTTON      "Compiler",IDC_BUTTON_COMPILE,160,7,51,15
+    LISTBOX         IDC_LIST,5,25,120,190,LBS_NOINTEGRALHEIGHT | LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
+    PUSHBUTTON      "&Add",IDC_BUTTON_ADD,5,220,60,15
+    PUSHBUTTON      "&Insert",IDC_BUTTON_INSERT,65,220,60,15
+    PUSHBUTTON      "&Remove",IDC_BUTTON_SUPP,65,235,60,15
+    PUSHBUTTON      "&Top",IDC_BUTTON_UP,5,250,60,15
+    PUSHBUTTON      "&Bottom",IDC_BUTTON_DOWN,65,250,60,15
+    PUSHBUTTON      "New",IDC_BUTTON_NEW_PBK,7,7,51,15
+    PUSHBUTTON      "Load",IDC_BUTTON_LOAD,58,7,45,15
+    PUSHBUTTON      "Save",IDC_BUTTON_SAVE,159,7,43,15
+    PUSHBUTTON      "Compile",IDC_BUTTON_COMPILE,201,7,43,15
     CONTROL         "",IDC_FRAME,"Static",SS_BLACKFRAME,130,25,364,302
-    LTEXT           "Taille de l'image :",IDC_STATIC,8,286,57,10
-    LTEXT           "Point chaud :",IDC_STATIC,8,297,57,10
-    PUSHBUTTON      "A&nimer",IDC_BUTTON_ANIM,5,235,60,15
-    LTEXT           "Etat :",IDC_STATIC,8,315,21,10
-    CONTROL         "Progress2",IDC_PROGRESS,"msctls_progress32",WS_BORDER,7,
-                    330,118,9
-    PUSHBUTTON      "Infos",IDC_BUTTON_ABOUT,211,7,51,15
+    LTEXT           "Image Size:",IDC_STATIC,8,286,57,10
+    LTEXT           "Center:",IDC_STATIC,8,297,57,10
+    PUSHBUTTON      "A&nimate",IDC_BUTTON_ANIM,5,235,60,15
+    LTEXT           "State:",IDC_STATIC,8,315,21,10
+    CONTROL         "Progress2",IDC_PROGRESS,"msctls_progress32",WS_BORDER,7,330,118,9
+    PUSHBUTTON      "Info",IDC_BUTTON_ABOUT,244,7,32,15
     RTEXT           "",IDC_STATIC_PICSIZE,75,286,50,10
     RTEXT           "",IDC_STATIC_HOTSPOT,75,297,50,10
     RTEXT           "",IDC_STATIC_STATE,30,315,90,10
-    PUSHBUTTON      "Quitter",IDC_BUTTON_QUIT,313,7,51,15
+    PUSHBUTTON      "Quit",IDC_BUTTON_QUIT,320,7,44,15
     SCROLLBAR       IDC_SCROLLBAR_HORIZ,130,329,365,10
     SCROLLBAR       IDC_SCROLLBAR_VERT,495,25,10,305,SBS_VERT
-    COMBOBOX        IDC_COMBO_ZOOM,475,5,30,90,CBS_DROPDOWNLIST | WS_VSCROLL | 
-                    WS_TABSTOP
-    COMBOBOX        IDC_COMBO_PAK,7,270,118,75,CBS_DROPDOWNLIST | WS_VSCROLL | 
-                    WS_TABSTOP
-    PUSHBUTTON      "HTML",IDC_BUTTON_HTML,262,7,51,15
+    COMBOBOX        IDC_COMBO_ZOOM,475,5,30,90,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_COMBO_PAK,7,270,118,75,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "HTML",IDC_BUTTON_HTML,276,7,44,15
     EDITTEXT        IDC_EDIT_DELAI_ANIM,429,5,21,12,ES_NUMBER
-    LTEXT           "Delai Anim",IDC_STATIC,394,5,35,12,SS_CENTERIMAGE
+    LTEXT           "Anim Delay",IDC_STATIC,394,5,35,12,SS_CENTERIMAGE
     LTEXT           "Zoom",IDC_STATIC,453,5,20,12,SS_CENTERIMAGE
     DEFPUSHBUTTON   "Button1",IDC_BUTTON_DUMMY,303,161,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Import GFX",IDC_BIMPORTGFX,103,7,50,15
 END
 
 
-#ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
 // Version
@@ -150,15 +143,13 @@ BEGIN
     BEGIN
         BLOCK "040C04B0"
         BEGIN
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "Application MFC GFX_Editor\0"
-            VALUE "FileVersion", "1, 0, 0, 1\0"
-            VALUE "InternalName", "GFX_Editor\0"
-            VALUE "LegalCopyright", "Copyright (C) 2000\0"
-            VALUE "LegalTrademarks", "\0"
-            VALUE "OriginalFilename", "GFX_Editor.EXE\0"
-            VALUE "ProductName", "Application GFX_Editor\0"
-            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "FileDescription", "Application MFC GFX_Editor"
+            VALUE "FileVersion", "1, 0, 0, 1"
+            VALUE "InternalName", "GFX_Editor"
+            VALUE "LegalCopyright", "Copyright (C) 2000"
+            VALUE "OriginalFilename", "GFX_Editor.EXE"
+            VALUE "ProductName", "Application GFX_Editor"
+            VALUE "ProductVersion", "1, 0, 0, 1"
         END
     END
     BLOCK "VarFileInfo"
@@ -167,8 +158,6 @@ BEGIN
     END
 END
 
-#endif    // !_MAC
-
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -176,7 +165,7 @@ END
 //
 
 #ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE 
+GUIDELINES DESIGNINFO
 BEGIN
     IDD_ABOUTBOX, DIALOG
     BEGIN
@@ -212,9 +201,9 @@ BEGIN
 0x7834, "\000" 
     IDC_COMBO_ZOOM, 0x403, 3, 0
 0x7838, "\000" 
-    IDC_COMBO_PAK, 0x403, 27, 0
-0x7541, 0x7563, 0x656e, 0x6320, 0x6d6f, 0x7270, 0x7365, 0x6973, 0x6e6f, 
-0x2820, 0x474c, 0x2d58, 0x2930, "\000" 
+    IDC_COMBO_PAK, 0x403, 23, 0
+0x6f4e, 0x6320, 0x6d6f, 0x7270, 0x7365, 0x6973, 0x6e6f, 0x2820, 0x474c, 
+0x2d58, 0x2930, "\000" 
     IDC_COMBO_PAK, 0x403, 28, 0
 0x6f43, 0x706d, 0x6572, 0x7373, 0x6f69, 0x206e, 0x3531, 0x6220, 0x7469, 
 0x2073, 0x4c28, 0x5847, 0x312d, 0x0029, 
@@ -227,7 +216,7 @@ END
 // Accelerator
 //
 
-IDR_ACCELERATOR1 ACCELERATORS DISCARDABLE 
+IDR_ACCELERATOR1 ACCELERATORS
 BEGIN
     "W",            ID_ACCEL32771,          VIRTKEY, CONTROL, NOINVERT
 END
@@ -238,7 +227,7 @@ END
 // String Table
 //
 
-STRINGTABLE DISCARDABLE 
+STRINGTABLE
 BEGIN
     IDS_ABOUTBOX            "&A propos de GFX_Editor..."
 END

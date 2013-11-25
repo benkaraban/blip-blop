@@ -5,6 +5,11 @@
 #include "GFX_EditorDlg.h"
 #include "infos.h"
 
+#include "Utils.h"
+#include "BMPUtils.h"
+
+#include "Log.h"
+
 #define NB_MAX_PIC	5000
 
 #ifdef _DEBUG
@@ -12,6 +17,9 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+char dummy[MAX_PATH];
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
@@ -71,6 +79,8 @@ CGFX_EditorDlg::CGFX_EditorDlg(CWnd* pParent /*=NULL*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 
 	animating = FALSE;
+
+	Log::Clear();
 }
 
 void CGFX_EditorDlg::DoDataExchange(CDataExchange* pDX)
@@ -109,6 +119,7 @@ BEGIN_MESSAGE_MAP(CGFX_EditorDlg, CDialog)
 	ON_BN_CLICKED(IDC_BUTTON_ANIM, OnButtonAnim)
 	ON_WM_TIMER()
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_BIMPORTGFX, &CGFX_EditorDlg::OnBnClickedBimportgfx)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -151,7 +162,7 @@ BOOL CGFX_EditorDlg::OnInitDialog()
 	edit_delai->SetWindowText( "100");
 
 	pbk_changed = FALSE;
-	pbk_name = "Sans titre.pbk";
+	pbk_name = "Untitled.pbk";
 
 
 	metAJourTitre();
@@ -205,7 +216,7 @@ void CGFX_EditorDlg::OnPaint()
 	{
 		CDialog::OnPaint();
 
-		AfficheImage();
+		DisplayImage();
 	}
 }
 
@@ -232,7 +243,7 @@ void CGFX_EditorDlg::OnButtonAdd()
 	CListBox * list = (CListBox *) GetDlgItem( IDC_LIST);
 
 
-	CFileDialog load_box (TRUE, NULL, NULL, OFN_ALLOWMULTISELECT, "Fichiers bitmaps (*.BMP)|*.bmp|Tous les fichiers (*.*)|*.*||", NULL);
+	CFileDialog load_box (TRUE, NULL, NULL, OFN_ALLOWMULTISELECT, "Bitmap Images (*.BMP)|*.bmp|All the files (*.*)|*.*||", NULL);
 
 	fic = new char[BUFFER_SIZE];
 	fic[0] = '\0';
@@ -300,7 +311,7 @@ void CGFX_EditorDlg::OnButtonSupp()
 		list->DeleteString( i--);
 	}
 
-	AfficheImage( TRUE);
+	DisplayImage( TRUE);
 	change();
 }
 
@@ -321,7 +332,7 @@ void CGFX_EditorDlg::OnButtonInsert()
 	CListBox * list = (CListBox *) GetDlgItem( IDC_LIST);
 
 
-	CFileDialog load_box (TRUE, NULL, NULL, OFN_ALLOWMULTISELECT, "Fichiers bitmaps (*.BMP)|*.bmp|Tous les fichiers (*.*)|*.*||", NULL);
+	CFileDialog load_box (TRUE, NULL, NULL, OFN_ALLOWMULTISELECT, "Bitmap Images (*.BMP)|*.bmp|All the files (*.*)|*.*||", NULL);
 
 	fic = new char[BUFFER_SIZE];
 	fic[0] = '\0';
@@ -448,7 +459,7 @@ void CGFX_EditorDlg::OnButtonDown()
 
 void CGFX_EditorDlg::OnSelchangeList() 
 {
-	AfficheImage( TRUE, TRUE, TRUE);
+	DisplayImage( TRUE, TRUE, TRUE);
 }
 
 
@@ -460,10 +471,10 @@ void CGFX_EditorDlg::OnSelchangeList()
 
 void CGFX_EditorDlg::OnButtonQuit() 
 {
-	int			rval;
+	int			rval=0;
 	
 	if ( pbk_changed )
-		rval = MessageBox(	"Attention! La PBK courante n'a pas été sauvegardée. Voulez vous tout de même continuer ?", 
+		rval = MessageBox(	"Attention! Changes hasn't been saved. Do you want to continue ?", 
 							NULL,
 							MB_OKCANCEL | MB_ICONEXCLAMATION);
 	if ( rval != IDOK && pbk_changed)
@@ -474,7 +485,7 @@ void CGFX_EditorDlg::OnButtonQuit()
 	DestroyWindow();
 }
 
-void CGFX_EditorDlg::AfficheImage( BOOL clear, BOOL reinit, BOOL reload, BOOL spotChange)
+void CGFX_EditorDlg::DisplayImage( BOOL clear, BOOL reinit, BOOL reload, BOOL spotChange)
 {
 	int			rang;
 	BITMAP		bm;
@@ -489,7 +500,7 @@ void CGFX_EditorDlg::AfficheImage( BOOL clear, BOOL reinit, BOOL reload, BOOL sp
 	int			nbsel;
 	HDC			hdcImage;
 	CDC *		DCFrame;
-	char		buffer[20];
+	char		buffer[128];
 	CString		string;
 
 	CListBox * list = (CListBox *) GetDlgItem( IDC_LIST);
@@ -515,7 +526,7 @@ void CGFX_EditorDlg::AfficheImage( BOOL clear, BOOL reinit, BOOL reload, BOOL sp
 
 		if ( nbsel == 0)
 		{
-			sprintf( buffer, "aucune sélection");
+			sprintf( buffer, "Nothing Selected");
 			combo_pak->SetCurSel( -1);
 		}
 		else
@@ -549,7 +560,7 @@ void CGFX_EditorDlg::AfficheImage( BOOL clear, BOOL reinit, BOOL reload, BOOL sp
 			else
 				combo_pak->SetCurSel( -1);
 
-			sprintf( buffer, "%d images sélectionnées", nbsel);
+			sprintf( buffer, "%d images selected", nbsel);
 
 			delete [] tab_sel;
 		}
@@ -594,7 +605,7 @@ void CGFX_EditorDlg::AfficheImage( BOOL clear, BOOL reinit, BOOL reload, BOOL sp
 
 		if ( hbm == NULL)
 		{
-			text->SetWindowText( "Image inaccessible");
+			text->SetWindowText( "Cannot load image");
 			return;
 		}
 	}
@@ -770,14 +781,14 @@ void CGFX_EditorDlg::AfficheImage( BOOL clear, BOOL reinit, BOOL reload, BOOL sp
 	frame->ReleaseDC( DCFrame);
 	DeleteDC( hdcImage);
 
-	text->SetWindowText( "prêt");
+	text->SetWindowText( "Ready");
 }
 
 void CGFX_EditorDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
 {
 	CDialog::OnHScroll(nSBCode, nPos, pScrollBar);
 
-	static rem_pos;
+	static int rem_pos;
 
 	int	min;
 	int	max;
@@ -824,7 +835,7 @@ void CGFX_EditorDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 		pScrollBar->SetScrollPos( rem_pos);
 	}
 
-	AfficheImage( TRUE);
+	DisplayImage(TRUE);
 }
 
 
@@ -832,7 +843,7 @@ void CGFX_EditorDlg::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 void CGFX_EditorDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar) 
 {
 	CDialog::OnVScroll(nSBCode, nPos, pScrollBar);
-	static rem_pos;
+	static int rem_pos;
 
 	int	min;
 	int	max;
@@ -879,22 +890,22 @@ void CGFX_EditorDlg::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 		pScrollBar->SetScrollPos( rem_pos);
 	}
 
-	AfficheImage( TRUE);
+	DisplayImage( TRUE);
 }
 
 
 void CGFX_EditorDlg::OnSelchangeComboZoom() 
 {
-	AfficheImage( TRUE, TRUE);	
+	DisplayImage( TRUE, TRUE);	
 	
 }
 
 void CGFX_EditorDlg::OnClose() 
 {
-	int			rval;
+	int			rval=0;
 	
 	if ( pbk_changed )
-		rval = MessageBox(	"Attention! La PBK courante n'a pas été sauvegardée. Voulez vous tout de même continuer ?", 
+		rval = MessageBox(	"Attention! Changes hasn't been saved. Do you want to continue ?", 
 							NULL,
 							MB_OKCANCEL | MB_ICONEXCLAMATION);
 	if ( rval != IDOK && pbk_changed)
@@ -907,7 +918,7 @@ void CGFX_EditorDlg::OnClose()
 
 void CGFX_EditorDlg::freeMemory()
 {
-	GFXPIC *	pic;
+	GFXPIC *	pic=0;
 
 	CListBox * list = (CListBox *) GetDlgItem( IDC_LIST);
 
@@ -948,7 +959,7 @@ void CGFX_EditorDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	if ( xmouse >= 196 && xmouse <= 741 &&
 		 ymouse >= 41  && ymouse <= 533 && !animating)
 	{
-		AfficheImage( TRUE, FALSE, FALSE, TRUE);
+		DisplayImage( TRUE, FALSE, FALSE, TRUE);
 	}
 	
 	CDialog::OnLButtonDown(nFlags, point);
@@ -957,20 +968,20 @@ void CGFX_EditorDlg::OnLButtonDown(UINT nFlags, CPoint point)
 void CGFX_EditorDlg::OnButtonNewPbk() 
 {
 
-	int rval;
+	int rval=0;
 	
 	if ( pbk_changed )
-		rval = MessageBox(	"Attention! La PBK courante n'a pas été sauvegardée. Voulez vous tout de même en créer une nouvelle ?", 
+		rval = MessageBox(	"Attention! Changes hasn't been saved. Do you want to continue ?", 
 							NULL,
 							MB_OKCANCEL | MB_ICONEXCLAMATION);
 
 	if ( rval == IDOK || !pbk_changed)
 	{
 		freeMemory();
-		AfficheImage();
+		DisplayImage();
 
 		pbk_changed = FALSE;
-		pbk_name = "Sans titre.pbk";
+		pbk_name = "Untitled.pbk";
 		metAJourTitre();
 	}
 }
@@ -1017,7 +1028,7 @@ void CGFX_EditorDlg::OnButtonSave()
 	//
 	// Choisit le nom du fichier
 	//
-	CFileDialog load_box( FALSE, "pbk", pbk_name, 0, "Fichiers PBK (*.pbk)|*.pbk|Tous les fichiers (*.*)|*.*||", NULL);
+	CFileDialog load_box( FALSE, "pbk", pbk_name, 0, "PBK Files (*.pbk)|*.pbk|All the files (*.*)|*.*||", NULL);
 
 	if ( load_box.DoModal() != IDOK)
 		return;
@@ -1033,7 +1044,7 @@ void CGFX_EditorDlg::OnButtonSave()
 
 	for ( int i=0; i < n; i++)
 	{
-		sprintf( buffer, "Sauvegarde image %d/%d", i+1, n);
+		sprintf( buffer, "Image Backup %d/%d", i+1, n);
 		text->SetWindowText( buffer);
 
 		info = (GFXPIC *) list->GetItemDataPtr( i);
@@ -1058,10 +1069,10 @@ void CGFX_EditorDlg::OnButtonSave()
 
 void CGFX_EditorDlg::OnButtonLoad() 
 {
-	int			rval;
+	int			rval = 0;
 	
 	if ( pbk_changed )
-		rval = MessageBox(	"Attention! La PBK courante n'a pas été sauvegardée. Voulez vous tout de même continuer ?", 
+		rval = MessageBox(	"Attention! Changes hasn't been saved. Do you want to continue ?", 
 							NULL,
 							MB_OKCANCEL | MB_ICONEXCLAMATION);
 	if ( rval != IDOK && pbk_changed)
@@ -1070,7 +1081,7 @@ void CGFX_EditorDlg::OnButtonLoad()
 	//
 	// Choisit le nom du fichier
 	//
-	CFileDialog load_box( TRUE, "pbk", NULL, 0, "Fichiers PBK (*.pbk)|*.pbk|Tous les fichiers (*.*)|*.*||", NULL);
+	CFileDialog load_box( TRUE, "pbk", NULL, 0, "PBK Files (*.pbk)|*.pbk|All the files (*.*)|*.*||", NULL);
 
 	if ( load_box.DoModal() != IDOK)
 		return;
@@ -1100,7 +1111,7 @@ void CGFX_EditorDlg::OnButtonCompile()
 	//
 	// Choisit le nom du fichier
 	//
-	CFileDialog save_box( FALSE, "gfx", NULL, 0, "Fichiers GFX (*.gfx)|*.gfx|Tous les fichiers (*.*)|*.*||", NULL);
+	CFileDialog save_box( FALSE, "gfx", NULL, 0, "GFX Files (*.gfx)|*.gfx|All the files (*.*)|*.*||", NULL);
 
 	if ( save_box.DoModal() != IDOK)
 		return;
@@ -1109,7 +1120,7 @@ void CGFX_EditorDlg::OnButtonCompile()
 	fic = fopen( save_box.GetPathName(), "wb");
 	if ( fic == NULL)
 	{
-		MessageBox( "Impossible d'écrire le fichier", NULL, MB_OK | MB_ICONERROR);
+		MessageBox( "Unable to write file", NULL, MB_OK | MB_ICONERROR);
 		return;
 	}
 
@@ -1135,7 +1146,7 @@ void CGFX_EditorDlg::OnButtonCompile()
 
 		if ( tmp_hbm == NULL)
 		{
-			text->SetWindowText( "Image inaccessible");
+			text->SetWindowText( "Cannot load image");
 			return;
 		}
 
@@ -1167,7 +1178,7 @@ void CGFX_EditorDlg::OnButtonCompile()
 
 		if ( taille == 0)
 		{
-			MessageBox( "Erreur conversion LGX", NULL, MB_OK | MB_ICONERROR);
+			MessageBox( "Error converting LGX", NULL, MB_OK | MB_ICONERROR);
 			return;
 		}
 
@@ -1234,7 +1245,7 @@ void CGFX_EditorDlg::OnButtonHtml()
 
 	// Choisit le nom du fichier
 	//
-	CFileDialog save_box( FALSE, "html", NULL, 0, "Fichiers HTML (*.html, *.htm)|*.htm;*.html|Tous les fichiers (*.*)|*.*||", NULL);
+	CFileDialog save_box( FALSE, "html", NULL, 0, "HTML Files (*.html, *.htm)|*.htm;*.html|All the files (*.*)|*.*||", NULL);
 
 	if ( save_box.DoModal() != IDOK)
 		return;
@@ -1248,9 +1259,9 @@ void CGFX_EditorDlg::OnButtonHtml()
 	fic<<"<table border=\"1\">"<<endl;
 
 	fic<<"<tr>"<<endl;
-	fic<<"<td><h2>Numéro</td>"<<endl;
+	fic<<"<td><h2>Number</td>"<<endl;
 	fic<<"<td><h2>Image</td>"<<endl;
-	fic<<"<td><h2>Nom</td>"<<endl;
+	fic<<"<td><h2>Name</td>"<<endl;
 	fic<<"<td width=\"300\"><h2>Description</td>"<<endl;
 	fic<<"</tr>"<<endl;
 
@@ -1317,7 +1328,7 @@ void CGFX_EditorDlg::OnButtonAnim()
 
 		if ( string.GetLength() == 0)
 		{
-			MessageBox("Vous avez oublié de spécifier un délai d'animation", NULL, MB_ICONERROR);
+			MessageBox("You forgot to specify an animation time", NULL, MB_ICONERROR);
 			return;
 		}
 		
@@ -1345,7 +1356,7 @@ void CGFX_EditorDlg::OnButtonAnim()
 		m_quit->EnableWindow( FALSE);
 		edit_delai->EnableWindow( FALSE);
 
-		anim->SetWindowText("Arrêter");
+		anim->SetWindowText("Stop");
 
 
 		
@@ -1385,9 +1396,9 @@ void CGFX_EditorDlg::OnButtonAnim()
 		m_quit->EnableWindow();
 		edit_delai->EnableWindow();
 
-		anim->SetWindowText("Animer");
+		anim->SetWindowText("Animate");
 
-		AfficheImage( TRUE, TRUE, FALSE, FALSE);
+		DisplayImage( TRUE, TRUE, FALSE, FALSE);
 
 		KillTimer( 24);
 
@@ -1483,7 +1494,7 @@ void CGFX_EditorDlg::LoadPBK(const char *nom_fic)
 	CStatic * text = (CStatic *) GetDlgItem( IDC_STATIC_STATE); 
 
 
-	fic.open( nom_fic, ios::in | ios::nocreate);
+	fic.open( nom_fic, ios::in /*| ios::nocreate*/);
 	if ( fic.is_open() == 0)
 		return;
 
@@ -1502,7 +1513,7 @@ void CGFX_EditorDlg::LoadPBK(const char *nom_fic)
 
 	for ( int i=0; i < n; i++)
 	{
-		sprintf( buffer, "Chargement image %d/%d", i+1, n);
+		sprintf( buffer, "Loading image %d/%d", i+1, n);
 		text->SetWindowText( buffer);
 
 		info = new GFXPIC;
@@ -1549,3 +1560,164 @@ void CGFX_EditorDlg::LoadPBK(const char *nom_fic)
 
 }
 
+
+
+void CGFX_EditorDlg::OnBnClickedBimportgfx()
+{
+	const int BUFFER_SIZE = MAX_PATH * 1000;
+
+	static int	cpt = 0;
+	CString		str;
+	int			rang;
+	GFXPIC *	pic;
+	char *		fic;
+	char		sep[] = "*";
+	int			i;
+	POSITION	pos;
+	char buffer[MAX_PATH];
+
+
+	CListBox * list = (CListBox *)GetDlgItem(IDC_LIST);
+	memset(buffer, 0, sizeof(buffer));
+
+
+	CFileDialog load_box(TRUE, NULL, NULL, OFN_ALLOWMULTISELECT, "GFX Images (*.GFX)|*.gfx|All the files (*.*)|*.*||", NULL);
+
+	fic = new char[BUFFER_SIZE];
+	fic[0] = '\0';
+
+	load_box.m_ofn.lpstrFile = fic;
+	load_box.m_ofn.nMaxFile = BUFFER_SIZE;
+
+	if (load_box.DoModal() == IDCANCEL)
+	{
+		delete[] fic;
+		return;
+	}
+	pos = load_box.GetStartPosition();
+
+	rang = list->GetCurSel();
+
+	str = load_box.GetNextPathName(pos);
+	for (int i = 0; i < str.GetLength(); i++)
+	{
+		buffer[i] = str[i];
+	}
+
+	unpackGFX(buffer);
+
+	/*pic = new GFXPIC;
+	pic->file = str;	// Pour le chemin complet
+	pic->xspot = 0;
+	pic->yspot = 0;
+	pic->compression = 1;
+
+
+	// Grumpf! On est obligé d'extraire le nom du fichier lui même à la main
+
+	i = str.GetLength() - 1;
+
+	while (str[i] != '\\' && i > 0)
+		i--;
+
+	str = str.Right(str.GetLength() - (i + 1));
+
+
+	rang = list->InsertString(rang + 1, str);
+	list->SetItemDataPtr(rang, (void*)pic);*/
+
+
+	delete[] fic;
+
+	change();
+}
+
+void CGFX_EditorDlg::unpackGFX(char* path)
+{
+	ifstream file;
+
+	unsigned int countImages=0;
+
+	if (!dirExists("import_temp"))
+	{
+		CreateDirectory("import_temp", NULL);
+	}
+
+	file.open(path, ios::binary);
+
+	file.read((char*)&countImages, 4);
+	Log::Debug << "Loading GFX file." << endl << "Images found:" << (int)countImages << endl;
+
+	for (int i = 0; i < countImages; i++)
+	{
+		struct
+		{
+			int cx, cy;
+			int size;
+		} record;
+
+		char *buffer = 0;
+		file.read((char*)&record, sizeof(record));
+
+		Log::Debug << "Reading image " << i << "\nData size: " << record.size << " byte \nCenter X: " << record.cx << "\nCenter Y: " << record.cy << endl;
+
+		buffer = new char[record.size];
+		file.read((char*)buffer, record.size);
+
+		LGX_HEADER *header = (LGX_HEADER*)buffer;
+
+		Log::Debug << "( " << header->xsize << "w - " << header->ysize << "h )" << endl;
+
+		/*if (header->version == 0)
+		{*/
+			char fName[256];
+			_splitpath(path, dummy, dummy, fName, dummy);
+
+			char path[256];
+
+			if (strlen(fName) > 0)
+			{
+				if (!dirExists(string("import_temp/")+fName))
+					CreateDirectory((string("import_temp/") + fName).c_str(), NULL);
+				sprintf(path, "import_temp/%s/%d.bmp", fName, i);
+			}
+			else
+			{
+				sprintf(path, "import_temp/%d.bmp", i);
+			}
+
+			unsigned char *buff2;
+			
+			if (header->version == 0)
+				buff2 = convertLGX0ToRGB(((unsigned char*)buffer) + sizeof(LGX_HEADER), record.size - sizeof(LGX_HEADER));
+			else
+				buff2 = convertLGX1ToRGB(((unsigned char*)buffer) + sizeof(LGX_HEADER), record.size - sizeof(LGX_HEADER),header->xsize,header->ysize);
+
+			long BMPbufferSize = 0;
+			BYTE* buff3 = ConvertRGBToBMPBuffer(buff2, header->xsize, header->ysize, &BMPbufferSize);
+			SaveBMP(buff3, header->xsize, header->ysize, BMPbufferSize, path);
+
+
+
+			GFXPIC *pic = new GFXPIC;
+			pic->file = path;	// Pour le chemin complet
+			pic->xspot = record.cx;
+			pic->yspot = record.cy;
+			pic->compression = 1;
+
+			CListBox * list = (CListBox *)GetDlgItem(IDC_LIST);
+			int rang = list->GetCurSel();
+			/*if (rang == -1)
+				rang = 0;*/
+			rang = list->AddString(path);
+			list->SetItemDataPtr(rang, (void*)pic);
+
+			delete buff2;
+			delete buff3;
+		/*}*/
+
+		delete buffer;
+		
+	}
+
+}

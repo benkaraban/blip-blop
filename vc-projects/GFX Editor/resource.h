@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by GFX_Editor.rc
 //
 #define IDM_ABOUTBOX                    0x0010
@@ -34,6 +34,7 @@
 #define IDC_COMBO_PAK                   1037
 #define IDC_EDIT_DELAI_ANIM             1038
 #define IDC_BUTTON_DUMMY                1039
+#define IDC_BIMPORTGFX                  1040
 #define ID_ACCEL32771                   32771
 
 // Next default values for new objects
@@ -42,7 +43,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32772
-#define _APS_NEXT_CONTROL_VALUE         1040
+#define _APS_NEXT_CONTROL_VALUE         1041
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
