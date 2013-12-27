@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   Globals.h
 *		----------------
-*			
+*
 *		Liste de tous les trucs globaux et donc accessibles
 *		pour TOUT LE MONDE.
 *
@@ -22,15 +22,15 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
-#include "bendebug.h"
-#include "controlP1.h"
-#include "controlP2.h"
-#include "picturebank.h"
-#include "fonte.h"
-#include "superliste.h"
-#include "soundbankbb.h"
-#include "musicbank.h"
+// #include <ddraw.h>
+#include "BenDebug.h"
+#include "ControlP1.h"
+#include "ControlP2.h"
+#include "PictureBank.h"
+#include "Fonte.h"
+#include "SuperListe.h"
+#include "SoundBankBB.h"
+#include "MusicBank.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes

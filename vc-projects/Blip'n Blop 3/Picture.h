@@ -1,17 +1,17 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  Picture.h
 *		----------------
-*			
+*
 *		Classe Picture
 *
 *		La classe Picture représente les images
 *		utilisées par les sprites. Elles possèdent
 *		un point chaud pour permettre de mieux les
 *		gérer et permettent d'afficher des surfaces
-*		en bordure d'écran.		
+*		en bordure d'écran.
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -27,8 +27,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
-#include "dd_gfx.h"
+// #include <ddraw.h>
+#include "DD_gfx.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes pour la gestion de l'affichage
@@ -42,7 +42,7 @@
 //-----------------------------------------------------------------------------
 
 class Picture
-{	
+{
 private:
 	IDirectDrawSurface7 *	surf;	// Surface contenant l'image
 	int			xsize;				// Largeur de l'image
@@ -73,7 +73,7 @@ public:
 	void PasteTo( IDirectDrawSurface7 *s, int x, int y) const;
 	void BlitTo( IDirectDrawSurface7 *s, int x, int y) const;
 	void Close();
-	
+
 	~Picture();
 
 };

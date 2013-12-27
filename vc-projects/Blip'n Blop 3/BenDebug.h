@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   BenDebug.h
 *		----------------
-*			
+*
 *
 *		Classe "debug" pour afficher les
 *		messages d'erreur dans un fichier
@@ -30,7 +30,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <fstream.h>
+#include <fstream>
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe Debug
@@ -61,7 +61,7 @@ public:
 //-----------------------------------------------------------------------------
 
 #ifndef DEBUG_CPP_FILE
-	extern Debug debug;			
+	extern Debug debug;
 #endif
 
 #endif

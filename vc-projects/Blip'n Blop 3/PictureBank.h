@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		------------------
 *		  PictureBank.h
 *		------------------
-*			
+*
 *		Classe PictureBank
 *
 *		Représente un tableau/une banque d'images.
@@ -22,7 +22,7 @@
 #ifndef _PictureBank_
 #define _PictureBank_
 
-#include "picture.h"
+#include "Picture.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe PictureBank
@@ -35,7 +35,7 @@ private:
 	int			nb_pic;
 	char *		nom_fic;
 	int			flag_fic;
-	bool		trans_fic;	
+	bool		trans_fic;
 
 public:
 	inline Picture * operator [] (int n) const { return tab[n]; };

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  Input.h
 *		----------------
-*			
+*
 *		Classe Input
 *
 *
@@ -28,7 +28,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <dinput.h>
+// #include <dinput.h>
 
 //-----------------------------------------------------------------------------
 //		Constantes pour les entrées
@@ -74,9 +74,9 @@ public:
 	int		nbJoy() const { return n_joy; };
 	bool	open(HWND wh, HINSTANCE inst, int flags = BINPUT_KEYB|BINPUT_JOY, int cl = DISCL_NONEXCLUSIVE | DISCL_FOREGROUND | DISCL_NOWINKEY);
 	void	setAlias(int a, unsigned int val);
-	
+
 	unsigned int		waitKey();
-	
+
 	void	waitClean();
 	void	update();
 	void	close();

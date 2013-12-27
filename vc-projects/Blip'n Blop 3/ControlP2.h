@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  ControlP2.h
 *		----------------
-*			
+*
 *		Classe ControlorP2
 *
 *		Sert d'intermédiaire entre Blip/Blop et le joueur 1
@@ -23,12 +23,12 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "input.h"
-#include "controlor.h"
-#include "controlalias.h"
+#include "Input.h"
+#include "Controlor.h"
+#include "ControlAlias.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe ControlP2 
+//		Définition de la classe ControlP2
 //-----------------------------------------------------------------------------
 
 class ControlP2 : public Controlor
@@ -44,7 +44,7 @@ public:
 	{
 		return in.scanAlias( ALIAS_P2_UP);
 	};
-	
+
 	virtual int droite() const
 	{
 		return in.scanAlias( ALIAS_P2_RIGHT);

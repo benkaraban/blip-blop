@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  Fonte.h
 *		----------------
-*			
+*
 *		Classe Fonte
 *
 *		Affiche du joli texte
@@ -24,7 +24,7 @@
 //-----------------------------------------------------------------------------
 
 #include "Picture.h"
-#include "dd_gfx.h"
+#include "DD_gfx.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe Fonte
@@ -43,27 +43,27 @@ public:
 	Fonte();
 	~Fonte();
 
-	
-	//	Charge un ficher FNT 
+
+	//	Charge un ficher FNT
 	//
 	bool load(const char * f, int flags = DDSURF_BEST);
 
-	
+
 	// Affiche du texte normal
 	//
 	void print(IDirectDrawSurface7 * surf, int x, int y, const char * txt);
-	
-	
+
+
 	// Affiche texte justifié à droite
 	//
 	void printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt);
-	
-	
+
+
 	// Affiche texte centré
 	//
 	void printC(IDirectDrawSurface7 * surf, int xtaille, int y, const char * txt);
-	
-	
+
+
 	// Affiche texte multiligne
 	//
 	void printM(IDirectDrawSurface7 * surf, int x, int y, const char * txt, int ym);
@@ -77,7 +77,7 @@ public:
 	// Renvoie la longueur en pixels d'un texte donné
 	//
 	int width( const char * txt);
-	
+
 
 	// What's the fuck up ?
 	//

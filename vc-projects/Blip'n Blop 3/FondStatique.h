@@ -2,7 +2,7 @@
 #ifndef _FondStatique_
 #define _FondStatique_
 
-#include "sprite.h"
+#include "Sprite.h"
 
 class FondStatique : public Sprite
 {
