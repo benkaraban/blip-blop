@@ -1,38 +1,32 @@
 
 #include "vehiculehypo.h"
 
-void VehiculeHypo::affiche()
-{
+void VehiculeHypo::affiche() {
 	Sprite::affiche();
 
-	if ( joueur != NULL)
+	if (joueur != NULL)
 		joueur->affiche();
 }
 
-void VehiculeHypo::updateUsed()
-{
+void VehiculeHypo::updateUsed() {
 	static const int SPEED = 3;
 
 	has_been_used = true;
 	can_be_used = false;
 
-	if ( ctrl->gauche() && x > offset+40 && !mur_opaque( x-SPEED, y))
-	{
+	if (ctrl->gauche() && x > offset + 40 && !mur_opaque(x - SPEED, y)) {
 		x -= SPEED;
 	}
 
-	if ( ctrl->droite() && x < offset+600 && !mur_opaque( x+SPEED, y))
-	{
+	if (ctrl->droite() && x < offset + 600 && !mur_opaque(x + SPEED, y)) {
 		x += SPEED;
 	}
 
-	if ( ctrl->haut() && y > 40 && !mur_opaque( x, y-SPEED))
-	{
+	if (ctrl->haut() && y > 40 && !mur_opaque(x, y - SPEED)) {
 		y -= SPEED;
 	}
 
-	if ( ctrl->bas() && y < 440 && !mur_opaque( x, y+SPEED))
-	{
+	if (ctrl->bas() && y < 440 && !mur_opaque(x, y + SPEED)) {
 		y += SPEED;
 	}
 
@@ -41,16 +35,14 @@ void VehiculeHypo::updateUsed()
 	joueur->x = x;
 	joueur->y = y;
 
-	if ( ctrl->saut())
-	{
+	if (ctrl->saut()) {
 		joueur->unlockVehicule();
 		joueur = NULL;
 	}
 }
 
 
-void VehiculeHypo::updateNotUsed()
-{
-	if ( has_been_used)
+void VehiculeHypo::updateNotUsed() {
+	if (has_been_used)
 		x += 10;
 }

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondPokeCaisseTombante.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 21 Janvier 2001
@@ -22,8 +22,7 @@
 #define UNLOCK_DELAY   32
 
 
-class FondPokeCaisseTombante : public Sprite
-{
+class FondPokeCaisseTombante : public Sprite {
 public:
 
 	FondPokeCaisseTombante();

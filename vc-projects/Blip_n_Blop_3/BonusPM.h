@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		    Bonus.h
 *		----------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -18,32 +18,26 @@
 
 #include "Bonus.h"
 
-class BonusPM : public Bonus
-{
+class BonusPM : public Bonus {
 public:
 
-	BonusPM()
-	{
+	BonusPM() {
 		pic = pbk_misc[8];
 		col_on = true;
 	};
 
-	virtual void estPris( Couille * c)
-	{
-		if (( c->id_arme == ID_LF && c->ammo >= 100) || (c->id_arme == ID_LASER && c->ammo >= 100))
+	virtual void estPris(Couille * c) {
+		if ((c->id_arme == ID_LF && c->ammo >= 100) || (c->id_arme == ID_LASER && c->ammo >= 100))
 			return;
 
-		sbk_misc.play( 4);
+		sbk_misc.play(4);
 
-		if ( c->id_arme == ID_PM)
-		{
+		if (c->id_arme == ID_PM) {
 			c->ammo += 200;
 
-			if ( c->ammo > 400)
+			if (c->ammo > 400)
 				c->ammo = 400;
-		}
-		else
-		{
+		} else {
 			c->id_arme = ID_PM;
 			c->ammo = 200;
 			c->latence_arme = 3;
@@ -57,7 +51,7 @@ public:
 			c->tire = false;
 		}
 
-		Bonus::estPris( c);
+		Bonus::estPris(c);
 	};
 };
 

@@ -9,55 +9,52 @@
 #include "bonusvache.h"
 #include "bonuslf.h"
 
-void EventBonus::doEvent()
-{
+void EventBonus::doEvent() {
 	Bonus * bonus;
 
-	switch(type)
-	{
-	case BPM:
-		bonus = new BonusPM();
-		break;
+	switch (type) {
+		case BPM:
+			bonus = new BonusPM();
+			break;
 
-	case BFUSIL:
-		bonus = new BonusFusil();
-		break;
+		case BFUSIL:
+			bonus = new BonusFusil();
+			break;
 
-	case BLF:
-		bonus = new BonusLF();
-		break;
+		case BLF:
+			bonus = new BonusLF();
+			break;
 
-	case BLASER:
-		bonus = new BonusLaser();
-		break;
+		case BLASER:
+			bonus = new BonusLaser();
+			break;
 
-	case BBEER:
-		bonus = new BonusBeer();
-		break;
+		case BBEER:
+			bonus = new BonusBeer();
+			break;
 
-	case BINV:
-		bonus = new BonusInvincible();
-		break;
+		case BINV:
+			bonus = new BonusInvincible();
+			break;
 
-	case BTONNO:
-		bonus = new BonusTonneau();
-		break;
+		case BTONNO:
+			bonus = new BonusTonneau();
+			break;
 
-	case BCOW:
-		bonus = new BonusVache();
-		break;
+		case BCOW:
+			bonus = new BonusVache();
+			break;
 
-	default:
-		bonus = NULL;
-		debug<<"Unknown bonus type\n";
-		break;
-	}	
+		default:
+			bonus = NULL;
+			debug << "Unknown bonus type\n";
+			break;
+	}
 
-	if ( bonus != NULL)
-	{
+	if (bonus != NULL) {
 		bonus->x = x;
 		bonus->y = y;
 
-		list_bonus.ajoute( (void*) bonus);
+		list_bonus.ajoute((void*) bonus);
 	}
 }

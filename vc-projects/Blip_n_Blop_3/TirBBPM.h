@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		    TirBBPM.h
 *		----------------
-*			
+*
 *		Pour les tirs de PM de Blip/Blop
 *
 *
@@ -28,18 +28,15 @@
 //		Définition de la classe TirBBPM
 //-----------------------------------------------------------------------------
 
-class TirBBPM : public TirBB
-{
+class TirBBPM : public TirBB {
 public:
 
-	
-	inline virtual int degats() const 
-	{
+
+	inline virtual int degats() const {
 		return 75;
 	};
 
-	inline virtual int enflame() const 
-	{
+	inline virtual int enflame() const {
 		return 0;
 	};
 

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------
 *		  SoundBank.h
 *		---------------
-*			
+*
 *		Classe SoundBank
 *
 *		Représente un tableau/une banque de sons (Sound).
@@ -30,8 +30,7 @@
 //		Définition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
-class SoundBank
-{
+class SoundBank {
 protected:
 	Sound **	tab;
 	int			nb_snd;
@@ -41,11 +40,17 @@ public:
 	SoundBank();
 	~SoundBank();
 
-	inline Sound * operator[] (int n) const { return tab[n]; };
-	inline Sound ** getTab( int n) const { return tab; };
-	inline int getSize() const { return nb_snd; };
+	inline Sound * operator[](int n) const {
+		return tab[n];
+	};
+	inline Sound ** getTab(int n) const {
+		return tab;
+	};
+	inline int getSize() const {
+		return nb_snd;
+	};
 
-	virtual bool loadSFX( const char * nom_fic);
+	virtual bool loadSFX(const char * nom_fic);
 
 	void close();
 	void reload();

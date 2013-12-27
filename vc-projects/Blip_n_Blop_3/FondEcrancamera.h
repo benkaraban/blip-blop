@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondEcrancamera.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 12 Janvier 2001
@@ -19,10 +19,9 @@
 #define _FondCamera_
 
 
-class FondEcrancamera : public Sprite
-{
+class FondEcrancamera : public Sprite {
 public:
-	
+
 	virtual void update();
 	virtual void affiche();
 };

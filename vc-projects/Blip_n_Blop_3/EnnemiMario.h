@@ -4,11 +4,11 @@
 #include "ennemi.h"
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiMario.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.3 - 3 Janvier 2001
@@ -22,14 +22,13 @@
 #define LATENCE_MARIO_GRAVITE		12
 #define MARIO_PV_SOUS_CRITIQUE   17500
 #define MARIO_PV_CRITIQUE        11500
-#define MARIO_PV_SUR_CRITIQUE     8500 
+#define MARIO_PV_SUR_CRITIQUE     8500
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe EnnemiMario
 //----------------------------------------------------------------------------
 
-class EnnemiMario : public Ennemi
-{
+class EnnemiMario : public Ennemi {
 private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
@@ -37,7 +36,7 @@ private:
 	int hologramme;
 
 
-	int attack_delay;    
+	int attack_delay;
 	int wait_for_attack;
 	int attack_etape;
 	int attack_ss_etape;
@@ -65,7 +64,7 @@ public:
 	virtual void onTirecross();
 
 	//rafales horizontales
-	virtual void onRafalehorizontale();	
+	virtual void onRafalehorizontale();
 	virtual void onRafalehorizontaledouble();
 	virtual void onRafalehorizontaleconstante();
 	virtual void onRafalehorizontalechercheuse();
@@ -87,7 +86,7 @@ public:
 	virtual inline void boule_de_feu(int vitesse);
 
 	virtual void affiche();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

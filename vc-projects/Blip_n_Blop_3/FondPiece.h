@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondPiece.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 12 Janvier 2001
@@ -18,8 +18,7 @@
 
 
 
-class FondPiece : public Sprite
-{
+class FondPiece : public Sprite {
 private:
 	static int etape_synchro;
 	static int ss_etape_synchro;

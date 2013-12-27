@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  BonusLaser.h
 *		----------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -18,29 +18,23 @@
 
 #include "Bonus.h"
 
-class BonusLaser : public Bonus
-{
+class BonusLaser : public Bonus {
 public:
 
-	BonusLaser()
-	{
+	BonusLaser() {
 		pic = pbk_misc[10];
 		col_on = true;
 	};
 
-	virtual void estPris( Couille * c)
-	{
-		sbk_misc.play( 3);
+	virtual void estPris(Couille * c) {
+		sbk_misc.play(3);
 
-		if ( c->id_arme == ID_LASER)
-		{
+		if (c->id_arme == ID_LASER) {
 			c->ammo += 750;
 
-			if ( c->ammo > 1500)
+			if (c->ammo > 1500)
 				c->ammo = 1500;
-		}
-		else
-		{
+		} else {
 			c->id_arme = ID_LASER;
 			c->ammo = 750;
 			c->latence_arme = 3;
@@ -54,7 +48,7 @@ public:
 			c->tire = false;
 		}
 
-		Bonus::estPris( c);
+		Bonus::estPris(c);
 	};
 };
 

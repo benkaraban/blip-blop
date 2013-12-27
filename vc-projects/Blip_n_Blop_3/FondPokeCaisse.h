@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondPokeCaisse.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 21 Janvier 2001
@@ -18,8 +18,7 @@
 
 
 
-class FondPokeCaisse : public Sprite
-{
+class FondPokeCaisse : public Sprite {
 
 public:
 	FondPokeCaisse();

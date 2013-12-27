@@ -4,37 +4,31 @@
 
 #include "sprite.h"
 
-class GorePiedBisouBoom : public Sprite
-{
+class GorePiedBisouBoom : public Sprite {
 public:
-	virtual void update()
-	{
+	virtual void update() {
 		tombe();
 
-		if ( etape < 5)
-		{
+		if (etape < 5) {
 			ss_etape += 1;
 			ss_etape %= 8;
 
-			if ( ss_etape == 0)
+			if (ss_etape == 0)
 				etape += 1;
 
-			if ( dir == SENS_DROITE)
-				pic = pbk_ennemis[190+etape];
+			if (dir == SENS_DROITE)
+				pic = pbk_ennemis[190 + etape];
 			else
-				pic = pbk_ennemis[196+etape];
+				pic = pbk_ennemis[196 + etape];
 		}
 
 
-		if ((plat( x, y) != 0 && etape >= 5) || mur_opaque( x, y))
-		{
-			grave( x, y, pic);
+		if ((plat(x, y) != 0 && etape >= 5) || mur_opaque(x, y)) {
+			grave(x, y, pic);
 			a_detruire = true;
-			sbk_misc.play( 6+(rand()%2));
-		}
-		else
-		{
-			if ( dir == SENS_DROITE)
+			sbk_misc.play(6 + (rand() % 2));
+		} else {
+			if (dir == SENS_DROITE)
 				x -= 2;
 			else
 				x += 2;
@@ -45,37 +39,31 @@ public:
 	};
 };
 
-class GoreTeteBisouBoom : public Sprite
-{
+class GoreTeteBisouBoom : public Sprite {
 public:
-	virtual void update()
-	{
+	virtual void update() {
 		tombe();
 
-		if ( etape < 5)
-		{
+		if (etape < 5) {
 			ss_etape += 1;
 			ss_etape %= 8;
 
-			if ( ss_etape == 0)
+			if (ss_etape == 0)
 				etape += 1;
 
-			if ( dir == SENS_DROITE)
-				pic = pbk_ennemis[202+etape];
+			if (dir == SENS_DROITE)
+				pic = pbk_ennemis[202 + etape];
 			else
-				pic = pbk_ennemis[208+etape];
+				pic = pbk_ennemis[208 + etape];
 		}
 
 
-		if ((plat( x, y) != 0 && etape >= 5) || mur_opaque( x, y))
-		{
-			grave( x, y, pic);
+		if ((plat(x, y) != 0 && etape >= 5) || mur_opaque(x, y)) {
+			grave(x, y, pic);
 			a_detruire = true;
-			sbk_misc.play( 6+(rand()%2));
-		}
-		else
-		{
-			if ( dir == SENS_DROITE)
+			sbk_misc.play(6 + (rand() % 2));
+		} else {
+			if (dir == SENS_DROITE)
 				x += 2;
 			else
 				x -= 2;
@@ -85,37 +73,31 @@ public:
 	};
 };
 
-class GoreBideBisouBoom : public Sprite
-{
+class GoreBideBisouBoom : public Sprite {
 public:
-	virtual void update()
-	{
+	virtual void update() {
 		tombe();
 
-		if ( etape < 5)
-		{
+		if (etape < 5) {
 			ss_etape += 1;
 			ss_etape %= 8;
 
-			if ( ss_etape == 0)
+			if (ss_etape == 0)
 				etape += 1;
 
-			if ( dir == SENS_DROITE)
-				pic = pbk_ennemis[214+etape];
+			if (dir == SENS_DROITE)
+				pic = pbk_ennemis[214 + etape];
 			else
-				pic = pbk_ennemis[220+etape];
+				pic = pbk_ennemis[220 + etape];
 		}
 
 
-		if ((plat( x, y) != 0 && etape >= 5) || mur_opaque( x, y))
-		{
-			grave( x, y, pic);
-			sbk_misc.play( 6+(rand()%2));
+		if ((plat(x, y) != 0 && etape >= 5) || mur_opaque(x, y)) {
+			grave(x, y, pic);
+			sbk_misc.play(6 + (rand() % 2));
 			a_detruire = true;
-		}
-		else
-		{
-			if ( dir == SENS_DROITE)
+		} else {
+			if (dir == SENS_DROITE)
 				x += 1;
 			else
 				x -= 1;

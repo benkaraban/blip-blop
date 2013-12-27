@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   TirEpeeLaser.h
 *		----------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -26,8 +26,7 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class TirEpeeLaser : public Tir
-{
+class TirEpeeLaser : public Tir {
 public:
 	Sprite *	cible;
 	Sprite *	lanceur;
@@ -40,18 +39,15 @@ public:
 	TirEpeeLaser();
 	virtual ~TirEpeeLaser();
 
-	virtual int degats() const
-	{
+	virtual int degats() const {
 		return 1;
 	};
 
-	virtual int enflame() const
-	{
+	virtual int enflame() const {
 		return 0;
 	};
 
-	virtual void setDir( int d)
-	{
+	virtual void setDir(int d) {
 		dir = d;
 	};
 

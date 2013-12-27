@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondAssembleur.cpp
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 12 Janvier 2001
@@ -16,21 +16,18 @@
 #include "globals.h"
 #include "fondAssembleur.h"
 
-FondAssembleur::FondAssembleur()
-{
+FondAssembleur::FondAssembleur() {
 	//pic = pbk_niveau[53];
 }
 
-void FondAssembleur::update()
-{
+void FondAssembleur::update() {
 	etape += 1;
 	etape %= 432;
 
 	//colFromPic();
 }
 
-void FondAssembleur::affiche()
-{
+void FondAssembleur::affiche() {
 	//Sprite::affiche();
 
 	IDirectDrawSurface7 *	surf;
@@ -46,14 +43,14 @@ void FondAssembleur::affiche()
 	r.top		= etape;
 	r.left		= 0;
 
-	if ( x+75 > offset+640)
-		largeur = offset+640-x;
+	if (x + 75 > offset + 640)
+		largeur = offset + 640 - x;
 	else
 		largeur = 75;
 
 	r.right		= largeur;
 	r.bottom	= 87 + etape;
 
-	backSurface->BltFast( x-offset, y, surf, &r, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
+	backSurface->BltFast(x - offset, y, surf, &r, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
 
 }

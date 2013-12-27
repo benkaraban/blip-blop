@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		  SoundBankBB.h
 *		-----------------
-*			
+*
 *		Classe SoundBankBB
 *
 *		Cette classe est presque identique à la classe SoundBank.
@@ -31,15 +31,14 @@
 //		Définition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
-class SoundBankBB : public SoundBank
-{
+class SoundBankBB : public SoundBank {
 public:
 
-	void play( int n, int flags=0);
-	void stop( int n);
-	void setVolume( int n, int vol);
+	void play(int n, int flags = 0);
+	void stop(int n);
+	void setVolume(int n, int vol);
 
-	virtual bool loadSFX( const char * nom_fic);
+	virtual bool loadSFX(const char * nom_fic);
 
 };
 

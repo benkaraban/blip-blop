@@ -9,8 +9,7 @@
 #include "sprite.h"
 
 
-class Explosion : public Sprite
-{
+class Explosion : public Sprite {
 public:
 	int		type;
 	bool	fini;

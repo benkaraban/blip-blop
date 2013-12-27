@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiCOMVolant : public Ennemi
-{
+class EnnemiCOMVolant : public Ennemi {
 private:
 	int speed;
 	bool attack;

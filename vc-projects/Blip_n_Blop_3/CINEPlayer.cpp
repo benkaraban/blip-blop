@@ -17,10 +17,8 @@
 //---------------------------------------------------------------------------
 
 
-void CINEPlayer::initPlayer()
-{
-	for ( int i=0; i < NB_OBJ; i++)
-	{
+void CINEPlayer::initPlayer() {
+	for (int i = 0; i < NB_OBJ; i++) {
 		obj[i].show = false;
 		obj[i].time_mov = 0;
 		obj[i].nb_anim = 0;
@@ -46,51 +44,46 @@ void CINEPlayer::initPlayer()
 //---------------------------------------------------------------------------
 
 
-bool CINEPlayer::playScene( const char * file, IDirectDrawSurface7 * s1, IDirectDrawSurface7 * s2)
-{
+bool CINEPlayer::playScene(const char * file, IDirectDrawSurface7 * s1, IDirectDrawSurface7 * s2) {
 	bool	skiped = false;
-/*
-	debug<<"---------------------------------------------------------------\n";
-	debug<<"Playing cine file "<<file<<"\n";
-	debug<<"---------------------------------------------------------------\n";
-*/
+	/*
+		debug<<"---------------------------------------------------------------\n";
+		debug<<"Playing cine file "<<file<<"\n";
+		debug<<"---------------------------------------------------------------\n";
+	*/
 	initPlayer();
 
 	first_surf = s1;
 	back_surf = s2;
 
-	Precache( file);
+	Precache(file);
 
-	fic.open( file);
+	fic.open(file);
 
-	if ( fic.is_open() == 0)
-	{
-		debug<<"CINEPlayer -> Cannot open file "<<file<<"\n";
+	if (fic.is_open() == 0) {
+		debug << "CINEPlayer -> Cannot open file " << file << "\n";
 		return false;
 	}
 
 
 	manageMsg();
 
-	while ( !fini)
-	{
+	while (!fini) {
 		updateState();
 		time = LGetTime();
 		dtime = 0;
 
-		while ( frame_to_draw > 0 && !fini)
-		{
+		while (frame_to_draw > 0 && !fini) {
 			manageMsg();
-			
-			if ( checkRestore())
+
+			if (checkRestore())
 				time = LGetTime();
 
 			in.update();
 
 			renderLoop();
 
-			if ( in.scanKey( DIK_ESCAPE))
-			{
+			if (in.scanKey(DIK_ESCAPE)) {
 				fini = true;
 				skiped = true;
 			}
@@ -106,77 +99,65 @@ bool CINEPlayer::playScene( const char * file, IDirectDrawSurface7 * s1, IDirect
 //---------------------------------------------------------------------------
 
 
-void CINEPlayer::updateScene()
-{
+void CINEPlayer::updateScene() {
 	tupdate = LGetTime();
 
 	// Gére le volume
 	//
 	int vol = delta_vol;
-	
-	if ( vol < 0)
+
+	if (vol < 0)
 		vol = 0;
 
-	if ( vol > back_vol)
+	if (vol > back_vol)
 		vol = back_vol;
 
 	// Gére l'alpha blending
 	//
 	alpha += delta_alpha;
 
-	if ( alpha > 255)
+	if (alpha > 255)
 		alpha = 255;
-	else if ( alpha < 0)
+	else if (alpha < 0)
 		alpha = 0;
 
 	// Gére les objets
 	//
-	for ( int i=0; i < NB_OBJ; i++)
-	{
-		if ( obj[i].show)
-		{
-			if ( obj[i].time_mov > 0)
-			{
+	for (int i = 0; i < NB_OBJ; i++) {
+		if (obj[i].show) {
+			if (obj[i].time_mov > 0) {
 				obj[i].x += obj[i].dx;
 				obj[i].y += obj[i].dy;
 				obj[i].time_mov -= 1;
 			}
 
-			if ( obj[i].nb_anim > 0)
-			{
+			if (obj[i].nb_anim > 0) {
 				obj[i].wait_anim += 1;
 				obj[i].wait_anim %= obj[i].speed_anim;
 
 				obj[i].pic = pbk[obj[i].anim[obj[i].etape]];
 
-				if ( obj[i].wait_anim == 0)
-				{
+				if (obj[i].wait_anim == 0) {
 					obj[i].etape += 1;
 
-					if ( obj[i].etape >= obj[i].nb_anim)
-					{
-						if ( obj[i].loop_anim)
-						{
+					if (obj[i].etape >= obj[i].nb_anim) {
+						if (obj[i].loop_anim) {
 							obj[i].etape = 0;
 							obj[i].pic = pbk[obj[i].anim[0]];
-						}
-						else
-						{
+						} else {
 							obj[i].nb_anim = 0;
 						}
 					}
-				}				
+				}
 			}
 
-			if ( obj[i].x_warp)
-			{
-				if ( obj[i].x == obj[i].x_warp1)
+			if (obj[i].x_warp) {
+				if (obj[i].x == obj[i].x_warp1)
 					obj[i].x = obj[i].x_warp2;
 			}
 
-			if ( obj[i].y_warp)
-			{
-				if ( obj[i].y == obj[i].y_warp1)
+			if (obj[i].y_warp) {
+				if (obj[i].y == obj[i].y_warp1)
 					obj[i].y = obj[i].y_warp2;
 			}
 		}
@@ -189,17 +170,17 @@ void CINEPlayer::updateScene()
 //---------------------------------------------------------------------------
 
 
-void CINEPlayer::renderLoop()
-{
+void CINEPlayer::renderLoop() {
 	static const int GOOD = 118;
 	static const int INT_SIZE = 50;
 	static const int MARGE = 10;
 
-	static int	marge[INT_SIZE] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-									0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-									0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-									0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-									0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	static int	marge[INT_SIZE] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+	                             };
 	static int	im = 0;
 
 	dtime += LGetTime() - time;
@@ -207,22 +188,17 @@ void CINEPlayer::renderLoop()
 
 	int sum = 0;
 
-	for ( int i=0; i < INT_SIZE; i++)
-	{
+	for (int i = 0; i < INT_SIZE; i++) {
 		sum += marge[i];
 	}
 
 	glorf = sum / INT_SIZE;
 
-	if ( glorf >= -MARGE && glorf <= MARGE)
-	{
+	if (glorf >= -MARGE && glorf <= MARGE) {
 		updateScene();
 		dtime = 0;
-	}
-	else
-	{
-		while ( dtime >= GOOD)
-		{
+	} else {
+		while (dtime >= GOOD) {
 			updateScene();
 			dtime -= GOOD;
 		}
@@ -234,10 +210,10 @@ void CINEPlayer::renderLoop()
 	drawScene();
 
 	DWORD ttotal = tupdate + tdraw;
-	
-	if ( ttotal <= 0)
+
+	if (ttotal <= 0)
 		ttotal = GOOD;
-	else if ( ttotal >= 5000)
+	else if (ttotal >= 5000)
 		ttotal = GOOD;
 
 	marge[im] = ttotal - GOOD;
@@ -247,106 +223,79 @@ void CINEPlayer::renderLoop()
 //---------------------------------------------------------------------------
 
 
-void CINEPlayer::updateState()
-{
+void CINEPlayer::updateState() {
 	bool	to_draw = false;
-	int		n; 
-	int		n2; 
+	int		n;
+	int		n2;
 	int		i;
 
-	while ( !fini && !to_draw && getCommand())
-	{
-		if ( ISCOM("endscene"))
-		{
+	while (!fini && !to_draw && getCommand()) {
+		if (ISCOM("endscene")) {
 			pbk.close();
 			fini = true;
-		}
-		else if ( ISCOM("loadgfx"))
-		{
+		} else if (ISCOM("loadgfx")) {
 			pbk.close();
-			if ( !pbk.loadGFX( str_arg[0], DDSURF_BEST))
-				error( "ne peut pas charger le fichier GFX");
-		}
-		else if ( ISCOM("loadmbk"))
-		{
+			if (!pbk.loadGFX(str_arg[0], DDSURF_BEST))
+				error("ne peut pas charger le fichier GFX");
+		} else if (ISCOM("loadmbk")) {
 			mbk.close();
-			if ( !mbk.open( str_arg[0]))
-				error( "ne peut pas charger la MBK");
-		}
-		else if ( ISCOM("playmusic"))
-		{
-			mbk.play( int_arg[0]);
-		}
-		else if ( ISCOM("stopmusic"))
-		{
+			if (!mbk.open(str_arg[0]))
+				error("ne peut pas charger la MBK");
+		} else if (ISCOM("playmusic")) {
+			mbk.play(int_arg[0]);
+		} else if (ISCOM("stopmusic")) {
 			mbk.stop();
-		}
-		else if ( ISCOM("setpos"))
-		{
+		} else if (ISCOM("setpos")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].x = int_arg[1];
 				obj[n].y = int_arg[2];
 			}
-		}
-		else if ( ISCOM("setpic"))
-		{
+		} else if (ISCOM("setpic")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				n2 = int_arg[1];
 
-				if ( n2 < 0 || n2 >= pbk.getSize())
-					error( "numéro d'image invalide");
-				else
-				{
+				if (n2 < 0 || n2 >= pbk.getSize())
+					error("numéro d'image invalide");
+				else {
 					obj[n].id = OBJ_SPRITE;
 					obj[n].pic = pbk[n2];
 					obj[n].show = true;
 				}
 			}
-		}
-		else if ( ISCOM("setmove"))
-		{
+		} else if (ISCOM("setmove")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].dx = int_arg[1];
 				obj[n].dy = int_arg[2];
 				obj[n].time_mov = int_arg[3];
 			}
-		}
-		else if ( ISCOM("settext"))
-		{
+		} else if (ISCOM("settext")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].id = OBJ_TEXTE;
 				obj[n].txt = int_arg[1];
 				obj[n].show = true;
 			}
-		}
-		else if ( ISCOM("reset"))
-		{
+		} else if (ISCOM("reset")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].show = false;
 				obj[n].dx = 0;
 				obj[n].dy = 0;
@@ -354,11 +303,8 @@ void CINEPlayer::updateState()
 				obj[n].x_warp = false;
 				obj[n].y_warp = false;
 			}
-		}
-		else if ( ISCOM("resetall"))
-		{
-			for ( i=0; i < NB_OBJ; i++)
-			{
+		} else if (ISCOM("resetall")) {
+			for (i = 0; i < NB_OBJ; i++) {
 
 				obj[i].show = false;
 				obj[i].dx = 0;
@@ -367,31 +313,24 @@ void CINEPlayer::updateState()
 				obj[i].x_warp = false;
 				obj[i].y_warp = false;
 			}
-		}
-		else if ( ISCOM("setclip"))
-		{
+		} else if (ISCOM("setclip")) {
 			clip_x1 = int_arg[0];
 			clip_y1 = int_arg[1];
 			clip_x2 = int_arg[2];
 			clip_y2 = int_arg[3];
-		}
-		else if ( ISCOM("noclip"))
-		{
+		} else if (ISCOM("noclip")) {
 			clip_x1 = 0;
 			clip_y1 = 0;
 			clip_x2 = 640;
 			clip_y2 = 480;
-		}
-		else if ( ISCOM("setanim"))
-		{
+		} else if (ISCOM("setanim")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].speed_anim = int_arg[1];
-				if ( int_arg[2])
+				if (int_arg[2])
 					obj[n].loop_anim = true;
 				else
 					obj[n].loop_anim = false;
@@ -400,108 +339,74 @@ void CINEPlayer::updateState()
 				obj[n].pic = pbk[int_arg[3]];
 				obj[n].wait_anim = 0;
 				obj[n].etape = 0;
-				obj[n].nb_anim = nb_args-3;
+				obj[n].nb_anim = nb_args - 3;
 
-				for ( i=3; i < nb_args; i++)
-				{
-					obj[n].anim[i-3] = int_arg[i];
+				for (i = 3; i < nb_args; i++) {
+					obj[n].anim[i - 3] = int_arg[i];
 				}
 
 			}
-		}
-		else if ( ISCOM("setxwarp"))
-		{
+		} else if (ISCOM("setxwarp")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].x_warp = true;
 				obj[n].x_warp1 = int_arg[1];
 				obj[n].x_warp2 = int_arg[2];
 			}
-		}
-		else if ( ISCOM("setywarp"))
-		{
+		} else if (ISCOM("setywarp")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].y_warp = true;
 				obj[n].y_warp1 = int_arg[1];
 				obj[n].y_warp2 = int_arg[2];
 			}
-		}
-		else if ( ISCOM("stopanim"))
-		{
+		} else if (ISCOM("stopanim")) {
 			n = int_arg[0];
 
-			if ( n < 0 || n >= NB_OBJ)
-				error( "numéro d'objet invalide");
-			else
-			{
+			if (n < 0 || n >= NB_OBJ)
+				error("numéro d'objet invalide");
+			else {
 				obj[n].nb_anim = false;
 			}
-		}
-		else if ( ISCOM("setalpha"))
-		{
+		} else if (ISCOM("setalpha")) {
 			alpha = int_arg[0];
 			delta_alpha = 0;
-		}
-		else if ( ISCOM("setdeltaalpha"))
-		{
+		} else if (ISCOM("setdeltaalpha")) {
 			delta_alpha = int_arg[0];
-		}
-		else if ( ISCOM("setbackcolor"))
-		{
-			if ( int_arg[0] < 0 || int_arg[0] > 1)
-				error( "mauvais numéro de calque");
-			else
-			{
-				if ( int_arg[1] == 0)
-				{
+		} else if (ISCOM("setbackcolor")) {
+			if (int_arg[0] < 0 || int_arg[0] > 1)
+				error("mauvais numéro de calque");
+			else {
+				if (int_arg[1] == 0) {
 					color[int_arg[0]] = 0;
-				}
-				else
-				{
+				} else {
 					color[int_arg[0]] = 0xFFFF;
 				}
 			}
-		}
-		else if ( ISCOM("setclipcolor"))
-		{
-			if ( int_arg[0] < 0 || int_arg[0] > 1)
-				error( "mauvais numéro de calque");
-			else
-			{
-				if ( int_arg[1] == 0)
-				{
+		} else if (ISCOM("setclipcolor")) {
+			if (int_arg[0] < 0 || int_arg[0] > 1)
+				error("mauvais numéro de calque");
+			else {
+				if (int_arg[1] == 0) {
 					clip_color[int_arg[0]] = 0;
-				}
-				else
-				{
+				} else {
 					clip_color[int_arg[0]] = 0xFFFF;
 				}
 			}
-		}
-		else if ( ISCOM("setvolume"))
-		{
+		} else if (ISCOM("setvolume")) {
 			delta_vol = 0;
-		}
-		else if ( ISCOM("setdeltavolume"))
-		{
+		} else if (ISCOM("setdeltavolume")) {
 			delta_vol = int_arg[0];
-		}
-		else if ( ISCOM("renderscene"))
-		{
+		} else if (ISCOM("renderscene")) {
 			frame_to_draw = int_arg[0];
 			to_draw = true;
-		}
-		else
-		{
+		} else {
 			error();
 
 		}
@@ -511,8 +416,7 @@ void CINEPlayer::updateState()
 //---------------------------------------------------------------------------
 
 
-void CINEPlayer::drawScene()
-{
+void CINEPlayer::drawScene() {
 	tdraw = LGetTime();
 
 	DDBLTFX		ddfx;
@@ -522,36 +426,32 @@ void CINEPlayer::drawScene()
 	//		Surface 1
 	//---------------------------
 
-	if ( mustFixGforceBug)
-	{
+	if (mustFixGforceBug) {
 		r.top	= 10;
-		r.bottom= 150;
+		r.bottom = 150;
 		r.left	= 200;
 		r.right = 440;
 
-		back_surf->Blt( &r, videoA, NULL, DDBLT_WAIT, 0);
+		back_surf->Blt(&r, videoA, NULL, DDBLT_WAIT, 0);
 	}
 
 	// Clear l'écran en noir
 	//
-	ZeroMemory( &ddfx, sizeof(ddfx));
+	ZeroMemory(&ddfx, sizeof(ddfx));
 	ddfx.dwSize = sizeof(ddfx);
 	ddfx.dwFillColor = color[0];
 
-	back_surf->Blt( NULL, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	back_surf->Blt(NULL, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
 
 
 	// Affiche tous les sprites/scrolls
 	//
-	for ( int i=0; i < NB_OBJ; i++)
-	{
-		if ( obj[i].show)
-		{
-			switch(obj[i].id)
-			{
-			case OBJ_SPRITE:
-				drawSprite( i);
-				break;
+	for (int i = 0; i < NB_OBJ; i++) {
+		if (obj[i].show) {
+			switch (obj[i].id) {
+				case OBJ_SPRITE:
+					drawSprite(i);
+					break;
 			}
 		}
 	}
@@ -563,63 +463,62 @@ void CINEPlayer::drawScene()
 	r.left	= 0;
 	r.right = clip_x1;
 	r.top	= 0;
-	r.bottom= 480;
-	back_surf->Blt( &r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	r.bottom = 480;
+	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
 
 	r.left	= clip_x2;
 	r.right = 640;
 	r.top	= 0;
-	r.bottom= 480;
-	back_surf->Blt( &r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	r.bottom = 480;
+	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
 
 	r.left	= 0;
 	r.right = 640;
 	r.top	= 0;
-	r.bottom= clip_y1;
-	back_surf->Blt( &r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	r.bottom = clip_y1;
+	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
 
 	r.left	= 0;
 	r.right = 640;
 	r.top	= clip_y2;
-	r.bottom= 480;
-	back_surf->Blt( &r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	r.bottom = 480;
+	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
 
 	// Affiche tous les textes
 	//
-	for ( i=0; i < NB_OBJ; i++)
-	{
-		if ( obj[i].show && obj[i].id == OBJ_TEXTE)
-			drawText( i);
+	for (i = 0; i < NB_OBJ; i++) {
+		if (obj[i].show && obj[i].id == OBJ_TEXTE)
+			drawText(i);
 	}
 
 
-/*
-	// Alpha blending
-	//
+	/*
+		// Alpha blending
+		//
 
-	if ( alpha > 0)
-	{
-		if ( alpha == 255) // 100% surface 2
+		if ( alpha > 0)
 		{
-			back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);		
+			if ( alpha == 255) // 100% surface 2
+			{
+				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
+			}
+			else // Mélange
+			{
+				r.top	= 0;
+				r.left	= 0;
+				r.bottom= 480;
+				r.right = 640;
+
+				TransAlphaImproved( back_surf, back_surf, 0, 0, r, alpha, rgb.bpp);
+
+				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
+			}
 		}
-		else // Mélange
+		else // 100% surface 1
 		{
-			r.top	= 0;
-			r.left	= 0;
-			r.bottom= 480;
-			r.right = 640;
-
-			TransAlphaImproved( back_surf, back_surf, 0, 0, r, alpha, rgb.bpp);
-
-			back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);		
+			back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
 		}
-	}
-	else // 100% surface 1
-	{
-		back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);		
-	}
-*/
+	*/
 
 
 //	first_surf->Flip(NULL, DDFLIP_WAIT);
@@ -631,26 +530,23 @@ void CINEPlayer::drawScene()
 
 //---------------------------------------------------------------------------
 
-void CINEPlayer::drawSprite( int n)
-{
-	if ( n < NB_OBJ)
-		obj[n].pic->BlitTo( back_surf, obj[n].x, obj[n].y);
+void CINEPlayer::drawSprite(int n) {
+	if (n < NB_OBJ)
+		obj[n].pic->BlitTo(back_surf, obj[n].x, obj[n].y);
 }
 
 //---------------------------------------------------------------------------
 
-void CINEPlayer::drawText( int n)
-{
-	if ( n < NB_OBJ)
-		fnt_rpg.printC( back_surf, obj[n].x, obj[n].y, txt_data[obj[n].txt]);
+void CINEPlayer::drawText(int n) {
+	if (n < NB_OBJ)
+		fnt_rpg.printC(back_surf, obj[n].x, obj[n].y, txt_data[obj[n].txt]);
 }
 
 
 //---------------------------------------------------------------------------
 
 
-bool CINEPlayer::getCommand()
-{
+bool CINEPlayer::getCommand() {
 	static const char seps [] = ",)\n";
 
 	int		i = 0;
@@ -662,22 +558,21 @@ bool CINEPlayer::getCommand()
 
 	// Retourne faux si EOF
 	//
-	if ( fic.eof())
+	if (fic.eof())
 		return false;
 
 
 	// Esquive les lignes commentées et les lignes vides
 	//
-	fic.getline( buffer, BUFFER_SIZE);
-	num_ligne += 1;	
-	
-	while ( !fic.eof() && (buffer[0] == ';' || buffer[0] == '\0'))
-	{
-		fic.getline( buffer, BUFFER_SIZE);
+	fic.getline(buffer, BUFFER_SIZE);
+	num_ligne += 1;
+
+	while (!fic.eof() && (buffer[0] == ';' || buffer[0] == '\0')) {
+		fic.getline(buffer, BUFFER_SIZE);
 		num_ligne += 1;
 	}
 
-	if ( fic.eof() && strlen( buffer) == 0)
+	if (fic.eof() && strlen(buffer) == 0)
 		return false;
 
 
@@ -689,35 +584,32 @@ bool CINEPlayer::getCommand()
 
 		// Si on arrive à la fin de ligne on s'arrête
 		//
-		if ( c == ';') 
-		{
+		if (c == ';') {
 			buffer2[j] = '\0';
-		}
-		else if ( c != ' ' && c != '\"')	// Ignore les espaces
-		{
+		} else if (c != ' ' && c != '\"') {	// Ignore les espaces
 			buffer2[j++] = tolower(c);
 		}
 
-	} while( c != '\0' && c != ';');
+	} while (c != '\0' && c != ';');
 
 	buffer2[j] = '\0';
-	
+
 
 
 	// Recherche le nom de la commande ---------------------------
 	//
-	pos = strchr( buffer2, '(');
+	pos = strchr(buffer2, '(');
 
-	if ( pos == NULL)
+	if (pos == NULL)
 		return error();
 
 
 	pos[0] = '\0';
-	strcpy( cmd_name, buffer2);
+	strcpy(cmd_name, buffer2);
 	arg = pos + 1;
 
 
-	if ( cmd_name[0] == '\0')
+	if (cmd_name[0] == '\0')
 		return error();
 
 
@@ -726,14 +618,13 @@ bool CINEPlayer::getCommand()
 	//
 	nb_args = 0;
 
-	arg = strtok( arg, seps);
+	arg = strtok(arg, seps);
 
-	while( arg != NULL)
-	{
-		strcpy( str_arg[nb_args], arg);
-		int_arg[nb_args] = atoi( arg);
+	while (arg != NULL) {
+		strcpy(str_arg[nb_args], arg);
+		int_arg[nb_args] = atoi(arg);
 
-		arg = strtok( NULL, seps);
+		arg = strtok(NULL, seps);
 		nb_args += 1;
 	}
 
@@ -741,15 +632,13 @@ bool CINEPlayer::getCommand()
 	return true;
 }
 
-void CINEPlayer::loadPBK( const char * f)
-{
-	pbk.loadGFX( f);
+void CINEPlayer::loadPBK(const char * f) {
+	pbk.loadGFX(f);
 }
 
 //---------------------------------------------------------------------------
 
-void CINEPlayer::closePlayer()
-{
+void CINEPlayer::closePlayer() {
 	mbk.close();
 	pbk.close();
 	fic.close();
@@ -758,9 +647,8 @@ void CINEPlayer::closePlayer()
 //---------------------------------------------------------------------------
 
 
-bool CINEPlayer::error()
-{
-	debug<<"CINEPlayer -> Syntax error line "<<num_ligne<<"\n";
+bool CINEPlayer::error() {
+	debug << "CINEPlayer -> Syntax error line " << num_ligne << "\n";
 	fini = true;
 	return false;
 }
@@ -768,9 +656,8 @@ bool CINEPlayer::error()
 
 //---------------------------------------------------------------------------
 
-bool CINEPlayer::error( const char * er)
-{
-	debug<<"CINEPlayer -> Error line  "<<num_ligne<<" : "<<er<<"\n";
+bool CINEPlayer::error(const char * er) {
+	debug << "CINEPlayer -> Error line  " << num_ligne << " : " << er << "\n";
 	fini = true;
 	return false;
 }

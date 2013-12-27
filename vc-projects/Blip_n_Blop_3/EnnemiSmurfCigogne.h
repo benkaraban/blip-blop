@@ -4,8 +4,7 @@
 
 #include "Ennemi.h"
 
-class EnnemiSmurfCigogne : public Ennemi
-{
+class EnnemiSmurfCigogne : public Ennemi {
 public:
 
 	int		base_y;

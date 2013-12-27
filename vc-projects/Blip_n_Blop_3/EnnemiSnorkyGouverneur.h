@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiSnorkyGouverneur.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 15 Decembre 2000
@@ -32,8 +32,7 @@
 //		Définition de la classe EnnemiSnorkyBase1
 //-----------------------------------------------------------------------------
 
-class EnnemiSnorkyGouverneur : public Ennemi
-{
+class EnnemiSnorkyGouverneur : public Ennemi {
 public:
 
 	int nb_tir;
@@ -41,7 +40,7 @@ public:
 	int shoot_delay;
 
 	EnnemiSnorkyGouverneur();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -49,7 +48,7 @@ public:
 	virtual void onTire();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

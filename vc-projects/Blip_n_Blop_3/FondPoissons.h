@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    FondPoissons.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 18 Janvier 2001
@@ -18,8 +18,7 @@
 
 #define POISSON_SPEED 1
 
-class FondPoissonRouge : public Sprite
-{
+class FondPoissonRouge : public Sprite {
 private:
 	int dir;
 
@@ -29,8 +28,7 @@ public:
 
 };
 
-class FondPoissonViolet : public Sprite
-{
+class FondPoissonViolet : public Sprite {
 private:
 	int dir;
 
@@ -40,8 +38,7 @@ public:
 
 };
 
-class FondPoissonRougeCamoufle : public Sprite
-{
+class FondPoissonRougeCamoufle : public Sprite {
 private:
 	int dir;
 
@@ -51,8 +48,7 @@ public:
 
 };
 
-class FondPoissonVioletCamoufle : public Sprite
-{
+class FondPoissonVioletCamoufle : public Sprite {
 private:
 	int dir;
 

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------
 *		  EventMusic.h
 *		---------------
-*			
+*
 *		Classe Evenement Music
 *
 *
@@ -19,8 +19,7 @@
 
 #include "event.h"
 
-class EventMusic : public Event
-{
+class EventMusic : public Event {
 public:
 
 	int		play;

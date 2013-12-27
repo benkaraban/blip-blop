@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		--------------------
 *		EnnemiSmurfPaysan.h
 *		--------------------
-*			
+*
 *		Burn ! Burn ! Burn !
 *
 *
@@ -28,8 +28,7 @@
 //		Définition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfPaysan : public Ennemi
-{
+class EnnemiSmurfPaysan : public Ennemi {
 public:
 	int		tete_ss_etape ;
 	int		tete_etape ;
@@ -37,16 +36,14 @@ public:
 	int		y_mort ;
 
 	EnnemiSmurfPaysan();
-	
-	inline virtual void affiche()
-	{
+
+	inline virtual void affiche() {
 		Ennemi::affiche() ;
-		if(etat == ETAT_MEURE && tete_etape < 5)
-		{
-			if(dir == SENS_GAUCHE)
-				draw(x_mort,y_mort,pbk_ennemis[169+tete_etape]) ;
+		if (etat == ETAT_MEURE && tete_etape < 5) {
+			if (dir == SENS_GAUCHE)
+				draw(x_mort, y_mort, pbk_ennemis[169 + tete_etape]) ;
 			else
-				draw(x_mort,y_mort,pbk_ennemis[164+tete_etape]) ;
+				draw(x_mort, y_mort, pbk_ennemis[164 + tete_etape]) ;
 		}
 	}
 
@@ -55,7 +52,7 @@ public:
 	virtual void onMeure();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

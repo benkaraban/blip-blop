@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiSnorkInBlack.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 10 Avril 2001
@@ -33,8 +33,7 @@
 //		Définition de la classe EnnemiSnorkyBase1
 //-----------------------------------------------------------------------------
 
-class EnnemiSnorkInBlack : public Ennemi
-{
+class EnnemiSnorkInBlack : public Ennemi {
 private:
 	int x_cible;
 	int y_cible;
@@ -46,7 +45,7 @@ public:
 	int shoot_delay;
 
 	EnnemiSnorkInBlack();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -54,7 +53,7 @@ public:
 	virtual void onTire();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

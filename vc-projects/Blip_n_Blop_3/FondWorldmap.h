@@ -4,10 +4,9 @@
 #define _FondWorldmap_
 
 
-class FondWorldmap : public Sprite
-{
+class FondWorldmap : public Sprite {
 public:
-	
+
 	virtual void update();
 };
 

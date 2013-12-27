@@ -210,74 +210,66 @@ Fonte			fnt_menus;
 //-----------------------------------------------------------------------------
 
 
-void tremblement( int amp)
-{
+void tremblement(int amp) {
 	amplitude_tremblement = amp;
-	ddy_tremblement = (amp>>1)+1;
+	ddy_tremblement = (amp >> 1) + 1;
 	dy_tremblement = -amp;
 	etape_tremblement = 0;
 }
 
 
-int	plat( int x, int y)
-{
-	if ( x < 0 || x >= level_size || y >= 480)
+int	plat(int x, int y) {
+	if (x < 0 || x >= level_size || y >= 480)
 		return 0;
 
 	int	tmp;
 
-	for ( int i=0; i < NB_MAX_PLAT; i++)
-	{
+	for (int i = 0; i < NB_MAX_PLAT; i++) {
 		tmp = y_plat[i][x];
 
-		if ( y >= tmp && y <= tmp+10)
+		if (y >= tmp && y <= tmp + 10)
 			return tmp;
 	}
-/*
-	if ( mur_opaque( x, y))
-		return ( y - (y%8 + 1));
-*/
+	/*
+		if ( mur_opaque( x, y))
+			return ( y - (y%8 + 1));
+	*/
 	return 0;
 }
 
-int	plat2( int x, int y)
-{
-	if ( x < 0 || x >= level_size || y < 0 || y >= 480)
+int	plat2(int x, int y) {
+	if (x < 0 || x >= level_size || y < 0 || y >= 480)
 		return -1;
 
 	int	tmp;
 
-	for ( int i=0; i < NB_MAX_PLAT; i++)
-	{
+	for (int i = 0; i < NB_MAX_PLAT; i++) {
 		tmp = y_plat[i][x];
 
-		if ( y >= tmp && y <= tmp+10)
+		if (y >= tmp && y <= tmp + 10)
 			return i;
 	}
 
 	return -1;
 }
 
-bool mur_opaque( int x, int y)
-{
-	if ( x < 0 || x >= level_size || y < 0 || y >= 480)
+bool mur_opaque(int x, int y) {
+	if (x < 0 || x >= level_size || y < 0 || y >= 480)
 		return false;
 
-	return murs_opaques[y/8][x/8];
+	return murs_opaques[y / 8][x / 8];
 }
 
 
-bool mur_sanglant( int x, int y)
-{
-	if ( x < 0 || x >= level_size || y < 0 || y >= 480)
+bool mur_sanglant(int x, int y) {
+	if (x < 0 || x >= level_size || y < 0 || y >= 480)
 		return false;
 
-	return murs_sanglants[y/8][x/8];
+	return murs_sanglants[y / 8][x / 8];
 }
 
-inline void clipedBlit( IDirectDrawSurface7 * surf, const Picture * pic, int x, int y, RECT * clip)
-{
-	if ( pic == NULL)
+inline void clipedBlit(IDirectDrawSurface7 * surf, const Picture * pic, int x, int y, RECT * clip) {
+	if (pic == NULL)
 		return;
 
 	RECT	r;
@@ -294,41 +286,36 @@ inline void clipedBlit( IDirectDrawSurface7 * surf, const Picture * pic, int x, 
 	x2 = x1 + xs;
 	y2 = y1 + ys;
 
-	if ( x2 < clip->left || x1 > clip->right || y1 > clip->bottom || y2 < clip->top)
+	if (x2 < clip->left || x1 > clip->right || y1 > clip->bottom || y2 < clip->top)
 		return;
 
-	if ( x1 < clip->left)
-	{
+	if (x1 < clip->left) {
 		r.left = clip->left - x1;
 		x1 = clip->left;
-	}
-	else
+	} else
 		r.left = 0;
 
-	if ( y1 < clip->top)
-	{
+	if (y1 < clip->top) {
 		r.top = clip->top - y1;
 		y1 = clip->top;
-	}
-	else
+	} else
 		r.top = 0;
 
-	if ( x2 > clip->right)
+	if (x2 > clip->right)
 		r.right = xs - (x2 - clip->right);
 	else
 		r.right = xs;
 
-	if ( y2 > clip->bottom)
+	if (y2 > clip->bottom)
 		r.bottom = ys - (y2 - clip->bottom);
 	else
 		r.bottom = ys;
 
-	surf->BltFast( x1, y1, pic->Surf(), &r, DDBLTFAST_WAIT | DDBLTFAST_SRCCOLORKEY);
+	surf->BltFast(x1, y1, pic->Surf(), &r, DDBLTFAST_WAIT | DDBLTFAST_SRCCOLORKEY);
 }
 
-bool grave( int x, int y, Picture * pic)
-{
-	if ( pic == NULL || x > (offset + vbuffer_wide-pic->xSize()))
+bool grave(int x, int y, Picture * pic) {
+	if (pic == NULL || x > (offset + vbuffer_wide - pic->xSize()))
 		return false;
 
 	FondStatique	s;
@@ -342,11 +329,10 @@ bool grave( int x, int y, Picture * pic)
 
 	list_fonds_animes.start();
 
-	while ( !list_fonds_animes.fin())
-	{
+	while (!list_fonds_animes.fin()) {
 		s2 = (Sprite*) list_fonds_animes.info();
 
-		if ( s.collision( s2))
+		if (s.collision(s2))
 			return false;
 
 		list_fonds_animes.suivant();
@@ -354,11 +340,10 @@ bool grave( int x, int y, Picture * pic)
 
 	list_plateformes_mobiles.start();
 
-	while ( !list_plateformes_mobiles.fin())
-	{
+	while (!list_plateformes_mobiles.fin()) {
 		s2 = (Sprite*) list_plateformes_mobiles.info();
 
-		if ( s.collision( s2))
+		if (s.collision(s2))
 			return false;
 
 		list_plateformes_mobiles.suivant();
@@ -370,35 +355,32 @@ bool grave( int x, int y, Picture * pic)
 //	int		no = offset / vbuffer_wide;
 
 	r.top	= 0;
-	r.bottom= 480;
+	r.bottom = 480;
 
 	x %= vbuffer_wide;
 
-	if ( ni == n_cache-1)
-	{
+	if (ni == n_cache - 1) {
 		r.left = next_x;
 		r.right = vbuffer_wide;
 
-		clipedBlit( videoA, pic, x, y, &r);
+		clipedBlit(videoA, pic, x, y, &r);
 
 		r.left = 0;
 		r.right = next_x;
 
-		clipedBlit( videoA, pic, x-vbuffer_wide, y, &r);
+		clipedBlit(videoA, pic, x - vbuffer_wide, y, &r);
 
 		return true;
-	}
-	else if ( ni == n_cache)
-	{
+	} else if (ni == n_cache) {
 		r.left = 0;
 		r.right = next_x;
 
-		clipedBlit( videoA, pic, x, y, &r);
+		clipedBlit(videoA, pic, x, y, &r);
 
 		r.left = next_x;
 		r.right = vbuffer_wide;
 
-		clipedBlit( videoA, pic, x+vbuffer_wide, y, &r);
+		clipedBlit(videoA, pic, x + vbuffer_wide, y, &r);
 
 		return true;
 	}
@@ -406,27 +388,24 @@ bool grave( int x, int y, Picture * pic)
 	return false;
 }
 
-bool checkRestore()
-{
-	if ( !active)
-	{
-		debug<<"Blip'n Blop 3 has been desactivated\n";
+bool checkRestore() {
+	if (!active) {
+		debug << "Blip'n Blop 3 has been desactivated\n";
 
-		while ( !active && !app_killed)
+		while (!active && !app_killed)
 			manageMsg();
 
 
-		for ( int i=0; i < 10; i++)
+		for (int i = 0; i < 10; i++)
 			manageMsg();
 
-		debug<<"Blip'n Blop 3 is active again\n";
+		debug << "Blip'n Blop 3 is active again\n";
 
-		if ( primSurface->IsLost())
-		{
-			debug<<"Restoring lost surfaces...";
+		if (primSurface->IsLost()) {
+			debug << "Restoring lost surfaces...";
 
-			if ( RestoreAll())
-				debug<<"ok\n";
+			if (RestoreAll())
+				debug << "ok\n";
 		}
 
 		return true;

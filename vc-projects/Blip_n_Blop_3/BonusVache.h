@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------
 *		  BonusVache.h
 *		---------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -18,23 +18,20 @@
 
 #include "Bonus.h"
 
-class BonusVache : public Bonus
-{
+class BonusVache : public Bonus {
 public:
 
-	BonusVache()
-	{
+	BonusVache() {
 		pic = pbk_misc[48];
 		col_on = true;
 	};
 
-	virtual void estPris( Couille * c)
-	{
-		sbk_misc.play( 1);
+	virtual void estPris(Couille * c) {
+		sbk_misc.play(1);
 
 		c->nb_cow_bomb += 1;
 
-		Bonus::estPris( c);
+		Bonus::estPris(c);
 	};
 };
 

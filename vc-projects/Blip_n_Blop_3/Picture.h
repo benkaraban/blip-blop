@@ -41,8 +41,7 @@
 //		Définition de la classe Picture
 //-----------------------------------------------------------------------------
 
-class Picture
-{
+class Picture {
 private:
 	IDirectDrawSurface7 *	surf;	// Surface contenant l'image
 	int			xsize;				// Largeur de l'image
@@ -55,23 +54,33 @@ private:
 public:
 	Picture();
 
-	inline int xSize() const { return xsize;};
-	inline int ySize() const { return ysize;};
-	inline int xSpot() const { return xspot;};
-	inline int ySpot() const { return yspot;};
-	inline IDirectDrawSurface7 * Surf() const { return surf;};
+	inline int xSize() const {
+		return xsize;
+	};
+	inline int ySize() const {
+		return ysize;
+	};
+	inline int xSpot() const {
+		return xspot;
+	};
+	inline int ySpot() const {
+		return yspot;
+	};
+	inline IDirectDrawSurface7 * Surf() const {
+		return surf;
+	};
 
-	void SetSpot( int x, int y);
-	void SetColorKey( COLORREF rgb);
-	void SetSurface( IDirectDrawSurface7 * s);
+	void SetSpot(int x, int y);
+	void SetColorKey(COLORREF rgb);
+	void SetSurface(IDirectDrawSurface7 * s);
 
-	void LoadBMP( char * file);
-	void LoadBMP( char * file, int flags);
-	void LoadBMP( char * file, int xs, int ys);
-	void LoadBMP( char * file, int xs, int ys, int flags);
-	void LoadLGX( char * file, int xs = 0, int ys = 0, int flags = 0);
-	void PasteTo( IDirectDrawSurface7 *s, int x, int y) const;
-	void BlitTo( IDirectDrawSurface7 *s, int x, int y) const;
+	void LoadBMP(char * file);
+	void LoadBMP(char * file, int flags);
+	void LoadBMP(char * file, int xs, int ys);
+	void LoadBMP(char * file, int xs, int ys, int flags);
+	void LoadLGX(char * file, int xs = 0, int ys = 0, int flags = 0);
+	void PasteTo(IDirectDrawSurface7 *s, int x, int y) const;
+	void BlitTo(IDirectDrawSurface7 *s, int x, int y) const;
 	void Close();
 
 	~Picture();

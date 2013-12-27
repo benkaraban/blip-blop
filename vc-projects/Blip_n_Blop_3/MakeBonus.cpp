@@ -6,8 +6,7 @@
 
 int makeb_current_mode = 0;
 
-int bonus_list[][BONUS_SEED] =
-{
+int bonus_list[][BONUS_SEED] = {
 
 	// Num 0 : 10 PM, 10 fusils (idéal pour niveaux bonus)
 	{ BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL },
@@ -37,8 +36,7 @@ int bonus_list[][BONUS_SEED] =
 	{ BPM, BFUSIL, BPM, BPM, BFUSIL, BBEER, BPM, BFUSIL, BFUSIL, BPM, BFUSIL, BPM, BTONNO, BPM, BFUSIL, BPM, BFUSIL, BINV, BFUSIL, BPM },
 };
 
-void MakeBonus( int x, int y)
-{
+void MakeBonus(int x, int y) {
 	static int seed = 0;
 
 	seed += 1;
@@ -54,8 +52,7 @@ void MakeBonus( int x, int y)
 	eb.doEvent();
 }
 
-void MakeBonusWeapon( int x, int y)
-{
+void MakeBonusWeapon(int x, int y) {
 	static int seed = 0;
 
 	seed += 1;

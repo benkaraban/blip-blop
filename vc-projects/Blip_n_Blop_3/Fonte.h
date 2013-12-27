@@ -30,8 +30,7 @@
 //		Définition de la classe Fonte
 //-----------------------------------------------------------------------------
 
-class Fonte
-{
+class Fonte {
 private:
 	Picture **	pictab;		// Tableau de Picture
 	int			spc;		// Largeur d'un espace
@@ -76,7 +75,7 @@ public:
 
 	// Renvoie la longueur en pixels d'un texte donné
 	//
-	int width( const char * txt);
+	int width(const char * txt);
 
 
 	// What's the fuck up ?

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		  EventEnnemi.h
 *		-----------------
-*			
+*
 *		Classe Evenement Ennemi
 *
 *		La classe evenement qui crée un ennemi
@@ -24,8 +24,7 @@
 #include "globals.h"
 
 
-class EventEnnemi : public Event
-{
+class EventEnnemi : public Event {
 public:
 	int		x;
 	int		y;

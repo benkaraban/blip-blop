@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------------
 *		  EventFondAnime.cpp
 *		----------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   2 Aout 2000
@@ -129,234 +129,229 @@
 #define IDFOND_ROCHER2       704
 #define IDFOND_ETOILE		 705
 
-void EventFondAnime::doEvent()
-{
+void EventFondAnime::doEvent() {
 	Sprite * s = NULL;
 	bool	plat_mobile = false;
 
-	switch( id_fond)
-	{
-	case IDFOND_VENTILO:
-		s = new FondVentilo();
-		break;
+	switch (id_fond) {
+		case IDFOND_VENTILO:
+			s = new FondVentilo();
+			break;
 
-	case IDFOND_LUMIERE:
-		s = new FondLumiere();
-		break;
+		case IDFOND_LUMIERE:
+			s = new FondLumiere();
+			break;
 
-	case IDFOND_EAU:
-		s = new FondEau();
-		break;
+		case IDFOND_EAU:
+			s = new FondEau();
+			break;
 
-	case IDFOND_LUMIERE2:
-		s = new FondLumiere2();
-		break;
+		case IDFOND_LUMIERE2:
+			s = new FondLumiere2();
+			break;
 
-	case IDFOND_POKEALARME1:
-		s = new FondPokeAlarme1();
-		break;
+		case IDFOND_POKEALARME1:
+			s = new FondPokeAlarme1();
+			break;
 
-	case IDFOND_POKEALARME2:
-		s = new FondPokeAlarme2();
-		break;
+		case IDFOND_POKEALARME2:
+			s = new FondPokeAlarme2();
+			break;
 
-	case IDFOND_POKEALARME3:
-		s = new FondPokeAlarme3();
-		break;
+		case IDFOND_POKEALARME3:
+			s = new FondPokeAlarme3();
+			break;
 
-	case IDFOND_POKEFLECHE:
-		s = new FondPokeFleche();
-		break;
+		case IDFOND_POKEFLECHE:
+			s = new FondPokeFleche();
+			break;
 
-	case IDFOND_POKECIEL:
-		s = new FondPokeCiel();
-		break;
+		case IDFOND_POKECIEL:
+			s = new FondPokeCiel();
+			break;
 
-	case IDFOND_POKEASCENC:
-		s = new FondPokeAscenceur();
-		plat_mobile = true;
-		break;
+		case IDFOND_POKEASCENC:
+			s = new FondPokeAscenceur();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_INTERRUPTEUR:
-		s = new FondPokeInterupteur();
-		plat_mobile = true;
-		break;
+		case IDFOND_INTERRUPTEUR:
+			s = new FondPokeInterupteur();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_CAISSETOMBANTE:
-		s = new FondPokeCaisseTombante();
-		plat_mobile = true;
-		break;
+		case IDFOND_CAISSETOMBANTE:
+			s = new FondPokeCaisseTombante();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_POKEASCENC2:
-		s = new FondPokeAscenceur2();
-		plat_mobile = true;
-		break;
+		case IDFOND_POKEASCENC2:
+			s = new FondPokeAscenceur2();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_BOMBE:
-		s = new FondBombe();
-		plat_mobile = true;
-		break;
+		case IDFOND_BOMBE:
+			s = new FondBombe();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_LEVEL2:
-		s = new FondPokeLevel2();
-		break;
+		case IDFOND_LEVEL2:
+			s = new FondPokeLevel2();
+			break;
 
-	case IDFOND_LEVEL3:
-		s = new FondPokeLevel3();
-		break;
+		case IDFOND_LEVEL3:
+			s = new FondPokeLevel3();
+			break;
 
-	case IDFOND_SAS1:
-		s = new FondSnorkSas1();
-		plat_mobile = true;
-		break;
+		case IDFOND_SAS1:
+			s = new FondSnorkSas1();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_SAS2:
-		s = new FondSnorkSas2();
-		plat_mobile = true;
-		break;
+		case IDFOND_SAS2:
+			s = new FondSnorkSas2();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_POISSONROUGE:
-		s = new FondPoissonRouge();
-		break;
+		case IDFOND_POISSONROUGE:
+			s = new FondPoissonRouge();
+			break;
 
-	case IDFOND_POISSONVIOLET:
-		s = new FondPoissonViolet();
-		break;
+		case IDFOND_POISSONVIOLET:
+			s = new FondPoissonViolet();
+			break;
 
-	case IDFOND_POISSONROUGECAMOUFLE:
-		s = new FondPoissonRougeCamoufle();
-		break;
+		case IDFOND_POISSONROUGECAMOUFLE:
+			s = new FondPoissonRougeCamoufle();
+			break;
 
-	case IDFOND_POISSONVIOLETCAMOUFLE:
-		s = new FondPoissonVioletCamoufle();
-		break;
+		case IDFOND_POISSONVIOLETCAMOUFLE:
+			s = new FondPoissonVioletCamoufle();
+			break;
 
-	case IDFOND_CUBE:
-		s = new FondCube();
-		break;
+		case IDFOND_CUBE:
+			s = new FondCube();
+			break;
 
-	case IDFOND_PIECE:
-		s= new FondPiece();
-		break;
+		case IDFOND_PIECE:
+			s = new FondPiece();
+			break;
 
-	case IDFOND_RING:
-		s=new FondRing();
-		break;
+		case IDFOND_RING:
+			s = new FondRing();
+			break;
 
-	case IDFOND_TOURNESOL1:
-		s=new FondTournesol1();
-		break;
+		case IDFOND_TOURNESOL1:
+			s = new FondTournesol1();
+			break;
 
-	case IDFOND_TOURNESOL2:
-		s=new FondTournesol2();
-		break;
+		case IDFOND_TOURNESOL2:
+			s = new FondTournesol2();
+			break;
 
-	case IDFOND_TOURNESOL3:
-		s=new FondTournesol3();
-		break;
+		case IDFOND_TOURNESOL3:
+			s = new FondTournesol3();
+			break;
 
-	case IDFOND_TOURNESOL4:
-		s=new FondTournesol4();
-		break;
+		case IDFOND_TOURNESOL4:
+			s = new FondTournesol4();
+			break;
 
-	case IDFOND_DRAPEAU:
-		s = new FondDrapeau();
-		break;
+		case IDFOND_DRAPEAU:
+			s = new FondDrapeau();
+			break;
 
-	case IDFOND_LCD:
-		s=new FondLCD();
-		break;
+		case IDFOND_LCD:
+			s = new FondLCD();
+			break;
 
-	case IDFOND_WORLDMAP:
-		s=new FondWorldmap();
-		break;
+		case IDFOND_WORLDMAP:
+			s = new FondWorldmap();
+			break;
 
-	case IDFOND_ELECTRONIC1:
-		s=new FondElectronic1();
-		break;
+		case IDFOND_ELECTRONIC1:
+			s = new FondElectronic1();
+			break;
 
-	case IDFOND_ELECTRONIC2:
-		s=new FondElectronic2();
-		break;
+		case IDFOND_ELECTRONIC2:
+			s = new FondElectronic2();
+			break;
 
-	case IDFOND_ELECTRONIC3:
-		s=new FondElectronic3();
-		break;
+		case IDFOND_ELECTRONIC3:
+			s = new FondElectronic3();
+			break;
 
-	case IDFOND_ELECTRONIC4:
-		s=new FondElectronic4();
-		break;
+		case IDFOND_ELECTRONIC4:
+			s = new FondElectronic4();
+			break;
 
-	case IDFOND_ECRANNEIGE:
-		s=new FondEcranneige();
-		break;
+		case IDFOND_ECRANNEIGE:
+			s = new FondEcranneige();
+			break;
 
-	case IDFOND_ECRANCAMERA:
-		s=new FondEcrancamera();
-		break;
+		case IDFOND_ECRANCAMERA:
+			s = new FondEcrancamera();
+			break;
 
-	case IDFOND_ASSEMBLEUR:
-		s=new FondAssembleur();
-		break;
+		case IDFOND_ASSEMBLEUR:
+			s = new FondAssembleur();
+			break;
 
-	case IDFOND_WINDOWS:
-		s=new FondWindows();
-		break;
+		case IDFOND_WINDOWS:
+			s = new FondWindows();
+			break;
 
-	case IDFOND_DOS:
-		s=new FondDos();
-		break;
+		case IDFOND_DOS:
+			s = new FondDos();
+			break;
 
-	case IDFOND_BOSSVENTILO:
-		s=new FondBossventilo();
-		break;
+		case IDFOND_BOSSVENTILO:
+			s = new FondBossventilo();
+			break;
 
-	case IDFOND_BATTLECRUISER:
-		s=new FondBattlecruiser();
-		break;
+		case IDFOND_BATTLECRUISER:
+			s = new FondBattlecruiser();
+			break;
 
-	case IDFOND_ROCHER_HYPERSPACE:
-		s=new FondRocherHyperspace();
-		break;	
+		case IDFOND_ROCHER_HYPERSPACE:
+			s = new FondRocherHyperspace();
+			break;
 
-	case IDFOND_MONOLITE:
-		s=new FondMonolite();
-		plat_mobile	= true;
-		break;
+		case IDFOND_MONOLITE:
+			s = new FondMonolite();
+			plat_mobile	= true;
+			break;
 
-	case IDFOND_ROCHER1:
-		s=new FondRocher1();
-		plat_mobile = true;
-		break;
+		case IDFOND_ROCHER1:
+			s = new FondRocher1();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_ROCHER2:
-		s=new FondRocher2();
-		plat_mobile = true;
-		break;
+		case IDFOND_ROCHER2:
+			s = new FondRocher2();
+			plat_mobile = true;
+			break;
 
-	case IDFOND_ETOILE:
-		s=new FondEtoile();
-		break;
+		case IDFOND_ETOILE:
+			s = new FondEtoile();
+			break;
 
-	case 900:
-		s =new FondBombe();
-		break;
+		case 900:
+			s = new FondBombe();
+			break;
 
 	}
 
-	if ( s != NULL)
-	{
+	if (s != NULL) {
 		s->x = x;
 		s->y = y;
 
-		if ( plat_mobile)
-			list_plateformes_mobiles.ajoute( (void*) s);
+		if (plat_mobile)
+			list_plateformes_mobiles.ajoute((void*) s);
 		else
-			list_fonds_animes.ajoute( (void*) s);
-	}
-	else
-	{
-		debug<<"Erreur : identité de fond animé inconnue ("<<id_fond<<")\n";
+			list_fonds_animes.ajoute((void*) s);
+	} else {
+		debug << "Erreur : identité de fond animé inconnue (" << id_fond << ")\n";
 	}
 
 }

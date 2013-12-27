@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondBombe.h
 *		---------------------------
-*			
+*
 *		Detonator... Boum
 *
 *		Mephisto / LOADED -   V 0.1 - 17 Janvier 2001
@@ -19,8 +19,7 @@
 #define _FondBombe_
 
 
-class FondBombe : public Sprite
-{
+class FondBombe : public Sprite {
 private:
 	int etape_compteur;
 
@@ -37,7 +36,7 @@ private:
 public:
 
 	FondBombe();
-	
+
 	virtual void update();
 	virtual void affiche();
 };

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------
 *		  BonusInvincible.h
 *		---------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -18,21 +18,18 @@
 
 #include "bonus.h"
 
-class BonusInvincible : public Bonus
-{
+class BonusInvincible : public Bonus {
 public:
 
-	BonusInvincible()
-	{
+	BonusInvincible() {
 		pic = pbk_misc[12];
 		col_on = true;
 	};
 
-	virtual void estPris( Couille * c)
-	{
+	virtual void estPris(Couille * c) {
 		c->invincible = 550;
 
-		Bonus::estPris( c);
+		Bonus::estPris(c);
 	};
 };
 

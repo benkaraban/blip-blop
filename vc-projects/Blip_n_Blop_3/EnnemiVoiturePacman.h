@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiVoiturepacman.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 4 Mars 2001
@@ -26,8 +26,7 @@
 //		Définition de la classe EnnemiVoiturePacman
 //----------------------------------------------------------------------------
 
-class EnnemiVoiturePacman : public Ennemi
-{
+class EnnemiVoiturePacman : public Ennemi {
 private:
 	int invoc_pacman;
 	int wait_end;
@@ -38,7 +37,7 @@ public:
 	virtual int degats();
 	virtual void tombeVoiture();
 	virtual void affiche();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

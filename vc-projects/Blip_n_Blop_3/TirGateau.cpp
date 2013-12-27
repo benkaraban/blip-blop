@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-------------------
 *		    TirGateau.cpp
 *		-------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -21,25 +21,23 @@
 #include "tirgateau.h"
 #include "bendebug.h"
 
-TirGateau::TirGateau()
-{
+TirGateau::TirGateau() {
 	pic = pbk_ennemis[194];
 }
 
 
-void TirGateau::update()
-{
+void TirGateau::update() {
 	lat_grav += 1;
 	lat_grav %= LATENCE_GRAVITE;
 
-	if ( lat_grav == 0 && dy < GRAVITE_MAX)
+	if (lat_grav == 0 && dy < GRAVITE_MAX)
 		dy += 1;
 
 	y += dy;
 
 	x += dx;
 
-	if ( mur_opaque( x, y) || x < offset-100 || x > offset+700 || y > 520 || y < -50)
+	if (mur_opaque(x, y) || x < offset - 100 || x > offset + 700 || y > 520 || y < -50)
 		a_detruire = true;
 
 	colFromPic();

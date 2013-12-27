@@ -28,8 +28,7 @@
 //		Définition de la classe PictureBank
 //-----------------------------------------------------------------------------
 
-class PictureBank
-{
+class PictureBank {
 private:
 	Picture **	tab;
 	int			nb_pic;
@@ -38,14 +37,20 @@ private:
 	bool		trans_fic;
 
 public:
-	inline Picture * operator [] (int n) const { return tab[n]; };
-	inline Picture ** getPix() const { return tab; };
-	inline int getSize() const { return nb_pic; };
+	inline Picture * operator [](int n) const {
+		return tab[n];
+	};
+	inline Picture ** getPix() const {
+		return tab;
+	};
+	inline int getSize() const {
+		return nb_pic;
+	};
 
 
 	PictureBank();
 	~PictureBank();
-	bool loadGFX( const char * file, int flag = DDSURF_BEST, bool trans=true);
+	bool loadGFX(const char * file, int flag = DDSURF_BEST, bool trans = true);
 	bool restoreAll();
 	void close();
 };

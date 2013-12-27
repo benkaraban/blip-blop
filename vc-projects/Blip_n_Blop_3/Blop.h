@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		--------------
 *		    Blop.h
 *		--------------
-*			
+*
 *		Let's rock!
 *
 *
@@ -28,18 +28,15 @@
 //		Definition de la classe Blop
 //-----------------------------------------------------------------------------
 
-class Blop : public Couille
-{
+class Blop : public Couille {
 
 public:
-	Blop()
-	{
+	Blop() {
 		pbk_own = pbk_blop.getPix();
 		id_couille = ID_BLOP;
 	};
 
-	virtual void rearme()
-	{
+	virtual void rearme() {
 		id_arme = ID_FUSIL;
 		ammo = 10;
 		latence_arme = 3;

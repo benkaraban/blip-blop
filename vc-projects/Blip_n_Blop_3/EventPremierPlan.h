@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------------
 *		  EventPremierPlan.h
 *		----------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   2 Aout 2000
@@ -21,8 +21,7 @@
 #include "globals.h"
 
 
-class EventPremierPlan : public Event
-{
+class EventPremierPlan : public Event {
 public:
 	int		x;
 	int		y;

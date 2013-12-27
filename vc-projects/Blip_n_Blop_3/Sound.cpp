@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  Sound.cpp
 *		----------------
-*			
+*
 *
 *		Classe "Sound" pour gérer les sons
 *
@@ -36,16 +36,14 @@
 //		Constructeur
 //-----------------------------------------------------------------------------
 
-Sound::Sound() : sample(NULL), channel(-1)
-{
+Sound::Sound() : sample(NULL), channel(-1) {
 }
 
 //-----------------------------------------------------------------------------
 //		Constructeur
 //-----------------------------------------------------------------------------
 
-Sound::~Sound()
-{
+Sound::~Sound() {
 	close();
 }
 
@@ -56,11 +54,10 @@ Sound::~Sound()
 //		 sa taille en mémoire !!!
 //-----------------------------------------------------------------------------
 
-bool Sound::load(const char * fic)
-{
-	sample = FSOUND_Sample_Load( FSOUND_FREE, fic, FSOUND_LOOP_OFF, 0);
+bool Sound::load(const char * fic) {
+	sample = FSOUND_Sample_Load(FSOUND_FREE, fic, FSOUND_LOOP_OFF, 0);
 
-	if ( sample == NULL)
+	if (sample == NULL)
 		return false;
 
 	return true;
@@ -72,13 +69,11 @@ bool Sound::load(const char * fic)
 //		 et son contenu copié en mémoire
 //-----------------------------------------------------------------------------
 
-bool Sound::loadFromMem( void * ptr, int taille)
-{
-	sample = FSOUND_Sample_Load( FSOUND_FREE, (char*)ptr, FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, taille);
+bool Sound::loadFromMem(void * ptr, int taille) {
+	sample = FSOUND_Sample_Load(FSOUND_FREE, (char*)ptr, FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, taille);
 
-	if ( sample == NULL)
-	{
-		debug<<"Sound::loadFromMem\n";
+	if (sample == NULL) {
+		debug << "Sound::loadFromMem\n";
 		return false;
 	}
 
@@ -94,21 +89,16 @@ bool Sound::loadFromMem( void * ptr, int taille)
 // Desc: Joue le son avec des drapeaux
 //-----------------------------------------------------------------------------
 
-void Sound::play(int flags)
-{
-	if ( flags & SOUND_LOOP)
-	{
-		FSOUND_Sample_SetLoopMode( sample, FSOUND_LOOP_NORMAL);
+void Sound::play(int flags) {
+	if (flags & SOUND_LOOP) {
+		FSOUND_Sample_SetLoopMode(sample, FSOUND_LOOP_NORMAL);
 
-		if ( cpt_loop++ == 0)
-		{
-			channel = FSOUND_PlaySound( FSOUND_FREE, sample);
+		if (cpt_loop++ == 0) {
+			channel = FSOUND_PlaySound(FSOUND_FREE, sample);
 		}
-	}
-	else
-	{
-		FSOUND_Sample_SetLoopMode( sample, FSOUND_LOOP_OFF);
-		channel = FSOUND_PlaySound( FSOUND_FREE, sample);
+	} else {
+		FSOUND_Sample_SetLoopMode(sample, FSOUND_LOOP_OFF);
+		channel = FSOUND_PlaySound(FSOUND_FREE, sample);
 	}
 }
 
@@ -118,8 +108,7 @@ void Sound::play(int flags)
 //		 en 100ième de décibels (conseil : utiliser les constantes)
 //-----------------------------------------------------------------------------
 
-void Sound::setVolume(int v)
-{
+void Sound::setVolume(int v) {
 }
 
 //-----------------------------------------------------------------------------
@@ -127,21 +116,15 @@ void Sound::setVolume(int v)
 // Desc: Arrête le son. Il recommencera alors au début au prochain départ
 //-----------------------------------------------------------------------------
 
-void Sound::stop()
-{
-	if ( channel != -1)
-	{
-		if ( cpt_loop > 0)
-		{
-			if ( --cpt_loop == 0)
-			{
-				FSOUND_StopSound( channel);
+void Sound::stop() {
+	if (channel != -1) {
+		if (cpt_loop > 0) {
+			if (--cpt_loop == 0) {
+				FSOUND_StopSound(channel);
 				channel = -1;
 			}
-		}
-		else
-		{
-			FSOUND_StopSound( channel);
+		} else {
+			FSOUND_StopSound(channel);
 			channel = -1;
 		}
 	}
@@ -152,9 +135,8 @@ void Sound::stop()
 // Desc: Referme le tout
 //-----------------------------------------------------------------------------
 
-void Sound::close()
-{
-	FSOUND_Sample_Free( sample);
+void Sound::close() {
+	FSOUND_Sample_Free(sample);
 }
 
 

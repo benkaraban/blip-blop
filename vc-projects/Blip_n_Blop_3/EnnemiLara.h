@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiLara.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.3 - 15 Fevrier 2001
@@ -25,12 +25,11 @@
 //		Définition de la classe EnnemiLara
 //----------------------------------------------------------------------------
 
-class EnnemiLara : public Ennemi
-{
+class EnnemiLara : public Ennemi {
 private:
-	
+
 	int numero_image_buste;
-	int attack_delay;    
+	int attack_delay;
 	int wait_for_attack;
 	int attack_etape;
 	int attack_ss_etape;
@@ -51,9 +50,9 @@ public:
 	virtual void onMeure();
 	virtual void onTire();
 
-	
+
 	virtual void affiche();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

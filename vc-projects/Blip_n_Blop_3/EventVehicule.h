@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		  EventVehicule.h
 *		-----------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   2 Aout 2000
@@ -18,8 +18,7 @@
 
 #include "event.h"
 
-class EventVehicule : public Event
-{
+class EventVehicule : public Event {
 public:
 
 	int		id_vehicule;

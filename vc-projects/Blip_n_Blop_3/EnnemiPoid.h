@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiPoid.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 21 Fevrier 2001
@@ -24,8 +24,7 @@
 //		Définition de la classe EnnemiPoid
 //----------------------------------------------------------------------------
 
-class EnnemiPoid : public Ennemi
-{
+class EnnemiPoid : public Ennemi {
 
 private:
 	int nb_colision;
@@ -35,9 +34,8 @@ public:
 	virtual void update();
 	virtual int degats();
 	virtual void onMeure();
-	virtual void estTouche( Tir * tir);
-	virtual bool count()
-	{
+	virtual void estTouche(Tir * tir);
+	virtual bool count() {
 		return false;
 	};
 };

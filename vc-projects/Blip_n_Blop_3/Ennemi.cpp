@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		    Ennemi.cpp
 *		-----------------
-*			
+*
 *		Classe mère de tous les ennemis
 *
 *
@@ -25,65 +25,53 @@ int				wait_for_bonus;
 int				num_giclure;
 
 
-Ennemi::Ennemi() : xmin(offset), blood(0), tresor(5)
-{
+Ennemi::Ennemi() : xmin(offset), blood(0), tresor(5) {
 }
 
 
-void Ennemi::estTouche( Tir * tir)
-{
+void Ennemi::estTouche(Tir * tir) {
 	int blessure = tir->degats();
 
-	if ( blessure < pv)
-	{
-		tir->aTouche( blessure);
+	if (blessure < pv) {
+		tir->aTouche(blessure);
 		pv -= blessure;
-	}
-	else
-	{
-		tir->aTouche( pv);
+	} else {
+		tir->aTouche(pv);
 		pv = 0;
 		etape = 0;
 		ss_etape = 0;
 		col_on = false;
 
-		if ( tir->enflame() == 2)
-		{
+		if (tir->enflame() == 2) {
 			etat = ETAT_CARBONISE;
 			tir->aTue();
-		}
-		else
-		{
+		} else {
 			etat = ETAT_MEURE;
 			tir->aTue();
 
 			// Laisse une trace sur le mur
 			//
-			if ( pic != NULL)
-			{
-				int y_trace = y - ((pic->ySize())>>1) - rand()%15;
+			if (pic != NULL) {
+				int y_trace = y - ((pic->ySize()) >> 1) - rand() % 15;
 
 
-				if ( mur_sanglant( x, y_trace))
-				{
+				if (mur_sanglant(x, y_trace)) {
 
 					num_giclure += 1;
 					num_giclure %= 14;
 
-					grave( x, y_trace, pbk_misc[50+num_giclure]);
+					grave(x, y_trace, pbk_misc[50 + num_giclure]);
 				}
 			}
 		}
 
 
 		// Now, ze bonus!
-		if ( count())
-		{
+		if (count()) {
 			wait_for_bonus += tresor;
 
-			if ( wait_for_bonus >= 50 && okBonus)
-			{
-				MakeBonusWeapon( x, y);
+			if (wait_for_bonus >= 50 && okBonus) {
+				MakeBonusWeapon(x, y);
 				wait_for_bonus = 0;
 			}
 
@@ -94,9 +82,8 @@ void Ennemi::estTouche( Tir * tir)
 }
 
 
-void Ennemi::gicle( const Tir * tir, const int * dxg, const int * dyg)
-{
-	if ( blood > 0 || tir->enflame())
+void Ennemi::gicle(const Tir * tir, const int * dxg, const int * dyg) {
+	if (blood > 0 || tir->enflame())
 		return;
 
 	Giclure * gicle = new Giclure();
@@ -108,66 +95,59 @@ void Ennemi::gicle( const Tir * tir, const int * dxg, const int * dyg)
 
 	blood = 20;
 
-	list_giclures.ajoute( (void*) gicle);
+	list_giclures.ajoute((void*) gicle);
 }
 
 
-void Ennemi::tirEnCloche( int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const
-{
+void Ennemi::tirEnCloche(int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const {
 	int netape = 0;
-	int ddx = xci-xtir;
-	
-	if ( ytir < yci)
-	{
+	int ddx = xci - xtir;
+
+	if (ytir < yci) {
 		yspeed = rand() % 3 - 5;
 
 		int ddy = yspeed;
-	
-		while ( ytir < yci && netape < 40)
-		{
-			ytir += ddy*LATENCE_GRAVITE;
 
-			if ( ddy < GRAVITE_MAX)
+		while (ytir < yci && netape < 40) {
+			ytir += ddy * LATENCE_GRAVITE;
+
+			if (ddy < GRAVITE_MAX)
 				ddy += 1;
 
 			netape += 1;
 		};
-	}
-	else
-	{
+	} else {
 		yspeed = rand() % 2 - 6;
-	
+
 		int ddy = yspeed;
 
-		while ( ytir > yci && netape < 40)
-		{
-			ytir += ddy*LATENCE_GRAVITE;
+		while (ytir > yci && netape < 40) {
+			ytir += ddy * LATENCE_GRAVITE;
 
-			if ( ddy < GRAVITE_MAX)
+			if (ddy < GRAVITE_MAX)
 				ddy += 1;
 
 			netape += 1;
 		};
 
-		ddx += ddx/2;
+		ddx += ddx / 2;
 	}
 
 
-	if ( netape == 0)
+	if (netape == 0)
 		xspeed = 0;
-	else
-	{
-		xspeed = ddx/(netape*LATENCE_GRAVITE);
+	else {
+		xspeed = ddx / (netape * LATENCE_GRAVITE);
 
-		if ( ddx < -20)
+		if (ddx < -20)
 			xspeed -= 1;
-		else if ( ddx > 20)
+		else if (ddx > 20)
 			xspeed += 1;
 	}
 
-	if ( xspeed < -6)
+	if (xspeed < -6)
 		xspeed = -6;
-	else if ( xspeed > 6)
+	else if (xspeed > 6)
 		xspeed = 6;
 }
 

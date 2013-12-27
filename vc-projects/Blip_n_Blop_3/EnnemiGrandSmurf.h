@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiGrandSmurf : public Ennemi
-{
+class EnnemiGrandSmurf : public Ennemi {
 public:
 
 	Sprite *	cible;

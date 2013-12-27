@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		------------------
 *		    TirBBVache.h
 *		------------------
-*			
+*
 *		The mighty cow bomb!
 *
 *
@@ -28,24 +28,20 @@
 //		Définition de la classe TirBBVache
 //-----------------------------------------------------------------------------
 
-class TirBBVache : public TirBB
-{
+class TirBBVache : public TirBB {
 public:
 
-	
-	inline virtual int degats() const 
-	{
+
+	inline virtual int degats() const {
 		return 50;
 	};
 
-	inline virtual int enflame() const 
-	{
+	inline virtual int enflame() const {
 		return 2;
 	};
 
-	inline virtual void aTouche( int pts)
-	{
-		joueur->addPoints( pts);
+	inline virtual void aTouche(int pts) {
+		joueur->addPoints(pts);
 	};
 
 	virtual void update();

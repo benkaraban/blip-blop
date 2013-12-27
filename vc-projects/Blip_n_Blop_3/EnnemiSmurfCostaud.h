@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiSmurfCostaud : public Ennemi
-{
+class EnnemiSmurfCostaud : public Ennemi {
 public:
 	int	etape_shoot;
 	int wait_shoot;
@@ -20,7 +19,7 @@ public:
 	virtual void onTireHadoken();
 	virtual void onTireDragonPunch();
 	virtual void onTireHurricanKick();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual void onCarbonise();
 	virtual void onMeure();
 };

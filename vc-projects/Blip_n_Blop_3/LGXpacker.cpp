@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  LGXpacker.cpp
 *		----------------
-*			
+*
 *		Classe LGXpacker
 *
 *		La classe LGXpacker permet de charger
@@ -12,7 +12,7 @@
 *
 *		! ATTENTION !
 *		Le LGX ne fonctionne qu'en mode 16 bits!!!
-*		
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 23 Juin 2000
@@ -48,19 +48,16 @@ LGXpacker	LGXpaker;
 //		LGXpacker::LGXpacker() - met les pointeurs à NULL
 //-----------------------------------------------------------------------------
 
-LGXpacker::LGXpacker() : tab_0(NULL), tab_1(NULL), half_tone(NULL)
-{
+LGXpacker::LGXpacker() : tab_0(NULL), tab_1(NULL), half_tone(NULL) {
 }
 
 //-----------------------------------------------------------------------------
 //		LGXpacker::~LGXpacker()
 //-----------------------------------------------------------------------------
 
-LGXpacker::~LGXpacker()
-{
-	if ( tab_0 != NULL || tab_1 != NULL || half_tone != NULL)
-	{
-		debug<<"LGXpacker non désaloué\n";
+LGXpacker::~LGXpacker() {
+	if (tab_0 != NULL || tab_1 != NULL || half_tone != NULL) {
+		debug << "LGXpacker non désaloué\n";
 		closePaker();
 	}
 }
@@ -69,16 +66,14 @@ LGXpacker::~LGXpacker()
 //		LGXpacker::init() - récupère les capacités de la carte graphique
 //-----------------------------------------------------------------------------
 
-bool LGXpacker::init( IDirectDrawSurface7 * surf)
-{
+bool LGXpacker::init(IDirectDrawSurface7 * surf) {
 	int		mask;
 	int		cpt;
 
 	// On vérifie qu'on nous envoit pas n'importe quoi
 
-	if ( surf == NULL)
-	{
-		debug<<"LGXpacker::init() / Surface nulle!\n";
+	if (surf == NULL) {
+		debug << "LGXpacker::init() / Surface nulle!\n";
 		return false;
 	}
 
@@ -86,20 +81,18 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 
 	DDPIXELFORMAT	pf;
 
-	ZeroMemory( &pf, sizeof(pf));
+	ZeroMemory(&pf, sizeof(pf));
 	pf.dwSize = sizeof(pf);
 
-	if ( surf->GetPixelFormat( &pf) != DD_OK)
-	{
-		debug<<"LGXpacker::init() / ne peut pas obtenir le PIXELFORMAT\n";
+	if (surf->GetPixelFormat(&pf) != DD_OK) {
+		debug << "LGXpacker::init() / ne peut pas obtenir le PIXELFORMAT\n";
 		return false;
 	}
 
 	// Maintenant, on va décortiquer tout ça pour avoir des infos pratiques
 
-	if ( pf.dwRBitMask == 0 || pf.dwGBitMask == 0 || pf.dwBBitMask == 0)
-	{
-		debug<<"LGXpacker::init() / Masques RGB à 0\n";
+	if (pf.dwRBitMask == 0 || pf.dwGBitMask == 0 || pf.dwBBitMask == 0) {
+		debug << "LGXpacker::init() / Masques RGB à 0\n";
 		return false;
 	}
 
@@ -109,12 +102,11 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 	mask = rMask = pf.dwRBitMask;
 	cpt = 0;
 
-	while ((mask & 1) == 0)
-	{
-		mask = mask>>1;
+	while ((mask & 1) == 0) {
+		mask = mask >> 1;
 		cpt++;
 	}
-	
+
 	rDecal = cpt;
 	rMax = mask;
 
@@ -124,12 +116,11 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 	mask = gMask = pf.dwGBitMask;
 	cpt = 0;
 
-	while ((mask & 1) == 0)
-	{
-		mask = mask>>1;
+	while ((mask & 1) == 0) {
+		mask = mask >> 1;
 		cpt++;
 	}
-	
+
 	gDecal = cpt;
 	gMax = mask;
 
@@ -139,12 +130,11 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 	mask = bMask = pf.dwBBitMask;
 	cpt = 0;
 
-	while ((mask & 1) == 0)
-	{
-		mask = mask>>1;
+	while ((mask & 1) == 0) {
+		mask = mask >> 1;
 		cpt++;
 	}
-	
+
 	bDecal = cpt;
 	bMax = mask;
 
@@ -157,23 +147,21 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 	//
 
 	tab_0 = new unsigned short[0x10000];
-	if ( tab_0==NULL)
-	{
-		debug<<"Impossible d'allouer la mémoire de décompression\n";
+	if (tab_0 == NULL) {
+		debug << "Impossible d'allouer la mémoire de décompression\n";
 		return false;
 	}
 
 
 
-	for ( int r=0; r<=LGX_RMAX_0; r++)
-		for ( int g=0; g<=LGX_GMAX_0; g++)
-			for ( int b=0; b<=LGX_BMAX_0; b++)
-			{
-				cpt = (r<<LGX_RDECAL_0) | (g<<LGX_GDECAL_0) | (b<<LGX_BDECAL_0);
+	for (int r = 0; r <= LGX_RMAX_0; r++)
+		for (int g = 0; g <= LGX_GMAX_0; g++)
+			for (int b = 0; b <= LGX_BMAX_0; b++) {
+				cpt = (r << LGX_RDECAL_0) | (g << LGX_GDECAL_0) | (b << LGX_BDECAL_0);
 
-				tab_0[cpt] =  (((r*rMax)/LGX_RMAX_0)<<rDecal) |
-							(((g*gMax)/LGX_GMAX_0)<<gDecal) |	
-							(((b*bMax)/LGX_BMAX_0)<<bDecal);
+				tab_0[cpt] = (((r * rMax) / LGX_RMAX_0) << rDecal) |
+				             (((g * gMax) / LGX_GMAX_0) << gDecal) |
+				             (((b * bMax) / LGX_BMAX_0) << bDecal);
 			}
 
 
@@ -182,9 +170,8 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 	//
 
 	tab_1 = new unsigned short[0x8000];
-	if ( tab_1==NULL)
-	{
-		debug<<"Impossible d'allouer la mémoire de décompression\n";
+	if (tab_1 == NULL) {
+		debug << "Impossible d'allouer la mémoire de décompression\n";
 		delete [] tab_0;
 		tab_0 = NULL;
 		return false;
@@ -192,24 +179,22 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 
 
 
-	for ( r=0; r<=LGX_RMAX_1; r++)
-		for ( int g=0; g<=LGX_GMAX_1; g++)
-			for ( int b=0; b<=LGX_BMAX_1; b++)
-			{
-				cpt = (r<<LGX_RDECAL_1) | (g<<LGX_GDECAL_1) | (b<<LGX_BDECAL_1);
+	for (r = 0; r <= LGX_RMAX_1; r++)
+		for (int g = 0; g <= LGX_GMAX_1; g++)
+			for (int b = 0; b <= LGX_BMAX_1; b++) {
+				cpt = (r << LGX_RDECAL_1) | (g << LGX_GDECAL_1) | (b << LGX_BDECAL_1);
 
-				tab_1[cpt] =  (((r*rMax)/LGX_RMAX_1)<<rDecal) |
-							(((g*gMax)/LGX_GMAX_1)<<gDecal) |	
-							(((b*bMax)/LGX_BMAX_1)<<bDecal);
+				tab_1[cpt] = (((r * rMax) / LGX_RMAX_1) << rDecal) |
+				             (((g * gMax) / LGX_GMAX_1) << gDecal) |
+				             (((b * bMax) / LGX_BMAX_1) << bDecal);
 			}
 
 	//
 	// ************************ HALF TONE ****************************
 	//
 	half_tone = new unsigned short[0x10000];
-	if ( half_tone == NULL)
-	{
-		debug<<"Impossible d'allouer la mémoire HALF TONE\n";
+	if (half_tone == NULL) {
+		debug << "Impossible d'allouer la mémoire HALF TONE\n";
 		delete [] tab_0;
 		tab_0 = NULL;
 		delete [] tab_1;
@@ -220,15 +205,14 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 	int		g;
 	int		b;
 
-	for ( int i=0; i <= 0xFFFF; i++)
-	{
+	for (int i = 0; i <= 0xFFFF; i++) {
 		r = i & rMask;
 		g = i & gMask;
 		b = i & bMask;
 
-		r = (r>>1) & rMask;
-		g = (g>>1) & gMask;
-		b = (b>>1) & bMask;
+		r = (r >> 1) & rMask;
+		g = (g >> 1) & gMask;
+		b = (b >> 1) & bMask;
 
 		half_tone[i] = r | g | b;
 	}
@@ -240,22 +224,18 @@ bool LGXpacker::init( IDirectDrawSurface7 * surf)
 //		LGXpacker::closePaker() - libère la mémoire utilisée
 //-----------------------------------------------------------------------------
 
-void LGXpacker::closePaker()
-{
-	if ( tab_0 != NULL)
-	{
+void LGXpacker::closePaker() {
+	if (tab_0 != NULL) {
 		delete [] tab_0;
 		tab_0 = NULL;
 	}
 
-	if ( tab_1 != NULL)
-	{
+	if (tab_1 != NULL) {
 		delete [] tab_1;
 		tab_1 = NULL;
 	}
 
-	if ( half_tone != NULL)
-	{
+	if (half_tone != NULL) {
 		delete [] half_tone;
 		half_tone = NULL;
 	}
@@ -265,24 +245,22 @@ void LGXpacker::closePaker()
 // LGXpaker::createLGX_0()
 //-----------------------------------------------------------------------------
 
-bool LGXpacker::createLGX_0( HDC hdc, const char * fic, int xs, int ys)
-{
+bool LGXpacker::createLGX_0(HDC hdc, const char * fic, int xs, int ys) {
 	void *	ptr;
 	FILE *	f;
 	int		taille;
 
-	if ((taille=createLGX_0( hdc, xs, ys, ptr)) == 0 || ptr == NULL)
+	if ((taille = createLGX_0(hdc, xs, ys, ptr)) == 0 || ptr == NULL)
 		return false;
 
-	if ((f=fopen( fic, "wb")) == NULL)
-	{
+	if ((f = fopen(fic, "wb")) == NULL) {
 		return false;
 	}
 
-	fwrite( ptr, 1, taille, f);
-	fclose( f);
+	fwrite(ptr, 1, taille, f);
+	fclose(f);
 
-	free( ptr);
+	free(ptr);
 
 	return true;
 }
@@ -291,24 +269,22 @@ bool LGXpacker::createLGX_0( HDC hdc, const char * fic, int xs, int ys)
 // LGXpaker::createLGX_1()
 //-----------------------------------------------------------------------------
 
-bool LGXpacker::createLGX_1( HDC hdc, const char * fic, int xs, int ys)
-{
+bool LGXpacker::createLGX_1(HDC hdc, const char * fic, int xs, int ys) {
 	void *	ptr;
 	FILE *	f;
 	int		taille;
 
-	if ((taille=createLGX_1( hdc, xs, ys, ptr)) == 0 || ptr == NULL)
+	if ((taille = createLGX_1(hdc, xs, ys, ptr)) == 0 || ptr == NULL)
 		return false;
 
-	if ((f=fopen( fic, "wb")) == NULL)
-	{
+	if ((f = fopen(fic, "wb")) == NULL) {
 		return false;
 	}
 
-	fwrite( ptr, 1, taille, f);
-	fclose( f);
+	fwrite(ptr, 1, taille, f);
+	fclose(f);
 
-	free( ptr);
+	free(ptr);
 
 	return true;
 }
@@ -318,8 +294,7 @@ bool LGXpacker::createLGX_1( HDC hdc, const char * fic, int xs, int ys)
 // LGXpaker::createLGX_0()
 //-----------------------------------------------------------------------------
 
-int LGXpacker::createLGX_0( HDC hdc, int xs, int ys, void * & ptr)
-{
+int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr) {
 	unsigned int	pixval;
 	int				rval;
 	int				gval;
@@ -327,11 +302,10 @@ int LGXpacker::createLGX_0( HDC hdc, int xs, int ys, void * & ptr)
 
 	unsigned char*	ptrd;	// Pointeur sur les données
 	LGX_HEADER *	lh;
-	int				taille = xs*ys*2+sizeof(LGX_HEADER);
+	int				taille = xs * ys * 2 + sizeof(LGX_HEADER);
 
 	ptr = malloc(taille);
-	if ( ptr == NULL)
-	{
+	if (ptr == NULL) {
 		return 0;
 	}
 
@@ -345,7 +319,7 @@ int LGXpacker::createLGX_0( HDC hdc, int xs, int ys, void * & ptr)
 	lh->ysize = ys;
 	lh->depth = 16;
 
-	ptrd = (unsigned char*)ptr+sizeof(LGX_HEADER);
+	ptrd = (unsigned char*)ptr + sizeof(LGX_HEADER);
 
 	// Remarque : bizarrement, les couleurs sont données dans l'ordre BGR
 	// et pas RGB, bien que ce ne soit pas le cas de D3D (???)
@@ -355,43 +329,40 @@ int LGXpacker::createLGX_0( HDC hdc, int xs, int ys, void * & ptr)
 
 	taille = 0; // Now, taille va valoir la taille effective du fichier
 
-	while ( y<ys)
-	{
-		pixval = GetPixel( hdc, x, y);
+	while (y < ys) {
+		pixval = GetPixel(hdc, x, y);
 
 
 		// On convertit la valeur RGB au format LGX
-		
-		rval = ((pixval & 0xFF) * LGX_RMAX_0)/0xFF;
-		gval = (((pixval>>8) & 0xFF) * LGX_GMAX_0)/0xFF;
-		bval = (((pixval>>16) & 0xFF) * LGX_BMAX_0)/0xFF;
+
+		rval = ((pixval & 0xFF) * LGX_RMAX_0) / 0xFF;
+		gval = (((pixval >> 8) & 0xFF) * LGX_GMAX_0) / 0xFF;
+		bval = (((pixval >> 16) & 0xFF) * LGX_BMAX_0) / 0xFF;
 
 
 		taille++;		// 1 mot inscrit
 
 
-		*((unsigned short*)ptrd) = unsigned short((rval<<LGX_RDECAL_0) | (gval<<LGX_GDECAL_0) | (bval<<LGX_BDECAL_0));
+		*((unsigned short*)ptrd) = unsigned short((rval << LGX_RDECAL_0) | (gval << LGX_GDECAL_0) | (bval << LGX_BDECAL_0));
 		ptrd += 2;
 
 		x++;
 
-		if ( x == xs)
-		{
+		if (x == xs) {
 			x = 0;
 			y++;
 		}
 
 	}
 
-	return ((taille<<1)+sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
+	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
 }
 
 //-----------------------------------------------------------------------------
 // LGXpaker::createLGX_1()
 //-----------------------------------------------------------------------------
 
-int LGXpacker::createLGX_1( HDC hdc, int xs, int ys, void * & ptr)
-{
+int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr) {
 	unsigned int	pixval;
 	unsigned short	LGXpixval;
 	unsigned short	LGXpixval2;
@@ -401,11 +372,10 @@ int LGXpacker::createLGX_1( HDC hdc, int xs, int ys, void * & ptr)
 
 	unsigned char*	ptrd;	// Pointeur sur les données
 	LGX_HEADER *	lh;
-	int				taille = xs*ys*2+sizeof(LGX_HEADER);
+	int				taille = xs * ys * 2 + sizeof(LGX_HEADER);
 
 	ptr = malloc(taille);
-	if ( ptr == NULL)
-	{
+	if (ptr == NULL) {
 		return 0;
 	}
 
@@ -419,7 +389,7 @@ int LGXpacker::createLGX_1( HDC hdc, int xs, int ys, void * & ptr)
 	lh->ysize = ys;
 	lh->depth = 16;
 
-	ptrd = (unsigned char*)ptr+sizeof(LGX_HEADER);
+	ptrd = (unsigned char*)ptr + sizeof(LGX_HEADER);
 
 	// Remarque : bizarrement, les couleurs sont données dans l'ordre BGR
 	// et pas RGB, bien que ce ne soit pas le cas de D3D (???)
@@ -430,52 +400,47 @@ int LGXpacker::createLGX_1( HDC hdc, int xs, int ys, void * & ptr)
 
 	taille = 0; // Now, taille va valoir la taille effective du fichier
 
-	while ( y<ys)
-	{
-		pixval = GetPixel( hdc, x, y);
+	while (y < ys) {
+		pixval = GetPixel(hdc, x, y);
 
-		rval = ((pixval & 0xFF) * LGX_RMAX_1)/0xFF;
-		gval = (((pixval>>8) & 0xFF) * LGX_GMAX_1)/0xFF;
-		bval = (((pixval>>16) & 0xFF) * LGX_BMAX_1)/0xFF;
+		rval = ((pixval & 0xFF) * LGX_RMAX_1) / 0xFF;
+		gval = (((pixval >> 8) & 0xFF) * LGX_GMAX_1) / 0xFF;
+		bval = (((pixval >> 16) & 0xFF) * LGX_BMAX_1) / 0xFF;
 
-		LGXpixval = unsigned short((rval<<LGX_RDECAL_1) | (gval<<LGX_GDECAL_1) | (bval<<LGX_BDECAL_1));
+		LGXpixval = unsigned short((rval << LGX_RDECAL_1) | (gval << LGX_GDECAL_1) | (bval << LGX_BDECAL_1));
 
 		cpt = 0;
-		
-		do{
+
+		do {
 
 			x++;
 
-			if ( x == xs)
-			{
+			if (x == xs) {
 				x = 0;
 				y++;
 			}
 
 			cpt++;
 
-			pixval = GetPixel( hdc, x, y);
+			pixval = GetPixel(hdc, x, y);
 
-			rval = ((pixval & 0xFF) * LGX_RMAX_1)/0xFF;
-			gval = (((pixval>>8) & 0xFF) * LGX_GMAX_1)/0xFF;
-			bval = (((pixval>>16) & 0xFF) * LGX_BMAX_1)/0xFF;
+			rval = ((pixval & 0xFF) * LGX_RMAX_1) / 0xFF;
+			gval = (((pixval >> 8) & 0xFF) * LGX_GMAX_1) / 0xFF;
+			bval = (((pixval >> 16) & 0xFF) * LGX_BMAX_1) / 0xFF;
 
-			LGXpixval2 = unsigned short((rval<<LGX_RDECAL_1) | (gval<<LGX_GDECAL_1) | (bval<<LGX_BDECAL_1));
-
-
-		}while ( y < ys && LGXpixval == LGXpixval2 && cpt < 0x7FFF);
+			LGXpixval2 = unsigned short((rval << LGX_RDECAL_1) | (gval << LGX_GDECAL_1) | (bval << LGX_BDECAL_1));
 
 
+		} while (y < ys && LGXpixval == LGXpixval2 && cpt < 0x7FFF);
 
 
-		if ( cpt >= 2)
-		{
+
+
+		if (cpt >= 2) {
 			*((unsigned short*)ptrd) = unsigned short(unsigned short(0x8000) | cpt);
 			ptrd += 2;
 			taille += 2;	// 2 mots inscrits
-		}
-		else
-		{
+		} else {
 			taille++;		// 1 mot inscrit
 		}
 
@@ -484,10 +449,10 @@ int LGXpacker::createLGX_1( HDC hdc, int xs, int ys, void * & ptr)
 		*((unsigned short*)ptrd) = LGXpixval;
 		ptrd += 2;
 
-	
+
 	}
 
-	return ((taille<<1)+sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
+	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
 }
 
 
@@ -497,11 +462,9 @@ int LGXpacker::createLGX_1( HDC hdc, int xs, int ys, void * & ptr)
 //							   mémoire précisé
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
-{
-	if ( tab_0 == NULL || tab_1 == NULL)
-	{
-		debug<<"LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
+IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version) {
+	if (tab_0 == NULL || tab_1 == NULL) {
+		debug << "LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
 		return NULL;
 	}
 
@@ -512,9 +475,8 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 
 	// On vérifie qu'il s'agit bien d'un fichier LGX
 
-	if ( lh->id[0] != 'L' || lh->id[1] != 'G' || lh->id[2] != 'X')
-	{
-		debug<<"LGXpacker::LoadLGX() / Format de fichier erroné!\n";
+	if (lh->id[0] != 'L' || lh->id[1] != 'G' || lh->id[2] != 'X') {
+		debug << "LGXpacker::LoadLGX() / Format de fichier erroné!\n";
 		return NULL;
 	}
 
@@ -523,10 +485,9 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 
 	// On crée la surface correspondante
 
-	surf = DDCreateSurface( xs, ys, flags);
-	if ( surf == NULL)
-	{
-		debug<<"LGXpacker::LoadLGX() / Ne peut pas créer la surface\n";
+	surf = DDCreateSurface(xs, ys, flags);
+	if (surf == NULL) {
+		debug << "LGXpacker::LoadLGX() / Ne peut pas créer la surface\n";
 		return NULL;
 	}
 
@@ -535,12 +496,11 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 
 	DDSURFACEDESC2	ddsd;
 
-	ZeroMemory( &ddsd, sizeof(ddsd));
+	ZeroMemory(&ddsd, sizeof(ddsd));
 	ddsd.dwSize = sizeof(ddsd);
 
-	if (surf->Lock( NULL, &ddsd, DDLOCK_WAIT|DDLOCK_WRITEONLY|DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK)
-	{
-		debug<<"LGXpacker::LoadLGX() / Impossible d'obtenir l'adresse de la surface\n";
+	if (surf->Lock(NULL, &ddsd, DDLOCK_WAIT | DDLOCK_WRITEONLY | DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK) {
+		debug << "LGXpacker::LoadLGX() / Impossible d'obtenir l'adresse de la surface\n";
 		return surf;
 	}
 
@@ -552,25 +512,22 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 	unsigned short	col;
 	unsigned short	d;
 
-	int				dpitch = ddsd.lPitch - 2*xs;
+	int				dpitch = ddsd.lPitch - 2 * xs;
 
-	if ( version != NULL)
+	if (version != NULL)
 		*version = lh->version;
 
 	//
 	// ************************ VERSION 0 ****************************
 	//
-	if ( lh->version == 0)
-	{
-		if ( dpitch != 0)
-		{
+	if (lh->version == 0) {
+		if (dpitch != 0) {
 			unsigned char * surfPtr = (unsigned char*) ddsd.lpSurface;
 
 			int				x = 0;
 			int				y = 0;
 
-			while ( y < ys)
-			{
+			while (y < ys) {
 				d = *(data++);
 
 				*((unsigned short*)surfPtr) = tab_0[d];
@@ -578,23 +535,19 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 				surfPtr += 2;
 				x++;
 
-				if ( x == xs )
-				{
+				if (x == xs) {
 					x = 0;
 					y++;
 					surfPtr += dpitch;
 				}
 			}
-		}
-		else // dpitch=0! cool! :)
-		{
+		} else { // dpitch=0! cool! :)
 			unsigned short * surfPtr = (unsigned short*) ddsd.lpSurface;
 
-			int		t = xs*ys;
+			int		t = xs * ys;
 			int		delta = 0;
 
-			while( delta < t)
-			{
+			while (delta < t) {
 				d = *(data++);
 				surfPtr[delta++] = tab_0[d];
 			}
@@ -603,75 +556,61 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 	//
 	// ************************ VERSION 1 ****************************
 	//
-	else if ( lh->version == 1)
-	{
-		if ( dpitch != 0)
-		{
+	else if (lh->version == 1) {
+		if (dpitch != 0) {
 			unsigned char * surfPtr = (unsigned char*) ddsd.lpSurface;
 
 			int				x = 0;
 			int				y = 0;
 
-			while ( y < ys)
-			{
+			while (y < ys) {
 				d = *(data++);
 
 
-				if ( d & 0x8000)
-				{
+				if (d & 0x8000) {
 					col = tab_1[*(data++)];
 
 
-					for ( i=0; i < (d & 0x7FFF); i++)
-					{
+					for (i = 0; i < (d & 0x7FFF); i++) {
 						*((unsigned short*)surfPtr) = col;
 
 						surfPtr += 2;
 						x++;
 
-						if ( x == xs )
-						{
+						if (x == xs) {
 							x = 0;
 							y++;
 							surfPtr += dpitch;
 						}
 					}
-				}
-				else
-				{
+				} else {
 					*((unsigned short*)surfPtr) = tab_1[d];
 
 					surfPtr += 2;
 					x++;
 
-					if ( x == xs )
-					{
+					if (x == xs) {
 						x = 0;
 						y++;
 						surfPtr += dpitch;
 					}
 				}
 			}
-		}
-		else // dptich=0! cool! :)
-		{
+		} else { // dptich=0! cool! :)
 			unsigned short * surfPtr = (unsigned short*) ddsd.lpSurface;
 
-			int		t = xs*ys;
+			int		t = xs * ys;
 			int		delta = 0;
 
-			while( delta < t)
-			{
+			while (delta < t) {
 				d = *(data++);
 
-				if ( d & 0x8000)
-				{
+				if (d & 0x8000) {
 					col = tab_1[*(data++)];
 
-					for ( i=0; i < (d & 0x7FFF); i++)
+					for (i = 0; i < (d & 0x7FFF); i++)
 						surfPtr[delta++] = col;
-				}
-				else
+				} else
 					surfPtr[delta++] = tab_1[d];
 
 			}
@@ -689,11 +628,9 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( void * ptr, int flags, int * version)
 //		LGXpacker::loadLGX() - charge une image LGX à partir d'un fichier
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * LGXpacker::loadLGX( const char * fic, int flags)
-{
-	if ( tab_0 == NULL || tab_1 == NULL)
-	{
-		debug<<"LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
+IDirectDrawSurface7 * LGXpacker::loadLGX(const char * fic, int flags) {
+	if (tab_0 == NULL || tab_1 == NULL) {
+		debug << "LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
 		return NULL;
 	}
 
@@ -701,26 +638,24 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( const char * fic, int flags)
 	int		fh;
 	int		taille;
 
-	if ((fh = _open( fic, _O_BINARY|_O_RDONLY)) == -1)
-	{
-		debug<<"LGXpacker::loadLGX() / Ne peut pas ouvrir le fichier "<<fic<<"\n";
+	if ((fh = _open(fic, _O_BINARY | _O_RDONLY)) == -1) {
+		debug << "LGXpacker::loadLGX() / Ne peut pas ouvrir le fichier " << fic << "\n";
 		return NULL;
 	}
 
 	taille = _filelength(fh);
 	void * ptr = malloc(taille);
 
-	if ( ptr == NULL)
-	{
-		debug<<"LGXpaker::loadLGX() -> Mémoire insuffisante - ("<<taille<<")\n";
+	if (ptr == NULL) {
+		debug << "LGXpaker::loadLGX() -> Mémoire insuffisante - (" << taille << ")\n";
 		_close(fh);
 		return NULL;
 	}
 
-	_read( fh, ptr, taille);
-	_close(fh);	
+	_read(fh, ptr, taille);
+	_close(fh);
 
-	surf = loadLGX( ptr, flags);
+	surf = loadLGX(ptr, flags);
 
 	return surf;
 
@@ -730,28 +665,27 @@ IDirectDrawSurface7 * LGXpacker::loadLGX( const char * fic, int flags)
 // LGXpaker::fincColor()
 //-----------------------------------------------------------------------------
 
-int LGXpacker::findColor( COLORREF rgb)
-{
+int LGXpacker::findColor(COLORREF rgb) {
 	int red =  rgb & 0x000000FF;
 	int gre = (rgb & 0x0000FF00) >> 8;
 	int ble = (rgb & 0x00FF0000) >> 16;
-	
+
 //	debug<<red<<" "<<gre<<" "<<ble<<"\n";
 
-	red = (( float(red) * float(rMax)) / float(0xFF));
-	gre = ( gre * gMax) / 0xFF;
-	ble = ( ble * bMax) / 0xFF;
+	red = ((float(red) * float(rMax)) / float(0xFF));
+	gre = (gre * gMax) / 0xFF;
+	ble = (ble * bMax) / 0xFF;
 
 //	debug<<red<<" "<<gre<<" "<<ble<<"\n";
 
 //	char buff[29];
 
-	int end = ( red << rDecal) | ( gre << gDecal) | (ble << bDecal);
-/*
-	sprintf( buff, "%X", end);
-	debug<<buff<<"\n";
-*/
-	return ( end);
+	int end = (red << rDecal) | (gre << gDecal) | (ble << bDecal);
+	/*
+		sprintf( buff, "%X", end);
+		debug<<buff<<"\n";
+	*/
+	return (end);
 }
 
 
@@ -759,33 +693,30 @@ int LGXpacker::findColor( COLORREF rgb)
 // LGXpaker::halfTone()
 //-----------------------------------------------------------------------------
 
-void LGXpacker::halfTone( IDirectDrawSurface7 * surf, RECT * r)
-{
+void LGXpacker::halfTone(IDirectDrawSurface7 * surf, RECT * r) {
 	DDSURFACEDESC2		ddsd;
 
-	ZeroMemory( &ddsd, sizeof(ddsd));
+	ZeroMemory(&ddsd, sizeof(ddsd));
 	ddsd.dwSize = sizeof(ddsd);
 
-	if ( surf->Lock( r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK)
+	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK)
 		return;
 
 	int hauteur = r->bottom - r->top;
 	int largeur = r->right - r->left;
-	int modulo  = ddsd.lPitch - (largeur<<1); // largeur*2 car 16 bits
+	int modulo  = ddsd.lPitch - (largeur << 1); // largeur*2 car 16 bits
 
 	unsigned short * ptr = (unsigned short*) ddsd.lpSurface;
 
-	for ( int y=0; y < hauteur; y++)
-	{
-		for ( int x=0; x < largeur; x++)
-		{
+	for (int y = 0; y < hauteur; y++) {
+		for (int x = 0; x < largeur; x++) {
 			(*ptr) = half_tone[(*ptr)];
 			ptr += 1;
 		}
 
-		ptr = (unsigned short*)((char*)ptr+modulo);
+		ptr = (unsigned short*)((char*)ptr + modulo);
 	}
 
 
-	surf->Unlock( r);
+	surf->Unlock(r);
 }

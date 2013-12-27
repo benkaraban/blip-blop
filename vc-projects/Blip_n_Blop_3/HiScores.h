@@ -9,8 +9,7 @@
 const int HS_NB_SCORES		= 10;
 const int HS_NAME_LENGTH	= 20;
 
-class HiScores
-{
+class HiScores {
 protected:
 
 	char *	names[HS_NB_SCORES];
@@ -27,18 +26,16 @@ protected:
 public:
 	void	crypte();
 
-	HiScores()
-	{
-		for ( int i=0; i < HS_NB_SCORES; i++)
+	HiScores() {
+		for (int i = 0; i < HS_NB_SCORES; i++)
 			names[i] = new char[HS_NAME_LENGTH];
 
 		init();
 	};
 
-	~HiScores()
-	{
-		for ( int i=0; i < HS_NB_SCORES; i++)
-			if ( names[i] != NULL)
+	~HiScores() {
+		for (int i = 0; i < HS_NB_SCORES; i++)
+			if (names[i] != NULL)
 				delete [] names[i];
 	};
 
@@ -46,9 +43,8 @@ public:
 	/*
 		Retourne le nom du joueur de rang N (0 étant le meilleur)
 	*/
-	char *	getName( int n) const
-	{
-		if ( n >= 0 && n < HS_NB_SCORES)
+	char *	getName(int n) const {
+		if (n >= 0 && n < HS_NB_SCORES)
 			return names[n];
 		else
 			return NULL;
@@ -57,9 +53,8 @@ public:
 	/*
 		Retourne le score du joueur de rang N (0 étant le meilleur)
 	*/
-	int		getScore( int n) const
-	{
-		if ( n >= 0 && n < HS_NB_SCORES)
+	int		getScore(int n) const {
+		if (n >= 0 && n < HS_NB_SCORES)
 			return scores[n];
 		else
 			return 0;
@@ -69,9 +64,8 @@ public:
 		Retourne vrai si le score passé en paramètre est assez
 		élevé pour rentrer dans le HiScore
 	*/
-	bool	isGood( int scr)
-	{
-		return ( scores[HS_NB_SCORES-1] < scr);
+	bool	isGood(int scr) {
+		return (scores[HS_NB_SCORES - 1] < scr);
 	};
 
 
@@ -80,24 +74,24 @@ public:
 		et des "LOADED" partout
 	*/
 	void	init();
-	
+
 
 	/*
 		Ajoute le score (et le nom) passé en
 		paramètre à la table
 	*/
-	void	add( int scr, const char * name);
+	void	add(int scr, const char * name);
 
 
 	/*
 		Sauvegarde les scores dans un fichier crypté!
 	*/
-	bool	save( const char * file);
+	bool	save(const char * file);
 
 	/*
 		Charge les scores dans un fichier crypté!
 	*/
-	bool	load( const char * file);
+	bool	load(const char * file);
 };
 
 #endif

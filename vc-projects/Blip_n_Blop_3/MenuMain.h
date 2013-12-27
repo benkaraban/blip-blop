@@ -11,8 +11,7 @@
 #define RET_CREDITS		4
 #define RET_START_GAME2	5
 
-class MenuMain
-{
+class MenuMain {
 public:
 	int		current_menu;		// Numéro du menu courant
 	int		focus;				// Numéro du menu EN ROUGE
@@ -33,7 +32,7 @@ public:
 	void stop();
 	void updateName();
 	void updateRedefine();
-	void draw( IDirectDrawSurface7 * surf);
+	void draw(IDirectDrawSurface7 * surf);
 	~MenuMain();
 };
 

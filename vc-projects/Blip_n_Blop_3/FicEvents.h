@@ -23,12 +23,11 @@
 #define EVENTID_DYNAMIC_LOAD		14
 #define EVENTID_MUSIC				15
 #define EVENTID_BONUS_GENERATOR		16
-#define EVENTID_TURRET				17	
-#define EVENTID_BONUS				18	
+#define EVENTID_TURRET				17
+#define EVENTID_BONUS				18
 
 
-struct FICEVENT
-{
+struct FICEVENT {
 	int		event_id;		// Identificateur de l'événement
 	int		x_activation;	// Abscisse d'activation
 

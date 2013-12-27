@@ -2,21 +2,18 @@
 #include "globals.h"
 #include "fondpokeciel.h"
 
-FondPokeCiel::FondPokeCiel()
-{
+FondPokeCiel::FondPokeCiel() {
 	pic = pbk_niveau[48];
 }
 
-void FondPokeCiel::update()
-{
+void FondPokeCiel::update() {
 	etape += 4;
 	etape %= 384;
 
 	colFromPic();
 }
 
-void FondPokeCiel::affiche()
-{
+void FondPokeCiel::affiche() {
 	Sprite::affiche();
 
 	IDirectDrawSurface7 *	surf;
@@ -33,19 +30,15 @@ void FondPokeCiel::affiche()
 	r.top		= 0;
 	r.left		= etape;
 
-	if ( x+192 > offset+640)
-	{
-		largeur = offset+640-x;
+	if (x + 192 > offset + 640) {
+		largeur = offset + 640 - x;
 	}
-	
-	else if (x < offset)
-	{
+
+	else if (x < offset) {
 		largeur = 192 ;
 		r.left = offset - x + etape;
 		decalage = offset - x;
-	}
-	else
-	{
+	} else {
 		largeur = 192;
 	}
 
@@ -64,8 +57,8 @@ void FondPokeCiel::affiche()
 		largeur = 53;*/
 
 
-	backSurface->BltFast( x-offset + decalage, y+50, surf, &r, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
+	backSurface->BltFast(x - offset + decalage, y + 50, surf, &r, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
 
 
-	draw( x, y, pbk_niveau[49]);
+	draw(x, y, pbk_niveau[49]);
 }

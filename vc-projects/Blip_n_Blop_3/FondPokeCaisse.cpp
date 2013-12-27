@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondPokeCaisse.cpp
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 21 Janvier 2001
@@ -16,13 +16,11 @@
 #include "sprite.h"
 #include "fondPokeCaisse.h"
 
-FondPokeCaisse::FondPokeCaisse()
-{
+FondPokeCaisse::FondPokeCaisse() {
 	pic = pbk_niveau[117];
 }
 
-void FondPokeCaisse::update()
-{
+void FondPokeCaisse::update() {
 
 	int		yp;
 
@@ -30,15 +28,13 @@ void FondPokeCaisse::update()
 
 	// Et si la caisse touche le sol ?
 	//
-	if ( dy > 0 && (yp=plat( x, y+dy)) != 0)
-	{
+	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		y = yp;
-		grave(x,y - 10,pic);
+		grave(x, y - 10, pic);
 
 		int i;
 
-		for (i= x - 90 ; i < x + 140 ; i++)
-		{
+		for (i = x - 90 ; i < x + 140 ; i++) {
 			y_plat[4][i] = y - 125;
 		}
 

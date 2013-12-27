@@ -1,11 +1,11 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   BenMaths.h
 *		----------------
-*			
-*	
+*
+*
 *		Fonctions mathématiques précalculée
 *		Gain approximatif : 2000 à 2500%
 *
@@ -26,10 +26,10 @@
 //-----------------------------------------------------------------------------
 
 #ifndef PI
-	#define	PI			3.141592654	// C'est PI, utilisé pour la conversion
+#define	PI			3.141592654	// C'est PI, utilisé pour la conversion
 #endif								// depgrés<->radians
 #ifndef NULL
-	#define	NULL		0			// Well...
+#define	NULL		0			// Well...
 #endif
 
 #define		COSINUS		10			// Pour l'utilisation de bCos[] et bSin[]
@@ -43,9 +43,9 @@
 //-----------------------------------------------------------------------------
 
 #ifndef BENMATHS_CPP_FILE
-	extern int *	bCos;
-	extern int *	bSin;
-	extern char *	bSqr;
+extern int *	bCos;
+extern int *	bSin;
+extern char *	bSqr;
 #endif
 
 //-----------------------------------------------------------------------------

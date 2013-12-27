@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		    TirBB.cpp
 *		----------------
-*			
+*
 *		Pour les tirs de Blip/Blop
 *
 *
@@ -21,13 +21,12 @@
 
 #include "tirBB.h"
 
-void TirBB::setDir( int d)
-{
+void TirBB::setDir(int d) {
 	// Convertit la dir BB en dir TIR
 	//
-	if ( d == BBDIR_BAS_B_G)
+	if (d == BBDIR_BAS_B_G)
 		dir = 0;
-	else if ( d > BBLIM_DROITE)
+	else if (d > BBLIM_DROITE)
 		dir = d - 1;
 	else
 		dir = d;

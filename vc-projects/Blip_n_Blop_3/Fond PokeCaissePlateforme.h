@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondPokeCaisseplateforme.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 21 Janvier 2001
@@ -18,8 +18,7 @@
 
 #include "Sprite.h"
 
-class FondPokeCaissePlateforme : public Sprite
-{
+class FondPokeCaissePlateforme : public Sprite {
 private:
 	int y_cible;
 

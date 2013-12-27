@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiLemmings.h
 *		-----------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 3 Aout 2000
@@ -23,15 +23,13 @@
 #include "ennemilemmings.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe 
+//		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiLemmingsVolant : public EnnemiLemmings
-{
+class EnnemiLemmingsVolant : public EnnemiLemmings {
 public:
 
-	EnnemiLemmingsVolant()
-	{
+	EnnemiLemmingsVolant() {
 		y = -5;
 	};
 };

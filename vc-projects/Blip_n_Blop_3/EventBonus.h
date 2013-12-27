@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		--------------------
 *		  EventBonus.h
 *		--------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   5 Aout 2000
@@ -29,8 +29,7 @@
 #define BLF		7
 
 
-class EventBonus : public Event
-{
+class EventBonus : public Event {
 public:
 	int		type;
 	int		x;

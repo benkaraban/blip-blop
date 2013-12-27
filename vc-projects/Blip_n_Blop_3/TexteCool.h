@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		   TexteCool.h
 *		-----------------
-*			
+*
 *		Pour les textes "tetra tuerie"
 *
 *
@@ -18,11 +18,10 @@
 #define _TexteCool_
 
 #ifndef TEXTE_COOL_CPP
-	extern bool txt_cool_free[];
+extern bool txt_cool_free[];
 #endif
 
-class TexteCool
-{
+class TexteCool {
 public:
 	int		y;
 	int		nn;
@@ -35,8 +34,7 @@ public:
 	void update();
 	void affiche();
 
-	bool aDetruire()
-	{
+	bool aDetruire() {
 		return x <= -320;
 	};
 };

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondPokeLevel3.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 17 Fevrier 2001
@@ -23,8 +23,7 @@
 #define PBK_E		133
 #define PBK_V		139
 
-class FondPokeLevel3 : public Sprite
-{
+class FondPokeLevel3 : public Sprite {
 private:
 	int etape_E1;
 	int etape_V;
@@ -37,7 +36,7 @@ public:
 
 	virtual void update();
 	virtual void affiche();
-	
+
 };
 
 #endif

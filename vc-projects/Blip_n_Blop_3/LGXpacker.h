@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  LGXpacker.h
 *		----------------
-*			
+*
 *		Classe LGXpacker
 *
 *		La classe LGXpacker permet de charger
@@ -12,7 +12,7 @@
 *
 *		! ATTENTION !
 *		Le LGX ne fonctionne qu'en mode 16 bits!!!
-*		
+*
 *
 *
 *		Prosper / LOADED -   V 0.1 - 23 Juin 2000
@@ -63,8 +63,7 @@
 //-----------------------------------------------------------------------------
 
 
-struct LGX_HEADER
-{
+struct LGX_HEADER {
 	char			id[3];		// 'LGX'
 	char			version;	// Numéro de version
 	unsigned short	xsize;		// Largeur
@@ -76,13 +75,12 @@ struct LGX_HEADER
 //		Définition de la classe LGXpacker
 //-----------------------------------------------------------------------------
 
-class LGXpacker
-{
+class LGXpacker {
 private:
 	unsigned short *	tab_0;
 	unsigned short *	tab_1;
 	unsigned short *	half_tone;
-	
+
 	int		rDecal;	// Décalages des masques par rapport au bit de droite
 	int		gDecal;	// (avec la carte vidéo)
 	int		bDecal;
@@ -100,26 +98,26 @@ public:
 	LGXpacker();
 	~LGXpacker();
 
-	bool init( IDirectDrawSurface7 * surf);	
-	
-	bool createLGX_0( HDC hdc, const char * fic, int xs, int ys);
-	bool createLGX_1( HDC hdc, const char * fic, int xs, int ys);
+	bool init(IDirectDrawSurface7 * surf);
 
-	int createLGX_0( HDC hdc, int xs, int ys, void * & ptr);
-	int createLGX_1( HDC hdc, int xs, int ys, void * & ptr);
+	bool createLGX_0(HDC hdc, const char * fic, int xs, int ys);
+	bool createLGX_1(HDC hdc, const char * fic, int xs, int ys);
 
-	IDirectDrawSurface7 * loadLGX( void * ptr, int flag = DDSURF_BEST, int * version=NULL);
-	IDirectDrawSurface7 * loadLGX( const char * fic, int flag = DDSURF_BEST);
-	
-	int	findColor( COLORREF rgb);
+	int createLGX_0(HDC hdc, int xs, int ys, void * & ptr);
+	int createLGX_1(HDC hdc, int xs, int ys, void * & ptr);
 
-	void halfTone( IDirectDrawSurface7 * surf, RECT * r);
+	IDirectDrawSurface7 * loadLGX(void * ptr, int flag = DDSURF_BEST, int * version = NULL);
+	IDirectDrawSurface7 * loadLGX(const char * fic, int flag = DDSURF_BEST);
+
+	int	findColor(COLORREF rgb);
+
+	void halfTone(IDirectDrawSurface7 * surf, RECT * r);
 
 	void closePaker();
 };
 
 #ifndef LGXPACKER_CPP_FILE
-	extern LGXpacker	LGXpaker;
+extern LGXpacker	LGXpaker;
 #endif
 
 #endif

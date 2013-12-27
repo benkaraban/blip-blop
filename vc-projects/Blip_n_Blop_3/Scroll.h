@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		    Scroll.h
 *		----------------
-*			
+*
 *
 *		Fonctions pour le scroll. Gère le scrolling
 *		avec le super buffer qui marche bizarrement sur cette
@@ -28,5 +28,5 @@ extern int	n_cache;
 
 // Gère le scroll
 //
-void updateScrolling( bool forceOk=true);
+void updateScrolling(bool forceOk = true);
 void drawScrolling();

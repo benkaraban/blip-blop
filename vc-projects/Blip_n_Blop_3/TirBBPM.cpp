@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-------------------
 *		    TirBBPM.cpp
 *		-------------------
-*			
+*
 *		Pour les tirs de PM de Blip/Blop
 *
 *
@@ -25,23 +25,19 @@
 const int dx_tirbb_PM [] = { 0, 5, 8, 11, 12, 11, 8, 5, 0, -5, -8, -11, -12, -11, -8, -5 };
 const int dy_tirbb_PM [] = { 12, 11, 8, 5, 0, -5, -8, -11, -12, -11, -8, -5, 0, 5, 8, 11 };
 
-void TirBBPM::update()
-{
+void TirBBPM::update() {
 	x += dx_tirbb_PM[dir];
 	y += dy_tirbb_PM[dir];
 
 	x += dxReferentiel;
 
 
-	if ( mur_opaque( x, y) || x < offset-20 || x > offset+690 || y < -20 || y > 500)
-	{
+	if (mur_opaque(x, y) || x < offset - 20 || x > offset + 690 || y < -20 || y > 500) {
 		pic = NULL;
 		noCol();
 		a_detruire = true;
-	}
-	else
-	{
-		pic = pbk_bb[88+dir];
+	} else {
+		pic = pbk_bb[88 + dir];
 		colFromPic();
 	}
 }

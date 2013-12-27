@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiBisouAuto : public Ennemi
-{
+class EnnemiBisouAuto : public Ennemi {
 public:
 
 	Sprite*	cible;

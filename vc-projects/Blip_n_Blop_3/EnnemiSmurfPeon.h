@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		EnnemiSmurfPeon.h
 *		-----------------------
-*		Schtroumph de base.	
+*		Schtroumph de base.
 *		Spécificité : Encaisse plus.
 *
 *		Mortimus / LOADED -   V 0.1 - 26 Octobre 2000
@@ -23,32 +23,27 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe 
+//		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfPeon : public EnnemiSmurf
-{
+class EnnemiSmurfPeon : public EnnemiSmurf {
 public:
 
-	EnnemiSmurfPeon()
-	{
+	EnnemiSmurfPeon() {
 		pv = 125 ;
 	}
 
-	inline virtual void affiche()
-	{
+	inline virtual void affiche() {
 		EnnemiSmurf::affiche() ;
-		if((etat != ETAT_MEURE && etat != ETAT_CARBONISE)
-			|| (etat == ETAT_MEURE && etape <= 2))
-		{
-			switch(dir)
-			{
+		if ((etat != ETAT_MEURE && etat != ETAT_CARBONISE)
+		        || (etat == ETAT_MEURE && etape <= 2)) {
+			switch (dir) {
 				case SENS_GAUCHE :
-				draw(x,y-32,pbk_ennemis[153]) ;
-				break ;
+					draw(x, y - 32, pbk_ennemis[153]) ;
+					break ;
 				case SENS_DROITE :
-				draw(x,y-32,pbk_ennemis[154]) ;
-				break ;
+					draw(x, y - 32, pbk_ennemis[154]) ;
+					break ;
 			}
 		}
 	}

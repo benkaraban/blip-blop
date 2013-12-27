@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    MorceauxTeteSnorky.h
 *		---------------------------
-*			
+*
 *		Les bouts de tete qui giclent...
 *		Le cadavre de l'hyporider qui tombe
 *
@@ -29,12 +29,11 @@
 //		Définition de la classe MorceauSnorkyBaseTeteEntiere
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyBaseTeteEntiere : public Sprite
-{
+class MorceauSnorkyBaseTeteEntiere : public Sprite {
 public:
 
 	MorceauSnorkyBaseTeteEntiere();
-	
+
 	virtual void update();
 };
 
@@ -43,14 +42,13 @@ public:
 //		Définition de la classe MorceauSnorkyBaseTetePartieArriere
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyBaseTetePartieArriere : public Sprite
-{
+class MorceauSnorkyBaseTetePartieArriere : public Sprite {
 public:
 
 	int dx;
 
 	MorceauSnorkyBaseTetePartieArriere(int vx, int vy);
-	
+
 	virtual void update();
 };
 
@@ -59,14 +57,13 @@ public:
 //		Définition de la classe MorceauSnorkyHyporidercorp
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyHyporidercorp : public Sprite
-{
+class MorceauSnorkyHyporidercorp : public Sprite {
 public:
 
 	int dx;
 
 	MorceauSnorkyHyporidercorp(int vx);
-	
+
 	virtual void update();
 };
 
@@ -75,14 +72,13 @@ public:
 //		Définition de la classe MorceauSnorkyBaseTrompe
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyBaseTrompe : public Sprite
-{
+class MorceauSnorkyBaseTrompe : public Sprite {
 public:
 
 	int dx;
 
-	MorceauSnorkyBaseTrompe(int vx,int vy);
-	
+	MorceauSnorkyBaseTrompe(int vx, int vy);
+
 	virtual void update();
 };
 

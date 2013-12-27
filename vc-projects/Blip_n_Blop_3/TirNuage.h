@@ -4,8 +4,7 @@
 
 #include "tir.h"
 
-class TirNuage : public Tir
-{
+class TirNuage : public Tir {
 public:
 	int etat;
 	int	etape_shoot;

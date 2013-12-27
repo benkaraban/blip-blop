@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		------------
 *		  Config.h
 *		------------
-*			
+*
 *		Contient toutes les données sur la config
 *		et quelques fonctions pour la gérer.
 *
@@ -40,8 +40,8 @@ extern HiScores	hi_scores;
 
 extern bool		winSet;
 
-void load_BB3_config( const char * cfg_file);
-void save_BB3_config( const char * cfg_file);
-void set_default_config( bool reset_lang = false);
+void load_BB3_config(const char * cfg_file);
+void save_BB3_config(const char * cfg_file);
+void set_default_config(bool reset_lang = false);
 
 #endif

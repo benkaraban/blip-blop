@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------------
 *		  EventGenEnnemi.cpp
 *		----------------------
-*			
+*
 *		Classe Evenement Ennemi
 *
 *		La classe evenement qui crée un ennemi
@@ -20,11 +20,10 @@
 #include "genennemitmp.h"
 #include "GenEnnemi.h"
 
-void EventGenEnnemi::doEvent()
-{
+void EventGenEnnemi::doEvent() {
 	GenEnnemi *	gen;
-	
-	if ( tmp)
+
+	if (tmp)
 		gen = new GenEnnemiTMP();
 	else
 		gen = new GenEnnemi();
@@ -36,5 +35,5 @@ void EventGenEnnemi::doEvent()
 	gen->periode = periode;
 	gen->capacite = capacite;
 
-	list_gen_ennemis.ajoute( (void*) gen);
+	list_gen_ennemis.ajoute((void*) gen);
 }

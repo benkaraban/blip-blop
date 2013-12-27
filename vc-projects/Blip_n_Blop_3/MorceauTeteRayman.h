@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    MorceauTeteRayman.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 23 Fevrier 2001
@@ -23,10 +23,9 @@
 //		Définition de la classe MorceauTeteRayman
 //----------------------------------------------------------------------------
 
-class MorceauTeteRayman : public Sprite
-{
+class MorceauTeteRayman : public Sprite {
 private:
-	
+
 	int dx;
 
 public:

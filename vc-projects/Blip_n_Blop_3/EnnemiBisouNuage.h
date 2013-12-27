@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiBisouNuage : public Ennemi
-{
+class EnnemiBisouNuage : public Ennemi {
 public:
 	int		wait_shoot;
 	int		etape_shoot;

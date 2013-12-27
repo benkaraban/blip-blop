@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------------
 *		   TirSnorkyMage.cpp
 *		---------------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 16 Decembre 2000
@@ -21,28 +21,25 @@
 
 
 
-TirSnorkyMage::TirSnorkyMage()
-{
+TirSnorkyMage::TirSnorkyMage() {
 	dy = 6;
 }
 
 
-void TirSnorkyMage::update()
-{
+void TirSnorkyMage::update() {
 	ss_etape ++;
 	ss_etape %= 4;
 
-	
+
 	if ((ss_etape == 0) && (etape < 3))
 		etape ++;
-	
+
 
 	if (etape == 3)
 		etape = 1;
 
 
-	if ((etape == 0)&&(ss_etape == 1))
-	{
+	if ((etape == 0) && (ss_etape == 1)) {
 		if (dir == SENS_DROITE)
 			dx = 6;
 
@@ -50,15 +47,15 @@ void TirSnorkyMage::update()
 			dx = -6;
 	}
 
-	if ( x < offset-100 || x > offset+700 || y > 520 || y < -50)
+	if (x < offset - 100 || x > offset + 700 || y > 520 || y < -50)
 		a_detruire = true;
 
 
-	if ( mur_opaque( x + dx, y + dy)) 
+	if (mur_opaque(x + dx, y + dy))
 		a_detruire = true;
 
 
-	if ( mur_opaque( x + 3*dx, y + 3*dy)) 
+	if (mur_opaque(x + 3 * dx, y + 3 * dy))
 		etape = 3;
 
 
@@ -66,15 +63,12 @@ void TirSnorkyMage::update()
 	x += dx;
 	y += dy;
 
-	if (dir == SENS_DROITE)
-	{
+	if (dir == SENS_DROITE) {
 		pic = pbk_ennemis[252 + etape];
-	}
-	else
-	{
+	} else {
 		pic = pbk_ennemis[261 + etape];
 	}
-	
+
 
 	colFromPic();
 }

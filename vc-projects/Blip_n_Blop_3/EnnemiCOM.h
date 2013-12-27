@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiCOM : public Ennemi
-{
+class EnnemiCOM : public Ennemi {
 public:
 	EnnemiCOM();
 	virtual void update();

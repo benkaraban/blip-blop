@@ -4,8 +4,7 @@
 
 #include "sprite.h"
 
-class FondLumiere : public Sprite
-{
+class FondLumiere : public Sprite {
 public:
 	bool	allume;
 	int		wait_for_cligno;

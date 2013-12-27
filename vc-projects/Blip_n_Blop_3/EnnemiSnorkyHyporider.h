@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiSnorkyHyporider.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 18 Decembre 2000
@@ -33,8 +33,7 @@
 //		Définition de la classe EnnemiSnorkyBase1
 //-----------------------------------------------------------------------------
 
-class EnnemiSnorkyHyporider : public Ennemi
-{
+class EnnemiSnorkyHyporider : public Ennemi {
 public:
 
 	int wait_for_charge;
@@ -43,7 +42,7 @@ public:
 	int attack_etape;
 
 	EnnemiSnorkyHyporider();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onMeure();
@@ -51,7 +50,7 @@ public:
 	virtual void affiche();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

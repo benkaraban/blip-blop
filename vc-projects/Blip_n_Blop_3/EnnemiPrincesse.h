@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiPrincesse.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 31 Janvier 2001
@@ -25,8 +25,7 @@
 //		Définition de la classe EnnemiPrincesse
 //----------------------------------------------------------------------------
 
-class EnnemiPrincesse : public Ennemi
-{
+class EnnemiPrincesse : public Ennemi {
 private:
 	bool avance;
 	bool aide;
@@ -36,8 +35,8 @@ public:
 	virtual void update();
 	virtual void onAvance();
 	virtual void onMeure();
-	
-	virtual void estTouche( Tir * tir);
+
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

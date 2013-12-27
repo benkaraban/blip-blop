@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		   GoreGiclure.h
 *		-----------------------
-*			
+*
 *		Giclure de Luigi & Lara
 *
 *		Mephisto / LOADED -   V 0.1 - 01 Mars 2001
@@ -28,12 +28,11 @@
 //		Définition de la classe GoreGiclure
 //-----------------------------------------------------------------------------
 
-class GoreGiclure : public Sprite
-{
+class GoreGiclure : public Sprite {
 public:
 	int		dx;
 
-	GoreGiclure(int vx ,int vy);
+	GoreGiclure(int vx , int vy);
 
 	virtual void update();
 

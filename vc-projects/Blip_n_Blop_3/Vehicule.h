@@ -6,8 +6,7 @@
 #include "couille.h"
 #include "controlor.h"
 
-class Vehicule : public Sprite
-{
+class Vehicule : public Sprite {
 public:
 
 	bool	can_be_used;
@@ -20,10 +19,10 @@ public:
 	virtual void update();
 	virtual Couille * scanne();
 
-	virtual bool canFire() =0;
-	virtual bool canChangeDir() =0;
-	virtual void updateUsed() =0;
-	virtual void updateNotUsed() =0;
+	virtual bool canFire() = 0;
+	virtual bool canChangeDir() = 0;
+	virtual void updateUsed() = 0;
+	virtual void updateNotUsed() = 0;
 
 };
 

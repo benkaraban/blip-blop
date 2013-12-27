@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  TirBBFusil.h
 *		----------------
-*			
+*
 *		Pour les tirs de fusil de Blip/Blop
 *
 *
@@ -28,8 +28,7 @@
 //		Définition de la classe TirBBM16
 //-----------------------------------------------------------------------------
 
-class TirBBFusil : public TirBB
-{
+class TirBBFusil : public TirBB {
 public:
 
 	int		dx;
@@ -41,21 +40,19 @@ public:
 	int		etape_dy;
 	int		duree_vie;
 	int		vie;
-	
-	inline virtual int degats() const 
-	{
-		if ( vie < duree_vie)
+
+	inline virtual int degats() const {
+		if (vie < duree_vie)
 			return 40;
 		else
 			return 30;
 	};
 
-	inline virtual int enflame() const 
-	{
+	inline virtual int enflame() const {
 		return 0;
 	};
 
-	virtual void setDir( int d);
+	virtual void setDir(int d);
 	virtual void update();
 
 };

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		--------------------
 *		  EventGenBonus.h
 *		--------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   5 Aout 2000
@@ -21,22 +21,20 @@
 #include "genbonus.h"
 
 
-class EventGenBonus : public Event
-{
+class EventGenBonus : public Event {
 public:
 	int		type;
 	int		periode;
 
 
-	virtual void doEvent()
-	{
+	virtual void doEvent() {
 		GenBonus * gb = new GenBonus();
 
 		gb->periode = periode;
 		gb->type = type;
 		gb->x = x_activation;
 
-		list_gen_bonus.ajoute( (void*) gb);
+		list_gen_bonus.ajoute((void*) gb);
 	};
 };
 

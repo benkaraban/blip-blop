@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-------------------
 *		   SuperListe.cpp
 *		-------------------
-*			
+*
 *
 *		Liste de pointeurs (void*) doublement chaînée
 *		MAIS à sens unique
@@ -17,7 +17,7 @@
 ******************************************************************/
 
 #ifndef NULL
-	#define NULL	0
+#define NULL	0
 #endif
 
 //-----------------------------------------------------------------------------
@@ -32,30 +32,25 @@ int		  SuperListe::nb_lists	= 0;
 
 //-----------------------------------------------------------------------------
 
-SuperListe::SuperListe() : tete(NULL), obs(NULL), nb_elem(0)
-{
+SuperListe::SuperListe() : tete(NULL), obs(NULL), nb_elem(0) {
 	nb_lists += 1;
 }
 
 
 //-----------------------------------------------------------------------------
 
-SuperListe::~SuperListe()
-{
-	if ( nb_elem != 0)
-	{
-		debug<<"SuperListe non désallouée (taille "<<nb_elem<<")\n";
+SuperListe::~SuperListe() {
+	if (nb_elem != 0) {
+		debug << "SuperListe non désallouée (taille " << nb_elem << ")\n";
 		vide();
 	}
 
 	nb_lists -= 1;
 
-	if ( nb_lists == 0)
-	{
+	if (nb_lists == 0) {
 		CELLULE *	cel;
 
-		while ( trash != NULL)
-		{
+		while (trash != NULL) {
 			cel = trash;
 			trash = trash->next;
 			delete cel;
@@ -66,14 +61,12 @@ SuperListe::~SuperListe()
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::ajoute( void * nouvo)
-{
+void SuperListe::ajoute(void * nouvo) {
 	CELLULE *	ptr;
 
-	if ( trash == NULL)
+	if (trash == NULL)
 		ptr = new CELLULE();
-	else
-	{
+	else {
 		ptr = trash;
 		trash = trash->next;
 	}
@@ -82,7 +75,7 @@ void SuperListe::ajoute( void * nouvo)
 	ptr->prev = NULL;
 	ptr->next = tete;
 
-	if ( tete != NULL)
+	if (tete != NULL)
 		tete->prev = ptr;
 
 	tete = ptr;
@@ -93,16 +86,14 @@ void SuperListe::ajoute( void * nouvo)
 
 //-----------------------------------------------------------------------------
 
-void * SuperListe::supprimePorc()
-{
+void * SuperListe::supprimePorc() {
 	void *	dat;
 
-	if ( obs == NULL)
+	if (obs == NULL)
 		return NULL;
 
 
-	if ( obs == tete)
-	{
+	if (obs == tete) {
 		CELLULE *	ptr;
 
 		ptr = tete->next;
@@ -115,11 +106,9 @@ void * SuperListe::supprimePorc()
 
 		tete = obs = ptr;
 
-		if ( tete != NULL)
+		if (tete != NULL)
 			tete->prev = NULL;
-	}
-	else
-	{
+	} else {
 		CELLULE *	ptr_p;
 		CELLULE *	ptr_n;
 
@@ -128,7 +117,7 @@ void * SuperListe::supprimePorc()
 
 		ptr_p->next = ptr_n;
 
-		if ( ptr_n != NULL )
+		if (ptr_n != NULL)
 			ptr_n->prev = ptr_p;
 
 		dat = obs->data;
@@ -146,14 +135,12 @@ void * SuperListe::supprimePorc()
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::supprime()
-{
-	if ( obs == NULL)
+void SuperListe::supprime() {
+	if (obs == NULL)
 		return;
 
 
-	if ( obs == tete)
-	{
+	if (obs == tete) {
 		CELLULE *	ptr;
 
 		ptr = tete->next;
@@ -165,11 +152,9 @@ void SuperListe::supprime()
 
 		tete = obs = ptr;
 
-		if ( tete != NULL)
+		if (tete != NULL)
 			tete->prev = NULL;
-	}
-	else
-	{
+	} else {
 		CELLULE *	ptr_p;
 		CELLULE *	ptr_n;
 
@@ -178,11 +163,11 @@ void SuperListe::supprime()
 
 		ptr_p->next = ptr_n;
 
-		if ( ptr_n != NULL )
+		if (ptr_n != NULL)
 			ptr_n->prev = ptr_p;
 
 		delete [] obs->data;
-		
+
 		obs->next = trash;
 		trash = obs;
 
@@ -197,16 +182,14 @@ void SuperListe::supprime()
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::vide()
-{
+void SuperListe::vide() {
 	CELLULE * ptr;
 
 	ptr = tete;
 
-	while( ptr != NULL)
-	{
+	while (ptr != NULL) {
 		tete = ptr->next;
-		
+
 		delete [] ptr->data;
 		delete ptr;
 
@@ -219,16 +202,14 @@ void SuperListe::vide()
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::vide_porc()
-{
+void SuperListe::vide_porc() {
 	CELLULE * ptr;
 
 	ptr = tete;
 
-	while( ptr != NULL)
-	{
+	while (ptr != NULL) {
 		tete = ptr->next;
-		
+
 		delete ptr;
 
 		ptr = tete;
@@ -242,9 +223,8 @@ void SuperListe::vide_porc()
 
 //-----------------------------------------------------------------------------
 
-void (SuperListe::trier( int (*fonc)( const void *, const void*)))
-{
-	if ( tete == NULL || tete->next == NULL)
+void (SuperListe::trier(int (*fonc)(const void *, const void*))) {
+	if (tete == NULL || tete->next == NULL)
 		return;
 
 	CELLULE *	p1;
@@ -254,16 +234,14 @@ void (SuperListe::trier( int (*fonc)( const void *, const void*)))
 	p2 = p1->next;
 
 
-	while ( p2 != NULL)
-	{
-		if ( fonc( p1->data, p2->data) > 0)
-		{
-			if ( p1->prev != NULL)
+	while (p2 != NULL) {
+		if (fonc(p1->data, p2->data) > 0) {
+			if (p1->prev != NULL)
 				(p1->prev)->next = p2;
 			else
 				tete = p2;
 
-			if ( p2->next != NULL)
+			if (p2->next != NULL)
 				(p2->next)->prev = p1;
 
 			p1->next = p2->next;
@@ -272,11 +250,9 @@ void (SuperListe::trier( int (*fonc)( const void *, const void*)))
 			p2->next = p1;
 			p1->prev = p2;
 
-			if ( p2->prev != NULL)
+			if (p2->prev != NULL)
 				p1 = p2->prev;
-		}
-		else
-		{
+		} else {
 			p1 = p2;
 		}
 

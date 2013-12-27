@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    FondBattlecruiser.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 12 Janvier 2001
@@ -20,8 +20,7 @@
 
 #define TIR_SPEED  2
 
-class FondBattlecruiser : public Sprite
-{
+class FondBattlecruiser : public Sprite {
 public:
 	int x_adversaire;
 	int y_adversaire;
@@ -30,7 +29,7 @@ public:
 	int feu_ss_etape;
 
 	FondBattlecruiser();
-	
+
 	virtual void update();
 	virtual void affiche();
 };

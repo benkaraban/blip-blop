@@ -6,8 +6,7 @@
 
 #include "fmod.h"
 
-class MusicBank
-{
+class MusicBank {
 protected:
 	int	*		type;
 
@@ -23,15 +22,15 @@ protected:
 	int			nb_musiques;
 
 public:
-	
+
 	MusicBank();
 	~MusicBank();
 
-	void setVol( int v);
-	bool open( const char * file, bool loop=true);
+	void setVol(int v);
+	bool open(const char * file, bool loop = true);
 	void close();
-	void play( int n);
-	void stop( int n);
+	void play(int n);
+	void stop(int n);
 	void stop(); // Stoppe TOUTES les musiques
 };
 

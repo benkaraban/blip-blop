@@ -4,13 +4,11 @@
 #include "scroll.h"
 #include "bendebug.h"
 
-bool RestoreAll()
-{
-	if ( winSet)
-	{
+bool RestoreAll() {
+	if (winSet) {
 		DEVMODE dm;
 
-		ZeroMemory( &dm, sizeof(dm));
+		ZeroMemory(&dm, sizeof(dm));
 		dm.dmSize = sizeof(dm);
 		dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT | DM_DISPLAYFREQUENCY;
 		dm.dmPelsWidth	= 640;
@@ -18,25 +16,23 @@ bool RestoreAll()
 		dm.dmBitsPerPel = 16;
 		dm.dmDisplayFrequency = 85;
 
-		if ( ChangeDisplaySettings( &dm, CDS_TEST) != DISP_CHANGE_SUCCESSFUL ||
-			 ChangeDisplaySettings( &dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL)
-		{
-			debug<<"Cannot restore display mode.\n";
+		if (ChangeDisplaySettings(&dm, CDS_TEST) != DISP_CHANGE_SUCCESSFUL ||
+		        ChangeDisplaySettings(&dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL) {
+			debug << "Cannot restore display mode.\n";
 		}
 	}
 
-	if ( primSurface->Restore() != DD_OK)
-	{
-		debug<<"Cannot restore primary surface.\n";
+	if (primSurface->Restore() != DD_OK) {
+		debug << "Cannot restore primary surface.\n";
 		return false;
 	}
 
- 	fnt_menu.restoreAll();
+	fnt_menu.restoreAll();
 
 	// Affiche un "LOADING..."
 	//
-	fnt_menu.printC( backSurface, 320, 210, "PLEASE WAIT");
-	primSurface->Flip( NULL, DDFLIP_WAIT);
+	fnt_menu.printC(backSurface, 320, 210, "PLEASE WAIT");
+	primSurface->Flip(NULL, DDFLIP_WAIT);
 
 	ddraw->RestoreAllSurfaces();
 
@@ -57,13 +53,13 @@ bool RestoreAll()
 
 	pbk_inter.restoreAll();
 
- 	fnt_score_blip.restoreAll();
- 	fnt_score_blop.restoreAll();
- 	fnt_ammo.restoreAll();
- 	fnt_ammo_used.restoreAll();
- 	fnt_cool.restoreAll();
- 	fnt_rpg.restoreAll();
- 	fnt_menus.restoreAll();
+	fnt_score_blip.restoreAll();
+	fnt_score_blop.restoreAll();
+	fnt_ammo.restoreAll();
+	fnt_ammo_used.restoreAll();
+	fnt_cool.restoreAll();
+	fnt_rpg.restoreAll();
+	fnt_menus.restoreAll();
 
 	in.reAcquire();
 

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		------------------
 *		    TirBBVache.h
 *		------------------
-*			
+*
 *		The mighty cow bomb!
 *
 *
@@ -21,49 +21,41 @@
 #include "tirbbvache.h"
 #include "goregiclure.h"
 
-void TirBBVache::update()
-{
+void TirBBVache::update() {
 	y += dy;
 
 	ss_etape += 1;
 	ss_etape %= 8;
 
-	if ( ss_etape == 0)
-	{
+	if (ss_etape == 0) {
 		etape += 1;
 		etape %= 8;
 	}
 
-	if ( mur_opaque( x, y) && y > 50) 
-	{
+	if (mur_opaque(x, y) && y > 50) {
 		pic = NULL;
-		if ( etape < 4)
-			grave( x, y, pbk_bb[211]);
+		if (etape < 4)
+			grave(x, y, pbk_bb[211]);
 		else
-			grave( x, y, pbk_bb[210]);
+			grave(x, y, pbk_bb[210]);
 		col_on = false;
 		a_detruire = true;
-		tremblement( 10);
+		tremblement(10);
 
 		GoreGiclure * s;
 
-		for ( int i=0; i < 15; i++)
-		{
-			s = new GoreGiclure(rand() %11 - 5, -2 - rand()%6);
+		for (int i = 0; i < 15; i++) {
+			s = new GoreGiclure(rand() % 11 - 5, -2 - rand() % 6);
 			s->x = x + rand() % 11 - 5;
 			s->y = y - rand() % 30 - 10;
-			list_gore.ajoute( (void*) s);
+			list_gore.ajoute((void*) s);
 		}
 
-		sbk_misc.play( 11);
-	}
-	else if ( y > 550 || x < offset-50)
-	{
+		sbk_misc.play(11);
+	} else if (y > 550 || x < offset - 50) {
 		a_detruire = true;
-	}
-	else
-	{
-		pic = pbk_bb[202+etape];
+	} else {
+		pic = pbk_bb[202 + etape];
 		colFromPic();
 	}
 }

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		     Tir.h
 *		----------------
-*			
+*
 *		Pour les tirs de Blip et ceux des ennemis
 *
 *
@@ -32,48 +32,39 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class Tir : public Sprite
-{
+class Tir : public Sprite {
 public:
-	
-	virtual int degats() const
-	{
+
+	virtual int degats() const {
 		return 1;
 	};
 
-	virtual int enflame() const
-	{
+	virtual int enflame() const {
 		return 0;
 	};
 
-	virtual void setDir( int d)
-	{
+	virtual void setDir(int d) {
 		dir = d;
 	};
-	
-	virtual void aTue()
-	{
+
+	virtual void aTue() {
 	};
 
-	virtual int getGiclureDir() const
-	{
-		return dir/2;
+	virtual int getGiclureDir() const {
+		return dir / 2;
 	};
-	
-	inline virtual void aTouche()
-	{
+
+	inline virtual void aTouche() {
 		a_detruire = true;
 		col_on = false;
 	};
 
-	inline virtual void aTouche( int pts)
-	{
+	inline virtual void aTouche(int pts) {
 		a_detruire = true;
 		col_on = false;
 	};
 
-	virtual ~Tir()
-	{
+	virtual ~Tir() {
 	};
 };
 

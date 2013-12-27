@@ -2,11 +2,11 @@
 #define _EnnemiYoshi_
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiYoshi.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 12 Decembre 2000
@@ -29,8 +29,7 @@
 //		Définition de la classe EnnemiYoshi
 //----------------------------------------------------------------------------
 
-class EnnemiYoshi : public Ennemi
-{
+class EnnemiYoshi : public Ennemi {
 private:
 	bool attack; //type d'attaque false=carapace, true=contact(langue)
 	int attack_delay;
@@ -38,7 +37,7 @@ private:
 public:
 
 	EnnemiYoshi();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -47,7 +46,7 @@ public:
 	virtual void onTire();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

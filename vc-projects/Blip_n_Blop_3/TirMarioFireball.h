@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    TirMarioFireball.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 13 Decembre 2000
@@ -29,26 +29,22 @@
 //		Définition de la classe TirMarioFireball
 //-----------------------------------------------------------------------------
 
-class TirMarioFireball : public Tir
-{
+class TirMarioFireball : public Tir {
 public:
 	int speed_etape;
 	int		dx;
 
 	TirMarioFireball(int vx);
-	
-	virtual int degats() const
-	{
+
+	virtual int degats() const {
 		return 1;
 	};
 
-	virtual int enflame() const
-	{
+	virtual int enflame() const {
 		return 0;
 	};
 
-	virtual void setDir( int d)
-	{
+	virtual void setDir(int d) {
 		dir = d;
 	};
 

@@ -10,8 +10,7 @@
 #include "tirBB.h"
 
 
-class TirBBLF : public TirBB
-{
+class TirBBLF : public TirBB {
 public:
 	int		type;
 	int		dx;
@@ -20,21 +19,19 @@ public:
 	int		speed;
 	int		deg;
 
-	virtual void setDir( int d);
-	
-	inline virtual int degats() const 
-	{
+	virtual void setDir(int d);
+
+	inline virtual int degats() const {
 		return deg;
 	};
 
-	inline virtual int enflame() const 
-	{
+	inline virtual int enflame() const {
 		return 2;
 	};
 
 	virtual void update();
 
-	virtual void aTouche( int pts);
+	virtual void aTouche(int pts);
 };
 
 #endif

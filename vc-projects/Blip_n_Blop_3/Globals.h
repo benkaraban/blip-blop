@@ -232,19 +232,18 @@ extern Fonte			fnt_menus;
 //		Les fonctions cool
 //-----------------------------------------------------------------------------
 
-int		plat( int x, int y);	// Retourne l'ordonnée de la plateforme (0 si pas de plat)
-int		plat2( int x, int y);
-bool	mur_opaque( int x, int y);
-bool	mur_sanglant( int x, int y);
-bool	grave( int x, int y, Picture * pic);
-void	tremblement( int amp);
+int		plat(int x, int y);	// Retourne l'ordonnée de la plateforme (0 si pas de plat)
+int		plat2(int x, int y);
+bool	mur_opaque(int x, int y);
+bool	mur_sanglant(int x, int y);
+bool	grave(int x, int y, Picture * pic);
+void	tremblement(int amp);
 bool	checkRestore();
 
 
-inline void draw( int x, int y, const Picture * pic)
-{
-	if ( pic != NULL)
-		pic->BlitTo( backSurface, x-offset, y);
+inline void draw(int x, int y, const Picture * pic) {
+	if (pic != NULL)
+		pic->BlitTo(backSurface, x - offset, y);
 }
 
 #endif

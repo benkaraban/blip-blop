@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  BenDebug.cpp
 *		----------------
-*			
+*
 *
 *		Classe "debug" pour afficher les
 *		messages d'erreur dans un fichier
@@ -40,20 +40,18 @@ Debug	debug(FILE_LOG);
 
 
 //-----------------------------------------------------------------------------
-// Nom: Debug::Debug() - CONSTRUCTEUR - 
+// Nom: Debug::Debug() - CONSTRUCTEUR -
 // Desc: Stocke le nom du fichier .log
 //-----------------------------------------------------------------------------
 
-Debug::Debug(const char * nf)
-{
+Debug::Debug(const char * nf) {
 	strcpy(nomfic, nf);
 	f.open(nf);				// Ecrase le contenu du fichier
 	f.close();
 }
 
 
-Debug::~Debug()
-{
+Debug::~Debug() {
 }
 
 
@@ -65,20 +63,17 @@ Debug::~Debug()
 //		 des traces d'éxécution.
 //-----------------------------------------------------------------------------
 
-void Debug::Msg(const char * msg)
-{
+void Debug::Msg(const char * msg) {
 	nbmsg += 1;
 
-	if ( nbmsg == MSG_MAX)
-	{
+	if (nbmsg == MSG_MAX) {
 		f.open(nomfic, ios::app);
-		f<<"\nLog file is too long.\n";
+		f << "\nLog file is too long.\n";
 		f.close();
 	}
-	if ( nbmsg < MSG_MAX )
-	{
+	if (nbmsg < MSG_MAX) {
 		f.open(nomfic, ios::app);
-		f<<msg;
+		f << msg;
 		f.close();
 	}
 }
@@ -89,8 +84,7 @@ void Debug::Msg(const char * msg)
 // Desc: cf. Msg()
 //-----------------------------------------------------------------------------
 
-Debug & Debug::operator << (const char * msg)
-{
+Debug & Debug::operator << (const char * msg) {
 	Msg(msg);
 	return *this;
 }
@@ -101,8 +95,7 @@ Debug & Debug::operator << (const char * msg)
 // Desc: Converti un entier en char * et l'envoi à Msg()
 //-----------------------------------------------------------------------------
 
-Debug & Debug::operator << (int nb)
-{
+Debug & Debug::operator << (int nb) {
 	char	r[10];
 
 	_itoa(nb, r, 10);				// Base 10 pour les nombres quelconques
@@ -118,8 +111,7 @@ Debug & Debug::operator << (int nb)
 //		 qu'un entier quelconque est transmis en base 10.
 //-----------------------------------------------------------------------------
 
-Debug & Debug::operator << (void * ptr)
-{
+Debug & Debug::operator << (void * ptr) {
 	char	r[10];
 
 	_itoa(int(ptr), r, 16);			// Base 16 pour les adresses

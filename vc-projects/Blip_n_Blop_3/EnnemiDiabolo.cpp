@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------------
 *		  EnnemiDiabolo.cpp
 *		----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.4 - 27 Decembre 2000
@@ -19,63 +19,57 @@
 
 
 
-EnnemiDiabolo::EnnemiDiabolo():wait_for_attack(0),attack_delay(50 + rand() % 100),attack_type(0)
-{
+EnnemiDiabolo::EnnemiDiabolo(): wait_for_attack(0), attack_delay(50 + rand() % 100), attack_type(0) {
 	pv = 30000;
 	dy = 0;
 	xmin = 80;
 }
 
 
-void EnnemiDiabolo::update()
-{
-	switch( etat)
-	{
-	case ETAT_AVANCE:
-	case ETAT_NORMAL:
-		onAvance();
-		break;
-
-	case ETAT_TOMBE:
-	case ETAT_SAUTE:
-		onTombe();
-		break;
-
-	case ETAT_MEURE:
-		onMeure();
-		break;
-
-	case ETAT_CARBONISE:
-		onCarbonise();
-		break;
-
-	case ETAT_TIRE:
-		switch(attack_type)
-		{
-		case 0:
-			onCoupdelatte();
+void EnnemiDiabolo::update() {
+	switch (etat) {
+		case ETAT_AVANCE:
+		case ETAT_NORMAL:
+			onAvance();
 			break;
 
-		case 1:
-			onTornade();
+		case ETAT_TOMBE:
+		case ETAT_SAUTE:
+			onTombe();
 			break;
 
-		case 2:
-			onCoupdegenou();
+		case ETAT_MEURE:
+			onMeure();
 			break;
-		}
-		break;
+
+		case ETAT_CARBONISE:
+			onCarbonise();
+			break;
+
+		case ETAT_TIRE:
+			switch (attack_type) {
+				case 0:
+					onCoupdelatte();
+					break;
+
+				case 1:
+					onTornade();
+					break;
+
+				case 2:
+					onCoupdegenou();
+					break;
+			}
+			break;
 	}
 
 	//updateADetruire();
 
 }
 
-void EnnemiDiabolo::onAvance()
-{
+void EnnemiDiabolo::onAvance() {
 
-	if ( plat( x, y) == 0)
-	{
+	if (plat(x, y) == 0) {
 		etat = ETAT_TOMBE;
 		dy = 0;
 		lat_grav = 0;
@@ -84,30 +78,25 @@ void EnnemiDiabolo::onAvance()
 	}
 
 	wait_for_attack++;
-	if ((wait_for_attack>attack_delay)&&(tete_turc != NULL))
-	{
-		if (((dir == SENS_DROITE) && (tete_turc->x > x)) 
-			|| ((dir == SENS_GAUCHE) && (tete_turc->x < x))) 
-		{
+	if ((wait_for_attack > attack_delay) && (tete_turc != NULL)) {
+		if (((dir == SENS_DROITE) && (tete_turc->x > x))
+		        || ((dir == SENS_GAUCHE) && (tete_turc->x < x))) {
 			int dif_y = tete_turc->y - y;
 			int dif_x = tete_turc->x - x;
 
-			if ((tete_turc->y <= y) && (tete_turc->y > y - 170))
-			{
-				wait_for_attack=0;
+			if ((tete_turc->y <= y) && (tete_turc->y > y - 170)) {
+				wait_for_attack = 0;
 				attack_delay = 50 + rand() % 100;
 				etape = 0;
 				ss_etape = 0;
 				etat = ETAT_TIRE;
 				attack_type = 0;
 				dy =  -3;
-				debug << "dx: "<<dx<<"  dy: "<<dy<<"\n";
+				debug << "dx: " << dx << "  dy: " << dy << "\n";
 				onCoupdelatte();
 				return;
-			}
-			else if ((dir==SENS_DROITE)&&(dif_x>-40)&&(dif_x<40)&&(dif_y+dif_x<0))
-			{
-				wait_for_attack=0;
+			} else if ((dir == SENS_DROITE) && (dif_x > -40) && (dif_x < 40) && (dif_y + dif_x < 0)) {
+				wait_for_attack = 0;
 				attack_delay = 50 + rand() % 100;
 				etape = 0;
 				ss_etape = 0;
@@ -115,13 +104,11 @@ void EnnemiDiabolo::onAvance()
 				attack_type = 2;
 				dx =  1;
 				dy =  -8;
-				debug << "dx: "<<dx<<"  dy: "<<dy<<"\n";
+				debug << "dx: " << dx << "  dy: " << dy << "\n";
 				onCoupdegenou();
 				return;
-			}
-			else if((dir==SENS_GAUCHE)&&(dif_x>-40)&&(dif_x<40)&&(dif_y-dif_x<0))
-			{
-				wait_for_attack=0;
+			} else if ((dir == SENS_GAUCHE) && (dif_x > -40) && (dif_x < 40) && (dif_y - dif_x < 0)) {
+				wait_for_attack = 0;
 				attack_delay = 50 + rand() % 100;
 				etape = 0;
 				ss_etape = 0;
@@ -132,38 +119,32 @@ void EnnemiDiabolo::onAvance()
 				//debug << "dx: "<<dx<<"  dy: "<<dy<<"\n";
 				onCoupdegenou();
 				return;
-			}
-			else if((dir==SENS_DROITE)&&(dif_y<0)&&(dif_x>0)&&(dif_y+dif_x<0))
-			{
-				wait_for_attack=0;
+			} else if ((dir == SENS_DROITE) && (dif_y < 0) && (dif_x > 0) && (dif_y + dif_x < 0)) {
+				wait_for_attack = 0;
 				attack_delay = 50 + rand() % 100;
 				etape = 0;
 				ss_etape = 0;
 				etat = ETAT_TIRE;
 				attack_type = 2;
-				dx =  ((dif_x*-8)/dif_y);
-				dy =  -8 + dx*0.25;
+				dx = ((dif_x * -8) / dif_y);
+				dy =  -8 + dx * 0.25;
 				//debug << "dx: "<<dx<<"  dy: "<<dy<<"\n";
 				onCoupdegenou();
 				return;
-			}
-			else if((dir==SENS_GAUCHE)&&(dif_y<0)&&(dif_x<0)&&(dif_y-dif_x<0))
-			{
-				wait_for_attack=0;
+			} else if ((dir == SENS_GAUCHE) && (dif_y < 0) && (dif_x < 0) && (dif_y - dif_x < 0)) {
+				wait_for_attack = 0;
 				attack_delay = 50 + rand() % 100;
 				etape = 0;
 				ss_etape = 0;
 				etat = ETAT_TIRE;
 				attack_type = 2;
-				dx =  ((dif_x*-8)/dif_y);
-				dy =  -8 + dx*0.25;
-				debug << "dx: "<<dx<<"  dy: "<<dy<<"\n";
+				dx = ((dif_x * -8) / dif_y);
+				dy =  -8 + dx * 0.25;
+				debug << "dx: " << dx << "  dy: " << dy << "\n";
 				onCoupdegenou();
 				return;
-			}
-			else
-			{
-				wait_for_attack=0;
+			} else {
+				wait_for_attack = 0;
 				attack_delay = 50 + rand() % 100;
 				etape = 0;
 				ss_etape = 0;
@@ -175,17 +156,13 @@ void EnnemiDiabolo::onAvance()
 		}
 	}
 
-	if ( x - 10 < xmin || mur_opaque( x-10, y))
-	{
-		dir = SENS_DROITE;		
-	}
-	else if ( x + 10 > offset + 640 || mur_opaque( x+10, y))
-	{
+	if (x - 10 < xmin || mur_opaque(x - 10, y)) {
+		dir = SENS_DROITE;
+	} else if (x + 10 > offset + 640 || mur_opaque(x + 10, y)) {
 		dir = SENS_GAUCHE;
 	}
 
-	if ( dir == SENS_GAUCHE)
-	{
+	if (dir == SENS_GAUCHE) {
 		pic = pbk_ennemis[1];
 		/*marche(-SNORKY_BASE_SPEED);
 
@@ -193,12 +170,10 @@ void EnnemiDiabolo::onAvance()
 
 		if ( mur_opaque( x - SNORKY_BASE_SPEED, y) || (x - SNORKY_BASE_SPEED < xmin))
 			dir = SENS_DROITE;*/
-	}
-	else
-	{
+	} else {
 		pic = pbk_ennemis[0];
 		/*marche(SNORKY_BASE_SPEED);
-		
+
 		pic = pbk_ennemis[anime(anim_snorky_base_marche_droite,8,4)];
 
 		if ( mur_opaque( x + SNORKY_BASE_SPEED, y) || (x + SNORKY_BASE_SPEED > offset + 640))
@@ -208,18 +183,16 @@ void EnnemiDiabolo::onAvance()
 	colFromPic();
 }
 
-void EnnemiDiabolo::onTombe()
-{
+void EnnemiDiabolo::onTombe() {
 	tombe();
 
-	if ( plat( x, y) != 0)
+	if (plat(x, y) != 0)
 		etat = ETAT_AVANCE;
 
 	colFromPic();
 }
 
-void EnnemiDiabolo::onMeure()
-{
+void EnnemiDiabolo::onMeure() {
 	/*tombe();
 
 	ss_etape += 1;
@@ -231,11 +204,11 @@ void EnnemiDiabolo::onMeure()
 	if (etape==4 && ss_etape==1)
 	{
 		Sprite * s = new MorceauSnorkyBaseTeteEntiere();
-		
+
 		s->dir = dir;
 		s->y = y-22;
 		s->x = x;
-	
+
 		list_giclures.ajoute( (void*) s);
 
 		dy=0;
@@ -263,130 +236,108 @@ void EnnemiDiabolo::onMeure()
 	}*/
 }
 
-void EnnemiDiabolo::onAttack()
-{
-/*	ss_etape ++;
-	ss_etape %= 6;
-	if(ss_etape == 0)
-	{
-		etape ++;
-	}
-
-	if (etape == 12)
-	{
-		etape = 0;
-		ss_etape = 0;
-		etat = ETAT_AVANCE;
-		onAvance();
-		return;
-	}
-
-	if (etape == 10 && ss_etape == 0)
-	{
-		if (dir == SENS_DROITE)
+void EnnemiDiabolo::onAttack() {
+	/*	ss_etape ++;
+		ss_etape %= 6;
+		if(ss_etape == 0)
 		{
-
-			TirSnorkybase *	tir = new TirSnorkybase(1);
-
-			tir->setDir( dir);
-			tir->x = x+35;
-			tir->y = y-42;
-
-			list_tirs_ennemis.ajoute( (void*) tir);
-
+			etape ++;
 		}
-		else
+
+		if (etape == 12)
 		{
-			TirSnorkybase *	tir = new TirSnorkybase(-1);
-
-			tir->setDir( dir);	
-			tir->x = x-35;
-			tir->y = y-42;
-
-			list_tirs_ennemis.ajoute( (void*) tir);
+			etape = 0;
+			ss_etape = 0;
+			etat = ETAT_AVANCE;
+			onAvance();
+			return;
 		}
-	}
 
-	if (etape<11)
-	{
-		if (dir == SENS_DROITE)
+		if (etape == 10 && ss_etape == 0)
 		{
-			pic = pbk_ennemis[10+etape];
+			if (dir == SENS_DROITE)
+			{
+
+				TirSnorkybase *	tir = new TirSnorkybase(1);
+
+				tir->setDir( dir);
+				tir->x = x+35;
+				tir->y = y-42;
+
+				list_tirs_ennemis.ajoute( (void*) tir);
+
+			}
+			else
+			{
+				TirSnorkybase *	tir = new TirSnorkybase(-1);
+
+				tir->setDir( dir);
+				tir->x = x-35;
+				tir->y = y-42;
+
+				list_tirs_ennemis.ajoute( (void*) tir);
+			}
 		}
-		else
+
+		if (etape<11)
 		{
-			pic = pbk_ennemis[21+etape];
-		}
-	}*/
+			if (dir == SENS_DROITE)
+			{
+				pic = pbk_ennemis[10+etape];
+			}
+			else
+			{
+				pic = pbk_ennemis[21+etape];
+			}
+		}*/
 }
 
-void EnnemiDiabolo::onCoupdelatte()
-{
-	if (etape == 15)
-	{
+void EnnemiDiabolo::onCoupdelatte() {
+	if (etape == 15) {
 		etape = 0;
 		ss_etape = 0;
 		etat = ETAT_AVANCE;
-		if (dir == SENS_DROITE)
-		{
+		if (dir == SENS_DROITE) {
 			dir = SENS_GAUCHE;
-		}
-		else
-		{
+		} else {
 			dir = SENS_DROITE;
 		}
 		onAvance();
 		return;
 	}
-	if (etape < 9 )
-	{
+	if (etape < 9) {
 		ss_etape++;
-		ss_etape%=6;
-		if (ss_etape == 0)
-		{
+		ss_etape %= 6;
+		if (ss_etape == 0) {
 			etape++;
 		}
-	}
-	else
-	{
-		if (dir == SENS_DROITE)
-		{		
-			if ( mur_opaque( x + DIABOLO_KICK_SPEED, y) || (x + DIABOLO_KICK_SPEED > offset + 560))
-			{
+	} else {
+		if (dir == SENS_DROITE) {
+			if (mur_opaque(x + DIABOLO_KICK_SPEED, y) || (x + DIABOLO_KICK_SPEED > offset + 560)) {
 				ss_etape++;
-				ss_etape%=6;
-				if (ss_etape == 0)
-				{
+				ss_etape %= 6;
+				if (ss_etape == 0) {
 					etape++;
 				}
 			}
-		}
-		else
-		{			
-			if ( mur_opaque( x - DIABOLO_KICK_SPEED, y) || (x - DIABOLO_KICK_SPEED < xmin))	
-			{
+		} else {
+			if (mur_opaque(x - DIABOLO_KICK_SPEED, y) || (x - DIABOLO_KICK_SPEED < xmin)) {
 				ss_etape++;
-				ss_etape%=6;
-				if (ss_etape == 0)
-				{
+				ss_etape %= 6;
+				if (ss_etape == 0) {
 					etape++;
 				}
 			}
 		}
 	}
-	if (dir == SENS_DROITE)
-	{
-		if ((etape >= 4)&&(etape<=9))
-		{
+	if (dir == SENS_DROITE) {
+		if ((etape >= 4) && (etape <= 9)) {
 			tombe();
 			x += DIABOLO_KICK_SPEED;
 		}
 		pic = pbk_ennemis[8 + etape];
-	}
-	else
-	{
-		if ((etape >= 4)&&(etape<=9))
-		{
+	} else {
+		if ((etape >= 4) && (etape <= 9)) {
 			tombe();
 			x -= DIABOLO_KICK_SPEED;
 		}
@@ -396,159 +347,113 @@ void EnnemiDiabolo::onCoupdelatte()
 }
 
 
-void EnnemiDiabolo::onTornade()
-{
+void EnnemiDiabolo::onTornade() {
 	ss_etape ++;
 	ss_etape %= 6;
-	if (ss_etape == 0)
-	{
+	if (ss_etape == 0) {
 		etape ++;
 	}
 
-	if (etape == 9)
-	{
+	if (etape == 9) {
 		etape = 0;
 		ss_etape = 0;
 		etat = ETAT_AVANCE;
 		onAvance();
 		return;
-		
+
 	}
 
-	if ((etape == 6) && (ss_etape == 0))
-	{
+	if ((etape == 6) && (ss_etape == 0)) {
 		Tir * tornade;
 
-		if (dir == SENS_DROITE)
-		{
+		if (dir == SENS_DROITE) {
 			tornade = new TirTornade(1);
 			tornade->x = x + 30;
-		}
-		else
-		{
+		} else {
 			tornade = new TirTornade(-1);
 			tornade->x = x - 30;
 		}
 
 		tornade->setDir(dir);
-		tornade->y = y;		
-		list_tirs_ennemis.ajoute( (void*) tornade);		
+		tornade->y = y;
+		list_tirs_ennemis.ajoute((void*) tornade);
 	}
 
-	if (dir == SENS_DROITE)
-	{
+	if (dir == SENS_DROITE) {
 		pic = pbk_ennemis[38 + etape];
-	}
-	else
-	{
+	} else {
 		pic = pbk_ennemis[47 + etape];
 	}
 	colFromPic();
 }
 
-void EnnemiDiabolo::onCoupdegenou()
-{
+void EnnemiDiabolo::onCoupdegenou() {
 	//tombe();
-	if (dx == 0)
-	{		
-		if (dy < 0)
-		{
+	if (dx == 0) {
+		if (dy < 0) {
 			dy = 0;
 		}
 		tombe_diabolo();
-		if (dir == SENS_DROITE)
-		{
+		if (dir == SENS_DROITE) {
 			x = 590;
-		}
-		else
-		{
+		} else {
 			x = 50;
 		}
-	}
-	else
-	{
+	} else {
 		y += dy;
 	}
 
-	if ((y > 300) && (dx != 0))
-	{
+	if ((y > 300) && (dx != 0)) {
 		x += dx;
-		if (dir == SENS_DROITE)
-		{
+		if (dir == SENS_DROITE) {
 			pic = pbk_ennemis[2];
-		}
-		else
-		{
+		} else {
 			pic = pbk_ennemis[5];
 		}
-	}
-	else if ((y > 150) && (dx != 0))
-	{
+	} else if ((y > 150) && (dx != 0)) {
 		x += dx;
-		if (dir == SENS_DROITE)
-		{
+		if (dir == SENS_DROITE) {
 			pic = pbk_ennemis[3];
-		}
-		else
-		{
+		} else {
 			pic = pbk_ennemis[6];
 		}
-	}
-	else if ((y > -50) && (dx != 0))
-	{
+	} else if ((y > -50) && (dx != 0)) {
 		x += dx;
-		if (dir == SENS_DROITE)
-		{
+		if (dir == SENS_DROITE) {
 			pic = pbk_ennemis[4];
-		}
-		else
-		{
+		} else {
 			pic = pbk_ennemis[7];
 		}
-	}
-	else
-	{
+	} else {
 		dx = 0;
-		if ((plat(x + dx, y + dy)!=0) && (y > 400))
-		{
-			if ((ss_etape == 0) && (etape == 0))
-			{
+		if ((plat(x + dx, y + dy) != 0) && (y > 400)) {
+			if ((ss_etape == 0) && (etape == 0)) {
 				tremblement(7);
 			}
 			ss_etape++;
 			ss_etape %= 8;
-			if (ss_etape == 0)
-			{
+			if (ss_etape == 0) {
 				etape++;
 			}
-			if (etape == 4)
-			{
+			if (etape == 4) {
 				etape = 0;
 				ss_etape = 0;
 				etat = ETAT_AVANCE;
-				if (dir == SENS_DROITE)
-				{
+				if (dir == SENS_DROITE) {
 					dir = SENS_GAUCHE;
-				}
-				else
-				{
+				} else {
 					dir = SENS_DROITE;
 				}
 				onAvance();
 				return;
 			}
-		}
-		else
-		{
+		} else {
 			x += dx;
 		}
-	
-		if (dir == SENS_DROITE)
-		{
+
+		if (dir == SENS_DROITE) {
 			pic = pbk_ennemis[19 + etape];
-		}
-		else
-		{
+		} else {
 			pic = pbk_ennemis[34 + etape];
 		}
 	}
@@ -556,8 +461,7 @@ void EnnemiDiabolo::onCoupdegenou()
 }
 
 
-void EnnemiDiabolo::onCarbonise()
-{
+void EnnemiDiabolo::onCarbonise() {
 	/*ss_etape ++;
 	ss_etape %= 6;
 
@@ -577,8 +481,7 @@ void EnnemiDiabolo::onCarbonise()
 	}*/
 }
 
-void EnnemiDiabolo::colFromPic()
-{
+void EnnemiDiabolo::colFromPic() {
 	Sprite::colFromPic();
 
 	/*if ( etat == ETAT_SALETO)
@@ -595,45 +498,39 @@ void EnnemiDiabolo::colFromPic()
 		//y1 += 10;
 		//y2 -= 10;
 	}*/
-	if (etat == ETAT_AVANCE)
-	{
-		if (dir == SENS_DROITE)
-		{
+	if (etat == ETAT_AVANCE) {
+		if (dir == SENS_DROITE) {
 			x2 -= 45;
-		}
-		else
-		{
+		} else {
 			x1 += 45;
 		}
 	}
 }
 
 
-void EnnemiDiabolo::tombe_diabolo()
-{
+void EnnemiDiabolo::tombe_diabolo() {
 	lat_grav += 1;
 	lat_grav %= LATENCE_DIABOLO_GRAVITE;
 
-	if ( lat_grav == 0 && dy < DIABOLO_GRAVITE_MAX)
+	if (lat_grav == 0 && dy < DIABOLO_GRAVITE_MAX)
 		dy += 1;
 
-	if ( dy < 0 && mur_opaque( x, y + dy))
+	if (dy < 0 && mur_opaque(x, y + dy))
 		dy = GRAVITE_MAX;
 
-	int ny = plat2( x, y + dy);
+	int ny = plat2(x, y + dy);
 
-	if ( ny == 0 && dy > 0)
-		y = plat(x ,y + dy);
+	if (ny == 0 && dy > 0)
+		y = plat(x , y + dy);
 	else
 		y += dy;
 }
 
-void EnnemiDiabolo::estTouche( Tir * tir)
-{
+void EnnemiDiabolo::estTouche(Tir * tir) {
 	static const int dx_giclure_lem [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_lem [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 
 
-	Ennemi::estTouche( tir);
-	gicle( tir, dx_giclure_lem, dy_giclure_lem);
+	Ennemi::estTouche(tir);
+	gicle(tir, dx_giclure_lem, dy_giclure_lem);
 }

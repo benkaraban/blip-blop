@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		  EventTexte.h
 *		-----------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   2 Aout 2000
@@ -20,8 +20,7 @@
 #include "textecool.h"
 #include "bendebug.h"
 
-class EventTexte : public Event
-{
+class EventTexte : public Event {
 public:
 
 	int		ntxt;
@@ -29,23 +28,21 @@ public:
 	int		val;
 	int		cond;
 
-	inline virtual bool aActiver()
-	{
-		if ( cond == 0)
+	inline virtual bool aActiver() {
+		if (cond == 0)
 			return true;
-		else if ( cond == 1)
+		else if (cond == 1)
 			return (game_flag[flag] == val);
 		else
 			return (game_flag[flag] >= val);
 	};
 
-	virtual void doEvent()
-	{
+	virtual void doEvent() {
 		TexteCool * txt = new TexteCool();
 
 		txt->ntxt = ntxt;
 
-		list_txt_cool.ajoute( (void*) txt);
+		list_txt_cool.ajoute((void*) txt);
 	};
 };
 

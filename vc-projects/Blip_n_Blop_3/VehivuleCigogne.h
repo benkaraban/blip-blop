@@ -4,21 +4,18 @@
 
 #include "vehicule.h"
 
-class VehiculeCigogne : public Vehicule
-{
+class VehiculeCigogne : public Vehicule {
 public:
 
 	bool	hasBeenUsed;
 
 	VehiculeCigogne();
 
-	virtual bool canFire()
-	{
+	virtual bool canFire() {
 		return false;
 	};
 
-	virtual bool canChangeDir()
-	{
+	virtual bool canChangeDir() {
 		return false;
 	};
 

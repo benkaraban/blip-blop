@@ -8,27 +8,22 @@
 #define IDVEHICULE_CIGO	0
 
 
-void EventVehicule::doEvent()
-{
+void EventVehicule::doEvent() {
 	Vehicule * v = NULL;
 
-	switch( id_vehicule)
-	{
-	case IDVEHICULE_CIGO:
-		v = new VehiculeCigogne();
-		break;
+	switch (id_vehicule) {
+		case IDVEHICULE_CIGO:
+			v = new VehiculeCigogne();
+			break;
 	}
 
-	if ( v != NULL)
-	{
+	if (v != NULL) {
 		v->x = x;
 		v->y = y;
 		v->dir = dir;
 
-		list_vehicules.ajoute( (void*) v);
-	}
-	else
-	{
-		debug<<"Unknown vehicle ID : "<<id_vehicule<<"\n";
+		list_vehicules.ajoute((void*) v);
+	} else {
+		debug << "Unknown vehicle ID : " << id_vehicule << "\n";
 	}
 }

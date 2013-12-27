@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		    TxtData.h
 *		----------------
-*			
+*
 *		Permet de charger les textes
 *
 *
@@ -19,10 +19,10 @@
 #define _TxtData_
 
 #ifndef TXT_DATA_CPP
-	extern char **	txt_data;
+extern char **	txt_data;
 #endif
 
-bool loadTxtData( const char * file);
+bool loadTxtData(const char * file);
 void freeTxtData();
 
 #endif

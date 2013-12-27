@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		EnnemiSmurfCoquet.h
 *		-----------------------
-*		Schtroumph de base.	
+*		Schtroumph de base.
 *		Spécificité : Saute (beaucoup !) plus haut.
 *					  Vitesse tirée aléatoirement à la création.
 *
@@ -24,32 +24,27 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe 
+//		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfCoquet : public EnnemiSmurf
-{
+class EnnemiSmurfCoquet : public EnnemiSmurf {
 public:
 
-	EnnemiSmurfCoquet()
-	{
+	EnnemiSmurfCoquet() {
 		dy_saut = -6 ;
 		speed = 1 + rand() % 2 ;
 	}
 
-	inline virtual void affiche()
-	{
+	inline virtual void affiche() {
 		EnnemiSmurf::affiche() ;
-		if(etat != ETAT_MEURE && etat != ETAT_CARBONISE)
-		{
-			switch(dir)
-			{
+		if (etat != ETAT_MEURE && etat != ETAT_CARBONISE) {
+			switch (dir) {
 				case SENS_GAUCHE :
-				draw(x+3,y-31,pbk_ennemis[151]) ;
-				break ;
+					draw(x + 3, y - 31, pbk_ennemis[151]) ;
+					break ;
 				case SENS_DROITE :
-				draw(x-3,y-31,pbk_ennemis[151]) ;
-				break ;
+					draw(x - 3, y - 31, pbk_ennemis[151]) ;
+					break ;
 			}
 		}
 	}

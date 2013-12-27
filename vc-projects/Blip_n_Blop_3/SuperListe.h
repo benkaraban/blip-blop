@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   SuperListe.h
 *		----------------
-*			
+*
 *
 *		Liste de pointeurs (void*) doublement chaînée
 *		MAIS à sens unique
@@ -24,8 +24,7 @@
 //		Structure CELLULE pour rendre la liste plus jolie
 //-----------------------------------------------------------------------------
 
-struct CELLULE
-{
+struct CELLULE {
 	CELLULE *	prev;
 	void *		data;
 	CELLULE *	next;
@@ -35,8 +34,7 @@ struct CELLULE
 //		La classe SuperListe en personne
 //-----------------------------------------------------------------------------
 
-class SuperListe
-{
+class SuperListe {
 protected:
 	CELLULE *	tete;		// Tete de la liste
 	CELLULE *	obs;		// Observateur
@@ -46,31 +44,35 @@ public:
 	static int		nb_lists;
 
 public:
-	
+
 	// Constructeur normal
 	//
 	SuperListe();
 
 	// Destructeur
 	~SuperListe();
-	
-	
+
+
 	// Met l'observateur sur la tête
 	//
-	inline void 	start() { obs = tete; };
+	inline void 	start() {
+		obs = tete;
+	};
 
-	
+
 	// Avance l'observateur
 	//
-	inline void 	suivant() { if ( obs != NULL) obs = obs->next; };
+	inline void 	suivant() {
+		if (obs != NULL) obs = obs->next;
+	};
 
-	
+
 	// Rajoute une cellule en tête de liste
 	//
-	void	ajoute( void * nouvo);
+	void	ajoute(void * nouvo);
 
-	
-	// Supprime la cellule observée 
+
+	// Supprime la cellule observée
 	//
 	// ! ATTENTION !
 	//
@@ -78,39 +80,44 @@ public:
 	//
 	void	supprime();
 
-	
+
 	// Supprime la cellule observée, mais pas la valeur contenue
 	//
-	void *	supprimePorc();	
+	void *	supprimePorc();
 
-	
+
 	// Vide la liste
 	//
 	void	vide();
 	void	vide_porc();
 
-	
+
 	// Renvoit le nombre d'éléments contenus
 	//
-	inline int	taille() const { return nb_elem; };
+	inline int	taille() const {
+		return nb_elem;
+	};
 
-	
+
 	// Indique si la fin de la liste a été atteinte
 	//
-	inline bool	fin() const { return ( obs == NULL); };
+	inline bool	fin() const {
+		return (obs == NULL);
+	};
 
-	
+
 	// Indique VRAI si la liste est vide (ne contient aucune cellule)
 	//
-	inline bool	estVide() const { return (tete == NULL); };
+	inline bool	estVide() const {
+		return (tete == NULL);
+	};
 
-	
+
 	// Renvoit la valeur de la cellule observée
 	//
-	inline void *	info() const 
-	{
-		if ( obs != NULL)
-			return ( obs->data );
+	inline void *	info() const {
+		if (obs != NULL)
+			return (obs->data);
 		else
 			return NULL;
 	};
@@ -118,7 +125,7 @@ public:
 
 	// Trie la liste selon la fonction donnée en paramètre
 	//
-	void	(trier( int (*fonc)( const void *, const void*)));
+	void	(trier(int (*fonc)(const void *, const void*)));
 };
 
 #endif

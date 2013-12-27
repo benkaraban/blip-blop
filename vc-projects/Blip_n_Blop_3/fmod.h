@@ -10,27 +10,27 @@
 /* ========================================================================================== */
 
 #if defined(PLATFORM_LINUX) || defined(__linux__) || (defined(__GNUC__) && defined(WIN32))
-    #ifndef _cdecl
-        #define _cdecl 
-    #endif
-    #ifndef _stdcall
-        #define _stdcall
-    #endif
-    #define __PS __attribute__((packed)) /* gcc packed */
-#else 
-    #define __PS /*dummy*/
-#endif 
+#ifndef _cdecl
+#define _cdecl
+#endif
+#ifndef _stdcall
+#define _stdcall
+#endif
+#define __PS __attribute__((packed)) /* gcc packed */
+#else
+#define __PS /*dummy*/
+#endif
 
 #define F_API _stdcall
 
 #ifdef DLL_EXPORTS
-	#define DLL_API __declspec(dllexport)
+#define DLL_API __declspec(dllexport)
 #else
-	#ifdef __LCC__
-		#define DLL_API F_API
-	#else
-		#define DLL_API
-	#endif /* __LCC__ */
+#ifdef __LCC__
+#define DLL_API F_API
+#else
+#define DLL_API
+#endif /* __LCC__ */
 #endif /* DLL_EXPORTS */
 
 
@@ -38,8 +38,8 @@
 #define FMOD_VERSION	3.4f
 
 
-/* 
-    FMOD defined types 
+/*
+    FMOD defined types
 */
 typedef struct FSOUND_SAMPLE	FSOUND_SAMPLE;
 typedef struct FSOUND_STREAM	FSOUND_STREAM;
@@ -48,71 +48,69 @@ typedef struct FMUSIC_MODULE	FMUSIC_MODULE;
 typedef struct FSOUND_MATERIAL  FSOUND_MATERIAL;
 typedef struct FSOUND_GEOMLIST  FSOUND_GEOMLIST;
 
-/* 
+/*
     Callback types
 */
-typedef signed char (_cdecl *FSOUND_STREAMCALLBACK)	(FSOUND_STREAM *stream, void *buff, int len, int param);
-typedef void *		(_cdecl *FSOUND_DSPCALLBACK)	(void *originalbuffer, void *newbuffer, int length, int param);
-typedef void		(_cdecl *FMUSIC_CALLBACK)		(FMUSIC_MODULE *mod, unsigned char param);
+typedef signed char(_cdecl *FSOUND_STREAMCALLBACK)(FSOUND_STREAM *stream, void *buff, int len, int param);
+typedef void *		(_cdecl *FSOUND_DSPCALLBACK)(void *originalbuffer, void *newbuffer, int length, int param);
+typedef void	(_cdecl *FMUSIC_CALLBACK)(FMUSIC_MODULE *mod, unsigned char param);
 
 
 /*
 [ENUM]
 [
-	[DESCRIPTION]	
+	[DESCRIPTION]
 	On failure of commands in FMOD, use FSOUND_GetError to attain what happened.
-	
-	[SEE_ALSO]		
+
+	[SEE_ALSO]
 	FSOUND_GetError
 ]
 */
-enum FMOD_ERRORS 
-{
-	FMOD_ERR_NONE,			   /* No errors */
-	FMOD_ERR_BUSY,             /* Cannot call this command after FSOUND_Init.  Call FSOUND_Close first. */
-	FMOD_ERR_UNINITIALIZED,	   /* This command failed because FSOUND_Init or FSOUND_SetOutput was not called */
-	FMOD_ERR_INIT,			   /* Error initializing output device. */
-	FMOD_ERR_ALLOCATED,		   /* Error initializing output device, but more specifically, the output device is already in use and cannot be reused. */
-	FMOD_ERR_PLAY,			   /* Playing the sound failed. */
-	FMOD_ERR_OUTPUT_FORMAT,	   /* Soundcard does not support the features needed for this soundsystem (16bit stereo output) */
-	FMOD_ERR_COOPERATIVELEVEL, /* Error setting cooperative level for hardware. */
-	FMOD_ERR_CREATEBUFFER,	   /* Error creating hardware sound buffer. */
-	FMOD_ERR_FILE_NOTFOUND,	   /* File not found */
-	FMOD_ERR_FILE_FORMAT,	   /* Unknown file format */
-	FMOD_ERR_FILE_BAD,		   /* Error loading file */
-	FMOD_ERR_MEMORY,           /* Not enough memory  */
-	FMOD_ERR_VERSION,		   /* The version number of this file format is not supported */
-	FMOD_ERR_INVALID_PARAM,	   /* An invalid parameter was passed to this function */
-	FMOD_ERR_NO_EAX,		   /* Tried to use an EAX command on a non EAX enabled channel or output. */
-	FMOD_ERR_NO_EAX2,		   /* Tried to use an advanced EAX2 command on a non EAX2 enabled channel or output. */
-	FMOD_ERR_CHANNEL_ALLOC,	   /* Failed to allocate a new channel */
-	FMOD_ERR_RECORD,		   /* Recording is not supported on this machine */
-	FMOD_ERR_MEDIAPLAYER,	   /* Windows Media Player not installed so cannot play wma or use internet streaming. */
+enum FMOD_ERRORS {
+    FMOD_ERR_NONE,			   /* No errors */
+    FMOD_ERR_BUSY,             /* Cannot call this command after FSOUND_Init.  Call FSOUND_Close first. */
+    FMOD_ERR_UNINITIALIZED,	   /* This command failed because FSOUND_Init or FSOUND_SetOutput was not called */
+    FMOD_ERR_INIT,			   /* Error initializing output device. */
+    FMOD_ERR_ALLOCATED,		   /* Error initializing output device, but more specifically, the output device is already in use and cannot be reused. */
+    FMOD_ERR_PLAY,			   /* Playing the sound failed. */
+    FMOD_ERR_OUTPUT_FORMAT,	   /* Soundcard does not support the features needed for this soundsystem (16bit stereo output) */
+    FMOD_ERR_COOPERATIVELEVEL, /* Error setting cooperative level for hardware. */
+    FMOD_ERR_CREATEBUFFER,	   /* Error creating hardware sound buffer. */
+    FMOD_ERR_FILE_NOTFOUND,	   /* File not found */
+    FMOD_ERR_FILE_FORMAT,	   /* Unknown file format */
+    FMOD_ERR_FILE_BAD,		   /* Error loading file */
+    FMOD_ERR_MEMORY,           /* Not enough memory  */
+    FMOD_ERR_VERSION,		   /* The version number of this file format is not supported */
+    FMOD_ERR_INVALID_PARAM,	   /* An invalid parameter was passed to this function */
+    FMOD_ERR_NO_EAX,		   /* Tried to use an EAX command on a non EAX enabled channel or output. */
+    FMOD_ERR_NO_EAX2,		   /* Tried to use an advanced EAX2 command on a non EAX2 enabled channel or output. */
+    FMOD_ERR_CHANNEL_ALLOC,	   /* Failed to allocate a new channel */
+    FMOD_ERR_RECORD,		   /* Recording is not supported on this machine */
+    FMOD_ERR_MEDIAPLAYER,	   /* Windows Media Player not installed so cannot play wma or use internet streaming. */
 };
 
 
 /*
 [ENUM]
 [
-	[DESCRIPTION]	
+	[DESCRIPTION]
 	These output types are used with FSOUND_SetOutput, to choose which output driver to use.
-	
-	FSOUND_OUTPUT_DSOUND will not support hardware 3d acceleration if the sound card driver 
+
+	FSOUND_OUTPUT_DSOUND will not support hardware 3d acceleration if the sound card driver
 	does not support DirectX 6 Voice Manager Extensions.
 
     FSOUND_OUTPUT_WINMM is recommended for NT and CE.
 
-	[SEE_ALSO]		
+	[SEE_ALSO]
 	FSOUND_SetOutput
 	FSOUND_GetOutput
 ]
 */
-enum FSOUND_OUTPUTTYPES
-{
-	FSOUND_OUTPUT_NOSOUND,    /* NoSound driver, all calls to this succeed but do nothing. */
-	FSOUND_OUTPUT_WINMM,      /* Windows Multimedia driver. */
-	FSOUND_OUTPUT_DSOUND,     /* DirectSound driver.  You need this to get EAX or EAX2 support. */
-	FSOUND_OUTPUT_A3D,        /* A3D driver.  You need this to get geometry support. */
+enum FSOUND_OUTPUTTYPES {
+    FSOUND_OUTPUT_NOSOUND,    /* NoSound driver, all calls to this succeed but do nothing. */
+    FSOUND_OUTPUT_WINMM,      /* Windows Multimedia driver. */
+    FSOUND_OUTPUT_DSOUND,     /* DirectSound driver.  You need this to get EAX or EAX2 support. */
+    FSOUND_OUTPUT_A3D,        /* A3D driver.  You need this to get geometry support. */
 
     FSOUND_OUTPUT_OSS,        /* Linux/Unix OSS (Open Sound System) driver, i.e. the kernel sound drivers. */
     FSOUND_OUTPUT_ESD,        /* Linux/Unix ESD (Enlightment Sound Daemon) driver. */
@@ -123,60 +121,58 @@ enum FSOUND_OUTPUTTYPES
 /*
 [ENUM]
 [
-	[DESCRIPTION]	
-	These mixer types are used with FSOUND_SetMixer, to choose which mixer to use, or to act 
+	[DESCRIPTION]
+	These mixer types are used with FSOUND_SetMixer, to choose which mixer to use, or to act
 	upon for other reasons using FSOUND_GetMixer.
 
-	[SEE_ALSO]		
+	[SEE_ALSO]
 	FSOUND_SetMixer
 	FSOUND_GetMixer
 ]
 */
-enum FSOUND_MIXERTYPES
-{
-	FSOUND_MIXER_AUTODETECT,		/* Enables autodetection of the fastest mixer based on your cpu. */
-	FSOUND_MIXER_BLENDMODE,			/* Enables the standard non mmx, blendmode mixer. */
-	FSOUND_MIXER_MMXP5,				/* Enables the mmx, pentium optimized blendmode mixer. */
-	FSOUND_MIXER_MMXP6,				/* Enables the mmx, ppro/p2/p3 optimized mixer. */
+enum FSOUND_MIXERTYPES {
+    FSOUND_MIXER_AUTODETECT,		/* Enables autodetection of the fastest mixer based on your cpu. */
+    FSOUND_MIXER_BLENDMODE,			/* Enables the standard non mmx, blendmode mixer. */
+    FSOUND_MIXER_MMXP5,				/* Enables the mmx, pentium optimized blendmode mixer. */
+    FSOUND_MIXER_MMXP6,				/* Enables the mmx, ppro/p2/p3 optimized mixer. */
 
-	FSOUND_MIXER_QUALITY_AUTODETECT,/* Enables autodetection of the fastest quality mixer based on your cpu. */
-	FSOUND_MIXER_QUALITY_FPU,		/* Enables the interpolating/volume ramping FPU mixer.  */
-	FSOUND_MIXER_QUALITY_MMXP5,		/* Enables the interpolating/volume ramping p5 MMX mixer.  */
-	FSOUND_MIXER_QUALITY_MMXP6,		/* Enables the interpolating/volume ramping ppro/p2/p3+ MMX mixer.  */
+    FSOUND_MIXER_QUALITY_AUTODETECT,/* Enables autodetection of the fastest quality mixer based on your cpu. */
+    FSOUND_MIXER_QUALITY_FPU,		/* Enables the interpolating/volume ramping FPU mixer.  */
+    FSOUND_MIXER_QUALITY_MMXP5,		/* Enables the interpolating/volume ramping p5 MMX mixer.  */
+    FSOUND_MIXER_QUALITY_MMXP6,		/* Enables the interpolating/volume ramping ppro/p2/p3+ MMX mixer.  */
 };
 
 
 /*
 [ENUM]
 [
-	[DESCRIPTION]	
+	[DESCRIPTION]
 	These definitions describe the type of song being played.
 
-	[SEE_ALSO]		
-	FMUSIC_GetType	
+	[SEE_ALSO]
+	FMUSIC_GetType
 ]
 */
-enum FMUSIC_TYPES
-{
-	FMUSIC_TYPE_NONE,		
-	FMUSIC_TYPE_MOD,		/* Protracker / Fasttracker */
-	FMUSIC_TYPE_S3M,		/* ScreamTracker 3 */
-	FMUSIC_TYPE_XM,			/* FastTracker 2 */
-	FMUSIC_TYPE_IT,			/* Impulse Tracker. */
-	FMUSIC_TYPE_MIDI,		/* MIDI file */
+enum FMUSIC_TYPES {
+    FMUSIC_TYPE_NONE,
+    FMUSIC_TYPE_MOD,		/* Protracker / Fasttracker */
+    FMUSIC_TYPE_S3M,		/* ScreamTracker 3 */
+    FMUSIC_TYPE_XM,			/* FastTracker 2 */
+    FMUSIC_TYPE_IT,			/* Impulse Tracker. */
+    FMUSIC_TYPE_MIDI,		/* MIDI file */
 };
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_DSP_PRIORITIES
 
-	[DESCRIPTION]	
-	These default priorities are 
+	[DESCRIPTION]
+	These default priorities are
 
-	[SEE_ALSO]		
+	[SEE_ALSO]
 	FSOUND_DSP_Create
 	FSOUND_DSP_SetPriority
     FSOUND_DSP_GetSpectrum
@@ -192,12 +188,12 @@ enum FMUSIC_TYPES
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_CAPS
 
-	[DESCRIPTION]	
+	[DESCRIPTION]
 	Driver description bitfields.  Use FSOUND_Driver_GetCaps to determine if a driver enumerated
 	has the settings you are after.  The enumerated driver depends on the output mode, see
 	FSOUND_OUTPUTTYPES
@@ -216,28 +212,28 @@ enum FMUSIC_TYPES
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_MODES
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	Sample description bitfields, OR them together for loading and describing samples.
-    NOTE.  If the file format being loaded already has a defined format, such as WAV or MP3, then 
+    NOTE.  If the file format being loaded already has a defined format, such as WAV or MP3, then
     trying to override the pre-defined format with a new set of format flags will not work.  For
     example, an 8 bit WAV file will not load as 16bit if you specify FSOUND_16BITS.  It will just
     ignore the flag and go ahead loading it as 8bits.  For these type of formats the only flags
     you can specify that will really alter the behaviour of how it is loaded, are the following.
 
-    FSOUND_LOOP_OFF		
-    FSOUND_LOOP_NORMAL	
-    FSOUND_LOOP_BIDI	
+    FSOUND_LOOP_OFF
+    FSOUND_LOOP_NORMAL
+    FSOUND_LOOP_BIDI
     FSOUND_HW3D
     FSOUND_2D
-    FSOUND_STREAMABLE	
-    FSOUND_LOADMEMORY	
-    FSOUND_LOADRAW          
-    FSOUND_MPEGACCURATE	    
+    FSOUND_STREAMABLE
+    FSOUND_LOADMEMORY
+    FSOUND_LOADRAW
+    FSOUND_MPEGACCURATE
 
     See flag descriptions for what these do.
 ]
@@ -264,25 +260,25 @@ enum FMUSIC_TYPES
 #define FSOUND_HW2D         0x00080000  /* 2D hardware sounds.  allows hardware specific effects */
 #define FSOUND_ENABLEFX     0x00100000  /* Allows DX8 FX to be played back on a sound.  Requires DirectX 8 - Note these sounds cannot be played more than once, be 8 bit, be less than a certain size, or have a changing frequency */
 
-/* 
-    FSOUND_NORMAL is a default sample type.  Loop off, 8bit mono, signed, not hardware 
-    accelerated.  Some API functions ignore 8bits and mono, as it may be an mpeg/wav/etc which 
+/*
+    FSOUND_NORMAL is a default sample type.  Loop off, 8bit mono, signed, not hardware
+    accelerated.  Some API functions ignore 8bits and mono, as it may be an mpeg/wav/etc which
     has its format predetermined.
 */
-#define FSOUND_NORMAL		(FSOUND_LOOP_OFF | FSOUND_8BITS | FSOUND_MONO)		
+#define FSOUND_NORMAL		(FSOUND_LOOP_OFF | FSOUND_8BITS | FSOUND_MONO)
 /* [DEFINE_END] */
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_CDPLAYMODES
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	Playback method for a CD Audio track, using FSOUND_CD_Play
 
-	[SEE_ALSO]		
+	[SEE_ALSO]
 	FSOUND_CD_Play
 ]
 */
@@ -294,11 +290,11 @@ enum FMUSIC_TYPES
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_MISC_VALUES
-	
+
 	[DESCRIPTION]
 	Miscellaneous values for FMOD functions.
 
@@ -321,16 +317,15 @@ enum FMUSIC_TYPES
 /*
 [ENUM]
 [
-	[DESCRIPTION]	
+	[DESCRIPTION]
 	These are environment types defined for use with the FSOUND_Reverb API.
 
-	[SEE_ALSO]		
+	[SEE_ALSO]
 	FSOUND_Reverb_SetEnvironment
 	FSOUND_Reverb_SetEnvironmentAdvanced
 ]
 */
-enum FSOUND_REVERB_ENVIRONMENTS
-{
+enum FSOUND_REVERB_ENVIRONMENTS {
     FSOUND_ENVIRONMENT_GENERIC,
     FSOUND_ENVIRONMENT_PADDEDCELL,
     FSOUND_ENVIRONMENT_ROOM,
@@ -362,12 +357,12 @@ enum FSOUND_REVERB_ENVIRONMENTS
 };
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_REVERBMIX_USEDISTANCE
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	Used with FSOUND_Reverb_SetMix, this setting allows reverb to attenuate based on distance from the listener.
 	Instead of hard coding a value with FSOUND_Reverb_SetMix, this value can be used instead, for a more natural
 	reverb dropoff.
@@ -381,18 +376,18 @@ enum FSOUND_REVERB_ENVIRONMENTS
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_REVERB_IGNOREPARAM
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	Used with FSOUND_Reverb_SetEnvironment and FSOUND_Reverb_SetEnvironmentAdvanced, this can
-	be placed in the place of a specific parameter for the reverb setting.  It allows you to 
+	be placed in the place of a specific parameter for the reverb setting.  It allows you to
 	not set any parameters except the ones you are interested in .. and example would be this.
 	FSOUND_Reverb_SetEnvironment(FSOUND_REVERB_IGNOREPARAM,
 								 FSOUND_REVERB_IGNOREPARAM,
-								 FSOUND_REVERB_IGNOREPARAM,  
+								 FSOUND_REVERB_IGNOREPARAM,
 								 0.0f);
 	This means env, vol and decay are left alone, but damp is set to 0.
 
@@ -406,12 +401,12 @@ enum FSOUND_REVERB_ENVIRONMENTS
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_REVERB_PRESETS
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	A set of predefined environment PARAMETERS, created by Creative Labs
 	These can be placed directly into the FSOUND_Reverb_SetEnvironment call
 
@@ -450,12 +445,12 @@ enum FSOUND_REVERB_ENVIRONMENTS
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_GEOMETRY_MODES
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	Geometry flags, used as the mode flag in FSOUND_Geometry_AddPolygon
 
 	[SEE_ALSO]
@@ -470,11 +465,11 @@ enum FSOUND_REVERB_ENVIRONMENTS
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_FX_MODES
-	
+
 	[DESCRIPTION]
     These flags are used with FSOUND_FX_Enable to enable or disable DirectX 8 FX for a channel.
 
@@ -506,16 +501,15 @@ enum FSOUND_REVERB_ENVIRONMENTS
 /*
 [ENUM]
 [
-	[DESCRIPTION]	
+	[DESCRIPTION]
 	These are speaker types defined for use with the FSOUND_SetSpeakerMode command.
     Note that this only works with FSOUND_OUTPUT_DSOUND output mode.
 
-	[SEE_ALSO]		
+	[SEE_ALSO]
     FSOUND_SetSpeakerMode
 ]
 */
-enum FSOUND_SPEAKERMODES
-{
+enum FSOUND_SPEAKERMODES {
     FSOUND_SPEAKERMODE_5POINT1,       /* The audio is played through a speaker arrangement of surround speakers with a subwoofer. */
     FSOUND_SPEAKERMODE_HEADPHONE,     /* The speakers are headphones. */
     FSOUND_SPEAKERMODE_MONO,          /* The speakers are monaural. */
@@ -526,14 +520,14 @@ enum FSOUND_SPEAKERMODES
 
 
 /*
-[DEFINE_START] 
+[DEFINE_START]
 [
- 	[NAME] 
+ 	[NAME]
 	FSOUND_INIT_FLAGS
-	
-	[DESCRIPTION]	
+
+	[DESCRIPTION]
 	Initialization flags.  Use them with FSOUND_Init in the flags parameter to change various behaviour.
-    
+
     FSOUND_INIT_ENABLEOUTPUTFX Is an init mode which enables the FSOUND mixer buffer to be affected by DirectX 8 effects.
     Note that due to limitations of DirectSound, FSOUND_Init may fail if this is enabled because the buffersize is too small.
     This can be fixed with FSOUND_SetBufferSize.  Increase the BufferSize until it works.
@@ -563,9 +557,9 @@ extern "C" {
 /* Initialization / Global functions. */
 /* ================================== */
 
-/* 
-    PRE - FSOUND_Init functions. These can't be called after FSOUND_Init is 
-    called (they will fail). They set up FMOD system functionality. 
+/*
+    PRE - FSOUND_Init functions. These can't be called after FSOUND_Init is
+    called (they will fail). They set up FMOD system functionality.
 */
 DLL_API signed char		F_API FSOUND_SetOutput(int outputtype);
 DLL_API signed char		F_API FSOUND_SetDriver(int driver);
@@ -575,31 +569,31 @@ DLL_API signed char		F_API FSOUND_SetHWND(void *hwnd);
 DLL_API	signed char		F_API FSOUND_SetMinHardwareChannels(int min);
 DLL_API	signed char		F_API FSOUND_SetMaxHardwareChannels(int max);
 
-/* 
+/*
     Main initialization / closedown functions.
-    Note : Use FSOUND_INIT_USEDEFAULTMIDISYNTH with FSOUND_Init for software override 
+    Note : Use FSOUND_INIT_USEDEFAULTMIDISYNTH with FSOUND_Init for software override
            with MIDI playback.
-         : Use FSOUND_INIT_GLOBALFOCUS with FSOUND_Init to make sound audible no matter 
+         : Use FSOUND_INIT_GLOBALFOCUS with FSOUND_Init to make sound audible no matter
            which window is in focus.
 */
 DLL_API signed char		F_API FSOUND_Init(int mixrate, int maxsoftwarechannels, unsigned int flags);
 DLL_API void			F_API FSOUND_Close();
 
-/* 
-    Runtime system level functions 
+/*
+    Runtime system level functions
 */
 DLL_API void F_API FSOUND_SetSpeakerMode(unsigned int speakermode);
 DLL_API void F_API FSOUND_SetSFXMasterVolume(int volume);
 DLL_API void F_API FSOUND_SetPanSeperation(float pansep);
 DLL_API void F_API FSOUND_File_SetCallbacks(
-             unsigned int (_cdecl *OpenCallback)(const char *name),
-             void         (_cdecl *CloseCallback)(unsigned int handle),
-             int          (_cdecl *ReadCallback)(void *buffer, int size, unsigned int handle),
-             int          (_cdecl *SeekCallback)(unsigned int handle, int pos, signed char mode),
-             int          (_cdecl *TellCallback)(unsigned int handle));
+    unsigned int (_cdecl *OpenCallback)(const char *name),
+    void (_cdecl *CloseCallback)(unsigned int handle),
+    int (_cdecl *ReadCallback)(void *buffer, int size, unsigned int handle),
+    int (_cdecl *SeekCallback)(unsigned int handle, int pos, signed char mode),
+    int (_cdecl *TellCallback)(unsigned int handle));
 
-/* 
-    System information functions. 
+/*
+    System information functions.
 */
 DLL_API int				F_API FSOUND_GetError();
 DLL_API float			F_API FSOUND_GetVersion();
@@ -622,7 +616,7 @@ DLL_API float			F_API FSOUND_GetCPUUsage();
 /* Sample management / load functions. */
 /* =================================== */
 
-/* 
+/*
     Sample creation and management functions
     Note : Use FSOUND_LOADMEMORY   flag with FSOUND_Sample_Load to load from memory.
            Use FSOUND_LOADRAW      flag with FSOUND_Sample_Load to treat as as raw pcm data.
@@ -644,7 +638,7 @@ DLL_API signed char		F_API FSOUND_Sample_SetLoopPoints(FSOUND_SAMPLE *sptr, int 
 DLL_API signed char		F_API FSOUND_Sample_SetDefaults(FSOUND_SAMPLE *sptr, int deffreq, int defvol, int defpan, int defpri);
 DLL_API signed char		F_API FSOUND_Sample_SetMinMaxDistance(FSOUND_SAMPLE *sptr, float min, float max);
 
-/* 
+/*
     Sample information functions
 */
 
@@ -654,20 +648,20 @@ DLL_API unsigned int	F_API FSOUND_Sample_GetLength(FSOUND_SAMPLE *sptr);
 DLL_API signed char		F_API FSOUND_Sample_GetLoopPoints(FSOUND_SAMPLE *sptr, int *loopstart, int *loopend);
 DLL_API signed char		F_API FSOUND_Sample_GetDefaults(FSOUND_SAMPLE *sptr, int *deffreq, int *defvol, int *defpan, int *defpri);
 DLL_API unsigned int	F_API FSOUND_Sample_GetMode(FSOUND_SAMPLE *sptr);
-  
+
 /* ============================ */
 /* Channel control functions.   */
 /* ============================ */
 
-/* 
-    Playing and stopping sounds.  
+/*
+    Playing and stopping sounds.
 */
 
 DLL_API int				F_API FSOUND_PlaySound(int channel, FSOUND_SAMPLE *sptr);
 DLL_API int				F_API FSOUND_PlaySoundEx(int channel, FSOUND_SAMPLE *sptr, FSOUND_DSPUNIT *dsp, signed char startpaused);
 DLL_API signed char		F_API FSOUND_StopSound(int channel);
 
-/* 
+/*
     Functions to control playback of a channel.
 */
 
@@ -683,7 +677,7 @@ DLL_API signed char		F_API FSOUND_SetPaused(int channel, signed char paused);
 DLL_API signed char		F_API FSOUND_SetLoopMode(int channel, unsigned int loopmode);
 DLL_API signed char     F_API FSOUND_SetCurrentPosition(int channel, unsigned int offset);
 
-/* 
+/*
     Functions to control DX8 only effects processing.
     Note that FX enabled samples can only be played once at a time.
 */
@@ -697,9 +691,9 @@ DLL_API signed char     F_API FSOUND_FX_SetFlanger(int channel, float WetDryMix,
 DLL_API signed char     F_API FSOUND_FX_SetGargle(int channel, int RateHz, int WaveShape);
 DLL_API signed char     F_API FSOUND_FX_SetI3DL2Reverb(int channel, int Room, int RoomHF, float RoomRolloffFactor, float DecayTime, float DecayHFRatio, int Reflections, float ReflectionsDelay, int Reverb, float ReverbDelay, float Diffusion, float Density, float HFReference);
 DLL_API signed char     F_API FSOUND_FX_SetParamEQ(int channel, float Center, float Bandwidth, float Gain);
-DLL_API signed char     F_API FSOUND_FX_SetWavesReverb(int channel, float InGain, float ReverbMix, float ReverbTime, float HighFreqRTRatio);  
+DLL_API signed char     F_API FSOUND_FX_SetWavesReverb(int channel, float InGain, float ReverbMix, float ReverbTime, float HighFreqRTRatio);
 
-/* 
+/*
     Channel information functions.
 */
 
@@ -715,12 +709,12 @@ DLL_API signed char		F_API FSOUND_GetPaused(int channel);
 DLL_API unsigned int	F_API FSOUND_GetCurrentPosition(int channel);
 DLL_API FSOUND_SAMPLE *	F_API FSOUND_GetCurrentSample(int channel);
 DLL_API float			F_API FSOUND_GetCurrentVU(int channel);
- 
+
 /* =================== */
 /* 3D sound functions. */
 /* =================== */
 
-/* 
+/*
     See also FSOUND_Sample_SetMinMaxDistance (above)
 */
 DLL_API void			F_API FSOUND_3D_Update();
@@ -731,7 +725,7 @@ DLL_API void			F_API FSOUND_3D_Listener_GetAttributes(float *pos, float *vel, fl
 DLL_API void			F_API FSOUND_3D_Listener_SetDopplerFactor(float scale);
 DLL_API void			F_API FSOUND_3D_Listener_SetDistanceFactor(float scale);
 DLL_API void			F_API FSOUND_3D_Listener_SetRolloffFactor(float scale);
- 
+
 /* ========================= */
 /* File Streaming functions. */
 /* ========================= */
@@ -777,7 +771,7 @@ DLL_API signed char		F_API FSOUND_CD_GetPaused();
 DLL_API int				F_API FSOUND_CD_GetTrack();
 DLL_API int				F_API FSOUND_CD_GetNumTracks();
 DLL_API	int				F_API FSOUND_CD_GetVolume();
-DLL_API int				F_API FSOUND_CD_GetTrackLength(int track); 
+DLL_API int				F_API FSOUND_CD_GetTrackLength(int track);
 DLL_API int				F_API FSOUND_CD_GetTrackTime();
 
 
@@ -787,8 +781,8 @@ DLL_API int				F_API FSOUND_CD_GetTrackTime();
  ==============
 */
 
-/* 
-    DSP Unit control and information functions. 
+/*
+    DSP Unit control and information functions.
 */
 
 DLL_API FSOUND_DSPUNIT *F_API FSOUND_DSP_Create(FSOUND_DSPCALLBACK callback, int priority, int param);
@@ -798,8 +792,8 @@ DLL_API int				F_API FSOUND_DSP_GetPriority(FSOUND_DSPUNIT *unit);
 DLL_API void			F_API FSOUND_DSP_SetActive(FSOUND_DSPUNIT *unit, signed char active);
 DLL_API signed char		F_API FSOUND_DSP_GetActive(FSOUND_DSPUNIT *unit);
 
-/* 
-    Functions to get hold of FSOUND 'system DSP unit' handles. 
+/*
+    Functions to get hold of FSOUND 'system DSP unit' handles.
 */
 
 DLL_API FSOUND_DSPUNIT *F_API FSOUND_DSP_GetClearUnit();
@@ -808,8 +802,8 @@ DLL_API FSOUND_DSPUNIT *F_API FSOUND_DSP_GetMusicUnit();
 DLL_API FSOUND_DSPUNIT *F_API FSOUND_DSP_GetClipAndCopyUnit();
 DLL_API FSOUND_DSPUNIT *F_API FSOUND_DSP_GetFFTUnit();
 
-/* 
-    Miscellaneous DSP functions 
+/*
+    Miscellaneous DSP functions
 */
 
 DLL_API signed char		F_API FSOUND_DSP_MixBuffers(void *destbuffer, void *srcbuffer, int len, int freq, int vol, int pan, unsigned int mode);
@@ -823,22 +817,22 @@ DLL_API float *         F_API FSOUND_DSP_GetSpectrum();             /* Array of 
 /* Geometry functions.  (NOT SUPPORTED IN LINUX/CE) */
 /* ================================================ */
 
-/* 
-    Scene/Polygon functions 
+/*
+    Scene/Polygon functions
 */
 DLL_API signed char       F_API FSOUND_Geometry_AddPolygon(float *p1, float *p2, float *p3, float *p4, float *normal, unsigned int mode, float *openingfactor);
 DLL_API int				  F_API FSOUND_Geometry_AddList(FSOUND_GEOMLIST *geomlist);
 
-/* 
-    Polygon list functions 
+/*
+    Polygon list functions
 */
 DLL_API FSOUND_GEOMLIST * F_API FSOUND_Geometry_List_Create(signed char boundingvolume);
 DLL_API signed char		  F_API FSOUND_Geometry_List_Free(FSOUND_GEOMLIST *geomlist);
 DLL_API signed char		  F_API FSOUND_Geometry_List_Begin(FSOUND_GEOMLIST *geomlist);
 DLL_API signed char		  F_API FSOUND_Geometry_List_End(FSOUND_GEOMLIST *geomlist);
 
-/* 
-    Material functions 
+/*
+    Material functions
 */
 DLL_API FSOUND_MATERIAL * F_API FSOUND_Geometry_Material_Create();
 DLL_API signed char       F_API FSOUND_Geometry_Material_Free(FSOUND_MATERIAL *material);
@@ -851,31 +845,31 @@ DLL_API signed char		  F_API FSOUND_Geometry_Material_Set(FSOUND_MATERIAL *mater
 /* Reverb functions. (eax, eax2, a3d 3.0 reverb)  (NOT SUPPORTED IN LINUX/CE) */
 /* ========================================================================== */
 
-/* 
-    Supporing EAX1, EAX2, A3D 3.0 (use FSOUND_REVERB_PRESETS if you like), 
-    (EAX2 support through emulation/parameter conversion) 
+/*
+    Supporing EAX1, EAX2, A3D 3.0 (use FSOUND_REVERB_PRESETS if you like),
+    (EAX2 support through emulation/parameter conversion)
 */
 
-DLL_API signed char		F_API FSOUND_Reverb_SetEnvironment(int env, float vol, float decay, float damp);			
+DLL_API signed char		F_API FSOUND_Reverb_SetEnvironment(int env, float vol, float decay, float damp);
 
-/* 
+/*
     Supporting EAX2, A3D 3.0 only.  Has no effect on EAX1
 */
 
 DLL_API signed char		F_API FSOUND_Reverb_SetEnvironmentAdvanced(
-								int	  env,
-								int   Room,					/* [-10000, 0]     default: -10000 mB	or use FSOUND_REVERB_IGNOREPARAM */
-								int   RoomHF,				/* [-10000, 0]     default: 0 mB		or use FSOUND_REVERB_IGNOREPARAM */
-								float RoomRolloffFactor,	/* [0.0, 10.0]     default: 0.0			or use FSOUND_REVERB_IGNOREPARAM */
-								float DecayTime,			/* [0.1, 20.0]     default: 1.0 s		or use FSOUND_REVERB_IGNOREPARAM */
-								float DecayHFRatio,			/* [0.1, 2.0]      default: 0.5			or use FSOUND_REVERB_IGNOREPARAM */
-								int   Reflections,			/* [-10000, 1000]  default: -10000 mB	or use FSOUND_REVERB_IGNOREPARAM */
-								float ReflectionsDelay,		/* [0.0, 0.3]      default: 0.02 s		or use FSOUND_REVERB_IGNOREPARAM */
-								int   Reverb,				/* [-10000, 2000]  default: -10000 mB	or use FSOUND_REVERB_IGNOREPARAM */
-								float ReverbDelay,			/* [0.0, 0.1]      default: 0.04 s		or use FSOUND_REVERB_IGNOREPARAM */
-								float EnvironmentSize,		/* [0.0, 100.0]    default: 100.0 %		or use FSOUND_REVERB_IGNOREPARAM */
-								float EnvironmentDiffusion,	/* [0.0, 100.0]    default: 100.0 %		or use FSOUND_REVERB_IGNOREPARAM */
-								float AirAbsorptionHF);		/* [20.0, 20000.0] default: 5000.0 Hz	or use FSOUND_REVERB_IGNOREPARAM */
+    int	  env,
+    int   Room,					/* [-10000, 0]     default: -10000 mB	or use FSOUND_REVERB_IGNOREPARAM */
+    int   RoomHF,				/* [-10000, 0]     default: 0 mB		or use FSOUND_REVERB_IGNOREPARAM */
+    float RoomRolloffFactor,	/* [0.0, 10.0]     default: 0.0			or use FSOUND_REVERB_IGNOREPARAM */
+    float DecayTime,			/* [0.1, 20.0]     default: 1.0 s		or use FSOUND_REVERB_IGNOREPARAM */
+    float DecayHFRatio,			/* [0.1, 2.0]      default: 0.5			or use FSOUND_REVERB_IGNOREPARAM */
+    int   Reflections,			/* [-10000, 1000]  default: -10000 mB	or use FSOUND_REVERB_IGNOREPARAM */
+    float ReflectionsDelay,		/* [0.0, 0.3]      default: 0.02 s		or use FSOUND_REVERB_IGNOREPARAM */
+    int   Reverb,				/* [-10000, 2000]  default: -10000 mB	or use FSOUND_REVERB_IGNOREPARAM */
+    float ReverbDelay,			/* [0.0, 0.1]      default: 0.04 s		or use FSOUND_REVERB_IGNOREPARAM */
+    float EnvironmentSize,		/* [0.0, 100.0]    default: 100.0 %		or use FSOUND_REVERB_IGNOREPARAM */
+    float EnvironmentDiffusion,	/* [0.0, 100.0]    default: 100.0 %		or use FSOUND_REVERB_IGNOREPARAM */
+    float AirAbsorptionHF);		/* [20.0, 20000.0] default: 5000.0 Hz	or use FSOUND_REVERB_IGNOREPARAM */
 
 DLL_API signed char		F_API FSOUND_Reverb_SetMix(int channel, float mix);
 
@@ -883,21 +877,21 @@ DLL_API signed char		F_API FSOUND_Reverb_SetMix(int channel, float mix);
     Reverb information functions.
 */
 
-DLL_API signed char		F_API FSOUND_Reverb_GetEnvironment(int *env, float *vol, float *decay, float *damp);			
+DLL_API signed char		F_API FSOUND_Reverb_GetEnvironment(int *env, float *vol, float *decay, float *damp);
 DLL_API signed char		F_API FSOUND_Reverb_GetEnvironmentAdvanced(
-								int   *env,
-								int   *Room,				
-								int   *RoomHF,				
-								float *RoomRolloffFactor,	
-								float *DecayTime,			
-								float *DecayHFRatio,		
-								int   *Reflections,			
-								float *ReflectionsDelay,	
-								int   *Reverb,				
-								float *ReverbDelay,			
-								float *EnvironmentSize,		
-								float *EnvironmentDiffusion,
-								float *AirAbsorptionHF);	
+    int   *env,
+    int   *Room,
+    int   *RoomHF,
+    float *RoomRolloffFactor,
+    float *DecayTime,
+    float *DecayHFRatio,
+    int   *Reflections,
+    float *ReflectionsDelay,
+    int   *Reverb,
+    float *ReverbDelay,
+    float *EnvironmentSize,
+    float *EnvironmentDiffusion,
+    float *AirAbsorptionHF);
 DLL_API signed char		F_API FSOUND_Reverb_GetMix(int channel, float *mix);
 
 
@@ -920,14 +914,14 @@ DLL_API int				F_API FSOUND_Record_GetDriver();
 
 DLL_API signed char		F_API FSOUND_Record_StartSample(FSOUND_SAMPLE *sptr, signed char loop);
 DLL_API signed char		F_API FSOUND_Record_Stop();
-DLL_API int				F_API FSOUND_Record_GetPosition();	
+DLL_API int				F_API FSOUND_Record_GetPosition();
 
 
 /* ========================================================================================== */
 /* FMUSIC API (MOD,S3M,XM,IT,MIDI PLAYBACK)                                                   */
 /* ========================================================================================== */
 
-/* 
+/*
     Song management / playback functions.
 */
 
@@ -947,7 +941,7 @@ DLL_API signed char		F_API FMUSIC_SetSample(FMUSIC_MODULE *mod, int sampno, FSOU
 DLL_API signed char		F_API FMUSIC_OptimizeChannels(FMUSIC_MODULE *mod, int maxchannels, int minvolume);
 
 /*
-    Runtime song functions. 
+    Runtime song functions.
 */
 
 DLL_API signed char		F_API FMUSIC_SetReverb(signed char reverb);				/* MIDI only */
@@ -955,8 +949,8 @@ DLL_API signed char		F_API FMUSIC_SetOrder(FMUSIC_MODULE *mod, int order);
 DLL_API signed char		F_API FMUSIC_SetPaused(FMUSIC_MODULE *mod, signed char pause);
 DLL_API signed char		F_API FMUSIC_SetMasterVolume(FMUSIC_MODULE *mod, int volume);
 DLL_API signed char		F_API FMUSIC_SetPanSeperation(FMUSIC_MODULE *mod, float pansep);
- 
-/* 
+
+/*
     Static song information functions.
 */
 
@@ -969,8 +963,8 @@ DLL_API int				F_API FMUSIC_GetNumSamples(FMUSIC_MODULE *mod);
 DLL_API int				F_API FMUSIC_GetNumChannels(FMUSIC_MODULE *mod);
 DLL_API FSOUND_SAMPLE * F_API FMUSIC_GetSample(FMUSIC_MODULE *mod, int sampno);
 DLL_API int				F_API FMUSIC_GetPatternLength(FMUSIC_MODULE *mod, int orderno);
- 
-/* 
+
+/*
     Runtime song information.
 */
 

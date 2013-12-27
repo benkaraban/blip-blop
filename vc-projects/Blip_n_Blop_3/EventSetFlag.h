@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-------------------
 *		  EventSetFlag.h
 *		-------------------
-*			
+*
 *		Classe Evenement Set Flag
 *
 *
@@ -19,15 +19,13 @@
 
 #include "event.h"
 
-class EventSetFlag : public Event
-{
+class EventSetFlag : public Event {
 public:
 
 	int		flag;
 	int		val;
 
-	virtual void doEvent()
-	{
+	virtual void doEvent() {
 		game_flag[flag] = val;
 	};
 };

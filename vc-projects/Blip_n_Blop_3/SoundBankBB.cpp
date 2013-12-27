@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-------------------
 *		  SoundBankBB.cpp
 *		-------------------
-*			
+*
 *		Classe SoundBankBB
 *
 *		Cette classe est presque identique à la classe SoundBank.
@@ -23,51 +23,45 @@
 #include "config.h"
 #include "bendebug.h"
 
-void SoundBankBB::play( int n, int flags)
-{
-	if ( !sound_on)
+void SoundBankBB::play(int n, int flags) {
+	if (!sound_on)
 		return;
 
-	if ( n >= nb_snd)
-	{
-		debug<<"Tentative de jouer son "<<n<<"\n";
+	if (n >= nb_snd) {
+		debug << "Tentative de jouer son " << n << "\n";
 		return;
 	}
 
-	tab[n]->play( flags);
+	tab[n]->play(flags);
 }
 
 
-void SoundBankBB::setVolume( int n, int vol)
-{
-	if ( !sound_on)
+void SoundBankBB::setVolume(int n, int vol) {
+	if (!sound_on)
 		return;
 
-	tab[n]->setVolume( vol);
+	tab[n]->setVolume(vol);
 }
 
 
-void SoundBankBB::stop( int n)
-{
-	if ( !sound_on)
+void SoundBankBB::stop(int n) {
+	if (!sound_on)
 		return;
 
 	tab[n]->stop();
 }
 
 
-bool SoundBankBB::loadSFX( const char * nom_fic)
-{
-	if ( !sound_on)
-	{
-		if ( nom_f != NULL)
+bool SoundBankBB::loadSFX(const char * nom_fic) {
+	if (!sound_on) {
+		if (nom_f != NULL)
 			delete [] nom_f;
 
-		nom_f = new char[strlen( nom_fic)+1];
-		strcpy( nom_f, nom_fic);
+		nom_f = new char[strlen(nom_fic) + 1];
+		strcpy(nom_f, nom_fic);
 
 		return true;
 	}
 
-	return SoundBank::loadSFX( nom_fic);
+	return SoundBank::loadSFX(nom_fic);
 }

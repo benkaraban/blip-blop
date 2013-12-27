@@ -36,8 +36,7 @@
 //		Définition de la classe Debug
 //-----------------------------------------------------------------------------
 
-class Debug
-{
+class Debug {
 private:
 	ofstream	f;					// Le fichier .log
 	int			nbmsg;				// Nombre de messages transmis
@@ -61,7 +60,7 @@ public:
 //-----------------------------------------------------------------------------
 
 #ifndef DEBUG_CPP_FILE
-	extern Debug debug;
+extern Debug debug;
 #endif
 
 #endif

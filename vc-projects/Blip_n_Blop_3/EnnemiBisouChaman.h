@@ -4,8 +4,7 @@
 
 #include "ennemi.h"
 
-class EnnemiBisouChaman : public Ennemi
-{
+class EnnemiBisouChaman : public Ennemi {
 public:
 	int		wait_shoot;
 	int		etape_shoot;
@@ -20,7 +19,7 @@ public:
 	virtual void onTire();
 	virtual void onMeure();
 	virtual void onCarbonise();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual void update();
 	virtual void affiche();
 	virtual void onTele();

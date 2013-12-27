@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   Game.h
 *		----------------
-*			
+*
 *		Classe Game
 *
 *		La classe représentant une partie
@@ -54,8 +54,7 @@
 //		Définition de la classe Game
 //-----------------------------------------------------------------------------
 
-class Game
-{
+class Game {
 protected:
 
 	PictureBank	pbk_briefing;
@@ -127,28 +126,28 @@ public:
 	//
 	Game();
 
-	
+
 	// Destructeur -> on est pas des Brujahs...
 	//
 	~Game();
 
-	
+
 	// jouePartie -> Faites chier la vache!
 	//
-	void jouePartie( int nbj, int idj);
+	void jouePartie(int nbj, int idj);
 
-	
+
 	// joueNiveau -> Balance les PEs! Retourne VRAI si les joueurs
 	// passent le niveau avec succès
 	//
-	bool joueNiveau( const char * nom_niveau, int type);
+	bool joueNiveau(const char * nom_niveau, int type);
 
-	
+
 	// chargeNiveau -> Charge le niveau (appelé par joueNiveau)
 	//
-	bool chargeNiveau( const char * nom_niveau);
+	bool chargeNiveau(const char * nom_niveau);
 
-	
+
 	// releaseNiveau -> Permet de désallouer le schnuff
 	//
 	void releaseNiveau();
@@ -161,7 +160,7 @@ public:
 
 	// drawAll -> affiche tout
 	//
-	void drawAll( bool flip = true);
+	void drawAll(bool flip = true);
 
 	// gameLoop -> let's burn!
 	//
@@ -170,9 +169,9 @@ public:
 	void releasePartie();
 
 	bool chargePartie();
-	bool loadList( const char * fic);
+	bool loadList(const char * fic);
 
-	void creeBulle( Sprite * s);
+	void creeBulle(Sprite * s);
 
 	int selectPlayer();
 
@@ -226,7 +225,7 @@ public:
 	void drawBonus();
 	void drawGiclures();
 	void drawHUB();
-	void drawHUBpv( int x, int y, int pv);
+	void drawHUBpv(int x, int y, int pv);
 	void drawTimer();
 	void drawTexteCool();
 	void drawGore();
@@ -238,16 +237,16 @@ public:
 	void drawBulles();
 
 	void cleanLists();
-	void showPE( bool bonus, bool fuckOff=false);
+	void showPE(bool bonus, bool fuckOff = false);
 	void drawLoading();
 	void getHiscore();
-	void getName( Joueur * joueur, int i);
+	void getName(Joueur * joueur, int i);
 	void showGameOver();
 	void showHighScores();
 
-	void showBriefing( char * fn);
+	void showBriefing(char * fn);
 
-	void showCredits( bool theEnd=false);
+	void showCredits(bool theEnd = false);
 	void showMainScreen();
 
 	void go();

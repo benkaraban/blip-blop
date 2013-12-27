@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiTeteRayman.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 22 Fevrier 2001
@@ -23,10 +23,9 @@
 //		Définition de la classe EnnemiTeteRayman
 //----------------------------------------------------------------------------
 
-class EnnemiTeteRayman : public Ennemi
-{
+class EnnemiTeteRayman : public Ennemi {
 private:
-	
+
 	int dx;
 
 public:
@@ -37,14 +36,13 @@ public:
 	virtual void onAvance();
 	virtual void onMeure();
 
-	virtual bool count()
-	{
+	virtual bool count() {
 		return false;
 	};
 
 	virtual int degats();
-	
-	virtual void estTouche( Tir * tir);
+
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------
 *		  EventMiFond.h
 *		---------------
-*			
+*
 *		Classe Evenement MiFond
 *
 *
@@ -19,8 +19,7 @@
 
 #include "event.h"
 
-class EventMiFond : public Event
-{
+class EventMiFond : public Event {
 public:
 
 	int		id;

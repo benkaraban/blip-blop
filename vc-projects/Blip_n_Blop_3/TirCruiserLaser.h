@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    TirCruiserLaser.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 17 Decembre 2000
@@ -18,8 +18,7 @@
 
 #include "sprite.h"
 
-class TirCruiserLaser : public Sprite
-{
+class TirCruiserLaser : public Sprite {
 public:
 
 	int dx;
