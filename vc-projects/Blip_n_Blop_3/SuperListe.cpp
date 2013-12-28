@@ -24,8 +24,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "superliste.h"
-#include "bendebug.h"
+#include "SuperListe.h"
+#include "BenDebug.h"
 
 CELLULE * SuperListe::trash		= NULL;
 int		  SuperListe::nb_lists	= 0;
@@ -145,7 +145,7 @@ void SuperListe::supprime() {
 
 		ptr = tete->next;
 
-		delete [] tete->data;
+		free(tete->data);
 
 		tete->next = trash;
 		trash = tete;
@@ -166,7 +166,7 @@ void SuperListe::supprime() {
 		if (ptr_n != NULL)
 			ptr_n->prev = ptr_p;
 
-		delete [] obs->data;
+		free(obs->data);
 
 		obs->next = trash;
 		trash = obs;
@@ -190,7 +190,7 @@ void SuperListe::vide() {
 	while (ptr != NULL) {
 		tete = ptr->next;
 
-		delete [] ptr->data;
+		free(ptr->data);
 		delete ptr;
 
 		ptr = tete;

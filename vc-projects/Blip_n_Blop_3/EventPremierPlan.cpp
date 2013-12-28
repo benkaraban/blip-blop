@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "eventpremierplan.h"
-#include "sprite.h"
+#include "EventPremierPlan.h"
+#include "Sprite.h"
 
 class PPlan : public Sprite {
 public:

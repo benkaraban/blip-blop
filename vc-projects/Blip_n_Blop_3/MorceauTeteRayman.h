@@ -16,7 +16,7 @@
 #ifndef _MorceauTeteRayman_
 #define _MorceauTeteRayman_
 
-#include "sprite.h"
+#include "Sprite.h"
 
 
 //-----------------------------------------------------------------------------

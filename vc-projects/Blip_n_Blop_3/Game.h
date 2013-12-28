@@ -24,13 +24,13 @@
 //-----------------------------------------------------------------------------
 
 #include <ddraw.h>
-#include "dd_gfx.h"
+#include "DD_gfx.h"
 #include "Picture.h"
-#include "rpgplayer.h"
-#include "blip.h"
+#include "RPGPlayer.h"
+#include "Blip.h"
 
-#include "meteoneige.h"
-#include "meteopluie.h"
+#include "MeteoNeige.h"
+#include "MeteoPluie.h"
 
 #define	NB_GOUTTES	500
 #define NB_FLOCONS	500

@@ -21,27 +21,27 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <ddraw.h>
-#include <mmsystem.h>
+// #include <mmsystem.h> TODO?
 #include <stdio.h>
 #include <string.h>
 
-#include "ltimer.h"
-#include "scroll.h"
-#include "picture.h"
-#include "bendebug.h"
-#include "input.h"
-#include "dd_gfx.h"
+#include "LTimer.h"
+#include "Scroll.h"
+#include "Picture.h"
+#include "BenDebug.h"
+#include "Input.h"
+#include "DD_gfx.h"
 #include "bendivers.h"
-#include "fonte.h"
-#include "globals.h"
+#include "Fonte.h"
+#include "Globals.h"
 #include "LGXpacker.h"
-#include "picturebank.h"
-#include "soundbankbb.h"
-#include "game.h"
-#include "benmaths.h"
-#include "txtdata.h"
-#include "config.h"
-#include "musicbank.h"
+#include "PictureBank.h"
+#include "SoundBankBB.h"
+#include "Game.h"
+#include "BenMaths.h"
+#include "TxtData.h"
+#include "Config.h"
+#include "MusicBank.h"
 #include "fmod.h"
 
 Game	game;
@@ -105,7 +105,6 @@ void ReleaseAll(void) {
  */
 void Bug(const char * txt) {
 	MessageBox(WinHandle, txt, "Blip'n Blop : Error reporting", MB_OK | MB_ICONERROR);
-
 } // Bug ----------------------------
 
 
@@ -204,9 +203,9 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
 	WinClass.cbClsExtra = 0;
 	WinClass.cbWndExtra = 0;
 	WinClass.hInstance = hInstance;
-	WinClass.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
-	WinClass.hCursor = NULL;//LoadCursor( NULL, IDC_ARROW );
-	WinClass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
+	WinClass.hIcon = 0; //TODO
+	WinClass.hCursor = 0; //TODO
+	WinClass.hbrBackground = 0; //TODO
 	WinClass.lpszMenuName = NAME;
 	WinClass.lpszClassName = NAME;
 	RegisterClass(&WinClass);

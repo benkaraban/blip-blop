@@ -16,9 +16,9 @@
 #ifndef _EventTexte_
 #define _EventTexte_
 
-#include "event.h"
-#include "textecool.h"
-#include "bendebug.h"
+#include "Event.h"
+#include "TexteCool.h"
+#include "BenDebug.h"
 
 class EventTexte : public Event {
 public:

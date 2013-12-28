@@ -2,7 +2,7 @@
 #ifndef _EnnemiCOMVolant_
 #define _EnnemiCOMVolant_
 
-#include "ennemi.h"
+#include "Ennemi.h"
 
 class EnnemiCOMVolant : public Ennemi {
 private:

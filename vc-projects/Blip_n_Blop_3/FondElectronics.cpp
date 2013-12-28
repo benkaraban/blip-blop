@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "globals.h"
-#include "fondElectronics.h"
+#include "Globals.h"
+#include "FondElectronics.h"
 
 void FondElectronic1::update() {
 	ss_etape += 1;

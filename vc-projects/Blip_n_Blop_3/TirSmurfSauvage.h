@@ -21,7 +21,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tir.h"
+#include "Tir.h"
 
 class TirSmurfSauvage : public Tir {
 public :

@@ -14,9 +14,9 @@
 *
 ******************************************************************/
 
-#include "eventlock.h"
-#include "globals.h"
-#include "bendebug.h"
+#include "EventLock.h"
+#include "Globals.h"
+#include "BenDebug.h"
 
 void EventLock::doEvent() {
 	scroll_locked = true;

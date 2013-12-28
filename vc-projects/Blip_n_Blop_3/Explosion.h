@@ -6,7 +6,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "sprite.h"
+#include "Sprite.h"
 
 
 class Explosion : public Sprite {

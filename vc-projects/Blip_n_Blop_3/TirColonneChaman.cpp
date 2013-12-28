@@ -1,5 +1,5 @@
 
-#include "tircolonnechaman.h"
+#include "TirColonneChaman.h"
 
 TirColonneChaman::TirColonneChaman() : etat(0) {
 	duree_vie = 250 + rand() % 100;

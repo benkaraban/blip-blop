@@ -2,7 +2,7 @@
 #ifndef _EnnemiBisouChaman_
 #define _EnnemiBisouChaman_
 
-#include "ennemi.h"
+#include "Ennemi.h"
 
 class EnnemiBisouChaman : public Ennemi {
 public:

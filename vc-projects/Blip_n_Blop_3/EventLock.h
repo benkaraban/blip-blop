@@ -17,7 +17,7 @@
 #ifndef _EventLock_
 #define _EventLock_
 
-#include "event.h"
+#include "Event.h"
 
 class EventLock : public Event {
 public:

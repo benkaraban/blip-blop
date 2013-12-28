@@ -1,4 +1,4 @@
-#include "ennemipoid.h"
+#include "EnnemiPoid.h"
 #include "GoreGiclure.h"
 
 

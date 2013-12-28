@@ -17,62 +17,63 @@
 ******************************************************************/
 
 #define GAME_CPP_FILE
+#include <string.h>
 
-//#include <windows.h>
+#include <windows.h>
 #include <fcntl.h>
 #include <io.h>
 #include <stdio.h>
 #include <malloc.h>
 
-#include "cineplayer.h"
-#include "lgxpacker.h"
-#include "globals.h"
-#include "scroll.h"
+#include "CINEPlayer.h"
+#include "LGXpacker.h"
+#include "Globals.h"
+#include "Scroll.h"
 #include "Game.h"
 #include "bendivers.h"
-#include "dd_gfx.h"
+#include "DD_gfx.h"
 #include "BenDebug.h"
-#include "input.h"
-#include "tirbb.h"
-#include "eventennemi.h"
-#include "eventgenennemi.h"
-#include "eventlock.h"
-#include "eventscrollspeed.h"
-#include "eventsetflag.h"
-#include "eventholdfire.h"
-#include "eventgenbonus.h"
-#include "eventtexte.h"
-#include "eventfondanime.h"
-#include "eventpremierplan.h"
-#include "eventrpg.h"
-#include "eventmusic.h"
-#include "eventmifond.h"
-#include "eventmeteo.h"
-#include "eventbonus.h"
-#include "eventvehicule.h"
-#include "eventson.h"
-#include "ficevents.h"
-#include "ennemi.h"
-#include "genennemi.h"
-#include "bonus.h"
-#include "genbonus.h"
-#include "textecool.h"
-#include "config.h"
-#include "menugame.h"
-#include "makebonus.h"
-#include "txtdata.h"
-#include "meteopluie.h"
-#include "meteoneige.h"
-#include "bulle.h"
-#include "blip.h"
-#include "blop.h"
-#include "restore.h"
-#include "keytranslator.h"
-#include "menumain.h"
+#include "Input.h"
+#include "TirBB.h"
+#include "EventEnnemi.h"
+#include "EventGenEnnemi.h"
+#include "EventLock.h"
+#include "EventScrollSpeed.h"
+#include "EventSetFlag.h"
+#include "EventHoldFire.h"
+#include "EventGenBonus.h"
+#include "EventTexte.h"
+#include "EventFondAnime.h"
+#include "EventPremierPlan.h"
+#include "EventRPG.h"
+#include "EventMusic.h"
+#include "EventMiFond.h"
+#include "EventMeteo.h"
+#include "EventBonus.h"
+#include "EventVehicule.h"
+#include "EventSon.h"
+#include "FicEvents.h"
+#include "Ennemi.h"
+#include "GenEnnemi.h"
+#include "Bonus.h"
+#include "GenBonus.h"
+#include "TexteCool.h"
+#include "Config.h"
+#include "MenuGame.h"
+#include "MakeBonus.h"
+#include "TxtData.h"
+#include "MeteoPluie.h"
+#include "MeteoNeige.h"
+#include "Bulle.h"
+#include "Blip.h"
+#include "Blop.h"
+#include "Restore.h"
+#include "KeyTranslator.h"
+#include "MenuMain.h"
 
-#include "ltimer.h"
+#include "LTimer.h"
 #include "trace.h"
-#include "precache.h"
+#include "Precache.h"
 
 Personnage	dummyPlayer;
 int glorf;
@@ -717,6 +718,7 @@ bool Game::chargeNiveau(const char * nom_niveau) {
 	//
 	y_plat = new int * [NB_MAX_PLAT];
 
+	int i;
 	for (i = 0; i < NB_MAX_PLAT; i++) {
 		y_plat[i] = new int[level_size];
 		_read(fic, y_plat[i], (level_size)*sizeof(int));
@@ -2102,6 +2104,7 @@ void Game::drawHUBpv(int x, int y, int pv) {
 	for (int i = 0; i < pv; i++)
 		pbk_bb[201 - i]->BlitTo(backSurface, x + x_pv[i], y + y_pv[i]);
 
+	int i;
 	for (i = pv; i < 5; i++)
 		pbk_bb[196 - i]->BlitTo(backSurface, x + x_pv[i], y + y_pv[i]);
 }
@@ -3390,7 +3393,7 @@ bool Game::loadList(const char * fic) {
 	ifstream	f;
 	int			n;
 
-	f.open(fic, ios::nocreate);
+	f.open(fic);
 
 	if (f.is_open() == 0) {
 		debug << "Cannot open " << fic << "\n";
@@ -3628,6 +3631,7 @@ void Game::showHighScores() {
 
 		pbk_inter[1]->PasteTo(backSurface, 0, 0);
 
+		int i;
 		for (i = 0; i < HS_NB_SCORES; i++) {
 			if (x[i] > 0)
 				x[i] -= 20;
@@ -3648,7 +3652,7 @@ void Game::showHighScores() {
 
 		pbk_inter[1]->PasteTo(backSurface, 0, 0);
 
-		for (i = 0; i < HS_NB_SCORES; i++) {
+		for (int i = 0; i < HS_NB_SCORES; i++) {
 			if (i == 0 || x[i - 1] >= 160)
 				x[i] += 20;
 

@@ -18,8 +18,8 @@
 #ifndef _BEN_DIVERS_
 #define _BEN_DIVERS_
 
-extern BOOL active;
-extern BOOL app_killed;
+extern bool active;
+extern bool app_killed;
 extern bool want_to_kill_app;
 
 //

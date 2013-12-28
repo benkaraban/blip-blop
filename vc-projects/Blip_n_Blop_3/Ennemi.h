@@ -21,7 +21,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "personnage.h"
+#include "Personnage.h"
 #include "Tir.h"
 
 

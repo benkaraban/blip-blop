@@ -13,7 +13,7 @@
 *
 ******************************************************************/
 
-#include "sprite.h"
+#include "Sprite.h"
 
 #ifndef _FondEtoile_
 #define _FondEtoile_

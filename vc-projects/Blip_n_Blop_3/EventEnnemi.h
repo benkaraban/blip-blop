@@ -21,7 +21,7 @@
 
 
 #include "Event.h"
-#include "globals.h"
+#include "Globals.h"
 
 
 class EventEnnemi : public Event {

@@ -28,8 +28,8 @@
 
 #include <ddraw.h>
 #include "Picture.h"
-#include "dd_gfx.h"
-#include "bendebug.h"
+#include "DD_gfx.h"
+#include "BenDebug.h"
 
 
 //-----------------------------------------------------------------------------
@@ -269,7 +269,7 @@ int loadPBK(char * fic, Picture * & p, int rgb) {
 	if (nbpic < 1) {
 		debug << "LoadPBK(Picture.cpp)->Fichier " << fic << " corrompu!\n";
 		nbpic = 0;
-		return NULL;
+		return 0;
 	}
 
 	p = new Picture[nbpic];

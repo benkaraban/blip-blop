@@ -35,7 +35,7 @@ HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
 
 BOOL GetRGBFormat(LPDIRECTDRAWSURFACE7 surf, RGBFORMAT* rgb);
 
-BOOL __cdecl IsMMX(void);
+BOOL IsMMX(void);
 
 
 #endif

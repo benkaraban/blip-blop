@@ -2,7 +2,7 @@
 #ifndef _GorePiedsBisouEtoile_
 #define _GorePiedsBisouEtoile_
 
-#include "sprite.h"
+#include "Sprite.h"
 
 class GorePiedsBisouEtoile : public Sprite {
 public:

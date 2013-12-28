@@ -20,7 +20,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tir.h"
+#include "Tir.h"
 
 
 #define DELAY_ACCELERATION 20
@@ -32,7 +32,7 @@
 class TirHadoken : public Tir {
 public:
 
-	TirSnorkybase();
+	TirHadoken();
 
 	virtual int degats() const {
 		return 1;

@@ -2,7 +2,7 @@
 #ifndef _EnnemiBisouEtoile_
 #define _EnnemiBisouEtoile_
 
-#include "ennemi.h"
+#include "Ennemi.h"
 
 class EnnemiBisouEtoile : public Ennemi {
 public:

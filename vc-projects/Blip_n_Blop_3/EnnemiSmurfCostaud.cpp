@@ -1,6 +1,6 @@
 
 #include "EnnemiSmurfCostaud.h"
-#include "tirhadoken.h"
+#include "TirHadoken.h"
 
 #define ETAT_TIRE_HADOKEN	1000
 #define ETAT_TIRE_DPUNCH	1001

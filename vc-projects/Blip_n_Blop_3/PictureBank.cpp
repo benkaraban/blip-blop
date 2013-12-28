@@ -22,12 +22,13 @@
 //-----------------------------------------------------------------------------
 
 #include <stdio.h>
+#include <string.h>
 #include <io.h>
 #include <fcntl.h>
-#include "dd_gfx.h"
-#include "picturebank.h"
-#include "lgxpacker.h"
-#include "bendebug.h"
+#include "DD_gfx.h"
+#include "PictureBank.h"
+#include "LGXpacker.h"
+#include "BenDebug.h"
 
 
 //-----------------------------------------------------------------------------

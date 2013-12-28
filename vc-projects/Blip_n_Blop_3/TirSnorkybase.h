@@ -20,7 +20,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tir.h"
+#include "Tir.h"
 
 
 #define DELAY_ACCELERATION 20

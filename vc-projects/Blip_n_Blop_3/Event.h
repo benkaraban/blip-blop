@@ -19,7 +19,7 @@
 #ifndef _Event_
 #define _Event_
 
-#include "globals.h"
+#include "Globals.h"
 
 class Event {
 public:

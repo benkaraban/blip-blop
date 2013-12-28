@@ -1,7 +1,7 @@
 
-#include "ennemiBisouChaman.h"
-#include "tirboulechaman.h"
-#include "tircolonnechaman.h"
+#include "EnnemiBisouChaman.h"
+#include "TirBouleChaman.h"
+#include "TirColonneChaman.h"
 #include <math.h>
 
 static const int xtel [] = { 8144,		// Haut droite

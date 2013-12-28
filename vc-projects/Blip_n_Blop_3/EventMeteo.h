@@ -17,8 +17,8 @@
 #ifndef _EventMeteo_
 #define _EventMeteo_
 
-#include "event.h"
-#include "bendebug.h"
+#include "Event.h"
+#include "BenDebug.h"
 
 class EventMeteo : public Event {
 public:

@@ -2,11 +2,11 @@
 #ifndef _CINEPlayer_
 #define _CINEPlayer_
 
-#include <fstream.h>
-#include "musicbank.h"
-#include "Picturebank.h"
-#include "fonte.h"
-#include "alphablend.h"
+#include <fstream>
+#include "MusicBank.h"
+#include "PictureBank.h"
+#include "Fonte.h"
+#include "AlphaBlend.h"
 
 #define OBJ_SPRITE	0
 #define OBJ_SCROLL	1

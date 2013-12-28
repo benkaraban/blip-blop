@@ -17,7 +17,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirMarioFireball.h"
+#include "TirMarioFireball.h"
 
 
 TirMarioFireball::TirMarioFireball(int vx): speed_etape(0) {

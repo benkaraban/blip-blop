@@ -17,7 +17,7 @@
 #ifndef _EnnemiComHeros_
 #define _EnnemiComHeros_
 
-#include "ennemi.h"
+#include "Ennemi.h"
 
 class EnnemiComHeros : public Ennemi {
 private:

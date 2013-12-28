@@ -13,9 +13,9 @@
 *
 ******************************************************************/
 
-#include "globals.h"
-#include "fondBombe.h"
-#include "ennemi.h"
+#include "Globals.h"
+#include "FondBombe.h"
+#include "Ennemi.h"
 #include "BonusFusil.h"
 #include "BonusPM.h"
 #include "BonusVache.h"

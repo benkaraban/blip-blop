@@ -1,7 +1,7 @@
 
-#include "globals.h"
-#include "eventmifond.h"
-#include "fondstatique.h"
+#include "Globals.h"
+#include "EventMiFond.h"
+#include "FondStatique.h"
 
 void EventMiFond::doEvent() {
 	Sprite * s = new FondStatique();

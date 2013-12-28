@@ -1,8 +1,9 @@
+#include <windows.h>
 
-#include "globals.h"
-#include "config.h"
-#include "scroll.h"
-#include "bendebug.h"
+#include "Globals.h"
+#include "Config.h"
+#include "Scroll.h"
+#include "BenDebug.h"
 
 bool RestoreAll() {
 	if (winSet) {

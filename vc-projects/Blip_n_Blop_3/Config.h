@@ -18,7 +18,7 @@
 #ifndef _Config_
 #define _Config_
 
-#include "hiscores.h"
+#include "HiScores.h"
 
 extern bool		vSyncOn;
 

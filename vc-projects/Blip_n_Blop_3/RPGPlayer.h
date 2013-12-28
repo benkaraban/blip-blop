@@ -17,7 +17,7 @@
 #ifndef _RPGPlayer_
 #define _RPGPlayer_
 
-#include <fstream.h>
+#include <fstream>
 #include <ddraw.h>
 #include "PictureBank.h"
 

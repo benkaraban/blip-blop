@@ -18,7 +18,7 @@
 
 
 #include "Event.h"
-#include "globals.h"
+#include "Globals.h"
 
 
 class EventFondAnime : public Event {

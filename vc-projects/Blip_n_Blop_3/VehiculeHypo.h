@@ -2,7 +2,7 @@
 #ifndef _VehiculeHypo_
 #define _VehiculeHypo_
 
-#include "vehicule.h"
+#include "Vehicule.h"
 
 class VehiculeHypo : public Vehicule {
 public:

@@ -1,8 +1,8 @@
 
 #ifndef TRACE
 
-#include "globals.h"
-#include "bendebug.h"
+#include "Globals.h"
+#include "BenDebug.h"
 
 #ifdef _DEBUG
 

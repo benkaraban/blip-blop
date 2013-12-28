@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "sprite.h"
-#include "fondcube.h"
+#include "Sprite.h"
+#include "FondCube.h"
 
 int FondCube::etape_synchro = 0;
 bool FondCube::synchro = false;

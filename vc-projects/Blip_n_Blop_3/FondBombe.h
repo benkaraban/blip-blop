@@ -13,7 +13,7 @@
 *
 ******************************************************************/
 
-#include "sprite.h"
+#include "Sprite.h"
 
 #ifndef _FondBombe_
 #define _FondBombe_

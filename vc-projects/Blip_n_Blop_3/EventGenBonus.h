@@ -18,7 +18,7 @@
 
 
 #include "Event.h"
-#include "genbonus.h"
+#include "GenBonus.h"
 
 
 class EventGenBonus : public Event {

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------
 *		    Couille.h
 *		-----------------
-*			
+*
 *		Pour Blip et Blop
 *
 *
@@ -21,16 +21,16 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "controlor.h"
-#include "personnage.h"
-#include "joueur.h"
-#include "tir.h"
+#include "Controlor.h"
+#include "Personnage.h"
+#include "Joueur.h"
+#include "Tir.h"
 
-#include "tirbbm16.h"
-#include "tirbbpm.h"
-#include "tirbbfusil.h"
-#include "tirbblaser.h"
-#include "tirbblf.h"
+#include "TirBBM16.h"
+#include "TirBBPM.h"
+#include "TirBBFusil.h"
+#include "TirBBLaser.h"
+#include "TirBBLF.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes

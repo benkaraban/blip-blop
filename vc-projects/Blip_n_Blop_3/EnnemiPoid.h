@@ -16,7 +16,7 @@
 #ifndef _EnnemiPoid_
 #define _EnnemiPoid_
 
-#include "ennemi.h"
+#include "Ennemi.h"
 
 #define LATENCE_BOUGE		1
 

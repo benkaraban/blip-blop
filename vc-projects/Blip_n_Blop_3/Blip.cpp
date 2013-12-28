@@ -14,8 +14,8 @@
 *
 ******************************************************************/
 
-#include "input.h"
-#include "blip.h"
+#include "Input.h"
+#include "Blip.h"
 
 
 

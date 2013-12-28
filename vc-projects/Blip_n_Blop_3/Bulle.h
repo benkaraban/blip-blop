@@ -2,7 +2,7 @@
 #ifndef _Bulle_
 #define _Bulle_
 
-#include "sprite.h"
+#include "Sprite.h"
 
 class Bulle : public Sprite {
 public:

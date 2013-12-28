@@ -6,8 +6,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "joueur.h"
-#include "tirBB.h"
+#include "Joueur.h"
+#include "TirBB.h"
 
 
 class TirBBLF : public TirBB {

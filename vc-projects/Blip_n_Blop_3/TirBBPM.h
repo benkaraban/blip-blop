@@ -21,8 +21,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "joueur.h"
-#include "tirBB.h"
+#include "Joueur.h"
+#include "TirBB.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe TirBBPM

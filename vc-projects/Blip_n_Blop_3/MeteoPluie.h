@@ -2,7 +2,7 @@
 #ifndef _MeteoPluie_
 #define _MeteoPluie_
 
-#include "sprite.h"
+#include "Sprite.h"
 
 class MeteoPluie : public Sprite {
 public:
