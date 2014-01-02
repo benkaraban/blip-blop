@@ -184,6 +184,11 @@ typedef struct _DDBLTFX {
 #define DDSCL_EXCLUSIVE 0x1
 #define DDSCL_FULLSCREEN 0x2
 
+#define DDLOCK_SURFACEMEMORYPTR 0x1
+#define DDLOCK_WAIT 0x2
+#define DDERR_WASSTILLDRAWING 0x1
+#define DDCKEY_SRCBLT 0x1
+
 struct IDirectDraw7 {
 	void RestoreAllSurfaces();
 	HRESULT GetAvailableVidMem(LPDDSCAPS2 lpDDSCaps2,LPDWORD lpdwTotal,LPDWORD lpdwFree);
@@ -201,10 +206,15 @@ struct IDirectDrawSurface7 {
 	void Flip(void* unused, int flags);
 	HRESULT Blt(LPRECT lpDestRect,LPDIRECTDRAWSURFACE7 lpDDSrcSurface,LPRECT lpSrcRect,DWORD dwFlags,LPDDBLTFX lpDDBltFx);
 	HRESULT GetAttachedSurface(LPDDSCAPS2 lpDDSCaps,LPDIRECTDRAWSURFACE7 FAR *lplpDDAttachedSurface);
-
+	HRESULT GetDC(HDC FAR *lphDC);
+	HRESULT ReleaseDC(HDC hDC);
+	HRESULT Lock(LPRECT lpDestRect, LPDDSURFACEDESC2 lpDDSurfaceDesc, DWORD dwFlags, HANDLE hEvent);
+	HRESULT Unlock(LPRECT lpRect);
+	HRESULT SetColorKey(DWORD dwFlags, LPDDCOLORKEY lpDDColorKey);
 };
 
 #define IID_IDirectDraw7 0
 HRESULT WINAPI DirectDrawCreateEx(void* unused1,LPVOID *lplpDD,int unused2,void* unused3);
+
 
 #endif

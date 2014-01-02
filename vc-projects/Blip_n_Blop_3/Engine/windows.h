@@ -33,6 +33,7 @@ typedef HANDLE HWND;
 typedef unsigned int UINT_PTR;
 typedef UINT_PTR WPARAM;
 typedef long LONG_PTR;
+typedef unsigned long ULONG_PTR;
 typedef LONG_PTR LPARAM;
 typedef LONG_PTR LRESULT;
 typedef HANDLE HINSTANCE;
@@ -40,6 +41,10 @@ typedef HANDLE HBITMAP;
 typedef CHAR *LPSTR;
 typedef HANDLE HMENU;
 typedef DWORD COLORREF;
+typedef HINSTANCE HMODULE;
+typedef HANDLE HGDIOBJ;
+typedef HANDLE HRSRC;
+typedef HANDLE HGLOBAL;
 
 #ifdef UNICODE
 typedef WCHAR TCHAR;
@@ -197,6 +202,84 @@ DWORD WINAPI GetTickCount(void);
 
 COLORREF RGB(BYTE byRed,BYTE byGreen,BYTE byBlue);
 
+HMODULE WINAPI GetModuleHandle(LPCTSTR lpModuleName);
 
+#define IMAGE_BITMAP 0x1
+#define LR_CREATEDIBSECTION 0x1
+#define LR_LOADFROMFILE 0x2
+HANDLE WINAPI LoadImage(HINSTANCE hinst,LPCTSTR lpszName,UINT uType,int cxDesired,int cyDesired,UINT fuLoad);
+
+#define E_FAIL 0x1
+int GetObject(HGDIOBJ hgdiobj,int cbBuffer,LPVOID lpvObject);
+BOOL DeleteObject(HGDIOBJ hObject);
+HDC CreateCompatibleDC(HDC hdc);
+HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
+
+#define SRCCOPY 0x1
+BOOL StretchBlt(HDC hdcDest,int nXOriginDest,int nYOriginDest,int nWidthDest,int nHeightDest,HDC hdcSrc,int nXOriginSrc,int nYOriginSrc,int nWidthSrc,int nHeightSrc,DWORD dwRop);
+
+#define CLR_INVALID 0x1
+COLORREF GetPixel(HDC hdc,int nXPos,int nYPos);
+COLORREF SetPixel(HDC hdc,int X,int Y,COLORREF crColor);
+BOOL SetPixelV(HDC hdc,int X,int Y,COLORREF crColor);
+
+typedef struct tagBITMAPINFOHEADER {
+  DWORD biSize;
+  LONG  biWidth;
+  LONG  biHeight;
+  WORD  biPlanes;
+  WORD  biBitCount;
+  DWORD biCompression;
+  DWORD biSizeImage;
+  LONG  biXPelsPerMeter;
+  LONG  biYPelsPerMeter;
+  DWORD biClrUsed;
+  DWORD biClrImportant;
+} BITMAPINFOHEADER, *PBITMAPINFOHEADER;
+typedef PBITMAPINFOHEADER LPBITMAPINFOHEADER;
+typedef struct tagBITMAPFILEHEADER {
+	WORD bfType;
+	DWORD bfSize;
+	WORD bfReserved1;
+	WORD bfReserved2;
+	DWORD bfOffBits;
+} BITMAPFILEHEADER;
+
+typedef struct tagPALETTEENTRY {
+	BYTE peRed;
+	BYTE peGreen;
+	BYTE peBlue;
+	BYTE peFlags;
+} PALETTEENTRY;
+
+#define RT_BITMAP "BITMAP?"
+
+BOOL DeleteDC(HDC hdc);
+LPVOID WINAPI LockResource(HGLOBAL hResData);
+HGLOBAL WINAPI LoadResource(HMODULE hModule,HRSRC hResInfo);
+HRSRC WINAPI FindResource(HMODULE hModule,LPCTSTR lpName,LPCTSTR lpType);
+
+#define GENERIC_READ 0x1
+#define FILE_SHARE_READ 0x2
+#define OPEN_EXISTING 0x4
+#define FILE_ATTRIBUTE_NORMAL 0x8
+#define INVALID_HANDLE_VALUE 0x16
+
+typedef struct _OVERLAPPED {
+	ULONG_PTR Internal;
+	ULONG_PTR InternalHigh;
+	union {
+		struct {
+			DWORD Offset;
+			DWORD OffsetHigh;
+		};
+		PVOID  Pointer;
+	};
+	HANDLE    hEvent;
+} OVERLAPPED, *LPOVERLAPPED;
+
+HANDLE WINAPI CreateFile(LPCTSTR lpFileName,DWORD dwDesiredAccess,DWORD dwShareMode,void* unused,DWORD dwCreationDisposition,DWORD dwFlagsAndAttributes,HANDLE hTemplateFile);
+BOOL WINAPI ReadFile(HANDLE hFile,LPVOID lpBuffer,DWORD nNumberOfBytesToRead,LPDWORD lpNumberOfBytesRead,LPOVERLAPPED lpOverlapped);
+BOOL WINAPI CloseHandle(HANDLE hObject);
 
 #endif
