@@ -21,8 +21,8 @@
 
 #include <windows.h>
 
-BOOL active = false;
-BOOL app_killed = false;
+bool active = false;
+bool app_killed = false;
 bool want_to_kill_app = false;
 
 //-----------------------------------------------------------------------------

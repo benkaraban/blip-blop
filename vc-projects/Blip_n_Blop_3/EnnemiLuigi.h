@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------------
 *		    EnnemiLuigi.h
 *		-----------------------
-*
+*			
 *
 *
 *		Mephisto / LOADED -   V 0.7 - 27 Decembre 2000
@@ -17,7 +17,7 @@
 #ifndef _EnnemiLuigi_
 #define _EnnemiLuigi_
 
-#include "ennemi.h"
+#include "enemy.h"
 
 #define LUIGI_SPEED 6
 //#define LUIGI_CHARGE_SPEED 7
@@ -34,12 +34,13 @@
 //		Définition de la classe EnnemiLuigi
 //----------------------------------------------------------------------------
 
-class EnnemiLuigi : public Ennemi {
+class EnnemiLuigi : public Ennemi
+{
 private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
 
-	int attack_delay;
+	int attack_delay;    
 	int wait_for_attack;
 	int attack_etape;
 	int attack_type;
@@ -60,7 +61,7 @@ public:
 	virtual void onAttack();
 	virtual void onCarbonise();
 	virtual void tombe_luigi();
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };
 
 #endif

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------
 *		   RPGPlayer.h
 *		-----------------
-*
+*			
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
@@ -21,10 +21,13 @@
 #include <ddraw.h>
 #include "PictureBank.h"
 
+using namespace std;
+
 #define	ID_JOUEUR	0
 #define ID_ENNEMI	1
 
-class RPGPlayer {
+class RPGPlayer
+{
 public:
 	ifstream	fic;
 	char *		fic_name;
@@ -49,13 +52,13 @@ public:
 	RPGPlayer();
 	~RPGPlayer();
 
-	void attachFile(const char * f);
-	bool startPlay(int n);
-	bool drawScene(IDirectDrawSurface7 * surf);
+	void attachFile( const char * f);
+	bool startPlay( int n);
+	bool drawScene( IDirectDrawSurface7 * surf);
 	bool updateScene();
 	void stopPlay();
 	bool read();
-	void error(const char * err_msg);
+	void error( const char * err_msg);
 };
 
 #endif

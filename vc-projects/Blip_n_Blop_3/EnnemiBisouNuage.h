@@ -2,9 +2,10 @@
 #ifndef _EnnemiBisouNuage_
 #define _EnnemiBisouNuage_
 
-#include "ennemi.h"
+#include "enemy.h"
 
-class EnnemiBisouNuage : public Ennemi {
+class EnnemiBisouNuage : public Ennemi
+{
 public:
 	int		wait_shoot;
 	int		etape_shoot;

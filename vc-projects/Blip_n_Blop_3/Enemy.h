@@ -1,56 +1,67 @@
 /******************************************************************
 *
 * 
-*		-----------------------
-*		    EnnemiSnorkyBase2.h
-*		-----------------------
+*		----------------
+*		    Ennemi.h
+*		----------------
 *			
+*		Classe mère de tous les ennemis
 *
 *
-*		Mephisto / LOADED -   V 0.1 - 14 Decembre 2000
+*		Prosper / LOADED -   V 0.1 - 3 Aout 2000
 *
 *
 *
 ******************************************************************/
 
-#ifndef _EnnemiSnorkyBase2_
-#define _EnnemiSnorkyBase2_
+#ifndef _Ennemi_
+#define _Ennemi_
 
 //-----------------------------------------------------------------------------
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "enemy.h"
+#include "personnage.h"
+#include "Tir.h"
+
 
 //-----------------------------------------------------------------------------
-//		Constantes
+//		La tête de turc
 //-----------------------------------------------------------------------------
 
-#define SNORKY_BASE_SPEED		2
+#ifndef ENNEMI_CPP
+	extern Personnage *	tete_turc;
+#endif
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSnorkyBase1
+//		Définition de la classe Ennemi
 //-----------------------------------------------------------------------------
 
-class EnnemiSnorkyBase2 : public Ennemi
+class Ennemi : public Personnage
 {
 public:
+	Ennemi();
 
-	int wait_for_shoot;
-	int shoot_delay;
-	int y_cible;
-	int x_cible;
-
-	EnnemiSnorkyBase2();
+	int		xmin;
+	int		blood;
+	int		tresor;
 	
-	virtual void update();
-	virtual void onAvance();
-	virtual void onTombe();
-	virtual void onMeure();
-	virtual void onTire();
-	virtual void onCarbonise();
+	virtual bool count()
+	{
+		return true;
+	};
 
 	virtual void estTouche( Tir * tir);
+	
+	virtual int degats()
+	{
+		return 1;
+	};
+
+	virtual void gicle( const Tir * tir, const int * dxg, const int * dyg);
+	
+	void tirEnCloche( int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const;
 };
+
 
 #endif

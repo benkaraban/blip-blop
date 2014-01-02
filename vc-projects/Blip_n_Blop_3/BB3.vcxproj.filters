@@ -1,0 +1,925 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Libs">
+      <UniqueIdentifier>{bf33854f-4469-401b-a5c3-1fbc74665a6d}</UniqueIdentifier>
+      <Extensions>.lib</Extensions>
+    </Filter>
+    <Filter Include="Headers">
+      <UniqueIdentifier>{91720b12-abb1-457b-a76c-47b84a658ee9}</UniqueIdentifier>
+      <Extensions>.h</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="fmodvc.lib">
+      <Filter>Libs</Filter>
+    </Library>
+    <Library Include="ddraw.lib">
+      <Filter>Libs</Filter>
+    </Library>
+    <Library Include="dinput.lib">
+      <Filter>Libs</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlphaBlend.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BenDebug.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="bendivers.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BenMaths.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Blip.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Blop.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Bonus.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusBeer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusFusil.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusInvincible.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusLaser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusLF.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusPM.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusTonneau.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="BonusVache.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Bulle.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="CINEPlayer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlAlias.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Controlor.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlP1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlP2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Couille.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="DD_gfx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouAuto.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouBoom.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouChaman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouCiel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouCoeur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouEtoile.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouJedi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouNuage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouSIB.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBisouZombi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBulbizarre.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiBulbizarreHeros.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiCOM.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiComHeros.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiComVolant.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiDiabolo.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiFlameche.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiFlamecheHeros.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiGrandSmurf.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiKnukles.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiLara.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiLemmings.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiLemmingsVolant.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiLuigi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiMario.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiMarioHologramme.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiMariotapette.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPacman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPic.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPikachu.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPikashuHeros.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPoid.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPrincesse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiPrincesseguard.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiRayman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurf.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfALunettes.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfCigogne.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfCoquet.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfCostaud.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfette.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfFarceur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfFrileux.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfGourmand.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfParesseux.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfPaysan.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfPeon.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSmurfSauvage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkBase1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkInBlack.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkInBlackBoss.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkyBase1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkyBase2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkyGouverneur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkyHyporider.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSnorkyMage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiSonic.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiTails.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiTailsvolant.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiTete_Rayman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiToad.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiVoiturePacman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiYoshi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EnnemiYoshiDCA.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventBonus.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventEnnemi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventFondAnime.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventGenBonus.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventGenEnnemi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHoldFire.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventLock.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMeteo.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMiFond.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventMusic.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventPremierPlan.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventRPG.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventScrollSpeed.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSetFlag.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventSon.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventTexte.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EventVehicule.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Explosion.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FicEvents.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="fmod.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondAssembleur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondBattleCruiser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondBombe.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondBossventilo.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondCube.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondDos.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondDrapeau.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondEau.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondEcrancamera.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondEcraneige.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondElectronics.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondEtoile.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondLampe2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondLCD.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondLumiere.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondMonolite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPiece.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPoissons.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeAlarme1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeAscenceur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeAscenseur2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeCaisse.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeCaissePlateforme2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeCaisseTombante.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeCiel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeFleche.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeInterupteur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeLevel2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondPokeLevel3.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondRing.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondRocher1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondRocher2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondRocherHyperspace.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondSnorkSas.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondStatique.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondTest.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondTirCruiser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondTournesol1.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondTournesol2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondTournesol3.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondTournesol4.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondVentilo.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondWindows.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="FondWorldmap.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Fonte.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GenBonus.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GenEnnemi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GenEnnemiTMP.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Giclure.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Globals.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GoreBisouAuto.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GoreBisouBoom.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GoreGiclure.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GorePiedBisouZombi.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GorePiedsBisouCiel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GorePiedsBisouEtoile.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="GoreTeteBisouCoeur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="HiScores.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ImpactLaser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Joueur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyTranslator.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LGXpacker.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="LTimer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MakeBonus.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuGame.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuMain.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteoNeige.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MeteoPluie.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MorceauRayman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MorceauSonicRing.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MorceauTeteRayman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MorceauxTeteSnorky.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicBank.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Personnage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Picture.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PictureBank.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="PPlanTest.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Precache.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Restore.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="RPGPlayer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Scroll.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBank.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundBankBB.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="SuperListe.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TexteCool.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Tir.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirArcCiel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBB.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBBFusil.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBBLaser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBBLF.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBBM16.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBBPM.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBBVache.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBisouMortel.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirBouleChaman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirCadeau.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirCarapace.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirCoeurBisou.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirColonneChaman.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirCruiserLaser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirDeboucheChiote.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirEpeeLaser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirEpine.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirEtoile.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirGateau.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirHadoken.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirMarioFireball.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirMarioFireballVertical.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirNuage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirRaymanPoing.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirSmurfSauvage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirSnorkybase.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirSnorkyBase2.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirSnorkyGouverneur.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirSnorkyMage.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirSoniceclair.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TirTornade.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="trace.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TxtData.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Vehicule.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VehiculeHypo.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VehiculeTestTourelle.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="VehivuleCigogne.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Fond_PokeCaissePlateforme.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AlphaBlend.cpp" />
+    <ClCompile Include="BenDebug.cpp" />
+    <ClCompile Include="BenDivers.cpp" />
+    <ClCompile Include="BenMaths.cpp" />
+    <ClCompile Include="Blip%27n Blop 3.cpp" />
+    <ClCompile Include="Blip.cpp" />
+    <ClCompile Include="Bulle.cpp" />
+    <ClCompile Include="CINEPlayer.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Couille.cpp" />
+    <ClCompile Include="DD_gfx.cpp" />
+    <ClCompile Include="EnnemiBisouAuto.cpp" />
+    <ClCompile Include="EnnemiBisouBoom.cpp" />
+    <ClCompile Include="EnnemiBisouChaman.cpp" />
+    <ClCompile Include="EnnemiBisouCiel.cpp" />
+    <ClCompile Include="EnnemiBisouCoeur.cpp" />
+    <ClCompile Include="EnnemiBisouEtoile.cpp" />
+    <ClCompile Include="EnnemiBisouJedi.cpp" />
+    <ClCompile Include="EnnemiBisouNuage.cpp" />
+    <ClCompile Include="EnnemiBisouSIB.cpp" />
+    <ClCompile Include="EnnemiBisouZombi.cpp" />
+    <ClCompile Include="EnnemiBulbizarre.cpp" />
+    <ClCompile Include="EnnemiBulbizarreHeros.cpp" />
+    <ClCompile Include="EnnemiCOM.cpp" />
+    <ClCompile Include="EnnemiComHeros.cpp" />
+    <ClCompile Include="EnnemiCOMVolant.cpp" />
+    <ClCompile Include="EnnemiDiabolo.cpp" />
+    <ClCompile Include="EnnemiFlameche.cpp" />
+    <ClCompile Include="EnnemiFlamecheHeros.cpp" />
+    <ClCompile Include="EnnemiGrandSmurf.cpp" />
+    <ClCompile Include="EnnemiKnukles.cpp" />
+    <ClCompile Include="EnnemiLara.cpp" />
+    <ClCompile Include="EnnemiLemmings.cpp" />
+    <ClCompile Include="EnnemiLuigi.cpp" />
+    <ClCompile Include="EnnemiMario.cpp" />
+    <ClCompile Include="EnnemiMarioHologramme.cpp" />
+    <ClCompile Include="EnnemiMariotapette.cpp" />
+    <ClCompile Include="EnnemiPacman.cpp" />
+    <ClCompile Include="EnnemiPic.cpp" />
+    <ClCompile Include="EnnemiPikachu.cpp" />
+    <ClCompile Include="EnnemiPikashuHeros.cpp" />
+    <ClCompile Include="EnnemiPoid.cpp" />
+    <ClCompile Include="EnnemiPrincesse.cpp" />
+    <ClCompile Include="EnnemiPrincesseguard.cpp" />
+    <ClCompile Include="EnnemiRayman.cpp" />
+    <ClCompile Include="EnnemiSmurf.cpp" />
+    <ClCompile Include="EnnemiSmurfCigogne.cpp" />
+    <ClCompile Include="EnnemiSmurfCostaud.cpp" />
+    <ClCompile Include="EnnemiSmurfette.cpp" />
+    <ClCompile Include="EnnemiSmurfFarceur.cpp" />
+    <ClCompile Include="EnnemiSmurfGourmand.cpp" />
+    <ClCompile Include="EnnemiSmurfPaysan.cpp" />
+    <ClCompile Include="EnnemiSmurfSauvage.cpp" />
+    <ClCompile Include="EnnemiSnorkInBlack.cpp" />
+    <ClCompile Include="EnnemiSnorkInBlackBoss.cpp" />
+    <ClCompile Include="EnnemiSnorkyBase2.cpp" />
+    <ClCompile Include="ennemiSnorkyGouverneur.cpp" />
+    <ClCompile Include="EnnemiSnorkyHyporider.cpp" />
+    <ClCompile Include="EnnemiSnorkyMage.cpp" />
+    <ClCompile Include="EnnemiSonic.cpp" />
+    <ClCompile Include="EnnemiSorkyBase1.cpp" />
+    <ClCompile Include="EnnemiTails.cpp" />
+    <ClCompile Include="EnnemiTailsvolant.cpp" />
+    <ClCompile Include="EnnemiTeteRayman.cpp" />
+    <ClCompile Include="EnnemiToad.cpp" />
+    <ClCompile Include="EnnemiVoiturePacman.cpp" />
+    <ClCompile Include="EnnemiYoshi.cpp" />
+    <ClCompile Include="EnnemiYoshiDCA.cpp" />
+    <ClCompile Include="EventBonus.cpp" />
+    <ClCompile Include="EventEnnemi.cpp" />
+    <ClCompile Include="EventFondAnime.cpp" />
+    <ClCompile Include="EventGenEnnemi.cpp" />
+    <ClCompile Include="EventLock.cpp" />
+    <ClCompile Include="EventMiFond.cpp" />
+    <ClCompile Include="EventMusic.cpp" />
+    <ClCompile Include="EventPremierPlan.cpp" />
+    <ClCompile Include="EventVehicule.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="FondAssembleur.cpp" />
+    <ClCompile Include="FondBattleCruiser.cpp" />
+    <ClCompile Include="FondBombe.cpp" />
+    <ClCompile Include="FondBossventilo.cpp" />
+    <ClCompile Include="FondCube.cpp" />
+    <ClCompile Include="FondEcrancamera.cpp" />
+    <ClCompile Include="FondElectronics.cpp" />
+    <ClCompile Include="FondEtoile.cpp" />
+    <ClCompile Include="FondLampe2.cpp" />
+    <ClCompile Include="FondLCD.cpp" />
+    <ClCompile Include="FondLumiere.cpp" />
+    <ClCompile Include="FondMonolite.cpp" />
+    <ClCompile Include="FondPiece.cpp" />
+    <ClCompile Include="FondPoissons.cpp" />
+    <ClCompile Include="FondPokeAscenceur.cpp" />
+    <ClCompile Include="FondPokeAscenseur2.cpp" />
+    <ClCompile Include="FondPokeCaisse.cpp" />
+    <ClCompile Include="FondPokeCaissePlateforme.cpp" />
+    <ClCompile Include="FondPokeCaissePlateforme2.cpp" />
+    <ClCompile Include="FondPokeCaisseTombante.cpp" />
+    <ClCompile Include="FondPokeCiel.cpp" />
+    <ClCompile Include="FondPokeInterupteur.cpp" />
+    <ClCompile Include="FondPokeLevel2.cpp" />
+    <ClCompile Include="FondPokeLevel3.cpp" />
+    <ClCompile Include="FondRing.cpp" />
+    <ClCompile Include="FondRocher1.cpp" />
+    <ClCompile Include="fondRocher2.cpp" />
+    <ClCompile Include="FondRocherHyperspace.cpp" />
+    <ClCompile Include="FondSnorkSas.cpp" />
+    <ClCompile Include="FondTircruiser.cpp" />
+    <ClCompile Include="FondWorldmap.cpp" />
+    <ClCompile Include="Fonte.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GenBonus.cpp" />
+    <ClCompile Include="GenEnnemi.cpp" />
+    <ClCompile Include="GenEnnemiTMP.cpp" />
+    <ClCompile Include="Giclure.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="GoreGiclure.cpp" />
+    <ClCompile Include="HiScores.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="KeyTranslator.cpp" />
+    <ClCompile Include="LGXpacker.cpp" />
+    <ClCompile Include="LTimer.cpp" />
+    <ClCompile Include="MakeBonus.cpp" />
+    <ClCompile Include="MenuGame.cpp" />
+    <ClCompile Include="MenuMain.cpp" />
+    <ClCompile Include="MeteoNeige.cpp" />
+    <ClCompile Include="MeteoPluie.cpp" />
+    <ClCompile Include="MoceauxTeteSnorky.cpp" />
+    <ClCompile Include="MorceauRayman.cpp" />
+    <ClCompile Include="MorceauSonicRing.cpp" />
+    <ClCompile Include="MorceauTeteRayman.cpp" />
+    <ClCompile Include="MusicBank.cpp" />
+    <ClCompile Include="Personnage.cpp" />
+    <ClCompile Include="Picture.cpp" />
+    <ClCompile Include="PictureBank.cpp" />
+    <ClCompile Include="Restore.cpp" />
+    <ClCompile Include="RPGPlayer.cpp" />
+    <ClCompile Include="Scroll.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundBank.cpp" />
+    <ClCompile Include="SoundBankBB.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SuperListe.cpp" />
+    <ClCompile Include="TexteCool.cpp" />
+    <ClCompile Include="TirBB.cpp" />
+    <ClCompile Include="TirBBFusil.cpp" />
+    <ClCompile Include="TirBBLaser.cpp" />
+    <ClCompile Include="TirBBLF.cpp" />
+    <ClCompile Include="TirBBM16.cpp" />
+    <ClCompile Include="TirBBPM.cpp" />
+    <ClCompile Include="TirBBVache.cpp" />
+    <ClCompile Include="TirBouleChaman.cpp" />
+    <ClCompile Include="TirCadeau.cpp" />
+    <ClCompile Include="TirCarapace.cpp" />
+    <ClCompile Include="TirCoeurBisou.cpp" />
+    <ClCompile Include="TirColonneChaman.cpp" />
+    <ClCompile Include="TirCruiserLaser.cpp" />
+    <ClCompile Include="TirDeboucheChiote.cpp" />
+    <ClCompile Include="TirEpeeLaser.cpp" />
+    <ClCompile Include="TirEpine.cpp" />
+    <ClCompile Include="TirGateau.cpp" />
+    <ClCompile Include="TirMarioFireball.cpp" />
+    <ClCompile Include="TirMarioFireballVertical.cpp" />
+    <ClCompile Include="TirNuage.cpp" />
+    <ClCompile Include="TirRaymanPoing.cpp" />
+    <ClCompile Include="TirSmurfSauvage.cpp" />
+    <ClCompile Include="TirSnorkyBase.cpp" />
+    <ClCompile Include="TirSnorkyBase2.cpp" />
+    <ClCompile Include="TirSnorkyGouverneur.cpp" />
+    <ClCompile Include="TirSnorkyMage.cpp" />
+    <ClCompile Include="TirSoniceclair.cpp" />
+    <ClCompile Include="TirTornade.cpp" />
+    <ClCompile Include="TxtData.cpp" />
+    <ClCompile Include="Vehicule.cpp" />
+    <ClCompile Include="VehiculeCigogne.cpp" />
+    <ClCompile Include="VehiculeHypo.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+  </ItemGroup>
+</Project>

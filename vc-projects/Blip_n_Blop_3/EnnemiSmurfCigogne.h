@@ -2,9 +2,10 @@
 #ifndef _EnnemiSmurfCigogne_
 #define _EnnemiSmurfCigogne_
 
-#include "Ennemi.h"
+#include "enemy.h"
 
-class EnnemiSmurfCigogne : public Ennemi {
+class EnnemiSmurfCigogne : public Ennemi
+{
 public:
 
 	int		base_y;

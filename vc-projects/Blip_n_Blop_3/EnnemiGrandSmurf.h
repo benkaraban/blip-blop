@@ -2,9 +2,10 @@
 #ifndef _EnnemiGrandSmurf_
 #define _EnnemiGrandSmurf_
 
-#include "ennemi.h"
+#include "enemy.h"
 
-class EnnemiGrandSmurf : public Ennemi {
+class EnnemiGrandSmurf : public Ennemi
+{
 public:
 
 	Sprite *	cible;

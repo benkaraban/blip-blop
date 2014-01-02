@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------------
 *		    EnnemiKnuckles.h
 *		-----------------------
-*
+*			
 *
 *
 *		Mephisto / LOADED -   V 0.5 - 12 Decembre 2000
@@ -16,7 +16,7 @@
 #ifndef _EnnemiKnukles_
 #define _EnnemiKnukles_
 
-#include "ennemi.h"
+#include "enemy.h"
 
 #define KNUKLES_SPEED 3
 #define KNUKLES_CHARGE_SPEED 6
@@ -28,13 +28,14 @@
 //		Définition de la classe EnnemiKnukles
 //----------------------------------------------------------------------------
 
-class EnnemiKnukles : public Ennemi {
+class EnnemiKnukles : public Ennemi
+{
 private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
-	int charge_delay;
+	int charge_delay;    
 	int wait_for_charge;
-
+	
 public:
 	EnnemiKnukles();
 	virtual void update();
@@ -44,7 +45,7 @@ public:
 	virtual void onCarbonise();
 	virtual void onCharge();
 	virtual void onSaute();
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 	virtual void tombe();
 };
 

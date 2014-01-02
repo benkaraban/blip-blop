@@ -2,9 +2,10 @@
 #ifndef _EnnemiCOMVolant_
 #define _EnnemiCOMVolant_
 
-#include "Ennemi.h"
+#include "enemy.h"
 
-class EnnemiCOMVolant : public Ennemi {
+class EnnemiCOMVolant : public Ennemi
+{
 private:
 	int speed;
 	bool attack;

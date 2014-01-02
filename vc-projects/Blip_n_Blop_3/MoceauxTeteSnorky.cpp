@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		---------------------------
 *		    MorceauxTeteSnorky.cpp
 *		---------------------------
-*
+*			
 *		Les bouts de tete qui giclent...
 *
 *
@@ -19,7 +19,7 @@
 //-----------------------------------------------------------------------------
 
 #include "MorceauxTeteSnorky.h"
-#include "Ennemi.h"
+#include "enemy.h"
 
 
 //-----------------------------------------------------------------------------
@@ -28,77 +28,98 @@
 
 
 
-MorceauSnorkyBaseTeteEntiere::MorceauSnorkyBaseTeteEntiere() {
-	dy = 0;
+MorceauSnorkyBaseTeteEntiere::MorceauSnorkyBaseTeteEntiere()
+{
+	dy=0;
 }
-
-void MorceauSnorkyBaseTeteEntiere::update() {
+	
+void MorceauSnorkyBaseTeteEntiere::update()
+{
 	ss_etape++;
-	ss_etape %= 5;
-	if (ss_etape == 0) {
+	ss_etape%=5;
+	if(ss_etape == 0)
+	{
 		etape++;
 	}
 
-	if (etape == 2 && ss_etape == 0) {
+	if (etape == 2 && ss_etape == 0)
+	{
 		Sprite * s;
-		if (dir == SENS_DROITE) {
-			s = new MorceauSnorkyBaseTrompe(1 + rand() % 2, -1 + rand() % 2);
-			s->x = x + 19;
-		} else {
-			s = new MorceauSnorkyBaseTrompe(- 1 - rand() % 2, -1 - rand() % 2);
-			s->x = x - 19;
+		if (dir == SENS_DROITE)
+		{
+			s = new MorceauSnorkyBaseTrompe(1 + rand()%2,-1 + rand()%2);
+			s->x = x+19;
 		}
-
-
+		else
+		{
+			s = new MorceauSnorkyBaseTrompe(- 1 - rand()%2,-1 - rand()%2);
+			s->x = x-19;
+		}
+		
+		
 		s->dir = dir;
-		s->y = y - 26;
-
-
-		list_giclures.ajoute((void*) s);
+		s->y = y-26;
+		
+	
+		list_giclures.ajoute( (void*) s);
 	}
 
-	if (etape == 3 && ss_etape == 0) {
+	if (etape == 3 && ss_etape == 0)
+	{
 		Sprite * s;
-		if (dir == SENS_DROITE) {
-			s = new MorceauSnorkyBaseTetePartieArriere(1, 0);
-			s->x = x + 0;
-		} else {
-			s = new MorceauSnorkyBaseTetePartieArriere(-1 , 0);
-			s->x = x - 0;
+		if (dir == SENS_DROITE)
+		{
+			s = new MorceauSnorkyBaseTetePartieArriere( 1,0);
+			s->x = x+0;
 		}
-
-
+		else
+		{
+			s = new MorceauSnorkyBaseTetePartieArriere( -1 ,0);
+			s->x = x-0;
+		}
+		
+		
 		s->dir = dir;
-		s->y = y + 10;
-
-
-		list_giclures.ajoute((void*) s);
+		s->y = y+10;
+		
+	
+		list_giclures.ajoute( (void*) s);
 	}
 
-	if (etape == 6) {
-		grave(x, y, pic);
+	if (etape == 6)
+	{
+		grave(x,y,pic);
 		a_detruire = true;
-	} else {
+	}
+	else
+	{
 		tombe();
-		if (dir == SENS_DROITE) {
-			x += 1;
-			pic = pbk_ennemis[52 + etape];
-			if (etape >= 3) {
+		if (dir == SENS_DROITE)
+		{
+			x+=1;
+			pic = pbk_ennemis[52+etape];
+			if (etape>=3)
+			{
 				tombe();
-				x += 1;
+				x+=1;	
 			}
-			if ((plat(x, y) != 0) && (x > 0)) {
-				x -= 6 - etape;
+			if ((plat(x,y)!=0)&&(x>0))
+			{
+				x-=6-etape;
 			}
-		} else {
-			x -= 1;
-			pic = pbk_ennemis[85 + etape];
-			if (etape >= 3) {
+		}
+		else
+		{
+			x-=1;
+			pic = pbk_ennemis[85+etape];
+			if (etape>=3)
+			{
 				tombe();
-				x -= 1;
+				x-=1;		
 			}
-			if ((plat(x, y) != 0) && (x < 0)) {
-				x += 6 - etape;
+			if ((plat(x,y)!=0)&&(x<0))
+			{
+				x+=6-etape;
 			}
 		}
 	}
@@ -106,7 +127,7 @@ void MorceauSnorkyBaseTeteEntiere::update() {
 	/*if (etape>=3)
 	{
 		tombe();
-
+		
 	}*/
 }
 
@@ -118,39 +139,55 @@ void MorceauSnorkyBaseTeteEntiere::update() {
 
 
 
-MorceauSnorkyHyporidercorp::MorceauSnorkyHyporidercorp(int vx) {
-	dx = vx;
-	dy = -1;
+MorceauSnorkyHyporidercorp::MorceauSnorkyHyporidercorp(int vx)
+{
+	dx=vx;
+	dy=-1;
 }
-
-void MorceauSnorkyHyporidercorp::update() {
+	
+void MorceauSnorkyHyporidercorp::update()
+{
 	tombe();
-	x += dx;
+	x+=dx;
 	ss_etape++;
-	ss_etape %= 6;
-	if ((ss_etape == 0) && (etape < 3)) {
+	ss_etape%=6;
+	if ((ss_etape == 0)&&(etape<3))
+	{
 		etape++;
 	}
 
-	if (etape < 3) {
-		if (dir == SENS_DROITE) {
-			pic =  pbk_ennemis[307 + etape];
-		} else {
-			pic =  pbk_ennemis[320 + etape];
+	if (etape<3)
+	{
+		if (dir == SENS_DROITE)
+		{
+			pic =  pbk_ennemis[307+etape];
 		}
-	} else if (plat(x, y) != 0) {
-		if (ss_etape == 0) {
+		else
+		{
+			pic =  pbk_ennemis[320+etape];
+		}
+	}
+	else if (plat(x,y)!=0)
+	{
+		if (ss_etape == 0)
+		{
 			etape++;
 		}
-		if (etape < 5) {
-			if (dir == SENS_DROITE) {
-				pic =  pbk_ennemis[307 + etape];
-			} else {
-				pic =  pbk_ennemis[320 + etape];
+		if (etape < 5)
+		{
+			if (dir == SENS_DROITE)
+			{
+				pic =  pbk_ennemis[307+etape];
 			}
-		} else {
-			grave(x, y, pic);
-			a_detruire = true;
+			else
+			{
+				pic =  pbk_ennemis[320+etape];
+			}
+		}
+		else
+		{
+			grave(x,y,pic);
+			a_detruire=true;
 //			sbk_niveau.play( 9);
 		}
 	}
@@ -163,29 +200,36 @@ void MorceauSnorkyHyporidercorp::update() {
 //-----------------------------------------------------------------------------
 
 
-MorceauSnorkyBaseTetePartieArriere::MorceauSnorkyBaseTetePartieArriere(int vx, int vy) {
-	dx = vx;
-	dy = vy;
+MorceauSnorkyBaseTetePartieArriere::MorceauSnorkyBaseTetePartieArriere(int vx, int vy)
+{
+	dx=vx;
+	dy=vy;
 }
-
-void MorceauSnorkyBaseTetePartieArriere::update() {
+	
+void MorceauSnorkyBaseTetePartieArriere::update()
+{
 	tombe();
-	x += dx;
+	x+=dx;
 	ss_etape++;
-	ss_etape %= 6;
-	if ((ss_etape == 0) && (etape < 3)) {
+	ss_etape%=6;
+	if ((ss_etape == 0)&&(etape<3))
+	{
 		etape++;
 	}
 
-	if (dir == SENS_DROITE) {
-		pic =  pbk_ennemis[59 + etape];
-	} else {
-		pic =  pbk_ennemis[92 + etape];
+	if (dir == SENS_DROITE)
+	{
+		pic =  pbk_ennemis[59+etape];
+	}
+	else
+	{
+		pic =  pbk_ennemis[92+etape];
 	}
 
-	if (etape  == 3 && (plat(x, y) != 0)) {
-		grave(x, y, pic);
-		a_detruire = true;
+	if (etape  == 3 &&(plat(x,y)!=0))
+	{
+		grave(x,y,pic);
+		a_detruire=true;
 	}
 }
 
@@ -195,26 +239,30 @@ void MorceauSnorkyBaseTetePartieArriere::update() {
 //		Implementation de la classe MorceauSnorkyBaseTetePartieArriere
 //-----------------------------------------------------------------------------
 
-MorceauSnorkyBaseTrompe::MorceauSnorkyBaseTrompe(int vx, int vy) {
-	dx = vx;
-	dy = vy;
+MorceauSnorkyBaseTrompe::MorceauSnorkyBaseTrompe(int vx,int vy)
+{
+	dx=vx;
+	dy=vy;
 }
-
-void MorceauSnorkyBaseTrompe::update() {
+	
+void MorceauSnorkyBaseTrompe::update()
+{
 	tombe();
-	x += dx;
+	x+=dx;
 	ss_etape++;
-	ss_etape %= 3;
-	if (ss_etape == 0) {
+	ss_etape%=3;
+	if (ss_etape == 0)
+	{
 		etape++;
-		etape %= 8;
+		etape%=8;
 	}
 
-	pic =  pbk_ennemis[63 + etape];
+	pic =  pbk_ennemis[63+etape];
 
-	if (plat(x, y) != 0) {
-		grave(x, y, pic);
-		a_detruire = true;
+	if (plat(x,y)!=0)
+	{
+		grave(x,y,pic);
+		a_detruire=true;
 	}
 
 }

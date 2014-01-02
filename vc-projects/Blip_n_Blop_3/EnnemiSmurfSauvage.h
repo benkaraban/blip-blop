@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		--------------------
 *		EnnemiSmurfSauvage.h
 *		--------------------
-*
+*			
 *		Le schtroumph brujah
 *
 *
@@ -21,7 +21,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "Ennemi.h"
+#include "enemy.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes
@@ -41,12 +41,13 @@
 //		Définition de la classe EnnemiSmurfSauvage
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfSauvage : public Ennemi {
+class EnnemiSmurfSauvage : public Ennemi
+{
 public:
-	int shoot_direction ; // direction dans laquelle on pointe l'arme
+	int shoot_direction ; // direction dans laquelle on pointe l'arme 
 	int hauteur ;
 	int pente ;		  // coefficient directeur de la droite
-	// passant par tete_turc et le smurfSauvage
+					  // passant par tete_turc et le smurfSauvage
 	int num_pic ;
 	int etape_shoot ;
 	int nb_shoot ;
@@ -67,58 +68,65 @@ public:
 	Sprite *	cible;
 
 	EnnemiSmurfSauvage();
-
-	inline virtual void affiche() {
-		draw(x, y - 50, pbk_ennemis[117]) ;
-		draw(x, y - 100, pbk_ennemis[117]) ;
-		draw(x, y - 150, pbk_ennemis[117]) ;
-		draw(x, y - 200, pbk_ennemis[117]) ;
-		draw(x, y - 250, pbk_ennemis[117]) ;
-
+	
+	inline virtual void affiche()
+	{
+		draw(x,y-50,pbk_ennemis[117]) ;
+		draw(x,y-100,pbk_ennemis[117]) ;
+		draw(x,y-150,pbk_ennemis[117]) ;
+		draw(x,y-200,pbk_ennemis[117]) ;
+		draw(x,y-250,pbk_ennemis[117]) ;
+		
 		Ennemi::affiche() ;
 
 		// Si on est pas mort, on affiche l'arme suivant la direction du tir
-		if (pv > 0) {
-			if (shooting) {
-				switch (shoot_direction) {
+		if(pv > 0)
+		{
+			if ( shooting)
+			{
+				switch(shoot_direction)
+				{
 					case DIAGONALE_GAUCHE :
-						draw(x + 8, y + 38, pbk_ennemis[137 + etape]) ;
+						draw(x+8,y+38,pbk_ennemis[137+etape]) ;
 						break ;
 					case DIAGONALE_BAS_GAUCHE :
-						draw(x + 8, y + 38, pbk_ennemis[133 + etape]) ;
+						draw(x+8,y+38,pbk_ennemis[133+etape]) ;
 						break ;
 					case BAS_GAUCHE :
-						draw(x + 8, y + 38, pbk_ennemis[129 + etape]) ;
+						draw(x+8,y+38,pbk_ennemis[129+etape]) ;
 						break ;
 					case BAS_DROITE :
-						draw(x - 5, y + 38, pbk_ennemis[127 + etape]) ;
+						draw(x-5,y+38,pbk_ennemis[127+etape]) ;
 						break ;
 					case DIAGONALE_BAS_DROITE :
-						draw(x - 5, y + 38, pbk_ennemis[131 + etape]) ;
+						draw(x-5,y+38,pbk_ennemis[131+etape]) ;
 						break ;
 					case DIAGONALE_DROITE :
-						draw(x - 5, y + 38, pbk_ennemis[135 + etape]) ;
+						draw(x-5,y+38,pbk_ennemis[135+etape]) ;
 						break ;
 				}
-			} else {
-				switch (shoot_direction) {
+			}
+			else
+			{
+				switch(shoot_direction)
+				{
 					case DIAGONALE_GAUCHE :
-						draw(x + 8, y + 38, pbk_ennemis[352]) ;
+						draw(x+8,y+38,pbk_ennemis[352]) ;
 						break ;
 					case DIAGONALE_BAS_GAUCHE :
-						draw(x + 8, y + 38, pbk_ennemis[350]) ;
+						draw(x+8,y+38,pbk_ennemis[350]) ;
 						break ;
 					case BAS_GAUCHE :
-						draw(x + 8, y + 38, pbk_ennemis[354]) ;
+						draw(x+8,y+38,pbk_ennemis[354]) ;
 						break ;
 					case BAS_DROITE :
-						draw(x - 5, y + 38, pbk_ennemis[353]) ;
+						draw(x-5,y+38,pbk_ennemis[353]) ;
 						break ;
 					case DIAGONALE_BAS_DROITE :
-						draw(x - 5, y + 38, pbk_ennemis[349]) ;
+						draw(x-5,y+38,pbk_ennemis[349]) ;
 						break ;
 					case DIAGONALE_DROITE :
-						draw(x - 5, y + 38, pbk_ennemis[351]) ;
+						draw(x-5,y+38,pbk_ennemis[351]) ;
 						break ;
 				}
 			}
@@ -130,7 +138,7 @@ public:
 	virtual void onTire() ;
 	virtual void onMeure();
 	virtual void onCarbonise();
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };
 
 #endif

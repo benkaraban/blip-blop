@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------------
 *		    EnnemiToad.h
 *		-----------------------
-*
+*			
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 12 Decembre 2000
@@ -17,7 +17,7 @@
 #ifndef _EnnemiToad_
 #define _EnnemiToad_
 
-#include "ennemi.h"
+#include "enemy.h"
 
 #define TOAD_SPEED 3
 #define TOAD_CHARGE_SPEED 7
@@ -26,12 +26,13 @@
 //		Définition de la classe EnnemiToad
 //----------------------------------------------------------------------------
 
-class EnnemiToad : public Ennemi {
+class EnnemiToad : public Ennemi
+{
 private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
 	//static int toad_speed;    //vitesse maximum
-	int charge_delay;
+	int charge_delay;    
 	int wait_for_charge;
 	int charge_etape;
 	int hokuto;
@@ -45,7 +46,7 @@ public:
 	//virtual void onTombe();
 	virtual void onCharge();
 	virtual void onCarbonise();
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };
 
 #endif

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------
 *		   TxtData.cpp
 *		-----------------
-*
+*			
 *		Permet de charger les textes
 *
 *
@@ -17,7 +17,7 @@
 #define TXT_DATA_CPP
 #define NB_TXT_DATA		1000
 
-#include <fstream.h>
+#include <fstream>
 #include <string.h>
 #include <stdlib.h>
 #include "txtdata.h"
@@ -26,31 +26,33 @@
 char **	txt_data = NULL;
 
 
-bool loadTxtData(const char * file) {
+bool loadTxtData( const char * file)
+{
 	txt_data = new char * [NB_TXT_DATA];
 
-	if (txt_data == NULL)
+	if ( txt_data == NULL)
 		return false;
 
-	for (int i = 0; i < NB_TXT_DATA; i++)
+	for ( int i=0; i < NB_TXT_DATA; i++)
 		txt_data[i] = NULL;
 
 	ifstream	f;
 	int			num;
 	char		buffer[400];
 
-	f.open(file);
+	f.open( file);
 
-	if (!f.is_open())
+	if ( !f.is_open())
 		return false;
 
-	while (!f.eof()) {
-		f.getline(buffer, 400, '^');
-		num = atoi(buffer);
-		f.getline(buffer, 400);
+	while ( !f.eof())
+	{
+		f.getline( buffer, 400, '^');
+		num = atoi( buffer);
+		f.getline( buffer, 400);
 
-		txt_data[num] = new char[strlen(buffer) + 1];
-		strcpy(txt_data[num], buffer);
+		txt_data[num] = new char[strlen(buffer)+1];
+		strcpy( txt_data[num], buffer);
 	}
 
 	f.close();
@@ -58,10 +60,12 @@ bool loadTxtData(const char * file) {
 }
 
 
-void freeTxtData() {
-	if (txt_data != NULL) {
-		for (int i = 0; i < NB_TXT_DATA; i++)
-			if (txt_data[i] != NULL)
+void freeTxtData()
+{
+	if ( txt_data != NULL)
+	{
+		for ( int i=0; i < NB_TXT_DATA; i++)
+			if ( txt_data[i] != NULL)
 				delete [] txt_data[i];
 
 		delete [] txt_data;

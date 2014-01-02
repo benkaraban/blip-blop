@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		--------------------
 *		    EnnemiSmurf.h
 *		--------------------
-*
+*			
 *		Le schtroumpf de base!
 *
 *
@@ -21,13 +21,14 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "ennemi.h"
+#include "enemy.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurf : public Ennemi {
+class EnnemiSmurf : public Ennemi
+{
 public:
 	int			wait_for_jump;
 	int			jump_delay;
@@ -35,14 +36,14 @@ public:
 	int			speed ;
 
 	EnnemiSmurf();
-
+	
 	virtual void update();
 	virtual void onAvance();
 	virtual void onSaute();
 	virtual void onMeure();
 	virtual void onCarbonise();
 
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };
 
 #endif

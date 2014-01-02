@@ -2,9 +2,10 @@
 #ifndef _EnnemiBisouSIB_
 #define _EnnemiBisouSIB_
 
-#include "ennemi.h"
+#include "enemy.h"
 
-class EnnemiBisouSIB : public Ennemi {
+class EnnemiBisouSIB : public Ennemi
+{
 public:
 
 	int		encaisse;
@@ -12,7 +13,7 @@ public:
 	EnnemiBisouSIB();
 
 	virtual void update();
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };
 
 #endif

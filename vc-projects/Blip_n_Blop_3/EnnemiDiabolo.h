@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------------
 *		    EnnemiDiabolo.h
 *		-----------------------
-*
+*			
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 20 Decembre 2000
@@ -20,7 +20,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "ennemi.h"
+#include "enemy.h"
 
 
 #define DIABOLO_KICK_SPEED		8
@@ -31,7 +31,8 @@
 //		Définition de la classe EnnemiDiabolo
 //-----------------------------------------------------------------------------
 
-class EnnemiDiabolo : public Ennemi {
+class EnnemiDiabolo : public Ennemi
+{
 public:
 
 	int wait_for_attack;
@@ -40,7 +41,7 @@ public:
 	int attack_type;
 
 	EnnemiDiabolo();
-
+	
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -53,7 +54,7 @@ public:
 	virtual void tombe_diabolo();
 	virtual void colFromPic();
 
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };
 
 #endif

@@ -2,9 +2,10 @@
 #ifndef _EnnemiBisouZombi_
 #define _EnnemiBisouZombi_
 
-#include "ennemi.h"
+#include "enemy.h"
 
-class EnnemiBisouZombi : public Ennemi {
+class EnnemiBisouZombi : public Ennemi
+{
 public:
 
 	bool	my_phase;
@@ -19,7 +20,7 @@ public:
 	virtual void onMeure();
 	virtual void onCarbonise();
 	virtual void onCarboniseHaut();
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 	virtual void update();
 };
 

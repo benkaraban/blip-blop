@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		-----------------------
 *		    EnnemiSnork.h
 *		-----------------------
-*
+*			
 *
 *
 *		Prosper / LOADED -   V 0.1 - 3 Aout 2000
@@ -20,7 +20,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "ennemi.h"
+#include "enemy.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes
@@ -32,17 +32,18 @@
 //		Définition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
-class EnnemiLemmings : public Ennemi {
+class EnnemiLemmings : public Ennemi
+{
 public:
 	bool	suicide;
 
 	EnnemiLemmings();
-
+	
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
 	virtual void onMeure();
 	virtual void onCarbonise();
 
-	virtual void estTouche(Tir * tir);
+	virtual void estTouche( Tir * tir);
 };

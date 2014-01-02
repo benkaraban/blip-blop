@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		----------------
 *		   BenDebug.h
 *		----------------
-*
+*			
 *
 *		Classe "debug" pour afficher les
 *		messages d'erreur dans un fichier
@@ -30,14 +30,16 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <windows.h>
 #include <fstream>
+
+using namespace std;
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe Debug
 //-----------------------------------------------------------------------------
 
-class Debug {
+class Debug
+{
 private:
 	ofstream	f;					// Le fichier .log
 	int			nbmsg;				// Nombre de messages transmis
@@ -61,7 +63,7 @@ public:
 //-----------------------------------------------------------------------------
 
 #ifndef DEBUG_CPP_FILE
-extern Debug debug;
+	extern Debug debug;			
 #endif
 
 #endif

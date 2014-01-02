@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>MyDX</ProjectName>
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{297663D5-3878-45DA-9B32-3A22804BCFE3}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\BB3.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Debug\BB3.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <RedirectOutputAndErrors>NUL</RedirectOutputAndErrors>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x040c</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\BB3.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>.\Debug\BB3.exe</OutputFile>
+      <AdditionalDependencies>odbc32.lib;odbccp32.lib;dxguid.lib;dinput8.lib;winmm.lib;ddraw.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\BB3.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <Midl>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <TypeLibraryName>.\Release\BB3.tlb</TypeLibraryName>
+      <MkTypLibCompatible>true</MkTypLibCompatible>
+      <RedirectOutputAndErrors>NUL</RedirectOutputAndErrors>
+      <TargetEnvironment>Win32</TargetEnvironment>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x040c</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\BB3.bsc</OutputFile>
+    </Bscmake>
+    <Link>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <SubSystem>Windows</SubSystem>
+      <OutputFile>Release/BlipBlop.exe</OutputFile>
+      <AdditionalDependencies>ddraw.lib;dinput.lib;dxguid.lib;winmm.lib;dsound.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <Library Include="ddraw.lib" />
+    <Library Include="dinput.lib" />
+    <Library Include="fmodvc.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AlphaBlend.h" />
+    <ClInclude Include="BenDebug.h" />
+    <ClInclude Include="bendivers.h" />
+    <ClInclude Include="BenMaths.h" />
+    <ClInclude Include="Blip.h" />
+    <ClInclude Include="Blop.h" />
+    <ClInclude Include="Bonus.h" />
+    <ClInclude Include="BonusBeer.h" />
+    <ClInclude Include="BonusFusil.h" />
+    <ClInclude Include="BonusInvincible.h" />
+    <ClInclude Include="BonusLaser.h" />
+    <ClInclude Include="BonusLF.h" />
+    <ClInclude Include="BonusPM.h" />
+    <ClInclude Include="BonusTonneau.h" />
+    <ClInclude Include="BonusVache.h" />
+    <ClInclude Include="Bulle.h" />
+    <ClInclude Include="CINEPlayer.h" />
+    <ClInclude Include="Config.h" />
+    <ClInclude Include="ControlAlias.h" />
+    <ClInclude Include="Controlor.h" />
+    <ClInclude Include="ControlP1.h" />
+    <ClInclude Include="ControlP2.h" />
+    <ClInclude Include="Couille.h" />
+    <ClInclude Include="DD_gfx.h" />
+    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="EnnemiBisouAuto.h" />
+    <ClInclude Include="EnnemiBisouBoom.h" />
+    <ClInclude Include="EnnemiBisouChaman.h" />
+    <ClInclude Include="EnnemiBisouCiel.h" />
+    <ClInclude Include="EnnemiBisouCoeur.h" />
+    <ClInclude Include="EnnemiBisouEtoile.h" />
+    <ClInclude Include="EnnemiBisouJedi.h" />
+    <ClInclude Include="EnnemiBisouNuage.h" />
+    <ClInclude Include="EnnemiBisouSIB.h" />
+    <ClInclude Include="EnnemiBisouZombi.h" />
+    <ClInclude Include="EnnemiBulbizarre.h" />
+    <ClInclude Include="EnnemiBulbizarreHeros.h" />
+    <ClInclude Include="EnnemiCOM.h" />
+    <ClInclude Include="EnnemiComHeros.h" />
+    <ClInclude Include="EnnemiComVolant.h" />
+    <ClInclude Include="EnnemiDiabolo.h" />
+    <ClInclude Include="EnnemiFlameche.h" />
+    <ClInclude Include="EnnemiFlamecheHeros.h" />
+    <ClInclude Include="EnnemiGrandSmurf.h" />
+    <ClInclude Include="EnnemiKnukles.h" />
+    <ClInclude Include="EnnemiLara.h" />
+    <ClInclude Include="EnnemiLemmings.h" />
+    <ClInclude Include="EnnemiLemmingsVolant.h" />
+    <ClInclude Include="EnnemiLuigi.h" />
+    <ClInclude Include="EnnemiMario.h" />
+    <ClInclude Include="EnnemiMarioHologramme.h" />
+    <ClInclude Include="EnnemiMariotapette.h" />
+    <ClInclude Include="EnnemiPacman.h" />
+    <ClInclude Include="EnnemiPic.h" />
+    <ClInclude Include="EnnemiPikachu.h" />
+    <ClInclude Include="EnnemiPikashuHeros.h" />
+    <ClInclude Include="EnnemiPoid.h" />
+    <ClInclude Include="EnnemiPrincesse.h" />
+    <ClInclude Include="EnnemiPrincesseguard.h" />
+    <ClInclude Include="EnnemiRayman.h" />
+    <ClInclude Include="EnnemiSmurf.h" />
+    <ClInclude Include="EnnemiSmurfALunettes.h" />
+    <ClInclude Include="EnnemiSmurfCigogne.h" />
+    <ClInclude Include="EnnemiSmurfCoquet.h" />
+    <ClInclude Include="EnnemiSmurfCostaud.h" />
+    <ClInclude Include="EnnemiSmurfette.h" />
+    <ClInclude Include="EnnemiSmurfFarceur.h" />
+    <ClInclude Include="EnnemiSmurfFrileux.h" />
+    <ClInclude Include="EnnemiSmurfGourmand.h" />
+    <ClInclude Include="EnnemiSmurfParesseux.h" />
+    <ClInclude Include="EnnemiSmurfPaysan.h" />
+    <ClInclude Include="EnnemiSmurfPeon.h" />
+    <ClInclude Include="EnnemiSmurfSauvage.h" />
+    <ClInclude Include="EnnemiSnorkBase1.h" />
+    <ClInclude Include="EnnemiSnorkInBlack.h" />
+    <ClInclude Include="EnnemiSnorkInBlackBoss.h" />
+    <ClInclude Include="EnnemiSnorkyBase1.h" />
+    <ClInclude Include="EnnemiSnorkyBase2.h" />
+    <ClInclude Include="EnnemiSnorkyGouverneur.h" />
+    <ClInclude Include="EnnemiSnorkyHyporider.h" />
+    <ClInclude Include="EnnemiSnorkyMage.h" />
+    <ClInclude Include="EnnemiSonic.h" />
+    <ClInclude Include="EnnemiTails.h" />
+    <ClInclude Include="EnnemiTailsvolant.h" />
+    <ClInclude Include="EnnemiTete_Rayman.h" />
+    <ClInclude Include="EnnemiToad.h" />
+    <ClInclude Include="EnnemiVoiturePacman.h" />
+    <ClInclude Include="EnnemiYoshi.h" />
+    <ClInclude Include="EnnemiYoshiDCA.h" />
+    <ClInclude Include="Event.h" />
+    <ClInclude Include="EventBonus.h" />
+    <ClInclude Include="EventEnnemi.h" />
+    <ClInclude Include="EventFondAnime.h" />
+    <ClInclude Include="EventGenBonus.h" />
+    <ClInclude Include="EventGenEnnemi.h" />
+    <ClInclude Include="EventHoldFire.h" />
+    <ClInclude Include="EventLock.h" />
+    <ClInclude Include="EventMeteo.h" />
+    <ClInclude Include="EventMiFond.h" />
+    <ClInclude Include="EventMusic.h" />
+    <ClInclude Include="EventPremierPlan.h" />
+    <ClInclude Include="EventRPG.h" />
+    <ClInclude Include="EventScrollSpeed.h" />
+    <ClInclude Include="EventSetFlag.h" />
+    <ClInclude Include="EventSon.h" />
+    <ClInclude Include="EventTexte.h" />
+    <ClInclude Include="EventVehicule.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="FicEvents.h" />
+    <ClInclude Include="fmod.h" />
+    <ClInclude Include="Fond_PokeCaissePlateforme.h" />
+    <ClInclude Include="FondAssembleur.h" />
+    <ClInclude Include="FondBattleCruiser.h" />
+    <ClInclude Include="FondBombe.h" />
+    <ClInclude Include="FondBossventilo.h" />
+    <ClInclude Include="FondCube.h" />
+    <ClInclude Include="FondDos.h" />
+    <ClInclude Include="FondDrapeau.h" />
+    <ClInclude Include="FondEau.h" />
+    <ClInclude Include="FondEcrancamera.h" />
+    <ClInclude Include="FondEcraneige.h" />
+    <ClInclude Include="FondElectronics.h" />
+    <ClInclude Include="FondEtoile.h" />
+    <ClInclude Include="FondLampe2.h" />
+    <ClInclude Include="FondLCD.h" />
+    <ClInclude Include="FondLumiere.h" />
+    <ClInclude Include="FondMonolite.h" />
+    <ClInclude Include="FondPiece.h" />
+    <ClInclude Include="FondPoissons.h" />
+    <ClInclude Include="FondPokeAlarme1.h" />
+    <ClInclude Include="FondPokeAscenceur.h" />
+    <ClInclude Include="FondPokeAscenseur2.h" />
+    <ClInclude Include="FondPokeCaisse.h" />
+    <ClInclude Include="FondPokeCaissePlateforme2.h" />
+    <ClInclude Include="FondPokeCaisseTombante.h" />
+    <ClInclude Include="FondPokeCiel.h" />
+    <ClInclude Include="FondPokeFleche.h" />
+    <ClInclude Include="FondPokeInterupteur.h" />
+    <ClInclude Include="FondPokeLevel2.h" />
+    <ClInclude Include="FondPokeLevel3.h" />
+    <ClInclude Include="FondRing.h" />
+    <ClInclude Include="FondRocher1.h" />
+    <ClInclude Include="FondRocher2.h" />
+    <ClInclude Include="FondRocherHyperspace.h" />
+    <ClInclude Include="FondSnorkSas.h" />
+    <ClInclude Include="FondStatique.h" />
+    <ClInclude Include="FondTest.h" />
+    <ClInclude Include="FondTirCruiser.h" />
+    <ClInclude Include="FondTournesol1.h" />
+    <ClInclude Include="FondTournesol2.h" />
+    <ClInclude Include="FondTournesol3.h" />
+    <ClInclude Include="FondTournesol4.h" />
+    <ClInclude Include="FondVentilo.h" />
+    <ClInclude Include="FondWindows.h" />
+    <ClInclude Include="FondWorldmap.h" />
+    <ClInclude Include="Fonte.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="GenBonus.h" />
+    <ClInclude Include="GenEnnemi.h" />
+    <ClInclude Include="GenEnnemiTMP.h" />
+    <ClInclude Include="Giclure.h" />
+    <ClInclude Include="Globals.h" />
+    <ClInclude Include="GoreBisouAuto.h" />
+    <ClInclude Include="GoreBisouBoom.h" />
+    <ClInclude Include="GoreGiclure.h" />
+    <ClInclude Include="GorePiedBisouZombi.h" />
+    <ClInclude Include="GorePiedsBisouCiel.h" />
+    <ClInclude Include="GorePiedsBisouEtoile.h" />
+    <ClInclude Include="GoreTeteBisouCoeur.h" />
+    <ClInclude Include="HiScores.h" />
+    <ClInclude Include="ImpactLaser.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Joueur.h" />
+    <ClInclude Include="KeyTranslator.h" />
+    <ClInclude Include="LGXpacker.h" />
+    <ClInclude Include="LTimer.h" />
+    <ClInclude Include="MakeBonus.h" />
+    <ClInclude Include="MenuGame.h" />
+    <ClInclude Include="MenuMain.h" />
+    <ClInclude Include="MeteoNeige.h" />
+    <ClInclude Include="MeteoPluie.h" />
+    <ClInclude Include="MorceauRayman.h" />
+    <ClInclude Include="MorceauSonicRing.h" />
+    <ClInclude Include="MorceauTeteRayman.h" />
+    <ClInclude Include="MorceauxTeteSnorky.h" />
+    <ClInclude Include="MusicBank.h" />
+    <ClInclude Include="Personnage.h" />
+    <ClInclude Include="Picture.h" />
+    <ClInclude Include="PictureBank.h" />
+    <ClInclude Include="PPlanTest.h" />
+    <ClInclude Include="Precache.h" />
+    <ClInclude Include="Restore.h" />
+    <ClInclude Include="RPGPlayer.h" />
+    <ClInclude Include="Scroll.h" />
+    <ClInclude Include="Sound.h" />
+    <ClInclude Include="SoundBank.h" />
+    <ClInclude Include="SoundBankBB.h" />
+    <ClInclude Include="Sprite.h" />
+    <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="SuperListe.h" />
+    <ClInclude Include="TexteCool.h" />
+    <ClInclude Include="Tir.h" />
+    <ClInclude Include="TirArcCiel.h" />
+    <ClInclude Include="TirBB.h" />
+    <ClInclude Include="TirBBFusil.h" />
+    <ClInclude Include="TirBBLaser.h" />
+    <ClInclude Include="TirBBLF.h" />
+    <ClInclude Include="TirBBM16.h" />
+    <ClInclude Include="TirBBPM.h" />
+    <ClInclude Include="TirBBVache.h" />
+    <ClInclude Include="TirBisouMortel.h" />
+    <ClInclude Include="TirBouleChaman.h" />
+    <ClInclude Include="TirCadeau.h" />
+    <ClInclude Include="TirCarapace.h" />
+    <ClInclude Include="TirCoeurBisou.h" />
+    <ClInclude Include="TirColonneChaman.h" />
+    <ClInclude Include="TirCruiserLaser.h" />
+    <ClInclude Include="TirDeboucheChiote.h" />
+    <ClInclude Include="TirEpeeLaser.h" />
+    <ClInclude Include="TirEpine.h" />
+    <ClInclude Include="TirEtoile.h" />
+    <ClInclude Include="TirGateau.h" />
+    <ClInclude Include="TirHadoken.h" />
+    <ClInclude Include="TirMarioFireball.h" />
+    <ClInclude Include="TirMarioFireballVertical.h" />
+    <ClInclude Include="TirNuage.h" />
+    <ClInclude Include="TirRaymanPoing.h" />
+    <ClInclude Include="TirSmurfSauvage.h" />
+    <ClInclude Include="TirSnorkybase.h" />
+    <ClInclude Include="TirSnorkyBase2.h" />
+    <ClInclude Include="TirSnorkyGouverneur.h" />
+    <ClInclude Include="TirSnorkyMage.h" />
+    <ClInclude Include="TirSoniceclair.h" />
+    <ClInclude Include="TirTornade.h" />
+    <ClInclude Include="trace.h" />
+    <ClInclude Include="TxtData.h" />
+    <ClInclude Include="Vehicule.h" />
+    <ClInclude Include="VehiculeHypo.h" />
+    <ClInclude Include="VehiculeTestTourelle.h" />
+    <ClInclude Include="VehivuleCigogne.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AlphaBlend.cpp" />
+    <ClCompile Include="BenDebug.cpp" />
+    <ClCompile Include="BenDivers.cpp" />
+    <ClCompile Include="BenMaths.cpp" />
+    <ClCompile Include="Blip%27n Blop 3.cpp" />
+    <ClCompile Include="Blip.cpp" />
+    <ClCompile Include="Bulle.cpp" />
+    <ClCompile Include="CINEPlayer.cpp" />
+    <ClCompile Include="Config.cpp" />
+    <ClCompile Include="Couille.cpp" />
+    <ClCompile Include="DD_gfx.cpp" />
+    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="EnnemiBisouAuto.cpp" />
+    <ClCompile Include="EnnemiBisouBoom.cpp" />
+    <ClCompile Include="EnnemiBisouChaman.cpp" />
+    <ClCompile Include="EnnemiBisouCiel.cpp" />
+    <ClCompile Include="EnnemiBisouCoeur.cpp" />
+    <ClCompile Include="EnnemiBisouEtoile.cpp" />
+    <ClCompile Include="EnnemiBisouJedi.cpp" />
+    <ClCompile Include="EnnemiBisouNuage.cpp" />
+    <ClCompile Include="EnnemiBisouSIB.cpp" />
+    <ClCompile Include="EnnemiBisouZombi.cpp" />
+    <ClCompile Include="EnnemiBulbizarre.cpp" />
+    <ClCompile Include="EnnemiBulbizarreHeros.cpp" />
+    <ClCompile Include="EnnemiCOM.cpp" />
+    <ClCompile Include="EnnemiComHeros.cpp" />
+    <ClCompile Include="EnnemiCOMVolant.cpp" />
+    <ClCompile Include="EnnemiDiabolo.cpp" />
+    <ClCompile Include="EnnemiFlameche.cpp" />
+    <ClCompile Include="EnnemiFlamecheHeros.cpp" />
+    <ClCompile Include="EnnemiGrandSmurf.cpp" />
+    <ClCompile Include="EnnemiKnukles.cpp" />
+    <ClCompile Include="EnnemiLara.cpp" />
+    <ClCompile Include="EnnemiLemmings.cpp" />
+    <ClCompile Include="EnnemiLuigi.cpp" />
+    <ClCompile Include="EnnemiMario.cpp" />
+    <ClCompile Include="EnnemiMarioHologramme.cpp" />
+    <ClCompile Include="EnnemiMariotapette.cpp" />
+    <ClCompile Include="EnnemiPacman.cpp" />
+    <ClCompile Include="EnnemiPic.cpp" />
+    <ClCompile Include="EnnemiPikachu.cpp" />
+    <ClCompile Include="EnnemiPikashuHeros.cpp" />
+    <ClCompile Include="EnnemiPoid.cpp" />
+    <ClCompile Include="EnnemiPrincesse.cpp" />
+    <ClCompile Include="EnnemiPrincesseguard.cpp" />
+    <ClCompile Include="EnnemiRayman.cpp" />
+    <ClCompile Include="EnnemiSmurf.cpp" />
+    <ClCompile Include="EnnemiSmurfCigogne.cpp" />
+    <ClCompile Include="EnnemiSmurfCostaud.cpp" />
+    <ClCompile Include="EnnemiSmurfette.cpp" />
+    <ClCompile Include="EnnemiSmurfFarceur.cpp" />
+    <ClCompile Include="EnnemiSmurfGourmand.cpp" />
+    <ClCompile Include="EnnemiSmurfPaysan.cpp" />
+    <ClCompile Include="EnnemiSmurfSauvage.cpp" />
+    <ClCompile Include="EnnemiSnorkInBlack.cpp" />
+    <ClCompile Include="EnnemiSnorkInBlackBoss.cpp" />
+    <ClCompile Include="EnnemiSnorkyBase2.cpp" />
+    <ClCompile Include="ennemiSnorkyGouverneur.cpp" />
+    <ClCompile Include="EnnemiSnorkyHyporider.cpp" />
+    <ClCompile Include="EnnemiSnorkyMage.cpp" />
+    <ClCompile Include="EnnemiSonic.cpp" />
+    <ClCompile Include="EnnemiSorkyBase1.cpp" />
+    <ClCompile Include="EnnemiTails.cpp" />
+    <ClCompile Include="EnnemiTailsvolant.cpp" />
+    <ClCompile Include="EnnemiTeteRayman.cpp" />
+    <ClCompile Include="EnnemiToad.cpp" />
+    <ClCompile Include="EnnemiVoiturePacman.cpp" />
+    <ClCompile Include="EnnemiYoshi.cpp" />
+    <ClCompile Include="EnnemiYoshiDCA.cpp" />
+    <ClCompile Include="EventBonus.cpp" />
+    <ClCompile Include="EventEnnemi.cpp" />
+    <ClCompile Include="EventFondAnime.cpp" />
+    <ClCompile Include="EventGenEnnemi.cpp" />
+    <ClCompile Include="EventLock.cpp" />
+    <ClCompile Include="EventMiFond.cpp" />
+    <ClCompile Include="EventMusic.cpp" />
+    <ClCompile Include="EventPremierPlan.cpp" />
+    <ClCompile Include="EventVehicule.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="FondAssembleur.cpp" />
+    <ClCompile Include="FondBattleCruiser.cpp" />
+    <ClCompile Include="FondBombe.cpp" />
+    <ClCompile Include="FondBossventilo.cpp" />
+    <ClCompile Include="FondCube.cpp" />
+    <ClCompile Include="FondEcrancamera.cpp" />
+    <ClCompile Include="FondElectronics.cpp" />
+    <ClCompile Include="FondEtoile.cpp" />
+    <ClCompile Include="FondLampe2.cpp" />
+    <ClCompile Include="FondLCD.cpp" />
+    <ClCompile Include="FondLumiere.cpp" />
+    <ClCompile Include="FondMonolite.cpp" />
+    <ClCompile Include="FondPiece.cpp" />
+    <ClCompile Include="FondPoissons.cpp" />
+    <ClCompile Include="FondPokeAscenceur.cpp" />
+    <ClCompile Include="FondPokeAscenseur2.cpp" />
+    <ClCompile Include="FondPokeCaisse.cpp" />
+    <ClCompile Include="FondPokeCaissePlateforme.cpp" />
+    <ClCompile Include="FondPokeCaissePlateforme2.cpp" />
+    <ClCompile Include="FondPokeCaisseTombante.cpp" />
+    <ClCompile Include="FondPokeCiel.cpp" />
+    <ClCompile Include="FondPokeInterupteur.cpp" />
+    <ClCompile Include="FondPokeLevel2.cpp" />
+    <ClCompile Include="FondPokeLevel3.cpp" />
+    <ClCompile Include="FondRing.cpp" />
+    <ClCompile Include="FondRocher1.cpp" />
+    <ClCompile Include="fondRocher2.cpp" />
+    <ClCompile Include="FondRocherHyperspace.cpp" />
+    <ClCompile Include="FondSnorkSas.cpp" />
+    <ClCompile Include="FondTircruiser.cpp" />
+    <ClCompile Include="FondWorldmap.cpp" />
+    <ClCompile Include="Fonte.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GenBonus.cpp" />
+    <ClCompile Include="GenEnnemi.cpp" />
+    <ClCompile Include="GenEnnemiTMP.cpp" />
+    <ClCompile Include="Giclure.cpp" />
+    <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="GoreGiclure.cpp" />
+    <ClCompile Include="HiScores.cpp" />
+    <ClCompile Include="Input.cpp" />
+    <ClCompile Include="KeyTranslator.cpp" />
+    <ClCompile Include="LGXpacker.cpp" />
+    <ClCompile Include="LTimer.cpp" />
+    <ClCompile Include="MakeBonus.cpp" />
+    <ClCompile Include="MenuGame.cpp" />
+    <ClCompile Include="MenuMain.cpp" />
+    <ClCompile Include="MeteoNeige.cpp" />
+    <ClCompile Include="MeteoPluie.cpp" />
+    <ClCompile Include="MoceauxTeteSnorky.cpp" />
+    <ClCompile Include="MorceauRayman.cpp" />
+    <ClCompile Include="MorceauSonicRing.cpp" />
+    <ClCompile Include="MorceauTeteRayman.cpp" />
+    <ClCompile Include="MusicBank.cpp" />
+    <ClCompile Include="Personnage.cpp" />
+    <ClCompile Include="Picture.cpp" />
+    <ClCompile Include="PictureBank.cpp" />
+    <ClCompile Include="Restore.cpp" />
+    <ClCompile Include="RPGPlayer.cpp" />
+    <ClCompile Include="Scroll.cpp" />
+    <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="SoundBank.cpp" />
+    <ClCompile Include="SoundBankBB.cpp" />
+    <ClCompile Include="Sprite.cpp" />
+    <ClCompile Include="SuperListe.cpp" />
+    <ClCompile Include="TexteCool.cpp" />
+    <ClCompile Include="TirBB.cpp" />
+    <ClCompile Include="TirBBFusil.cpp" />
+    <ClCompile Include="TirBBLaser.cpp" />
+    <ClCompile Include="TirBBLF.cpp" />
+    <ClCompile Include="TirBBM16.cpp" />
+    <ClCompile Include="TirBBPM.cpp" />
+    <ClCompile Include="TirBBVache.cpp" />
+    <ClCompile Include="TirBouleChaman.cpp" />
+    <ClCompile Include="TirCadeau.cpp" />
+    <ClCompile Include="TirCarapace.cpp" />
+    <ClCompile Include="TirCoeurBisou.cpp" />
+    <ClCompile Include="TirColonneChaman.cpp" />
+    <ClCompile Include="TirCruiserLaser.cpp" />
+    <ClCompile Include="TirDeboucheChiote.cpp" />
+    <ClCompile Include="TirEpeeLaser.cpp" />
+    <ClCompile Include="TirEpine.cpp" />
+    <ClCompile Include="TirGateau.cpp" />
+    <ClCompile Include="TirMarioFireball.cpp" />
+    <ClCompile Include="TirMarioFireballVertical.cpp" />
+    <ClCompile Include="TirNuage.cpp" />
+    <ClCompile Include="TirRaymanPoing.cpp" />
+    <ClCompile Include="TirSmurfSauvage.cpp" />
+    <ClCompile Include="TirSnorkyBase.cpp" />
+    <ClCompile Include="TirSnorkyBase2.cpp" />
+    <ClCompile Include="TirSnorkyGouverneur.cpp" />
+    <ClCompile Include="TirSnorkyMage.cpp" />
+    <ClCompile Include="TirSoniceclair.cpp" />
+    <ClCompile Include="TirTornade.cpp" />
+    <ClCompile Include="TxtData.cpp" />
+    <ClCompile Include="Vehicule.cpp" />
+    <ClCompile Include="VehiculeCigogne.cpp" />
+    <ClCompile Include="VehiculeHypo.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

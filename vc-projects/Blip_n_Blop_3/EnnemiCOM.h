@@ -2,9 +2,10 @@
 #ifndef _EnnemiCOM_
 #define _EnnemiCOM_
 
-#include "Ennemi.h"
+#include "enemy.h"
 
-class EnnemiCOM : public Ennemi {
+class EnnemiCOM : public Ennemi
+{
 public:
 	EnnemiCOM();
 	virtual void update();

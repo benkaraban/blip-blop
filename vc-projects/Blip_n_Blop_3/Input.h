@@ -1,10 +1,10 @@
 /******************************************************************
 *
-*
+* 
 *		----------------
 *		  Input.h
 *		----------------
-*
+*			
 *		Classe Input
 *
 *
@@ -49,11 +49,12 @@
 //		Définition de la classe Input
 //-----------------------------------------------------------------------------
 
-class Input {
+class Input
+{
 private:
-	IDirectInput7 *			dinput;
-	IDirectInputDevice7 *	dikeyb;
-	IDirectInputDevice7 *	dijoy[MAX_JOY];
+	IDirectInput8 *			dinput;
+	IDirectInputDevice8 *	dikeyb;
+	IDirectInputDevice8 *	dijoy[MAX_JOY];
 
 	int				n_joy;
 	DIJOYSTATE		js[MAX_JOY];
@@ -64,31 +65,25 @@ public:
 	Input();
 	~Input();
 
-	int scanKey(unsigned int k) const;
+	int scanKey( unsigned int k) const;
 
-	inline int scanAlias(int a) const {
-		return (scanKey(aliastab[a]));
-	};
-	inline unsigned int getAlias(int n) const {
-		return aliastab[n];
-	};
+	inline int scanAlias(int a) const { return (scanKey(aliastab[a])); };
+	inline unsigned int getAlias(int n) const { return aliastab[n]; };
 
-	IDirectInput * di() const;
-	int		nbJoy() const {
-		return n_joy;
-	};
-	bool	open(HWND wh, HINSTANCE inst, int flags = BINPUT_KEYB | BINPUT_JOY, int cl = DISCL_NONEXCLUSIVE | DISCL_FOREGROUND | DISCL_NOWINKEY);
+	IDirectInput8 * di() const;
+	int		nbJoy() const { return n_joy; };
+	bool	open(HWND wh, HINSTANCE inst, int flags = BINPUT_KEYB|BINPUT_JOY, int cl = DISCL_NONEXCLUSIVE | DISCL_FOREGROUND | DISCL_NOWINKEY);
 	void	setAlias(int a, unsigned int val);
-
+	
 	unsigned int		waitKey();
-
+	
 	void	waitClean();
 	void	update();
 	void	close();
 	bool	anyKeyPressed();
 	bool	reAcquire();
 
-	friend BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* pContext);
+	friend BOOL CALLBACK EnumJoysticksCallback( const DIDEVICEINSTANCE* pdidInstance, VOID* pContext );
 };
 
 //-----------------------------------------------------------------------------
@@ -96,7 +91,7 @@ public:
 //-----------------------------------------------------------------------------
 
 #ifndef BENINPUT_CPP_FILE
-extern Input		in;
+	extern Input		in;
 #endif
 
 #endif

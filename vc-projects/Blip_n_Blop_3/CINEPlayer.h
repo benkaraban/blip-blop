@@ -3,10 +3,12 @@
 #define _CINEPlayer_
 
 #include <fstream>
-#include "MusicBank.h"
-#include "PictureBank.h"
-#include "Fonte.h"
-#include "AlphaBlend.h"
+#include "musicbank.h"
+#include "Picturebank.h"
+#include "fonte.h"
+#include "alphablend.h"
+
+using namespace std;
 
 #define OBJ_SPRITE	0
 #define OBJ_SCROLL	1
@@ -20,14 +22,15 @@
 #define CMD_SIZE	20
 
 
-struct OBJECT {
+struct OBJECT
+{
 	int			id;
 	bool		show;
 
 	Picture *	pic;
 	int			x;
 	int			y;
-
+	
 	int			dx;
 	int			dy;
 	int			time_mov;
@@ -51,7 +54,8 @@ struct OBJECT {
 };
 
 
-class CINEPlayer {
+class CINEPlayer
+{
 protected:
 	int		tupdate;
 	int		tdraw;
@@ -60,15 +64,15 @@ protected:
 
 	IDirectDrawSurface7 * first_surf;
 	IDirectDrawSurface7 * back_surf;
-	/*
-		IDirectDrawSurface7 * surf1;
-		IDirectDrawSurface7 * surf2;
-	*/
+/*
+	IDirectDrawSurface7 * surf1;
+	IDirectDrawSurface7 * surf2;
+*/
 	RGBFORMAT		rgb;
 
 	ifstream		fic;
-	char			buffer[BUFFER_SIZE + 1];
-	char			buffer2[BUFFER_SIZE + 1];
+	char			buffer[BUFFER_SIZE+1];
+	char			buffer2[BUFFER_SIZE+1];
 
 	PictureBank		pbk;
 	MusicBank		mbk;
@@ -94,7 +98,7 @@ protected:
 	int		delta_alpha;
 	int		color[2];
 	int		clip_color[2];
-
+	
 	int		delta_vol;
 	int		back_vol;
 
@@ -105,22 +109,22 @@ protected:
 	void initPlayer();
 	void closePlayer();
 	bool error();
-	bool error(const char * er);
+	bool error( const char * er);
 
 	// Execute toutes les commandes jusqu'à un affichage
 	//
 	void updateState();
 
 	void drawScene();
-	void drawSprite(int n);
-	void drawText(int n);
+	void drawSprite( int n);
+	void drawText( int n);
 	void renderLoop();
 	void updateScene();
 
 public:
 
-	void loadPBK(const char * f);
-	bool playScene(const char * file, IDirectDrawSurface7 * s1, IDirectDrawSurface7 * s2);
+	void loadPBK( const char * f);
+	bool playScene( const char * file, IDirectDrawSurface7 * s1, IDirectDrawSurface7 * s2);
 
 };
 

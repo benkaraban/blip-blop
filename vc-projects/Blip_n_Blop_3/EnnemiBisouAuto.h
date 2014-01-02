@@ -2,9 +2,10 @@
 #ifndef _EnnemiBisouAuto_
 #define _EnnemiBisouAuto_
 
-#include "ennemi.h"
+#include "enemy.h"
 
-class EnnemiBisouAuto : public Ennemi {
+class EnnemiBisouAuto : public Ennemi
+{
 public:
 
 	Sprite*	cible;
