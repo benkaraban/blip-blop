@@ -37,7 +37,8 @@
 // Desc: Initialise tout à 0
 //-----------------------------------------------------------------------------
 
-Picture::Picture() : surf(NULL), xspot(0), yspot(0), xsize(0), ysize(0) {
+Picture::Picture() : surf(NULL), xspot(0), yspot(0), xsize(0), ysize(0)
+{
 }
 
 //-----------------------------------------------------------------------------
@@ -46,7 +47,8 @@ Picture::Picture() : surf(NULL), xspot(0), yspot(0), xsize(0), ysize(0) {
 //		 ces deux valeurs à 'xsize' et 'ysize'
 //-----------------------------------------------------------------------------
 
-void Picture::FindSize() {
+void Picture::FindSize()
+{
 	DDSURFACEDESC2	ddsd;
 
 	ddsd.dwSize = sizeof(ddsd);
@@ -66,7 +68,8 @@ void Picture::FindSize() {
 // Desc: Règle la couleur transparente de l'image
 //-----------------------------------------------------------------------------
 
-void Picture::SetColorKey(COLORREF rgb) {
+void Picture::SetColorKey(COLORREF rgb)
+{
 	if (surf == NULL) {
 		debug << "Picture::SetColorKey() - surface à NULL\n";
 		return;
@@ -81,7 +84,8 @@ void Picture::SetColorKey(COLORREF rgb) {
 // Desc: Règle les coordonnée du point chaud
 //-----------------------------------------------------------------------------
 
-void Picture::SetSpot(int x, int y) {
+void Picture::SetSpot(int x, int y)
+{
 	xspot = x;
 	yspot = y;
 }
@@ -92,7 +96,8 @@ void Picture::SetSpot(int x, int y) {
 // Desc: Assigne une surface et change les attributs de taille en conséquence
 //-----------------------------------------------------------------------------
 
-void Picture::SetSurface(IDirectDrawSurface7 * s) {
+void Picture::SetSurface(IDirectDrawSurface7 * s)
+{
 	surf = s;
 	FindSize();
 }
@@ -102,7 +107,8 @@ void Picture::SetSurface(IDirectDrawSurface7 * s) {
 // Desc: Charge une image BMP
 //-----------------------------------------------------------------------------
 
-void Picture::LoadBMP(char * file) {
+void Picture::LoadBMP(char * file)
+{
 	surf = DDLoadBMP(file);
 	FindSize();
 	xspot = 0;
@@ -116,7 +122,8 @@ void Picture::LoadBMP(char * file) {
 //		 en mémoire VIDEO / SYSTEM / BEST
 //-----------------------------------------------------------------------------
 
-void Picture::LoadBMP(char * file, int flags) {
+void Picture::LoadBMP(char * file, int flags)
+{
 	surf = DDLoadBMP(file, flags);
 	FindSize();
 	xspot = 0;
@@ -129,7 +136,8 @@ void Picture::LoadBMP(char * file, int flags) {
 // Desc: Charge une image BMP et règle le point chaud
 //-----------------------------------------------------------------------------
 
-void Picture::LoadBMP(char * file, int xs, int ys) {
+void Picture::LoadBMP(char * file, int xs, int ys)
+{
 	surf = DDLoadBMP(file);
 	FindSize();
 	xspot = xs;
@@ -143,7 +151,8 @@ void Picture::LoadBMP(char * file, int xs, int ys) {
 //		 utilise les mêmes flags que la mèthode surdéfinie ci-dessus
 //-----------------------------------------------------------------------------
 
-void Picture::LoadBMP(char * file, int xs, int ys, int flags) {
+void Picture::LoadBMP(char * file, int xs, int ys, int flags)
+{
 	surf = DDLoadBMP(file, flags);
 	FindSize();
 	xspot = xs;
@@ -160,7 +169,8 @@ void Picture::LoadBMP(char * file, int xs, int ys, int flags) {
 //		 de l'écran (Blt n'affiche rien dans ce cas).
 //-----------------------------------------------------------------------------
 
-void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const {
+void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const
+{
 	x -= xspot;
 	y -= yspot;
 
@@ -195,7 +205,8 @@ void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const {
 //		 de l'écran (Blt n'affiche rien dans ce cas).
 //-----------------------------------------------------------------------------
 
-void Picture::PasteTo(IDirectDrawSurface7 * s, int x, int y) const {
+void Picture::PasteTo(IDirectDrawSurface7 * s, int x, int y) const
+{
 	x -= xspot;
 	y -= yspot;
 
@@ -227,7 +238,8 @@ void Picture::PasteTo(IDirectDrawSurface7 * s, int x, int y) const {
 // Desc: Ferme le tout (en particulier la surface)
 //-----------------------------------------------------------------------------
 
-void Picture::Close() {
+void Picture::Close()
+{
 	if (surf != NULL)
 		surf->Release();
 	surf = NULL;
@@ -238,7 +250,8 @@ void Picture::Close() {
 // Desc: Appelle Close()
 //-----------------------------------------------------------------------------
 
-Picture::~Picture() {
+Picture::~Picture()
+{
 	Close();
 }
 
@@ -248,7 +261,8 @@ Picture::~Picture() {
 //		 couleur 'rgb', et renvoit la taille de la PBK
 //-----------------------------------------------------------------------------
 
-int loadPBK(char * fic, Picture * & p, int rgb) {
+int loadPBK(char * fic, Picture * & p, int rgb)
+{
 	ifstream	f;
 	int			nbpic;
 
@@ -299,7 +313,8 @@ int loadPBK(char * fic, Picture * & p, int rgb) {
 // Desc: Ferme une PBK (il faut préciser la taille)
 //-----------------------------------------------------------------------------
 
-void closePBK(Picture * & p, int t) {
+void closePBK(Picture * & p, int t)
+{
 	if (p != NULL) {
 		for (int i = 0; i < t; i++)
 			p[i].Close();

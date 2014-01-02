@@ -18,9 +18,11 @@
 
 #include "sprite.h"
 
-class FondEcranneige : public Sprite {
+class FondEcranneige : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 4;
 

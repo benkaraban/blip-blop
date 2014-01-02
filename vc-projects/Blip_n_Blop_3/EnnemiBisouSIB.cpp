@@ -9,7 +9,8 @@
 
 static const int anim_cours [] = { 640, 641, 642, 641 };
 
-EnnemiBisouSIB::EnnemiBisouSIB() {
+EnnemiBisouSIB::EnnemiBisouSIB()
+{
 	if (game_flag[FLAG_USER1] != 0) {
 		etat = ETAT_ATTENDS_MAL;
 		game_flag[FLAG_USER1] = 0;
@@ -22,7 +23,8 @@ EnnemiBisouSIB::EnnemiBisouSIB() {
 }
 
 
-void EnnemiBisouSIB::update() {
+void EnnemiBisouSIB::update()
+{
 	tombe();
 
 	switch (etat) {
@@ -76,7 +78,8 @@ void EnnemiBisouSIB::update() {
 }
 
 
-void EnnemiBisouSIB::estTouche(Tir * tir) {
+void EnnemiBisouSIB::estTouche(Tir * tir)
+{
 	if (++encaisse > 300) {
 		if (etat == ETAT_ATTENDS_MAL)
 			etat = ETAT_RENTRE_MAL;

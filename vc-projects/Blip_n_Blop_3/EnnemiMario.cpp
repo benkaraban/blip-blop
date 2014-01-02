@@ -9,12 +9,14 @@ const int anim_mario_marche_droite[] = { 0, 1, 2, 1};
 const int anim_mario_marche_gauche[] = { 3, 4, 5, 4};
 const int recul_mario[] = { 4, 3, 3, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
-EnnemiMario::EnnemiMario(): speed(1), etape_speed(0), attack_delay(50 + rand() % 50), wait_for_attack(0), fireball(0), hologramme(1), nb_pluie(0) {
+EnnemiMario::EnnemiMario(): speed(1), etape_speed(0), attack_delay(50 + rand() % 50), wait_for_attack(0), fireball(0), hologramme(1), nb_pluie(0)
+{
 	pv = 50000;
 	pic = pbk_ennemis[3];
 }
 
-void EnnemiMario::update() {
+void EnnemiMario::update()
+{
 	xmin = offset + 40;
 
 	if (game_flag[0] == 0) {
@@ -113,7 +115,8 @@ void EnnemiMario::update() {
 	//updateADetruire();
 }
 
-void EnnemiMario::onAvance() {
+void EnnemiMario::onAvance()
+{
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
 	if (plat(x, y) == 0) {
@@ -344,11 +347,13 @@ void EnnemiMario::onAvance() {
 	colFromPic();
 }
 
-void EnnemiMario::onMeure() {
+void EnnemiMario::onMeure()
+{
 	game_flag[0] = 7;
 }
 
-void EnnemiMario::onCharge() {
+void EnnemiMario::onCharge()
+{
 	/*speed=MARIO_CHARGE_SPEED;
 	if ( x - speed < xmin || mur_opaque( x-speed, y))
 	{
@@ -402,7 +407,8 @@ void EnnemiMario::onCharge() {
 	colFromPic();*/
 }
 
-void EnnemiMario::onSaute() {
+void EnnemiMario::onSaute()
+{
 	int		yp;
 
 	if (dy < 0) {
@@ -453,7 +459,8 @@ void EnnemiMario::onSaute() {
 
 }
 
-void EnnemiMario::onCarbonise() {
+void EnnemiMario::onCarbonise()
+{
 	a_detruire = true;
 	/*ss_etape += 1;
 	ss_etape %= 5;
@@ -472,7 +479,8 @@ void EnnemiMario::onCarbonise() {
 	}*/
 }
 
-void EnnemiMario::affiche() {
+void EnnemiMario::affiche()
+{
 
 
 	Sprite::affiche();
@@ -486,7 +494,8 @@ void EnnemiMario::affiche() {
 	}
 }
 
-void EnnemiMario::onTirehorizontale() {
+void EnnemiMario::onTirehorizontale()
+{
 	if (dir == SENS_DROITE)
 		pic = pbk_ennemis[10];
 
@@ -560,7 +569,8 @@ void EnnemiMario::onTirehorizontale() {
 	colFromPic();
 }
 
-void EnnemiMario::onTireverticale() {
+void EnnemiMario::onTireverticale()
+{
 	if (dir == SENS_DROITE)
 		pic = pbk_ennemis[10];
 
@@ -600,7 +610,8 @@ void EnnemiMario::onTireverticale() {
 	colFromPic();
 }
 
-void EnnemiMario::onTirecross() {
+void EnnemiMario::onTirecross()
+{
 	switch (attack_phase) {
 		case 0:
 			onTirehorizontale();
@@ -630,7 +641,8 @@ void EnnemiMario::onTirecross() {
 }
 
 
-void EnnemiMario::onRafalehorizontale() {
+void EnnemiMario::onRafalehorizontale()
+{
 	if (dir == SENS_DROITE) {
 		pic = pbk_ennemis[10];
 	} else {
@@ -670,7 +682,8 @@ void EnnemiMario::onRafalehorizontale() {
 	colFromPic();
 }
 
-void EnnemiMario::onRafalehorizontaledouble() {
+void EnnemiMario::onRafalehorizontaledouble()
+{
 	switch (attack_phase) {
 		case 0:
 			if (y + dy < 100) {
@@ -697,7 +710,8 @@ void EnnemiMario::onRafalehorizontaledouble() {
 	}
 }
 
-void EnnemiMario::onRafalehorizontaleconstante() {
+void EnnemiMario::onRafalehorizontaleconstante()
+{
 	onTirehorizontale();
 	if ((nb_pluie >	attack_phase) && (attack_etape > 50)) {
 		attack_phase++;
@@ -708,7 +722,8 @@ void EnnemiMario::onRafalehorizontaleconstante() {
 	}
 }
 
-void EnnemiMario::onRafalehorizontalechercheuse() {
+void EnnemiMario::onRafalehorizontalechercheuse()
+{
 	onTirehorizontale();
 	if ((nb_pluie >	attack_phase) && (attack_etape > 50)) {
 		if ((tete_turc != NULL) && ((tete_turc->x > x && dir == SENS_DROITE) || (tete_turc->x < x && dir == SENS_GAUCHE))) {
@@ -724,7 +739,8 @@ void EnnemiMario::onRafalehorizontalechercheuse() {
 	}
 }
 
-void EnnemiMario::onRafaleverticale() {
+void EnnemiMario::onRafaleverticale()
+{
 	if (dir == SENS_DROITE) {
 		pic = pbk_ennemis[10];
 	} else {
@@ -783,7 +799,8 @@ void EnnemiMario::onRafaleverticale() {
 	colFromPic();
 }
 
-void EnnemiMario::onRafaleverticalechercheuse() {
+void EnnemiMario::onRafaleverticalechercheuse()
+{
 	onTireverticale();
 	if ((nb_pluie > attack_phase) && (attack_etape == 40) && (tete_turc != NULL)) {
 		attack_etape = 10;
@@ -794,7 +811,8 @@ void EnnemiMario::onRafaleverticalechercheuse() {
 	}
 }
 
-void EnnemiMario::onRafaleverticaleconstante() {
+void EnnemiMario::onRafaleverticaleconstante()
+{
 	onTireverticale();
 	if ((nb_pluie > attack_phase) && (attack_etape == 40)) {
 		attack_etape = 25;
@@ -804,7 +822,8 @@ void EnnemiMario::onRafaleverticaleconstante() {
 	}
 }
 
-void EnnemiMario::onRafaleverticaledouble() {
+void EnnemiMario::onRafaleverticaledouble()
+{
 	switch (attack_phase) {
 		case 0:
 			if ((dir == SENS_DROITE) && (x + (attack_etape + 1) * 100 + 20 > offset + 620)) {
@@ -827,7 +846,8 @@ void EnnemiMario::onRafaleverticaledouble() {
 	}
 }
 
-void EnnemiMario::onRafaleverticaleinverser() {
+void EnnemiMario::onRafaleverticaleinverser()
+{
 	if (dir == SENS_DROITE) {
 		pic = pbk_ennemis[10];
 	} else {
@@ -886,7 +906,8 @@ void EnnemiMario::onRafaleverticaleinverser() {
 	colFromPic();
 }
 
-void EnnemiMario::onRafalecrosschercheuse() {
+void EnnemiMario::onRafalecrosschercheuse()
+{
 	if (attack_phase % 2 == 0) {
 		onTireverticale();
 		if ((nb_pluie > attack_phase) && (attack_etape == 40) && (tete_turc != NULL)) {
@@ -913,7 +934,8 @@ void EnnemiMario::onRafalecrosschercheuse() {
 	}
 }
 
-void EnnemiMario::onRafalecross() {
+void EnnemiMario::onRafalecross()
+{
 	if (attack_phase % 2 == 0) {
 		onTireverticale();
 		if ((nb_pluie > attack_phase) && (attack_etape == 40)) {
@@ -935,7 +957,8 @@ void EnnemiMario::onRafalecross() {
 	}
 }
 
-void EnnemiMario::onRafaleberserker() {
+void EnnemiMario::onRafaleberserker()
+{
 	switch (attack_phase) {
 		case 0:
 			if (dir == SENS_DROITE) {
@@ -1042,7 +1065,8 @@ void EnnemiMario::onRafaleberserker() {
 	}
 }
 
-void EnnemiMario::onPluiedefeu() {
+void EnnemiMario::onPluiedefeu()
+{
 
 	if (attack_phase == 0) {
 		if (dir == SENS_DROITE) {
@@ -1109,7 +1133,8 @@ void EnnemiMario::onPluiedefeu() {
 	}
 }
 
-inline void EnnemiMario::boule_de_feu(int vitesse) {
+inline void EnnemiMario::boule_de_feu(int vitesse)
+{
 	if (dir == SENS_DROITE) {
 		TirMarioFireball *	tir = new TirMarioFireball(vitesse);
 
@@ -1129,7 +1154,8 @@ inline void EnnemiMario::boule_de_feu(int vitesse) {
 	}
 }
 
-void EnnemiMario::tombe_mario() {
+void EnnemiMario::tombe_mario()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_MARIO_GRAVITE;
 
@@ -1147,7 +1173,8 @@ void EnnemiMario::tombe_mario() {
 		y += dy;
 }
 
-void EnnemiMario::estTouche(Tir * tir) {
+void EnnemiMario::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

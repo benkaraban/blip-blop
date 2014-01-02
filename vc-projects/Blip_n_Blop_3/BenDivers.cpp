@@ -27,7 +27,8 @@ bool want_to_kill_app = false;
 
 //-----------------------------------------------------------------------------
 
-int manageMsg() {
+int manageMsg()
+{
 	MSG		msg;
 
 	if (PeekMessage(&msg, NULL, 0, 0, PM_NOREMOVE)) {
@@ -42,7 +43,8 @@ int manageMsg() {
 
 //-----------------------------------------------------------------------------
 
-void wait(int t) {
+void wait(int t)
+{
 	unsigned int i = GetTickCount();
 
 	while (GetTickCount() < (i + t));

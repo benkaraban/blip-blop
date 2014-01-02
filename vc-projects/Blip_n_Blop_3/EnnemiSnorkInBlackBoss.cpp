@@ -22,7 +22,8 @@ const int anim_snork_in_black_boss_saute_gauche[] = { 417, 418, 419, 418};
 const int snork_in_black_position_x[] = { 5904, 6351, 5831, 6319}; //144,591,71,559
 const int snork_in_black_position_y[] = { 175, 189, 342, 328};
 
-EnnemiSnorkInBlackBoss::EnnemiSnorkInBlackBoss(): position(1), type_attack(0), attack(false), x_shark(5604), y_shark(100), shark(false), saut(false) {
+EnnemiSnorkInBlackBoss::EnnemiSnorkInBlackBoss(): position(1), type_attack(0), attack(false), x_shark(5604), y_shark(100), shark(false), saut(false)
+{
 	pv = 15000;
 	dy = 0;
 	dir = SENS_GAUCHE;
@@ -30,7 +31,8 @@ EnnemiSnorkInBlackBoss::EnnemiSnorkInBlackBoss(): position(1), type_attack(0), a
 }
 
 
-void EnnemiSnorkInBlackBoss::update() {
+void EnnemiSnorkInBlackBoss::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -62,7 +64,8 @@ void EnnemiSnorkInBlackBoss::update() {
 
 }
 
-void EnnemiSnorkInBlackBoss::onAvance() {
+void EnnemiSnorkInBlackBoss::onAvance()
+{
 	if (game_flag[0] == 1) {
 		if (ss_etape == 0 && etape == 0) {
 			sbk_niveau.play(0);
@@ -287,7 +290,8 @@ void EnnemiSnorkInBlackBoss::onAvance() {
 	colFromPic();
 }
 
-void EnnemiSnorkInBlackBoss::onTombe() {
+void EnnemiSnorkInBlackBoss::onTombe()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_GRAVITE;
 
@@ -406,7 +410,8 @@ void EnnemiSnorkInBlackBoss::onTombe() {
 	colFromPic();
 }
 
-void EnnemiSnorkInBlackBoss::onMeure() {
+void EnnemiSnorkInBlackBoss::onMeure()
+{
 	col_on = false;
 	if (game_flag[0] == 2 && !saut) {
 		int destination = 0;
@@ -564,7 +569,8 @@ void EnnemiSnorkInBlackBoss::onMeure() {
 	}
 }
 
-void EnnemiSnorkInBlackBoss::onTire() {
+void EnnemiSnorkInBlackBoss::onTire()
+{
 	if (type_attack == 0) {
 		ss_etape ++;
 		ss_etape %= 6;
@@ -834,7 +840,8 @@ void EnnemiSnorkInBlackBoss::onTire() {
 }
 
 
-void EnnemiSnorkInBlackBoss::estTouche(Tir * tir) {
+void EnnemiSnorkInBlackBoss::estTouche(Tir * tir)
+{
 	static const int dx_giclure_snorkbase1 [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_snorkbase1 [] = { -15, -15, -15, -15, -25, -15, -15, -15 };
 
@@ -843,7 +850,8 @@ void EnnemiSnorkInBlackBoss::estTouche(Tir * tir) {
 	gicle(tir, dx_giclure_snorkbase1, dy_giclure_snorkbase1);
 }
 
-void EnnemiSnorkInBlackBoss::affiche() {
+void EnnemiSnorkInBlackBoss::affiche()
+{
 	if (x_shark < 5904) {
 		Sprite::affiche();
 	}

@@ -36,14 +36,16 @@
 //		Constructeur
 //-----------------------------------------------------------------------------
 
-Sound::Sound() : sample(NULL), channel(-1) {
+Sound::Sound() : sample(NULL), channel(-1)
+{
 }
 
 //-----------------------------------------------------------------------------
 //		Constructeur
 //-----------------------------------------------------------------------------
 
-Sound::~Sound() {
+Sound::~Sound()
+{
 	close();
 }
 
@@ -54,7 +56,8 @@ Sound::~Sound() {
 //		 sa taille en mémoire !!!
 //-----------------------------------------------------------------------------
 
-bool Sound::load(const char * fic) {
+bool Sound::load(const char * fic)
+{
 	sample = FSOUND_Sample_Load(FSOUND_FREE, fic, FSOUND_LOOP_OFF, 0);
 
 	if (sample == NULL)
@@ -69,7 +72,8 @@ bool Sound::load(const char * fic) {
 //		 et son contenu copié en mémoire
 //-----------------------------------------------------------------------------
 
-bool Sound::loadFromMem(void * ptr, int taille) {
+bool Sound::loadFromMem(void * ptr, int taille)
+{
 	sample = FSOUND_Sample_Load(FSOUND_FREE, (char*)ptr, FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, taille);
 
 	if (sample == NULL) {
@@ -89,7 +93,8 @@ bool Sound::loadFromMem(void * ptr, int taille) {
 // Desc: Joue le son avec des drapeaux
 //-----------------------------------------------------------------------------
 
-void Sound::play(int flags) {
+void Sound::play(int flags)
+{
 	if (flags & SOUND_LOOP) {
 		FSOUND_Sample_SetLoopMode(sample, FSOUND_LOOP_NORMAL);
 
@@ -108,7 +113,8 @@ void Sound::play(int flags) {
 //		 en 100ième de décibels (conseil : utiliser les constantes)
 //-----------------------------------------------------------------------------
 
-void Sound::setVolume(int v) {
+void Sound::setVolume(int v)
+{
 }
 
 //-----------------------------------------------------------------------------
@@ -116,7 +122,8 @@ void Sound::setVolume(int v) {
 // Desc: Arrête le son. Il recommencera alors au début au prochain départ
 //-----------------------------------------------------------------------------
 
-void Sound::stop() {
+void Sound::stop()
+{
 	if (channel != -1) {
 		if (cpt_loop > 0) {
 			if (--cpt_loop == 0) {
@@ -135,7 +142,8 @@ void Sound::stop() {
 // Desc: Referme le tout
 //-----------------------------------------------------------------------------
 
-void Sound::close() {
+void Sound::close()
+{
 	FSOUND_Sample_Free(sample);
 }
 

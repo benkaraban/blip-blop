@@ -19,7 +19,8 @@
 
 #include "Event.h"
 
-class EventLock : public Event {
+class EventLock : public Event
+{
 public:
 
 	int		cond;

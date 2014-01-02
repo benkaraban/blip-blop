@@ -7,7 +7,8 @@ __int64		perfTimerFreq;
 __int64		perfTimerStart;
 float		perfTimerRes;
 
-void LInitTimer() {
+void LInitTimer()
+{
 	// We firstly try to use a performance timer. If no one is available,
 	// we'll just use the inaccurate GetTickCount
 	//
@@ -24,7 +25,8 @@ void LInitTimer() {
 }
 
 
-DWORD LGetTime() {
+DWORD LGetTime()
+{
 	// If we have a properly initialised performance timer, we use it
 	//
 	if (perfTimerOn) {

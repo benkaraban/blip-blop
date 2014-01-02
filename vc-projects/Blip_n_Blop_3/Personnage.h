@@ -51,7 +51,8 @@
 //		Définition de la classe Personnage
 //-----------------------------------------------------------------------------
 
-class Personnage : public Sprite {
+class Personnage : public Sprite
+{
 public:
 	int		pv;
 	int		etat;

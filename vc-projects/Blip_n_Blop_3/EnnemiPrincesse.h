@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiPrincesse.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 31 Janvier 2001
@@ -36,8 +36,8 @@ public:
 	virtual void update();
 	virtual void onAvance();
 	virtual void onMeure();
-	
-	virtual void estTouche( Tir * tir);
+
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

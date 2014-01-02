@@ -1,10 +1,12 @@
 
 #include "tirboulechaman.h"
 
-TirBouleChaman::TirBouleChaman() : ok(false), boom(false) {
+TirBouleChaman::TirBouleChaman() : ok(false), boom(false)
+{
 }
 
-void TirBouleChaman::update() {
+void TirBouleChaman::update()
+{
 	if (!boom) {
 		x += dx;
 		y += dy;

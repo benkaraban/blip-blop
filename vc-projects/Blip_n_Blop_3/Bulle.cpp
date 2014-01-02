@@ -2,10 +2,12 @@
 #include "benmaths.h"
 #include "bulle.h"
 
-Bulle::Bulle() : phi(0) {
+Bulle::Bulle() : phi(0)
+{
 }
 
-void Bulle::update() {
+void Bulle::update()
+{
 	phi += dphi;
 	phi %= 360;
 

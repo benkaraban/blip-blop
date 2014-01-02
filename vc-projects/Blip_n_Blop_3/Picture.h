@@ -41,7 +41,8 @@
 //		Définition de la classe Picture
 //-----------------------------------------------------------------------------
 
-class Picture {
+class Picture
+{
 private:
 	IDirectDrawSurface7 *	surf;	// Surface contenant l'image
 	int			xsize;				// Largeur de l'image
@@ -54,19 +55,24 @@ private:
 public:
 	Picture();
 
-	inline int xSize() const {
+	inline int xSize() const
+	{
 		return xsize;
 	};
-	inline int ySize() const {
+	inline int ySize() const
+	{
 		return ysize;
 	};
-	inline int xSpot() const {
+	inline int xSpot() const
+	{
 		return xspot;
 	};
-	inline int ySpot() const {
+	inline int ySpot() const
+	{
 		return yspot;
 	};
-	inline IDirectDrawSurface7 * Surf() const {
+	inline IDirectDrawSurface7 * Surf() const
+	{
 		return surf;
 	};
 

@@ -28,15 +28,18 @@
 //		Definition de la classe Blip
 //-----------------------------------------------------------------------------
 
-class Blip : public Couille {
+class Blip : public Couille
+{
 
 public:
-	Blip() {
+	Blip()
+	{
 		pbk_own = pbk_blip.getPix();
 		id_couille = ID_BLIP;
 	}
 
-	virtual void rearme() {
+	virtual void rearme()
+	{
 		id_arme = ID_PM;
 		ammo = 100;
 		latence_arme = 3;

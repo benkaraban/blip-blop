@@ -18,10 +18,12 @@
 #include "genbonus.h"
 #include "makebonus.h"
 
-GenBonus::GenBonus() : t(0), a_detruire(false) {
+GenBonus::GenBonus() : t(0), a_detruire(false)
+{
 }
 
-void GenBonus::update() {
+void GenBonus::update()
+{
 	if (list_bonus.taille() < 3) {
 		t += 1;
 		t %= periode;

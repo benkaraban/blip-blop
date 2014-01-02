@@ -20,7 +20,8 @@ int FondRing::etape_synchro = 0;
 int FondRing::ss_etape_synchro = 0;
 bool FondRing::synchro = false;
 
-void FondRing::update() {
+void FondRing::update()
+{
 	if (synchro != phase) {
 		synchro = phase;
 		ss_etape_synchro += 1;

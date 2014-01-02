@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		    Ennemi.h
 *		----------------
-*			
+*
 *		Classe mère de tous les ennemis
 *
 *
@@ -30,7 +30,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef ENNEMI_CPP
-	extern Personnage *	tete_turc;
+extern Personnage *	tete_turc;
 #endif
 
 //-----------------------------------------------------------------------------
@@ -45,22 +45,22 @@ public:
 	int		xmin;
 	int		blood;
 	int		tresor;
-	
+
 	virtual bool count()
 	{
 		return true;
 	};
 
-	virtual void estTouche( Tir * tir);
-	
+	virtual void estTouche(Tir * tir);
+
 	virtual int degats()
 	{
 		return 1;
 	};
 
-	virtual void gicle( const Tir * tir, const int * dxg, const int * dyg);
-	
-	void tirEnCloche( int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const;
+	virtual void gicle(const Tir * tir, const int * dxg, const int * dyg);
+
+	void tirEnCloche(int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const;
 };
 
 

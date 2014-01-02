@@ -18,12 +18,14 @@
 
 static int wait_no = 0;
 
-EnnemiLemmings::EnnemiLemmings() : suicide(false) {
+EnnemiLemmings::EnnemiLemmings() : suicide(false)
+{
 	pv = 100;
 }
 
 
-void EnnemiLemmings::update() {
+void EnnemiLemmings::update()
+{
 	if (blood != 0)
 		blood -= 1;
 
@@ -67,7 +69,8 @@ void EnnemiLemmings::update() {
 
 }
 
-void EnnemiLemmings::onAvance() {
+void EnnemiLemmings::onAvance()
+{
 
 	ss_etape += 1;
 	ss_etape %= 5;
@@ -100,7 +103,8 @@ void EnnemiLemmings::onAvance() {
 	colFromPic();
 }
 
-void EnnemiLemmings::onTombe() {
+void EnnemiLemmings::onTombe()
+{
 	tombe();
 
 	if (plat(x, y) != 0)
@@ -109,7 +113,8 @@ void EnnemiLemmings::onTombe() {
 	colFromPic();
 }
 
-void EnnemiLemmings::onMeure() {
+void EnnemiLemmings::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -145,7 +150,8 @@ void EnnemiLemmings::onMeure() {
 	}
 }
 
-void EnnemiLemmings::onCarbonise() {
+void EnnemiLemmings::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -162,7 +168,8 @@ void EnnemiLemmings::onCarbonise() {
 	}
 }
 
-void EnnemiLemmings::estTouche(Tir * tir) {
+void EnnemiLemmings::estTouche(Tir * tir)
+{
 	static const int dx_giclure_lem [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_lem [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 

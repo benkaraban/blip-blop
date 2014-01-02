@@ -12,14 +12,16 @@ const int anim_nabo_gauche[] = {166, 167};
 const int anim_transformation_droite[] = {75, 164};
 const int anim_transformation_gauche[] = {78, 166};
 
-EnnemiMariotapette::EnnemiMariotapette(): speed(1), etape_speed(0), attack_delay(50 + rand() % 250), wait_for_attack(0), aide_luigi(0), nabo(0), nabo_delay(0), encaissement(0) {
+EnnemiMariotapette::EnnemiMariotapette(): speed(1), etape_speed(0), attack_delay(50 + rand() % 250), wait_for_attack(0), aide_luigi(0), nabo(0), nabo_delay(0), encaissement(0)
+{
 	pv = 10000;
 	//pv = 1;
 	xmin = 1280;
 	pic = pbk_ennemis[78];
 }
 
-void EnnemiMariotapette::update() {
+void EnnemiMariotapette::update()
+{
 	if (game_flag[0] < 1) {
 		return;
 	}
@@ -51,7 +53,8 @@ void EnnemiMariotapette::update() {
 	//updateADetruire();
 }
 
-void EnnemiMariotapette::onAvance() {
+void EnnemiMariotapette::onAvance()
+{
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
 	if (plat(x, y) == 0) {
@@ -236,7 +239,8 @@ void EnnemiMariotapette::onAvance() {
 	colFromPic();
 }
 
-void EnnemiMariotapette::onMeure() {
+void EnnemiMariotapette::onMeure()
+{
 	if (!nabo) {
 		tombe();
 		nabo_delay ++;
@@ -306,7 +310,8 @@ void EnnemiMariotapette::onMeure() {
 	}
 }
 
-void EnnemiMariotapette::onCharge() {
+void EnnemiMariotapette::onCharge()
+{
 	speed = MARIO_CHARGE_SPEED;
 	if (x - speed < xmin || mur_opaque(x - speed, y)) {
 		dir = SENS_DROITE;
@@ -362,7 +367,8 @@ void EnnemiMariotapette::onCharge() {
 	colFromPic();
 }
 
-void EnnemiMariotapette::onSaute() {
+void EnnemiMariotapette::onSaute()
+{
 	int		yp;
 
 	if (dy < 0) {
@@ -484,7 +490,8 @@ void EnnemiMariotapette::onSaute() {
 
 }
 
-void EnnemiMariotapette::onCarbonise() {
+void EnnemiMariotapette::onCarbonise()
+{
 	a_detruire = true;
 	/*ss_etape += 1;
 	ss_etape %= 5;
@@ -503,7 +510,8 @@ void EnnemiMariotapette::onCarbonise() {
 	}*/
 }
 
-void EnnemiMariotapette::tombe_mario() {
+void EnnemiMariotapette::tombe_mario()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_MARIO_GRAVITE;
 
@@ -521,7 +529,8 @@ void EnnemiMariotapette::tombe_mario() {
 		y += dy;
 }
 
-void EnnemiMariotapette::estTouche(Tir * tir) {
+void EnnemiMariotapette::estTouche(Tir * tir)
+{
 	Sprite * s;
 
 	for (int i = 0; i < 4 ; i++) {

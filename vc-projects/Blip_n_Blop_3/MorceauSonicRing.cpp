@@ -18,11 +18,13 @@
 
 //implementation de la classe MorceauSonicRing
 
-MorceauSonicRing::MorceauSonicRing(int vx, int vy): dx(vx) {
+MorceauSonicRing::MorceauSonicRing(int vx, int vy): dx(vx)
+{
 	dy  = vy;
 }
 
-void MorceauSonicRing::update() {
+void MorceauSonicRing::update()
+{
 	x += dx;
 	tombe2();
 

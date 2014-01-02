@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    FondSnorkSas.cpp
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 18 Janvier 2001
@@ -20,7 +20,7 @@
 
 int FondSnorkSas1::etat = 0; // 0 pour etat du sas 1 ouvert , 1 pour fermé
 
-FondSnorkSas1::FondSnorkSas1():nb_joueur(0)
+FondSnorkSas1::FondSnorkSas1(): nb_joueur(0)
 {
 	etape = 0;
 	//pic = pbk_niveau[53];
@@ -28,37 +28,28 @@ FondSnorkSas1::FondSnorkSas1():nb_joueur(0)
 
 void FondSnorkSas1::update()
 {
-	if (!etat) // si le sas n'est pas fermé..
-	{
-		if ((tete_turc != NULL) && (tete_turc->x > 1400))
-		{
+	if (!etat) { // si le sas n'est pas fermé..
+		if ((tete_turc != NULL) && (tete_turc->x > 1400)) {
 			nb_joueur ++;
-			if (etape < 222)
-			{
-				if (nb_joueur >=2)
-				{
+			if (etape < 222) {
+				if (nb_joueur >= 2) {
 					etape += 2;
 				}
 				/*
 				else
 					il y en a peut etre un autre sous la porte..
 				*/
-			}
-			else
-			{
+			} else {
 				etat = 1; // Sas 1 fermé...
 			}
-		}
-		else
-		{
+		} else {
 			nb_joueur = 0;
 		}
 
-		
-		
-		
-		if (etape % 8 == 0)
-		{
+
+
+
+		if (etape % 8 == 0) {
 			murs_opaques [(y + etape) / 8][(x + 8) / 8] = true;
 			murs_opaques [(y + etape) / 8][(x + 16) / 8] = true;
 			murs_opaques [(y + etape) / 8][(x + 24) / 8] = true;
@@ -94,21 +85,19 @@ void FondSnorkSas1::affiche()
 	r.top		= 222 - etape;
 	r.left		= 0;
 
-	if ( x+53 > offset+640)
-		largeur = offset+640-x;
-	else if (x < offset)
-	{
+	if (x + 53 > offset + 640)
+		largeur = offset + 640 - x;
+	else if (x < offset) {
 		largeur = 53;
 		r.left = offset - x;
 		decalage = offset - x;
-	}
-	else
+	} else
 		largeur = 53;
 
 	r.right		= largeur;
 	r.bottom	= 222;
 
-	backSurface->BltFast( x-offset + decalage, y , surf, &r, DDBLTFAST_SRCCOLORKEY | DDBLTFAST_WAIT );
+	backSurface->BltFast(x - offset + decalage, y , surf, &r, DDBLTFAST_SRCCOLORKEY | DDBLTFAST_WAIT);
 }
 
 
@@ -120,20 +109,18 @@ FondSnorkSas2::FondSnorkSas2()
 void FondSnorkSas2::update()
 {
 	//si le sas 1 est verouillé...
-	if ((FondSnorkSas1::etat) && (etape > 0))
-	{	
+	if ((FondSnorkSas1::etat) && (etape > 0)) {
 		etape --;
 	}
 
 
-	if (etape % 8 == 0)
-	{
-		murs_opaques[(y + etape) / 8][(x + 8)/ 8] = false;
-		murs_opaques[(y + etape) / 8][(x + 16)/ 8] = false;
-		murs_opaques[(y + etape) / 8][(x + 24)/ 8] = false;
-		murs_opaques[(y + etape) / 8][(x + 32)/ 8] = false;
-		murs_opaques[(y + etape) / 8][(x + 40)/ 8] = false;
-		murs_opaques[(y + etape) / 8][(x + 48)/ 8] = false;
+	if (etape % 8 == 0) {
+		murs_opaques[(y + etape) / 8][(x + 8) / 8] = false;
+		murs_opaques[(y + etape) / 8][(x + 16) / 8] = false;
+		murs_opaques[(y + etape) / 8][(x + 24) / 8] = false;
+		murs_opaques[(y + etape) / 8][(x + 32) / 8] = false;
+		murs_opaques[(y + etape) / 8][(x + 40) / 8] = false;
+		murs_opaques[(y + etape) / 8][(x + 48) / 8] = false;
 	}
 }
 
@@ -155,19 +142,17 @@ void FondSnorkSas2::affiche()
 	r.top		= 222 - etape;
 	r.left		= 0;
 
-	if ( x+53 > offset+640)
-		largeur = offset+640-x;
-	else if (x < offset)
-	{
+	if (x + 53 > offset + 640)
+		largeur = offset + 640 - x;
+	else if (x < offset) {
 		largeur = 53;
 		r.left = offset - x;
 		decalage = offset - x;
-	}
-	else
+	} else
 		largeur = 53;
 
 	r.right		= largeur;
 	r.bottom	= 222;
 
-	backSurface->BltFast( x-offset + decalage, y , surf, &r, DDBLTFAST_SRCCOLORKEY | DDBLTFAST_WAIT );
+	backSurface->BltFast(x - offset + decalage, y , surf, &r, DDBLTFAST_SRCCOLORKEY | DDBLTFAST_WAIT);
 }

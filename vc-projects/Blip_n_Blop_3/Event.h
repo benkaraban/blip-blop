@@ -21,15 +21,18 @@
 
 #include "Globals.h"
 
-class Event {
+class Event
+{
 public:
 	int		x_activation;
 
-	inline virtual bool aReveiller() {
+	inline virtual bool aReveiller()
+	{
 		return (x_activation <= offset);
 	};
 
-	inline virtual bool aActiver() {
+	inline virtual bool aActiver()
+	{
 		return true;
 	};
 

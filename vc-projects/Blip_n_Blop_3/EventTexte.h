@@ -20,7 +20,8 @@
 #include "TexteCool.h"
 #include "BenDebug.h"
 
-class EventTexte : public Event {
+class EventTexte : public Event
+{
 public:
 
 	int		ntxt;
@@ -28,7 +29,8 @@ public:
 	int		val;
 	int		cond;
 
-	inline virtual bool aActiver() {
+	inline virtual bool aActiver()
+	{
 		if (cond == 0)
 			return true;
 		else if (cond == 1)
@@ -37,7 +39,8 @@ public:
 			return (game_flag[flag] >= val);
 	};
 
-	virtual void doEvent() {
+	virtual void doEvent()
+	{
 		TexteCool * txt = new TexteCool();
 
 		txt->ntxt = ntxt;

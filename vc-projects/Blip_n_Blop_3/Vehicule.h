@@ -6,7 +6,8 @@
 #include "COUILLE.H"
 #include "Controlor.h"
 
-class Vehicule : public Sprite {
+class Vehicule : public Sprite
+{
 public:
 
 	bool	can_be_used;

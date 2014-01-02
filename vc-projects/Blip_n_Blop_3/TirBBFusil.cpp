@@ -37,7 +37,8 @@ int n_d_grand = 0;
 int n_d_petit = 0;
 int n_d_min = 0;
 
-void TirBBFusil::setDir(int d) {
+void TirBBFusil::setDir(int d)
+{
 	TirBB::setDir(d);
 
 	n_lat_grande += 1;
@@ -132,7 +133,8 @@ void TirBBFusil::setDir(int d) {
 }
 
 
-void TirBBFusil::update() {
+void TirBBFusil::update()
+{
 	y += dy;
 	x += dx;
 

@@ -21,12 +21,14 @@
 
 
 
-TirSnorkyMage::TirSnorkyMage() {
+TirSnorkyMage::TirSnorkyMage()
+{
 	dy = 6;
 }
 
 
-void TirSnorkyMage::update() {
+void TirSnorkyMage::update()
+{
 	ss_etape ++;
 	ss_etape %= 4;
 

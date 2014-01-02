@@ -129,7 +129,8 @@
 #define IDFOND_ROCHER2       704
 #define IDFOND_ETOILE		 705
 
-void EventFondAnime::doEvent() {
+void EventFondAnime::doEvent()
+{
 	Sprite * s = NULL;
 	bool	plat_mobile = false;
 

@@ -19,7 +19,8 @@
 
 #include "Sprite.h"
 
-class FondRocherHyperspace : public Sprite {
+class FondRocherHyperspace : public Sprite
+{
 public:
 
 	int plan_rocher;

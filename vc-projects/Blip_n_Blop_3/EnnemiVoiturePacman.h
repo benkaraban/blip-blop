@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiVoiturepacman.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 4 Mars 2001
@@ -38,7 +38,7 @@ public:
 	virtual int degats();
 	virtual void tombeVoiture();
 	virtual void affiche();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

@@ -18,15 +18,18 @@
 
 #include "Bonus.h"
 
-class BonusPM : public Bonus {
+class BonusPM : public Bonus
+{
 public:
 
-	BonusPM() {
+	BonusPM()
+	{
 		pic = pbk_misc[8];
 		col_on = true;
 	};
 
-	virtual void estPris(Couille * c) {
+	virtual void estPris(Couille * c)
+	{
 		if ((c->id_arme == ID_LF && c->ammo >= 100) || (c->id_arme == ID_LASER && c->ammo >= 100))
 			return;
 

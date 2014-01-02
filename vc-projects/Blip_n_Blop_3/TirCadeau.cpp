@@ -4,12 +4,14 @@
 
 #include "TirCadeau.h"
 
-TirCadeau::TirCadeau() {
+TirCadeau::TirCadeau()
+{
 	pic = pbk_ennemis[56] ;
 	noCol() ;
 }
 
-void TirCadeau::update() {
+void TirCadeau::update()
+{
 	if (!mur_opaque(x, y))
 		tombe() ;
 

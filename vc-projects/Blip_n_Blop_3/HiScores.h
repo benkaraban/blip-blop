@@ -9,7 +9,8 @@
 const int HS_NB_SCORES		= 10;
 const int HS_NAME_LENGTH	= 20;
 
-class HiScores {
+class HiScores
+{
 protected:
 
 	char *	names[HS_NB_SCORES];
@@ -26,14 +27,16 @@ protected:
 public:
 	void	crypte();
 
-	HiScores() {
+	HiScores()
+	{
 		for (int i = 0; i < HS_NB_SCORES; i++)
 			names[i] = new char[HS_NAME_LENGTH];
 
 		init();
 	};
 
-	~HiScores() {
+	~HiScores()
+	{
 		for (int i = 0; i < HS_NB_SCORES; i++)
 			if (names[i] != NULL)
 				delete [] names[i];
@@ -43,7 +46,8 @@ public:
 	/*
 		Retourne le nom du joueur de rang N (0 étant le meilleur)
 	*/
-	char *	getName(int n) const {
+	char *	getName(int n) const
+	{
 		if (n >= 0 && n < HS_NB_SCORES)
 			return names[n];
 		else
@@ -53,7 +57,8 @@ public:
 	/*
 		Retourne le score du joueur de rang N (0 étant le meilleur)
 	*/
-	int		getScore(int n) const {
+	int		getScore(int n) const
+	{
 		if (n >= 0 && n < HS_NB_SCORES)
 			return scores[n];
 		else
@@ -64,7 +69,8 @@ public:
 		Retourne vrai si le score passé en paramètre est assez
 		élevé pour rentrer dans le HiScore
 	*/
-	bool	isGood(int scr) {
+	bool	isGood(int scr)
+	{
 		return (scores[HS_NB_SCORES - 1] < scr);
 	};
 

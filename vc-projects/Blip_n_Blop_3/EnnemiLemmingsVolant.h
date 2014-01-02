@@ -26,10 +26,12 @@
 //		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiLemmingsVolant : public EnnemiLemmings {
+class EnnemiLemmingsVolant : public EnnemiLemmings
+{
 public:
 
-	EnnemiLemmingsVolant() {
+	EnnemiLemmingsVolant()
+	{
 		y = -5;
 	};
 };

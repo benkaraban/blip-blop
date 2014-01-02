@@ -20,7 +20,8 @@
 const int anim_smurf_farceur_marche_droite[] = { 46, 47, 48, 49, 50, 49, 48, 47 };
 const int anim_smurf_farceur_marche_gauche[] = { 51, 52, 53, 54, 55, 54, 53, 52 };
 
-EnnemiSmurfFarceur::EnnemiSmurfFarceur() {
+EnnemiSmurfFarceur::EnnemiSmurfFarceur()
+{
 	pv = 150 ;
 	bomb_delay = 100 + rand() % 400;
 	wait_for_bomb = 0 ;
@@ -30,7 +31,8 @@ EnnemiSmurfFarceur::EnnemiSmurfFarceur() {
 	decalage_y_cadeau = 5 ;
 }
 
-void EnnemiSmurfFarceur::update() {
+void EnnemiSmurfFarceur::update()
+{
 	if (blood != 0)
 		blood -= 1;
 
@@ -55,7 +57,8 @@ void EnnemiSmurfFarceur::update() {
 	updateADetruire() ;
 }
 
-void EnnemiSmurfFarceur::onDegaine() {
+void EnnemiSmurfFarceur::onDegaine()
+{
 	ss_etape += 1 ;
 	ss_etape %= 8 ;
 
@@ -76,7 +79,8 @@ void EnnemiSmurfFarceur::onDegaine() {
 	}
 }
 
-void EnnemiSmurfFarceur::onPoseCadeau() {
+void EnnemiSmurfFarceur::onPoseCadeau()
+{
 	ss_etape += 1 ;
 	ss_etape %= 5 ;
 
@@ -109,7 +113,8 @@ void EnnemiSmurfFarceur::onPoseCadeau() {
 }
 
 
-void EnnemiSmurfFarceur::onAvance() {
+void EnnemiSmurfFarceur::onAvance()
+{
 	// Si pas de sol en dessous, on tombe
 	tombe() ;
 
@@ -162,7 +167,8 @@ void EnnemiSmurfFarceur::onAvance() {
 	colFromPic() ;
 }
 
-void EnnemiSmurfFarceur::onMeure() {
+void EnnemiSmurfFarceur::onMeure()
+{
 	tombe();
 
 	// Si on porte un cadeau, alors on meure carbonisé
@@ -205,7 +211,8 @@ void EnnemiSmurfFarceur::onMeure() {
 	}
 }
 
-void EnnemiSmurfFarceur::onCarbonise() {
+void EnnemiSmurfFarceur::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -222,7 +229,8 @@ void EnnemiSmurfFarceur::onCarbonise() {
 	}
 }
 
-void EnnemiSmurfFarceur::estTouche(Tir * tir) {
+void EnnemiSmurfFarceur::estTouche(Tir * tir)
+{
 	static const int dx_giclure_smurf_farceur [] = { 0, 0, 6, 0, 0, 0, -6, 0 };
 	static const int dy_giclure_smurf_farceur [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 

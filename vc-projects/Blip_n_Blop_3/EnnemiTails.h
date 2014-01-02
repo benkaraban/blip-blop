@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiTails.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 12 Decembre 2000
@@ -30,7 +30,7 @@ class EnnemiTails : public Ennemi
 private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
-	int fly_delay;    
+	int fly_delay;
 	int wait_for_fly;
 	int x_cible;
 	int y_cible;
@@ -46,7 +46,7 @@ public:
 	virtual void onTombe();
 	virtual void onVolle();
 	virtual void onCarbonise();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

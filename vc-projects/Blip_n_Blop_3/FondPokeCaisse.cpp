@@ -16,11 +16,13 @@
 #include "sprite.h"
 #include "fondPokeCaisse.h"
 
-FondPokeCaisse::FondPokeCaisse() {
+FondPokeCaisse::FondPokeCaisse()
+{
 	pic = pbk_niveau[117];
 }
 
-void FondPokeCaisse::update() {
+void FondPokeCaisse::update()
+{
 
 	int		yp;
 

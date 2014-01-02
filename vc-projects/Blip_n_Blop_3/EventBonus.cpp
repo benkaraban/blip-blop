@@ -9,7 +9,8 @@
 #include "bonusvache.h"
 #include "bonuslf.h"
 
-void EventBonus::doEvent() {
+void EventBonus::doEvent()
+{
 	Bonus * bonus;
 
 	switch (type) {

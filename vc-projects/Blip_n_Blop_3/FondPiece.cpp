@@ -20,7 +20,8 @@ int FondPiece::etape_synchro = 0;
 int FondPiece::ss_etape_synchro = 0;
 bool FondPiece::synchro = false;
 
-void FondPiece::update() {
+void FondPiece::update()
+{
 	if (synchro != phase) {
 		synchro = phase;
 		ss_etape_synchro += 1;

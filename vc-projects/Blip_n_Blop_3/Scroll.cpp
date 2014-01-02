@@ -36,7 +36,8 @@ int n_cache = 0;
 
 //-----------------------------------------------------------------------------
 
-void drawScrolling() {
+void drawScrolling()
+{
 	RECT		r;
 
 	// Pour éviter les mauvaises surprises
@@ -94,7 +95,8 @@ void drawScrolling() {
 
 //-----------------------------------------------------------------------------
 
-void updateScrolling(bool forceOk) {
+void updateScrolling(bool forceOk)
+{
 	if (scroll_locked) {
 		if (offset < x_lock)
 			offset = x_lock;

@@ -1,12 +1,14 @@
 #include "EnnemiKnukles.h"
 
 
-EnnemiKnukles::EnnemiKnukles(): speed(1), etape_speed(0), charge_delay(100 + rand() % 150), wait_for_charge(0) {
+EnnemiKnukles::EnnemiKnukles(): speed(1), etape_speed(0), charge_delay(100 + rand() % 150), wait_for_charge(0)
+{
 	tresor = 7;
 	pv = 150;
 }
 
-void EnnemiKnukles::update() {
+void EnnemiKnukles::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -46,7 +48,8 @@ void EnnemiKnukles::update() {
 	updateADetruire();
 }
 
-void EnnemiKnukles::onAvance() {
+void EnnemiKnukles::onAvance()
+{
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
 	if (plat(x, y) == 0) {
@@ -120,7 +123,8 @@ void EnnemiKnukles::onAvance() {
 	colFromPic();
 }
 
-void EnnemiKnukles::onMeure() {
+void EnnemiKnukles::onMeure()
+{
 	tombe();
 	/*if (fly)
 	{
@@ -196,7 +200,8 @@ void EnnemiKnukles::onMeure() {
 	}*/
 }
 
-void EnnemiKnukles::onSaute() {
+void EnnemiKnukles::onSaute()
+{
 
 	ss_etape++;
 	ss_etape %= 60;
@@ -235,7 +240,8 @@ void EnnemiKnukles::onSaute() {
 	colFromPic();
 }
 
-void EnnemiKnukles::onCharge() {
+void EnnemiKnukles::onCharge()
+{
 	tombe();
 	ss_etape++;
 	ss_etape %= 40;
@@ -289,7 +295,8 @@ void EnnemiKnukles::onCharge() {
 	colFromPic();
 }
 
-void EnnemiKnukles::onTombe() {
+void EnnemiKnukles::onTombe()
+{
 	int		yp;
 
 	tombe();
@@ -318,7 +325,8 @@ void EnnemiKnukles::onTombe() {
 
 }
 
-void EnnemiKnukles::onCarbonise() {
+void EnnemiKnukles::onCarbonise()
+{
 	tombe();
 	ss_etape ++;
 	ss_etape %= 5;
@@ -336,7 +344,8 @@ void EnnemiKnukles::onCarbonise() {
 	}
 }
 
-void EnnemiKnukles::estTouche(Tir * tir) {
+void EnnemiKnukles::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 
@@ -349,7 +358,8 @@ void EnnemiKnukles::estTouche(Tir * tir) {
 }
 
 
-void EnnemiKnukles::tombe() {
+void EnnemiKnukles::tombe()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_GRAVITE;
 

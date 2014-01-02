@@ -17,7 +17,8 @@
 
 #include "personnage.h"
 
-class Giclure : public Sprite {
+class Giclure : public Sprite
+{
 public:
 	Personnage *pere;
 	int			deltax;

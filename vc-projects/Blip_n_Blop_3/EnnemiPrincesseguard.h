@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiPrincesseguard.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 21 Janvier 2001
@@ -30,16 +30,16 @@ class EnnemiPrincesseguard : public Ennemi
 {
 private:
 	int distance_couverture;
-	
+
 public:
 	EnnemiPrincesse * princesse;
 
 
-	EnnemiPrincesseguard(EnnemiPrincesse* Princesse,int distance);
+	EnnemiPrincesseguard(EnnemiPrincesse* Princesse, int distance);
 	virtual void update();
 	virtual void onAvance();
-	virtual void onMeure();	
-	virtual void estTouche( Tir * tir);
+	virtual void onMeure();
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

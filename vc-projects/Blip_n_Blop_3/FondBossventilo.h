@@ -19,7 +19,8 @@
 
 #include "sprite.h"
 
-class FondBossventilo : public Sprite {
+class FondBossventilo : public Sprite
+{
 public:
 	virtual void update();
 };

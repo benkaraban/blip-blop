@@ -19,7 +19,8 @@
 
 #include "sprite.h"
 
-class FondMonolite : public Sprite {
+class FondMonolite : public Sprite
+{
 public:
 	int ss_etape_levitation;
 	int etape_levitation;

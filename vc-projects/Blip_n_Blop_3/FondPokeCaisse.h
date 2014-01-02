@@ -18,7 +18,8 @@
 
 
 
-class FondPokeCaisse : public Sprite {
+class FondPokeCaisse : public Sprite
+{
 
 public:
 	FondPokeCaisse();

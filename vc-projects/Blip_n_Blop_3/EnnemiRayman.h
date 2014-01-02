@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiRayman.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 06 Decembre 2000
@@ -37,7 +37,7 @@ class EnnemiRayman : public Ennemi
 {
 private:
 
-	int attack_delay;    
+	int attack_delay;
 	int wait_for_attack;
 	int attack_etape;
 	int x_cible;
@@ -56,7 +56,7 @@ public:
 	virtual void onMeure();
 	virtual void onTombe();
 	virtual void onTire();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

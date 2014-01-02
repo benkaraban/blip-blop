@@ -1,7 +1,8 @@
 #ifndef _FMOD_ERRORS_H
 #define _FMOD_ERRORS_H
 
-static char *FMOD_ErrorString(int errcode) {
+static char *FMOD_ErrorString(int errcode)
+{
 	switch (errcode) {
 		case FMOD_ERR_NONE:
 			return "No errors";

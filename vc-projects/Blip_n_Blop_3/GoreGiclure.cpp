@@ -18,7 +18,8 @@
 
 //implementation de la classe GoreGiclure
 
-GoreGiclure::GoreGiclure(int vx, int vy): dx(vx) {
+GoreGiclure::GoreGiclure(int vx, int vy): dx(vx)
+{
 	dy  = vy;
 
 	if ((dx > -2) && (dx < 0)) {
@@ -50,7 +51,8 @@ GoreGiclure::GoreGiclure(int vx, int vy): dx(vx) {
 	}
 }
 
-void GoreGiclure::update() {
+void GoreGiclure::update()
+{
 	int decalage;
 	if (dx < 0) {
 		decalage = 0;

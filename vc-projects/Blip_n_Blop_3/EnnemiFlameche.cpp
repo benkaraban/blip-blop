@@ -1,12 +1,14 @@
 
 #include "ennemiFlameche.h"
 
-EnnemiFlameche::EnnemiFlameche() {
+EnnemiFlameche::EnnemiFlameche()
+{
 	pv = 100;
 }
 
 
-void EnnemiFlameche::update() {
+void EnnemiFlameche::update()
+{
 
 	switch (etat) {
 		case ETAT_NORMAL:
@@ -24,7 +26,8 @@ void EnnemiFlameche::update() {
 }
 
 
-void EnnemiFlameche::onAvance() {
+void EnnemiFlameche::onAvance()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -55,7 +58,8 @@ void EnnemiFlameche::onAvance() {
 }
 
 
-void EnnemiFlameche::onMeure() {
+void EnnemiFlameche::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -75,7 +79,8 @@ void EnnemiFlameche::onMeure() {
 }
 
 
-void EnnemiFlameche::estTouche(Tir * tir) {
+void EnnemiFlameche::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 10, 10, 0, -10, -10, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

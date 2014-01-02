@@ -3,14 +3,16 @@
 #include "alphablend.h"
 
 
-void TirBBLF::aTouche(int pts) {
+void TirBBLF::aTouche(int pts)
+{
 	if (!a_detruire) {
 		TirBB::aTouche(pts);
 		a_detruire = false;
 	}
 }
 
-void TirBBLF::setDir(int d) {
+void TirBBLF::setDir(int d)
+{
 	TirBB::setDir(d);
 
 	etape	 = 0;
@@ -112,7 +114,8 @@ void TirBBLF::setDir(int d) {
 	}
 }
 
-void TirBBLF::update() {
+void TirBBLF::update()
+{
 	ss_etape += 1;
 	ss_etape %= speed;
 

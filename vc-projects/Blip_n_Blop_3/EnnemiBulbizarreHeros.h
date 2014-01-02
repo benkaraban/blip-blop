@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		  EnnemiBulbizarreHeros.h
 *		---------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 14 Janvier 2001
@@ -30,7 +30,7 @@ public:
 	virtual void update();
 	virtual void onAvance();
 	virtual void onMeure();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

@@ -23,7 +23,8 @@
 #include "Event.h"
 
 
-class EventGenEnnemi : public Event {
+class EventGenEnnemi : public Event
+{
 public:
 	int		x;
 	int		y;

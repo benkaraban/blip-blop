@@ -28,7 +28,8 @@
 //		Définition de la classe MorceauRayman
 //-----------------------------------------------------------------------------
 
-class MorceauRayman : public Sprite {
+class MorceauRayman : public Sprite
+{
 public:
 	int		dx;
 	int		n_pic;

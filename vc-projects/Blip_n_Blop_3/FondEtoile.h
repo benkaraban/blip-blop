@@ -19,7 +19,8 @@
 #define _FondEtoile_
 
 
-class FondEtoile : public Sprite {
+class FondEtoile : public Sprite
+{
 public:
 
 

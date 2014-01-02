@@ -3,12 +3,14 @@
 #include "goretetebisoucoeur.h"
 #include "tircoeurbisou.h"
 
-EnnemiBisouCoeur::EnnemiBisouCoeur() {
+EnnemiBisouCoeur::EnnemiBisouCoeur()
+{
 	pv = 300;
 }
 
 
-void EnnemiBisouCoeur::update() {
+void EnnemiBisouCoeur::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -35,7 +37,8 @@ void EnnemiBisouCoeur::update() {
 }
 
 
-void EnnemiBisouCoeur::onAvance() {
+void EnnemiBisouCoeur::onAvance()
+{
 	static const int SPEED = 2;
 
 	static const int anim_gauche [] = { 431, 432, 433, 434, 433, 432 };
@@ -73,7 +76,8 @@ void EnnemiBisouCoeur::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBisouCoeur::onMeure() {
+void EnnemiBisouCoeur::onMeure()
+{
 	static const int SPEED = 2;
 
 	ss_etape += 1;
@@ -113,7 +117,8 @@ void EnnemiBisouCoeur::onMeure() {
 
 
 
-void EnnemiBisouCoeur::onPart() {
+void EnnemiBisouCoeur::onPart()
+{
 	static const int SPEED = 10;
 
 	if (dir == SENS_DROITE)
@@ -123,7 +128,8 @@ void EnnemiBisouCoeur::onPart() {
 }
 
 
-void EnnemiBisouCoeur::estTouche(Tir * tir) {
+void EnnemiBisouCoeur::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

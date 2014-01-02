@@ -1,12 +1,14 @@
 
 #include "ennemibulbizarre.h"
 
-EnnemiBulbizarre::EnnemiBulbizarre() {
+EnnemiBulbizarre::EnnemiBulbizarre()
+{
 	pv = 100;
 }
 
 
-void EnnemiBulbizarre::update() {
+void EnnemiBulbizarre::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -29,7 +31,8 @@ void EnnemiBulbizarre::update() {
 }
 
 
-void EnnemiBulbizarre::onAvance() {
+void EnnemiBulbizarre::onAvance()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -60,7 +63,8 @@ void EnnemiBulbizarre::onAvance() {
 }
 
 
-void EnnemiBulbizarre::onMeure() {
+void EnnemiBulbizarre::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -84,7 +88,8 @@ void EnnemiBulbizarre::onMeure() {
 	}
 }
 
-void EnnemiBulbizarre::onCarbonise() {
+void EnnemiBulbizarre::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 5;
 
@@ -101,7 +106,8 @@ void EnnemiBulbizarre::onCarbonise() {
 	}
 }
 
-void EnnemiBulbizarre::estTouche(Tir * tir) {
+void EnnemiBulbizarre::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

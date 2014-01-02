@@ -14,7 +14,7 @@ public:
 	EnnemiBisouJedi();
 	virtual void onAvance();
 	virtual void onMeure();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual void update();
 	virtual void onCarbonise();
 	virtual void affiche();
@@ -33,32 +33,25 @@ public:
 
 	virtual void update()
 	{
-		if ( intro) 
-		{
-			if (x > offset+450)
-			{
+		if (intro) {
+			if (x > offset + 450) {
 				EnnemiBisouJedi::onAvance();
 				col_on = false;
-			}
-			else
-			{
+			} else {
 				intro = false;
 				game_flag[FLAG_USER1] = 1;
 				game_flag[FLAG_GEN_OFF] = 0;
 			}
-		}
-		else
-		{
+		} else {
 			EnnemiBisouJedi::update();
 		}
 	};
 
-	virtual void estTouche( Tir * tir)
+	virtual void estTouche(Tir * tir)
 	{
-		EnnemiBisouJedi::estTouche( tir);
+		EnnemiBisouJedi::estTouche(tir);
 
-		if ( pv <= 0)
-		{
+		if (pv <= 0) {
 			game_flag[FLAG_USER1] = 2;
 			game_flag[FLAG_GEN_OFF] = 1;
 		}

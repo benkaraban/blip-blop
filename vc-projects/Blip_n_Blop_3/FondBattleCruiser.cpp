@@ -22,12 +22,14 @@
 const int anim_cruiser_droite [] = {0, 1, 2, 1};
 const int anim_cruiser_gauche [] = {3, 4, 5, 4};
 
-FondBattlecruiser::FondBattlecruiser(): x_adversaire(700), y_adversaire(40), attack_etape(-2), feu_etape(0), feu_ss_etape(0) {
+FondBattlecruiser::FondBattlecruiser(): x_adversaire(700), y_adversaire(40), attack_etape(-2), feu_etape(0), feu_ss_etape(0)
+{
 	x = -20;
 	y = 80;
 }
 
-void FondBattlecruiser::update() {
+void FondBattlecruiser::update()
+{
 	feu_ss_etape += 1;
 	feu_ss_etape %= 40;
 	if (feu_ss_etape == 0) {
@@ -114,7 +116,8 @@ void FondBattlecruiser::update() {
 	}*/
 }
 
-void FondBattlecruiser::affiche() {
+void FondBattlecruiser::affiche()
+{
 	Sprite::affiche();
 	if (attack_etape == -3) {
 		draw(x_adversaire, y_adversaire, pbk_niveau[anim_cruiser_gauche[etape]]);

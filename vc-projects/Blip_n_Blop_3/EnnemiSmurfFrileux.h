@@ -27,14 +27,17 @@
 //		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfFrileux : public EnnemiSmurf {
+class EnnemiSmurfFrileux : public EnnemiSmurf
+{
 public:
 
-	EnnemiSmurfFrileux() {
+	EnnemiSmurfFrileux()
+	{
 		pv = 75 ;
 	}
 
-	inline virtual void affiche() {
+	inline virtual void affiche()
+	{
 		if (etat != ETAT_MEURE && etat != ETAT_CARBONISE) {
 			switch (dir) {
 				case SENS_GAUCHE :
@@ -52,7 +55,8 @@ public:
 			EnnemiSmurf::affiche() ;
 	}
 
-	virtual void onAvance() {
+	virtual void onAvance()
+	{
 		speed = 1 + rand() % 3 ;
 		EnnemiSmurf::onAvance() ;
 	}

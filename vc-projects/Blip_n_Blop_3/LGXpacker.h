@@ -75,7 +75,8 @@ struct LGX_HEADER {
 //		Définition de la classe LGXpacker
 //-----------------------------------------------------------------------------
 
-class LGXpacker {
+class LGXpacker
+{
 private:
 	unsigned short *	tab_0;
 	unsigned short *	tab_1;

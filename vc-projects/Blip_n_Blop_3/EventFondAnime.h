@@ -21,7 +21,8 @@
 #include "Globals.h"
 
 
-class EventFondAnime : public Event {
+class EventFondAnime : public Event
+{
 public:
 	int		x;
 	int		y;

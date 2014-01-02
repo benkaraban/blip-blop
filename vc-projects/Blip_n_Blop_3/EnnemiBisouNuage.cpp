@@ -2,12 +2,14 @@
 #include "ennemibisounuage.h"
 #include "tirnuage.h"
 
-EnnemiBisouNuage::EnnemiBisouNuage() : etape_shoot(0) {
+EnnemiBisouNuage::EnnemiBisouNuage() : etape_shoot(0)
+{
 	pv = 250;
 	wait_shoot = 150 + rand() % 150;
 }
 
-void EnnemiBisouNuage::update() {
+void EnnemiBisouNuage::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -37,7 +39,8 @@ void EnnemiBisouNuage::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouNuage::onMeureFin() {
+void EnnemiBisouNuage::onMeureFin()
+{
 	if (etape < 6) {
 		ss_etape += 1;
 		ss_etape %= 3;
@@ -61,7 +64,8 @@ void EnnemiBisouNuage::onMeureFin() {
 
 
 
-void EnnemiBisouNuage::onMeureTombe() {
+void EnnemiBisouNuage::onMeureTombe()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -84,7 +88,8 @@ void EnnemiBisouNuage::onMeureTombe() {
 	}
 }
 
-void EnnemiBisouNuage::onMeureWait() {
+void EnnemiBisouNuage::onMeureWait()
+{
 	etape += 1;
 
 	if (dir == SENS_GAUCHE)
@@ -98,7 +103,8 @@ void EnnemiBisouNuage::onMeureWait() {
 	}
 }
 
-void EnnemiBisouNuage::onNormal() {
+void EnnemiBisouNuage::onNormal()
+{
 	static const int anim_gauche [] = { 229, 230, 231, 230 };
 	static const int anim_droite [] = { 226, 227, 228, 227 };
 

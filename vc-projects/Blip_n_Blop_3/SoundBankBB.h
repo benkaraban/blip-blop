@@ -31,7 +31,8 @@
 //		Définition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
-class SoundBankBB : public SoundBank {
+class SoundBankBB : public SoundBank
+{
 public:
 
 	void play(int n, int flags = 0);

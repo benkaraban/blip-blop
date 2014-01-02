@@ -19,7 +19,8 @@
 
 #include "genennemi.h"
 
-class GenEnnemiTMP : public GenEnnemi {
+class GenEnnemiTMP : public GenEnnemi
+{
 public:
 	virtual void update();
 };

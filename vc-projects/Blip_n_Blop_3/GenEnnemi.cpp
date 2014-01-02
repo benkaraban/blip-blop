@@ -23,10 +23,12 @@
 #define SENS_DROITE		1
 #endif
 
-GenEnnemi::GenEnnemi() : t(0), a_detruire(false) {
+GenEnnemi::GenEnnemi() : t(0), a_detruire(false)
+{
 }
 
-void GenEnnemi::update() {
+void GenEnnemi::update()
+{
 	if (game_flag[FLAG_GEN_OFF] != 0)
 		return;
 

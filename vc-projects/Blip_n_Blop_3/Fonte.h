@@ -30,7 +30,8 @@
 //		Définition de la classe Fonte
 //-----------------------------------------------------------------------------
 
-class Fonte {
+class Fonte
+{
 private:
 	Picture **	pictab;		// Tableau de Picture
 	int			spc;		// Largeur d'un espace

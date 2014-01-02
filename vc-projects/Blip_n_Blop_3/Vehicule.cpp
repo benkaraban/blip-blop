@@ -1,11 +1,13 @@
 
 #include "vehicule.h"
 
-Vehicule::Vehicule() : joueur(NULL), ctrl(NULL), can_be_used(true) {
+Vehicule::Vehicule() : joueur(NULL), ctrl(NULL), can_be_used(true)
+{
 }
 
 
-void Vehicule::update() {
+void Vehicule::update()
+{
 	if (joueur == NULL) {
 		if (can_be_used)
 			joueur = scanne();
@@ -29,7 +31,8 @@ void Vehicule::update() {
 }
 
 
-Couille * Vehicule::scanne() {
+Couille * Vehicule::scanne()
+{
 	Couille *	c;
 	int			ddx;
 	int			ddy;

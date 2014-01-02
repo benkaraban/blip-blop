@@ -17,14 +17,16 @@
 #include "EnnemiPikashuHeros.h"
 
 
-EnnemiPikachuHeros::EnnemiPikachuHeros(): dorkeball(2) {
+EnnemiPikachuHeros::EnnemiPikachuHeros(): dorkeball(2)
+{
 	pv = 1500;
 	dy = -8;
 	dx = -2;
 	tresor = 100;
 }
 
-void EnnemiPikachuHeros::update() {
+void EnnemiPikachuHeros::update()
+{
 	if (dorkeball == 2) {
 		x += dx;
 		tombe();
@@ -82,7 +84,8 @@ void EnnemiPikachuHeros::update() {
 	}
 }
 
-void EnnemiPikachuHeros::onAvance() {
+void EnnemiPikachuHeros::onAvance()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -110,7 +113,8 @@ void EnnemiPikachuHeros::onAvance() {
 	colFromPic();
 }
 
-void EnnemiPikachuHeros::onMeure() {
+void EnnemiPikachuHeros::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -136,7 +140,8 @@ void EnnemiPikachuHeros::onMeure() {
 }
 
 
-void EnnemiPikachuHeros::estTouche(Tir * tir) {
+void EnnemiPikachuHeros::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

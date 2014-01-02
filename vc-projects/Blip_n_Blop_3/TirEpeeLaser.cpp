@@ -3,16 +3,19 @@
 #include "ennemibisoujedi.h"
 
 
-TirEpeeLaser::TirEpeeLaser() : isdead(false), cible(NULL), retour(false), lanceur(NULL), accel(1) {
+TirEpeeLaser::TirEpeeLaser() : isdead(false), cible(NULL), retour(false), lanceur(NULL), accel(1)
+{
 	duree_vie = 200 + rand() % 100;
 	sbk_niveau.play(13, SOUND_LOOP);
 }
 
-TirEpeeLaser::~TirEpeeLaser() {
+TirEpeeLaser::~TirEpeeLaser()
+{
 	sbk_niveau.stop(13);
 }
 
-void TirEpeeLaser::update() {
+void TirEpeeLaser::update()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 

@@ -20,11 +20,13 @@
 
 const int anim_lock[] = {88 , 89, 90, 91, 92, 93, 92, 91, 90, 89};
 
-FondPokeCaisseTombante::FondPokeCaisseTombante() {
+FondPokeCaisseTombante::FondPokeCaisseTombante()
+{
 	pic = pbk_niveau[87];
 }
 
-void FondPokeCaisseTombante::update() {
+void FondPokeCaisseTombante::update()
+{
 	if (game_flag[2] > 2) {
 		if ((y < 100) && (etape <= UNLOCK_DELAY)) {
 			y += 2;
@@ -80,7 +82,8 @@ void FondPokeCaisseTombante::update() {
 	}
 }
 
-void FondPokeCaisseTombante::affiche() {
+void FondPokeCaisseTombante::affiche()
+{
 	Sprite::affiche();
 	if (etape > UNLOCK_DELAY + 4) {
 		draw(x, y, pbk_niveau[94]);

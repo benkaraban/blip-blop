@@ -22,21 +22,25 @@
 
 #define DIST_BITONIO	25
 
-class Bonus : public Sprite {
+class Bonus : public Sprite
+{
 public:
 
 	int		phi;
 	bool	local_phase;
 
-	Bonus() : phi(0) {
+	Bonus() : phi(0)
+	{
 	};
 
-	virtual void estPris(Couille * c) {
+	virtual void estPris(Couille * c)
+	{
 		a_detruire = true;
 		col_on = false;
 	};
 
-	virtual void update() {
+	virtual void update()
+	{
 		tombe();
 
 		phi += 12;
@@ -56,7 +60,8 @@ public:
 		y += 15;
 	};
 
-	virtual void affiche() {
+	virtual void affiche()
+	{
 		int		base;
 
 		y -= 15;
@@ -77,7 +82,8 @@ public:
 		y += 15;
 	};
 
-	virtual void colFromPic() {
+	virtual void colFromPic()
+	{
 		Sprite::colFromPic();
 
 		x1 -= 10;

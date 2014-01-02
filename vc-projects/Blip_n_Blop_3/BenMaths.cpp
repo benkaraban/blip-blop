@@ -1,15 +1,15 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		   BenMaths.h
 *		----------------
-*			
-*	
+*
+*
 *		Fonctions mathématiques précalculée
 *		(pour aller plus vite!)
 *
-*		
+*
 *		Pour l'instant, il y a 3 fonctions :
 *			- bCos	(1440 octets)
 *			- bSin  (1440 octets)
@@ -90,36 +90,33 @@ void preCalcMathsFunctions(int flags, int n)
 {
 
 	// Précalcul des cosinus
-	if ( bCos == NULL && (flags & PREC_COS))
-	{
+	if (bCos == NULL && (flags & PREC_COS)) {
 		bCos = new int[360];
-		
-		for (int i=0; i<360; i++)
-			bCos[i] = int(1024*cos(i/(180/PI)));
+
+		for (int i = 0; i < 360; i++)
+			bCos[i] = int(1024 * cos(i / (180 / PI)));
 	}
-	
+
 	// Précalcul des sinus
-	if ( bSin == NULL && (flags & PREC_SIN))
-	{
+	if (bSin == NULL && (flags & PREC_SIN)) {
 		bSin = new int[360];
-		for (int i=0; i<360; i++)
-			bSin[i] = int(1024*sin(i/(180/PI)));
+		for (int i = 0; i < 360; i++)
+			bSin[i] = int(1024 * sin(i / (180 / PI)));
 
 	}
 
 	// Précalcul des racines carrées
-	if ( bSqr == NULL && (flags & PREC_ROOT))
-	{
+	if (bSqr == NULL && (flags & PREC_ROOT)) {
 		int		nbRoot;
 
-		if ( n > 0xFFFF)
+		if (n > 0xFFFF)
 			nbRoot = 0xFFFF;
 		else
 			nbRoot = n;
 
 		bSqr = new char[nbRoot];
-		
-		for (int i=0; i<nbRoot; i++)
+
+		for (int i = 0; i < nbRoot; i++)
 			bSqr[i] = char(sqrt(i));
 
 	}
@@ -134,20 +131,17 @@ void preCalcMathsFunctions(int flags, int n)
 
 void freeMathsFunctions()
 {
-	if ( bCos != NULL)
-	{
+	if (bCos != NULL) {
 		delete [] bCos;
 		bCos = NULL;
 	}
 
-	if ( bSin != NULL)
-	{
+	if (bSin != NULL) {
 		delete [] bSin;
 		bSin = NULL;
 	}
 
-	if ( bSqr != NULL)
-	{
+	if (bSqr != NULL) {
 		delete [] bSqr;
 		bSqr = NULL;
 	}

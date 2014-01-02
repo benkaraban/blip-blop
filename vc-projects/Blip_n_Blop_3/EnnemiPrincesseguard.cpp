@@ -18,13 +18,15 @@
 
 const int anim_guard_marche_gauche[] = { 135, 136, 137, 136};
 
-EnnemiPrincesseguard::EnnemiPrincesseguard(EnnemiPrincesse * Princesse, int distance): princesse(Princesse), distance_couverture(distance) {
+EnnemiPrincesseguard::EnnemiPrincesseguard(EnnemiPrincesse * Princesse, int distance): princesse(Princesse), distance_couverture(distance)
+{
 	pv = 2500;
 	tresor = 100;
 	dir = SENS_GAUCHE;
 }
 
-void EnnemiPrincesseguard::update() {
+void EnnemiPrincesseguard::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -50,7 +52,8 @@ void EnnemiPrincesseguard::update() {
 	updateADetruire();
 }
 
-void EnnemiPrincesseguard::onAvance() {
+void EnnemiPrincesseguard::onAvance()
+{
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
 	/*if ( plat( x, y) == 0)
@@ -111,7 +114,8 @@ void EnnemiPrincesseguard::onAvance() {
 	colFromPic();
 }
 
-void EnnemiPrincesseguard::onMeure() {
+void EnnemiPrincesseguard::onMeure()
+{
 	/*if (dy<-5)
 		dy-=5;
 	if (dy<-2)
@@ -195,7 +199,8 @@ void EnnemiPrincesseguard::onMeure() {
 	}
 }*/
 
-void EnnemiPrincesseguard::estTouche(Tir * tir) {
+void EnnemiPrincesseguard::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

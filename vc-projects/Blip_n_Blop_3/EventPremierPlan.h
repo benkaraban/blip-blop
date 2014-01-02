@@ -21,7 +21,8 @@
 #include "Globals.h"
 
 
-class EventPremierPlan : public Event {
+class EventPremierPlan : public Event
+{
 public:
 	int		x;
 	int		y;

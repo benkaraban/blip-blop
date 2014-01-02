@@ -29,7 +29,8 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class TirSnorkybase : public Tir {
+class TirSnorkybase : public Tir
+{
 public:
 	int oscilation_etape;
 	int speed_etape;
@@ -38,15 +39,18 @@ public:
 
 	TirSnorkybase(int vx);
 
-	virtual int degats() const {
+	virtual int degats() const
+	{
 		return 1;
 	};
 
-	virtual int enflame() const {
+	virtual int enflame() const
+	{
 		return 0;
 	};
 
-	virtual void setDir(int d) {
+	virtual void setDir(int d)
+	{
 		dir = d;
 	};
 

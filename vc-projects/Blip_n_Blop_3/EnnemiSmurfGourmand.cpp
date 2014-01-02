@@ -19,12 +19,14 @@
 
 #define	ETAT_HOLD		15
 
-EnnemiSmurfGourmand::EnnemiSmurfGourmand() : wait_for_shoot(0) {
+EnnemiSmurfGourmand::EnnemiSmurfGourmand() : wait_for_shoot(0)
+{
 	pv = 150;
 	shoot_delay = 50 + rand() % 100;
 }
 
-void EnnemiSmurfGourmand::update() {
+void EnnemiSmurfGourmand::update()
+{
 	if (blood != 0)
 		blood -= 1;
 
@@ -57,7 +59,8 @@ void EnnemiSmurfGourmand::update() {
 }
 
 
-void EnnemiSmurfGourmand::onNormal() {
+void EnnemiSmurfGourmand::onNormal()
+{
 	tombe();
 
 	// Tire de temps en temps
@@ -92,7 +95,8 @@ void EnnemiSmurfGourmand::onNormal() {
 }
 
 
-void EnnemiSmurfGourmand::onTire() {
+void EnnemiSmurfGourmand::onTire()
+{
 
 	ss_etape += 1;
 	ss_etape %= 5;
@@ -133,7 +137,8 @@ void EnnemiSmurfGourmand::onTire() {
 }
 
 
-void EnnemiSmurfGourmand::onMeure() {
+void EnnemiSmurfGourmand::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -161,7 +166,8 @@ void EnnemiSmurfGourmand::onMeure() {
 
 }
 
-void EnnemiSmurfGourmand::estTouche(Tir * tir) {
+void EnnemiSmurfGourmand::estTouche(Tir * tir)
+{
 	static const int dx_giclure_smurf [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_smurf [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 
@@ -177,7 +183,8 @@ void EnnemiSmurfGourmand::estTouche(Tir * tir) {
 		sbk_niveau.play(rand() % 4);
 }
 
-void EnnemiSmurfGourmand::onHold() {
+void EnnemiSmurfGourmand::onHold()
+{
 	etape += 1;
 
 	if (etape >= 50) {
@@ -196,7 +203,8 @@ void EnnemiSmurfGourmand::onHold() {
 }
 
 
-void EnnemiSmurfGourmand::onCarbonise() {
+void EnnemiSmurfGourmand::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 

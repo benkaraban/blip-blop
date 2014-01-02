@@ -2,12 +2,14 @@
 #include "ennemismurfette.h"
 #include "tirbisoumortel.h"
 
-EnnemiSmurfette::EnnemiSmurfette() : etape_shoot(0) {
+EnnemiSmurfette::EnnemiSmurfette() : etape_shoot(0)
+{
 	wait_shoot = 100 + rand() % 100;
 	pv = 200;
 }
 
-void EnnemiSmurfette::update() {
+void EnnemiSmurfette::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -38,7 +40,8 @@ void EnnemiSmurfette::update() {
 	updateADetruire();
 }
 
-void EnnemiSmurfette::onAvance() {
+void EnnemiSmurfette::onAvance()
+{
 	static const int marche_droite[] = { 315, 316, 317, 318, 319, 318, 317, 316 };
 	static const int marche_gauche[] = { 320, 321, 322, 323, 324, 323, 322, 321 };
 	static const int SPEED = 1;
@@ -70,7 +73,8 @@ void EnnemiSmurfette::onAvance() {
 	colFromPic();
 }
 
-void EnnemiSmurfette::onMeure() {
+void EnnemiSmurfette::onMeure()
+{
 	ss_etape += 1;
 	ss_etape %= 5;
 
@@ -90,7 +94,8 @@ void EnnemiSmurfette::onMeure() {
 		pic = pbk_ennemis[337 + etape];
 }
 
-void EnnemiSmurfette::onTire() {
+void EnnemiSmurfette::onTire()
+{
 	static const int tire_droite [] = { 301, 302, 303, 304, 305, 304, 303, 302, 301 };
 	static const int tire_gauche [] = { 306, 307, 308, 309, 310, 309, 308, 307, 306 };
 
@@ -126,7 +131,8 @@ void EnnemiSmurfette::onTire() {
 	colFromPic();
 }
 
-void EnnemiSmurfette::estTouche(Tir * tir) {
+void EnnemiSmurfette::estTouche(Tir * tir)
+{
 	static const int dx_giclure_smurf [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_smurf [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 
@@ -138,7 +144,8 @@ void EnnemiSmurfette::estTouche(Tir * tir) {
 	}
 }
 
-void EnnemiSmurfette::onCarbonise() {
+void EnnemiSmurfette::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 

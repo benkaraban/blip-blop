@@ -24,13 +24,15 @@
 //		Constructeur
 
 Sprite::Sprite() : pic(NULL), dy(0), dir(0), a_detruire(false), etape(0), ss_etape(0),
-	lat_grav(0), x(0), y(0), x1(-1000), y1(-1000), x2(-2000), y2(-2000), col_on(false), wait_bulle(0) {
+	lat_grav(0), x(0), y(0), x1(-1000), y1(-1000), x2(-2000), y2(-2000), col_on(false), wait_bulle(0)
+{
 }
 
 //-----------------------------------------------------------------------------
 //		Tombor
 
-void Sprite::tombe() {
+void Sprite::tombe()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_GRAVITE;
 
@@ -51,7 +53,8 @@ void Sprite::tombe() {
 //-----------------------------------------------------------------------------
 //		Tombor2 : n'arrête pas la chute (utile pour les sauts)
 
-void Sprite::tombe2() {
+void Sprite::tombe2()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_GRAVITE;
 
@@ -72,7 +75,8 @@ void Sprite::tombe2() {
 //-----------------------------------------------------------------------------
 //		Marchor
 
-void Sprite::marche(int ndx) {
+void Sprite::marche(int ndx)
+{
 	x += ndx;
 
 	int ny = plat(x, y);
@@ -96,7 +100,8 @@ void Sprite::marche(int ndx) {
 //-----------------------------------------------------------------------------
 //		Collisor
 
-void Sprite::colFromPic() {
+void Sprite::colFromPic()
+{
 	if (pic == NULL) {
 		col_on = false;
 	} else {
@@ -114,7 +119,8 @@ void Sprite::colFromPic() {
 //-----------------------------------------------------------------------------
 //		Evitor de collisor
 
-void Sprite::noCol() {
+void Sprite::noCol()
+{
 	col_on = false;
 }
 

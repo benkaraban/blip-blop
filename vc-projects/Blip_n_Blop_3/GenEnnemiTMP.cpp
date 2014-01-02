@@ -24,7 +24,8 @@
 #endif
 
 
-void GenEnnemiTMP::update() {
+void GenEnnemiTMP::update()
+{
 	if (game_flag[FLAG_GEN_OFF] != 0)
 		return;
 

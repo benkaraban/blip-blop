@@ -3,7 +3,8 @@
 #include "EventMiFond.h"
 #include "FondStatique.h"
 
-void EventMiFond::doEvent() {
+void EventMiFond::doEvent()
+{
 	Sprite * s = new FondStatique();
 
 	s->x = x;

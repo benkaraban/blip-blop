@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    NomPasAJour.h
 *		-----------------------
-*			
+*
 *
 *
 *		Prosper / LOADED -   dates à la con ? =)
@@ -36,11 +36,11 @@ public:
 	/*
 
 	TODO:Is this method used? where?
-	
+
 	int TirSnorkybase();
-	
+
 	*/
-	
+
 	virtual int degats() const
 	{
 		return 1;
@@ -51,7 +51,7 @@ public:
 		return 0;
 	};
 
-	virtual void setDir( int d)
+	virtual void setDir(int d)
 	{
 		dir = d;
 	};
@@ -63,31 +63,24 @@ public:
 		ss_etape += 1;
 		ss_etape %= 2;
 
-		if ( ss_etape == 0)
-		{
+		if (ss_etape == 0) {
 			etape += 1;
 			etape %= 3;
 		}
 
-		if ( etape == 2)
-		{
+		if (etape == 2) {
 			pic = NULL;
-		}
-		else
-		{
-			if ( dir == SENS_DROITE)
-			{
+		} else {
+			if (dir == SENS_DROITE) {
 				x += SPEED;
-				pic = pbk_ennemis[219+etape];
-			}
-			else
-			{
+				pic = pbk_ennemis[219 + etape];
+			} else {
 				x -= SPEED;
-				pic = pbk_ennemis[221+etape];
+				pic = pbk_ennemis[221 + etape];
 			}
 		}
 
-		if ( mur_opaque( x, y))
+		if (mur_opaque(x, y))
 			a_detruire = true;
 
 		updateADetruire();

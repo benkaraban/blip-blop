@@ -6,12 +6,14 @@ const int anim_yoshi_marche_gauche[] = { 31, 32, 33, 32};
 const int anim_yoshi_attaque_droite[] = {34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 42, 41, 40, 39, 38, 37, 36, 35, 34};
 const int anim_yoshi_attaque_gauche[] = {44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 52, 51, 50, 49, 48, 47, 46, 45, 44};
 
-EnnemiYoshi::EnnemiYoshi(): attack_delay(50 + rand() % 250), wait_for_attack(0) {
+EnnemiYoshi::EnnemiYoshi(): attack_delay(50 + rand() % 250), wait_for_attack(0)
+{
 	tresor = 10;
 	pv = 500;
 }
 
-void EnnemiYoshi::update() {
+void EnnemiYoshi::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -45,7 +47,8 @@ void EnnemiYoshi::update() {
 	updateADetruire();
 }
 
-void EnnemiYoshi::onAvance() {
+void EnnemiYoshi::onAvance()
+{
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
 	if (plat(x, y) == 0) {
@@ -121,7 +124,8 @@ void EnnemiYoshi::onAvance() {
 	colFromPic();
 }
 
-void EnnemiYoshi::onTombe() {
+void EnnemiYoshi::onTombe()
+{
 	int		yp;
 
 	tombe();
@@ -150,7 +154,8 @@ void EnnemiYoshi::onTombe() {
 	colFromPic();
 }
 
-void EnnemiYoshi::onMeure() {
+void EnnemiYoshi::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -174,7 +179,8 @@ void EnnemiYoshi::onMeure() {
 	}
 }
 
-void EnnemiYoshi::onAttaque() {
+void EnnemiYoshi::onAttaque()
+{
 	if (dir == SENS_DROITE) {
 		pic = pbk_ennemis[anime(anim_yoshi_attaque_droite, 18, 2)];
 	} else {
@@ -190,7 +196,8 @@ void EnnemiYoshi::onAttaque() {
 	colFromPic();
 }
 
-void EnnemiYoshi::onTire() {
+void EnnemiYoshi::onTire()
+{
 
 	ss_etape += 1;
 	ss_etape %= 15;
@@ -231,7 +238,8 @@ void EnnemiYoshi::onTire() {
 	colFromPic();
 }
 
-void EnnemiYoshi::onCarbonise() {
+void EnnemiYoshi::onCarbonise()
+{
 	tombe();
 	ss_etape ++;
 	ss_etape %= 5;
@@ -249,7 +257,8 @@ void EnnemiYoshi::onCarbonise() {
 	}
 }
 
-void EnnemiYoshi::estTouche(Tir * tir) {
+void EnnemiYoshi::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

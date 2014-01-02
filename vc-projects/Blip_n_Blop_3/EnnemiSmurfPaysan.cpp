@@ -22,14 +22,16 @@ const int smurf_paysan_charge_gauche[] = { 160, 161, 162, 163 };
 const int smurf_paysan_decapite_droite[] = { 174, 175, 176, 177 };
 const int smurf_paysan_decapite_gauche[] = { 178, 179, 180, 180 };
 
-EnnemiSmurfPaysan::EnnemiSmurfPaysan() {
+EnnemiSmurfPaysan::EnnemiSmurfPaysan()
+{
 	pv = 200 ;
 	etat = ETAT_AVANCE ;
 	tete_etape = 0 ;
 	tete_ss_etape = 0 ;
 }
 
-void EnnemiSmurfPaysan::update() {
+void EnnemiSmurfPaysan::update()
+{
 	if (blood != 0)
 		blood -= 1;
 
@@ -48,7 +50,8 @@ void EnnemiSmurfPaysan::update() {
 	updateADetruire();
 }
 
-void EnnemiSmurfPaysan::onMeure() {
+void EnnemiSmurfPaysan::onMeure()
+{
 	if (tete_etape == 0) {
 		x_mort = x ;
 		y_mort = y - 25 ;
@@ -64,7 +67,8 @@ void EnnemiSmurfPaysan::onMeure() {
 }
 
 
-void EnnemiSmurfPaysan::onAvance() {
+void EnnemiSmurfPaysan::onAvance()
+{
 	tombe() ;
 
 	// Marche
@@ -94,7 +98,8 @@ void EnnemiSmurfPaysan::onAvance() {
 	}
 }
 
-void EnnemiSmurfPaysan::onCarbonise() {
+void EnnemiSmurfPaysan::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -111,7 +116,8 @@ void EnnemiSmurfPaysan::onCarbonise() {
 	}
 }
 
-void EnnemiSmurfPaysan::estTouche(Tir * tir) {
+void EnnemiSmurfPaysan::estTouche(Tir * tir)
+{
 	static const int dx_giclure_smurf_paysan [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_smurf_paysan [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 

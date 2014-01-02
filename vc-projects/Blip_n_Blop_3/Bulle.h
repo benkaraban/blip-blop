@@ -4,7 +4,8 @@
 
 #include "Sprite.h"
 
-class Bulle : public Sprite {
+class Bulle : public Sprite
+{
 public:
 	int		xbase;
 	int		phi;

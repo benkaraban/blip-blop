@@ -55,7 +55,8 @@ static bool safeMode	= false;
 /************************************
  *   ReleaseAll
  */
-void ReleaseAll(void) {
+void ReleaseAll(void)
+{
 	if (ddraw != NULL) {
 		fnt_menu.close();
 		fnt_menus.close();
@@ -103,7 +104,8 @@ void ReleaseAll(void) {
 /************************************
  *   Bug
  */
-void Bug(const char * txt) {
+void Bug(const char * txt)
+{
 	MessageBox(WinHandle, txt, "Blip'n Blop : Error reporting", MB_OK | MB_ICONERROR);
 } // Bug ----------------------------
 
@@ -111,19 +113,22 @@ void Bug(const char * txt) {
 /************************************
  *   Warning
  */
-void Warning(const char * txt) {
+void Warning(const char * txt)
+{
 	MessageBox(WinHandle, txt, "Blip'n Blop : Warning", MB_OK | MB_ICONWARNING);
 
 } // Bug ----------------------------
 
-bool Question(const char * txt) {
+bool Question(const char * txt)
+{
 	return (MessageBox(WinHandle, txt, "Blip'n Blop", MB_YESNO | MB_ICONQUESTION) == IDYES);
 }
 
 /************************************
  *   Win Proc
  */
-long WINAPI WinProc(HWND WinHandle, UINT Msg, WPARAM wParam, LPARAM lParam) {
+long WINAPI WinProc(HWND WinHandle, UINT Msg, WPARAM wParam, LPARAM lParam)
+{
 	switch (Msg) {
 		case WM_SETCURSOR:			// CURSEUR --------
 			SetCursor(NULL);
@@ -160,7 +165,8 @@ long WINAPI WinProc(HWND WinHandle, UINT Msg, WPARAM wParam, LPARAM lParam) {
 
 } // WinProc ----------------------
 
-static void analyseCmdLine(char * cmd) {
+static void analyseCmdLine(char * cmd)
+{
 	static const char sep [] = " ";
 	char * token;
 
@@ -183,7 +189,8 @@ static void analyseCmdLine(char * cmd) {
 /************************************
  *   Init
  */
-static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
+static bool InitApp(HINSTANCE hInstance, int nCmdShow)
+{
 	WNDCLASS			WinClass;
 
 	//------------------------------------------------------------------
@@ -600,7 +607,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
  */
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
-                   LPSTR lpCmdLine, int nCmdShow) {
+                   LPSTR lpCmdLine, int nCmdShow)
+{
 	//------------------------------------------------------------------
 	//			Safe mode ?
 	//------------------------------------------------------------------

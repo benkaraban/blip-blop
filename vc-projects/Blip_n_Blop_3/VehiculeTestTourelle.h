@@ -2,22 +2,26 @@
 #ifndef _VehiculeTestTourelle_
 #define _VehiculeTestTourelle_
 
-class VehiculeTestTourelle : public Vehicule {
+class VehiculeTestTourelle : public Vehicule
+{
 public:
 
 	int		lat;
 
-	VehiculeTestTourelle() : lat(0) {
+	VehiculeTestTourelle() : lat(0)
+	{
 		pic = pbk_ennemis[525];
 	}
 
-	virtual bool canFire() {
+	virtual bool canFire()
+	{
 		return false;
 	};
 
 	virtual void updateNotUsed() {};
 
-	virtual void updateUsed() {
+	virtual void updateUsed()
+	{
 		if (joueur->etat != ETAT_LOCKEDV || joueur->a_detruire) {
 			joueur = NULL;
 			return;

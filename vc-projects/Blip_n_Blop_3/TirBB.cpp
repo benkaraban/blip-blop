@@ -21,7 +21,8 @@
 
 #include "tirBB.h"
 
-void TirBB::setDir(int d) {
+void TirBB::setDir(int d)
+{
 	// Convertit la dir BB en dir TIR
 	//
 	if (d == BBDIR_BAS_B_G)

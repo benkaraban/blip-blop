@@ -19,12 +19,14 @@
 
 #include "tirMarioFireballVertical.h"
 
-TirMarioFireballVertical::TirMarioFireballVertical(int vx, int xc): x_cible(xc), dx(vx) {
+TirMarioFireballVertical::TirMarioFireballVertical(int vx, int xc): x_cible(xc), dx(vx)
+{
 	dy = -12;
 }
 
 
-void TirMarioFireballVertical::update() {
+void TirMarioFireballVertical::update()
+{
 
 	if (x < offset - 100 || x > offset + 700 || y > 520 || y < -250)
 		a_detruire = true;
@@ -74,7 +76,8 @@ void TirMarioFireballVertical::update() {
 }
 
 
-void TirMarioFireballVertical::fireball_tombe() {
+void TirMarioFireballVertical::fireball_tombe()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_FIREBALL;
 

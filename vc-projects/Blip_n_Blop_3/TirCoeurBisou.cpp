@@ -2,11 +2,13 @@
 #include "tircoeurbisou.h"
 #include "benmaths.h"
 
-TirCoeurBisou::TirCoeurBisou() : ok(false) {
+TirCoeurBisou::TirCoeurBisou() : ok(false)
+{
 	phi = rand() % 360;
 }
 
-void TirCoeurBisou::update() {
+void TirCoeurBisou::update()
+{
 	y += 1;
 
 	phi += 5;

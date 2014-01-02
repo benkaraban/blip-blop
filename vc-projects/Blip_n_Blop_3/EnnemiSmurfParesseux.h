@@ -26,14 +26,17 @@
 //		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfParesseux : public EnnemiSmurf {
+class EnnemiSmurfParesseux : public EnnemiSmurf
+{
 public:
 
-	EnnemiSmurfParesseux() {
+	EnnemiSmurfParesseux()
+	{
 		dy_saut = -4 ;
 	}
 
-	inline virtual void affiche() {
+	inline virtual void affiche()
+	{
 		EnnemiSmurf::affiche() ;
 		/*
 				if(etat != ETAT_MEURE && etat != ETAT_CARBONISE)

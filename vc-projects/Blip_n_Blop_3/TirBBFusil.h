@@ -28,7 +28,8 @@
 //		Définition de la classe TirBBM16
 //-----------------------------------------------------------------------------
 
-class TirBBFusil : public TirBB {
+class TirBBFusil : public TirBB
+{
 public:
 
 	int		dx;
@@ -41,14 +42,16 @@ public:
 	int		duree_vie;
 	int		vie;
 
-	inline virtual int degats() const {
+	inline virtual int degats() const
+	{
 		if (vie < duree_vie)
 			return 40;
 		else
 			return 30;
 	};
 
-	inline virtual int enflame() const {
+	inline virtual int enflame() const
+	{
 		return 0;
 	};
 

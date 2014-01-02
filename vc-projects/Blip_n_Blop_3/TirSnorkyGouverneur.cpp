@@ -21,12 +21,14 @@
 
 
 
-TirSnorkyGouverneur::TirSnorkyGouverneur(Personnage * cible, int vx , int vy): joueur_cible(cible), dx(vx), etape_dx(0), etape_dy(0), time(0) {
+TirSnorkyGouverneur::TirSnorkyGouverneur(Personnage * cible, int vx , int vy): joueur_cible(cible), dx(vx), etape_dx(0), etape_dy(0), time(0)
+{
 	dy = vy;
 }
 
 
-void TirSnorkyGouverneur::update() {
+void TirSnorkyGouverneur::update()
+{
 	ss_etape++;
 	ss_etape %= 4;
 

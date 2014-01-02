@@ -29,7 +29,8 @@
 #define BLF		7
 
 
-class EventBonus : public Event {
+class EventBonus : public Event
+{
 public:
 	int		type;
 	int		x;

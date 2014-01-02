@@ -3,15 +3,18 @@
 
 #include "sprite.h"
 
-class GoreBisouAuto : public Sprite {
+class GoreBisouAuto : public Sprite
+{
 public:
 
 	bool	sol;
 
-	GoreBisouAuto() : sol(false) {
+	GoreBisouAuto() : sol(false)
+	{
 	}
 
-	virtual void update() {
+	virtual void update()
+	{
 		static const int anim_droite [] = { 589, 590, 591, 592, 591, 590 };
 		static const int anim_gauche [] = { 603, 604, 605, 606, 605, 604 };
 		static const int SPEED = 2;

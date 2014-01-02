@@ -32,14 +32,16 @@ int		  SuperListe::nb_lists	= 0;
 
 //-----------------------------------------------------------------------------
 
-SuperListe::SuperListe() : tete(NULL), obs(NULL), nb_elem(0) {
+SuperListe::SuperListe() : tete(NULL), obs(NULL), nb_elem(0)
+{
 	nb_lists += 1;
 }
 
 
 //-----------------------------------------------------------------------------
 
-SuperListe::~SuperListe() {
+SuperListe::~SuperListe()
+{
 	if (nb_elem != 0) {
 		debug << "SuperListe non désallouée (taille " << nb_elem << ")\n";
 		vide();
@@ -61,7 +63,8 @@ SuperListe::~SuperListe() {
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::ajoute(void * nouvo) {
+void SuperListe::ajoute(void * nouvo)
+{
 	CELLULE *	ptr;
 
 	if (trash == NULL)
@@ -86,7 +89,8 @@ void SuperListe::ajoute(void * nouvo) {
 
 //-----------------------------------------------------------------------------
 
-void * SuperListe::supprimePorc() {
+void * SuperListe::supprimePorc()
+{
 	void *	dat;
 
 	if (obs == NULL)
@@ -135,7 +139,8 @@ void * SuperListe::supprimePorc() {
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::supprime() {
+void SuperListe::supprime()
+{
 	if (obs == NULL)
 		return;
 
@@ -182,7 +187,8 @@ void SuperListe::supprime() {
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::vide() {
+void SuperListe::vide()
+{
 	CELLULE * ptr;
 
 	ptr = tete;
@@ -202,7 +208,8 @@ void SuperListe::vide() {
 
 //-----------------------------------------------------------------------------
 
-void SuperListe::vide_porc() {
+void SuperListe::vide_porc()
+{
 	CELLULE * ptr;
 
 	ptr = tete;
@@ -223,7 +230,8 @@ void SuperListe::vide_porc() {
 
 //-----------------------------------------------------------------------------
 
-void (SuperListe::trier(int (*fonc)(const void *, const void*))) {
+void (SuperListe::trier(int (*fonc)(const void *, const void*)))
+{
 	if (tete == NULL || tete->next == NULL)
 		return;
 

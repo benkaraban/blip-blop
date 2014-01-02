@@ -25,7 +25,8 @@
 const int dx_tirbb_PM [] = { 0, 5, 8, 11, 12, 11, 8, 5, 0, -5, -8, -11, -12, -11, -8, -5 };
 const int dy_tirbb_PM [] = { 12, 11, 8, 5, 0, -5, -8, -11, -12, -11, -8, -5, 0, 5, 8, 11 };
 
-void TirBBPM::update() {
+void TirBBPM::update()
+{
 	x += dx_tirbb_PM[dir];
 	y += dy_tirbb_PM[dir];
 

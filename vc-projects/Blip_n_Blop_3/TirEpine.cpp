@@ -6,7 +6,8 @@
 #include "tirepine.h"
 //#include "bendebug.h"
 
-TirEpine::TirEpine(int n_pbk_ennemis, int vx, int vy) {
+TirEpine::TirEpine(int n_pbk_ennemis, int vx, int vy)
+{
 	pic = pbk_ennemis[n_pbk_ennemis];
 	dy = vy;
 	dx = vx;
@@ -14,7 +15,8 @@ TirEpine::TirEpine(int n_pbk_ennemis, int vx, int vy) {
 }
 
 
-void TirEpine::update() {
+void TirEpine::update()
+{
 	x += dx;
 	y += dy;
 

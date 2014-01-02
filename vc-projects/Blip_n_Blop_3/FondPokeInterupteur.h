@@ -18,7 +18,8 @@
 
 
 
-class FondPokeInterupteur : public Sprite {
+class FondPokeInterupteur : public Sprite
+{
 private:
 
 	bool etat;

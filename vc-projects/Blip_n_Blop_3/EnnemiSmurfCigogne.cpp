@@ -2,13 +2,15 @@
 #include "EnnemiSmurfCigogne.h"
 #include "benmaths.h"
 
-EnnemiSmurfCigogne::EnnemiSmurfCigogne() {
+EnnemiSmurfCigogne::EnnemiSmurfCigogne()
+{
 	pic = pbk_ennemis[355];
 	noCol();
 	first = true;
 }
 
-void EnnemiSmurfCigogne::update() {
+void EnnemiSmurfCigogne::update()
+{
 	if (first) {
 		base_y = y;
 		x -= 100;

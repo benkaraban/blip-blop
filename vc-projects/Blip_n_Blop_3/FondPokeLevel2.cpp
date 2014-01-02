@@ -19,11 +19,13 @@
 const int anim_clignotement [] = {2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0};
 //const int anim_clignotement[] = {0 ,2, 2, 2, 1, 2, 2};
 
-FondPokeLevel2::FondPokeLevel2(): etape_L1(0), etape_E1(0), etape_V(0), etape_E2(0), etape_L2(0) {
+FondPokeLevel2::FondPokeLevel2(): etape_L1(0), etape_E1(0), etape_V(0), etape_E2(0), etape_L2(0)
+{
 	pic = pbk_niveau[130];
 }
 
-void FondPokeLevel2::update() {
+void FondPokeLevel2::update()
+{
 	etape ++;
 	etape %= 560;
 
@@ -47,7 +49,8 @@ void FondPokeLevel2::update() {
 	}
 }
 
-void FondPokeLevel2::affiche() {
+void FondPokeLevel2::affiche()
+{
 	Sprite::affiche();
 
 	if (etape_L1 < 57) {

@@ -25,11 +25,13 @@ int				wait_for_bonus;
 int				num_giclure;
 
 
-Ennemi::Ennemi() : xmin(offset), blood(0), tresor(5) {
+Ennemi::Ennemi() : xmin(offset), blood(0), tresor(5)
+{
 }
 
 
-void Ennemi::estTouche(Tir * tir) {
+void Ennemi::estTouche(Tir * tir)
+{
 	int blessure = tir->degats();
 
 	if (blessure < pv) {
@@ -82,7 +84,8 @@ void Ennemi::estTouche(Tir * tir) {
 }
 
 
-void Ennemi::gicle(const Tir * tir, const int * dxg, const int * dyg) {
+void Ennemi::gicle(const Tir * tir, const int * dxg, const int * dyg)
+{
 	if (blood > 0 || tir->enflame())
 		return;
 
@@ -99,7 +102,8 @@ void Ennemi::gicle(const Tir * tir, const int * dxg, const int * dyg) {
 }
 
 
-void Ennemi::tirEnCloche(int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const {
+void Ennemi::tirEnCloche(int xtir, int ytir, int xci, int yci, int & xspeed, int & yspeed) const
+{
 	int netape = 0;
 	int ddx = xci - xtir;
 

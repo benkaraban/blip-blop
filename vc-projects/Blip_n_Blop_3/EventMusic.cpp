@@ -2,7 +2,8 @@
 #include "EventMusic.h"
 #include "Globals.h"
 
-void EventMusic::doEvent() {
+void EventMusic::doEvent()
+{
 	if (play) {
 		if (current_zik != -1)
 			mbk_niveau.stop(current_zik);

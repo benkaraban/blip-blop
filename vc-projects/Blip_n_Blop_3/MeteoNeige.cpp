@@ -2,7 +2,8 @@
 #include "meteoneige.h"
 #include "benmaths.h"
 
-void MeteoNeige::update() {
+void MeteoNeige::update()
+{
 	// Update angle
 	//
 	phi += 3;

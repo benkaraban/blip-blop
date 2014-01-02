@@ -18,13 +18,15 @@
 const int anim_snork_in_black_marche_droite[] = { 344, 345, 346, 345};
 const int anim_snork_in_black_marche_gauche[] = { 347, 348, 349, 348};
 
-EnnemiSnorkInBlack::EnnemiSnorkInBlack(): wait_for_shoot(0), shoot_delay(50 + rand() % 100), nb_tir(0) {
+EnnemiSnorkInBlack::EnnemiSnorkInBlack(): wait_for_shoot(0), shoot_delay(50 + rand() % 100), nb_tir(0)
+{
 	pv = 250;
 	dy = 0;
 }
 
 
-void EnnemiSnorkInBlack::update() {
+void EnnemiSnorkInBlack::update()
+{
 	switch (etat) {
 		case ETAT_AVANCE:
 		case ETAT_NORMAL:
@@ -53,7 +55,8 @@ void EnnemiSnorkInBlack::update() {
 
 }
 
-void EnnemiSnorkInBlack::onAvance() {
+void EnnemiSnorkInBlack::onAvance()
+{
 
 	if (plat(x, y) == 0) {
 		etat = ETAT_TOMBE;
@@ -116,7 +119,8 @@ void EnnemiSnorkInBlack::onAvance() {
 	colFromPic();
 }
 
-void EnnemiSnorkInBlack::onTombe() {
+void EnnemiSnorkInBlack::onTombe()
+{
 	tombe();
 
 	if (plat(x, y) != 0)
@@ -125,7 +129,8 @@ void EnnemiSnorkInBlack::onTombe() {
 	colFromPic();
 }
 
-void EnnemiSnorkInBlack::onMeure() {
+void EnnemiSnorkInBlack::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -148,7 +153,8 @@ void EnnemiSnorkInBlack::onMeure() {
 	}
 }
 
-void EnnemiSnorkInBlack::onTire() {
+void EnnemiSnorkInBlack::onTire()
+{
 	ss_etape ++;
 	if (etape == 0) {
 		ss_etape %= 20;
@@ -216,7 +222,8 @@ void EnnemiSnorkInBlack::onTire() {
 	colFromPic();
 }
 
-void EnnemiSnorkInBlack::onCarbonise() {
+void EnnemiSnorkInBlack::onCarbonise()
+{
 	ss_etape ++;
 	ss_etape %= 6;
 
@@ -233,7 +240,8 @@ void EnnemiSnorkInBlack::onCarbonise() {
 	}
 }
 
-void EnnemiSnorkInBlack::estTouche(Tir * tir) {
+void EnnemiSnorkInBlack::estTouche(Tir * tir)
+{
 	static const int dx_giclure_snorkbase1 [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_snorkbase1 [] = { -15, -15, -15, -15, -25, -15, -15, -15 };
 

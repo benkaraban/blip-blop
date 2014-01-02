@@ -15,13 +15,15 @@ const int anim_luigi_marche_mort_droite[] = {205, 206, 207, 206};
 const int anim_luigi_marche_mort_gauche[] = {213, 214, 215, 214};
 const int anim_luigi_mort[] = {208, 209, 210, 211, 212, 211, 210, 209};
 
-EnnemiLuigi::EnnemiLuigi(): speed(1), etape_speed(0), attack_delay(50 + rand() % 250), wait_for_attack(0), encaissement(0) {
+EnnemiLuigi::EnnemiLuigi(): speed(1), etape_speed(0), attack_delay(50 + rand() % 250), wait_for_attack(0), encaissement(0)
+{
 	pv = 10000;
 	//pv = 1;
 	xmin = offset + 20;
 }
 
-void EnnemiLuigi::update() {
+void EnnemiLuigi::update()
+{
 	if (game_flag[0] == 7)
 		a_detruire = true;
 
@@ -62,7 +64,8 @@ void EnnemiLuigi::update() {
 	//updateADetruire();
 }
 
-void EnnemiLuigi::onAvance() {
+void EnnemiLuigi::onAvance()
+{
 	//debug<<"a\n";
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
@@ -305,7 +308,8 @@ void EnnemiLuigi::onAvance() {
 	colFromPic();
 }
 
-void EnnemiLuigi::onMeure() {
+void EnnemiLuigi::onMeure()
+{
 	if (game_flag[1] == 0) {
 		tombe();
 		if (x - 3 < xmin || mur_opaque(x - 3, y)) {
@@ -374,7 +378,8 @@ void EnnemiLuigi::onMeure() {
 	}
 }
 
-void EnnemiLuigi::onAttack() {
+void EnnemiLuigi::onAttack()
+{
 	//debug<<"b\n";
 	nb_tir++;
 	if (nb_tir > 275) {
@@ -674,7 +679,8 @@ void EnnemiLuigi::onAttack() {
 	colFromPic();
 }*/
 
-void EnnemiLuigi::onSaute() {
+void EnnemiLuigi::onSaute()
+{
 	//debug<<"s\n";
 	int		yp;
 
@@ -789,7 +795,8 @@ void EnnemiLuigi::onSaute() {
 
 }
 
-void EnnemiLuigi::onCarbonise() {
+void EnnemiLuigi::onCarbonise()
+{
 	a_detruire = true;
 	/*ss_etape += 1;
 	ss_etape %= 5;
@@ -808,7 +815,8 @@ void EnnemiLuigi::onCarbonise() {
 	}*/
 }
 
-void EnnemiLuigi::tombe_luigi() {
+void EnnemiLuigi::tombe_luigi()
+{
 	//debug<<"tl\n";
 
 	lat_grav += 1;
@@ -837,7 +845,8 @@ void EnnemiLuigi::tombe_luigi() {
 	gicle( tir, dx_giclure, dy_giclure);
 }*/
 
-void EnnemiLuigi::estTouche(Tir * tir) {
+void EnnemiLuigi::estTouche(Tir * tir)
+{
 	Sprite * s;
 
 	for (int i = 0; i < 4 ; i++) {

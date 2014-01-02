@@ -20,14 +20,16 @@
 
 
 
-EnnemiPrincesse::EnnemiPrincesse(): avance(false), aide(false) {
+EnnemiPrincesse::EnnemiPrincesse(): avance(false), aide(false)
+{
 	pv = 3700;
 	tresor = 0;
 	pic = pbk_ennemis[128];
 
 }
 
-void EnnemiPrincesse::update() {
+void EnnemiPrincesse::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -49,7 +51,8 @@ void EnnemiPrincesse::update() {
 	}
 }
 
-void EnnemiPrincesse::onAvance() {
+void EnnemiPrincesse::onAvance()
+{
 	//if (game_flag[0])
 	//{
 	// Si plus de plateformes on passe dans l'etat TOMBE
@@ -159,7 +162,8 @@ void EnnemiPrincesse::onAvance() {
 	colFromPic();
 }
 
-void EnnemiPrincesse::onMeure() {
+void EnnemiPrincesse::onMeure()
+{
 	/*if (dy<-5)
 		dy-=5;
 	if (dy<-2)
@@ -204,7 +208,8 @@ void EnnemiPrincesse::onMeure() {
 
 
 
-void EnnemiPrincesse::estTouche(Tir * tir) {
+void EnnemiPrincesse::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

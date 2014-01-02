@@ -18,7 +18,8 @@
 
 #include "Sprite.h"
 
-class FondPokeCaissePlateforme : public Sprite {
+class FondPokeCaissePlateforme : public Sprite
+{
 private:
 	int y_cible;
 

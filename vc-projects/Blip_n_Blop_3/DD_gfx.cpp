@@ -41,7 +41,8 @@ static int	oldRefreshRate	= -1;
 // Desc: Ouvre DirectDraw
 //-----------------------------------------------------------------------------
 
-bool DDInitDirectDraw() {
+bool DDInitDirectDraw()
+{
 	if (ddraw != NULL) {
 		debug << "DDInitDirectDraw / BenGfx.cpp->Direct Draw déjà initialisé!!!\n";
 		return false;
@@ -60,7 +61,8 @@ bool DDInitDirectDraw() {
 // Desc: Ferme Direct Draw
 //-----------------------------------------------------------------------------
 
-void DDCloseDirectDraw() {
+void DDCloseDirectDraw()
+{
 	if (ddraw == NULL) {
 		debug << "DDCloseDirectDraw / BenGfx.cpp->DDraw déjà fermé!\n";
 	} else {
@@ -74,7 +76,8 @@ void DDCloseDirectDraw() {
 // Desc: Règle la priorité graphique à celle par défaut (GROS BILL)
 //-----------------------------------------------------------------------------
 
-bool DDSetCooperativeLevel(HWND wh) {
+bool DDSetCooperativeLevel(HWND wh)
+{
 	return DDSetCooperativeLevel(wh, DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN);
 }
 
@@ -84,7 +87,8 @@ bool DDSetCooperativeLevel(HWND wh) {
 // Desc: Règle la priorité graphique
 //-----------------------------------------------------------------------------
 
-bool DDSetCooperativeLevel(HWND wh, int flags) {
+bool DDSetCooperativeLevel(HWND wh, int flags)
+{
 	if (ddraw == NULL) {
 		debug << "ddraw non initialisé pour (DDSetCooperativeLevel / BenGfx.cpp)\n";
 		return false;
@@ -103,7 +107,8 @@ bool DDSetCooperativeLevel(HWND wh, int flags) {
 // Desc: Règle la résolution graphique X Y NbBits/Pixel
 //-----------------------------------------------------------------------------
 
-bool DDSetGfxMode(int x, int y, int d) {
+bool DDSetGfxMode(int x, int y, int d)
+{
 	if (ddraw == NULL) {
 		debug << "DDSetGfxMode / BenGfx.cpp->ddraw non initialisé\n";
 		return false;
@@ -123,7 +128,8 @@ bool DDSetGfxMode(int x, int y, int d) {
 // Desc: Crée une Surface de taille X*Y
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * DDCreateSurface(int x, int y) {
+IDirectDrawSurface7 * DDCreateSurface(int x, int y)
+{
 	return DDCreateSurface(x, y, DDSURF_BEST);
 }
 
@@ -132,7 +138,8 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y) {
 // Desc: Crée une Surface de taille X*Y en mém VIDEO / SYSTEM (cf DDOpenBMP)
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags) {
+IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags)
+{
 	// Pour éviter d'ecrire 10.000 fois le message "pas assez de vidéo"
 	//
 	static bool not_enough_video_prompt = false;
@@ -200,7 +207,8 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags) {
 // Desc: Crée une Primary Surface sans double buffer
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * DDCreatePrimary() {
+IDirectDrawSurface7 * DDCreatePrimary()
+{
 	IDirectDrawSurface7* first;
 	DDSURFACEDESC2       ddsd;
 
@@ -231,7 +239,8 @@ IDirectDrawSurface7 * DDCreatePrimary() {
 // Desc: Crée une Primary Surface avec double buffer (le paramètre)
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back) {
+IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back)
+{
 	IDirectDrawSurface7* first;
 	DDSURFACEDESC2       ddsd;
 	DDSCAPS2			 ddsc;
@@ -278,7 +287,8 @@ IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back) {
 // Desc: Crée une surface ayant pour contenu une image (BMP)
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * DDLoadBMP(char * file) {
+IDirectDrawSurface7 * DDLoadBMP(char * file)
+{
 	return DDLoadBMP(file, DDSURF_BEST);
 }
 
@@ -288,7 +298,8 @@ IDirectDrawSurface7 * DDLoadBMP(char * file) {
 // Desc: Crée une surface ayant pour contenu l'image
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * DDLoadBMP(char * file, int flags) {
+IDirectDrawSurface7 * DDLoadBMP(char * file, int flags)
+{
 	HBITMAP             hbm;
 	BITMAP              bm;
 	IDirectDrawSurface7 *pdds;
@@ -330,7 +341,8 @@ IDirectDrawSurface7 * DDLoadBMP(char * file, int flags) {
 // Desc: Copie une image Bitmap dans une surface
 //-----------------------------------------------------------------------------
 
-HRESULT	DDCopyBMP(IDirectDrawSurface7 *pdds, HBITMAP hbm) {
+HRESULT	DDCopyBMP(IDirectDrawSurface7 *pdds, HBITMAP hbm)
+{
 	HDC                 hdcImage;
 	HDC                 hdc;
 	BITMAP              bm;
@@ -372,7 +384,8 @@ HRESULT	DDCopyBMP(IDirectDrawSurface7 *pdds, HBITMAP hbm) {
 // Desc: Trouve la couleur correspondant à un RGB
 //-----------------------------------------------------------------------------
 
-DWORD DDFindColor(IDirectDrawSurface7 *pdds, COLORREF rgb) {
+DWORD DDFindColor(IDirectDrawSurface7 *pdds, COLORREF rgb)
+{
 	if (pdds == NULL) {
 		debug << "surface NULL pour DDFindColor / BenGfx.cpp \n";
 		return 0;
@@ -429,7 +442,8 @@ DWORD DDFindColor(IDirectDrawSurface7 *pdds, COLORREF rgb) {
 // Desc: Règle la couleur transparente d'une surface
 //-----------------------------------------------------------------------------
 
-HRESULT DDSetColorKey(IDirectDrawSurface7 *surf, COLORREF rgb) {
+HRESULT DDSetColorKey(IDirectDrawSurface7 *surf, COLORREF rgb)
+{
 	DDCOLORKEY          ddck;
 
 	ddck.dwColorSpaceLowValue  = LGXpaker.findColor(rgb);
@@ -445,7 +459,8 @@ HRESULT DDSetColorKey(IDirectDrawSurface7 *surf, COLORREF rgb) {
 // Desc: Charge une palette d'un fichier
 //-----------------------------------------------------------------------------
 
-IDirectDrawPalette * DDLoadPalette(char * file) {
+IDirectDrawPalette * DDLoadPalette(char * file)
+{
 	IDirectDrawPalette* ddpal;
 	int                 i;
 	int                 n;
@@ -525,7 +540,8 @@ IDirectDrawPalette * DDLoadPalette(char * file) {
 }
 
 
-void DDFlip() {
+void DDFlip()
+{
 	static DWORD lastTime = 0;
 
 	if (vSyncOn) {
@@ -537,6 +553,7 @@ void DDFlip() {
 	lastTime = LGetTime();
 }
 
-void DDFlipV() {
+void DDFlipV()
+{
 	primSurface->Flip(NULL, DDFLIP_WAIT);
 }

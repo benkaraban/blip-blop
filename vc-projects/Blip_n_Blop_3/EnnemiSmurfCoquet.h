@@ -27,15 +27,18 @@
 //		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfCoquet : public EnnemiSmurf {
+class EnnemiSmurfCoquet : public EnnemiSmurf
+{
 public:
 
-	EnnemiSmurfCoquet() {
+	EnnemiSmurfCoquet()
+	{
 		dy_saut = -6 ;
 		speed = 1 + rand() % 2 ;
 	}
 
-	inline virtual void affiche() {
+	inline virtual void affiche()
+	{
 		EnnemiSmurf::affiche() ;
 		if (etat != ETAT_MEURE && etat != ETAT_CARBONISE) {
 			switch (dir) {

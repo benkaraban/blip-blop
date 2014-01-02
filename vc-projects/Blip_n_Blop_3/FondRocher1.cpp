@@ -20,12 +20,14 @@ const int monolite_levitation[] = {0, 0, 1, 1, 1, 1, 2, 2, 1, 1, 1, 0, 0, 0};
 const int monolite_animation[] = {50, 51, 51, 52, 52, 52, 53, 53, 53, 53, 53, 52, 52, 52, 51, 51, 50, 54, 54, 55, 55, 55, 56, 56, 56, 56, 56, 55, 55, 55, 54, 54};
 
 
-FondRocher1::FondRocher1(): etape_levitation(0), ss_etape_levitation(0) {
+FondRocher1::FondRocher1(): etape_levitation(0), ss_etape_levitation(0)
+{
 	pic = pbk_niveau[31];
 	dy = 0;
 }
 
-void FondRocher1::update() {
+void FondRocher1::update()
+{
 	pic = pbk_niveau[anime(monolite_animation, 32, 3)];
 
 

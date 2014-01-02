@@ -210,7 +210,8 @@ Fonte			fnt_menus;
 //-----------------------------------------------------------------------------
 
 
-void tremblement(int amp) {
+void tremblement(int amp)
+{
 	amplitude_tremblement = amp;
 	ddy_tremblement = (amp >> 1) + 1;
 	dy_tremblement = -amp;
@@ -218,7 +219,8 @@ void tremblement(int amp) {
 }
 
 
-int	plat(int x, int y) {
+int	plat(int x, int y)
+{
 	if (x < 0 || x >= level_size || y >= 480)
 		return 0;
 
@@ -237,7 +239,8 @@ int	plat(int x, int y) {
 	return 0;
 }
 
-int	plat2(int x, int y) {
+int	plat2(int x, int y)
+{
 	if (x < 0 || x >= level_size || y < 0 || y >= 480)
 		return -1;
 
@@ -253,7 +256,8 @@ int	plat2(int x, int y) {
 	return -1;
 }
 
-bool mur_opaque(int x, int y) {
+bool mur_opaque(int x, int y)
+{
 	if (x < 0 || x >= level_size || y < 0 || y >= 480)
 		return false;
 
@@ -261,14 +265,16 @@ bool mur_opaque(int x, int y) {
 }
 
 
-bool mur_sanglant(int x, int y) {
+bool mur_sanglant(int x, int y)
+{
 	if (x < 0 || x >= level_size || y < 0 || y >= 480)
 		return false;
 
 	return murs_sanglants[y / 8][x / 8];
 }
 
-inline void clipedBlit(IDirectDrawSurface7 * surf, const Picture * pic, int x, int y, RECT * clip) {
+inline void clipedBlit(IDirectDrawSurface7 * surf, const Picture * pic, int x, int y, RECT * clip)
+{
 	if (pic == NULL)
 		return;
 
@@ -314,7 +320,8 @@ inline void clipedBlit(IDirectDrawSurface7 * surf, const Picture * pic, int x, i
 	surf->BltFast(x1, y1, pic->Surf(), &r, DDBLTFAST_WAIT | DDBLTFAST_SRCCOLORKEY);
 }
 
-bool grave(int x, int y, Picture * pic) {
+bool grave(int x, int y, Picture * pic)
+{
 	if (pic == NULL || x > (offset + vbuffer_wide - pic->xSize()))
 		return false;
 
@@ -388,7 +395,8 @@ bool grave(int x, int y, Picture * pic) {
 	return false;
 }
 
-bool checkRestore() {
+bool checkRestore()
+{
 	if (!active) {
 		debug << "Blip'n Blop 3 has been desactivated\n";
 

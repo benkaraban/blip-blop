@@ -20,28 +20,32 @@
 #define _FondElectronics_
 
 
-class FondElectronic1 : public Sprite {
+class FondElectronic1 : public Sprite
+{
 public:
 
 	virtual void update();
 	virtual void affiche();
 };
 
-class FondElectronic2 : public Sprite {
+class FondElectronic2 : public Sprite
+{
 public:
 
 	virtual void update();
 	virtual void affiche();
 };
 
-class FondElectronic3 : public Sprite {
+class FondElectronic3 : public Sprite
+{
 public:
 
 	virtual void update();
 	virtual void affiche();
 };
 
-class FondElectronic4 : public Sprite {
+class FondElectronic4 : public Sprite
+{
 public:
 
 	virtual void update();

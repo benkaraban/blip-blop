@@ -179,62 +179,62 @@ enum {
 void ZeroMemory(PVOID Destination, SIZE_T Length);
 
 LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags);
-int MessageBox(HWND hWnd,LPCTSTR lpText,LPCTSTR lpCaption,UINT uType);
+int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType);
 
 void SetCursor(bool);
 WORD HIWORD(DWORD dwValue);
 VOID WINAPI PostQuitMessage(int nExitCode);
-LRESULT WINAPI DefWindowProc(HWND hWnd,UINT Msg,WPARAM wParam,LPARAM lParam);
+LRESULT WINAPI DefWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
 ATOM WINAPI RegisterClass(const WNDCLASS *lpWndClass);
 #define SM_CXSCREEN 0x1
 #define SM_CYSCREEN 0x2
 int WINAPI GetSystemMetrics(int nIndex);
-HWND WINAPI CreateWindowEx(DWORD dwExStyle,LPCTSTR lpClassName,LPCTSTR lpWindowName,DWORD dwStyle,int x,int y,int nWidth,int nHeight,HWND hWndParent,HMENU hMenu,HINSTANCE hInstance,LPVOID lpParam);
-BOOL WINAPI ShowWindow(HWND hWnd,int nCmdShow);
+HWND WINAPI CreateWindowEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
+BOOL WINAPI ShowWindow(HWND hWnd, int nCmdShow);
 BOOL UpdateWindow(HWND hWnd);
 
-typedef VOID(*TIMERPROC)(HWND hwnd,UINT uMsg,UINT_PTR idEvent,DWORD dwTime);
-UINT_PTR WINAPI SetTimer(HWND hWnd,UINT_PTR nIDEvent,UINT uElapse,TIMERPROC lpTimerFunc);
+typedef VOID(*TIMERPROC)(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime);
+UINT_PTR WINAPI SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc);
 BOOL WINAPI DestroyWindow(HWND hWnd);
 
 void Sleep(int);
 DWORD WINAPI GetTickCount(void);
 
-COLORREF RGB(BYTE byRed,BYTE byGreen,BYTE byBlue);
+COLORREF RGB(BYTE byRed, BYTE byGreen, BYTE byBlue);
 
 HMODULE WINAPI GetModuleHandle(LPCTSTR lpModuleName);
 
 #define IMAGE_BITMAP 0x1
 #define LR_CREATEDIBSECTION 0x1
 #define LR_LOADFROMFILE 0x2
-HANDLE WINAPI LoadImage(HINSTANCE hinst,LPCTSTR lpszName,UINT uType,int cxDesired,int cyDesired,UINT fuLoad);
+HANDLE WINAPI LoadImage(HINSTANCE hinst, LPCTSTR lpszName, UINT uType, int cxDesired, int cyDesired, UINT fuLoad);
 
 #define E_FAIL 0x1
-int GetObject(HGDIOBJ hgdiobj,int cbBuffer,LPVOID lpvObject);
+int GetObject(HGDIOBJ hgdiobj, int cbBuffer, LPVOID lpvObject);
 BOOL DeleteObject(HGDIOBJ hObject);
 HDC CreateCompatibleDC(HDC hdc);
 HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 
 #define SRCCOPY 0x1
-BOOL StretchBlt(HDC hdcDest,int nXOriginDest,int nYOriginDest,int nWidthDest,int nHeightDest,HDC hdcSrc,int nXOriginSrc,int nYOriginSrc,int nWidthSrc,int nHeightSrc,DWORD dwRop);
+BOOL StretchBlt(HDC hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc, DWORD dwRop);
 
 #define CLR_INVALID 0x1
-COLORREF GetPixel(HDC hdc,int nXPos,int nYPos);
-COLORREF SetPixel(HDC hdc,int X,int Y,COLORREF crColor);
-BOOL SetPixelV(HDC hdc,int X,int Y,COLORREF crColor);
+COLORREF GetPixel(HDC hdc, int nXPos, int nYPos);
+COLORREF SetPixel(HDC hdc, int X, int Y, COLORREF crColor);
+BOOL SetPixelV(HDC hdc, int X, int Y, COLORREF crColor);
 
 typedef struct tagBITMAPINFOHEADER {
-  DWORD biSize;
-  LONG  biWidth;
-  LONG  biHeight;
-  WORD  biPlanes;
-  WORD  biBitCount;
-  DWORD biCompression;
-  DWORD biSizeImage;
-  LONG  biXPelsPerMeter;
-  LONG  biYPelsPerMeter;
-  DWORD biClrUsed;
-  DWORD biClrImportant;
+	DWORD biSize;
+	LONG  biWidth;
+	LONG  biHeight;
+	WORD  biPlanes;
+	WORD  biBitCount;
+	DWORD biCompression;
+	DWORD biSizeImage;
+	LONG  biXPelsPerMeter;
+	LONG  biYPelsPerMeter;
+	DWORD biClrUsed;
+	DWORD biClrImportant;
 } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
 typedef PBITMAPINFOHEADER LPBITMAPINFOHEADER;
 typedef struct tagBITMAPFILEHEADER {
@@ -256,8 +256,8 @@ typedef struct tagPALETTEENTRY {
 
 BOOL DeleteDC(HDC hdc);
 LPVOID WINAPI LockResource(HGLOBAL hResData);
-HGLOBAL WINAPI LoadResource(HMODULE hModule,HRSRC hResInfo);
-HRSRC WINAPI FindResource(HMODULE hModule,LPCTSTR lpName,LPCTSTR lpType);
+HGLOBAL WINAPI LoadResource(HMODULE hModule, HRSRC hResInfo);
+HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType);
 
 #define GENERIC_READ 0x1
 #define FILE_SHARE_READ 0x2
@@ -278,8 +278,8 @@ typedef struct _OVERLAPPED {
 	HANDLE    hEvent;
 } OVERLAPPED, *LPOVERLAPPED;
 
-HANDLE WINAPI CreateFile(LPCTSTR lpFileName,DWORD dwDesiredAccess,DWORD dwShareMode,void* unused,DWORD dwCreationDisposition,DWORD dwFlagsAndAttributes,HANDLE hTemplateFile);
-BOOL WINAPI ReadFile(HANDLE hFile,LPVOID lpBuffer,DWORD nNumberOfBytesToRead,LPDWORD lpNumberOfBytesRead,LPOVERLAPPED lpOverlapped);
+HANDLE WINAPI CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void* unused, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
+BOOL WINAPI ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);
 BOOL WINAPI CloseHandle(HANDLE hObject);
 
 #endif

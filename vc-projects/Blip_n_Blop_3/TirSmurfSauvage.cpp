@@ -4,11 +4,13 @@
 
 #include "TirSmurfSauvage.h"
 
-TirSmurfSauvage::TirSmurfSauvage() {
+TirSmurfSauvage::TirSmurfSauvage()
+{
 	pic = pbk_ennemis[144];
 }
 
-void TirSmurfSauvage::update() {
+void TirSmurfSauvage::update()
+{
 	x += dx ;
 	y += dy ;
 

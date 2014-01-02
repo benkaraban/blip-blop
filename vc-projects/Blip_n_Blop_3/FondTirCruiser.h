@@ -18,7 +18,8 @@
 
 #include "sprite.h"
 
-class TirCruiser : public Sprite {
+class TirCruiser : public Sprite
+{
 public:
 	int dx;
 

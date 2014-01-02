@@ -12,7 +12,7 @@ public:
 	virtual void onAvance();
 	virtual void onMeure();
 	virtual void onCarbonise();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

@@ -25,7 +25,8 @@
 const int dx_tirbb_m16 [] = { 0, 3, 6, 8, 9, 8, 6, 3, 0, -3, -6, -8, -9, -8, -6, -3 };
 const int dy_tirbb_m16 [] = { 9, 8, 6, 3, 0, -2, -6, -8, -9, -8, -6, -3, 0, 3, 6, 8 };
 
-void TirBBM16::update() {
+void TirBBM16::update()
+{
 	x += dx_tirbb_m16[dir];
 	y += dy_tirbb_m16[dir];
 

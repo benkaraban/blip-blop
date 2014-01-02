@@ -17,13 +17,15 @@
 #include "EnnemiFlamecheHeros.h"
 
 
-EnnemiFlamecheHeros::EnnemiFlamecheHeros(): dorkeball(2) {
+EnnemiFlamecheHeros::EnnemiFlamecheHeros(): dorkeball(2)
+{
 	pv = 1000;
 	dy = -7;
 	dx = -1;
 }
 
-void EnnemiFlamecheHeros::update() {
+void EnnemiFlamecheHeros::update()
+{
 	if (dorkeball == 2) {
 		x += dx;
 		tombe();
@@ -80,7 +82,8 @@ void EnnemiFlamecheHeros::update() {
 	}
 }
 
-void EnnemiFlamecheHeros::onAvance() {
+void EnnemiFlamecheHeros::onAvance()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -108,7 +111,8 @@ void EnnemiFlamecheHeros::onAvance() {
 	colFromPic();
 }
 
-void EnnemiFlamecheHeros::onMeure() {
+void EnnemiFlamecheHeros::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -129,7 +133,8 @@ void EnnemiFlamecheHeros::onMeure() {
 }
 
 
-void EnnemiFlamecheHeros::estTouche(Tir * tir) {
+void EnnemiFlamecheHeros::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

@@ -16,7 +16,8 @@
 #define _GenBonus_
 
 
-class GenBonus {
+class GenBonus
+{
 public:
 	int		x;
 	int		periode;
@@ -28,7 +29,8 @@ public:
 
 	virtual void update();
 
-	inline virtual bool aDetruire() {
+	inline virtual bool aDetruire()
+	{
 		return a_detruire;
 	};
 };

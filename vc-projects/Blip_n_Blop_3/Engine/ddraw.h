@@ -85,7 +85,7 @@ typedef struct _DDPIXELFORMAT {
 
 struct DDSURFACEDESC {
 };
-typedef struct _DDSURFACEDESC2 : DDSURFACEDESC{
+typedef struct _DDSURFACEDESC2 : DDSURFACEDESC {
 	DWORD      dwSize;
 	DWORD      dwFlags;
 	DWORD      dwHeight;
@@ -191,11 +191,11 @@ typedef struct _DDBLTFX {
 
 struct IDirectDraw7 {
 	void RestoreAllSurfaces();
-	HRESULT GetAvailableVidMem(LPDDSCAPS2 lpDDSCaps2,LPDWORD lpdwTotal,LPDWORD lpdwFree);
+	HRESULT GetAvailableVidMem(LPDDSCAPS2 lpDDSCaps2, LPDWORD lpdwTotal, LPDWORD lpdwFree);
 	void Release();
 	HRESULT SetCooperativeLevel(HWND hWnd, DWORD dwFlags);
-	HRESULT SetDisplayMode( DWORD dwWidth,  DWORD dwHeiight, DWORD dwBPP, DWORD dwRefreshRate,  DWORD dwFlags);
-	HRESULT CreateSurface(LPDDSURFACEDESC2 lpDDSurfaceDesc2,LPDIRECTDRAWSURFACE7 FAR *lplpDDSurface,void* unused);
+	HRESULT SetDisplayMode(DWORD dwWidth,  DWORD dwHeiight, DWORD dwBPP, DWORD dwRefreshRate,  DWORD dwFlags);
+	HRESULT CreateSurface(LPDDSURFACEDESC2 lpDDSurfaceDesc2, LPDIRECTDRAWSURFACE7 FAR *lplpDDSurface, void* unused);
 };
 struct IDirectDrawSurface7 {
 	void BltFast(int x, int y, IDirectDrawSurface7* surf, RECT*, int flags);
@@ -204,8 +204,8 @@ struct IDirectDrawSurface7 {
 	HRESULT Restore();
 	HRESULT GetSurfaceDesc(DDSURFACEDESC *pSurfaceDesc);
 	void Flip(void* unused, int flags);
-	HRESULT Blt(LPRECT lpDestRect,LPDIRECTDRAWSURFACE7 lpDDSrcSurface,LPRECT lpSrcRect,DWORD dwFlags,LPDDBLTFX lpDDBltFx);
-	HRESULT GetAttachedSurface(LPDDSCAPS2 lpDDSCaps,LPDIRECTDRAWSURFACE7 FAR *lplpDDAttachedSurface);
+	HRESULT Blt(LPRECT lpDestRect, LPDIRECTDRAWSURFACE7 lpDDSrcSurface, LPRECT lpSrcRect, DWORD dwFlags, LPDDBLTFX lpDDBltFx);
+	HRESULT GetAttachedSurface(LPDDSCAPS2 lpDDSCaps, LPDIRECTDRAWSURFACE7 FAR *lplpDDAttachedSurface);
 	HRESULT GetDC(HDC FAR *lphDC);
 	HRESULT ReleaseDC(HDC hDC);
 	HRESULT Lock(LPRECT lpDestRect, LPDDSURFACEDESC2 lpDDSurfaceDesc, DWORD dwFlags, HANDLE hEvent);
@@ -214,7 +214,7 @@ struct IDirectDrawSurface7 {
 };
 
 #define IID_IDirectDraw7 0
-HRESULT WINAPI DirectDrawCreateEx(void* unused1,LPVOID *lplpDD,int unused2,void* unused3);
+HRESULT WINAPI DirectDrawCreateEx(void* unused1, LPVOID *lplpDD, int unused2, void* unused3);
 
 
 #endif

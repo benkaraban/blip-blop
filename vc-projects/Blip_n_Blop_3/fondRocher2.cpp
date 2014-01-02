@@ -20,12 +20,14 @@ const int rocher2_levitation[] = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0};
 const int rocher2_animation[] = {57, 58, 58, 59, 59, 59, 60, 60, 60, 60, 60, 59, 59, 59, 58, 58, 57, 61, 61, 62, 62, 62, 63, 63, 63, 63, 63, 62, 62, 62, 61, 61};
 
 
-FondRocher2::FondRocher2(): etape_levitation(0), ss_etape_levitation(0) {
+FondRocher2::FondRocher2(): etape_levitation(0), ss_etape_levitation(0)
+{
 	pic = pbk_niveau[38];
 	dy = 0;
 }
 
-void FondRocher2::update() {
+void FondRocher2::update()
+{
 	pic = pbk_niveau[anime(rocher2_animation, 32, 4)];
 
 

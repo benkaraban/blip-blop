@@ -20,14 +20,16 @@
 #include "TirMarioFireball.h"
 
 
-TirMarioFireball::TirMarioFireball(int vx): speed_etape(0) {
+TirMarioFireball::TirMarioFireball(int vx): speed_etape(0)
+{
 
 	dy = 0;
 	dx = vx;
 }
 
 
-void TirMarioFireball::update() {
+void TirMarioFireball::update()
+{
 
 	if (x < offset - 100 || x > offset + 700 || y > 520 || y < -50)
 		a_detruire = true;

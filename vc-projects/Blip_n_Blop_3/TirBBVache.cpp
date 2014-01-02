@@ -21,7 +21,8 @@
 #include "tirbbvache.h"
 #include "goregiclure.h"
 
-void TirBBVache::update() {
+void TirBBVache::update()
+{
 	y += dy;
 
 	ss_etape += 1;

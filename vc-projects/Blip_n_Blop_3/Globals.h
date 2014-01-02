@@ -241,7 +241,8 @@ void	tremblement(int amp);
 bool	checkRestore();
 
 
-inline void draw(int x, int y, const Picture * pic) {
+inline void draw(int x, int y, const Picture * pic)
+{
 	if (pic != NULL)
 		pic->BlitTo(backSurface, x - offset, y);
 }

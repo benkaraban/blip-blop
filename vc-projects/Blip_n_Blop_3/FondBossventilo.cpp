@@ -17,7 +17,8 @@
 #include "fondBossventilo.h"
 
 
-void FondBossventilo::update() {
+void FondBossventilo::update()
+{
 	ss_etape ++;
 	ss_etape %= 3;
 	if (ss_etape == 0) {

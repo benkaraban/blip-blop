@@ -16,12 +16,14 @@
 #include "MorceauTeteRayman.h"
 
 
-MorceauTeteRayman::MorceauTeteRayman(int vx, int vy): dx(vx) {
+MorceauTeteRayman::MorceauTeteRayman(int vx, int vy): dx(vx)
+{
 	pic = pbk_ennemis[496];
 	dy = vy;
 }
 
-void MorceauTeteRayman::update() {
+void MorceauTeteRayman::update()
+{
 	x += dx;
 	tombe();
 

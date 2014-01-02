@@ -21,7 +21,8 @@
 extern bool txt_cool_free[];
 #endif
 
-class TexteCool {
+class TexteCool
+{
 public:
 	int		y;
 	int		nn;
@@ -34,7 +35,8 @@ public:
 	void update();
 	void affiche();
 
-	bool aDetruire() {
+	bool aDetruire()
+	{
 		return x <= -320;
 	};
 };

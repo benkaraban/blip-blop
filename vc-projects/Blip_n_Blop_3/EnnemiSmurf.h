@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		--------------------
 *		    EnnemiSmurf.h
 *		--------------------
-*			
+*
 *		Le schtroumpf de base!
 *
 *
@@ -36,14 +36,14 @@ public:
 	int			speed ;
 
 	EnnemiSmurf();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onSaute();
 	virtual void onMeure();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

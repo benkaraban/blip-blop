@@ -16,13 +16,16 @@
 #include "EventPremierPlan.h"
 #include "Sprite.h"
 
-class PPlan : public Sprite {
+class PPlan : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 	};
 };
 
-void EventPremierPlan::doEvent() {
+void EventPremierPlan::doEvent()
+{
 	PPlan * s = new PPlan();
 
 	s->x = x;

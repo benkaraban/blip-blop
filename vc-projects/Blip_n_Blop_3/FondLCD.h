@@ -19,7 +19,8 @@
 #define _FondLCD_
 
 
-class FondLCD : public Sprite {
+class FondLCD : public Sprite
+{
 public:
 
 

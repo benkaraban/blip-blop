@@ -18,7 +18,8 @@
 
 #include "event.h"
 
-class EventRPG : public Event {
+class EventRPG : public Event
+{
 public:
 
 	int		num;
@@ -26,14 +27,16 @@ public:
 	int		val;
 	int		cond;
 
-	inline virtual bool aActiver() {
+	inline virtual bool aActiver()
+	{
 		if (cond == 0)
 			return true;
 		else
 			return (game_flag[flag] == val);
 	};
 
-	virtual void doEvent() {
+	virtual void doEvent()
+	{
 		rpg_to_play = num;
 	};
 };

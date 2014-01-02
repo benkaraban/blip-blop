@@ -1,12 +1,14 @@
 
 #include "ennemiCOM.h"
 
-EnnemiCOM::EnnemiCOM() {
+EnnemiCOM::EnnemiCOM()
+{
 	pv = 100;
 }
 
 
-void EnnemiCOM::update() {
+void EnnemiCOM::update()
+{
 
 	switch (etat) {
 		case ETAT_NORMAL:
@@ -24,7 +26,8 @@ void EnnemiCOM::update() {
 }
 
 
-void EnnemiCOM::onAvance() {
+void EnnemiCOM::onAvance()
+{
 	ss_etape += 1;
 	ss_etape %= 8;
 
@@ -51,7 +54,8 @@ void EnnemiCOM::onAvance() {
 }
 
 
-void EnnemiCOM::onMeure() {
+void EnnemiCOM::onMeure()
+{
 	if (ss_etape == 0 && etape == 0) {
 		sbk_niveau.play(6);
 	}

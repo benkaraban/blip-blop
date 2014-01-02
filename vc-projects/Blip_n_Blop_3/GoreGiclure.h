@@ -28,7 +28,8 @@
 //		Définition de la classe GoreGiclure
 //-----------------------------------------------------------------------------
 
-class GoreGiclure : public Sprite {
+class GoreGiclure : public Sprite
+{
 public:
 	int		dx;
 

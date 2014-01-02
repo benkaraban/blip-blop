@@ -19,7 +19,8 @@
 #define _FondCamera_
 
 
-class FondEcrancamera : public Sprite {
+class FondEcrancamera : public Sprite
+{
 public:
 
 	virtual void update();

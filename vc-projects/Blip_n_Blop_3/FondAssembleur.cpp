@@ -16,18 +16,21 @@
 #include "globals.h"
 #include "fondAssembleur.h"
 
-FondAssembleur::FondAssembleur() {
+FondAssembleur::FondAssembleur()
+{
 	//pic = pbk_niveau[53];
 }
 
-void FondAssembleur::update() {
+void FondAssembleur::update()
+{
 	etape += 1;
 	etape %= 432;
 
 	//colFromPic();
 }
 
-void FondAssembleur::affiche() {
+void FondAssembleur::affiche()
+{
 	//Sprite::affiche();
 
 	IDirectDrawSurface7 *	surf;

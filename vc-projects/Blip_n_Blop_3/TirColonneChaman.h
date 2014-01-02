@@ -26,22 +26,26 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class TirColonneChaman : public Tir {
+class TirColonneChaman : public Tir
+{
 public:
 	int		duree_vie;
 	int		etat; // 0:cree - 1:normal - 2:detruit
 
 	TirColonneChaman();
 
-	virtual int degats() const {
+	virtual int degats() const
+	{
 		return 1;
 	};
 
-	virtual int enflame() const {
+	virtual int enflame() const
+	{
 		return 0;
 	};
 
-	virtual void setDir(int d) {
+	virtual void setDir(int d)
+	{
 		dir = d;
 	};
 

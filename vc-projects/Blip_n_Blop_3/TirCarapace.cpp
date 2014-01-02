@@ -6,13 +6,15 @@
 #include "tircarapace.h"
 #include "bendebug.h"
 
-TirCarapace::TirCarapace() {
+TirCarapace::TirCarapace()
+{
 	pic = pbk_ennemis[58];
 	rebond = false;
 }
 
 
-void TirCarapace::update() {
+void TirCarapace::update()
+{
 	tombe();
 
 	ss_etape++;

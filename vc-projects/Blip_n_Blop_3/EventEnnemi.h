@@ -24,7 +24,8 @@
 #include "Globals.h"
 
 
-class EventEnnemi : public Event {
+class EventEnnemi : public Event
+{
 public:
 	int		x;
 	int		y;

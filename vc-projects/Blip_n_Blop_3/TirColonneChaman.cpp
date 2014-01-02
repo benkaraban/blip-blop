@@ -1,12 +1,14 @@
 
 #include "TirColonneChaman.h"
 
-TirColonneChaman::TirColonneChaman() : etat(0) {
+TirColonneChaman::TirColonneChaman() : etat(0)
+{
 	duree_vie = 250 + rand() % 100;
 }
 
 
-void TirColonneChaman::update() {
+void TirColonneChaman::update()
+{
 	deplace();
 
 	ss_etape += 1;
@@ -69,7 +71,8 @@ void TirColonneChaman::update() {
 }
 
 
-void TirColonneChaman::deplace() {
+void TirColonneChaman::deplace()
+{
 	static const int SPEED = 4;
 
 	tombe();

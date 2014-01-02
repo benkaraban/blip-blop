@@ -4,12 +4,14 @@
 
 #include "event.h"
 
-class EventSon : public Event {
+class EventSon : public Event
+{
 public:
 
 	int		nsnd;
 
-	virtual void doEvent() {
+	virtual void doEvent()
+	{
 		sbk_niveau.play(nsnd);
 	};
 

@@ -18,15 +18,18 @@
 
 #include "Bonus.h"
 
-class BonusLaser : public Bonus {
+class BonusLaser : public Bonus
+{
 public:
 
-	BonusLaser() {
+	BonusLaser()
+	{
 		pic = pbk_misc[10];
 		col_on = true;
 	};
 
-	virtual void estPris(Couille * c) {
+	virtual void estPris(Couille * c)
+	{
 		sbk_misc.play(3);
 
 		if (c->id_arme == ID_LASER) {

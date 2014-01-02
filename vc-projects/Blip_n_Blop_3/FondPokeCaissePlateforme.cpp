@@ -16,11 +16,13 @@
 
 #include "Fond PokeCaissePlateforme.h"
 
-FondPokeCaissePlateforme::FondPokeCaissePlateforme(int niveau_y): y_cible(niveau_y) {
+FondPokeCaissePlateforme::FondPokeCaissePlateforme(int niveau_y): y_cible(niveau_y)
+{
 	pic = pbk_niveau[87];
 }
 
-void FondPokeCaissePlateforme::update() {
+void FondPokeCaissePlateforme::update()
+{
 
 	if (y  < y_cible - 50) {
 		y += 5;

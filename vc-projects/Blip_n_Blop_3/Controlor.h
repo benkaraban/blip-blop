@@ -23,7 +23,8 @@
 //		Définition de la classe Controlor (ABSTRAITE)
 //-----------------------------------------------------------------------------
 
-class Controlor {
+class Controlor
+{
 protected:
 	bool inertia_on;
 
@@ -39,11 +40,13 @@ public:
 	virtual int saut() const = 0;
 	virtual int super() const = 0;
 
-	virtual bool inertia() const {
+	virtual bool inertia() const
+	{
 		return inertia_on;
 	};
 
-	virtual void setInertia(bool i) {
+	virtual void setInertia(bool i)
+	{
 		inertia_on = i;
 	};
 };

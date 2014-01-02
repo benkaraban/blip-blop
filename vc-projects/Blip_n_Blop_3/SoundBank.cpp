@@ -32,11 +32,13 @@
 //		Méthodes
 //-----------------------------------------------------------------------------
 
-SoundBank::SoundBank() : tab(NULL), nb_snd(0), nom_f(NULL) {
+SoundBank::SoundBank() : tab(NULL), nb_snd(0), nom_f(NULL)
+{
 }
 
 
-SoundBank::~SoundBank() {
+SoundBank::~SoundBank()
+{
 	if (nom_f != NULL) {
 		delete [] nom_f;
 		nom_f = NULL;
@@ -48,7 +50,8 @@ SoundBank::~SoundBank() {
 
 
 
-void SoundBank::close() {
+void SoundBank::close()
+{
 	if (tab == NULL)
 		return;
 
@@ -62,13 +65,15 @@ void SoundBank::close() {
 }
 
 
-void SoundBank::reload() {
+void SoundBank::reload()
+{
 	if (nom_f != NULL) {
 		loadSFX(nom_f);
 	}
 }
 
-void SoundBank::reinit() {
+void SoundBank::reinit()
+{
 	if (nom_f != NULL) {
 		delete [] nom_f;
 		nom_f = NULL;
@@ -76,7 +81,8 @@ void SoundBank::reinit() {
 }
 
 
-bool SoundBank::loadSFX(const char * nom_fic) {
+bool SoundBank::loadSFX(const char * nom_fic)
+{
 	int		fh;		// File Handle
 	int		n_buff;	// Nombre de buffers
 	int		taille;	// Taille d'un WAV

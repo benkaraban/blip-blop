@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		--------------------
 *		EnnemiSmurfFarceur.h
 *		--------------------
-*			
+*
 *		Le poseur de bombes
 *
 *
@@ -51,22 +51,21 @@ public:
 
 	inline virtual void affiche()
 	{
-		if(porte_bomb)
-		{
-			if(dir == SENS_DROITE)
-			draw( x+26, y-decalage_y_cadeau, pbk_ennemis[56]);
+		if (porte_bomb) {
+			if (dir == SENS_DROITE)
+				draw(x + 26, y - decalage_y_cadeau, pbk_ennemis[56]);
 			else
-			draw( x-26, y-decalage_y_cadeau, pbk_ennemis[56]);
+				draw(x - 26, y - decalage_y_cadeau, pbk_ennemis[56]);
 		}
 
-		draw( x, y, pic) ;
+		draw(x, y, pic) ;
 	};
 
 	virtual void update();
 	virtual void onAvance();
 	virtual void onMeure();
 	virtual void onCarbonise();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual void onPoseCadeau();
 	virtual void onDegaine();
 };

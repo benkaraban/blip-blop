@@ -21,10 +21,12 @@
 #include "TirBBLaser.h"
 #include "bendebug.h"
 
-TirBBLaser::TirBBLaser() : base(0), hauteur(0), largeur(0) {
+TirBBLaser::TirBBLaser() : base(0), hauteur(0), largeur(0)
+{
 }
 
-void TirBBLaser::setDir(int d) {
+void TirBBLaser::setDir(int d)
+{
 	TirBB::setDir(d);
 
 	base = hauteur = largeur = 0;
@@ -106,7 +108,8 @@ void TirBBLaser::setDir(int d) {
 	ss_etape = 2;
 }
 
-void TirBBLaser::update() {
+void TirBBLaser::update()
+{
 	ss_etape -= 1;
 
 	if (ss_etape == 0)
@@ -114,7 +117,8 @@ void TirBBLaser::update() {
 }
 
 
-void TirBBLaser::affiche() {
+void TirBBLaser::affiche()
+{
 	IDirectDrawSurface7 *	surf = pbk_bb[base + etape]->Surf();
 	RECT	r;
 	int		xx = x - offset;
@@ -242,7 +246,8 @@ void TirBBLaser::affiche() {
 }
 
 
-bool TirBBLaser::collision(const Sprite * s) const {
+bool TirBBLaser::collision(const Sprite * s) const
+{
 	switch (dir) {
 		case 0:
 		case 2:

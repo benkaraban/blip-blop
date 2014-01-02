@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiSnorkyHyporider.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 18 Decembre 2000
@@ -43,7 +43,7 @@ public:
 	int attack_etape;
 
 	EnnemiSnorkyHyporider();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onMeure();
@@ -51,7 +51,7 @@ public:
 	virtual void affiche();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

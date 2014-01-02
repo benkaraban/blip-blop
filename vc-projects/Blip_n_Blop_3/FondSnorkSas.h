@@ -19,7 +19,8 @@
 
 #include "sprite.h"
 
-class FondSnorkSas1 : public Sprite {
+class FondSnorkSas1 : public Sprite
+{
 private:
 	int nb_joueur;
 
@@ -32,7 +33,8 @@ public:
 	virtual void affiche();
 };
 
-class FondSnorkSas2 : public Sprite {
+class FondSnorkSas2 : public Sprite
+{
 public:
 	FondSnorkSas2();
 	virtual void update();

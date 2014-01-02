@@ -11,13 +11,15 @@ static int etape_moan	= 199;
 static int num_moan		= 0;
 static bool local_phase;
 
-EnnemiBisouZombi::EnnemiBisouZombi() : etape2(0) {
+EnnemiBisouZombi::EnnemiBisouZombi() : etape2(0)
+{
 	pv = 1000;
 	tresor = 10;
 }
 
 
-void EnnemiBisouZombi::update() {
+void EnnemiBisouZombi::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -78,7 +80,8 @@ void EnnemiBisouZombi::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouZombi::onAvance() {
+void EnnemiBisouZombi::onAvance()
+{
 	static const int SPEED = 1;
 
 	tombe();
@@ -113,7 +116,8 @@ void EnnemiBisouZombi::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBisouZombi::estTouche(Tir * tir) {
+void EnnemiBisouZombi::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 
@@ -176,7 +180,8 @@ void EnnemiBisouZombi::estTouche(Tir * tir) {
 }
 
 
-void EnnemiBisouZombi::onTombe() {
+void EnnemiBisouZombi::onTombe()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -201,7 +206,8 @@ void EnnemiBisouZombi::onTombe() {
 	}
 }
 
-void EnnemiBisouZombi::onMeure() {
+void EnnemiBisouZombi::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -222,7 +228,8 @@ void EnnemiBisouZombi::onMeure() {
 	}
 }
 
-void EnnemiBisouZombi::onCoupe() {
+void EnnemiBisouZombi::onCoupe()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -254,7 +261,8 @@ void EnnemiBisouZombi::onCoupe() {
 	}
 }
 
-void EnnemiBisouZombi::onRampe() {
+void EnnemiBisouZombi::onRampe()
+{
 	static const int anim_droite [] = { 286, 287, 288, 287 };
 	static const int anim_gauche [] = { 289, 290, 291, 290 };
 	static const int SPEED = 1;
@@ -294,7 +302,8 @@ void EnnemiBisouZombi::onRampe() {
 		pic = pbk_ennemis[anime(anim_gauche, 4, 16)];
 }
 
-void EnnemiBisouZombi::onCarbonise() {
+void EnnemiBisouZombi::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -313,7 +322,8 @@ void EnnemiBisouZombi::onCarbonise() {
 		pic = pbk_ennemis[612 + etape];
 }
 
-void EnnemiBisouZombi::onCarboniseHaut() {
+void EnnemiBisouZombi::onCarboniseHaut()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 

@@ -3,11 +3,13 @@
 
 #include "sprite.h"
 
-class FondDrapeau : public Sprite {
+class FondDrapeau : public Sprite
+{
 
 public:
 
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape ++;
 		ss_etape %= 5;
 

@@ -20,7 +20,8 @@
 #include "genennemitmp.h"
 #include "GenEnnemi.h"
 
-void EventGenEnnemi::doEvent() {
+void EventGenEnnemi::doEvent()
+{
 	GenEnnemi *	gen;
 
 	if (tmp)

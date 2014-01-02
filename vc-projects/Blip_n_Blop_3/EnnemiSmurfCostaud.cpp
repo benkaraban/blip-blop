@@ -7,12 +7,14 @@
 #define ETAT_TIRE_HKICK		1002
 
 
-EnnemiSmurfCostaud::EnnemiSmurfCostaud() : etape_shoot(0), dx(0) {
+EnnemiSmurfCostaud::EnnemiSmurfCostaud() : etape_shoot(0), dx(0)
+{
 	wait_shoot = 50 + rand() % 50;
 	pv = 2000;
 }
 
-void EnnemiSmurfCostaud::update() {
+void EnnemiSmurfCostaud::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -56,7 +58,8 @@ void EnnemiSmurfCostaud::update() {
 	updateADetruire();
 }
 
-void EnnemiSmurfCostaud::onAvance() {
+void EnnemiSmurfCostaud::onAvance()
+{
 	static const int marche_droite[] = { 265, 266, 267, 268, 267, 266 };
 	static const int marche_gauche[] = { 269, 270, 271, 272, 271, 270 };
 	static const int SPEED = 1;
@@ -88,7 +91,8 @@ void EnnemiSmurfCostaud::onAvance() {
 	colFromPic();
 }
 
-void EnnemiSmurfCostaud::estTouche(Tir * tir) {
+void EnnemiSmurfCostaud::estTouche(Tir * tir)
+{
 	static const int dx_giclure_smurf [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_smurf [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 
@@ -100,7 +104,8 @@ void EnnemiSmurfCostaud::estTouche(Tir * tir) {
 	}
 }
 
-void EnnemiSmurfCostaud::onCarbonise() {
+void EnnemiSmurfCostaud::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -117,7 +122,8 @@ void EnnemiSmurfCostaud::onCarbonise() {
 	}
 }
 
-void EnnemiSmurfCostaud::onMeure() {
+void EnnemiSmurfCostaud::onMeure()
+{
 	tombe();
 
 	int x2;
@@ -149,7 +155,8 @@ void EnnemiSmurfCostaud::onMeure() {
 	}
 }
 
-void EnnemiSmurfCostaud::onTireHadoken() {
+void EnnemiSmurfCostaud::onTireHadoken()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -184,7 +191,8 @@ void EnnemiSmurfCostaud::onTireHadoken() {
 	}
 }
 
-void EnnemiSmurfCostaud::onTireDragonPunch() {
+void EnnemiSmurfCostaud::onTireDragonPunch()
+{
 	tombe();
 
 	if (etape <= 2) { // Le départ
@@ -230,7 +238,8 @@ void EnnemiSmurfCostaud::onTireDragonPunch() {
 }
 
 
-void EnnemiSmurfCostaud::onTireHurricanKick() {
+void EnnemiSmurfCostaud::onTireHurricanKick()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -260,7 +269,8 @@ void EnnemiSmurfCostaud::onTireHurricanKick() {
 	colFromPic();
 }
 
-void EnnemiSmurfCostaud::onTire() {
+void EnnemiSmurfCostaud::onTire()
+{
 	if (tete_turc == NULL)
 		return;
 

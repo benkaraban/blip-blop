@@ -18,7 +18,8 @@
 #define _GenEnnemi_
 
 
-class GenEnnemi {
+class GenEnnemi
+{
 public:
 	int		id_ennemi;
 	int		sens;
@@ -33,7 +34,8 @@ public:
 
 	virtual void update();
 
-	inline virtual bool aDetruire() {
+	inline virtual bool aDetruire()
+	{
 		return a_detruire;
 	};
 };

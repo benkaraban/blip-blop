@@ -8,7 +8,8 @@
 #define IDVEHICULE_CIGO	0
 
 
-void EventVehicule::doEvent() {
+void EventVehicule::doEvent()
+{
 	Vehicule * v = NULL;
 
 	switch (id_vehicule) {

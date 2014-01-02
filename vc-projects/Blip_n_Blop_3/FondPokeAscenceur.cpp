@@ -2,12 +2,14 @@
 #include "fondpokeascenceur.h"
 
 
-FondPokeAscenceur::FondPokeAscenceur() {
+FondPokeAscenceur::FondPokeAscenceur()
+{
 	pic = pbk_niveau[51];
 	dy = 1;
 }
 
-void FondPokeAscenceur::update() {
+void FondPokeAscenceur::update()
+{
 	if (game_flag[2] > 0) {
 		int		xtmp;
 

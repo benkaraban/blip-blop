@@ -18,13 +18,15 @@
 #include "EnnemiComHeros.h"
 
 
-EnnemiComHeros::EnnemiComHeros(): dorkeball(2) {
+EnnemiComHeros::EnnemiComHeros(): dorkeball(2)
+{
 	pv = 1000;
 	dy = -8;
 	dx = -2;
 }
 
-void EnnemiComHeros::update() {
+void EnnemiComHeros::update()
+{
 	if (dorkeball == 2) {
 		x += dx;
 		tombe();
@@ -81,7 +83,8 @@ void EnnemiComHeros::update() {
 	}
 }
 
-void EnnemiComHeros::onAvance() {
+void EnnemiComHeros::onAvance()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -110,7 +113,8 @@ void EnnemiComHeros::onAvance() {
 	colFromPic();
 }
 
-void EnnemiComHeros::onMeure() {
+void EnnemiComHeros::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -128,6 +132,7 @@ void EnnemiComHeros::onMeure() {
 }
 
 
-void EnnemiComHeros::estTouche(Tir * tir) {
+void EnnemiComHeros::estTouche(Tir * tir)
+{
 	Ennemi::estTouche(tir);
 }

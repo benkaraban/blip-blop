@@ -8,9 +8,11 @@
 int water_seed  = 0;
 int water_seed2 = 5;
 
-class FondEau1 : public Sprite {
+class FondEau1 : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		pic = pbk_niveau[7 + water_seed];
 
 		if (x < offset - 400)
@@ -18,8 +20,10 @@ public:
 	};
 };
 
-class FondEau2 : public Sprite {
-	virtual void update() {
+class FondEau2 : public Sprite
+{
+	virtual void update()
+	{
 		pic = pbk_niveau[7 + water_seed2];
 
 		if (x < offset - 400)
@@ -27,9 +31,11 @@ class FondEau2 : public Sprite {
 	};
 };
 
-class FondEau : public Sprite {
+class FondEau : public Sprite
+{
 public:
-	FondEau() {
+	FondEau()
+	{
 		Sprite *	ptr;
 		bool		b = false;
 
@@ -52,7 +58,8 @@ public:
 	};
 
 
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 7;
 

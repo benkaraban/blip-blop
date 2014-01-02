@@ -23,7 +23,8 @@
 #include "config.h"
 #include "bendebug.h"
 
-void SoundBankBB::play(int n, int flags) {
+void SoundBankBB::play(int n, int flags)
+{
 	if (!sound_on)
 		return;
 
@@ -36,7 +37,8 @@ void SoundBankBB::play(int n, int flags) {
 }
 
 
-void SoundBankBB::setVolume(int n, int vol) {
+void SoundBankBB::setVolume(int n, int vol)
+{
 	if (!sound_on)
 		return;
 
@@ -44,7 +46,8 @@ void SoundBankBB::setVolume(int n, int vol) {
 }
 
 
-void SoundBankBB::stop(int n) {
+void SoundBankBB::stop(int n)
+{
 	if (!sound_on)
 		return;
 
@@ -52,7 +55,8 @@ void SoundBankBB::stop(int n) {
 }
 
 
-bool SoundBankBB::loadSFX(const char * nom_fic) {
+bool SoundBankBB::loadSFX(const char * nom_fic)
+{
 	if (!sound_on) {
 		if (nom_f != NULL)
 			delete [] nom_f;

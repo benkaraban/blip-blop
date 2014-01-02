@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiYoshiDCA.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 12 Decembre 2000
@@ -35,7 +35,7 @@ private:
 public:
 
 	EnnemiYoshiDCA();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	//virtual void onTombe();
@@ -44,7 +44,7 @@ public:
 	virtual void onTire();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

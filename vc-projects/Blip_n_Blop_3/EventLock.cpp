@@ -18,7 +18,8 @@
 #include "Globals.h"
 #include "BenDebug.h"
 
-void EventLock::doEvent() {
+void EventLock::doEvent()
+{
 	scroll_locked = true;
 	x_lock = x_activation;
 	cond_end_lock = cond;

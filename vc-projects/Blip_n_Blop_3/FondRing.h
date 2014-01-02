@@ -16,7 +16,8 @@
 #ifndef _FondRing_
 #define _FondRing_
 
-class FondRing : public Sprite {
+class FondRing : public Sprite
+{
 private:
 	static int etape_synchro;
 	static int ss_etape_synchro;

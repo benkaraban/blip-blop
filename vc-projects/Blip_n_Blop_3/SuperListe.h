@@ -34,7 +34,8 @@ struct CELLULE {
 //		La classe SuperListe en personne
 //-----------------------------------------------------------------------------
 
-class SuperListe {
+class SuperListe
+{
 protected:
 	CELLULE *	tete;		// Tete de la liste
 	CELLULE *	obs;		// Observateur
@@ -55,14 +56,16 @@ public:
 
 	// Met l'observateur sur la tête
 	//
-	inline void 	start() {
+	inline void 	start()
+	{
 		obs = tete;
 	};
 
 
 	// Avance l'observateur
 	//
-	inline void 	suivant() {
+	inline void 	suivant()
+	{
 		if (obs != NULL) obs = obs->next;
 	};
 
@@ -94,28 +97,32 @@ public:
 
 	// Renvoit le nombre d'éléments contenus
 	//
-	inline int	taille() const {
+	inline int	taille() const
+	{
 		return nb_elem;
 	};
 
 
 	// Indique si la fin de la liste a été atteinte
 	//
-	inline bool	fin() const {
+	inline bool	fin() const
+	{
 		return (obs == NULL);
 	};
 
 
 	// Indique VRAI si la liste est vide (ne contient aucune cellule)
 	//
-	inline bool	estVide() const {
+	inline bool	estVide() const
+	{
 		return (tete == NULL);
 	};
 
 
 	// Renvoit la valeur de la cellule observée
 	//
-	inline void *	info() const {
+	inline void *	info() const
+	{
 		if (obs != NULL)
 			return (obs->data);
 		else

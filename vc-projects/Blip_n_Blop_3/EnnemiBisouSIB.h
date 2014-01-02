@@ -13,7 +13,7 @@ public:
 	EnnemiBisouSIB();
 
 	virtual void update();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

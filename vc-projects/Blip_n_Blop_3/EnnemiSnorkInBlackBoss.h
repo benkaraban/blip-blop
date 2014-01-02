@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------------
 *		    EnnemiSnorkInBlackBoss.h
 *		-----------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 23 Avril 2001
@@ -50,7 +50,7 @@ private:
 public:
 
 	EnnemiSnorkInBlackBoss();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -59,7 +59,7 @@ public:
 	virtual void affiche();
 
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

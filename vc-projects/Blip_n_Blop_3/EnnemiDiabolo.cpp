@@ -19,14 +19,16 @@
 
 
 
-EnnemiDiabolo::EnnemiDiabolo(): wait_for_attack(0), attack_delay(50 + rand() % 100), attack_type(0) {
+EnnemiDiabolo::EnnemiDiabolo(): wait_for_attack(0), attack_delay(50 + rand() % 100), attack_type(0)
+{
 	pv = 30000;
 	dy = 0;
 	xmin = 80;
 }
 
 
-void EnnemiDiabolo::update() {
+void EnnemiDiabolo::update()
+{
 	switch (etat) {
 		case ETAT_AVANCE:
 		case ETAT_NORMAL:
@@ -67,7 +69,8 @@ void EnnemiDiabolo::update() {
 
 }
 
-void EnnemiDiabolo::onAvance() {
+void EnnemiDiabolo::onAvance()
+{
 
 	if (plat(x, y) == 0) {
 		etat = ETAT_TOMBE;
@@ -183,7 +186,8 @@ void EnnemiDiabolo::onAvance() {
 	colFromPic();
 }
 
-void EnnemiDiabolo::onTombe() {
+void EnnemiDiabolo::onTombe()
+{
 	tombe();
 
 	if (plat(x, y) != 0)
@@ -192,7 +196,8 @@ void EnnemiDiabolo::onTombe() {
 	colFromPic();
 }
 
-void EnnemiDiabolo::onMeure() {
+void EnnemiDiabolo::onMeure()
+{
 	/*tombe();
 
 	ss_etape += 1;
@@ -236,7 +241,8 @@ void EnnemiDiabolo::onMeure() {
 	}*/
 }
 
-void EnnemiDiabolo::onAttack() {
+void EnnemiDiabolo::onAttack()
+{
 	/*	ss_etape ++;
 		ss_etape %= 6;
 		if(ss_etape == 0)
@@ -292,7 +298,8 @@ void EnnemiDiabolo::onAttack() {
 		}*/
 }
 
-void EnnemiDiabolo::onCoupdelatte() {
+void EnnemiDiabolo::onCoupdelatte()
+{
 	if (etape == 15) {
 		etape = 0;
 		ss_etape = 0;
@@ -347,7 +354,8 @@ void EnnemiDiabolo::onCoupdelatte() {
 }
 
 
-void EnnemiDiabolo::onTornade() {
+void EnnemiDiabolo::onTornade()
+{
 	ss_etape ++;
 	ss_etape %= 6;
 	if (ss_etape == 0) {
@@ -387,7 +395,8 @@ void EnnemiDiabolo::onTornade() {
 	colFromPic();
 }
 
-void EnnemiDiabolo::onCoupdegenou() {
+void EnnemiDiabolo::onCoupdegenou()
+{
 	//tombe();
 	if (dx == 0) {
 		if (dy < 0) {
@@ -461,7 +470,8 @@ void EnnemiDiabolo::onCoupdegenou() {
 }
 
 
-void EnnemiDiabolo::onCarbonise() {
+void EnnemiDiabolo::onCarbonise()
+{
 	/*ss_etape ++;
 	ss_etape %= 6;
 
@@ -481,7 +491,8 @@ void EnnemiDiabolo::onCarbonise() {
 	}*/
 }
 
-void EnnemiDiabolo::colFromPic() {
+void EnnemiDiabolo::colFromPic()
+{
 	Sprite::colFromPic();
 
 	/*if ( etat == ETAT_SALETO)
@@ -508,7 +519,8 @@ void EnnemiDiabolo::colFromPic() {
 }
 
 
-void EnnemiDiabolo::tombe_diabolo() {
+void EnnemiDiabolo::tombe_diabolo()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_DIABOLO_GRAVITE;
 
@@ -526,7 +538,8 @@ void EnnemiDiabolo::tombe_diabolo() {
 		y += dy;
 }
 
-void EnnemiDiabolo::estTouche(Tir * tir) {
+void EnnemiDiabolo::estTouche(Tir * tir)
+{
 	static const int dx_giclure_lem [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_lem [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 

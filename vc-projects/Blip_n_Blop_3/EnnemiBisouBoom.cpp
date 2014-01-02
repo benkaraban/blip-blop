@@ -2,12 +2,14 @@
 #include "EnnemiBisouBoom.h"
 #include "Gorebisouboom.h"
 
-EnnemiBisouBoom::EnnemiBisouBoom() {
+EnnemiBisouBoom::EnnemiBisouBoom()
+{
 	pv = 200;
 }
 
 
-void EnnemiBisouBoom::update() {
+void EnnemiBisouBoom::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -27,7 +29,8 @@ void EnnemiBisouBoom::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouBoom::onAvance() {
+void EnnemiBisouBoom::onAvance()
+{
 	static const int SPEED = 3;
 
 	tombe();
@@ -72,7 +75,8 @@ void EnnemiBisouBoom::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBisouBoom::onMeure() {
+void EnnemiBisouBoom::onMeure()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -140,7 +144,8 @@ void EnnemiBisouBoom::onMeure() {
 }
 
 
-void EnnemiBisouBoom::estTouche(Tir * tir) {
+void EnnemiBisouBoom::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

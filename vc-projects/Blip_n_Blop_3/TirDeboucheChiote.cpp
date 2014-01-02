@@ -6,14 +6,16 @@
 #include "tirdebouchechiote.h"
 //#include "bendebug.h"
 
-TirDebouchechiote::TirDebouchechiote(int n_pbk_ennemis, int vx, int vy) {
+TirDebouchechiote::TirDebouchechiote(int n_pbk_ennemis, int vx, int vy)
+{
 	pic = pbk_ennemis[n_pbk_ennemis];
 	dy = vy;
 	dx = vx;
 }
 
 
-void TirDebouchechiote::update() {
+void TirDebouchechiote::update()
+{
 	x += dx;
 	y += dy;
 

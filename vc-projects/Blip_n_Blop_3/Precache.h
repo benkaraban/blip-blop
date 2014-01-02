@@ -4,7 +4,8 @@
 
 #include <stdio.h>
 
-inline void Precache(const char * nf) {
+inline void Precache(const char * nf)
+{
 	FILE * f = fopen(nf, "rb");
 
 	if (f != NULL) {

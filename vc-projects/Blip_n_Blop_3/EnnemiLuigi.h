@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiLuigi.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.7 - 27 Decembre 2000
@@ -40,7 +40,7 @@ private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
 
-	int attack_delay;    
+	int attack_delay;
 	int wait_for_attack;
 	int attack_etape;
 	int attack_type;
@@ -61,7 +61,7 @@ public:
 	virtual void onAttack();
 	virtual void onCarbonise();
 	virtual void tombe_luigi();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

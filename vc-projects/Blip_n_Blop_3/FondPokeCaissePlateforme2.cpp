@@ -17,11 +17,13 @@
 #include "FondPokeCaissePlateforme2.h"
 #include "benmaths.h"
 
-FondPokeCaissePlateforme2::FondPokeCaissePlateforme2() {
+FondPokeCaissePlateforme2::FondPokeCaissePlateforme2()
+{
 	pic = pbk_niveau[87];
 }
 
-void FondPokeCaissePlateforme2::update() {
+void FondPokeCaissePlateforme2::update()
+{
 	if (y < 20) { //-200
 		y += 3;
 	} else {

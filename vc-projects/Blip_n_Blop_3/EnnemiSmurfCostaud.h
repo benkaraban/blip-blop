@@ -20,7 +20,7 @@ public:
 	virtual void onTireHadoken();
 	virtual void onTireDragonPunch();
 	virtual void onTireHurricanKick();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual void onCarbonise();
 	virtual void onMeure();
 };

@@ -31,7 +31,8 @@ const int tir_dy[] = { 4, 5, 6, 6, 5, 4 } ;
 int	EnnemiSmurfSauvage::wait_shoot;
 int	EnnemiSmurfSauvage::etape_wait;
 
-EnnemiSmurfSauvage::EnnemiSmurfSauvage() : etape_shoot(0), position(false) {
+EnnemiSmurfSauvage::EnnemiSmurfSauvage() : etape_shoot(0), position(false)
+{
 	first_loop = true;
 	pv = 150 ;
 	etape = 1 ;
@@ -59,7 +60,8 @@ EnnemiSmurfSauvage::EnnemiSmurfSauvage() : etape_shoot(0), position(false) {
 	}
 }
 
-void EnnemiSmurfSauvage::update() {
+void EnnemiSmurfSauvage::update()
+{
 	if (x > 5850)
 		x = 5850;
 
@@ -171,7 +173,8 @@ void EnnemiSmurfSauvage::update() {
 	updateADetruire() ;
 }
 
-void EnnemiSmurfSauvage::onTombe() {
+void EnnemiSmurfSauvage::onTombe()
+{
 	if (y < hauteur) {
 		y += 3;
 	} else {
@@ -186,7 +189,8 @@ void EnnemiSmurfSauvage::onTombe() {
 	colFromPic() ;
 }
 
-void EnnemiSmurfSauvage::onTire() {
+void EnnemiSmurfSauvage::onTire()
+{
 	shooting = true;
 
 	ss_etape += 1 ;
@@ -223,7 +227,8 @@ void EnnemiSmurfSauvage::onTire() {
 	colFromPic() ;
 }
 
-void EnnemiSmurfSauvage::estTouche(Tir * tir) {
+void EnnemiSmurfSauvage::estTouche(Tir * tir)
+{
 	static const int dx_giclure_smurf_sauvage [] = { 0, 0, 6, 0, 0, 0, -6, 0 };
 	static const int dy_giclure_smurf_sauvage [] = { -15, -15, -15, -15, -15, -15, -15, -15 };
 
@@ -238,7 +243,8 @@ void EnnemiSmurfSauvage::estTouche(Tir * tir) {
 		sbk_niveau.play(4 + rand() % 10);
 }
 
-void EnnemiSmurfSauvage::onMeure() {
+void EnnemiSmurfSauvage::onMeure()
+{
 	if (etape >= 5) {
 		Sprite * s;
 		list_fonds_statiques.start();
@@ -278,7 +284,8 @@ void EnnemiSmurfSauvage::onMeure() {
 	}
 }
 
-void EnnemiSmurfSauvage::onCarbonise() {
+void EnnemiSmurfSauvage::onCarbonise()
+{
 	y = hauteur + 50 - etape ;
 	ss_etape += 1;
 	ss_etape %= 6;

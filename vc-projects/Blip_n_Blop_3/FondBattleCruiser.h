@@ -20,7 +20,8 @@
 
 #define TIR_SPEED  2
 
-class FondBattlecruiser : public Sprite {
+class FondBattlecruiser : public Sprite
+{
 public:
 	int x_adversaire;
 	int y_adversaire;

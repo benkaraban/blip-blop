@@ -4,9 +4,11 @@
 
 #include "sprite.h"
 
-class FondPokeAlarme1 : public Sprite {
+class FondPokeAlarme1 : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 3;
 
@@ -21,9 +23,11 @@ public:
 
 };
 
-class FondPokeAlarme2 : public Sprite {
+class FondPokeAlarme2 : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 3;
 
@@ -37,9 +41,11 @@ public:
 	};
 };
 
-class FondPokeAlarme3 : public Sprite {
+class FondPokeAlarme3 : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 3;
 

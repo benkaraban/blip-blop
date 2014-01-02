@@ -21,12 +21,14 @@
 #include "tirgateau.h"
 #include "bendebug.h"
 
-TirGateau::TirGateau() {
+TirGateau::TirGateau()
+{
 	pic = pbk_ennemis[194];
 }
 
 
-void TirGateau::update() {
+void TirGateau::update()
+{
 	lat_grav += 1;
 	lat_grav %= LATENCE_GRAVITE;
 

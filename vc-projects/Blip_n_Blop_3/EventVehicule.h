@@ -18,7 +18,8 @@
 
 #include "Event.h"
 
-class EventVehicule : public Event {
+class EventVehicule : public Event
+{
 public:
 
 	int		id_vehicule;

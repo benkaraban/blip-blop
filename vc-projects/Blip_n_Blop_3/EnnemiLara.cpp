@@ -27,12 +27,14 @@
 const int anim_lara_bouton[] = {123, 123, 124, 125, 126, 126, 126, 125, 124, 123};
 const int anim_lara_degaine[] = {127, 127, 127, 128, 128, 129, 130, 130, 131, 131, 131};
 
-EnnemiLara::EnnemiLara(): numero_image_buste(127), wait_for_attack(0), pics(0), tete_rayman(0) {
+EnnemiLara::EnnemiLara(): numero_image_buste(127), wait_for_attack(0), pics(0), tete_rayman(0)
+{
 	pv = 15000;
 	pic = pbk_ennemis[162];
 }
 
-void EnnemiLara::update() {
+void EnnemiLara::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -58,7 +60,8 @@ void EnnemiLara::update() {
 	//updateADetruire();
 }
 
-void EnnemiLara::onAvance() {
+void EnnemiLara::onAvance()
+{
 	if (!pics) {
 		Ennemi* pic;
 		int i, j;
@@ -323,7 +326,8 @@ void EnnemiLara::onAvance() {
 	}
 }
 
-void EnnemiLara::onTire() {
+void EnnemiLara::onTire()
+{
 	ss_etape ++;
 	ss_etape %= etape;
 	if (ss_etape == 0) {
@@ -342,13 +346,15 @@ void EnnemiLara::onTire() {
 	}
 }
 
-void EnnemiLara::onMeure() {
+void EnnemiLara::onMeure()
+{
 	game_flag[0] = 5;
 	a_detruire = true;
 }
 
 
-void EnnemiLara::affiche() {
+void EnnemiLara::affiche()
+{
 	if (game_flag[0] < 6) {
 		draw(x, y - 102, pbk_ennemis[numero_image_buste]);
 	}
@@ -358,7 +364,8 @@ void EnnemiLara::affiche() {
 
 
 
-void EnnemiLara::estTouche(Tir * tir) {
+void EnnemiLara::estTouche(Tir * tir)
+{
 	/*
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };

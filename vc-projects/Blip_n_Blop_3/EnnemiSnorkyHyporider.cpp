@@ -16,13 +16,15 @@
 #include "ennemiSnorkyHyporider.h"
 #include "MorceauxTeteSnorky.h"
 
-EnnemiSnorkyHyporider::EnnemiSnorkyHyporider(): wait_for_charge(0), charge_delay(50 + rand() % 200), nageoire(1), attack_etape(0) {
+EnnemiSnorkyHyporider::EnnemiSnorkyHyporider(): wait_for_charge(0), charge_delay(50 + rand() % 200), nageoire(1), attack_etape(0)
+{
 	pv = 350;
 	dy = 0;
 }
 
 
-void EnnemiSnorkyHyporider::update() {
+void EnnemiSnorkyHyporider::update()
+{
 	switch (etat) {
 		case ETAT_TOMBE:
 		case ETAT_SAUTE:
@@ -49,7 +51,8 @@ void EnnemiSnorkyHyporider::update() {
 
 }
 
-void EnnemiSnorkyHyporider::onAvance() {
+void EnnemiSnorkyHyporider::onAvance()
+{
 	wait_for_charge ++;
 	if ((wait_for_charge > charge_delay) && ((dir == SENS_DROITE && x > offset + 80) || (dir == SENS_GAUCHE && x < offset + 560))) {
 		wait_for_charge = 0;
@@ -88,7 +91,8 @@ void EnnemiSnorkyHyporider::onAvance() {
 }
 
 
-void EnnemiSnorkyHyporider::onMeure() {
+void EnnemiSnorkyHyporider::onMeure()
+{
 	ss_etape += 1;
 	if (etape < 7) {
 		ss_etape %= 3;
@@ -136,7 +140,8 @@ void EnnemiSnorkyHyporider::onMeure() {
 	}
 }
 
-void EnnemiSnorkyHyporider::onCharge() {
+void EnnemiSnorkyHyporider::onCharge()
+{
 	ss_etape ++;
 	ss_etape %= 2;
 
@@ -186,7 +191,8 @@ void EnnemiSnorkyHyporider::onCharge() {
 	colFromPic();
 }
 
-void EnnemiSnorkyHyporider::onCarbonise() {
+void EnnemiSnorkyHyporider::onCarbonise()
+{
 	nageoire = 0;
 	ss_etape ++;
 	ss_etape %= 4;
@@ -208,7 +214,8 @@ void EnnemiSnorkyHyporider::onCarbonise() {
 
 }
 
-void EnnemiSnorkyHyporider::affiche() {
+void EnnemiSnorkyHyporider::affiche()
+{
 	Sprite::affiche();
 
 	if ((etat == ETAT_CARBONISE) && (etape < 9)) {
@@ -228,7 +235,8 @@ void EnnemiSnorkyHyporider::affiche() {
 	}
 }
 
-void EnnemiSnorkyHyporider::estTouche(Tir * tir) {
+void EnnemiSnorkyHyporider::estTouche(Tir * tir)
+{
 	static const int dx_giclure_hyporider [] = { 0, 0, 7, 3, 0, -3, -7, 0 };
 	static const int dy_giclure_hyporider [] = { -15, -15, -15, -25, -25, -25, -15, -15 };
 

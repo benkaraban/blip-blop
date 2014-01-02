@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiDiabolo.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 20 Decembre 2000
@@ -41,7 +41,7 @@ public:
 	int attack_type;
 
 	EnnemiDiabolo();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -54,7 +54,7 @@ public:
 	virtual void tombe_diabolo();
 	virtual void colFromPic();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

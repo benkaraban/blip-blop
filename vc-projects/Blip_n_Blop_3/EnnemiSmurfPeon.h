@@ -26,14 +26,17 @@
 //		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfPeon : public EnnemiSmurf {
+class EnnemiSmurfPeon : public EnnemiSmurf
+{
 public:
 
-	EnnemiSmurfPeon() {
+	EnnemiSmurfPeon()
+	{
 		pv = 125 ;
 	}
 
-	inline virtual void affiche() {
+	inline virtual void affiche()
+	{
 		EnnemiSmurf::affiche() ;
 		if ((etat != ETAT_MEURE && etat != ETAT_CARBONISE)
 		        || (etat == ETAT_MEURE && etape <= 2)) {

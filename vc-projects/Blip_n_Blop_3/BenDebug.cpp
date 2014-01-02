@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		----------------
 *		  BenDebug.cpp
 *		----------------
-*			
+*
 *
 *		Classe "debug" pour afficher les
 *		messages d'erreur dans un fichier
@@ -40,7 +40,7 @@ Debug	debug(FILE_LOG);
 
 
 //-----------------------------------------------------------------------------
-// Nom: Debug::Debug() - CONSTRUCTEUR - 
+// Nom: Debug::Debug() - CONSTRUCTEUR -
 // Desc: Stocke le nom du fichier .log
 //-----------------------------------------------------------------------------
 
@@ -69,16 +69,14 @@ void Debug::Msg(const char * msg)
 {
 	nbmsg += 1;
 
-	if ( nbmsg == MSG_MAX)
-	{
+	if (nbmsg == MSG_MAX) {
 		f.open(nomfic, ios::app);
-		f<<"\nLog file is too long.\n";
+		f << "\nLog file is too long.\n";
 		f.close();
 	}
-	if ( nbmsg < MSG_MAX )
-	{
+	if (nbmsg < MSG_MAX) {
 		f.open(nomfic, ios::app);
-		f<<msg;
+		f << msg;
 		f.close();
 	}
 }

@@ -18,13 +18,15 @@
 
 //implementation de la classe MorceauxRayman
 
-MorceauRayman::MorceauRayman(int m_pic, int vx, int vy): dx(vx) {
+MorceauRayman::MorceauRayman(int m_pic, int vx, int vy): dx(vx)
+{
 	pic = pbk_ennemis[m_pic];
 	dy  = vy;
 	n_pic = m_pic;
 }
 
-void MorceauRayman::update() {
+void MorceauRayman::update()
+{
 	x += dx;
 	tombe();
 

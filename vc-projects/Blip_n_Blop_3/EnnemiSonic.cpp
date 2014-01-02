@@ -11,7 +11,8 @@ const int sonic_anim_boule_gauche[] = { 51, 52, 55, 53, 54, 55};
 
 const int sonic_anim_super_saien[] = {108, 109, 110, 109, 108, 109, 110, 111, 110, 109, 110, 111, 112, 111, 110, 111, 112, 113, 112, 111, 112, 113, 114, 113, 112, 113, 114, 115, 114, 113, 114, 115, 116, 115, 114, 115, 116, 117, 116, 115, 116, 117, 118};
 
-EnnemiSonic::EnnemiSonic(): speed(1), etape_speed(0), attack_delay(50 + rand() % 250), wait_for_attack(0), vie_sous_critique(3750), vie_critique(2500), vie_sur_critique(1250), ring(90) {
+EnnemiSonic::EnnemiSonic(): speed(1), etape_speed(0), attack_delay(50 + rand() % 250), wait_for_attack(0), vie_sous_critique(3750), vie_critique(2500), vie_sur_critique(1250), ring(90)
+{
 	pv = 10000;
 	//pv = 2;
 	xmin = 1280;
@@ -22,7 +23,8 @@ EnnemiSonic::EnnemiSonic(): speed(1), etape_speed(0), attack_delay(50 + rand() %
 	wait_sang_tombe = 0;
 }
 
-void EnnemiSonic::update() {
+void EnnemiSonic::update()
+{
 	if (game_flag[0] == 7)
 		a_detruire = true;
 
@@ -77,7 +79,8 @@ void EnnemiSonic::update() {
 	//updateADetruire();
 }
 
-void EnnemiSonic::onAvance() {
+void EnnemiSonic::onAvance()
+{
 	// Si plus de plateformes on passe dans l'etat TOMBE
 	//
 	if (plat(x, y) == 0) {
@@ -130,18 +133,18 @@ void EnnemiSonic::onAvance() {
 						onAttackvertical();
 						return;
 						break;
-						/*
-										case 2:
-											attack_type=2;
-											speed=0;
-											etat = ETAT_TIRE;
-											nb_tir=0;
-											ss_etape=0;
-											etape=0;
-											onAttackepine();
-											return;
-											break;
-						*/
+					/*
+									case 2:
+										attack_type=2;
+										speed=0;
+										etat = ETAT_TIRE;
+										nb_tir=0;
+										ss_etape=0;
+										etape=0;
+										onAttackepine();
+										return;
+										break;
+					*/
 					case 2:
 						attack_type = 3;
 						ss_etape = 0;
@@ -211,7 +214,8 @@ void EnnemiSonic::onAvance() {
 	colFromPic();
 }
 
-void EnnemiSonic::onMeure() {
+void EnnemiSonic::onMeure()
+{
 	if (game_flag[2] == 0) {
 		tombe();
 		if (x - speed < xmin || mur_opaque(x - speed, y)) {
@@ -265,7 +269,8 @@ void EnnemiSonic::onMeure() {
 	}
 }
 
-void EnnemiSonic::onCharge() {
+void EnnemiSonic::onCharge()
+{
 	/*speed=TOAD_CHARGE_SPEED;
 	if ( x - speed < xmin || mur_opaque( x-speed, y))
 	{
@@ -319,7 +324,8 @@ void EnnemiSonic::onCharge() {
 	colFromPic();*/
 }
 
-void EnnemiSonic::onSaute() {
+void EnnemiSonic::onSaute()
+{
 	int		yp;
 
 	tombe();
@@ -365,7 +371,8 @@ void EnnemiSonic::onSaute() {
 
 }
 
-void EnnemiSonic::onAttackhorizontal() {
+void EnnemiSonic::onAttackhorizontal()
+{
 	if (attack_phase == -1) {
 		if (pv < vie_sous_critique) {
 			ss_etape_attack += 1;
@@ -474,7 +481,8 @@ void EnnemiSonic::onAttackhorizontal() {
 	colFromPic();
 }
 
-void EnnemiSonic::onAttackvertical() {
+void EnnemiSonic::onAttackvertical()
+{
 	if (attack_phase == -1) {
 		if (pv < vie_sous_critique) {
 			ss_etape_attack += 1;
@@ -599,7 +607,8 @@ void EnnemiSonic::onAttackvertical() {
 	colFromPic();
 }
 
-void EnnemiSonic::onAttackepine() {
+void EnnemiSonic::onAttackepine()
+{
 	nb_tir += 1;
 	if (nb_tir > 200) {
 		speed = 1;
@@ -642,7 +651,8 @@ void EnnemiSonic::onAttackepine() {
 	colFromPic();
 }
 
-void EnnemiSonic::onAttackeclair() {
+void EnnemiSonic::onAttackeclair()
+{
 	ss_etape++;
 	ss_etape %= 5;
 	if (ss_etape == 0) {
@@ -696,7 +706,8 @@ void EnnemiSonic::onAttackeclair() {
 	colFromPic();
 }
 
-void EnnemiSonic::onBalancering() {
+void EnnemiSonic::onBalancering()
+{
 	Sprite * s;
 	int i, mx = 1, my = 1;
 
@@ -757,7 +768,8 @@ void EnnemiSonic::onBalancering() {
 
 }
 
-void EnnemiSonic::balance_epines() {
+void EnnemiSonic::balance_epines()
+{
 	TirEpine *	tir;
 	switch (etape_attack) {
 		case 0:
@@ -890,11 +902,13 @@ void EnnemiSonic::balance_epines() {
 	}
 }
 
-void EnnemiSonic::onCarbonise() {
+void EnnemiSonic::onCarbonise()
+{
 	a_detruire = true;
 }
 
-void EnnemiSonic::estTouche(Tir * tir) {
+void EnnemiSonic::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

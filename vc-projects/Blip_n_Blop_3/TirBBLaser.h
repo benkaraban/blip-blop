@@ -28,7 +28,8 @@
 //		Définition de la classe TirBBM16
 //-----------------------------------------------------------------------------
 
-class TirBBLaser : public TirBB {
+class TirBBLaser : public TirBB
+{
 protected:
 
 	int		largeur;
@@ -39,27 +40,33 @@ public:
 
 	TirBBLaser();
 
-	virtual int getGiclureDir() const {
+	virtual int getGiclureDir() const
+	{
 		return dir;
 	};
 
-	inline virtual int degats() const {
+	inline virtual int degats() const
+	{
 		return 20;
 	};
 
-	inline virtual int enflame() const {
+	inline virtual int enflame() const
+	{
 		return 0;
 	};
 
-	inline virtual void setEtape(int e) {
+	inline virtual void setEtape(int e)
+	{
 		etape = e;
 	};
 
-	inline virtual void aTouche(int pts) {
+	inline virtual void aTouche(int pts)
+	{
 		joueur->addPoints(pts);
 	};
 
-	inline virtual void aTouche() {
+	inline virtual void aTouche()
+	{
 	};
 
 	virtual void affiche();

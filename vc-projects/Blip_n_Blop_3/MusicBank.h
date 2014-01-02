@@ -6,7 +6,8 @@
 
 #include "fmod.h"
 
-class MusicBank {
+class MusicBank
+{
 protected:
 	int	*		type;
 

@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		---------------------------
 *		    EnnemiSmurfGourmand.h
 *		---------------------------
-*			
+*
 *		Le schtroumpf de base!
 *
 *
@@ -37,7 +37,7 @@ public:
 	int		ycible;
 
 	EnnemiSmurfGourmand();
-	
+
 	virtual void update();
 	virtual void onNormal();
 	virtual void onTire();
@@ -45,7 +45,7 @@ public:
 	virtual void onHold();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

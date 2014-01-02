@@ -15,14 +15,16 @@ static const int ytel [] = { 296, 130, 188 };
 #define ETAT_BAISSEBATON	31
 #define ETAT_TELE			32
 
-EnnemiBisouChaman::EnnemiBisouChaman() : etape_shoot(0), nb_touch(0), n_pos(1) {
+EnnemiBisouChaman::EnnemiBisouChaman() : etape_shoot(0), nb_touch(0), n_pos(1)
+{
 	pv = 11000;
 	wait_shoot = 250 + rand() % 50;
 	tresor = 0;
 }
 
 
-void EnnemiBisouChaman::update() {
+void EnnemiBisouChaman::update()
+{
 	game_flag[2] = 1;
 
 	if (game_flag[0] == 1) {
@@ -67,7 +69,8 @@ void EnnemiBisouChaman::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouChaman::onMeure() {
+void EnnemiBisouChaman::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -87,7 +90,8 @@ void EnnemiBisouChaman::onMeure() {
 	}
 }
 
-void EnnemiBisouChaman::onTele() {
+void EnnemiBisouChaman::onTele()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -156,7 +160,8 @@ void EnnemiBisouChaman::onTele() {
 	noCol();
 }
 
-void EnnemiBisouChaman::onLeveBaton() {
+void EnnemiBisouChaman::onLeveBaton()
+{
 	ss_etape += 1;
 	ss_etape %= 5;
 
@@ -181,7 +186,8 @@ void EnnemiBisouChaman::onLeveBaton() {
 }
 
 
-void EnnemiBisouChaman::onBaisseBaton() {
+void EnnemiBisouChaman::onBaisseBaton()
+{
 	ss_etape += 1;
 	ss_etape %= 5;
 
@@ -206,7 +212,8 @@ void EnnemiBisouChaman::onBaisseBaton() {
 }
 
 
-void EnnemiBisouChaman::onTire() {
+void EnnemiBisouChaman::onTire()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -288,7 +295,8 @@ void EnnemiBisouChaman::onTire() {
 }
 
 
-void EnnemiBisouChaman::affiche() {
+void EnnemiBisouChaman::affiche()
+{
 	Sprite::affiche();
 
 	if (etat == ETAT_TIRE) {
@@ -301,7 +309,8 @@ void EnnemiBisouChaman::affiche() {
 
 
 
-void EnnemiBisouChaman::onAvance() {
+void EnnemiBisouChaman::onAvance()
+{
 	static const int SPEED = 1;
 
 	tombe();
@@ -339,7 +348,8 @@ void EnnemiBisouChaman::onAvance() {
 }
 
 
-void EnnemiBisouChaman::onCarbonise() {
+void EnnemiBisouChaman::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -359,7 +369,8 @@ void EnnemiBisouChaman::onCarbonise() {
 }
 
 
-void EnnemiBisouChaman::estTouche(Tir * tir) {
+void EnnemiBisouChaman::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

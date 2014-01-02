@@ -26,7 +26,8 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class TirCoeurBisou : public Tir {
+class TirCoeurBisou : public Tir
+{
 public:
 	int		xbase;
 	int		phi;
@@ -34,15 +35,18 @@ public:
 
 	TirCoeurBisou();
 
-	virtual int degats() const {
+	virtual int degats() const
+	{
 		return 1;
 	};
 
-	virtual int enflame() const {
+	virtual int enflame() const
+	{
 		return 0;
 	};
 
-	virtual void setDir(int d) {
+	virtual void setDir(int d)
+	{
 		dir = d;
 	};
 

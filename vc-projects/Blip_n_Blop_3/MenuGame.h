@@ -4,7 +4,8 @@
 
 #include <ddraw.h>
 
-class MenuGame {
+class MenuGame
+{
 public:
 	int		current_menu;		// Numéro du menu courant
 	int		focus;				// Numéro du menu EN ROUGE

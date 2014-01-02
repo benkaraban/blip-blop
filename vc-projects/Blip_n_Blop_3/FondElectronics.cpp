@@ -16,7 +16,8 @@
 #include "Globals.h"
 #include "FondElectronics.h"
 
-void FondElectronic1::update() {
+void FondElectronic1::update()
+{
 	ss_etape += 1;
 	ss_etape %= 2;
 	if (ss_etape == 0) {
@@ -26,13 +27,15 @@ void FondElectronic1::update() {
 	pic = pbk_niveau[27 + etape];
 }
 
-void FondElectronic1::affiche() {
+void FondElectronic1::affiche()
+{
 	Sprite::affiche();
 	draw(x, y, pbk_niveau[42]);
 }
 
 
-void FondElectronic2::update() {
+void FondElectronic2::update()
+{
 	ss_etape += 1;
 	ss_etape %= 2;
 	if (ss_etape == 0) {
@@ -42,14 +45,16 @@ void FondElectronic2::update() {
 	pic = pbk_niveau[27 + etape];
 }
 
-void FondElectronic2::affiche() {
+void FondElectronic2::affiche()
+{
 	Sprite::affiche();
 	draw(x, y, pbk_niveau[44]);
 }
 
 
 
-void FondElectronic3::update() {
+void FondElectronic3::update()
+{
 	ss_etape += 1;
 	ss_etape %= 2;
 	if (ss_etape == 0) {
@@ -59,14 +64,16 @@ void FondElectronic3::update() {
 	pic = pbk_niveau[27 + etape];
 }
 
-void FondElectronic3::affiche() {
+void FondElectronic3::affiche()
+{
 	Sprite::affiche();
 	draw(x, y, pbk_niveau[43]);
 }
 
 
 
-void FondElectronic4::update() {
+void FondElectronic4::update()
+{
 	ss_etape += 1;
 	ss_etape %= 2;
 	if (ss_etape == 0) {

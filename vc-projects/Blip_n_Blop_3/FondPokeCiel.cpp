@@ -2,18 +2,21 @@
 #include "globals.h"
 #include "fondpokeciel.h"
 
-FondPokeCiel::FondPokeCiel() {
+FondPokeCiel::FondPokeCiel()
+{
 	pic = pbk_niveau[48];
 }
 
-void FondPokeCiel::update() {
+void FondPokeCiel::update()
+{
 	etape += 4;
 	etape %= 384;
 
 	colFromPic();
 }
 
-void FondPokeCiel::affiche() {
+void FondPokeCiel::affiche()
+{
 	Sprite::affiche();
 
 	IDirectDrawSurface7 *	surf;

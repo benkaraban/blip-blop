@@ -20,14 +20,16 @@
 const int anim_gouverneur_marche_droite[] = { 183, 184, 185, 186, 185, 184};
 const int anim_gouverneur_marche_gauche[] = { 187, 188, 189, 190, 189, 188};
 
-EnnemiSnorkyGouverneur::EnnemiSnorkyGouverneur(): wait_for_shoot(0), shoot_delay(50 + rand() % 200) {
+EnnemiSnorkyGouverneur::EnnemiSnorkyGouverneur(): wait_for_shoot(0), shoot_delay(50 + rand() % 200)
+{
 	pv = 150;
 	pic = pbk_ennemis[0];
 	dy = 0;
 }
 
 
-void EnnemiSnorkyGouverneur::update() {
+void EnnemiSnorkyGouverneur::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -59,7 +61,8 @@ void EnnemiSnorkyGouverneur::update() {
 
 }
 
-void EnnemiSnorkyGouverneur::onAvance() {
+void EnnemiSnorkyGouverneur::onAvance()
+{
 
 	if (plat(x, y) == 0) {
 		etat = ETAT_TOMBE;
@@ -100,7 +103,8 @@ void EnnemiSnorkyGouverneur::onAvance() {
 	colFromPic();
 }
 
-void EnnemiSnorkyGouverneur::onTombe() {
+void EnnemiSnorkyGouverneur::onTombe()
+{
 	tombe();
 
 	if (plat(x, y) != 0)
@@ -109,7 +113,8 @@ void EnnemiSnorkyGouverneur::onTombe() {
 	colFromPic();
 }
 
-void EnnemiSnorkyGouverneur::onMeure() {
+void EnnemiSnorkyGouverneur::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -133,7 +138,8 @@ void EnnemiSnorkyGouverneur::onMeure() {
 	}
 }
 
-void EnnemiSnorkyGouverneur::onTire() {
+void EnnemiSnorkyGouverneur::onTire()
+{
 	ss_etape ++;
 	ss_etape %= 6;
 	if (ss_etape == 0) {
@@ -182,7 +188,8 @@ void EnnemiSnorkyGouverneur::onTire() {
 	}
 }
 
-void EnnemiSnorkyGouverneur::onCarbonise() {
+void EnnemiSnorkyGouverneur::onCarbonise()
+{
 	ss_etape ++;
 	ss_etape %= 6;
 
@@ -201,7 +208,8 @@ void EnnemiSnorkyGouverneur::onCarbonise() {
 	}
 }
 
-void EnnemiSnorkyGouverneur::estTouche(Tir * tir) {
+void EnnemiSnorkyGouverneur::estTouche(Tir * tir)
+{
 	static const int dx_giclure_gouverneur [] = { 0, 0, 4, 0, 0, 0, -4, 0 };
 	static const int dy_giclure_gouverneur [] = { -15, -15, -15, -15, -35, -15, -15, -15 };
 

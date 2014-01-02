@@ -42,7 +42,8 @@ HiScores	hi_scores;
 bool	winSet;
 
 
-void load_BB3_config(const char * cfg_file) {
+void load_BB3_config(const char * cfg_file)
+{
 	FILE *	fic;
 	int		a;
 
@@ -106,7 +107,8 @@ void load_BB3_config(const char * cfg_file) {
 	lang_type = LANG_UK;
 }
 
-void save_BB3_config(const char * cfg_file) {
+void save_BB3_config(const char * cfg_file)
+{
 	FILE *	fic;
 	int		a;
 
@@ -168,7 +170,8 @@ void save_BB3_config(const char * cfg_file) {
 	}
 }
 
-void set_default_config(bool reset_lang) {
+void set_default_config(bool reset_lang)
+{
 	if (reset_lang)
 		lang_type = LANG_UK;
 

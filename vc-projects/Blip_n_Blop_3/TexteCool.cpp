@@ -22,7 +22,8 @@
 
 bool text_cool_free[10];
 
-TexteCool::TexteCool() : x(960), t(0) {
+TexteCool::TexteCool() : x(960), t(0)
+{
 	nn = 0;
 
 	while (nn < 10 && !text_cool_free[nn])
@@ -38,7 +39,8 @@ TexteCool::TexteCool() : x(960), t(0) {
 
 
 
-void TexteCool::update() {
+void TexteCool::update()
+{
 	if (x == 320) {
 		t += 1;
 
@@ -51,11 +53,13 @@ void TexteCool::update() {
 
 }
 
-void TexteCool::affiche() {
+void TexteCool::affiche()
+{
 	fnt_cool.printC(backSurface, x, y, txt_data[ntxt]);
 }
 
-void clearTexteCool() {
+void clearTexteCool()
+{
 	for (int i = 0; i < 10; i++)
 		text_cool_free[i] = true;
 }

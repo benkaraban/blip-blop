@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiPic.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 21 Fevrier 2001
@@ -33,7 +33,7 @@ public:
 	virtual void update();
 	virtual void affiche();
 	virtual void colFromPic();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual int degats()
 	{
 		return 5;

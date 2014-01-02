@@ -6,17 +6,20 @@
 
 static bool first;
 
-VehiculeCigogne::VehiculeCigogne() {
+VehiculeCigogne::VehiculeCigogne()
+{
 	pic = pbk_ennemis[66];
 	hasBeenUsed = false;
 	first = true;
 };
 
-void VehiculeCigogne::affiche() {
+void VehiculeCigogne::affiche()
+{
 	Sprite::affiche();
 }
 
-void VehiculeCigogne::updateUsed() {
+void VehiculeCigogne::updateUsed()
+{
 	static const int bas_ailes [] = { 0, 1, 2, 3, 2, 1 };
 	static const int SPEED = 8;
 
@@ -68,6 +71,7 @@ void VehiculeCigogne::updateUsed() {
 }
 
 
-void VehiculeCigogne::updateNotUsed() {
+void VehiculeCigogne::updateNotUsed()
+{
 	x += 8;
 }

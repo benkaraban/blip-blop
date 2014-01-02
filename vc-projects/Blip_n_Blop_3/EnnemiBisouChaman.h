@@ -20,7 +20,7 @@ public:
 	virtual void onTire();
 	virtual void onMeure();
 	virtual void onCarbonise();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 	virtual void update();
 	virtual void affiche();
 	virtual void onTele();

@@ -29,7 +29,8 @@
 //		Définition de la classe MorceauSnorkyBaseTeteEntiere
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyBaseTeteEntiere : public Sprite {
+class MorceauSnorkyBaseTeteEntiere : public Sprite
+{
 public:
 
 	MorceauSnorkyBaseTeteEntiere();
@@ -42,7 +43,8 @@ public:
 //		Définition de la classe MorceauSnorkyBaseTetePartieArriere
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyBaseTetePartieArriere : public Sprite {
+class MorceauSnorkyBaseTetePartieArriere : public Sprite
+{
 public:
 
 	int dx;
@@ -57,7 +59,8 @@ public:
 //		Définition de la classe MorceauSnorkyHyporidercorp
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyHyporidercorp : public Sprite {
+class MorceauSnorkyHyporidercorp : public Sprite
+{
 public:
 
 	int dx;
@@ -72,7 +75,8 @@ public:
 //		Définition de la classe MorceauSnorkyBaseTrompe
 //-----------------------------------------------------------------------------
 
-class MorceauSnorkyBaseTrompe : public Sprite {
+class MorceauSnorkyBaseTrompe : public Sprite
+{
 public:
 
 	int dx;

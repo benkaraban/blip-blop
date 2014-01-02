@@ -2,11 +2,13 @@
 #include "ennemipikachu.h"
 
 
-EnnemiPikachu::EnnemiPikachu() {
+EnnemiPikachu::EnnemiPikachu()
+{
 	pv = 100;
 }
 
-void EnnemiPikachu::update() {
+void EnnemiPikachu::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -28,7 +30,8 @@ void EnnemiPikachu::update() {
 	updateADetruire();
 }
 
-void EnnemiPikachu::onAvance() {
+void EnnemiPikachu::onAvance()
+{
 	static const int SPEED = 3;
 
 	tombe();
@@ -60,7 +63,8 @@ void EnnemiPikachu::onAvance() {
 	colFromPic();
 }
 
-void EnnemiPikachu::onMeure() {
+void EnnemiPikachu::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -84,7 +88,8 @@ void EnnemiPikachu::onMeure() {
 	}
 }
 
-void EnnemiPikachu::onCarbonise() {
+void EnnemiPikachu::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 5;
 
@@ -101,7 +106,8 @@ void EnnemiPikachu::onCarbonise() {
 	}
 }
 
-void EnnemiPikachu::estTouche(Tir * tir) {
+void EnnemiPikachu::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

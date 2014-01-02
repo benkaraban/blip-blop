@@ -35,14 +35,16 @@
 //		PictureBank::PictureBank() - met le pointeur à NULL et NB à 0
 //-----------------------------------------------------------------------------
 
-PictureBank::PictureBank() : tab(NULL), nb_pic(0), nom_fic(NULL), flag_fic(0) {
+PictureBank::PictureBank() : tab(NULL), nb_pic(0), nom_fic(NULL), flag_fic(0)
+{
 }
 
 //-----------------------------------------------------------------------------
 //		PictureBank::~PictureBank()
 //-----------------------------------------------------------------------------
 
-PictureBank::~PictureBank() {
+PictureBank::~PictureBank()
+{
 	if (tab != NULL)
 		debug << "PictureBank non désallouée\n";
 
@@ -56,7 +58,8 @@ PictureBank::~PictureBank() {
 //		PictureBank::loadGFX() - charge un fichier GFX pour créer la banque
 //-----------------------------------------------------------------------------
 
-bool PictureBank::loadGFX(const char * file, int flag, bool trans) {
+bool PictureBank::loadGFX(const char * file, int flag, bool trans)
+{
 	IDirectDrawSurface7 *	surf;
 	int			fic;
 	int			xspot;
@@ -138,7 +141,8 @@ bool PictureBank::loadGFX(const char * file, int flag, bool trans) {
 	return true;
 }
 
-void PictureBank::close() {
+void PictureBank::close()
+{
 	if (nb_pic != 0 && tab != NULL) {
 		for (int i = 0; i < nb_pic; i++) {
 			tab[i]->Close();
@@ -159,7 +163,8 @@ void PictureBank::close() {
 
 
 
-bool PictureBank::restoreAll() {
+bool PictureBank::restoreAll()
+{
 	if (nom_fic != NULL) {
 		IDirectDrawSurface7 *	surf;
 		int			fic;

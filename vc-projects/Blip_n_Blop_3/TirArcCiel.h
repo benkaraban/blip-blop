@@ -2,9 +2,11 @@
 #ifndef _TirArcCiel_
 #define _TirArcCiel
 
-class TirArcCiel : public Tir {
+class TirArcCiel : public Tir
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 3;
 

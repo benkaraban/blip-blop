@@ -2,11 +2,11 @@
 #define _EnnemiYoshi_
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiYoshi.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 12 Decembre 2000
@@ -38,7 +38,7 @@ private:
 public:
 
 	EnnemiYoshi();
-	
+
 	virtual void update();
 	virtual void onAvance();
 	virtual void onTombe();
@@ -47,7 +47,7 @@ public:
 	virtual void onTire();
 	virtual void onCarbonise();
 
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

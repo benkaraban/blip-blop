@@ -67,26 +67,26 @@ typedef void	(_cdecl *FMUSIC_CALLBACK)(FMUSIC_MODULE *mod, unsigned char param);
 ]
 */
 enum FMOD_ERRORS {
-    FMOD_ERR_NONE,			   /* No errors */
-    FMOD_ERR_BUSY,             /* Cannot call this command after FSOUND_Init.  Call FSOUND_Close first. */
-    FMOD_ERR_UNINITIALIZED,	   /* This command failed because FSOUND_Init or FSOUND_SetOutput was not called */
-    FMOD_ERR_INIT,			   /* Error initializing output device. */
-    FMOD_ERR_ALLOCATED,		   /* Error initializing output device, but more specifically, the output device is already in use and cannot be reused. */
-    FMOD_ERR_PLAY,			   /* Playing the sound failed. */
-    FMOD_ERR_OUTPUT_FORMAT,	   /* Soundcard does not support the features needed for this soundsystem (16bit stereo output) */
-    FMOD_ERR_COOPERATIVELEVEL, /* Error setting cooperative level for hardware. */
-    FMOD_ERR_CREATEBUFFER,	   /* Error creating hardware sound buffer. */
-    FMOD_ERR_FILE_NOTFOUND,	   /* File not found */
-    FMOD_ERR_FILE_FORMAT,	   /* Unknown file format */
-    FMOD_ERR_FILE_BAD,		   /* Error loading file */
-    FMOD_ERR_MEMORY,           /* Not enough memory  */
-    FMOD_ERR_VERSION,		   /* The version number of this file format is not supported */
-    FMOD_ERR_INVALID_PARAM,	   /* An invalid parameter was passed to this function */
-    FMOD_ERR_NO_EAX,		   /* Tried to use an EAX command on a non EAX enabled channel or output. */
-    FMOD_ERR_NO_EAX2,		   /* Tried to use an advanced EAX2 command on a non EAX2 enabled channel or output. */
-    FMOD_ERR_CHANNEL_ALLOC,	   /* Failed to allocate a new channel */
-    FMOD_ERR_RECORD,		   /* Recording is not supported on this machine */
-    FMOD_ERR_MEDIAPLAYER,	   /* Windows Media Player not installed so cannot play wma or use internet streaming. */
+	FMOD_ERR_NONE,			   /* No errors */
+	FMOD_ERR_BUSY,             /* Cannot call this command after FSOUND_Init.  Call FSOUND_Close first. */
+	FMOD_ERR_UNINITIALIZED,	   /* This command failed because FSOUND_Init or FSOUND_SetOutput was not called */
+	FMOD_ERR_INIT,			   /* Error initializing output device. */
+	FMOD_ERR_ALLOCATED,		   /* Error initializing output device, but more specifically, the output device is already in use and cannot be reused. */
+	FMOD_ERR_PLAY,			   /* Playing the sound failed. */
+	FMOD_ERR_OUTPUT_FORMAT,	   /* Soundcard does not support the features needed for this soundsystem (16bit stereo output) */
+	FMOD_ERR_COOPERATIVELEVEL, /* Error setting cooperative level for hardware. */
+	FMOD_ERR_CREATEBUFFER,	   /* Error creating hardware sound buffer. */
+	FMOD_ERR_FILE_NOTFOUND,	   /* File not found */
+	FMOD_ERR_FILE_FORMAT,	   /* Unknown file format */
+	FMOD_ERR_FILE_BAD,		   /* Error loading file */
+	FMOD_ERR_MEMORY,           /* Not enough memory  */
+	FMOD_ERR_VERSION,		   /* The version number of this file format is not supported */
+	FMOD_ERR_INVALID_PARAM,	   /* An invalid parameter was passed to this function */
+	FMOD_ERR_NO_EAX,		   /* Tried to use an EAX command on a non EAX enabled channel or output. */
+	FMOD_ERR_NO_EAX2,		   /* Tried to use an advanced EAX2 command on a non EAX2 enabled channel or output. */
+	FMOD_ERR_CHANNEL_ALLOC,	   /* Failed to allocate a new channel */
+	FMOD_ERR_RECORD,		   /* Recording is not supported on this machine */
+	FMOD_ERR_MEDIAPLAYER,	   /* Windows Media Player not installed so cannot play wma or use internet streaming. */
 };
 
 
@@ -107,14 +107,14 @@ enum FMOD_ERRORS {
 ]
 */
 enum FSOUND_OUTPUTTYPES {
-    FSOUND_OUTPUT_NOSOUND,    /* NoSound driver, all calls to this succeed but do nothing. */
-    FSOUND_OUTPUT_WINMM,      /* Windows Multimedia driver. */
-    FSOUND_OUTPUT_DSOUND,     /* DirectSound driver.  You need this to get EAX or EAX2 support. */
-    FSOUND_OUTPUT_A3D,        /* A3D driver.  You need this to get geometry support. */
+	FSOUND_OUTPUT_NOSOUND,    /* NoSound driver, all calls to this succeed but do nothing. */
+	FSOUND_OUTPUT_WINMM,      /* Windows Multimedia driver. */
+	FSOUND_OUTPUT_DSOUND,     /* DirectSound driver.  You need this to get EAX or EAX2 support. */
+	FSOUND_OUTPUT_A3D,        /* A3D driver.  You need this to get geometry support. */
 
-    FSOUND_OUTPUT_OSS,        /* Linux/Unix OSS (Open Sound System) driver, i.e. the kernel sound drivers. */
-    FSOUND_OUTPUT_ESD,        /* Linux/Unix ESD (Enlightment Sound Daemon) driver. */
-    FSOUND_OUTPUT_ALSA        /* Linux Alsa driver. */
+	FSOUND_OUTPUT_OSS,        /* Linux/Unix OSS (Open Sound System) driver, i.e. the kernel sound drivers. */
+	FSOUND_OUTPUT_ESD,        /* Linux/Unix ESD (Enlightment Sound Daemon) driver. */
+	FSOUND_OUTPUT_ALSA        /* Linux Alsa driver. */
 };
 
 
@@ -131,15 +131,15 @@ enum FSOUND_OUTPUTTYPES {
 ]
 */
 enum FSOUND_MIXERTYPES {
-    FSOUND_MIXER_AUTODETECT,		/* Enables autodetection of the fastest mixer based on your cpu. */
-    FSOUND_MIXER_BLENDMODE,			/* Enables the standard non mmx, blendmode mixer. */
-    FSOUND_MIXER_MMXP5,				/* Enables the mmx, pentium optimized blendmode mixer. */
-    FSOUND_MIXER_MMXP6,				/* Enables the mmx, ppro/p2/p3 optimized mixer. */
+	FSOUND_MIXER_AUTODETECT,		/* Enables autodetection of the fastest mixer based on your cpu. */
+	FSOUND_MIXER_BLENDMODE,			/* Enables the standard non mmx, blendmode mixer. */
+	FSOUND_MIXER_MMXP5,				/* Enables the mmx, pentium optimized blendmode mixer. */
+	FSOUND_MIXER_MMXP6,				/* Enables the mmx, ppro/p2/p3 optimized mixer. */
 
-    FSOUND_MIXER_QUALITY_AUTODETECT,/* Enables autodetection of the fastest quality mixer based on your cpu. */
-    FSOUND_MIXER_QUALITY_FPU,		/* Enables the interpolating/volume ramping FPU mixer.  */
-    FSOUND_MIXER_QUALITY_MMXP5,		/* Enables the interpolating/volume ramping p5 MMX mixer.  */
-    FSOUND_MIXER_QUALITY_MMXP6,		/* Enables the interpolating/volume ramping ppro/p2/p3+ MMX mixer.  */
+	FSOUND_MIXER_QUALITY_AUTODETECT,/* Enables autodetection of the fastest quality mixer based on your cpu. */
+	FSOUND_MIXER_QUALITY_FPU,		/* Enables the interpolating/volume ramping FPU mixer.  */
+	FSOUND_MIXER_QUALITY_MMXP5,		/* Enables the interpolating/volume ramping p5 MMX mixer.  */
+	FSOUND_MIXER_QUALITY_MMXP6,		/* Enables the interpolating/volume ramping ppro/p2/p3+ MMX mixer.  */
 };
 
 
@@ -154,12 +154,12 @@ enum FSOUND_MIXERTYPES {
 ]
 */
 enum FMUSIC_TYPES {
-    FMUSIC_TYPE_NONE,
-    FMUSIC_TYPE_MOD,		/* Protracker / Fasttracker */
-    FMUSIC_TYPE_S3M,		/* ScreamTracker 3 */
-    FMUSIC_TYPE_XM,			/* FastTracker 2 */
-    FMUSIC_TYPE_IT,			/* Impulse Tracker. */
-    FMUSIC_TYPE_MIDI,		/* MIDI file */
+	FMUSIC_TYPE_NONE,
+	FMUSIC_TYPE_MOD,		/* Protracker / Fasttracker */
+	FMUSIC_TYPE_S3M,		/* ScreamTracker 3 */
+	FMUSIC_TYPE_XM,			/* FastTracker 2 */
+	FMUSIC_TYPE_IT,			/* Impulse Tracker. */
+	FMUSIC_TYPE_MIDI,		/* MIDI file */
 };
 
 
@@ -326,34 +326,34 @@ enum FMUSIC_TYPES {
 ]
 */
 enum FSOUND_REVERB_ENVIRONMENTS {
-    FSOUND_ENVIRONMENT_GENERIC,
-    FSOUND_ENVIRONMENT_PADDEDCELL,
-    FSOUND_ENVIRONMENT_ROOM,
-    FSOUND_ENVIRONMENT_BATHROOM,
-    FSOUND_ENVIRONMENT_LIVINGROOM,
-    FSOUND_ENVIRONMENT_STONEROOM,
-    FSOUND_ENVIRONMENT_AUDITORIUM,
-    FSOUND_ENVIRONMENT_CONCERTHALL,
-    FSOUND_ENVIRONMENT_CAVE,
-    FSOUND_ENVIRONMENT_ARENA,
-    FSOUND_ENVIRONMENT_HANGAR,
-    FSOUND_ENVIRONMENT_CARPETEDHALLWAY,
-    FSOUND_ENVIRONMENT_HALLWAY,
-    FSOUND_ENVIRONMENT_STONECORRIDOR,
-    FSOUND_ENVIRONMENT_ALLEY,
-    FSOUND_ENVIRONMENT_FOREST,
-    FSOUND_ENVIRONMENT_CITY,
-    FSOUND_ENVIRONMENT_MOUNTAINS,
-    FSOUND_ENVIRONMENT_QUARRY,
-    FSOUND_ENVIRONMENT_PLAIN,
-    FSOUND_ENVIRONMENT_PARKINGLOT,
-    FSOUND_ENVIRONMENT_SEWERPIPE,
-    FSOUND_ENVIRONMENT_UNDERWATER,
-    FSOUND_ENVIRONMENT_DRUGGED,
-    FSOUND_ENVIRONMENT_DIZZY,
-    FSOUND_ENVIRONMENT_PSYCHOTIC,
+	FSOUND_ENVIRONMENT_GENERIC,
+	FSOUND_ENVIRONMENT_PADDEDCELL,
+	FSOUND_ENVIRONMENT_ROOM,
+	FSOUND_ENVIRONMENT_BATHROOM,
+	FSOUND_ENVIRONMENT_LIVINGROOM,
+	FSOUND_ENVIRONMENT_STONEROOM,
+	FSOUND_ENVIRONMENT_AUDITORIUM,
+	FSOUND_ENVIRONMENT_CONCERTHALL,
+	FSOUND_ENVIRONMENT_CAVE,
+	FSOUND_ENVIRONMENT_ARENA,
+	FSOUND_ENVIRONMENT_HANGAR,
+	FSOUND_ENVIRONMENT_CARPETEDHALLWAY,
+	FSOUND_ENVIRONMENT_HALLWAY,
+	FSOUND_ENVIRONMENT_STONECORRIDOR,
+	FSOUND_ENVIRONMENT_ALLEY,
+	FSOUND_ENVIRONMENT_FOREST,
+	FSOUND_ENVIRONMENT_CITY,
+	FSOUND_ENVIRONMENT_MOUNTAINS,
+	FSOUND_ENVIRONMENT_QUARRY,
+	FSOUND_ENVIRONMENT_PLAIN,
+	FSOUND_ENVIRONMENT_PARKINGLOT,
+	FSOUND_ENVIRONMENT_SEWERPIPE,
+	FSOUND_ENVIRONMENT_UNDERWATER,
+	FSOUND_ENVIRONMENT_DRUGGED,
+	FSOUND_ENVIRONMENT_DIZZY,
+	FSOUND_ENVIRONMENT_PSYCHOTIC,
 
-    FSOUND_ENVIRONMENT_COUNT
+	FSOUND_ENVIRONMENT_COUNT
 };
 
 /*
@@ -510,12 +510,12 @@ enum FSOUND_REVERB_ENVIRONMENTS {
 ]
 */
 enum FSOUND_SPEAKERMODES {
-    FSOUND_SPEAKERMODE_5POINT1,       /* The audio is played through a speaker arrangement of surround speakers with a subwoofer. */
-    FSOUND_SPEAKERMODE_HEADPHONE,     /* The speakers are headphones. */
-    FSOUND_SPEAKERMODE_MONO,          /* The speakers are monaural. */
-    FSOUND_SPEAKERMODE_QUAD,          /* The speakers are quadraphonic.  */
-    FSOUND_SPEAKERMODE_STEREO,        /* The speakers are stereo (default value). */
-    FSOUND_SPEAKERMODE_SURROUND       /* The speakers are surround sound. */
+	FSOUND_SPEAKERMODE_5POINT1,       /* The audio is played through a speaker arrangement of surround speakers with a subwoofer. */
+	FSOUND_SPEAKERMODE_HEADPHONE,     /* The speakers are headphones. */
+	FSOUND_SPEAKERMODE_MONO,          /* The speakers are monaural. */
+	FSOUND_SPEAKERMODE_QUAD,          /* The speakers are quadraphonic.  */
+	FSOUND_SPEAKERMODE_STEREO,        /* The speakers are stereo (default value). */
+	FSOUND_SPEAKERMODE_SURROUND       /* The speakers are surround sound. */
 };
 
 

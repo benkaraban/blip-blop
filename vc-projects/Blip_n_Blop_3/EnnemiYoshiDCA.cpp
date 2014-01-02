@@ -2,12 +2,14 @@
 #include "tircarapace.h"
 
 
-EnnemiYoshiDCA::EnnemiYoshiDCA(): attack_delay(50 + rand() % 150), wait_for_attack(0) {
+EnnemiYoshiDCA::EnnemiYoshiDCA(): attack_delay(50 + rand() % 150), wait_for_attack(0)
+{
 	tresor = 12;
 	pv = 400;
 }
 
-void EnnemiYoshiDCA::update() {
+void EnnemiYoshiDCA::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -25,9 +27,9 @@ void EnnemiYoshiDCA::update() {
 			onCarbonise();
 			break;
 
-			/*case ETAT_TOMBE:
-				onTombe();
-				break;*/
+		/*case ETAT_TOMBE:
+			onTombe();
+			break;*/
 
 		case ETAT_TIRE:  //YoshiDCA balance des carapaces
 			onTire();
@@ -37,7 +39,8 @@ void EnnemiYoshiDCA::update() {
 	updateADetruire();
 }
 
-void EnnemiYoshiDCA::onAvance() {
+void EnnemiYoshiDCA::onAvance()
+{
 	tombe();
 	//pour attaquer
 	wait_for_attack++;
@@ -66,7 +69,8 @@ void EnnemiYoshiDCA::onAvance() {
 }
 
 
-void EnnemiYoshiDCA::onMeure() {
+void EnnemiYoshiDCA::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -90,7 +94,8 @@ void EnnemiYoshiDCA::onMeure() {
 	}
 }
 
-void EnnemiYoshiDCA::onTire() {
+void EnnemiYoshiDCA::onTire()
+{
 
 	ss_etape += 1;
 	ss_etape %= 15;
@@ -128,7 +133,8 @@ void EnnemiYoshiDCA::onTire() {
 	colFromPic();
 }
 
-void EnnemiYoshiDCA::onCarbonise() {
+void EnnemiYoshiDCA::onCarbonise()
+{
 	tombe();
 	ss_etape ++;
 	ss_etape %= 5;
@@ -146,7 +152,8 @@ void EnnemiYoshiDCA::onCarbonise() {
 	}
 }
 
-void EnnemiYoshiDCA::estTouche(Tir * tir) {
+void EnnemiYoshiDCA::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

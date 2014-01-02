@@ -31,34 +31,42 @@
 //		Définition de la classe ControlP1
 //-----------------------------------------------------------------------------
 
-class ControlP1 : public Controlor {
+class ControlP1 : public Controlor
+{
 protected:
 public:
-	virtual int gauche() const {
+	virtual int gauche() const
+	{
 		return in.scanAlias(ALIAS_P1_LEFT);
 	};
 
-	virtual int haut() const {
+	virtual int haut() const
+	{
 		return in.scanAlias(ALIAS_P1_UP);
 	};
 
-	virtual int droite() const {
+	virtual int droite() const
+	{
 		return in.scanAlias(ALIAS_P1_RIGHT);
 	};
 
-	virtual int bas() const {
+	virtual int bas() const
+	{
 		return in.scanAlias(ALIAS_P1_DOWN);
 	};
 
-	virtual int fire() const {
+	virtual int fire() const
+	{
 		return in.scanAlias(ALIAS_P1_FIRE);
 	};
 
-	virtual int saut() const {
+	virtual int saut() const
+	{
 		return in.scanAlias(ALIAS_P1_JUMP);
 	};
 
-	virtual int super() const {
+	virtual int super() const
+	{
 		return in.scanAlias(ALIAS_P1_SUPER);
 	};
 };

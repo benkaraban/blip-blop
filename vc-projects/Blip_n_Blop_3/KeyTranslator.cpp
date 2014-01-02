@@ -8,14 +8,16 @@
 
 #define KMAP( _num, _val) case _num: strcpy( str, _val); break;
 
-void DIK_to_string(int n, char * str) {
+void DIK_to_string(int n, char * str)
+{
 	if (lang_type == LANG_FR)
 		DIK_to_string_fr(n, str);
 	else
 		DIK_to_string_uk(n, str);
 }
 
-void DIK_to_string_uk(int n, char * str) {
+void DIK_to_string_uk(int n, char * str)
+{
 	int		j = n >> 10;
 
 	if (j == 0) {
@@ -155,7 +157,8 @@ void DIK_to_string_uk(int n, char * str) {
 }
 
 
-void DIK_to_string_fr(int n, char * str) {
+void DIK_to_string_fr(int n, char * str)
+{
 	int		j = n >> 10;
 
 	if (j == 0) {

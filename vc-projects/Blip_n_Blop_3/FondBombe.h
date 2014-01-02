@@ -19,7 +19,8 @@
 #define _FondBombe_
 
 
-class FondBombe : public Sprite {
+class FondBombe : public Sprite
+{
 private:
 	int etape_compteur;
 

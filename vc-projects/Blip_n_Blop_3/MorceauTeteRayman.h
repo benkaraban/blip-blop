@@ -23,7 +23,8 @@
 //		Définition de la classe MorceauTeteRayman
 //----------------------------------------------------------------------------
 
-class MorceauTeteRayman : public Sprite {
+class MorceauTeteRayman : public Sprite
+{
 private:
 
 	int dx;

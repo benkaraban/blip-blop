@@ -17,8 +17,10 @@
 #include "personnage.h"
 
 
-Personnage::Personnage() : etat(ETAT_NORMAL) {
+Personnage::Personnage() : etat(ETAT_NORMAL)
+{
 }
 
-void Personnage::update() {
+void Personnage::update()
+{
 }

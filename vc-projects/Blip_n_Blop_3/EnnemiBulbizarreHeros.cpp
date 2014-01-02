@@ -17,13 +17,15 @@
 #include "EnnemiBulbizarreHeros.h"
 
 
-EnnemiBulbizarreHeros::EnnemiBulbizarreHeros(): dorkeball(2) {
+EnnemiBulbizarreHeros::EnnemiBulbizarreHeros(): dorkeball(2)
+{
 	pv = 1500;
 	dy = -8;
 	dx = -2;
 }
 
-void EnnemiBulbizarreHeros::update() {
+void EnnemiBulbizarreHeros::update()
+{
 	if (dorkeball == 2) {
 		x += dx;
 		tombe();
@@ -80,7 +82,8 @@ void EnnemiBulbizarreHeros::update() {
 	}
 }
 
-void EnnemiBulbizarreHeros::onAvance() {
+void EnnemiBulbizarreHeros::onAvance()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -108,7 +111,8 @@ void EnnemiBulbizarreHeros::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBulbizarreHeros::onMeure() {
+void EnnemiBulbizarreHeros::onMeure()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -134,7 +138,8 @@ void EnnemiBulbizarreHeros::onMeure() {
 }
 
 
-void EnnemiBulbizarreHeros::estTouche(Tir * tir) {
+void EnnemiBulbizarreHeros::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

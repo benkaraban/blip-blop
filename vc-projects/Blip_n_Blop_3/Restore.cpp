@@ -5,7 +5,8 @@
 #include "Scroll.h"
 #include "BenDebug.h"
 
-bool RestoreAll() {
+bool RestoreAll()
+{
 	if (winSet) {
 		DEVMODE dm;
 

@@ -17,7 +17,8 @@
 #define _FondCube_
 
 
-class FondCube : public Sprite {
+class FondCube : public Sprite
+{
 private:
 	static int etape_synchro;
 	static bool synchro;

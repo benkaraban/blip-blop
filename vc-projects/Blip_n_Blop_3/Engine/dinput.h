@@ -24,8 +24,7 @@ typedef struct {
 	BYTE rgbButtons[32];
 } DIJOYSTATE;
 
-typedef enum Keyboard_Device
-{
+typedef enum Keyboard_Device {
 	DIK_0,
 	DIK_1,
 	DIK_2,

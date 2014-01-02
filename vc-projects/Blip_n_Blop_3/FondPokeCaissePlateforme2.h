@@ -18,7 +18,8 @@
 
 #include "Sprite.h"
 
-class FondPokeCaissePlateforme2 : public Sprite {
+class FondPokeCaissePlateforme2 : public Sprite
+{
 
 public:
 	FondPokeCaissePlateforme2();

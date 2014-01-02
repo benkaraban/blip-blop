@@ -67,7 +67,8 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class TirBB : public Tir {
+class TirBB : public Tir
+{
 public:
 	Joueur *	joueur;
 	int			dxReferentiel;
@@ -77,11 +78,13 @@ public:
 	virtual int degats() const = 0;
 	virtual int enflame() const = 0;
 
-	virtual void aTue() {
+	virtual void aTue()
+	{
 		joueur->addKilled();
 	};
 
-	inline virtual void aTouche(int pts) {
+	inline virtual void aTouche(int pts)
+	{
 		a_detruire = true;
 		col_on = false;
 		joueur->addPoints(pts);

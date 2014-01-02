@@ -22,12 +22,14 @@
 
 
 
-TirTornade::TirTornade(int vx): dx(vx), etape_speed(0), nb_tour(0) {
+TirTornade::TirTornade(int vx): dx(vx), etape_speed(0), nb_tour(0)
+{
 	dy = 0;
 }
 
 
-void TirTornade::update() {
+void TirTornade::update()
+{
 	ss_etape++;
 	ss_etape %= 6;
 

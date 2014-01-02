@@ -21,13 +21,15 @@
 #include "GenBonus.h"
 
 
-class EventGenBonus : public Event {
+class EventGenBonus : public Event
+{
 public:
 	int		type;
 	int		periode;
 
 
-	virtual void doEvent() {
+	virtual void doEvent()
+	{
 		GenBonus * gb = new GenBonus();
 
 		gb->periode = periode;

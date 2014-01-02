@@ -4,11 +4,11 @@
 #include "enemy.h"
 /******************************************************************
 *
-* 
+*
 *		------------------------------
 *		    EnnemiMarioHologramme.h
 *		------------------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.2 - 27 Decembre 2000
@@ -36,7 +36,7 @@ private:
 	int decalage_cligno;
 
 
-	int attack_delay;    
+	int attack_delay;
 	int wait_for_attack;
 	int attack_etape;
 	int attack_type;
@@ -57,7 +57,7 @@ public:
 	virtual void tombe_mario();
 	virtual inline void boule_de_feu();
 	virtual void affiche();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

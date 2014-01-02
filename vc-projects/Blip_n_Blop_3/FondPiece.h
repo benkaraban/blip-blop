@@ -18,7 +18,8 @@
 
 
 
-class FondPiece : public Sprite {
+class FondPiece : public Sprite
+{
 private:
 	static int etape_synchro;
 	static int ss_etape_synchro;

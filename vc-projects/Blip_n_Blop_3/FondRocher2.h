@@ -19,7 +19,8 @@
 
 #include "sprite.h"
 
-class FondRocher2 : public Sprite {
+class FondRocher2 : public Sprite
+{
 public:
 	int ss_etape_levitation;
 	int etape_levitation;

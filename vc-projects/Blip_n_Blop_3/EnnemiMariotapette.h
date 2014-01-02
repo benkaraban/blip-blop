@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiMariotapette.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.9 - 12 Decembre 2000
@@ -39,7 +39,7 @@ private:
 	int speed;    //vitesse courante
 	int etape_speed; //delai d'acceleration
 
-	int attack_delay;    
+	int attack_delay;
 	int wait_for_attack;
 	int attack_etape;
 	int nabo_delay;
@@ -56,7 +56,7 @@ public:
 	virtual void onCharge();
 	virtual void onCarbonise();
 	virtual void tombe_mario();
-	virtual void estTouche( Tir * tir);
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

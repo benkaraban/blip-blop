@@ -1,10 +1,10 @@
 /******************************************************************
 *
-* 
+*
 *		-----------------------
 *		    EnnemiTeteRayman.h
 *		-----------------------
-*			
+*
 *
 *
 *		Mephisto / LOADED -   V 0.1 - 22 Fevrier 2001
@@ -26,7 +26,7 @@
 class EnnemiTeteRayman : public Ennemi
 {
 private:
-	
+
 	int dx;
 
 public:
@@ -43,8 +43,8 @@ public:
 	};
 
 	virtual int degats();
-	
-	virtual void estTouche( Tir * tir);
+
+	virtual void estTouche(Tir * tir);
 };
 
 #endif

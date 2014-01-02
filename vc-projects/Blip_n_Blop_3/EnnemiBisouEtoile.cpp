@@ -4,13 +4,15 @@
 #include "TirEtoile.h"
 
 
-EnnemiBisouEtoile::EnnemiBisouEtoile() : etape_shoot(0) {
+EnnemiBisouEtoile::EnnemiBisouEtoile() : etape_shoot(0)
+{
 	pv = 200;
 	wait_shoot = 200 + rand() % 250;
 }
 
 
-void EnnemiBisouEtoile::update() {
+void EnnemiBisouEtoile::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -46,7 +48,8 @@ void EnnemiBisouEtoile::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouEtoile::onMeureEntier() {
+void EnnemiBisouEtoile::onMeureEntier()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -78,7 +81,8 @@ void EnnemiBisouEtoile::onMeureEntier() {
 	}
 }
 
-void EnnemiBisouEtoile::onTire() {
+void EnnemiBisouEtoile::onTire()
+{
 	ss_etape += 1;
 
 	if (ss_etape >= 60) {
@@ -91,7 +95,8 @@ void EnnemiBisouEtoile::onTire() {
 
 
 
-void EnnemiBisouEtoile::onMeureHaut() {
+void EnnemiBisouEtoile::onMeureHaut()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -115,7 +120,8 @@ void EnnemiBisouEtoile::onMeureHaut() {
 	}
 }
 
-void EnnemiBisouEtoile::onMeureHautFin() {
+void EnnemiBisouEtoile::onMeureHautFin()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -134,7 +140,8 @@ void EnnemiBisouEtoile::onMeureHautFin() {
 	}
 }
 
-void EnnemiBisouEtoile::onAvance() {
+void EnnemiBisouEtoile::onAvance()
+{
 	static const int SPEED = 1;
 
 	tombe();
@@ -180,7 +187,8 @@ void EnnemiBisouEtoile::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBisouEtoile::onCarbonise() {
+void EnnemiBisouEtoile::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -199,7 +207,8 @@ void EnnemiBisouEtoile::onCarbonise() {
 		pic = pbk_ennemis[566 + etape];
 }
 
-void EnnemiBisouEtoile::estTouche(Tir * tir) {
+void EnnemiBisouEtoile::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

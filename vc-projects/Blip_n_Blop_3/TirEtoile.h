@@ -4,14 +4,17 @@
 
 #include "Tir.h"
 
-class TirEtoile : public Tir {
+class TirEtoile : public Tir
+{
 public:
 	int		life_time;
 
-	TirEtoile() : life_time(500) {
+	TirEtoile() : life_time(500)
+	{
 	};
 
-	virtual void update() {
+	virtual void update()
+	{
 		static const int SPEED = 2;
 
 		tombe();

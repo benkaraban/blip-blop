@@ -37,7 +37,8 @@ extern Personnage *	tete_turc;
 //		Définition de la classe Ennemi
 //-----------------------------------------------------------------------------
 
-class Ennemi : public Personnage {
+class Ennemi : public Personnage
+{
 public:
 	Ennemi();
 
@@ -45,13 +46,15 @@ public:
 	int		blood;
 	int		tresor;
 
-	virtual bool count() {
+	virtual bool count()
+	{
 		return true;
 	};
 
 	virtual void estTouche(Tir * tir);
 
-	virtual int degats() {
+	virtual int degats()
+	{
 		return 1;
 	};
 

@@ -8,12 +8,14 @@ static const int GO_LEFT  = 0;
 static const int GO_RIGHT = 1;
 
 
-EnnemiBisouAuto::EnnemiBisouAuto() : cible(tete_turc), dx(0), togo(GO_LEFT), trick(false) {
+EnnemiBisouAuto::EnnemiBisouAuto() : cible(tete_turc), dx(0), togo(GO_LEFT), trick(false)
+{
 	pv = 800;
 }
 
 
-void EnnemiBisouAuto::update() {
+void EnnemiBisouAuto::update()
+{
 	switch (etat) {
 		case ETAT_NORMAL:
 		case ETAT_AVANCE:
@@ -30,7 +32,8 @@ void EnnemiBisouAuto::update() {
 }
 
 
-void EnnemiBisouAuto::onAvance() {
+void EnnemiBisouAuto::onAvance()
+{
 	static const int anim_droite [] = { 559, 560, 561, 560 };
 	static const int anim_gauche [] = { 562, 563, 564, 563};
 
@@ -81,7 +84,8 @@ void EnnemiBisouAuto::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBisouAuto::onMeure() {
+void EnnemiBisouAuto::onMeure()
+{
 	static const int anim_droite [] = { 559, 560, 561, 560 };
 	static const int anim_gauche [] = { 562, 563, 564, 563};
 

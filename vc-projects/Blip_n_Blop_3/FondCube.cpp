@@ -20,7 +20,8 @@ int FondCube::etape_synchro = 0;
 bool FondCube::synchro = false;
 int FondCube::ss_etape_synchro = 0;
 
-void FondCube::update() {
+void FondCube::update()
+{
 	if (phase != synchro) {
 		synchro = phase;
 

@@ -4,9 +4,11 @@
 
 #include "sprite.h"
 
-class GorePiedsBisouCiel : public Sprite {
+class GorePiedsBisouCiel : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		tombe();
 
 		if (etape < 3) {

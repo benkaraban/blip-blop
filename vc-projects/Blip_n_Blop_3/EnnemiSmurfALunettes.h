@@ -26,10 +26,12 @@
 //		Définition de la classe
 //-----------------------------------------------------------------------------
 
-class EnnemiSmurfALunettes : public EnnemiSmurf {
+class EnnemiSmurfALunettes : public EnnemiSmurf
+{
 public:
 
-	inline virtual void affiche() {
+	inline virtual void affiche()
+	{
 		EnnemiSmurf::affiche() ;
 		if (etat != ETAT_MEURE && etat != ETAT_CARBONISE) {
 			switch (dir) {
@@ -43,7 +45,8 @@ public:
 		}
 	}
 
-	virtual void update() {
+	virtual void update()
+	{
 		if (etat == ETAT_SAUTE)
 			speed = 2 ;
 		else

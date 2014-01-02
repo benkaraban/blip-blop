@@ -19,12 +19,14 @@
 
 #include "event.h"
 
-class EventScrollSpeed : public Event {
+class EventScrollSpeed : public Event
+{
 public:
 
 	int		speed;
 
-	virtual void doEvent() {
+	virtual void doEvent()
+	{
 		scroll_speed = speed;
 	};
 };

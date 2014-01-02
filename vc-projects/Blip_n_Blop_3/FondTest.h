@@ -4,9 +4,11 @@
 
 #include "sprite.h"
 
-class FondTest : public Sprite {
+class FondTest : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		if (phase)
 			pic = pbk_niveau[0];
 		else

@@ -17,11 +17,13 @@
 #include "fondPoissons.h"
 
 
-FondPoissonRouge::FondPoissonRouge() {
+FondPoissonRouge::FondPoissonRouge()
+{
 	dir = rand() % 2;
 }
 
-void FondPoissonRouge::update() {
+void FondPoissonRouge::update()
+{
 	ss_etape ++;
 	ss_etape %= 9;
 
@@ -46,11 +48,13 @@ void FondPoissonRouge::update() {
 }
 
 
-FondPoissonViolet::FondPoissonViolet() {
+FondPoissonViolet::FondPoissonViolet()
+{
 	dir = rand() % 2;
 }
 
-void FondPoissonViolet::update() {
+void FondPoissonViolet::update()
+{
 	ss_etape ++;
 	ss_etape %= 9;
 
@@ -74,11 +78,13 @@ void FondPoissonViolet::update() {
 
 };
 
-FondPoissonRougeCamoufle::FondPoissonRougeCamoufle() {
+FondPoissonRougeCamoufle::FondPoissonRougeCamoufle()
+{
 	dir = rand() % 2;
 }
 
-void FondPoissonRougeCamoufle::update() {
+void FondPoissonRougeCamoufle::update()
+{
 	ss_etape ++;
 	ss_etape %= 9;
 
@@ -103,11 +109,13 @@ void FondPoissonRougeCamoufle::update() {
 }
 
 
-FondPoissonVioletCamoufle::FondPoissonVioletCamoufle() {
+FondPoissonVioletCamoufle::FondPoissonVioletCamoufle()
+{
 	dir = rand() % 2;
 }
 
-void FondPoissonVioletCamoufle::update() {
+void FondPoissonVioletCamoufle::update()
+{
 	ss_etape ++;
 	ss_etape %= 9;
 

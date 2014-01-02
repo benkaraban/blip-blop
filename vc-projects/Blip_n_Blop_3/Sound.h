@@ -33,7 +33,8 @@
 //		Définition de la classe Sound
 //-----------------------------------------------------------------------------
 
-class Sound {
+class Sound
+{
 protected:
 
 	FSOUND_SAMPLE * sample;

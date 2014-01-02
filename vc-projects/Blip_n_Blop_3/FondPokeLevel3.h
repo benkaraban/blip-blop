@@ -23,7 +23,8 @@
 #define PBK_E		133
 #define PBK_V		139
 
-class FondPokeLevel3 : public Sprite {
+class FondPokeLevel3 : public Sprite
+{
 private:
 	int etape_E1;
 	int etape_V;

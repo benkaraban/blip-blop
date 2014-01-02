@@ -54,7 +54,8 @@
 //		Définition de la classe Game
 //-----------------------------------------------------------------------------
 
-class Game {
+class Game
+{
 protected:
 
 	PictureBank	pbk_briefing;

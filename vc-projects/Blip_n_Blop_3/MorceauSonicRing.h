@@ -28,7 +28,8 @@
 //		Définition de la classe MorceauRayman
 //-----------------------------------------------------------------------------
 
-class MorceauSonicRing : public Sprite {
+class MorceauSonicRing : public Sprite
+{
 public:
 	int		dx;
 

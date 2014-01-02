@@ -30,7 +30,8 @@
 //		Définition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
-class SoundBank {
+class SoundBank
+{
 protected:
 	Sound **	tab;
 	int			nb_snd;
@@ -40,13 +41,16 @@ public:
 	SoundBank();
 	~SoundBank();
 
-	inline Sound * operator[](int n) const {
+	inline Sound * operator[](int n) const
+	{
 		return tab[n];
 	};
-	inline Sound ** getTab(int n) const {
+	inline Sound ** getTab(int n) const
+	{
 		return tab;
 	};
-	inline int getSize() const {
+	inline int getSize() const
+	{
 		return nb_snd;
 	};
 

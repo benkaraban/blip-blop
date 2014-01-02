@@ -4,12 +4,14 @@
 #include "tirarcciel.h"
 
 
-EnnemiBisouCiel::EnnemiBisouCiel() : wait_for_pisser(0) {
+EnnemiBisouCiel::EnnemiBisouCiel() : wait_for_pisser(0)
+{
 	pv = 175;
 }
 
 
-void EnnemiBisouCiel::update() {
+void EnnemiBisouCiel::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -46,7 +48,8 @@ void EnnemiBisouCiel::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouCiel::onMeureEntier() {
+void EnnemiBisouCiel::onMeureEntier()
+{
 	tombe();
 
 	ss_etape += 1;
@@ -78,7 +81,8 @@ void EnnemiBisouCiel::onMeureEntier() {
 	}
 }
 
-void EnnemiBisouCiel::onTire() {
+void EnnemiBisouCiel::onTire()
+{
 	ss_etape += 1;
 
 	if (ss_etape >= 60) {
@@ -88,7 +92,8 @@ void EnnemiBisouCiel::onTire() {
 	}
 }
 
-void EnnemiBisouCiel::onMeureHaut() {
+void EnnemiBisouCiel::onMeureHaut()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -112,7 +117,8 @@ void EnnemiBisouCiel::onMeureHaut() {
 	}
 }
 
-void EnnemiBisouCiel::onMeureHautFin() {
+void EnnemiBisouCiel::onMeureHautFin()
+{
 	ss_etape += 1;
 	ss_etape %= 6;
 
@@ -131,7 +137,8 @@ void EnnemiBisouCiel::onMeureHautFin() {
 	}
 }
 
-void EnnemiBisouCiel::onAvance() {
+void EnnemiBisouCiel::onAvance()
+{
 	static const int SPEED = 1;
 
 	tombe();
@@ -202,7 +209,8 @@ void EnnemiBisouCiel::onAvance() {
 }
 
 
-void EnnemiBisouCiel::onCarbonise() {
+void EnnemiBisouCiel::onCarbonise()
+{
 	ss_etape += 1;
 	ss_etape %= 4;
 
@@ -222,7 +230,8 @@ void EnnemiBisouCiel::onCarbonise() {
 }
 
 
-void EnnemiBisouCiel::estTouche(Tir * tir) {
+void EnnemiBisouCiel::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

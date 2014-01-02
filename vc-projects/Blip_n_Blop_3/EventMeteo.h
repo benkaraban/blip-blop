@@ -20,13 +20,15 @@
 #include "Event.h"
 #include "BenDebug.h"
 
-class EventMeteo : public Event {
+class EventMeteo : public Event
+{
 public:
 
 	int		intensite;
 	int		type;
 
-	virtual void doEvent() {
+	virtual void doEvent()
+	{
 		intensite_meteo = intensite;
 		type_meteo = type;
 	};

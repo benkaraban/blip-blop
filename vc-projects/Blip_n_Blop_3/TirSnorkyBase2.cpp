@@ -6,14 +6,16 @@
 #include "TirSnorkyBase2.h"
 
 
-TirSnorkyBase2::TirSnorkyBase2(int vx, int vy) {
+TirSnorkyBase2::TirSnorkyBase2(int vx, int vy)
+{
 	dy = vy;
 	dx = vx;
 	pic = pbk_ennemis[182];
 }
 
 
-void TirSnorkyBase2::update() {
+void TirSnorkyBase2::update()
+{
 	x += dx;
 	y += dy;
 

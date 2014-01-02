@@ -8,13 +8,15 @@
 #include "MorceauTeteRayman.h"
 
 
-EnnemiRayman::EnnemiRayman(): dorkemon(4), attack_delay(100 + rand() % 250), wait_for_attack(0), tir_poing(NULL), poing1(1), poing2(1), pieds(1) {
+EnnemiRayman::EnnemiRayman(): dorkemon(4), attack_delay(100 + rand() % 250), wait_for_attack(0), tir_poing(NULL), poing1(1), poing2(1), pieds(1)
+{
 	pv = 15000;
 	xmin = 10428;
 	tresor = 0;
 }
 
-void EnnemiRayman::update() {
+void EnnemiRayman::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -48,7 +50,8 @@ void EnnemiRayman::update() {
 	updateADetruire();
 }
 
-void EnnemiRayman::onAvance() {
+void EnnemiRayman::onAvance()
+{
 	if ((game_flag[1] <= dorkemon) && (game_flag[0] == 2) && (game_flag[1] > 0)) {
 		if (game_flag[1] == 4) {
 			EnnemiBulbizarreHeros * bulbizarre = new EnnemiBulbizarreHeros();
@@ -301,7 +304,8 @@ void EnnemiRayman::onAvance() {
 
 }
 
-void EnnemiRayman::onMeure() {
+void EnnemiRayman::onMeure()
+{
 	ss_etape ++;
 	ss_etape %= 6;
 
@@ -333,7 +337,8 @@ void EnnemiRayman::onMeure() {
 	}
 }
 
-void EnnemiRayman::onTire() {
+void EnnemiRayman::onTire()
+{
 	if (pv > PV_SOUS_CRITIQUE) {
 		if (attack_etape == 0) {
 			ss_etape++;
@@ -467,7 +472,8 @@ void EnnemiRayman::onTire() {
 	colFromPic();
 }
 
-void EnnemiRayman::onTombe() {
+void EnnemiRayman::onTombe()
+{
 	int		yp;
 
 	tombe();
@@ -498,7 +504,8 @@ void EnnemiRayman::onTombe() {
 
 }
 
-void EnnemiRayman::estTouche(Tir * tir) {
+void EnnemiRayman::estTouche(Tir * tir)
+{
 	//static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	//static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 	static const int dx_giclure [] = { 0, 0, 4, 0, 0, 0, -4, 0 };

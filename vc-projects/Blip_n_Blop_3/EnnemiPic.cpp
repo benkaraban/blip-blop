@@ -1,12 +1,14 @@
 #include "ennemipic.h"
 
 
-EnnemiPic::EnnemiPic(): y_origine(0) {
+EnnemiPic::EnnemiPic(): y_origine(0)
+{
 	pv = 1;
 	pic = pbk_ennemis[168];
 }
 
-void EnnemiPic::update() {
+void EnnemiPic::update()
+{
 	if ((game_flag[0] == 3) || (game_flag[0] == 2)) {
 		if (-104 > y_origine) {
 			//les pics sont sortis inutiles de les faire monter plus
@@ -65,7 +67,8 @@ void EnnemiPic::update() {
 
 
 
-void EnnemiPic::affiche() {
+void EnnemiPic::affiche()
+{
 	//Sprite::affiche();
 	IDirectDrawSurface7 *	surf;
 	int						xs;
@@ -90,12 +93,14 @@ void EnnemiPic::affiche() {
 	backSurface->BltFast(x - offset , y , surf, &r, DDBLTFAST_SRCCOLORKEY | DDBLTFAST_WAIT);
 }
 
-void EnnemiPic::colFromPic() {
+void EnnemiPic::colFromPic()
+{
 	Sprite::colFromPic();
 
 	x2 += 25;
 	x1 += 25;
 }
 
-void EnnemiPic::estTouche(Tir * tir) {
+void EnnemiPic::estTouche(Tir * tir)
+{
 }

@@ -12,28 +12,34 @@
 //		Définition de la classe Tir
 //-----------------------------------------------------------------------------
 
-class TirBisouMortel : public Tir {
+class TirBisouMortel : public Tir
+{
 public:
 	Sprite *	cible;
 	int			dx;
 	int			duree_vie;
 
-	TirBisouMortel() : dx(0), duree_vie(235) {
+	TirBisouMortel() : dx(0), duree_vie(235)
+	{
 	};
 
-	virtual int degats() const {
+	virtual int degats() const
+	{
 		return 1;
 	};
 
-	virtual int enflame() const {
+	virtual int enflame() const
+	{
 		return 0;
 	};
 
-	virtual void setDir(int d) {
+	virtual void setDir(int d)
+	{
 		dir = d;
 	};
 
-	virtual void update() {
+	virtual void update()
+	{
 		static const int ACCEL = 1;
 
 		ss_etape += 1;

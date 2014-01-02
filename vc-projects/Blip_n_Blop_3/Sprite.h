@@ -28,7 +28,8 @@
 //		Définition de la classe Sprite
 //-----------------------------------------------------------------------------
 
-class Sprite {
+class Sprite
+{
 public:
 
 	int			x;
@@ -51,27 +52,34 @@ public:
 
 	Sprite();
 
-	inline virtual int getX() const {
+	inline virtual int getX() const
+	{
 		return x;
 	};
-	inline virtual int getY() const {
+	inline virtual int getY() const
+	{
 		return y;
 	};
-	inline virtual int getEtape() const {
+	inline virtual int getEtape() const
+	{
 		return etape;
 	};
-	inline virtual Picture * getPic() const {
+	inline virtual Picture * getPic() const
+	{
 		return pic;
 	};
-	inline virtual bool aDetruire() const {
+	inline virtual bool aDetruire() const
+	{
 		return a_detruire;
 	};
 
-	inline virtual bool estSurMur() const { // (sanglant)
+	inline virtual bool estSurMur() const   // (sanglant)
+	{
 		return mur_sanglant(x, y);
 	}
 
-	inline virtual int anime(const int * tab, int nb_etapes, int latence) {
+	inline virtual int anime(const int * tab, int nb_etapes, int latence)
+	{
 		ss_etape += 1;
 		ss_etape %= latence;
 
@@ -85,11 +93,13 @@ public:
 		return tab[etape];
 	};
 
-	inline virtual void affiche() {
+	inline virtual void affiche()
+	{
 		draw(x, y, pic);
 	};
 
-	inline virtual void updateADetruire() {
+	inline virtual void updateADetruire()
+	{
 		if (x < offset - 250 || x > offset + 900 || y < -200 || y > 600)
 			a_detruire = true;
 	};
@@ -102,14 +112,16 @@ public:
 	virtual void colFromPic();
 	virtual void noCol();
 
-	inline virtual bool collision(const Sprite * s) const {
+	inline virtual bool collision(const Sprite * s) const
+	{
 		if (!col_on || !s->col_on)
 			return false;
 		else
 			return !((s->x2 < x1) || (s->x1 > x2) || (s->y2 < y1) || (s->y1 > y2));
 	};
 
-	virtual ~Sprite() {
+	virtual ~Sprite()
+	{
 	};
 
 };

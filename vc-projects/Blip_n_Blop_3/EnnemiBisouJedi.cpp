@@ -2,12 +2,14 @@
 #include "ennemibisoujedi.h"
 #include "tirepeelaser.h"
 
-EnnemiBisouJedi::EnnemiBisouJedi() : etape_shoot(0), a_epee(true) {
+EnnemiBisouJedi::EnnemiBisouJedi() : etape_shoot(0), a_epee(true)
+{
 	pv = 250;
 	wait_shoot = 200 + rand() % 250;
 }
 
-void EnnemiBisouJedi::update() {
+void EnnemiBisouJedi::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -24,11 +26,11 @@ void EnnemiBisouJedi::update() {
 			onMeure();
 			break;
 
-			/*
-				case ETAT_TIRE:
-					onTire();
-					break;
-			*/
+		/*
+			case ETAT_TIRE:
+				onTire();
+				break;
+		*/
 		case ETAT_CARBONISE:
 			onCarbonise();
 			break;
@@ -37,7 +39,8 @@ void EnnemiBisouJedi::update() {
 	updateADetruire();
 }
 
-void EnnemiBisouJedi::onAvance() {
+void EnnemiBisouJedi::onAvance()
+{
 	static const int SPEED = 1;
 
 	tombe();
@@ -85,7 +88,8 @@ void EnnemiBisouJedi::onAvance() {
 	colFromPic();
 }
 
-void EnnemiBisouJedi::onMeure() {
+void EnnemiBisouJedi::onMeure()
+{
 	if (a_epee) {
 		TirEpeeLaser * t = new TirEpeeLaser;
 
@@ -129,7 +133,8 @@ void EnnemiBisouJedi::onMeure() {
 }
 
 
-void EnnemiBisouJedi::estTouche(Tir * tir) {
+void EnnemiBisouJedi::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 7, 10, 7, 0, -7, -10, -7 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 
@@ -137,7 +142,8 @@ void EnnemiBisouJedi::estTouche(Tir * tir) {
 	gicle(tir, dx_giclure, dy_giclure);
 }
 
-void EnnemiBisouJedi::onCarbonise() {
+void EnnemiBisouJedi::onCarbonise()
+{
 	if (a_epee) {
 		TirEpeeLaser * t = new TirEpeeLaser;
 
@@ -177,7 +183,8 @@ void EnnemiBisouJedi::onCarbonise() {
 		pic = pbk_ennemis[597 + etape];
 }
 
-void EnnemiBisouJedi::affiche() {
+void EnnemiBisouJedi::affiche()
+{
 	static const int dx_epee [] = { 8, 4, -1, -6, -6, -6, -1, 3};
 	static const int dy_epee [] = { -19, -19, -19, -19, -18, -18, -19, -19 };
 	static const int etape_epee [] = { 0, 1, 2, 3, 4, 3, 2, 1};

@@ -4,7 +4,8 @@
 
 #include "Sprite.h"
 
-class MeteoNeige : public Sprite {
+class MeteoNeige : public Sprite
+{
 public:
 	int		xbase;
 	int		phi;

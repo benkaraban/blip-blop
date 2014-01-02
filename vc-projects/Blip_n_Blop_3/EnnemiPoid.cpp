@@ -2,13 +2,15 @@
 #include "GoreGiclure.h"
 
 
-EnnemiPoid::EnnemiPoid(): nb_colision(0) {
+EnnemiPoid::EnnemiPoid(): nb_colision(0)
+{
 	pv = 1000;
 	pic = pbk_ennemis[169];
 	//col_on = false;
 }
 
-void EnnemiPoid::update() {
+void EnnemiPoid::update()
+{
 	if (etat == ETAT_MEURE) {
 		onMeure();
 	} else {
@@ -46,7 +48,8 @@ void EnnemiPoid::update() {
 	}
 }
 
-void EnnemiPoid::onMeure() {
+void EnnemiPoid::onMeure()
+{
 	if ((mur_opaque(x, y + dy))) {
 		game_flag[0] = 7;
 		ss_etape ++;
@@ -123,11 +126,13 @@ void EnnemiPoid::onMeure() {
 	}
 }
 
-int EnnemiPoid::degats() {
+int EnnemiPoid::degats()
+{
 	return 0;
 };
 
-void EnnemiPoid::estTouche(Tir * tir) {
+void EnnemiPoid::estTouche(Tir * tir)
+{
 	if ((tir->dir >= 2) && (tir->dir <= 6)) {
 		//debug <<"tir direction: "<<tir->dir <<"\n";
 		nb_colision ++;

@@ -4,9 +4,11 @@
 
 #include "sprite.h"
 
-class FondVentilo : public Sprite {
+class FondVentilo : public Sprite
+{
 public:
-	virtual void update() {
+	virtual void update()
+	{
 		ss_etape += 1;
 		ss_etape %= 3;
 

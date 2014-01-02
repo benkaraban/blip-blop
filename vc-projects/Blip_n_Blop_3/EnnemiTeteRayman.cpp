@@ -16,12 +16,14 @@
 #include "EnnemiTete_Rayman.h"
 
 
-EnnemiTeteRayman::EnnemiTeteRayman(): dx(3) {
+EnnemiTeteRayman::EnnemiTeteRayman(): dx(3)
+{
 	pv = 1;
 	pic = pbk_ennemis[171];
 }
 
-void EnnemiTeteRayman::update() {
+void EnnemiTeteRayman::update()
+{
 	if (blood > 0)
 		blood -= 1;
 
@@ -40,7 +42,8 @@ void EnnemiTeteRayman::update() {
 	}
 }
 
-void EnnemiTeteRayman::onAvance() {
+void EnnemiTeteRayman::onAvance()
+{
 	x += dx;
 	tombe();
 	colFromPic();
@@ -65,7 +68,8 @@ void EnnemiTeteRayman::onAvance() {
 
 
 
-void EnnemiTeteRayman::onMeure() {
+void EnnemiTeteRayman::onMeure()
+{
 	ss_etape ++;
 	ss_etape %= 6;
 	if (ss_etape == 0) {
@@ -80,11 +84,13 @@ void EnnemiTeteRayman::onMeure() {
 }
 
 
-int EnnemiTeteRayman::degats() {
+int EnnemiTeteRayman::degats()
+{
 	return 0;
 };
 
-void EnnemiTeteRayman::estTouche(Tir * tir) {
+void EnnemiTeteRayman::estTouche(Tir * tir)
+{
 	static const int dx_giclure [] = { 0, 10, 15, 10, 0, -10, -15, -10 };
 	static const int dy_giclure [] = { -15, -25, -25, -25, -35, -25, -25, -25 };
 

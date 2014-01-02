@@ -18,7 +18,8 @@
 
 #include "sprite.h"
 
-class FondAssembleur : public Sprite {
+class FondAssembleur : public Sprite
+{
 public:
 	FondAssembleur();
 	virtual void update();
