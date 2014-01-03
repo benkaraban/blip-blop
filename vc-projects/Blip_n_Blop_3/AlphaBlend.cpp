@@ -756,21 +756,21 @@ BOOL __cdecl IsMMX(void)
 	if (si.dwProcessorType != PROCESSOR_INTEL_386 && si.dwProcessorType != PROCESSOR_INTEL_486) {
 		try {
 			__asm {
-				;
+				/*;
 				we must push/pop the registers << CPUID>>  writes to, as the
 				;
 				optimiser doesn't know about << CPUID>> , and so doesn't expect
 				;
-				these registers to change.
+				these registers to change.*/
 				push eax
 				push ebx
 				push ecx
 				push edx
 
-				;
+				/*;
 				        << CPUID>>
-				;
-				eax=0, 1, 2 -> CPU info in eax, ebx, ecx, edx
+				;*/
+				/*eax=0, 1, 2 -> CPU info in eax, ebx, ecx, edx*/
 				mov eax, 1
 				_emit 0x0f
 				_emit 0xa2
