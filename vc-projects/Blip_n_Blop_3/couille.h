@@ -21,16 +21,16 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "Controlor.h"
-#include "Personnage.h"
-#include "Joueur.h"
-#include "Tir.h"
+#include "controlor.h"
+#include "personnage.h"
+#include "joueur.h"
+#include "tir.h"
 
-#include "TirBBM16.h"
-#include "TirBBPM.h"
-#include "TirBBFusil.h"
-#include "TirBBLaser.h"
-#include "TirBBLF.h"
+#include "tir_bbm16.h"
+#include "tir_bbpm.h"
+#include "tir_bb_fusil.h"
+#include "tir_bb_laser.h"
+#include "tir_bblf.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes
@@ -78,7 +78,7 @@
 #endif
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Couille
+//		DÃ©finition de la classe Couille
 //-----------------------------------------------------------------------------
 
 class Couille : public Personnage, public Joueur
@@ -95,7 +95,7 @@ public:
 	int			dir_arme;
 	int			ammo;
 
-	int			etape_arme;		// Pour la détonation
+	int			etape_arme;		// Pour la dÃ©tonation
 	int			ss_etape_arme;
 	int			nb_etape_arme;
 	int			latence_arme;
@@ -123,9 +123,9 @@ public:
 	int			nb_life;
 	int			nb_cow_bomb;
 	int			wait_cow_bomb;
-	bool		jump_released;	// Le bouton saut a été relaché
-	int			time_down;		// Temps ecoulé depuis la dernière fois
-								// que bas a été pressé
+	bool		jump_released;	// Le bouton saut a Ã©tÃ© relachÃ©
+	int			time_down;		// Temps ecoulÃ© depuis la derniÃ¨re fois
+								// que bas a Ã©tÃ© pressÃ©
 
 	bool		locked_fire;
 	bool		locked_dir;

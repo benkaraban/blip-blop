@@ -3,7 +3,7 @@
 #define _Vehicule_
 
 #include "sprite.h"
-#include "COUILLE.H"
+#include "couille.h"
 #include "controlor.h"
 
 class Vehicule : public Sprite

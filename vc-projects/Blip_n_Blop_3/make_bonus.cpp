@@ -1,6 +1,6 @@
 
 #include "globals.h"
-#include "eventbonus.h"
+#include "event_bonus.h"
 
 #define BONUS_SEED	20
 

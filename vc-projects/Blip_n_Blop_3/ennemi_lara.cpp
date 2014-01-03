@@ -333,7 +333,7 @@ void EnnemiLara::onTire()
 	if (ss_etape == 0) {
 		etape ++;
 		if (etape >= 7) {
-			etat = ETAT_AVANCE();
+			etat = ETAT_AVANCE;
 			ss_etape = 0;
 			etape = 0;
 			numero_image_buste -= 5;

@@ -17,7 +17,7 @@
 #define _Bonus_
 
 #include "sprite.h"
-#include "COUILLE.H"
+#include "couille.h"
 #include "ben_maths.h"
 
 #define DIST_BITONIO	25

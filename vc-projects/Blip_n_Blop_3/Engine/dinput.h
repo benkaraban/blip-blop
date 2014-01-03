@@ -11,6 +11,8 @@ struct IDirectInput;
 struct IDirectInput7;
 struct IDirectInputDevice7;
 struct DIDEVICEINSTANCE;
+struct IDirectInput8;
+struct IDirectInputDevice8;
 
 typedef struct {
 	LONG lX;

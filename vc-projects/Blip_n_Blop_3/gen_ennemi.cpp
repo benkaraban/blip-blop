@@ -15,8 +15,8 @@
 ******************************************************************/
 
 #include "sprite.h"
-#include "genennemi.h"
-#include "eventennemi.h"
+#include "gen_ennemi.h"
+#include "event_ennemi.h"
 
 #ifndef SENS_GAUCHE
 #define SENS_GAUCHE		0

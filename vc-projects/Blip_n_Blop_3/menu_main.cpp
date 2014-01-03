@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <cstdio>
+#include <cstring>
 #include "lgx_packer.h"
 #include "input.h"
 #include "globals.h"
