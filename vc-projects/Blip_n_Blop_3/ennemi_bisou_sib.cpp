@@ -1,5 +1,5 @@
 
-#include "EnnemiBisouSIB.h"
+#include "ennemi_bisou_sib.h"
 
 
 #define ETAT_ATTENDS_MAL	100

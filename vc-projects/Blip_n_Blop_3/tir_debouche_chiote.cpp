@@ -3,7 +3,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirdebouchechiote.h"
+#include "tir_debouche_chiote.h"
 //#include "bendebug.h"
 
 TirDebouchechiote::TirDebouchechiote(int n_pbk_ennemis, int vx, int vy)

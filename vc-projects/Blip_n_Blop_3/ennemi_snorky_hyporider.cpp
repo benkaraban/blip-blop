@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "ennemiSnorkyHyporider.h"
-#include "MorceauxTeteSnorky.h"
+#include "ennemi_snorky_hyporider.h"
+#include "morceaux_tete_snorky.h"
 
 EnnemiSnorkyHyporider::EnnemiSnorkyHyporider(): wait_for_charge(0), charge_delay(50 + rand() % 200), nageoire(1), attack_etape(0)
 {

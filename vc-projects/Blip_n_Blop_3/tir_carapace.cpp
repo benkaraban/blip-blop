@@ -3,8 +3,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tircarapace.h"
-#include "bendebug.h"
+#include "tir_carapace.h"
+#include "ben_debug.h"
 
 TirCarapace::TirCarapace()
 {

@@ -1,6 +1,6 @@
 
-#include "EnnemiBisouBoom.h"
-#include "Gorebisouboom.h"
+#include "ennemi_bisou_boom.h"
+#include "gore_bisou_boom.h"
 
 EnnemiBisouBoom::EnnemiBisouBoom()
 {

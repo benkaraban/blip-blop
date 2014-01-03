@@ -16,7 +16,7 @@
 #ifndef _BonusTonneau_
 #define _BonusTonneau_
 
-#include "Bonus.h"
+#include "bonus.h"
 
 class BonusTonneau : public Bonus
 {

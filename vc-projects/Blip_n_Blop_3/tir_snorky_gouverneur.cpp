@@ -17,7 +17,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirSnorkyGouverneur.h"
+#include "tir_snorky_gouverneur.h"
 
 
 

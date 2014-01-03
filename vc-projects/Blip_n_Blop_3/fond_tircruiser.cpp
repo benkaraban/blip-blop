@@ -13,7 +13,7 @@
 *
 ******************************************************************/
 
-#include "fondTircruiser.h"
+#include "fond_tir_cruiser.h"
 
 TirCruiser::TirCruiser(int vx, int vy, int nb_pic): dx(vx)
 {

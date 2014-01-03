@@ -1,4 +1,4 @@
-#include "EnnemiKnukles.h"
+#include "ennemi_knukles.h"
 
 
 EnnemiKnukles::EnnemiKnukles(): speed(1), etape_speed(0), charge_delay(100 + rand() % 150), wait_for_charge(0)

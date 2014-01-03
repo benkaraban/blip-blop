@@ -18,7 +18,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "MorceauxTeteSnorky.h"
+#include "morceaux_tete_snorky.h"
 #include "enemy.h"
 
 

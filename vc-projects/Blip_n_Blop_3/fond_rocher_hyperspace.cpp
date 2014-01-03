@@ -14,8 +14,8 @@
 ******************************************************************/
 
 
-#include "FondRocherHyperspace.h"
-#include "BenMaths.h"
+#include "fond_rocher_hyperspace.h"
+#include "ben_maths.h"
 
 
 const int rocher_levitation[] = {0, 0, 1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 0, 0};

@@ -30,7 +30,7 @@
 #include <fstream>
 #include <stdlib.h>
 #include <string.h>
-#include "BenDebug.h"
+#include "ben_debug.h"
 
 //-----------------------------------------------------------------------------
 //		Déclaration effective (et pas externe) de 'debug'

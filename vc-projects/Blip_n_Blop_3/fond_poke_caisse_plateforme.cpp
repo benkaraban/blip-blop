@@ -14,7 +14,7 @@
 ******************************************************************/
 
 
-#include "Fond PokeCaissePlateforme.h"
+#include "fond_poke_caisse_plateforme.h"
 
 FondPokeCaissePlateforme::FondPokeCaissePlateforme(int niveau_y): y_cible(niveau_y)
 {

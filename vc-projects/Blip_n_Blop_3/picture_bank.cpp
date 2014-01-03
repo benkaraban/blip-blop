@@ -25,10 +25,10 @@
 #include <string.h>
 #include <io.h>
 #include <fcntl.h>
-#include "DD_gfx.h"
-#include "PictureBank.h"
-#include "LGXpacker.h"
-#include "BenDebug.h"
+#include "dd_gfx.h"
+#include "picture_bank.h"
+#include "lgx_packer.h"
+#include "ben_debug.h"
 
 
 //-----------------------------------------------------------------------------

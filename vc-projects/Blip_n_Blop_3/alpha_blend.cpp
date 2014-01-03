@@ -1,6 +1,6 @@
 
 #include <ddraw.h>
-#include "alphablend.h"
+#include "alpha_blend.h"
 
 BOOL					g_isMMX	= FALSE;
 RGBFORMAT				g_pixelFormat;

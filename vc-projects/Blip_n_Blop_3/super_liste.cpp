@@ -24,8 +24,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "SuperListe.h"
-#include "BenDebug.h"
+#include "super_liste.h"
+#include "ben_debug.h"
 
 CELLULE * SuperListe::trash		= NULL;
 int		  SuperListe::nb_lists	= 0;

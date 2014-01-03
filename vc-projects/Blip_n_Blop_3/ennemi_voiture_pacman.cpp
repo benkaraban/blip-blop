@@ -1,5 +1,5 @@
-#include "ennemiVoiturePacman.h"
-#include "EnnemiPacman.h"
+#include "ennemi_voiture_pacman.h"
+#include "ennemi_pacman.h"
 
 
 EnnemiVoiturePacman::EnnemiVoiturePacman(): invoc_pacman(false)

@@ -17,7 +17,7 @@
 #define _EnnemiGuard_
 
 #include "enemy.h"
-#include "EnnemiPrincesse.h"
+#include "ennemi_princesse.h"
 
 
 #define GUARD_SPEED 1

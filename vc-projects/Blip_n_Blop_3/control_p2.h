@@ -23,9 +23,9 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "Input.h"
-#include "Controlor.h"
-#include "ControlAlias.h"
+#include "input.h"
+#include "controlor.h"
+#include "control_alias.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe ControlP2

@@ -1,6 +1,6 @@
 
-#include "tirbblf.h"
-#include "alphablend.h"
+#include "tir_bblf.h"
+#include "alpha_blend.h"
 
 
 void TirBBLF::aTouche(int pts)

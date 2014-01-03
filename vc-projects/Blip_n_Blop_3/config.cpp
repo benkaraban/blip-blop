@@ -17,10 +17,10 @@
 
 #include <stdio.h>
 #include "dd_gfx.h"
-#include "bendebug.h"
+#include "ben_debug.h"
 #include "config.h"
 #include "input.h"
-#include "controlalias.h"
+#include "control_alias.h"
 #include "fmod.h"
 #include "globals.h"
 

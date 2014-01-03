@@ -20,19 +20,19 @@
 //-----------------------------------------------------------------------------
 
 // #include <ddraw.h>
-#include "bendivers.h"
-#include "ControlP1.h"
-#include "ControlP2.h"
-#include "PictureBank.h"
-#include "Fonte.h"
-#include "SuperListe.h"
-#include "SoundBankBB.h"
-#include "MusicBank.h"
-#include "Scroll.h"
-#include "Restore.h"
-#include "FondStatique.h"
+#include "ben_divers.h"
+#include "control_p1.h"
+#include "control_p2.h"
+#include "picture_bank.h"
+#include "fonte.h"
+#include "super_liste.h"
+#include "sound_bank_bb.h"
+#include "music_bank.h"
+#include "scroll.h"
+#include "restore.h"
+#include "fond_statique.h"
 
-#include "BenDebug.h"
+#include "ben_debug.h"
 
 #define NB_MAX_PLAT	8
 

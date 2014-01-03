@@ -1,4 +1,4 @@
-#include "ennemitails.h"
+#include "ennemi_tails.h"
 
 
 EnnemiTails::EnnemiTails(): speed(1), etape_speed(0), fly_delay(100 + rand() % 350), wait_for_fly(0), fly(false)

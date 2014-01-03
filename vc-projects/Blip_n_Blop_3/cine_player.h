@@ -3,10 +3,10 @@
 #define _CINEPlayer_
 
 #include <fstream>
-#include "musicbank.h"
-#include "Picturebank.h"
+#include "music_bank.h"
+#include "picture_bank.h"
 #include "fonte.h"
-#include "alphablend.h"
+#include "alpha_blend.h"
 
 using namespace std;
 

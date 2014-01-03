@@ -15,7 +15,7 @@
 
 
 #include "globals.h"
-#include "fondSnorkSas.h"
+#include "fond_snork_sas.h"
 #include "enemy.h"
 
 int FondSnorkSas1::etat = 0; // 0 pour etat du sas 1 ouvert , 1 pour fermé

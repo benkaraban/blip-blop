@@ -3,7 +3,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "TirSnorkyBase2.h"
+#include "tir_snorky_base_2.h"
 
 
 TirSnorkyBase2::TirSnorkyBase2(int vx, int vy)

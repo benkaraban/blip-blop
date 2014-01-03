@@ -1,9 +1,9 @@
 #include <windows.h>
 
-#include "Globals.h"
-#include "Config.h"
-#include "Scroll.h"
-#include "BenDebug.h"
+#include "globals.h"
+#include "config.h"
+#include "scroll.h"
+#include "ben_debug.h"
 
 bool RestoreAll()
 {

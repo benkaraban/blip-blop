@@ -1,5 +1,5 @@
 
-#include "ennemipikachu.h"
+#include "ennemi_pikachu.h"
 
 
 EnnemiPikachu::EnnemiPikachu()

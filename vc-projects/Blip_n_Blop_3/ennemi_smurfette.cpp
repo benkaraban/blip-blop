@@ -1,6 +1,6 @@
 
-#include "ennemismurfette.h"
-#include "tirbisoumortel.h"
+#include "ennemi_smurfette.h"
+#include "tir_bisou_mortel.h"
 
 EnnemiSmurfette::EnnemiSmurfette() : etape_shoot(0)
 {

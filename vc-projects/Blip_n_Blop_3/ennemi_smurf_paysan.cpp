@@ -14,7 +14,7 @@
 *
 ******************************************************************/
 
-#include "EnnemiSmurfPaysan.h"
+#include "ennemi_smurf_paysan.h"
 
 const int smurf_paysan_charge_droite[] = { 156, 157, 158, 159 };
 const int smurf_paysan_charge_gauche[] = { 160, 161, 162, 163 };

@@ -20,8 +20,8 @@
 #define _EventEnnemi_
 
 
-#include "Event.h"
-#include "Globals.h"
+#include "event.h"
+#include "globals.h"
 
 
 class EventEnnemi : public Event

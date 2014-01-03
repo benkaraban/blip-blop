@@ -15,7 +15,7 @@
 
 
 
-#include "EnnemiComHeros.h"
+#include "ennemi_com_heros.h"
 
 
 EnnemiComHeros::EnnemiComHeros(): dorkeball(2)

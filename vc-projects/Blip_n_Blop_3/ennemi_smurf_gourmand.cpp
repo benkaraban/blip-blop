@@ -14,8 +14,8 @@
 *
 ******************************************************************/
 
-#include "ennemismurfgourmand.h"
-#include "tirgateau.h"
+#include "ennemi_smurf_gourmand.h"
+#include "tir_gateau.h"
 
 #define	ETAT_HOLD		15
 

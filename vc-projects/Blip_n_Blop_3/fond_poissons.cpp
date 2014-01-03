@@ -14,7 +14,7 @@
 ******************************************************************/
 
 #include "sprite.h"
-#include "fondPoissons.h"
+#include "fond_poissons.h"
 
 
 FondPoissonRouge::FondPoissonRouge()

@@ -3,7 +3,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirSoniceclair.h"
+#include "tir_sonic_eclair.h"
 
 TirSoniceclair::TirSoniceclair()
 {

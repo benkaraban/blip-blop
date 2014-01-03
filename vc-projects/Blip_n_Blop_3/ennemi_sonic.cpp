@@ -1,9 +1,9 @@
 
-#include "ennemisonic.h"
-#include "TirEpine.h"
-#include "TirSoniceclair.h"
-#include "MorceauSonicRing.h"
-#include "bendebug.h"
+#include "ennemi_sonic.h"
+#include "tir_epine.h"
+#include "tir_sonic_eclair.h"
+#include "morceau_sonic_ring.h"
+#include "ben_debug.h"
 #include "globals.h"
 
 const int sonic_anim_boule_droite[] = {	46,	47,	50,	48,	49,	50};

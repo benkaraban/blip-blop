@@ -18,7 +18,7 @@
 #define _EnnemiRayman_
 
 #include "enemy.h"
-#include "TirRaymanpoing.h"
+#include "tir_rayman_poing.h"
 
 
 #define RAYMAN_SPEED			3

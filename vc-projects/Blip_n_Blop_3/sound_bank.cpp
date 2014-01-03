@@ -24,8 +24,8 @@
 #include <io.h>
 #include <fcntl.h>
 #include <string.h>
-#include "bendebug.h"
-#include "soundbank.h"
+#include "ben_debug.h"
+#include "sound_bank.h"
 #include "sound.h"
 
 //-----------------------------------------------------------------------------

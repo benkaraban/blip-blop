@@ -1,6 +1,6 @@
 
 #include "globals.h"
-#include "fondpokeciel.h"
+#include "fond_poke_ciel.h"
 
 FondPokeCiel::FondPokeCiel()
 {

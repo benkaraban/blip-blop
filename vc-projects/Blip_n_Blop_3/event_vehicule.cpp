@@ -1,9 +1,9 @@
 
-#include "EventVehicule.h"
-#include "BenDebug.h"
-#include "Vehicule.h"
+#include "Eventvehicule.h"
+#include "ben_debug.h"
+#include "vehicule.h"
 //#include "VehiculeHypo.h"
-#include "VehivuleCigogne.h"
+#include "vehivule_cigogne.h"
 
 #define IDVEHICULE_CIGO	0
 

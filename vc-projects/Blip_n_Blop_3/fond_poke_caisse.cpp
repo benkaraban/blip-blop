@@ -14,7 +14,7 @@
 ******************************************************************/
 
 #include "sprite.h"
-#include "fondPokeCaisse.h"
+#include "fond_poke_caisse.h"
 
 FondPokeCaisse::FondPokeCaisse()
 {

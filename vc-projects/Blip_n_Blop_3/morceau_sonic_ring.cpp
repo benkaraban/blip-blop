@@ -14,7 +14,7 @@
 *
 ******************************************************************/
 
-#include "MorceauSonicRing.h"
+#include "morceau_sonic_ring.h"
 
 //implementation de la classe MorceauSonicRing
 

@@ -21,12 +21,12 @@
 //-----------------------------------------------------------------------------
 
 #include <stdio.h>
-#include "LGXpacker.h"
-#include "DD_gfx.h"
-#include "Globals.h"
-#include "BenDebug.h"
-#include "Config.h"
-#include "LTimer.h"
+#include "lgx_packer.h"
+#include "dd_gfx.h"
+#include "globals.h"
+#include "ben_debug.h"
+#include "config.h"
+#include "l_timer.h"
 
 //-----------------------------------------------------------------------------
 //		Objet 'ddraw' global REEL

@@ -1,6 +1,6 @@
 
-#include "EventMusic.h"
-#include "Globals.h"
+#include "event_music.h"
+#include "globals.h"
 
 void EventMusic::doEvent()
 {

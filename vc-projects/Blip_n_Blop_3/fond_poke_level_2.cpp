@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "FondpokeLevel2.h"
-#include "bendebug.h"
+#include "fond_poke_level_2.h"
+#include "ben_debug.h"
 
 const int anim_clignotement [] = {2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 0, 0};
 //const int anim_clignotement[] = {0 ,2, 2, 2, 1, 2, 2};

@@ -16,7 +16,7 @@
 #ifndef _BonusVache_
 #define _BonusVache_
 
-#include "Bonus.h"
+#include "bonus.h"
 
 class BonusVache : public Bonus
 {

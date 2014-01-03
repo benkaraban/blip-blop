@@ -1,4 +1,4 @@
-#include "ennemitailsvolant.h"
+#include "ennemi_tailsvolant.h"
 
 
 EnnemiTailsvolant::EnnemiTailsvolant(): placer(0), speed(1), etape_speed(0), fly_delay(100 + rand() % 350), wait_for_fly(0), fly(false)

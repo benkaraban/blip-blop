@@ -1,6 +1,6 @@
 
 #include "enemy.h"
-#include "TirNuage.h"
+#include "tir_nuage.h"
 
 TirNuage::TirNuage() : etape_shoot(0), etat(0), eclair(0), delta_eclair(0)
 {

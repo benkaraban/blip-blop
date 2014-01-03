@@ -2,9 +2,9 @@
 #ifndef _Vehicule_
 #define _Vehicule_
 
-#include "Sprite.h"
+#include "sprite.h"
 #include "COUILLE.H"
-#include "Controlor.h"
+#include "controlor.h"
 
 class Vehicule : public Sprite
 {

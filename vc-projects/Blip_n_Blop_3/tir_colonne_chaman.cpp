@@ -1,5 +1,5 @@
 
-#include "TirColonneChaman.h"
+#include "tir_colonne_chaman.h"
 
 TirColonneChaman::TirColonneChaman() : etat(0)
 {

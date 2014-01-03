@@ -20,8 +20,8 @@
 #include <fstream>
 #include <string.h>
 #include <stdlib.h>
-#include "txtdata.h"
-#include "bendebug.h"
+#include "txt_data.h"
+#include "ben_debug.h"
 
 char **	txt_data = NULL;
 

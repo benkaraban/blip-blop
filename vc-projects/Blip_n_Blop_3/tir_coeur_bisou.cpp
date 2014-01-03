@@ -1,6 +1,6 @@
 
-#include "tircoeurbisou.h"
-#include "benmaths.h"
+#include "tir_coeur_bisou.h"
+#include "ben_maths.h"
 
 TirCoeurBisou::TirCoeurBisou() : ok(false)
 {

@@ -1,7 +1,7 @@
 
-#include "ennemiBisouCiel.h"
-#include "gorepiedsbisouciel.h"
-#include "tirarcciel.h"
+#include "ennemi_bisou_ciel.h"
+#include "gore_pieds_bisou_ciel.h"
+#include "tir_arc_ciel.h"
 
 
 EnnemiBisouCiel::EnnemiBisouCiel() : wait_for_pisser(0)

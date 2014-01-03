@@ -18,8 +18,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "TirBBLaser.h"
-#include "bendebug.h"
+#include "tir_bb_laser.h"
+#include "ben_debug.h"
 
 TirBBLaser::TirBBLaser() : base(0), hauteur(0), largeur(0)
 {

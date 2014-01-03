@@ -19,9 +19,9 @@
 ******************************************************************/
 
 #include <string.h>
-#include "soundbankbb.h"
+#include "sound_bank_bb.h"
 #include "config.h"
-#include "bendebug.h"
+#include "ben_debug.h"
 
 void SoundBankBB::play(int n, int flags)
 {

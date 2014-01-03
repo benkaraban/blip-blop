@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "globals.h"
 #include "genbonus.h"
-#include "makebonus.h"
+#include "make_bonus.h"
 
 GenBonus::GenBonus() : t(0), a_detruire(false)
 {

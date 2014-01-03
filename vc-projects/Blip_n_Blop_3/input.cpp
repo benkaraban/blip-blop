@@ -29,7 +29,7 @@
 
 #include <dinput.h>
 #include "input.h"
-#include "bendebug.h"
+#include "ben_debug.h"
 
 //-----------------------------------------------------------------------------
 //		Déclaration REELLE de l'objet 'in' global

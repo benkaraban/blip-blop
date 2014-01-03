@@ -17,7 +17,7 @@
 
 #include "enemy.h"
 #include "globals.h"
-#include "makebonus.h"
+#include "make_bonus.h"
 #include "giclure.h"
 
 Personnage *	tete_turc;

@@ -19,7 +19,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirBB.h"
+#include "tir_bb.h"
 
 void TirBB::setDir(int d)
 {

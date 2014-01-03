@@ -1,7 +1,7 @@
 
-#include "ennemibisoucoeur.h"
-#include "goretetebisoucoeur.h"
-#include "tircoeurbisou.h"
+#include "ennemi_bisou_coeur.h"
+#include "gore_tete_bisou_coeur.h"
+#include "tir_coeur_bisou.h"
 
 EnnemiBisouCoeur::EnnemiBisouCoeur()
 {

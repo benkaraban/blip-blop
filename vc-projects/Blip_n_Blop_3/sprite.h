@@ -21,8 +21,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "Picture.h"
-#include "Globals.h"
+#include "picture.h"
+#include "globals.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe Sprite

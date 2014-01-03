@@ -13,10 +13,10 @@
 *
 ******************************************************************/
 
-#include "FondPokeCaisseTombante.h"
-#include "FondPokeCaisse.h"
-#include "Fond PokeCaissePlateforme.h"
-#include "FondPokeCaissePlateforme2.h"
+#include "fond_poke_caisse_tombante.h"
+#include "fond_poke_caisse.h"
+#include "fond_poke_caisse_plateforme.h"
+#include "fond_poke_caisse_plateforme_2.h"
 
 const int anim_lock[] = {88 , 89, 90, 91, 92, 93, 92, 91, 90, 89};
 

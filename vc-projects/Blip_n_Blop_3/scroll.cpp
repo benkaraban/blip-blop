@@ -26,7 +26,7 @@
 #include "sprite.h"
 #include "globals.h"
 #include "scroll.h"
-#include "bendebug.h"
+#include "ben_debug.h"
 
 int vbuffer_wide = WANTED_VBUFFER_WIDE;
 int	next_x = 0;

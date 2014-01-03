@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "ennemilemmings.h"
-#include "bonusvache.h"
+#include "ennemi_lemmings.h"
+#include "bonus_vache.h"
 
 static int wait_no = 0;
 

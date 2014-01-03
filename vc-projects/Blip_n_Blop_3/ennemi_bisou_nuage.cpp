@@ -1,6 +1,6 @@
 
-#include "ennemibisounuage.h"
-#include "tirnuage.h"
+#include "ennemi_bisou_nuage.h"
+#include "tir_nuage.h"
 
 EnnemiBisouNuage::EnnemiBisouNuage() : etape_shoot(0)
 {

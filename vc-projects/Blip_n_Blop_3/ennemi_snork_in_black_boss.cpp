@@ -12,9 +12,9 @@
 *
 ******************************************************************/
 
-#include "ennemiSnorkInBlackBoss.h"
-#include "tirEpine.h"
-#include "bendebug.h"
+#include "ennemi_snork_in_black_boss.h"
+#include "tir_epine.h"
+#include "ben_debug.h"
 
 const int anim_snork_in_black_boss_saute_droite[] = { 414, 415, 416, 415};
 const int anim_snork_in_black_boss_saute_gauche[] = { 417, 418, 419, 418};

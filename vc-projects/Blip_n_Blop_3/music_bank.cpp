@@ -4,9 +4,9 @@
 #include <io.h>
 #include <fcntl.h>
 #include <stdlib.h>
-#include "musicbank.h"
-#include "fmod_errors.h"
-#include "bendebug.h"
+#include "music_bank.h"
+#include "fmod__errors.h"
+#include "ben_debug.h"
 #include "config.h"
 
 #define TYPE_MOD	0

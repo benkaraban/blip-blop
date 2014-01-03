@@ -14,8 +14,8 @@
 ******************************************************************/
 
 
-#include "FondPokeCaissePlateforme2.h"
-#include "benmaths.h"
+#include "fond_poke_caisse_plateforme_2.h"
+#include "ben_maths.h"
 
 FondPokeCaissePlateforme2::FondPokeCaissePlateforme2()
 {

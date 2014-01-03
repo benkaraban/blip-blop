@@ -1,6 +1,6 @@
 
-#include "tirepeelaser.h"
-#include "ennemibisoujedi.h"
+#include "tir_epee_laser.h"
+#include "ennemi_bisou_jedi.h"
 
 
 TirEpeeLaser::TirEpeeLaser() : isdead(false), cible(NULL), retour(false), lanceur(NULL), accel(1)

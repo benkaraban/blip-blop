@@ -15,10 +15,10 @@
 
 #include <fstream>
 #include <stdio.h>
-#include "lgxpacker.h"
-#include "rpgplayer.h"
+#include "lgx_packer.h"
+#include "rpg_player.h"
 #include "globals.h"
-#include "txtdata.h"
+#include "txt_data.h"
 #include "couille.h"
 #include "scroll.h"
 

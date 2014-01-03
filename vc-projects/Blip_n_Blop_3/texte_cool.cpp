@@ -17,8 +17,8 @@
 #define TEXTE_COOL_CPP
 
 #include "globals.h"
-#include "textecool.h"
-#include "txtdata.h"
+#include "texte_cool.h"
+#include "txt_data.h"
 
 bool text_cool_free[10];
 

@@ -13,7 +13,7 @@
 *
 ******************************************************************/
 
-#include "EnnemiTete_Rayman.h"
+#include "ennemi_tete___rayman.h"
 
 
 EnnemiTeteRayman::EnnemiTeteRayman(): dx(3)

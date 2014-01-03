@@ -24,8 +24,8 @@ const int tir_dy[] = { 4, 5, 6, 6, 5, 4 } ;
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "EnnemiSmurfSauvage.h"
-#include "TirSmurfSauvage.h"
+#include "ennemi_smurf_sauvage.h"
+#include "tir_smurf_sauvage.h"
 
 
 int	EnnemiSmurfSauvage::wait_shoot;

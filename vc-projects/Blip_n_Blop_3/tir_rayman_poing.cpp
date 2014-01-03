@@ -4,8 +4,8 @@
 //-----------------------------------------------------------------------------
 
 #include <Math.h>
-#include "tirRaymanPoing.h"
-#include "bendebug.h"
+#include "tir_rayman_poing.h"
+#include "ben_debug.h"
 
 //implementation de la classe TirRaymanPoing
 

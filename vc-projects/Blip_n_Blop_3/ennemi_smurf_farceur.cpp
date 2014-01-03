@@ -14,8 +14,8 @@
 *
 ******************************************************************/
 
-#include "EnnemiSmurfFarceur.h"
-#include "TirCadeau.h"
+#include "ennemi_smurf_farceur.h"
+#include "tir_cadeau.h"
 
 const int anim_smurf_farceur_marche_droite[] = { 46, 47, 48, 49, 50, 49, 48, 47 };
 const int anim_smurf_farceur_marche_gauche[] = { 51, 52, 53, 54, 55, 54, 53, 52 };

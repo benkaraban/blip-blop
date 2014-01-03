@@ -1,5 +1,5 @@
 
-#include "ennemiFlameche.h"
+#include "ennemi_flameche.h"
 
 EnnemiFlameche::EnnemiFlameche()
 {

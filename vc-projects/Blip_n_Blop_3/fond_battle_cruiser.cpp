@@ -14,10 +14,10 @@
 ******************************************************************/
 
 
-#include "FondBattleCruiser.h"
+#include "fond_battle_cruiser.h"
 #include "sprite.h"
-#include "Fondtircruiser.h"
-#include "TirCruiserLaser.h"
+#include "fond_tir_cruiser.h"
+#include "tir_cruiser_laser.h"
 
 const int anim_cruiser_droite [] = {0, 1, 2, 1};
 const int anim_cruiser_gauche [] = {3, 4, 5, 4};

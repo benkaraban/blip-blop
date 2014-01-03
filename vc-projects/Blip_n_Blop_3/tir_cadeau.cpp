@@ -2,7 +2,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "TirCadeau.h"
+#include "tir_cadeau.h"
 
 TirCadeau::TirCadeau()
 {

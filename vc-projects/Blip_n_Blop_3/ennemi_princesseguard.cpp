@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "EnnemiPrincesseguard.h"
-#include "EnnemiPrincesse.h"
+#include "ennemi_princesseguard.h"
+#include "ennemi_princesse.h"
 
 const int anim_guard_marche_gauche[] = { 135, 136, 137, 136};
 

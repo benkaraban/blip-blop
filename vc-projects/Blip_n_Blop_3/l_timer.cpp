@@ -1,6 +1,6 @@
 
 #include <windows.h>
-#include "benDebug.h"
+#include "ben_debug.h"
 
 bool		perfTimerOn;
 __int64		perfTimerFreq;

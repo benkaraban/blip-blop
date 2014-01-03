@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "ennemiSnorkyMage.h"
-#include "TirSnorkyMage.h"
+#include "ennemi_snorky_mage.h"
+#include "tir_snorky_mage.h"
 
 
 const int snorky_mage_oscilation[] = {0, 0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 2, 2, 2, 1, 1, 1, 0, 0, 0};

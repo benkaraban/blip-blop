@@ -1,6 +1,6 @@
 
-#include "ennemibisouzombi.h"
-#include "gorepiedbisouzombi.h"
+#include "ennemi_bisou_zombi.h"
+#include "gore_pied_bisou_zombi.h"
 
 #define ETAT_CARBONISE_HAUT	102
 

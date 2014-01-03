@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "Globals.h"
-#include "FondElectronics.h"
+#include "globals.h"
+#include "fond_electronics.h"
 
 void FondElectronic1::update()
 {

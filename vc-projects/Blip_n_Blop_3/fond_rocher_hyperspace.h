@@ -17,7 +17,7 @@
 #ifndef _FondRocherhyperspace_
 #define _FondRocherhyperspace_
 
-#include "Sprite.h"
+#include "sprite.h"
 
 class FondRocherHyperspace : public Sprite
 {

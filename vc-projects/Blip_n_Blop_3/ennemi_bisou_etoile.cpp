@@ -1,7 +1,7 @@
 
-#include "EnnemiBisouEtoile.h"
-#include "GorePiedsBisouEtoile.h"
-#include "TirEtoile.h"
+#include "ennemi_bisou_etoile.h"
+#include "gore_pieds_bisou_etoile.h"
+#include "tir_etoile.h"
 
 
 EnnemiBisouEtoile::EnnemiBisouEtoile() : etape_shoot(0)

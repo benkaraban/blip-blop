@@ -13,9 +13,9 @@
 *
 ******************************************************************/
 
-#include "EnnemiDiabolo.h"
-#include "bendebug.h"
-#include "TirTornade.h"
+#include "ennemi_diabolo.h"
+#include "ben_debug.h"
+#include "tir_tornade.h"
 
 
 

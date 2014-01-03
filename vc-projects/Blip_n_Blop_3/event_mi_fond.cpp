@@ -1,7 +1,7 @@
 
-#include "Globals.h"
-#include "EventMiFond.h"
-#include "FondStatique.h"
+#include "globals.h"
+#include "event_mi_fond.h"
+#include "fond_statique.h"
 
 void EventMiFond::doEvent()
 {

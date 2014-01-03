@@ -1,8 +1,8 @@
 
-#include "VehivuleCigogne.h"
+#include "vehivule_cigogne.h"
 
 
-#include "VehiculeHypo.h"
+#include "vehicule_hypo.h"
 
 static bool first;
 

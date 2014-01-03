@@ -1,12 +1,12 @@
 #include <stdio.h>
-#include "lgxpacker.h"
+#include "lgx_packer.h"
 #include "input.h"
 #include "globals.h"
 #include "config.h"
-#include "menuMain.h"
-#include "txtdata.h"
-#include "controlalias.h"
-#include "keytranslator.h"
+#include "menu_main.h"
+#include "txt_data.h"
+#include "control_alias.h"
+#include "key_translator.h"
 
 #define TXT_RESUME		800
 #define TXT_VIDEO		801

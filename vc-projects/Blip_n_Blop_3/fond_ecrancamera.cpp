@@ -14,7 +14,7 @@
 ******************************************************************/
 
 #include "globals.h"
-#include "fondEcrancamera.h"
+#include "fond_ecrancamera.h"
 
 void FondEcrancamera::update()
 {

@@ -51,7 +51,7 @@
 
 #include <math.h>
 #include <iostream>
-#include "benmaths.h"
+#include "ben_maths.h"
 
 //-----------------------------------------------------------------------------
 //		Tableaux dynamiques globaux pour les fonctions

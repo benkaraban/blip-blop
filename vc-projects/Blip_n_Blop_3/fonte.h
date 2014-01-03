@@ -23,8 +23,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "Picture.h"
-#include "DD_gfx.h"
+#include "picture.h"
+#include "dd_gfx.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe Fonte

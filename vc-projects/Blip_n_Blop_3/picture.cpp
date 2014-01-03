@@ -27,9 +27,9 @@
 //-----------------------------------------------------------------------------
 
 #include <ddraw.h>
-#include "Picture.h"
-#include "DD_gfx.h"
-#include "BenDebug.h"
+#include "picture.h"
+#include "dd_gfx.h"
+#include "ben_debug.h"
 
 
 //-----------------------------------------------------------------------------

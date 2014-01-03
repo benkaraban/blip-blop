@@ -18,8 +18,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirgateau.h"
-#include "bendebug.h"
+#include "tir_gateau.h"
+#include "ben_debug.h"
 
 TirGateau::TirGateau()
 {

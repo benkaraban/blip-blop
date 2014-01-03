@@ -16,7 +16,7 @@
 #ifndef _BonusLaser_
 #define _BonusLaser_
 
-#include "Bonus.h"
+#include "bonus.h"
 
 class BonusLaser : public Bonus
 {

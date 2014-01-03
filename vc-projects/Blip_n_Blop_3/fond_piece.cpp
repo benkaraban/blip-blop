@@ -14,7 +14,7 @@
 ******************************************************************/
 
 #include "sprite.h"
-#include "fondpiece.h"
+#include "fond_piece.h"
 
 int FondPiece::etape_synchro = 0;
 int FondPiece::ss_etape_synchro = 0;

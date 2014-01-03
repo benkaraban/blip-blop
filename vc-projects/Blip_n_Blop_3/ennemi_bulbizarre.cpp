@@ -1,5 +1,5 @@
 
-#include "ennemibulbizarre.h"
+#include "ennemi_bulbizarre.h"
 
 EnnemiBulbizarre::EnnemiBulbizarre()
 {

@@ -34,9 +34,9 @@
 #include <fcntl.h>
 #include <io.h>
 #include <stdio.h>
-#include "bendebug.h"
+#include "ben_debug.h"
 #include "dd_gfx.h"
-#include "LGXpacker.h"
+#include "lgx_packer.h"
 
 //-----------------------------------------------------------------------------
 //		Objet 'LGXpaker' global REEL

@@ -17,8 +17,8 @@
 #define _EventGenBonus_
 
 
-#include "Event.h"
-#include "GenBonus.h"
+#include "event.h"
+#include "Genbonus.h"
 
 
 class EventGenBonus : public Event

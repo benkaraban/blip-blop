@@ -12,8 +12,8 @@
 *
 ******************************************************************/
 
-#include "ennemiSnorkInBlack.h"
-#include "tirEpine.h"
+#include "ennemi_snork_in_black.h"
+#include "tir_epine.h"
 
 const int anim_snork_in_black_marche_droite[] = { 344, 345, 346, 345};
 const int anim_snork_in_black_marche_gauche[] = { 347, 348, 349, 348};

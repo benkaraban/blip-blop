@@ -1,11 +1,11 @@
-#include "ennemirayman.h"
-#include "tirRaymanpoing.h"
-#include "MorceauRayman.h"
-#include "EnnemiPikashuHeros.h"
-#include "EnnemiBulbizarreHeros.h"
-#include "EnnemiComHeros.h"
-#include "EnnemiFlamecheHeros.h"
-#include "MorceauTeteRayman.h"
+#include "ennemi_rayman.h"
+#include "tir_rayman_poing.h"
+#include "morceau_rayman.h"
+#include "ennemi_pikashu_heros.h"
+#include "ennemi_bulbizarre_heros.h"
+#include "ennemi_com_heros.h"
+#include "ennemi_flameche_heros.h"
+#include "morceau_tete_rayman.h"
 
 
 EnnemiRayman::EnnemiRayman(): dorkemon(4), attack_delay(100 + rand() % 250), wait_for_attack(0), tir_poing(NULL), poing1(1), poing2(1), pieds(1)

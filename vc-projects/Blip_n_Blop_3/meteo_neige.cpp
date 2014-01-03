@@ -1,6 +1,6 @@
 
-#include "meteoneige.h"
-#include "benmaths.h"
+#include "meteo_neige.h"
+#include "ben_maths.h"
 
 void MeteoNeige::update()
 {

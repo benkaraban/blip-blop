@@ -1,5 +1,5 @@
 
-#include "ennemigrandsmurf.h"
+#include "ennemi_grand_smurf.h"
 
 #define ATT_ATATA	0
 #define ATT_BOOM	1

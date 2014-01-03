@@ -16,7 +16,7 @@
 #ifndef _BonusPM_
 #define _BonusPM_
 
-#include "Bonus.h"
+#include "bonus.h"
 
 class BonusPM : public Bonus
 {

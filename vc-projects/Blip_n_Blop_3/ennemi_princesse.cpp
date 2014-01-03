@@ -13,10 +13,10 @@
 *
 ******************************************************************/
 
-#include "ennemiprincesse.h"
-#include "EnnemiPrincesseguard.h"
-#include "textecool.h"
-#include "bonusvache.h"
+#include "ennemi_princesse.h"
+#include "ennemi_princesseguard.h"
+#include "texte_cool.h"
+#include "bonus_vache.h"
 
 
 

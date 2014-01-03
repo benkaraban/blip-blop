@@ -1,6 +1,6 @@
 
-#include "ennemibisouauto.h"
-#include "gorebisouauto.h"
+#include "ennemi_bisou_auto.h"
+#include "gore_bisou_auto.h"
 #include "explosion.h"
 
 

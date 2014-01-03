@@ -14,12 +14,12 @@
 ******************************************************************/
 
 
-#include "bendebug.h"
-#include "EnnemiLara.h"
-#include "TirEpine.h"
-#include "EnnemiPic.h"
-#include "EnnemiPoid.h"
-#include "EnnemiTete_Rayman.h"
+#include "ben_debug.h"
+#include "ennemi_lara.h"
+#include "tir_epine.h"
+#include "ennemi_pic.h"
+#include "ennemi_poid.h"
+#include "ennemi_tete___rayman.h"
 #include <math.h>
 
 

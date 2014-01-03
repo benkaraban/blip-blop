@@ -1,4 +1,4 @@
-#include "ennemipic.h"
+#include "ennemi_pic.h"
 
 
 EnnemiPic::EnnemiPic(): y_origine(0)

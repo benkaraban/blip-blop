@@ -14,7 +14,7 @@
 ******************************************************************/
 
 
-#include "EnnemiFlamecheHeros.h"
+#include "ennemi_flameche_heros.h"
 
 
 EnnemiFlamecheHeros::EnnemiFlamecheHeros(): dorkeball(2)

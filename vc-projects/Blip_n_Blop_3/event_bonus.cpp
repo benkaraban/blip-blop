@@ -1,13 +1,13 @@
 
 #include "eventbonus.h"
-#include "bonuspm.h"
-#include "bonusfusil.h"
-#include "bonuslaser.h"
-#include "bonusbeer.h"
-#include "bonusinvincible.h"
-#include "bonustonneau.h"
-#include "bonusvache.h"
-#include "bonuslf.h"
+#include "bonus_pm.h"
+#include "bonus_fusil.h"
+#include "bonus_laser.h"
+#include "bonus_beer.h"
+#include "bonus_invincible.h"
+#include "bonus_tonneau.h"
+#include "bonus_vache.h"
+#include "bonus_lf.h"
 
 void EventBonus::doEvent()
 {

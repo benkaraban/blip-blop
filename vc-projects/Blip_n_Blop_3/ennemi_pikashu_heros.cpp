@@ -14,7 +14,7 @@
 ******************************************************************/
 
 
-#include "EnnemiPikashuHeros.h"
+#include "ennemi_pikashu_heros.h"
 
 
 EnnemiPikachuHeros::EnnemiPikachuHeros(): dorkeball(2)

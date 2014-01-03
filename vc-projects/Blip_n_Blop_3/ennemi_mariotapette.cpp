@@ -1,8 +1,8 @@
 
-#include "ennemimariotapette.h"
-#include "EnnemiLuigi.h"
-#include "GoreGiclure.h"
-#include "EventHoldFire.h"
+#include "ennemi_mariotapette.h"
+#include "ennemi_luigi.h"
+#include "Goregiclure.h"
+#include "event_hold_fire.h"
 
 
 const int anim_mario_marche_droite[] = { 75, 76, 77, 76};

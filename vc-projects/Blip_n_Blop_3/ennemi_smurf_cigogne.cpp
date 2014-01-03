@@ -1,6 +1,6 @@
 
-#include "EnnemiSmurfCigogne.h"
-#include "benmaths.h"
+#include "ennemi_smurf_cigogne.h"
+#include "ben_maths.h"
 
 EnnemiSmurfCigogne::EnnemiSmurfCigogne()
 {

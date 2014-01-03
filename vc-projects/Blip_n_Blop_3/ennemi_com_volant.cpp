@@ -1,5 +1,5 @@
 
-#include "EnnemiComVolant.h"
+#include "ennemi_com_volant.h"
 
 EnnemiCOMVolant::EnnemiCOMVolant(): speed(0), attack(true)
 {

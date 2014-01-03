@@ -17,7 +17,7 @@
 #ifndef _EventMiFond_
 #define _EventMiFond_
 
-#include "Event.h"
+#include "event.h"
 
 class EventMiFond : public Event
 {

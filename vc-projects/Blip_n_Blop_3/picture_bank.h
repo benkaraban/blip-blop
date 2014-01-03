@@ -22,7 +22,7 @@
 #ifndef _PictureBank_
 #define _PictureBank_
 
-#include "Picture.h"
+#include "picture.h"
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe PictureBank

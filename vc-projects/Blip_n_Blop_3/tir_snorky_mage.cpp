@@ -17,7 +17,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirSnorkyMage.h"
+#include "tir_snorky_mage.h"
 
 
 

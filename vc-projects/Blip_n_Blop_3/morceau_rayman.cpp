@@ -14,7 +14,7 @@
 *
 ******************************************************************/
 
-#include "MorceauRayman.h"
+#include "morceau_rayman.h"
 
 //implementation de la classe MorceauxRayman
 

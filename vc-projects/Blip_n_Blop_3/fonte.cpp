@@ -26,8 +26,8 @@
 #include <io.h>
 #include <fcntl.h>
 #include <stdio.h>
-#include "lgxpacker.h"
-#include "bendebug.h"
+#include "lgx_packer.h"
+#include "ben_debug.h"
 #include "fonte.h"
 
 

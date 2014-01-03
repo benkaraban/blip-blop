@@ -1,5 +1,5 @@
 
-#include "ennemiCOM.h"
+#include "ennemi_com.h"
 
 EnnemiCOM::EnnemiCOM()
 {

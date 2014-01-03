@@ -1,5 +1,5 @@
 
-#include "benmaths.h"
+#include "ben_maths.h"
 #include "bulle.h"
 
 Bulle::Bulle() : phi(0)

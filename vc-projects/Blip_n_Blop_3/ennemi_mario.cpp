@@ -1,8 +1,8 @@
 
-#include "ennemimario.h"
-#include "TirMarioFireball.h"
-#include "TirmarioFireballVertical.h"
-#include "EnnemiMarioHologramme.h"
+#include "ennemi_mario.h"
+#include "tir_mario_fireball.h"
+#include "tir_mario_fireball_vertical.h"
+#include "ennemi_mario_hologramme.h"
 
 
 const int anim_mario_marche_droite[] = { 0, 1, 2, 1};

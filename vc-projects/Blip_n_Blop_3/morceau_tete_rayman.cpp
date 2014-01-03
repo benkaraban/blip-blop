@@ -13,7 +13,7 @@
 *
 ******************************************************************/
 
-#include "MorceauTeteRayman.h"
+#include "morceau_tete_rayman.h"
 
 
 MorceauTeteRayman::MorceauTeteRayman(int vx, int vy): dx(vx)

@@ -2,7 +2,7 @@
 #ifndef _TirEtoile_
 #define _TirEtoile
 
-#include "Tir.h"
+#include "tir.h"
 
 class TirEtoile : public Tir
 {

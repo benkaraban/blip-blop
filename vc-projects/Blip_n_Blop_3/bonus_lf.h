@@ -16,7 +16,7 @@
 #ifndef _BonusLF_
 #define _BonusLF_
 
-#include "Bonus.h"
+#include "bonus.h"
 
 class BonusLF : public Bonus
 {

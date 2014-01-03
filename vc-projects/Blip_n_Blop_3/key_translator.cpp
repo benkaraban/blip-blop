@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include "config.h"
 #include "input.h"
-#include "keytranslator.h"
+#include "key_translator.h"
 
 #define KMAP( _num, _val) case _num: strcpy( str, _val); break;
 

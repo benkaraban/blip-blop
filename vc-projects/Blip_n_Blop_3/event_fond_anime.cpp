@@ -19,60 +19,60 @@
 
 // Header classe
 //
-#include "eventfondanime.h"
+#include "event_fond_anime.h"
 
 // Fonds pokemons
 //
-#include "fondBombe.h"
-#include "fondpokealarme1.h"
-#include "fondpokefleche.h"
-#include "fondpokeciel.h"
-#include "fondpokeascenceur.h"
-#include "fondPokeInterupteur.h"
-#include "FondPokeCaisseTombante.h"
-#include "FondPokeAscenseur2.h"
-#include "FondPokeLevel2.h"
-#include "FondPokeLevel3.h"
+#include "fond_bombe.h"
+#include "fond_poke_alarme_1.h"
+#include "fond_poke_fleche.h"
+#include "fond_poke_ciel.h"
+#include "fond_poke_ascenceur.h"
+#include "fond_poke_interupteur.h"
+#include "fond_poke_caisse_tombante.h"
+#include "fond_poke_ascenseur_2.h"
+#include "fond_poke_level_2.h"
+#include "fond_poke_level_3.h"
 
 // Fonds Snorkys
 //
-#include "fondSnorkSas.h"
-#include "FondPoissons.h"
+#include "fond_snork_sas.h"
+#include "fond_poissons.h"
 
 // Fonds lemmings
 //
-#include "fondventilo.h"
-#include "fondlumiere.h"
-#include "fondlampe2.h"
-#include "fondeau.h"
+#include "fond_ventilo.h"
+#include "fond_lumiere.h"
+#include "fond_lampe_2.h"
+#include "fond_eau.h"
 
 //Fonds Jeux Vidéos
 //
-#include "fondCube.h"
-#include "fondPiece.h"
-#include "fondRing.h"
-#include "fondtournesol1.h"
-#include "fondtournesol2.h"
-#include "fondtournesol3.h"
-#include "fondtournesol4.h"
-#include "fondDrapeau.h"
+#include "fond_cube.h"
+#include "fond_piece.h"
+#include "fond_ring.h"
+#include "fond_tournesol_1.h"
+#include "fond_tournesol_2.h"
+#include "fond_tournesol_3.h"
+#include "fond_tournesol_4.h"
+#include "fond_drapeau.h"
 
-#include "fondLCD.h"
-#include "fondWorldmap.h"
-#include "fondElectronics.h"
-#include "fondEcraneige.h"
-#include "fondEcrancamera.h"
-#include "fondAssembleur.h"
-#include "fondWindows.h"
-#include "fondDos.h"
-#include "FondBossventilo.h"
+#include "fond_lcd.h"
+#include "fond_worldmap.h"
+#include "fond_electronics.h"
+#include "fond_ecraneige.h"
+#include "fond_ecrancamera.h"
+#include "fond_assembleur.h"
+#include "fond_windows.h"
+#include "fond_dos.h"
+#include "fond_bossventilo.h"
 
-#include "fondBattleCruiser.h"
-#include "fondEtoile.h"
-#include "fondMonolite.h"
-#include "fondRocher1.h"
-#include "fondRocher2.h"
-#include "fondRocherHyperspace.h"
+#include "fond_battle_cruiser.h"
+#include "fond_etoile.h"
+#include "fond_monolite.h"
+#include "fond_rocher_1.h"
+#include "fond_rocher_2.h"
+#include "fond_rocher_hyperspace.h"
 
 
 #define IDFOND_POKEALARME1	100

@@ -17,7 +17,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirMarioFireballVertical.h"
+#include "tir_mario_fireball_vertical.h"
 
 TirMarioFireballVertical::TirMarioFireballVertical(int vx, int xc): x_cible(xc), dx(vx)
 {

@@ -1,12 +1,12 @@
 
 #include <ctype.h>
 //#include <fcntl.h>
-#include "cineplayer.h"
-#include "bendivers.h"
-#include "bendebug.h"
+#include "cine_player.h"
+#include "ben_divers.h"
+#include "ben_debug.h"
 #include "input.h"
-#include "txtdata.h"
-#include "ltimer.h"
+#include "txt_data.h"
+#include "l_timer.h"
 //#include "alphablend.h"
 #include "globals.h"
 #include "config.h"

@@ -1,10 +1,10 @@
 
-#include "ennemiluigi.h"
-#include "tirdebouchechiote.h"
-#include "GoreGiclure.h"
-#include "EnnemiSonic.h"
-#include "EnnemiVoiturePacman.h"
-#include "EventHoldFire.h"
+#include "ennemi_luigi.h"
+#include "tir_debouche_chiote.h"
+#include "Goregiclure.h"
+#include "ennemi_sonic.h"
+#include "ennemi_voiture_pacman.h"
+#include "event_hold_fire.h"
 
 
 const int anim_luigi_marche_droite[] = { 0, 1, 2, 1};

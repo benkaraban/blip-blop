@@ -15,7 +15,7 @@
 ******************************************************************/
 
 
-#include "genennemitmp.h"
+#include "gen_ennemi_tmp.h"
 #include "eventennemi.h"
 
 #ifndef SENS_GAUCHE

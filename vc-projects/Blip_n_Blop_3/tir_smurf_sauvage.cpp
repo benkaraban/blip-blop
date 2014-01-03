@@ -2,7 +2,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "TirSmurfSauvage.h"
+#include "tir_smurf_sauvage.h"
 
 TirSmurfSauvage::TirSmurfSauvage()
 {

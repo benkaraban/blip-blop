@@ -17,11 +17,11 @@
 #include <stdio.h>
 #include "config.h"
 #include "couille.h"
-#include "tirbbm16.h"
-#include "tirbbpm.h"
-#include "tirbbfusil.h"
-#include "tirbblaser.h"
-#include "tirbbvache.h"
+#include "tir_bbm16.h"
+#include "tir_bbpm.h"
+#include "tir_bb_fusil.h"
+#include "tir_bb_laser.h"
+#include "tir_bb_vache.h"
 
 //-----------------------------------------------------------------------------
 //		Animes

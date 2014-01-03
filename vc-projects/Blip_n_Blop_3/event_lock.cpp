@@ -14,9 +14,9 @@
 *
 ******************************************************************/
 
-#include "EventLock.h"
-#include "Globals.h"
-#include "BenDebug.h"
+#include "event_lock.h"
+#include "globals.h"
+#include "ben_debug.h"
 
 void EventLock::doEvent()
 {

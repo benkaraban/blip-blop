@@ -16,7 +16,7 @@
 #ifndef _FondPokeCaisseplateforme_
 #define _FondPokeCaisseplateforme_
 
-#include "Sprite.h"
+#include "sprite.h"
 
 class FondPokeCaissePlateforme : public Sprite
 {

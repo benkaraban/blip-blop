@@ -14,7 +14,7 @@
 ******************************************************************/
 
 
-#include "TircruiserLaser.h"
+#include "tir_cruiser_laser.h"
 
 TirCruiserLaser::TirCruiserLaser(int vx, int nb_pic): dx(vx)
 {

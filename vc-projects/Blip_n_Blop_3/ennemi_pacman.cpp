@@ -1,4 +1,4 @@
-#include "EnnemiPacman.h"
+#include "ennemi_pacman.h"
 
 
 EnnemiPacman::EnnemiPacman(): ss_etape_tir(0), etape_tir(0), tir(false), dx(-2)

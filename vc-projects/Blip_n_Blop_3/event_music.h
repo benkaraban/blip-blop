@@ -17,7 +17,7 @@
 #ifndef _EventMusic_
 #define _EventMusic_
 
-#include "Event.h"
+#include "event.h"
 
 class EventMusic : public Event
 {

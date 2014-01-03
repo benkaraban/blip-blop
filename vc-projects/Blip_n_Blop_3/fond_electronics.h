@@ -14,7 +14,7 @@
 ******************************************************************/
 
 
-#include "Sprite.h"
+#include "sprite.h"
 
 #ifndef _FondElectronics_
 #define _FondElectronics_

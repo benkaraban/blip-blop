@@ -19,7 +19,7 @@
 
 #include <fstream>
 #include <ddraw.h>
-#include "PictureBank.h"
+#include "picture_bank.h"
 
 using namespace std;
 

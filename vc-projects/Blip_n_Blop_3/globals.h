@@ -23,14 +23,14 @@
 //-----------------------------------------------------------------------------
 
 // #include <ddraw.h>
-#include "BenDebug.h"
-#include "ControlP1.h"
-#include "ControlP2.h"
-#include "PictureBank.h"
-#include "Fonte.h"
-#include "SuperListe.h"
-#include "SoundBankBB.h"
-#include "MusicBank.h"
+#include "ben_debug.h"
+#include "control_p1.h"
+#include "control_p2.h"
+#include "picture_bank.h"
+#include "fonte.h"
+#include "super_liste.h"
+#include "sound_bank_bb.h"
+#include "music_bank.h"
 
 //-----------------------------------------------------------------------------
 //		Constantes

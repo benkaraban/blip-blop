@@ -1,6 +1,6 @@
 
-#include "ennemibisoujedi.h"
-#include "tirepeelaser.h"
+#include "ennemi_bisou_jedi.h"
+#include "tir_epee_laser.h"
 
 EnnemiBisouJedi::EnnemiBisouJedi() : etape_shoot(0), a_epee(true)
 {

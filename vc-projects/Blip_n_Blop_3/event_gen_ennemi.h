@@ -20,7 +20,7 @@
 #define _EventGenEnnemi_
 
 
-#include "Event.h"
+#include "event.h"
 
 
 class EventGenEnnemi : public Event

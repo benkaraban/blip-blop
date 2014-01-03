@@ -14,7 +14,7 @@
 ******************************************************************/
 
 
-#include "EnnemiBulbizarreHeros.h"
+#include "ennemi_bulbizarre_heros.h"
 
 
 EnnemiBulbizarreHeros::EnnemiBulbizarreHeros(): dorkeball(2)

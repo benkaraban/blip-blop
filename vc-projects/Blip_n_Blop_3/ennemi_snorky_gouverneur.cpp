@@ -13,8 +13,8 @@
 *
 ******************************************************************/
 
-#include "ennemiSnorkyGouverneur.h"
-#include "TirSnorkyGouverneur.h"
+#include "ennemi_snorky_gouverneur.h"
+#include "tir_snorky_gouverneur.h"
 
 
 const int anim_gouverneur_marche_droite[] = { 183, 184, 185, 186, 185, 184};

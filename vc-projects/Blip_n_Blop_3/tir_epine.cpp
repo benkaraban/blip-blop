@@ -3,7 +3,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include "tirepine.h"
+#include "tir_epine.h"
 //#include "bendebug.h"
 
 TirEpine::TirEpine(int n_pbk_ennemis, int vx, int vy)

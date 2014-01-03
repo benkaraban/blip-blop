@@ -14,7 +14,7 @@
 ******************************************************************/
 
 #include "sprite.h"
-#include "fondring.h"
+#include "fond_ring.h"
 
 int FondRing::etape_synchro = 0;
 int FondRing::ss_etape_synchro = 0;
