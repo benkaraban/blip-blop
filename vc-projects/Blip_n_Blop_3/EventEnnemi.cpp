@@ -7,7 +7,7 @@
 *
 *		Classe Evenement Ennemi
 *
-*		La classe evenement qui crée un ennemi
+*		La classe evenement qui crÃ©e un ennemi
 *
 *
 *		Prosper / LOADED -   2 Aout 2000
@@ -371,6 +371,6 @@ void EventEnnemi::doEvent()
 		if (enn->count())
 			nb_ennemis_created += 1;
 	} else {
-		debug << "Erreur : identité d'ennemi inconnue (" << id_ennemi << ")\n";
+		debug << "Erreur : identitÃ© d'ennemi inconnue (" << id_ennemi << ")\n";
 	}
 }

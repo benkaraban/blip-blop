@@ -88,16 +88,16 @@ void EnnemiSmurfFarceur::onPoseCadeau()
 	if (ss_etape == 0)
 		decalage_y_cadeau -= 1 ;
 
-	// Une fois le cadeau posé :
+	// Une fois le cadeau posÃ© :
 	if (decalage_y_cadeau < 0) {
-		// On actualise l'état de l'ennemi
+		// On actualise l'Ã©tat de l'ennemi
 		etat = ETAT_NORMAL ;
 		porte_bomb = false ;
 		decalage_y_cadeau = 5 ;
 		wait_for_new_bomb = 0 ;
 		new_bomb_delay = 50 + rand() % 200 ;
 
-		// On crée un objet TirCadeau
+		// On crÃ©e un objet TirCadeau
 		TirCadeau * tir = new TirCadeau() ;
 		if (dir == SENS_DROITE)
 			tir->x = x + 26 ;
@@ -106,7 +106,7 @@ void EnnemiSmurfFarceur::onPoseCadeau()
 		tir->y = y ;
 		list_tirs_ennemis.ajoute((void*) tir);
 
-		// et on réinitialise etape et ss_etape
+		// et on rÃ©initialise etape et ss_etape
 		etape = 0 ;
 		ss_etape = 0 ;
 	}
@@ -171,7 +171,7 @@ void EnnemiSmurfFarceur::onMeure()
 {
 	tombe();
 
-	// Si on porte un cadeau, alors on meure carbonisé
+	// Si on porte un cadeau, alors on meure carbonisÃ©
 	if (porte_bomb) {
 		etat = ETAT_CARBONISE ;
 		porte_bomb = false ;

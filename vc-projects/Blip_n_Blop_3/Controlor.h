@@ -7,7 +7,7 @@
 *
 *		Classe Controlor
 *
-*		Sert d'intermédiaire entre Blip/Blop et les interfaces
+*		Sert d'intermÃ©diaire entre Blip/Blop et les interfaces
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -20,7 +20,7 @@
 #define _Controlor_
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Controlor (ABSTRAITE)
+//		DÃ©finition de la classe Controlor (ABSTRAITE)
 //-----------------------------------------------------------------------------
 
 class Controlor

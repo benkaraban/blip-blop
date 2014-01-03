@@ -37,7 +37,7 @@
 #define NB_MAX_PLAT	8
 
 //-----------------------------------------------------------------------------
-//		Données sur la configuration
+//		DonnÃ©es sur la configuration
 //-----------------------------------------------------------------------------
 
 int			fps_count			= 0;
@@ -48,12 +48,12 @@ int			fps_current_count	= 0;
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7	*	primSurface		= NULL;		// Surface primaire
-IDirectDrawSurface7	*	backSurface		= NULL;		// pointeur sur le double buffer supposé
-IDirectDrawSurface7 *	systemSurface	= NULL;		// Pour optimiser les accès SYSTEM/SYSTEM
+IDirectDrawSurface7	*	backSurface		= NULL;		// pointeur sur le double buffer supposÃ©
+IDirectDrawSurface7 *	systemSurface	= NULL;		// Pour optimiser les accÃ¨s SYSTEM/SYSTEM
 IDirectDrawSurface7 *	videoA			= NULL;		// cache video
 
 //-----------------------------------------------------------------------------
-//		Données scroll et positions
+//		DonnÃ©es scroll et positions
 //-----------------------------------------------------------------------------
 
 int			offset;				// offset courant du scroll
@@ -71,15 +71,15 @@ bool		no_scroll1;
 bool		no_scroll2;
 
 //-----------------------------------------------------------------------------
-//		Données sur le niveau
+//		DonnÃ©es sur le niveau
 //-----------------------------------------------------------------------------
 
-int			scr_level_size;		// taille en écran du niveau
+int			scr_level_size;		// taille en Ã©cran du niveau
 int			level_size;			// taille en pixels du niveau
-int	*		num_decor	= NULL;	// Numéro ecran courant -> surface à utiliser
+int	*		num_decor	= NULL;	// NumÃ©ro ecran courant -> surface Ã  utiliser
 
 
-int	**		y_plat		= NULL;	// Plateformes (ordonnées)
+int	**		y_plat		= NULL;	// Plateformes (ordonnÃ©es)
 
 bool **		murs_opaques;		// Murs opaques (=true)
 bool **		murs_sanglants;		// Murs sanglants (=true)
@@ -127,7 +127,7 @@ SuperListe	list_bulles;
 
 
 //-----------------------------------------------------------------------------
-//		Données sur les actions à faire
+//		DonnÃ©es sur les actions Ã  faire
 //-----------------------------------------------------------------------------
 
 bool			phase;			// Pour les clignotements
@@ -139,7 +139,7 @@ bool			hold_fire;
 int				flag_hold_fire;
 int				val_hold_fire;
 
-int				rpg_to_play = -1;	// Le numéro de la phase RPG à actionner (-1:aucune)
+int				rpg_to_play = -1;	// Le numÃ©ro de la phase RPG Ã  actionner (-1:aucune)
 
 int				nb_ennemis_created;
 
@@ -162,10 +162,10 @@ bool			okLanceFlame;
 //		Les Picture Banks
 //-----------------------------------------------------------------------------
 
-PictureBank		pbk_decor;	// pbk des décors
+PictureBank		pbk_decor;	// pbk des dÃ©cors
 PictureBank		pbk_blip;	// pbk de blip
 PictureBank		pbk_blop;
-PictureBank		pbk_bb;		// pbk commune à blip et blop
+PictureBank		pbk_bb;		// pbk commune Ã  blip et blop
 PictureBank		pbk_misc;	// pbk globale du jeu (bonus & co)
 PictureBank		pbk_ennemis;// pbk des ennemis
 PictureBank		pbk_niveau;	// pbk du niveau (fonds animes & co)
@@ -177,8 +177,8 @@ PictureBank		pbk_inter;	// L'interface
 //		Les Sounds Banks
 //-----------------------------------------------------------------------------
 
-SoundBankBB		sbk_bb;		// Sons BB/divers communs à tous les niveaux
-SoundBankBB		sbk_rpg;	// Les musiques des scènes RPG
+SoundBankBB		sbk_bb;		// Sons BB/divers communs Ã  tous les niveaux
+SoundBankBB		sbk_rpg;	// Les musiques des scÃ¨nes RPG
 SoundBankBB		sbk_misc;
 SoundBankBB		sbk_niveau;
 
@@ -186,11 +186,11 @@ MusicBank		mbk_niveau;
 MusicBank		mbk_inter;
 MusicBank		mbk_interl;
 
-char			current_sbk[200];			// Nom de la SBK courante pour pouvoir la recharger si on enlève puis remet le son
-char			current_sbk_misc[200];		// Nom de la SBK courante pour pouvoir la recharger si on enlève puis remet le son
-char			current_sbk_niveau[200];	// Nom de la SBK courante pour pouvoir la recharger si on enlève puis remet le son
-char			current_mbk[200];			// Nom de la MBK courante pour pouvoir la recharger si on enlève puis remet le son
-int				current_zik;				// Numéro de la zik jouée
+char			current_sbk[200];			// Nom de la SBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+char			current_sbk_misc[200];		// Nom de la SBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+char			current_sbk_niveau[200];	// Nom de la SBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+char			current_mbk[200];			// Nom de la MBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+int				current_zik;				// NumÃ©ro de la zik jouÃ©e
 
 //-----------------------------------------------------------------------------
 //		Les Fontes

@@ -202,7 +202,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	debug << "---------------------------------------------------------------\n";
 
 	//------------------------------------------------------------------
-	//			Crée une fenêtre plein écran
+	//			CrÃ©e une fenÃªtre plein Ã©cran
 	//------------------------------------------------------------------
 
 	WinClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -246,7 +246,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 
 
 	//------------------------------------------------------------------
-	//			Precalculs mathématiques
+	//			Precalculs mathÃ©matiques
 	//------------------------------------------------------------------
 
 	preCalcMathsFunctions();
@@ -261,7 +261,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		sound_on = false;
 		music_on = false;
 	} else {
-		// Pour éviter que les musiques ne se fassent écraser par les sons
+		// Pour Ã©viter que les musiques ne se fassent Ã©craser par les sons
 		//
 		FSOUND_SetPriority(0, 255);
 	}
@@ -324,7 +324,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	}
 
 	//------------------------------------------------------------------
-	//			Direct Draw (1ère partie)
+	//			Direct Draw (1Ã¨re partie)
 	//------------------------------------------------------------------
 
 	if (!DDInitDirectDraw()) {
@@ -438,7 +438,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	//			Direct Draw (suite)
 	//------------------------------------------------------------------
 
-	// Crée la surface primaire avec double buffer
+	// CrÃ©e la surface primaire avec double buffer
 
 	primSurface = DDCreatePrimary(backSurface);
 
@@ -450,7 +450,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 
 
 	//------------------------------------------------------------------
-	//			Surface système
+	//			Surface systÃ¨me
 	//------------------------------------------------------------------
 
 	systemSurface = DDCreateSurface(640, 480, DDSURF_SYSTEM);
@@ -583,7 +583,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	}
 
 	//------------------------------------------------------------------
-	//			Mémoire video restante
+	//			MÃ©moire video restante
 	//------------------------------------------------------------------
 
 	ZeroMemory(&ddscaps2dummy, sizeof(ddscaps2dummy));
@@ -636,7 +636,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	debug << "Releasing Blip & Blop\n";
 	debug << "---------------------------------------------------------------\n";
 
-	// Désalloue tout ce qu'il faut (en théorie)
+	// DÃ©salloue tout ce qu'il faut (en thÃ©orie)
 	//
 	ReleaseAll();
 
@@ -652,7 +652,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	//
 	save_BB3_config(CONFIG_FILE);
 
-	// Détruit la fenêtre
+	// DÃ©truit la fenÃªtre
 	//
 	DestroyWindow(WinHandle);
 

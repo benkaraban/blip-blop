@@ -7,7 +7,7 @@
 *
 *		Classe SoundBankBB
 *
-*		Cette classe est presque identique à la classe SoundBank.
+*		Cette classe est presque identique Ã  la classe SoundBank.
 *		Elle ne fait qu'ajouter le fait qu'on puisse avoir le son
 *		on/off. (cf. config.h)
 *
@@ -28,7 +28,7 @@
 #include "SoundBank.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe SoundBank
+//		DÃ©finition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
 class SoundBankBB : public SoundBank

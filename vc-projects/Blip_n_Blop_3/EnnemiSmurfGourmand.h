@@ -25,7 +25,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSmurf
+//		DÃ©finition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfGourmand : public Ennemi

@@ -30,7 +30,7 @@
 #define tolerance		5
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSnorkyInBlackBoss
+//		DÃ©finition de la classe EnnemiSnorkyInBlackBoss
 //-----------------------------------------------------------------------------
 
 class EnnemiSnorkInBlackBoss : public Ennemi

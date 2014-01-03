@@ -33,29 +33,29 @@
 
 
 //-----------------------------------------------------------------------------
-//		Constantes pour la compression/décompression LGX - Version 0
+//		Constantes pour la compression/dÃ©compression LGX - Version 0
 //-----------------------------------------------------------------------------
 
 #define LGX_RMAX_0	31		// Valeur maximale de la composante ROUGE
 #define	LGX_GMAX_0	63		// Valeur maximale de la composante VERTE
 #define	LGX_BMAX_0	31		// Valeur maximale de la composante BLEUE
 
-#define	LGX_RDECAL_0	11	// Décalage vers la gauche du masque ROUGE (en LGX)
-#define	LGX_GDECAL_0	5	// Décalage vers la gauche du masque VERT (en LGX)
-#define	LGX_BDECAL_0	0	// Décalage vers la gauche du masque BLEU (en LGX)
+#define	LGX_RDECAL_0	11	// DÃ©calage vers la gauche du masque ROUGE (en LGX)
+#define	LGX_GDECAL_0	5	// DÃ©calage vers la gauche du masque VERT (en LGX)
+#define	LGX_BDECAL_0	0	// DÃ©calage vers la gauche du masque BLEU (en LGX)
 
 
 //-----------------------------------------------------------------------------
-//		Constantes pour la compression/décompression LGX - Version 1
+//		Constantes pour la compression/dÃ©compression LGX - Version 1
 //-----------------------------------------------------------------------------
 
 #define LGX_RMAX_1	31		// Valeur maximale de la composante ROUGE
 #define	LGX_GMAX_1	31		// Valeur maximale de la composante VERTE
 #define	LGX_BMAX_1	31		// Valeur maximale de la composante BLEUE
 
-#define	LGX_RDECAL_1	10	// Décalage vers la gauche du masque ROUGE (en LGX)
-#define	LGX_GDECAL_1	5	// Décalage vers la gauche du masque VERT (en LGX)
-#define	LGX_BDECAL_1	0	// Décalage vers la gauche du masque BLEU (en LGX)
+#define	LGX_RDECAL_1	10	// DÃ©calage vers la gauche du masque ROUGE (en LGX)
+#define	LGX_GDECAL_1	5	// DÃ©calage vers la gauche du masque VERT (en LGX)
+#define	LGX_BDECAL_1	0	// DÃ©calage vers la gauche du masque BLEU (en LGX)
 
 
 //-----------------------------------------------------------------------------
@@ -65,14 +65,14 @@
 
 struct LGX_HEADER {
 	char			id[3];		// 'LGX'
-	char			version;	// Numéro de version
+	char			version;	// NumÃ©ro de version
 	unsigned short	xsize;		// Largeur
 	unsigned short	ysize;		// Hauteur
 	unsigned short	depth;		// Profondeur en bits (16 pour l'instant)
 };
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe LGXpacker
+//		DÃ©finition de la classe LGXpacker
 //-----------------------------------------------------------------------------
 
 class LGXpacker
@@ -82,11 +82,11 @@ private:
 	unsigned short *	tab_1;
 	unsigned short *	half_tone;
 
-	int		rDecal;	// Décalages des masques par rapport au bit de droite
-	int		gDecal;	// (avec la carte vidéo)
+	int		rDecal;	// DÃ©calages des masques par rapport au bit de droite
+	int		gDecal;	// (avec la carte vidÃ©o)
 	int		bDecal;
 
-	int		rMax;	// Maximum des composantes (avec la carte vidéo)
+	int		rMax;	// Maximum des composantes (avec la carte vidÃ©o)
 	int		gMax;
 	int		bMax;
 

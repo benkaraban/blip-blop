@@ -7,11 +7,11 @@
 class MenuGame
 {
 public:
-	int		current_menu;		// Numéro du menu courant
-	int		focus;				// Numéro du menu EN ROUGE
+	int		current_menu;		// NumÃ©ro du menu courant
+	int		focus;				// NumÃ©ro du menu EN ROUGE
 	int		nb_focus;			// Nombre de choix du menu actuel
 	char ** menu_txt;
-	int		redefine;			// Numéro du schnuff à redéfinir
+	int		redefine;			// NumÃ©ro du schnuff Ã  redÃ©finir
 	int		old_menu;
 
 	RECT	rec;

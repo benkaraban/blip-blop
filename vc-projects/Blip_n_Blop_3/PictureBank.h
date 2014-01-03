@@ -7,7 +7,7 @@
 *
 *		Classe PictureBank
 *
-*		Représente un tableau/une banque d'images.
+*		ReprÃ©sente un tableau/une banque d'images.
 *
 *
 *		Prosper / LOADED -   V 0.2 - 13 Juillet 2000
@@ -25,7 +25,7 @@
 #include "Picture.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe PictureBank
+//		DÃ©finition de la classe PictureBank
 //-----------------------------------------------------------------------------
 
 class PictureBank

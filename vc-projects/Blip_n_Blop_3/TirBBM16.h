@@ -25,7 +25,7 @@
 #include "TirBB.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirBBM16
+//		DÃ©finition de la classe TirBBM16
 //-----------------------------------------------------------------------------
 
 class TirBBM16 : public TirBB

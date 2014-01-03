@@ -74,7 +74,7 @@ void EnnemiSmurf::onAvance()
 	if (wait_for_jump > jump_delay) {
 		etat = ETAT_SAUTE;
 		dy = dy_saut ;
-		lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+		lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 		wait_for_jump = 0;
 		jump_delay = 50 + rand() % 250;
 		/*
@@ -111,7 +111,7 @@ void EnnemiSmurf::onSaute()
 
 	tombe();
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;

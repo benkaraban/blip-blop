@@ -19,7 +19,7 @@
 #include "enemy.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiPacman
+//		DÃ©finition de la classe EnnemiPacman
 //----------------------------------------------------------------------------
 
 class EnnemiPacman : public Ennemi

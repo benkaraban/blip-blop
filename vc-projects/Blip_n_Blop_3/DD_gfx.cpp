@@ -11,7 +11,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Protection pour ne pas déclarer 'ddraw' 2 fois (une fois dans le .h)
+//		Protection pour ne pas dÃ©clarer 'ddraw' 2 fois (une fois dans le .h)
 //-----------------------------------------------------------------------------
 
 #define GFX_CPP_FILE
@@ -44,11 +44,11 @@ static int	oldRefreshRate	= -1;
 bool DDInitDirectDraw()
 {
 	if (ddraw != NULL) {
-		debug << "DDInitDirectDraw / BenGfx.cpp->Direct Draw déjà initialisé!!!\n";
+		debug << "DDInitDirectDraw / BenGfx.cpp->Direct Draw dÃ©jÃ  initialisÃ©!!!\n";
 		return false;
 	}
 	if (DirectDrawCreateEx(NULL, (void **) &ddraw, IID_IDirectDraw7, NULL) != DD_OK) {
-		debug << "DDInitDirectDraw / BenGfx.cpp->Ne peut pas créer DDraw\n";
+		debug << "DDInitDirectDraw / BenGfx.cpp->Ne peut pas crÃ©er DDraw\n";
 		return false;
 	}
 
@@ -64,7 +64,7 @@ bool DDInitDirectDraw()
 void DDCloseDirectDraw()
 {
 	if (ddraw == NULL) {
-		debug << "DDCloseDirectDraw / BenGfx.cpp->DDraw déjà fermé!\n";
+		debug << "DDCloseDirectDraw / BenGfx.cpp->DDraw dÃ©jÃ  fermÃ©!\n";
 	} else {
 		ddraw->Release();
 		ddraw = NULL;
@@ -73,7 +73,7 @@ void DDCloseDirectDraw()
 
 //-----------------------------------------------------------------------------
 // Nom: DDSetCooperativeLevel
-// Desc: Règle la priorité graphique à celle par défaut (GROS BILL)
+// Desc: RÃ¨gle la prioritÃ© graphique Ã  celle par dÃ©faut (GROS BILL)
 //-----------------------------------------------------------------------------
 
 bool DDSetCooperativeLevel(HWND wh)
@@ -84,13 +84,13 @@ bool DDSetCooperativeLevel(HWND wh)
 
 //-----------------------------------------------------------------------------
 // Nom: DDSetCooperativeLevel
-// Desc: Règle la priorité graphique
+// Desc: RÃ¨gle la prioritÃ© graphique
 //-----------------------------------------------------------------------------
 
 bool DDSetCooperativeLevel(HWND wh, int flags)
 {
 	if (ddraw == NULL) {
-		debug << "ddraw non initialisé pour (DDSetCooperativeLevel / BenGfx.cpp)\n";
+		debug << "ddraw non initialisÃ© pour (DDSetCooperativeLevel / BenGfx.cpp)\n";
 		return false;
 	}
 
@@ -104,13 +104,13 @@ bool DDSetCooperativeLevel(HWND wh, int flags)
 
 //-----------------------------------------------------------------------------
 // Nom: DDSetGfxMode
-// Desc: Règle la résolution graphique X Y NbBits/Pixel
+// Desc: RÃ¨gle la rÃ©solution graphique X Y NbBits/Pixel
 //-----------------------------------------------------------------------------
 
 bool DDSetGfxMode(int x, int y, int d)
 {
 	if (ddraw == NULL) {
-		debug << "DDSetGfxMode / BenGfx.cpp->ddraw non initialisé\n";
+		debug << "DDSetGfxMode / BenGfx.cpp->ddraw non initialisÃ©\n";
 		return false;
 	}
 
@@ -125,7 +125,7 @@ bool DDSetGfxMode(int x, int y, int d)
 
 //-----------------------------------------------------------------------------
 // Nom: DDCreateSurface
-// Desc: Crée une Surface de taille X*Y
+// Desc: CrÃ©e une Surface de taille X*Y
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * DDCreateSurface(int x, int y)
@@ -135,12 +135,12 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y)
 
 //-----------------------------------------------------------------------------
 // Nom: DDCreateSurface
-// Desc: Crée une Surface de taille X*Y en mém VIDEO / SYSTEM (cf DDOpenBMP)
+// Desc: CrÃ©e une Surface de taille X*Y en mÃ©m VIDEO / SYSTEM (cf DDOpenBMP)
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags)
 {
-	// Pour éviter d'ecrire 10.000 fois le message "pas assez de vidéo"
+	// Pour Ã©viter d'ecrire 10.000 fois le message "pas assez de vidÃ©o"
 	//
 	static bool not_enough_video_prompt = false;
 
@@ -148,7 +148,7 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags)
 	DDSURFACEDESC2       ddsd;
 
 	if (ddraw == NULL) {
-		debug << "DDCreateSurface()/BenGfx.cpp->ddraw non initialisé\n";
+		debug << "DDCreateSurface()/BenGfx.cpp->ddraw non initialisÃ©\n";
 		return NULL;
 	}
 
@@ -159,22 +159,22 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags)
 	ddsd.dwWidth = x;
 	ddsd.dwHeight = y;
 
-	// Création de la surface selon les flags
+	// CrÃ©ation de la surface selon les flags
 
 	if (!(flags & DDSURF_SYSTEM)) {
-		// On essaye de créer la surface en Vidéo
+		// On essaye de crÃ©er la surface en VidÃ©o
 
 		ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_VIDEOMEMORY ;
 
 		if (ddraw->CreateSurface(&ddsd, &surf, NULL) != DD_OK) {
-			// Impossible de la créer en VIDEO. Si on est en VIDEO->BUG
+			// Impossible de la crÃ©er en VIDEO. Si on est en VIDEO->BUG
 			// Si on est en BEST, on essaye en SYSTEM
 
 			if (flags & DDSURF_BEST) {
 				ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY ;
 
 				if (ddraw->CreateSurface(&ddsd, &surf, NULL) != DD_OK) {
-					debug << "Ne peut pas créer de surface VIDEO/SYSTEME de" << x << "*" << y;
+					debug << "Ne peut pas crÃ©er de surface VIDEO/SYSTEME de" << x << "*" << y;
 					debug << "(DDCreateSurface / BenGfx.cpp)\n";
 					return NULL;
 				} else if (!not_enough_video_prompt) {
@@ -183,18 +183,18 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags)
 				}
 
 			} else {
-				debug << "Ne peut pas créer de surface VIDEO de taille" << x << "*" << y << "DDCreateDurface / BenGfx.cpp)\n";
+				debug << "Ne peut pas crÃ©er de surface VIDEO de taille" << x << "*" << y << "DDCreateDurface / BenGfx.cpp)\n";
 				return NULL;
 			}
 		}
 	}	// Fin VIDEO / BEST
 	else {
-		// Là, on essaye directement en SYSTEM
+		// LÃ , on essaye directement en SYSTEM
 
 		ddsd.ddsCaps.dwCaps = DDSCAPS_OFFSCREENPLAIN | DDSCAPS_SYSTEMMEMORY ;
 
 		if (ddraw->CreateSurface(&ddsd, &surf, NULL) != DD_OK) {
-			debug << "Ne peut pas créer de surface SYSTEM de taille" << x << "*" << y << "DDCreateDurface / BenGfx.cpp)\n";
+			debug << "Ne peut pas crÃ©er de surface SYSTEM de taille" << x << "*" << y << "DDCreateDurface / BenGfx.cpp)\n";
 			return NULL;
 		}
 	}
@@ -204,7 +204,7 @@ IDirectDrawSurface7 * DDCreateSurface(int x, int y, int flags)
 
 //-----------------------------------------------------------------------------
 // Nom: DDCreatePrimary
-// Desc: Crée une Primary Surface sans double buffer
+// Desc: CrÃ©e une Primary Surface sans double buffer
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * DDCreatePrimary()
@@ -213,7 +213,7 @@ IDirectDrawSurface7 * DDCreatePrimary()
 	DDSURFACEDESC2       ddsd;
 
 	if (ddraw == NULL) {
-		debug << "DDCreatePrimary()/BenGfx.cpp->ddraw non initialisé\n";
+		debug << "DDCreatePrimary()/BenGfx.cpp->ddraw non initialisÃ©\n";
 		return NULL;
 	}
 
@@ -236,7 +236,7 @@ IDirectDrawSurface7 * DDCreatePrimary()
 
 //-----------------------------------------------------------------------------
 // Nom: DDCreatePrimary
-// Desc: Crée une Primary Surface avec double buffer (le paramètre)
+// Desc: CrÃ©e une Primary Surface avec double buffer (le paramÃ¨tre)
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back)
@@ -246,7 +246,7 @@ IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back)
 	DDSCAPS2			 ddsc;
 
 	if (ddraw == NULL) {
-		debug << "DDCreatePrimary()/BenGfx.cpp->ddraw non initialisé\n";
+		debug << "DDCreatePrimary()/BenGfx.cpp->ddraw non initialisÃ©\n";
 		return NULL;
 	}
 
@@ -271,7 +271,7 @@ IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back)
 	              DDSCAPS_VIDEOMEMORY;
 
 	if (first->GetAttachedSurface(&ddsc, &back) != DD_OK) {
-		debug << "Ne peut pas créer de DOUBLE BUFFER!\n";
+		debug << "Ne peut pas crÃ©er de DOUBLE BUFFER!\n";
 
 		first->Release();
 		back = NULL;
@@ -284,7 +284,7 @@ IDirectDrawSurface7 * DDCreatePrimary(IDirectDrawSurface7 * & back)
 
 //-----------------------------------------------------------------------------
 // Nom: DDLoadBMP
-// Desc: Crée une surface ayant pour contenu une image (BMP)
+// Desc: CrÃ©e une surface ayant pour contenu une image (BMP)
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * DDLoadBMP(char * file)
@@ -295,7 +295,7 @@ IDirectDrawSurface7 * DDLoadBMP(char * file)
 
 //-----------------------------------------------------------------------------
 // Nom: DDLoadBMP
-// Desc: Crée une surface ayant pour contenu l'image
+// Desc: CrÃ©e une surface ayant pour contenu l'image
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * DDLoadBMP(char * file, int flags)
@@ -305,7 +305,7 @@ IDirectDrawSurface7 * DDLoadBMP(char * file, int flags)
 	IDirectDrawSurface7 *pdds;
 
 	if (ddraw == NULL) {
-		debug << "ddraw non initialisé pour " << file << " (DDLoadBMP / BenGfx.cpp)\n";
+		debug << "ddraw non initialisÃ© pour " << file << " (DDLoadBMP / BenGfx.cpp)\n";
 		return NULL;
 	}
 
@@ -350,7 +350,7 @@ HRESULT	DDCopyBMP(IDirectDrawSurface7 *pdds, HBITMAP hbm)
 	HRESULT             hr;
 
 	if (hbm == NULL || pdds == NULL) {
-		debug << "Mauvais paramètres passés à DDCopyBMP (BenGfx.cpp) \n";
+		debug << "Mauvais paramÃ¨tres passÃ©s Ã  DDCopyBMP (BenGfx.cpp) \n";
 		return E_FAIL;
 	}
 
@@ -358,7 +358,7 @@ HRESULT	DDCopyBMP(IDirectDrawSurface7 *pdds, HBITMAP hbm)
 
 	hdcImage = CreateCompatibleDC(NULL);
 	if (!hdcImage)
-		debug << "Ne peut pas créer de CompatibleDC (DDCopyBMP dans BenGfx.cpp)\n";
+		debug << "Ne peut pas crÃ©er de CompatibleDC (DDCopyBMP dans BenGfx.cpp)\n";
 
 	SelectObject(hdcImage, hbm);
 
@@ -381,7 +381,7 @@ HRESULT	DDCopyBMP(IDirectDrawSurface7 *pdds, HBITMAP hbm)
 
 //-----------------------------------------------------------------------------
 // Nom: DDFindColor
-// Desc: Trouve la couleur correspondant à un RGB
+// Desc: Trouve la couleur correspondant Ã  un RGB
 //-----------------------------------------------------------------------------
 
 DWORD DDFindColor(IDirectDrawSurface7 *pdds, COLORREF rgb)
@@ -439,7 +439,7 @@ DWORD DDFindColor(IDirectDrawSurface7 *pdds, COLORREF rgb)
 
 //-----------------------------------------------------------------------------
 // Nom: DDSetColorKey
-// Desc: Règle la couleur transparente d'une surface
+// Desc: RÃ¨gle la couleur transparente d'une surface
 //-----------------------------------------------------------------------------
 
 HRESULT DDSetColorKey(IDirectDrawSurface7 *surf, COLORREF rgb)

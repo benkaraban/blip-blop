@@ -22,7 +22,7 @@
 #define TAILS_FLY_SPEED 6
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiTailsvolant
+//		DÃ©finition de la classe EnnemiTailsvolant
 //----------------------------------------------------------------------------
 
 class EnnemiTailsvolant : public Ennemi

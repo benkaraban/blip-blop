@@ -23,7 +23,7 @@
 #define TOAD_CHARGE_SPEED 7
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiToad
+//		DÃ©finition de la classe EnnemiToad
 //----------------------------------------------------------------------------
 
 class EnnemiToad : public Ennemi

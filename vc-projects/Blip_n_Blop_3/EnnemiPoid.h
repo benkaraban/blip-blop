@@ -21,7 +21,7 @@
 #define LATENCE_BOUGE		1
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiPoid
+//		DÃ©finition de la classe EnnemiPoid
 //----------------------------------------------------------------------------
 
 class EnnemiPoid : public Ennemi

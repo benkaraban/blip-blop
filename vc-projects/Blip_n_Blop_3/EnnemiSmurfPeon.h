@@ -5,7 +5,7 @@
 *		EnnemiSmurfPeon.h
 *		-----------------------
 *		Schtroumph de base.
-*		Spécificité : Encaisse plus.
+*		SpÃ©cificitÃ© : Encaisse plus.
 *
 *		Mortimus / LOADED -   V 0.1 - 26 Octobre 2000
 *
@@ -23,7 +23,7 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe
+//		DÃ©finition de la classe
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfPeon : public EnnemiSmurf

@@ -6,7 +6,7 @@
 *		----------------
 *
 *
-*		Fonctions mathématiques précalculée
+*		Fonctions mathÃ©matiques prÃ©calculÃ©e
 *		(pour aller plus vite!)
 *
 *
@@ -18,19 +18,19 @@
 *		Utilisation:
 *
 *			- appeler preCalcMathsFunctions() qui
-*			  précalcule le tout.
+*			  prÃ©calcule le tout.
 *
 *			- pour obtenir  Z=X*cos(Y) faire Z=(X*bCos[Y])>>COSINUS;
 *			  0 <= Y < 360
 *			  -2097152 < X < 2097151
 *
-*			- pour obtenir la racine carrée de X, faire
+*			- pour obtenir la racine carrÃ©e de X, faire
 *			  bSqr[X]
 *			  0 < X < ROOT_MAX (defaut=0xFFFF) <= 0xFFFF
 *
 *
-*			- appeler freeMathsFunctions() pour libérer
-*			  la mémoire occupée
+*			- appeler freeMathsFunctions() pour libÃ©rer
+*			  la mÃ©moire occupÃ©e
 *
 *
 *		Prosper / LOADED -   V 0.1
@@ -40,7 +40,7 @@
 ******************************************************************/
 
 //-----------------------------------------------------------------------------
-//		Protection pour éviter de déclarer les tableaux 2 fois
+//		Protection pour Ã©viter de dÃ©clarer les tableaux 2 fois
 //-----------------------------------------------------------------------------
 
 #define BENMATHS_CPP_FILE
@@ -63,7 +63,7 @@ char *	bSqr = NULL;
 
 //-----------------------------------------------------------------------------
 // Nom: preCalcMathsFunctions()
-// Desc: Précalcule les fonctions mathématiques par défaut
+// Desc: PrÃ©calcule les fonctions mathÃ©matiques par dÃ©faut
 //-----------------------------------------------------------------------------
 
 void preCalcMathsFunctions()
@@ -73,7 +73,7 @@ void preCalcMathsFunctions()
 
 //-----------------------------------------------------------------------------
 // Nom: preCalcMathsFunctions()
-// Desc: Précalcule les fonctions mathématiques choisie
+// Desc: PrÃ©calcule les fonctions mathÃ©matiques choisie
 //-----------------------------------------------------------------------------
 
 void preCalcMathsFunctions(int f)
@@ -83,13 +83,13 @@ void preCalcMathsFunctions(int f)
 
 //-----------------------------------------------------------------------------
 // Nom: preCalcMathsFunctions()
-// Desc: Précalcule les fonctions mathématiques précisées avec 'n' racines
+// Desc: PrÃ©calcule les fonctions mathÃ©matiques prÃ©cisÃ©es avec 'n' racines
 //-----------------------------------------------------------------------------
 
 void preCalcMathsFunctions(int flags, int n)
 {
 
-	// Précalcul des cosinus
+	// PrÃ©calcul des cosinus
 	if (bCos == NULL && (flags & PREC_COS)) {
 		bCos = new int[360];
 
@@ -97,7 +97,7 @@ void preCalcMathsFunctions(int flags, int n)
 			bCos[i] = int(1024 * cos(i / (180 / PI)));
 	}
 
-	// Précalcul des sinus
+	// PrÃ©calcul des sinus
 	if (bSin == NULL && (flags & PREC_SIN)) {
 		bSin = new int[360];
 		for (int i = 0; i < 360; i++)
@@ -105,7 +105,7 @@ void preCalcMathsFunctions(int flags, int n)
 
 	}
 
-	// Précalcul des racines carrées
+	// PrÃ©calcul des racines carrÃ©es
 	if (bSqr == NULL && (flags & PREC_ROOT)) {
 		int		nbRoot;
 
@@ -126,7 +126,7 @@ void preCalcMathsFunctions(int flags, int n)
 
 //-----------------------------------------------------------------------------
 // Nom: freeMathsFunctions()
-// Desc: Libére la mémoire occupée par la précalculation
+// Desc: LibÃ©re la mÃ©moire occupÃ©e par la prÃ©calculation
 //-----------------------------------------------------------------------------
 
 void freeMathsFunctions()

@@ -25,7 +25,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe MorceauRayman
+//		DÃ©finition de la classe MorceauRayman
 //-----------------------------------------------------------------------------
 
 class MorceauSonicRing : public Sprite

@@ -8,7 +8,7 @@
 *		Classe Input
 *
 *
-*		La Classe Input représente toutes les entrées :
+*		La Classe Input reprÃ©sente toutes les entrÃ©es :
 *
 *		 - Clavier
 *
@@ -31,13 +31,13 @@
 #include <dinput.h>
 
 //-----------------------------------------------------------------------------
-//		Constantes pour les entrées
+//		Constantes pour les entrÃ©es
 //-----------------------------------------------------------------------------
 
 #define	BINPUT_KEYB		1		// On peut utiliser le clavier
 #define BINPUT_JOY		2		// On peut utiliser un joystick
 
-#define MAX_JOY			5		// Nombre maximal de joystick pouvant être gérés
+#define MAX_JOY			5		// Nombre maximal de joystick pouvant Ãªtre gÃ©rÃ©s
 
 #define	JOY_UP			10
 #define	JOY_DOWN		11
@@ -46,7 +46,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Input
+//		DÃ©finition de la classe Input
 //-----------------------------------------------------------------------------
 
 class Input
@@ -96,7 +96,7 @@ public:
 };
 
 //-----------------------------------------------------------------------------
-//		Déclaration d'un objet 'in' global
+//		DÃ©claration d'un objet 'in' global
 //-----------------------------------------------------------------------------
 
 #ifndef BENINPUT_CPP_FILE

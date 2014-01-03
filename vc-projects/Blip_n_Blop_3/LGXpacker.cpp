@@ -22,7 +22,7 @@
 ******************************************************************/
 
 //-----------------------------------------------------------------------------
-//		Protection pour ne pas déclarer 'ddraw' 2 fois (une fois dans le .h)
+//		Protection pour ne pas dÃ©clarer 'ddraw' 2 fois (une fois dans le .h)
 //-----------------------------------------------------------------------------
 
 #define LGXPACKER_CPP_FILE
@@ -45,7 +45,7 @@
 LGXpacker	LGXpaker;
 
 //-----------------------------------------------------------------------------
-//		LGXpacker::LGXpacker() - met les pointeurs à NULL
+//		LGXpacker::LGXpacker() - met les pointeurs Ã  NULL
 //-----------------------------------------------------------------------------
 
 LGXpacker::LGXpacker() : tab_0(NULL), tab_1(NULL), half_tone(NULL)
@@ -59,13 +59,13 @@ LGXpacker::LGXpacker() : tab_0(NULL), tab_1(NULL), half_tone(NULL)
 LGXpacker::~LGXpacker()
 {
 	if (tab_0 != NULL || tab_1 != NULL || half_tone != NULL) {
-		debug << "LGXpacker non désaloué\n";
+		debug << "LGXpacker non dÃ©salouÃ©\n";
 		closePaker();
 	}
 }
 
 //-----------------------------------------------------------------------------
-//		LGXpacker::init() - récupère les capacités de la carte graphique
+//		LGXpacker::init() - rÃ©cupÃ¨re les capacitÃ©s de la carte graphique
 //-----------------------------------------------------------------------------
 
 bool LGXpacker::init(IDirectDrawSurface7 * surf)
@@ -73,7 +73,7 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 	int		mask;
 	int		cpt;
 
-	// On vérifie qu'on nous envoit pas n'importe quoi
+	// On vÃ©rifie qu'on nous envoit pas n'importe quoi
 
 	if (surf == NULL) {
 		debug << "LGXpacker::init() / Surface nulle!\n";
@@ -92,10 +92,10 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 		return false;
 	}
 
-	// Maintenant, on va décortiquer tout ça pour avoir des infos pratiques
+	// Maintenant, on va dÃ©cortiquer tout Ã§a pour avoir des infos pratiques
 
 	if (pf.dwRBitMask == 0 || pf.dwGBitMask == 0 || pf.dwBBitMask == 0) {
-		debug << "LGXpacker::init() / Masques RGB à 0\n";
+		debug << "LGXpacker::init() / Masques RGB Ã  0\n";
 		return false;
 	}
 
@@ -142,8 +142,8 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 	bMax = mask;
 
 
-	// On précalcule les conversions des 65536 valeurs possibles
-	// pour accélerer la décompression (putain ça c'est de l'optimisation! :)
+	// On prÃ©calcule les conversions des 65536 valeurs possibles
+	// pour accÃ©lerer la dÃ©compression (putain Ã§a c'est de l'optimisation! :)
 
 	//
 	// ************************ VERSION 0 ****************************
@@ -151,7 +151,7 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 
 	tab_0 = new unsigned short[0x10000];
 	if (tab_0 == NULL) {
-		debug << "Impossible d'allouer la mémoire de décompression\n";
+		debug << "Impossible d'allouer la mÃ©moire de dÃ©compression\n";
 		return false;
 	}
 
@@ -174,7 +174,7 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 
 	tab_1 = new unsigned short[0x8000];
 	if (tab_1 == NULL) {
-		debug << "Impossible d'allouer la mémoire de décompression\n";
+		debug << "Impossible d'allouer la mÃ©moire de dÃ©compression\n";
 		delete [] tab_0;
 		tab_0 = NULL;
 		return false;
@@ -197,7 +197,7 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 	//
 	half_tone = new unsigned short[0x10000];
 	if (half_tone == NULL) {
-		debug << "Impossible d'allouer la mémoire HALF TONE\n";
+		debug << "Impossible d'allouer la mÃ©moire HALF TONE\n";
 		delete [] tab_0;
 		tab_0 = NULL;
 		delete [] tab_1;
@@ -225,7 +225,7 @@ bool LGXpacker::init(IDirectDrawSurface7 * surf)
 }
 
 //-----------------------------------------------------------------------------
-//		LGXpacker::closePaker() - libère la mémoire utilisée
+//		LGXpacker::closePaker() - libÃ¨re la mÃ©moire utilisÃ©e
 //-----------------------------------------------------------------------------
 
 void LGXpacker::closePaker()
@@ -308,7 +308,7 @@ int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr)
 	int				gval;
 	int				bval;
 
-	unsigned char*	ptrd;	// Pointeur sur les données
+	unsigned char*	ptrd;	// Pointeur sur les donnÃ©es
 	LGX_HEADER *	lh;
 	int				taille = xs * ys * 2 + sizeof(LGX_HEADER);
 
@@ -329,7 +329,7 @@ int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr)
 
 	ptrd = (unsigned char*)ptr + sizeof(LGX_HEADER);
 
-	// Remarque : bizarrement, les couleurs sont données dans l'ordre BGR
+	// Remarque : bizarrement, les couleurs sont donnÃ©es dans l'ordre BGR
 	// et pas RGB, bien que ce ne soit pas le cas de D3D (???)
 
 	int		x = 0;
@@ -363,7 +363,7 @@ int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr)
 
 	}
 
-	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
+	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a comptÃ© les mots
 }
 
 //-----------------------------------------------------------------------------
@@ -379,7 +379,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 	int				gval;
 	int				bval;
 
-	unsigned char*	ptrd;	// Pointeur sur les données
+	unsigned char*	ptrd;	// Pointeur sur les donnÃ©es
 	LGX_HEADER *	lh;
 	int				taille = xs * ys * 2 + sizeof(LGX_HEADER);
 
@@ -400,7 +400,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 
 	ptrd = (unsigned char*)ptr + sizeof(LGX_HEADER);
 
-	// Remarque : bizarrement, les couleurs sont données dans l'ordre BGR
+	// Remarque : bizarrement, les couleurs sont donnÃ©es dans l'ordre BGR
 	// et pas RGB, bien que ce ne soit pas le cas de D3D (???)
 
 	int		x = 0;
@@ -454,27 +454,27 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 		}
 
 
-		// Dans tous les cas on fait ça...
+		// Dans tous les cas on fait Ã§a...
 		*((unsigned short*)ptrd) = LGXpixval;
 		ptrd += 2;
 
 
 	}
 
-	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
+	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a comptÃ© les mots
 }
 
 
 
 //-----------------------------------------------------------------------------
-//		LGXpacker::loadLGX() - charge un fichier LGX à partir de l'emplacement
-//							   mémoire précisé
+//		LGXpacker::loadLGX() - charge un fichier LGX Ã  partir de l'emplacement
+//							   mÃ©moire prÃ©cisÃ©
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 {
 	if (tab_0 == NULL || tab_1 == NULL) {
-		debug << "LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
+		debug << "LGXpaker::loadLGX() - LGXpaker non initialisÃ©!\n";
 		return NULL;
 	}
 
@@ -483,21 +483,21 @@ IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 	LGX_HEADER *	lh = (LGX_HEADER *) ptr;
 
 
-	// On vérifie qu'il s'agit bien d'un fichier LGX
+	// On vÃ©rifie qu'il s'agit bien d'un fichier LGX
 
 	if (lh->id[0] != 'L' || lh->id[1] != 'G' || lh->id[2] != 'X') {
-		debug << "LGXpacker::LoadLGX() / Format de fichier erroné!\n";
+		debug << "LGXpacker::LoadLGX() / Format de fichier erronÃ©!\n";
 		return NULL;
 	}
 
 	int		xs = lh->xsize;
 	int		ys = lh->ysize;
 
-	// On crée la surface correspondante
+	// On crÃ©e la surface correspondante
 
 	surf = DDCreateSurface(xs, ys, flags);
 	if (surf == NULL) {
-		debug << "LGXpacker::LoadLGX() / Ne peut pas créer la surface\n";
+		debug << "LGXpacker::LoadLGX() / Ne peut pas crÃ©er la surface\n";
 		return NULL;
 	}
 
@@ -515,7 +515,7 @@ IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 	}
 
 
-	// data pointe sur les données du fichier (après le header)
+	// data pointe sur les donnÃ©es du fichier (aprÃ¨s le header)
 	unsigned short * data = (unsigned short *)((char *) ptr + sizeof(LGX_HEADER));
 
 	int				i;
@@ -635,13 +635,13 @@ IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 
 
 //-----------------------------------------------------------------------------
-//		LGXpacker::loadLGX() - charge une image LGX à partir d'un fichier
+//		LGXpacker::loadLGX() - charge une image LGX Ã  partir d'un fichier
 //-----------------------------------------------------------------------------
 
 IDirectDrawSurface7 * LGXpacker::loadLGX(const char * fic, int flags)
 {
 	if (tab_0 == NULL || tab_1 == NULL) {
-		debug << "LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
+		debug << "LGXpaker::loadLGX() - LGXpaker non initialisÃ©!\n";
 		return NULL;
 	}
 
@@ -658,7 +658,7 @@ IDirectDrawSurface7 * LGXpacker::loadLGX(const char * fic, int flags)
 	void * ptr = malloc(taille);
 
 	if (ptr == NULL) {
-		debug << "LGXpaker::loadLGX() -> Mémoire insuffisante - (" << taille << ")\n";
+		debug << "LGXpaker::loadLGX() -> MÃ©moire insuffisante - (" << taille << ")\n";
 		_close(fh);
 		return NULL;
 	}

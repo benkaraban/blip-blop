@@ -7,7 +7,7 @@
 *
 *		Classe Game
 *
-*		La classe reprÈsentant une partie
+*		La classe repr√©sentant une partie
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -51,7 +51,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		DÈfinition de la classe Game
+//		D√©finition de la classe Game
 //-----------------------------------------------------------------------------
 
 class Game
@@ -87,11 +87,11 @@ protected:
 	int		vic_flag2;		// ET game_flag[vic_flag2] == vic_val2
 	int		vic_val2;
 
-	int		wait_for_victory;	// Pour que la partie ne s'achËve pas immÈdiatement
+	int		wait_for_victory;	// Pour que la partie ne s'ach√®ve pas imm√©diatement
 	int		wait_for_death;
 	int		wait_cheat;
 
-	int		xstart1;		// CoordonnÈes de dÈpart des joueurs
+	int		xstart1;		// Coordonn√©es de d√©part des joueurs
 	int		ystart1;
 	int		xstart2;
 	int		ystart2;
@@ -123,7 +123,7 @@ protected:
 	int			next_goutte;
 
 public:
-	// Constructeur -> met tout ‡ NULL
+	// Constructeur -> met tout √† NULL
 	//
 	Game();
 
@@ -139,17 +139,17 @@ public:
 
 
 	// joueNiveau -> Balance les PEs! Retourne VRAI si les joueurs
-	// passent le niveau avec succËs
+	// passent le niveau avec succ√®s
 	//
 	bool joueNiveau(const char * nom_niveau, int type);
 
 
-	// chargeNiveau -> Charge le niveau (appelÈ par joueNiveau)
+	// chargeNiveau -> Charge le niveau (appel√© par joueNiveau)
 	//
 	bool chargeNiveau(const char * nom_niveau);
 
 
-	// releaseNiveau -> Permet de dÈsallouer le schnuff
+	// releaseNiveau -> Permet de d√©sallouer le schnuff
 	//
 	void releaseNiveau();
 

@@ -6,7 +6,7 @@
 *		----------------
 *
 *
-*		Classe "Sound" pour gérer les sons
+*		Classe "Sound" pour gÃ©rer les sons
 *
 *
 *		Prosper / LOADED -   V 0.1
@@ -17,7 +17,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Protection pour éviter de déclarer 'dsound' 2 fois (1 fois dans le .h)
+//		Protection pour Ã©viter de dÃ©clarer 'dsound' 2 fois (1 fois dans le .h)
 //-----------------------------------------------------------------------------
 
 #define BENSOUND_CPP_FILE
@@ -51,9 +51,9 @@ Sound::~Sound()
 
 //-----------------------------------------------------------------------------
 // Nom: Sound::load(const char * fic, int n)
-// Desc: Load un fichier .WAV de nom 'fic'. Ce fichier peut être joué
-//		 simultanément 'n' fois. Remarque : il prend également 'n' fois
-//		 sa taille en mémoire !!!
+// Desc: Load un fichier .WAV de nom 'fic'. Ce fichier peut Ãªtre jouÃ©
+//		 simultanÃ©ment 'n' fois. Remarque : il prend Ã©galement 'n' fois
+//		 sa taille en mÃ©moire !!!
 //-----------------------------------------------------------------------------
 
 bool Sound::load(const char * fic)
@@ -68,8 +68,8 @@ bool Sound::load(const char * fic)
 
 //-----------------------------------------------------------------------------
 // Nom: Sound::load(void * ptr, int n)
-// Desc: Load un fichier .WAV de nom 'fic'. Le fichier est déjà ouvert
-//		 et son contenu copié en mémoire
+// Desc: Load un fichier .WAV de nom 'fic'. Le fichier est dÃ©jÃ  ouvert
+//		 et son contenu copiÃ© en mÃ©moire
 //-----------------------------------------------------------------------------
 
 bool Sound::loadFromMem(void * ptr, int taille)
@@ -109,8 +109,8 @@ void Sound::play(int flags)
 
 //-----------------------------------------------------------------------------
 // Nom: Sound::setVolume(int v)
-// Desc: Règle le volume. 'v' doit être négatif et représente l'atténuation
-//		 en 100ième de décibels (conseil : utiliser les constantes)
+// Desc: RÃ¨gle le volume. 'v' doit Ãªtre nÃ©gatif et reprÃ©sente l'attÃ©nuation
+//		 en 100iÃ¨me de dÃ©cibels (conseil : utiliser les constantes)
 //-----------------------------------------------------------------------------
 
 void Sound::setVolume(int v)
@@ -119,7 +119,7 @@ void Sound::setVolume(int v)
 
 //-----------------------------------------------------------------------------
 // Nom: Sound::stop()
-// Desc: Arrête le son. Il recommencera alors au début au prochain départ
+// Desc: ArrÃªte le son. Il recommencera alors au dÃ©but au prochain dÃ©part
 //-----------------------------------------------------------------------------
 
 void Sound::stop()

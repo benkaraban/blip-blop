@@ -6,7 +6,7 @@
 *		----------------
 *
 *
-*		Fonctions pour le scroll. Gère le scrolling
+*		Fonctions pour le scroll. GÃ¨re le scrolling
 *		avec le super buffer qui marche bizarrement sur cette
 *		merde de GeForce.
 *
@@ -26,7 +26,7 @@ extern int	n_img;
 extern int	n_cache;
 
 
-// Gère le scroll
+// GÃ¨re le scroll
 //
 void updateScrolling(bool forceOk = true);
 void drawScrolling();

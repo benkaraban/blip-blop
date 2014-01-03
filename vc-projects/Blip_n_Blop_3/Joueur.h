@@ -5,7 +5,7 @@
 *		    Joueur.h
 *		-------------------
 *
-*		Pour gérer le coté "joueur" (points) de BB
+*		Pour gÃ©rer le cotÃ© "joueur" (points) de BB
 *
 *
 *		Prosper / LOADED -   V 0.1 - 17 Juillet 2000

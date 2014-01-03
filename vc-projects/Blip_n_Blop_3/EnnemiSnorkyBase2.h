@@ -29,7 +29,7 @@
 #define SNORKY_BASE_SPEED		2
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSnorkyBase1
+//		DÃ©finition de la classe EnnemiSnorkyBase1
 //-----------------------------------------------------------------------------
 
 class EnnemiSnorkyBase2 : public Ennemi

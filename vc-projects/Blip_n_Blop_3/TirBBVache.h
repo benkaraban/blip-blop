@@ -25,7 +25,7 @@
 #include "tirBB.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirBBVache
+//		DÃ©finition de la classe TirBBVache
 //-----------------------------------------------------------------------------
 
 class TirBBVache : public TirBB

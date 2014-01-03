@@ -20,7 +20,7 @@ void FondPokeAscenceur2::update()
 		else if (y >= 387)
 			dy = -1;
 
-		// Si un joueur est sur la plateforme, on le déplace
+		// Si un joueur est sur la plateforme, on le dÃ©place
 		//
 		Sprite * joueur;
 
@@ -37,7 +37,7 @@ void FondPokeAscenceur2::update()
 			list_joueurs.suivant();
 		}
 
-		// Déplace la plateforme
+		// DÃ©place la plateforme
 		//
 		y += dy;
 

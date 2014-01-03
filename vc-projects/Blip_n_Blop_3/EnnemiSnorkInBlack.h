@@ -30,7 +30,7 @@
 #define SNORK_IN_BLACK_MAX_TIR		6
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSnorkyBase1
+//		DÃ©finition de la classe EnnemiSnorkyBase1
 //-----------------------------------------------------------------------------
 
 class EnnemiSnorkInBlack : public Ennemi

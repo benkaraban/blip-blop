@@ -255,7 +255,7 @@ void EnnemiLara::onAvance()
 					onTire();
 					return;
 				} else if (pente > -15) {
-					//trop pres pour tirer > - 15°
+					//trop pres pour tirer > - 15Â°
 
 					numero_image_buste = 150;//138
 				} else if (pente > -40) {
@@ -276,7 +276,7 @@ void EnnemiLara::onAvance()
 					tir->y = y - 129;
 					tir->traverse = true;
 					list_tirs_ennemis.ajoute((void*) tir);
-					//angle de tir: -10°
+					//angle de tir: -10Â°
 					numero_image_buste = 156;
 
 					ss_etape = 0;

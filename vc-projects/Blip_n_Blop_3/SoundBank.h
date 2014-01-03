@@ -7,7 +7,7 @@
 *
 *		Classe SoundBank
 *
-*		Représente un tableau/une banque de sons (Sound).
+*		ReprÃ©sente un tableau/une banque de sons (Sound).
 *
 *
 *		Prosper / LOADED -   V 0.1 - 16 Juillet 2000
@@ -27,7 +27,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe SoundBank
+//		DÃ©finition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
 class SoundBank

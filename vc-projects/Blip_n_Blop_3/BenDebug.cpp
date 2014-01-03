@@ -18,7 +18,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Protection pour éviter de déclarer 'debug' 2 fois (1 fois dans le .h)
+//		Protection pour Ã©viter de dÃ©clarer 'debug' 2 fois (1 fois dans le .h)
 //-----------------------------------------------------------------------------
 
 #define DEBUG_CPP_FILE
@@ -33,7 +33,7 @@
 #include "BenDebug.h"
 
 //-----------------------------------------------------------------------------
-//		Déclaration effective (et pas externe) de 'debug'
+//		DÃ©claration effective (et pas externe) de 'debug'
 //-----------------------------------------------------------------------------
 
 Debug	debug(FILE_LOG);
@@ -59,10 +59,10 @@ Debug::~Debug()
 
 //-----------------------------------------------------------------------------
 // Nom: Debug::Msg()
-// Desc: Copie une chaîne de caractères dans le fichier.
-//		 Le fichier est ouvert et fermé à chaque appel.
-//		 Ainsi, même en cas de bug critique, il restera
-//		 des traces d'éxécution.
+// Desc: Copie une chaÃ®ne de caractÃ¨res dans le fichier.
+//		 Le fichier est ouvert et fermÃ© Ã  chaque appel.
+//		 Ainsi, mÃªme en cas de bug critique, il restera
+//		 des traces d'Ã©xÃ©cution.
 //-----------------------------------------------------------------------------
 
 void Debug::Msg(const char * msg)
@@ -96,7 +96,7 @@ Debug & Debug::operator << (const char * msg)
 
 //-----------------------------------------------------------------------------
 // Nom: Debug::operator << (int)
-// Desc: Converti un entier en char * et l'envoi à Msg()
+// Desc: Converti un entier en char * et l'envoi Ã  Msg()
 //-----------------------------------------------------------------------------
 
 Debug & Debug::operator << (int nb)
@@ -111,7 +111,7 @@ Debug & Debug::operator << (int nb)
 
 //-----------------------------------------------------------------------------
 // Nom: Debug::operator << (void*)
-// Desc: Converti une adresse en char * et l'envoi à Msg().
+// Desc: Converti une adresse en char * et l'envoi Ã  Msg().
 //		 Une adresse est convertie en base 16 (hexa) alors
 //		 qu'un entier quelconque est transmis en base 10.
 //-----------------------------------------------------------------------------

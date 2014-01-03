@@ -8,7 +8,7 @@
 #include "Tir.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirSnorkyBase2
+//		DÃ©finition de la classe TirSnorkyBase2
 //-----------------------------------------------------------------------------
 
 class TirSnorkyBase2 : public Tir

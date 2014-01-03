@@ -23,7 +23,7 @@
 #define GUARD_SPEED 1
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiPrincesseGuard
+//		DÃ©finition de la classe EnnemiPrincesseGuard
 //----------------------------------------------------------------------------
 
 class EnnemiPrincesseguard : public Ennemi

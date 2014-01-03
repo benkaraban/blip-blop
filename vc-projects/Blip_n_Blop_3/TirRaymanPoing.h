@@ -26,7 +26,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirRaymanPoing
+//		DÃ©finition de la classe TirRaymanPoing
 //-----------------------------------------------------------------------------
 #define LATENCE_POING	  8
 

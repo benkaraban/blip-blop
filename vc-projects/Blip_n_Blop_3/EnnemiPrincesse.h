@@ -22,7 +22,7 @@
 #define PRINCESSE_SPEED 1
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiPrincesse
+//		DÃ©finition de la classe EnnemiPrincesse
 //----------------------------------------------------------------------------
 
 class EnnemiPrincesse : public Ennemi

@@ -7,7 +7,7 @@
 *
 *		Classe SoundBank
 *
-*		ReprÈsente un tableau/une banque de sons (Sound).
+*		Repr√©sente un tableau/une banque de sons (Sound).
 *
 *
 *		Prosper / LOADED -   V 0.1 - 16 Juillet 2000
@@ -29,7 +29,7 @@
 #include "sound.h"
 
 //-----------------------------------------------------------------------------
-//		MÈthodes
+//		M√©thodes
 //-----------------------------------------------------------------------------
 
 SoundBank::SoundBank() : tab(NULL), nb_snd(0), nom_f(NULL)
@@ -45,7 +45,7 @@ SoundBank::~SoundBank()
 	}
 
 	if (tab != NULL)
-		debug << "SoundBank non desallouÈe\n";
+		debug << "SoundBank non desallou√©e\n";
 }
 
 
@@ -89,7 +89,7 @@ bool SoundBank::loadSFX(const char * nom_fic)
 	void *	ptr;
 
 	if (tab != NULL) {
-		debug << "SoundBank::loadSFX() -> SoundBank dÈj‡ ouverte!\n";
+		debug << "SoundBank::loadSFX() -> SoundBank d√©j√† ouverte!\n";
 		return false;
 	}
 
@@ -120,12 +120,12 @@ bool SoundBank::loadSFX(const char * nom_fic)
 		ptr = malloc(taille);
 
 		if (ptr == NULL) {
-			debug << "SoundBank::loadSFX() -> Pas assez de mÈmoire\n";
+			debug << "SoundBank::loadSFX() -> Pas assez de m√©moire\n";
 			_close(fh);
 			return false;
 		}
 
-		// Copie le schnuf en mÈmoire
+		// Copie le schnuf en m√©moire
 		//
 		_read(fh, ptr, taille);
 

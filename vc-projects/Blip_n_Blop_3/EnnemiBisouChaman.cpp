@@ -231,7 +231,7 @@ void EnnemiBisouChaman::onTire()
 				int		ddx;
 				int		ddy;
 
-				// Décide de l'attaque à effectuer
+				// DÃ©cide de l'attaque Ã  effectuer
 				//
 				if (tete_turc != NULL) {
 					xc = tete_turc->x;

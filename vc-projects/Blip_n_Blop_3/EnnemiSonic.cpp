@@ -176,7 +176,7 @@ void EnnemiSonic::onAvance()
 				charge_delay = 50 + rand() % 250;
 				etat = ETAT_SAUTE;
 				dy = -7;
-				lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+				lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 				onSaute();
 				return;
 			}*/
@@ -330,7 +330,7 @@ void EnnemiSonic::onSaute()
 
 	tombe();
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;
@@ -574,7 +574,7 @@ void EnnemiSonic::onAttackvertical()
 
 
 			//y+=dy;
-			// Et si on arrêtait de tomber ?
+			// Et si on arrÃªtait de tomber ?
 			//
 			if (y + dy > y_plat[0][y]) {
 				tombe();

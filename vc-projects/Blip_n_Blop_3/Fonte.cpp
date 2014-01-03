@@ -43,7 +43,7 @@ Fonte::Fonte() : pictab(NULL), nom_fic(NULL)
 Fonte::~Fonte()
 {
 	if (pictab != NULL)
-		debug << "Fonte non fermÈe!\n";
+		debug << "Fonte non ferm√©e!\n";
 }
 
 
@@ -58,7 +58,7 @@ bool Fonte::load(const char * fic, int flags)
 	void *		ptr;
 
 	if (pictab != NULL) {
-		debug << "Fonte::load->Objet dÈj‡ ouvert!\n";
+		debug << "Fonte::load->Objet d√©j√† ouvert!\n";
 		return false;
 	}
 
@@ -71,7 +71,7 @@ bool Fonte::load(const char * fic, int flags)
 
 	pictab = new Picture * [256];
 	if (pictab == NULL) {
-		debug << "Fonte::load->Pas assez de mÈmoire pour " << fic << "\n";
+		debug << "Fonte::load->Pas assez de m√©moire pour " << fic << "\n";
 		_close(fh);
 		return false;
 	}
@@ -111,7 +111,7 @@ bool Fonte::load(const char * fic, int flags)
 		free(ptr);
 
 		if (surf == NULL) {
-			debug << "Pas assez de mÈmoire pour le " << i << " de " << fic << "\n";
+			debug << "Pas assez de m√©moire pour le " << i << " de " << fic << "\n";
 			_close(fh);
 			for (int j = 0; j < i; j++)
 				delete pictab[j];
@@ -205,7 +205,7 @@ void Fonte::printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
 	if (txt == NULL)
 		return;
 
-	int		l = 0;	// Longueur en pixels de la chaÓne
+	int		l = 0;	// Longueur en pixels de la cha√Æne
 	int		c;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
@@ -228,7 +228,7 @@ void Fonte::printC(IDirectDrawSurface7 * surf, int xtaille, int y, const char * 
 	if (txt == NULL)
 		return;
 
-	int		l = 0;	// Longueur en pixels de la chaÓne
+	int		l = 0;	// Longueur en pixels de la cha√Æne
 	int		c;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
@@ -251,7 +251,7 @@ void Fonte::close()
 	if (pictab == NULL)
 		return;
 
-	// Ferme les PICs et dÈtruit les trucs dynamiques...
+	// Ferme les PICs et d√©truit les trucs dynamiques...
 	for (int i = 0; i < 256; i++) {
 		if (pictab[i] != 0) {
 			pictab[i]->Close();
@@ -321,7 +321,7 @@ int Fonte::width(const char * txt)
 	if (txt == NULL)
 		return 0;
 
-	int		l = 0;	// Longueur en pixels de la chaÓne
+	int		l = 0;	// Longueur en pixels de la cha√Æne
 	int		c;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
@@ -390,7 +390,7 @@ bool Fonte::restoreAll()
 		free(ptr);
 
 		if (surf == NULL) {
-			debug << "Pas assez de mÈmoire pour le " << i << " de " << nom_fic << "\n";
+			debug << "Pas assez de m√©moire pour le " << i << " de " << nom_fic << "\n";
 			_close(fh);
 			for (int j = 0; j < i; j++)
 				delete pictab[j];

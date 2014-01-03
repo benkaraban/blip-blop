@@ -202,8 +202,8 @@ void DIK_to_string_fr(int n, char * str)
 				KMAP(DIK_K, "K");
 				KMAP(DIK_L, "L");
 				KMAP(DIK_SEMICOLON, "M");
-				KMAP(DIK_APOSTROPHE, "ù");
-				KMAP(DIK_GRAVE, "²");
+				KMAP(DIK_APOSTROPHE, "Ã¹");
+				KMAP(DIK_GRAVE, "Â²");
 				KMAP(DIK_LSHIFT, "SHIFT GAUCHE");
 				KMAP(DIK_BACKSLASH, "*");
 				KMAP(DIK_OEM_102, "<");

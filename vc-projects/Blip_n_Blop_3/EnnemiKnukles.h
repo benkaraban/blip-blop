@@ -25,7 +25,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiKnukles
+//		DÃ©finition de la classe EnnemiKnukles
 //----------------------------------------------------------------------------
 
 class EnnemiKnukles : public Ennemi

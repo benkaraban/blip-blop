@@ -7,7 +7,7 @@
 *
 *		Classe Evenement
 *
-*		La classe mère de tous les évenements
+*		La classe mÃ¨re de tous les Ã©venements
 *
 *
 *		Prosper / LOADED -   2 Aout 2000

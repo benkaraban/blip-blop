@@ -7,11 +7,11 @@
 *
 *		Classe Picture
 *
-*		La classe Picture représente les images
-*		utilisées par les sprites. Elles possèdent
+*		La classe Picture reprÃ©sente les images
+*		utilisÃ©es par les sprites. Elles possÃ¨dent
 *		un point chaud pour permettre de mieux les
-*		gérer et permettent d'afficher des surfaces
-*		en bordure d'écran.
+*		gÃ©rer et permettent d'afficher des surfaces
+*		en bordure d'Ã©cran.
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -34,11 +34,11 @@
 //		Constantes pour la gestion de l'affichage
 //-----------------------------------------------------------------------------
 
-#define	XPIC_MAX	640		// Représente la largeur de la Primary Surface
-#define YPIC_MAX	480		// Représente la hauteur de la Primary Surface
+#define	XPIC_MAX	640		// ReprÃ©sente la largeur de la Primary Surface
+#define YPIC_MAX	480		// ReprÃ©sente la hauteur de la Primary Surface
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Picture
+//		DÃ©finition de la classe Picture
 //-----------------------------------------------------------------------------
 
 class Picture
@@ -95,7 +95,7 @@ public:
 
 
 //-----------------------------------------------------------------------------
-//		Fonctions permettant de bien gérer les PBK
+//		Fonctions permettant de bien gÃ©rer les PBK
 //-----------------------------------------------------------------------------
 
 int loadPBK(char * fic, Picture * & p, int rgb);

@@ -30,7 +30,7 @@
 #define PV_SUR_CRITIQUE			1000
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiRayman
+//		DÃ©finition de la classe EnnemiRayman
 //----------------------------------------------------------------------------
 
 class EnnemiRayman : public Ennemi

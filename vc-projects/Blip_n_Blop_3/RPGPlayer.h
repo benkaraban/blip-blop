@@ -46,8 +46,8 @@ public:
 	bool			skiped;
 
 	int				nbjoueurs;
-	int				cur_joueur;	// Joueur pris en compte à cet instant (0 ou 1)
-	int				base_joueur[2]; // Représente l'image de base du joueur selon qu'il soit Blip ou Blop
+	int				cur_joueur;	// Joueur pris en compte Ã  cet instant (0 ou 1)
+	int				base_joueur[2]; // ReprÃ©sente l'image de base du joueur selon qu'il soit Blip ou Blop
 
 	RPGPlayer();
 	~RPGPlayer();

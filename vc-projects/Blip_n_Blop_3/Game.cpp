@@ -7,7 +7,7 @@
 *
 *		Classe Game
 *
-*		La classe reprÈsentant une partie
+*		La classe repr√©sentant une partie
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -140,7 +140,7 @@ void Game::jouePartie(int nbj, int idj)
 	}
 
 
-	// Joue ‡ tous les niveaux
+	// Joue √† tous les niveaux
 	//
 	cowBombOn = false;
 	last_perfect1 = last_perfect2 = false;
@@ -215,7 +215,7 @@ void Game::jouePartie(int nbj, int idj)
 		showPE(false);
 	}
 
-	// DÈsalloue tout
+	// D√©salloue tout
 	//
 	releasePartie();
 
@@ -333,7 +333,7 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 		p2_bringBack = false;
 	}
 
-	// RËglages conditionnels
+	// R√®glages conditionnels
 	//
 	if (type == LVL_BONUS || type == LVL_COMPLETE || type == LVL_FIRST || type == LVL_END) {
 		nb_ennemis_created = 0;
@@ -392,7 +392,7 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 	else
 		niveau_bonus = false;
 
-	// RËgle l'offset sur les joueurs
+	// R√®gle l'offset sur les joueurs
 	//
 	/*
 		list_joueurs.start();
@@ -524,7 +524,7 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 	}
 
 
-	// RÈcapitulatif de fin de niveau
+	// R√©capitulatif de fin de niveau
 	//
 	if (niveau_fini && !joueurs_morts && type != LVL_END) {
 		drawAll(false);
@@ -552,7 +552,7 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 	drawLoading();
 	DDFlipV();
 
-	// LibÈre la mÈmoire
+	// Lib√©re la m√©moire
 	//
 	releaseNiveau();
 
@@ -593,7 +593,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 
 	debug << "Successfully loaded <" << buffer2 << "> as background\n";
 
-	// GFX niveau (fonds animÈs & co)
+	// GFX niveau (fonds anim√©s & co)
 	//
 	_read(fic, buffer, 20);
 	if (strlen(buffer) != 0) {
@@ -694,13 +694,13 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	_read(fic, &scr_level_size, sizeof(scr_level_size));
 	level_size = scr_level_size * 640;
 
-	// NumÈros des Ècrans ‡ afficher (comme des tiles)
+	// Num√©ros des √©crans √† afficher (comme des tiles)
 	//
 	num_decor = new int[scr_level_size];
 	for (int i = 0; i < scr_level_size; i++)
 		_read(fic, &num_decor[i], sizeof(int));
 
-	// CoordonnÈes de dÈpart des joueurs
+	// Coordonn√©es de d√©part des joueurs
 	//
 	_read(fic, &xstart1, sizeof(xstart1));
 	_read(fic, &ystart1, sizeof(ystart1));
@@ -749,7 +749,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	}
 
 	//
-	// Charge les Èvenements
+	// Charge les √©venements
 	//
 	FICEVENT			ficevent;
 	EventEnnemi*		event_ennemi;
@@ -1066,7 +1066,7 @@ void Game::updateAll()
 	if (phase)
 		slow_phase = !slow_phase;
 
-	// Met ‡ jour les touches
+	// Met √† jour les touches
 	//
 	in.update();
 
@@ -1089,7 +1089,7 @@ void Game::updateAll()
 
 	updateEvents();
 
-	// On update le scroll une deuxiËme fois ‡ cause des Locks
+	// On update le scroll une deuxi√®me fois √† cause des Locks
 	//
 	if (!no_scroll1 && !no_scroll2)
 		updateScrolling();
@@ -1212,7 +1212,7 @@ void Game::drawAll(bool flip)
 	drawDebugInfos();
 
 
-	// Virer la bande qui dÈconne si besoin est
+	// Virer la bande qui d√©conne si besoin est
 	//
 	if (vbuffer_wide == 640) {
 		DDBLTFX         ddfx;
@@ -1388,7 +1388,7 @@ bool Game::chargePartie()
 
 	debug << "Successfully loaded <ammo1.lft>\n";
 
-	// Fonte munitions utilisÈes
+	// Fonte munitions utilis√©es
 	//
 	if (!fnt_ammo_used.load("data\\ammo2.lft", mem_flag))
 		return false;
@@ -1710,8 +1710,8 @@ void Game::updateEvents()
 {
 	Event *		event;
 
-	// Les Èvenements de la liste "endormie" sont mis dans la liste "en attente"
-	// quand ils sont sur le point d'Ítre activÈs
+	// Les √©venements de la liste "endormie" sont mis dans la liste "en attente"
+	// quand ils sont sur le point d'√™tre activ√©s
 	//
 	if (!list_event_endormis.estVide()) {
 		list_event_endormis.start();
@@ -1719,7 +1719,7 @@ void Game::updateEvents()
 
 		while (!list_event_endormis.estVide() && !list_event_endormis.fin() && event->aReveiller()) {
 			list_event.ajoute((void*) event);
-			list_event_endormis.supprimePorc(); // Porc bcoz l'Èvenement est transfÈrÈ, pas dÈtruit
+			list_event_endormis.supprimePorc(); // Porc bcoz l'√©venement est transf√©r√©, pas d√©truit
 
 			if (!list_event_endormis.estVide()) {
 				list_event_endormis.start();
@@ -1730,7 +1730,7 @@ void Game::updateEvents()
 	}
 
 
-	// Si les Èvenements "en attente" doivent Ítre activÈs, on les active
+	// Si les √©venements "en attente" doivent √™tre activ√©s, on les active
 	//
 	if (!list_event.estVide()) {
 		list_event.start();
@@ -1740,7 +1740,7 @@ void Game::updateEvents()
 
 			if (event->aActiver()) {
 				event->doEvent();		// Surtout pas l'ordre inverse!
-				list_event.supprime();	// Sinon on activerait un Èvenement supprimÈ!
+				list_event.supprime();	// Sinon on activerait un √©venement supprim√©!
 			} else
 				list_event.suivant();
 		}
@@ -2713,7 +2713,7 @@ void Game::showPE(bool bonus, bool fuckOff)
 	Fonte *	fnt_p1;
 	Fonte * fnt_p2;
 	char	buffer[20];
-	int		killed_p1		= 0;	// % d'ennemis tuÈs par le joueur 1
+	int		killed_p1		= 0;	// % d'ennemis tu√©s par le joueur 1
 	int		c_killed_p1		= 0;	// compteur killed_p1
 	int		calc_p1			= 0;
 	int		c_time_p1		= 0;
@@ -2725,7 +2725,7 @@ void Game::showPE(bool bonus, bool fuckOff)
 	int		c_perfect_p1	= 0;
 	int		life_up_p1		= 0;
 
-	int		killed_p2		= 0;	// % d'ennemis tuÈs par le joueur 1
+	int		killed_p2		= 0;	// % d'ennemis tu√©s par le joueur 1
 	int		c_killed_p2		= 0;	// compteur killed_p2
 	int		calc_p2			= 0;
 	int		c_time_p2		= 0;
@@ -2862,7 +2862,7 @@ void Game::showPE(bool bonus, bool fuckOff)
 				}
 			}
 			if (calc_p1 == 2) {
-				// Bonus % d'ennemis tuÈs
+				// Bonus % d'ennemis tu√©s
 				//
 				if (c_killed_p1 >= killed_p1)
 					calc_p1 = 3; // Passe en TIMER
@@ -2907,7 +2907,7 @@ void Game::showPE(bool bonus, bool fuckOff)
 				}
 			}
 			if (calc_p2 == 2) {
-				// Bonus % d'ennemis tuÈs
+				// Bonus % d'ennemis tu√©s
 				//
 				if (c_killed_p2 >= killed_p2)
 					calc_p2 = 3; // Passe en TIMER
@@ -3205,7 +3205,7 @@ void Game::updateFlecheGo()
 		teta_go += 3;
 		teta_go %= 360;
 
-		if (nb_rebonds_go == 0) {	// La flËche arrive
+		if (nb_rebonds_go == 0) {	// La fl√®che arrive
 			x_fleche_go += 10;
 
 			if (x_fleche_go == 640) {
@@ -3225,7 +3225,7 @@ void Game::updateFlecheGo()
 				if (nb_rebonds_go >= 3 && must_stop_go)
 					nb_rebonds_go = -1;
 			}
-		} else { // La flËche part vers la droite
+		} else { // La fl√®che part vers la droite
 			x_fleche_go += 10;
 
 			if (x_fleche_go > 800) {
@@ -3311,7 +3311,7 @@ void Game::updateBulles()
 {
 	Sprite *	pl;
 
-	// CrÈe de nouvelles bulles
+	// Cr√©e de nouvelles bulles
 	//
 	list_joueurs.start();
 
@@ -3331,7 +3331,7 @@ void Game::updateBulles()
 	}
 
 
-	// Update les bulles dÈj‡ crÈes
+	// Update les bulles d√©j√† cr√©es
 	//
 	list_bulles.start();
 
@@ -3744,7 +3744,7 @@ void Game::go()
 	int			r;
 	static int	zob = 0;
 
-	// Clear l'Ècran en noir + LOADING
+	// Clear l'√©cran en noir + LOADING
 	//
 	{
 		DDBLTFX		ddfx;
@@ -4229,8 +4229,8 @@ void Game::showCredits(bool theEnd)
 
 		fnt_rpg.printC(backSurface, xcred, y4, "ARTWORK");
 		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 0, "Laurent Schneider");
-		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 1, "JÈrÈmie Comarmond");
-		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 2, "JÈrÙme Karaban");
+		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 1, "J√©r√©mie Comarmond");
+		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 2, "J√©r√¥me Karaban");
 		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 3, "Didier Colin");
 		fnt_rpg.printC(backSurface, xcred, y4 + ITITRE + ILIGNE * 4, "Sylvain Bugat");
 
@@ -4239,7 +4239,7 @@ void Game::showCredits(bool theEnd)
 		fnt_rpg.printC(backSurface, xcred, y5, "ADDITIONAL SOUND");
 		fnt_rpg.printC(backSurface, xcred, y5 + ILIGNE, "AND VOCAL EFFECTS");
 		fnt_rpg.printC(backSurface, xcred, y5 + ITITRE + 1 * ILIGNE, "Eric Khodja");
-		fnt_rpg.printC(backSurface, xcred, y5 + ITITRE + 2 * ILIGNE, "JÈrÙme Karaban");
+		fnt_rpg.printC(backSurface, xcred, y5 + ITITRE + 2 * ILIGNE, "J√©r√¥me Karaban");
 		fnt_rpg.printC(backSurface, xcred, y5 + ITITRE + 3 * ILIGNE, "Benjamin Karaban");
 		fnt_rpg.printC(backSurface, xcred, y5 + ITITRE + 4 * ILIGNE, "Vincent Lagarrigue");
 
@@ -4253,7 +4253,7 @@ void Game::showCredits(bool theEnd)
 
 		fnt_rpg.printC(backSurface, xcred, y7, "ORIGINAL CONCEPT");
 		fnt_rpg.printC(backSurface, xcred, y7 + ITITRE + 0 * ILIGNE, "Laurent Schneider");
-		fnt_rpg.printC(backSurface, xcred, y7 + ITITRE + 1 * ILIGNE, "JÈrÈmie Comarmond");
+		fnt_rpg.printC(backSurface, xcred, y7 + ITITRE + 1 * ILIGNE, "J√©r√©mie Comarmond");
 		fnt_rpg.printC(backSurface, xcred, y7 + ITITRE + 2 * ILIGNE, "Didier Colin");
 		fnt_rpg.printC(backSurface, xcred, y7 + ITITRE + 3 * ILIGNE, "Sylvain Bugat");
 		fnt_rpg.printC(backSurface, xcred, y7 + ITITRE + 4 * ILIGNE, "Benjamin Karaban");
@@ -4261,9 +4261,9 @@ void Game::showCredits(bool theEnd)
 		int y8 = y7 + 5 * ILIGNE + IPARTI + ITITRE;
 
 		fnt_rpg.printC(backSurface, xcred, y8, "BETA TEST");
-		fnt_rpg.printC(backSurface, xcred, y8 + ITITRE + 0 * ILIGNE, "JÈrÈmie Khodja");
+		fnt_rpg.printC(backSurface, xcred, y8 + ITITRE + 0 * ILIGNE, "J√©r√©mie Khodja");
 		fnt_rpg.printC(backSurface, xcred, y8 + ITITRE + 1 * ILIGNE, "Julien Areas");
-		fnt_rpg.printC(backSurface, xcred, y8 + ITITRE + 2 * ILIGNE, "Carlos SÈdille");
+		fnt_rpg.printC(backSurface, xcred, y8 + ITITRE + 2 * ILIGNE, "Carlos S√©dille");
 		fnt_rpg.printC(backSurface, xcred, y8 + ITITRE + 3 * ILIGNE, "Juliette Karaban");
 
 		int y9 = y8 + 4 * ILIGNE + IPARTI + ITITRE;
@@ -4276,8 +4276,8 @@ void Game::showCredits(bool theEnd)
 			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 1 * ILIGNE, "Carole Schmitt");
 			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 2 * ILIGNE, "Aasterion staff");
 			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 3 * ILIGNE, "Aurore Anger");
-			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 4 * ILIGNE, "CÈcile Baudoncourt");
-			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 5 * ILIGNE, "Nicolas ClÈment");
+			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 4 * ILIGNE, "C√©cile Baudoncourt");
+			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 5 * ILIGNE, "Nicolas Cl√©ment");
 			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 6 * ILIGNE, "Nathalie Morin");
 			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 7 * ILIGNE, "Florent and Thomas");
 			fnt_rpg.printC(backSurface, xcred, y9 + ITITRE + 8 * ILIGNE, "Bruno Singer");
@@ -4294,7 +4294,7 @@ void Game::showCredits(bool theEnd)
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 1 * ILIGNE, "TiPunch power!");
 
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 3 * ILIGNE, "La Pirogue");
-			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 4 * ILIGNE, "I love you SÈverine!");
+			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 4 * ILIGNE, "I love you S√©verine!");
 
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 6 * ILIGNE, "Le Montbauron");
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 7 * ILIGNE, "mind the 8 ball!");
@@ -4344,7 +4344,7 @@ void Game::showCredits(bool theEnd)
 
 
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 51 * ILIGNE, "Les Joyeux Urbains");
-			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 52 * ILIGNE, "va chez ta mËre!");
+			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 52 * ILIGNE, "va chez ta m√®re!");
 
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 54 * ILIGNE, "Toss");
 			fnt_rpg.printC(backSurface, xcred, y10 + ITITRE + 55 * ILIGNE, "da! da! da!");

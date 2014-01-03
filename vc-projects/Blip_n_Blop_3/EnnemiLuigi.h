@@ -31,7 +31,7 @@
 #define MULTIPLICATEUR_VITESSE_AERIEN	80
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiLuigi
+//		DÃ©finition de la classe EnnemiLuigi
 //----------------------------------------------------------------------------
 
 class EnnemiLuigi : public Ennemi

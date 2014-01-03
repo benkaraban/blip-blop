@@ -9,7 +9,7 @@
 #include "tir.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Tir
+//		DÃ©finition de la classe Tir
 //-----------------------------------------------------------------------------
 
 class TirBisouMortel : public Tir

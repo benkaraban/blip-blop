@@ -18,7 +18,7 @@
 #include "fondSnorkSas.h"
 #include "enemy.h"
 
-int FondSnorkSas1::etat = 0; // 0 pour etat du sas 1 ouvert , 1 pour fermé
+int FondSnorkSas1::etat = 0; // 0 pour etat du sas 1 ouvert , 1 pour fermÃ©
 
 FondSnorkSas1::FondSnorkSas1(): nb_joueur(0)
 {
@@ -28,7 +28,7 @@ FondSnorkSas1::FondSnorkSas1(): nb_joueur(0)
 
 void FondSnorkSas1::update()
 {
-	if (!etat) { // si le sas n'est pas fermé..
+	if (!etat) { // si le sas n'est pas fermÃ©..
 		if ((tete_turc != NULL) && (tete_turc->x > 1400)) {
 			nb_joueur ++;
 			if (etape < 222) {
@@ -40,7 +40,7 @@ void FondSnorkSas1::update()
 					il y en a peut etre un autre sous la porte..
 				*/
 			} else {
-				etat = 1; // Sas 1 fermé...
+				etat = 1; // Sas 1 fermÃ©...
 			}
 		} else {
 			nb_joueur = 0;
@@ -108,7 +108,7 @@ FondSnorkSas2::FondSnorkSas2()
 
 void FondSnorkSas2::update()
 {
-	//si le sas 1 est verouillé...
+	//si le sas 1 est verouillÃ©...
 	if ((FondSnorkSas1::etat) && (etape > 0)) {
 		etape --;
 	}

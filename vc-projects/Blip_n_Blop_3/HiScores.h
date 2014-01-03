@@ -17,11 +17,11 @@ protected:
 	int		scores[HS_NB_SCORES];
 
 	/*
-		Le premier appel à cette fonction crypte les données. Le
-		deuxième les décryptes, etc...
+		Le premier appel Ã  cette fonction crypte les donnÃ©es. Le
+		deuxiÃ¨me les dÃ©cryptes, etc...
 
-		ATTENTION : il ne faut surtout pas lire les données cryptées!
-		(risque de chaîne sans '\0')
+		ATTENTION : il ne faut surtout pas lire les donnÃ©es cryptÃ©es!
+		(risque de chaÃ®ne sans '\0')
 	*/
 
 public:
@@ -44,7 +44,7 @@ public:
 
 
 	/*
-		Retourne le nom du joueur de rang N (0 étant le meilleur)
+		Retourne le nom du joueur de rang N (0 Ã©tant le meilleur)
 	*/
 	char *	getName(int n) const
 	{
@@ -55,7 +55,7 @@ public:
 	};
 
 	/*
-		Retourne le score du joueur de rang N (0 étant le meilleur)
+		Retourne le score du joueur de rang N (0 Ã©tant le meilleur)
 	*/
 	int		getScore(int n) const
 	{
@@ -66,8 +66,8 @@ public:
 	};
 
 	/*
-		Retourne vrai si le score passé en paramètre est assez
-		élevé pour rentrer dans le HiScore
+		Retourne vrai si le score passÃ© en paramÃ¨tre est assez
+		Ã©levÃ© pour rentrer dans le HiScore
 	*/
 	bool	isGood(int scr)
 	{
@@ -83,19 +83,19 @@ public:
 
 
 	/*
-		Ajoute le score (et le nom) passé en
-		paramètre à la table
+		Ajoute le score (et le nom) passÃ© en
+		paramÃ¨tre Ã  la table
 	*/
 	void	add(int scr, const char * name);
 
 
 	/*
-		Sauvegarde les scores dans un fichier crypté!
+		Sauvegarde les scores dans un fichier cryptÃ©!
 	*/
 	bool	save(const char * file);
 
 	/*
-		Charge les scores dans un fichier crypté!
+		Charge les scores dans un fichier cryptÃ©!
 	*/
 	bool	load(const char * file);
 };

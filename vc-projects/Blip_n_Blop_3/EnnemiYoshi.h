@@ -26,7 +26,7 @@
 #define YOSHI_SPEED 3
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiYoshi
+//		DÃ©finition de la classe EnnemiYoshi
 //----------------------------------------------------------------------------
 
 class EnnemiYoshi : public Ennemi

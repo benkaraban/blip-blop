@@ -195,7 +195,7 @@ void EnnemiSmurfCostaud::onTireDragonPunch()
 {
 	tombe();
 
-	if (etape <= 2) { // Le départ
+	if (etape <= 2) { // Le dÃ©part
 		ss_etape += 1;
 		ss_etape %= 4;
 

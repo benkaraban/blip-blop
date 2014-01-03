@@ -5,7 +5,7 @@
 *		    Ennemi.h
 *		----------------
 *
-*		Classe mère de tous les ennemis
+*		Classe mÃ¨re de tous les ennemis
 *
 *
 *		Prosper / LOADED -   V 0.1 - 3 Aout 2000
@@ -26,7 +26,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		La tête de turc
+//		La tÃªte de turc
 //-----------------------------------------------------------------------------
 
 #ifndef ENNEMI_CPP
@@ -34,7 +34,7 @@ extern Personnage *	tete_turc;
 #endif
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Ennemi
+//		DÃ©finition de la classe Ennemi
 //-----------------------------------------------------------------------------
 
 class Ennemi : public Personnage

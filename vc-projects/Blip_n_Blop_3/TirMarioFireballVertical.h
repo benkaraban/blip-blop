@@ -27,7 +27,7 @@
 #define GRAVITE_FIREBALL  15
 #define LATENCE_FIREBALL   10
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirMarioFireballVertical
+//		DÃ©finition de la classe TirMarioFireballVertical
 //-----------------------------------------------------------------------------
 
 class TirMarioFireballVertical : public Tir

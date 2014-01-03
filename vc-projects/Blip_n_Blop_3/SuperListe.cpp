@@ -6,8 +6,8 @@
 *		-------------------
 *
 *
-*		Liste de pointeurs (void*) doublement chaînée
-*		MAIS à sens unique
+*		Liste de pointeurs (void*) doublement chaÃ®nÃ©e
+*		MAIS Ã  sens unique
 *
 *
 *		Prosper / LOADED -   V 1.0 - 28 Juin 2000
@@ -43,7 +43,7 @@ SuperListe::SuperListe() : tete(NULL), obs(NULL), nb_elem(0)
 SuperListe::~SuperListe()
 {
 	if (nb_elem != 0) {
-		debug << "SuperListe non désallouée (taille " << nb_elem << ")\n";
+		debug << "SuperListe non dÃ©sallouÃ©e (taille " << nb_elem << ")\n";
 		vide();
 	}
 

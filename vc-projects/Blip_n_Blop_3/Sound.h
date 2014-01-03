@@ -6,7 +6,7 @@
 *		----------------
 *
 *
-*		Classe "Sound" pour gérer les sons
+*		Classe "Sound" pour gÃ©rer les sons
 *
 *
 *		Prosper / LOADED -   V 0.1
@@ -30,7 +30,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Sound
+//		DÃ©finition de la classe Sound
 //-----------------------------------------------------------------------------
 
 class Sound
@@ -57,7 +57,7 @@ public:
 
 /*
 //-----------------------------------------------------------------------------
-//		Prototypes des fonctions sonores associées
+//		Prototypes des fonctions sonores associÃ©es
 //-----------------------------------------------------------------------------
 
 bool DSOpenDirectSound(HWND wh, int coop = DSSCL_PRIORITY);

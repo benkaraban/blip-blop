@@ -5,8 +5,8 @@
 *		  Config.h
 *		------------
 *
-*		Contient toutes les données sur la config
-*		et quelques fonctions pour la gérer.
+*		Contient toutes les donnÃ©es sur la config
+*		et quelques fonctions pour la gÃ©rer.
 *
 *
 *		Prosper / LOADED -   V 0.2

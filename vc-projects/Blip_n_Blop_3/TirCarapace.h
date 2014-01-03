@@ -8,7 +8,7 @@
 #include "tir.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirCarapace
+//		DÃ©finition de la classe TirCarapace
 //-----------------------------------------------------------------------------
 #define CARAPACE_SPEED      6
 

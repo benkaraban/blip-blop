@@ -23,7 +23,7 @@
 #include "ennemilemmings.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe
+//		DÃ©finition de la classe
 //-----------------------------------------------------------------------------
 
 class EnnemiLemmingsVolant : public EnnemiLemmings

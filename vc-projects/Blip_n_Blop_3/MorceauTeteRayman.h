@@ -20,7 +20,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe MorceauTeteRayman
+//		DÃ©finition de la classe MorceauTeteRayman
 //----------------------------------------------------------------------------
 
 class MorceauTeteRayman : public Sprite

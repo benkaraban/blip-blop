@@ -26,7 +26,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe MorceauSnorkyBaseTeteEntiere
+//		DÃ©finition de la classe MorceauSnorkyBaseTeteEntiere
 //-----------------------------------------------------------------------------
 
 class MorceauSnorkyBaseTeteEntiere : public Sprite
@@ -40,7 +40,7 @@ public:
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe MorceauSnorkyBaseTetePartieArriere
+//		DÃ©finition de la classe MorceauSnorkyBaseTetePartieArriere
 //-----------------------------------------------------------------------------
 
 class MorceauSnorkyBaseTetePartieArriere : public Sprite
@@ -56,7 +56,7 @@ public:
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe MorceauSnorkyHyporidercorp
+//		DÃ©finition de la classe MorceauSnorkyHyporidercorp
 //-----------------------------------------------------------------------------
 
 class MorceauSnorkyHyporidercorp : public Sprite
@@ -72,7 +72,7 @@ public:
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe MorceauSnorkyBaseTrompe
+//		DÃ©finition de la classe MorceauSnorkyBaseTrompe
 //-----------------------------------------------------------------------------
 
 class MorceauSnorkyBaseTrompe : public Sprite

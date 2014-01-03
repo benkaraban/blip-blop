@@ -29,7 +29,7 @@
 #define MULTIPLICATEUR_VITESSE_AERIEN	80
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiMarioTapette
+//		DÃ©finition de la classe EnnemiMarioTapette
 //----------------------------------------------------------------------------
 
 class EnnemiMariotapette : public Ennemi

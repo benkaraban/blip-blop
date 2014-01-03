@@ -94,7 +94,7 @@ void EnnemiToad::onAvance()
 			ss_etape = 0;
 			etat = ETAT_SAUTE;
 			dy = -7;
-			lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+			lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 			onSaute();
 			return;
 		}
@@ -211,7 +211,7 @@ void EnnemiToad::onSaute()
 
 	tombe();
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;

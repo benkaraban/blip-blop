@@ -25,7 +25,7 @@
 #define MARIO_PV_SUR_CRITIQUE     8500
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiMario
+//		DÃ©finition de la classe EnnemiMario
 //----------------------------------------------------------------------------
 
 class EnnemiMario : public Ennemi

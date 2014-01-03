@@ -7,11 +7,11 @@
 *
 *		Classe Picture
 *
-*		La classe Picture représente les images
-*		utilisées par les sprites. Elles possèdent
+*		La classe Picture reprÃ©sente les images
+*		utilisÃ©es par les sprites. Elles possÃ¨dent
 *		un point chaud pour permettre de mieux les
-*		gérer et permettent d'afficher des surfaces
-*		en bordure d'écran.
+*		gÃ©rer et permettent d'afficher des surfaces
+*		en bordure d'Ã©cran.
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -34,7 +34,7 @@
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::Picture() - CONSTRUCTEUR -
-// Desc: Initialise tout à 0
+// Desc: Initialise tout Ã  0
 //-----------------------------------------------------------------------------
 
 Picture::Picture() : surf(NULL), xspot(0), yspot(0), xsize(0), ysize(0)
@@ -44,7 +44,7 @@ Picture::Picture() : surf(NULL), xspot(0), yspot(0), xsize(0), ysize(0)
 //-----------------------------------------------------------------------------
 // Nom: Picture::FindSize() - METHODE PRIVEE -
 // Desc: Recherche la largeur et la hauteur de l'image et assigne
-//		 ces deux valeurs à 'xsize' et 'ysize'
+//		 ces deux valeurs Ã  'xsize' et 'ysize'
 //-----------------------------------------------------------------------------
 
 void Picture::FindSize()
@@ -65,13 +65,13 @@ void Picture::FindSize()
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::SetColorKey()
-// Desc: Règle la couleur transparente de l'image
+// Desc: RÃ¨gle la couleur transparente de l'image
 //-----------------------------------------------------------------------------
 
 void Picture::SetColorKey(COLORREF rgb)
 {
 	if (surf == NULL) {
-		debug << "Picture::SetColorKey() - surface à NULL\n";
+		debug << "Picture::SetColorKey() - surface Ã  NULL\n";
 		return;
 	}
 
@@ -81,7 +81,7 @@ void Picture::SetColorKey(COLORREF rgb)
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::SetSpot()
-// Desc: Règle les coordonnée du point chaud
+// Desc: RÃ¨gle les coordonnÃ©e du point chaud
 //-----------------------------------------------------------------------------
 
 void Picture::SetSpot(int x, int y)
@@ -93,7 +93,7 @@ void Picture::SetSpot(int x, int y)
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::SetSurface()
-// Desc: Assigne une surface et change les attributs de taille en conséquence
+// Desc: Assigne une surface et change les attributs de taille en consÃ©quence
 //-----------------------------------------------------------------------------
 
 void Picture::SetSurface(IDirectDrawSurface7 * s)
@@ -119,7 +119,7 @@ void Picture::LoadBMP(char * file)
 //-----------------------------------------------------------------------------
 // Nom: Picture::LoadBMP()
 // Desc: Charge une image BMP. Les flags permettent de mettre l'image
-//		 en mémoire VIDEO / SYSTEM / BEST
+//		 en mÃ©moire VIDEO / SYSTEM / BEST
 //-----------------------------------------------------------------------------
 
 void Picture::LoadBMP(char * file, int flags)
@@ -133,7 +133,7 @@ void Picture::LoadBMP(char * file, int flags)
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::LoadBMP()
-// Desc: Charge une image BMP et règle le point chaud
+// Desc: Charge une image BMP et rÃ¨gle le point chaud
 //-----------------------------------------------------------------------------
 
 void Picture::LoadBMP(char * file, int xs, int ys)
@@ -147,8 +147,8 @@ void Picture::LoadBMP(char * file, int xs, int ys)
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::LoadBMP()
-// Desc: Charge une image BMP et règle le point chaud. Cette méthode
-//		 utilise les mêmes flags que la mèthode surdéfinie ci-dessus
+// Desc: Charge une image BMP et rÃ¨gle le point chaud. Cette mÃ©thode
+//		 utilise les mÃªmes flags que la mÃ¨thode surdÃ©finie ci-dessus
 //-----------------------------------------------------------------------------
 
 void Picture::LoadBMP(char * file, int xs, int ys, int flags)
@@ -162,11 +162,11 @@ void Picture::LoadBMP(char * file, int xs, int ys, int flags)
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::BlitTo()
-// Desc: Effectue un blit pour afficher l'image sur la surface donnée.
-//		 L'interêt de cette mèthode par rapport à un Blt simple est qu'elle
+// Desc: Effectue un blit pour afficher l'image sur la surface donnÃ©e.
+//		 L'interÃªt de cette mÃ¨thode par rapport Ã  un Blt simple est qu'elle
 //		 utilise le point chaud et qu'elle permet d'afficher des images
-//		 partielles lorsqu'une image est affichée trop prêt d'un bord
-//		 de l'écran (Blt n'affiche rien dans ce cas).
+//		 partielles lorsqu'une image est affichÃ©e trop prÃªt d'un bord
+//		 de l'Ã©cran (Blt n'affiche rien dans ce cas).
 //-----------------------------------------------------------------------------
 
 void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const
@@ -178,7 +178,7 @@ void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const
 	int y2 = y + ysize;
 
 
-	// S'il n'y a rien à afficher, on se casse tout de suite!
+	// S'il n'y a rien Ã  afficher, on se casse tout de suite!
 	if (x > XPIC_MAX || x2 < 0 || y > YPIC_MAX || y2 < 0)
 		return;
 
@@ -198,11 +198,11 @@ void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const
 
 //-----------------------------------------------------------------------------
 // Nom: Picture::PasteTo()
-// Desc: Effectue un blit pour afficher l'image sur la surface donnée.
-//		 L'interêt de cette mèthode par rapport à un Blt simple est qu'elle
+// Desc: Effectue un blit pour afficher l'image sur la surface donnÃ©e.
+//		 L'interÃªt de cette mÃ¨thode par rapport Ã  un Blt simple est qu'elle
 //		 utilise le point chaud et qu'elle permet d'afficher des images
-//		 partielles lorsqu'une image est affichée trop prêt d'un bord
-//		 de l'écran (Blt n'affiche rien dans ce cas).
+//		 partielles lorsqu'une image est affichÃ©e trop prÃªt d'un bord
+//		 de l'Ã©cran (Blt n'affiche rien dans ce cas).
 //-----------------------------------------------------------------------------
 
 void Picture::PasteTo(IDirectDrawSurface7 * s, int x, int y) const
@@ -214,7 +214,7 @@ void Picture::PasteTo(IDirectDrawSurface7 * s, int x, int y) const
 	int y2 = y + ysize;
 
 
-	// S'il n'y a rien à afficher, on se casse tout de suite!
+	// S'il n'y a rien Ã  afficher, on se casse tout de suite!
 	if (x > XPIC_MAX || x2 < 0 || y > YPIC_MAX || y2 < 0)
 		return;
 
@@ -267,7 +267,7 @@ int loadPBK(char * fic, Picture * & p, int rgb)
 	int			nbpic;
 
 	if (p != NULL) {
-		debug << "loadPBK/Picture.cpp->" << fic << ":tableau déjà initialisé\n";
+		debug << "loadPBK/Picture.cpp->" << fic << ":tableau dÃ©jÃ  initialisÃ©\n";
 		return 0;
 	}
 
@@ -310,7 +310,7 @@ int loadPBK(char * fic, Picture * & p, int rgb)
 
 //-----------------------------------------------------------------------------
 // Nom: closePBK
-// Desc: Ferme une PBK (il faut préciser la taille)
+// Desc: Ferme une PBK (il faut prÃ©ciser la taille)
 //-----------------------------------------------------------------------------
 
 void closePBK(Picture * & p, int t)

@@ -6,7 +6,7 @@
 *		------------------
 *
 *
-*		Fonctions pour le scroll. Gère le scrolling
+*		Fonctions pour le scroll. GÃ¨re le scrolling
 *		avec le super buffer qui marche bizarrement sur cette
 *		merde de GeForce.
 *
@@ -40,7 +40,7 @@ void drawScrolling()
 {
 	RECT		r;
 
-	// Pour éviter les mauvaises surprises
+	// Pour Ã©viter les mauvaises surprises
 	//
 	if (offset < 0)
 		offset = 0;

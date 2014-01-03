@@ -8,7 +8,7 @@
 *		Classe Input
 *
 *
-*		La Classe Input représente toutes les entrées :
+*		La Classe Input reprÃ©sente toutes les entrÃ©es :
 *
 *		 - Clavier
 *		 - Joystick
@@ -32,14 +32,14 @@
 #include "bendebug.h"
 
 //-----------------------------------------------------------------------------
-//		Déclaration REELLE de l'objet 'in' global
+//		DÃ©claration REELLE de l'objet 'in' global
 //-----------------------------------------------------------------------------
 
 Input		in;
 
 //-----------------------------------------------------------------------------
 // Nom: Input::Input() - CONSTRUCTEUR -
-// Desc: Met à NULL les valeurs susceptibles de foirer
+// Desc: Met Ã  NULL les valeurs susceptibles de foirer
 //-----------------------------------------------------------------------------
 
 Input::Input() : dinput(NULL), dikeyb(NULL), n_joy(0)
@@ -51,7 +51,7 @@ Input::Input() : dinput(NULL), dikeyb(NULL), n_joy(0)
 Input::~Input()
 {
 	if (dinput != NULL) {
-		debug << "DInput non désalloué!\n";
+		debug << "DInput non dÃ©sallouÃ©!\n";
 		close();
 	}
 }
@@ -66,7 +66,7 @@ Input::~Input()
 bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
 {
 	if (dinput != NULL) {
-		debug << "Input::open->DINPUT déjà initialisé!\n";
+		debug << "Input::open->DINPUT dÃ©jÃ  initialisÃ©!\n";
 		return false;
 	}
 
@@ -81,7 +81,7 @@ bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
 	//
 	if (flags & BINPUT_KEYB) {
 		if (dinput->CreateDevice(GUID_SysKeyboard, (LPDIRECTINPUTDEVICE8A *)&dikeyb, NULL) != DI_OK) {
-			debug << "Input::open->Ne peut pas créer le clavier!\n";
+			debug << "Input::open->Ne peut pas crÃ©er le clavier!\n";
 			dikeyb = NULL;
 			return false;
 		} else {
@@ -92,7 +92,7 @@ bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
 				return false;
 			} else {
 				if (dikeyb->SetCooperativeLevel(wh, cl) != DI_OK) {
-					debug << "Input::open->Ne peut pas règler le coop du clavier\n";
+					debug << "Input::open->Ne peut pas rÃ¨gler le coop du clavier\n";
 					dikeyb->Release();
 					dikeyb = NULL;
 					return false;
@@ -175,7 +175,7 @@ IDirectInput8 * Input::di() const
 
 //-----------------------------------------------------------------------------
 // Nom: Input::update()
-// Desc: Met à jour les entrées
+// Desc: Met Ã  jour les entrÃ©es
 //-----------------------------------------------------------------------------
 
 void Input::update()
@@ -224,7 +224,7 @@ unsigned int Input::waitKey()
 
 //-----------------------------------------------------------------------------
 // Nom: Input::waitClean()
-// Desc: Attends qu'aucune touche ne soit enfoncée
+// Desc: Attends qu'aucune touche ne soit enfoncÃ©e
 //-----------------------------------------------------------------------------
 
 void Input::waitClean()
@@ -249,7 +249,7 @@ void Input::waitClean()
 
 //-----------------------------------------------------------------------------
 // Nom: Input::setAlias()
-// Desc: Règle la valeur d'un alias
+// Desc: RÃ¨gle la valeur d'un alias
 //-----------------------------------------------------------------------------
 void Input::setAlias(int a, unsigned int val)
 {
@@ -258,7 +258,7 @@ void Input::setAlias(int a, unsigned int val)
 
 //-----------------------------------------------------------------------------
 // Nom: Input::close()
-// Desc: Ferme toutes les entrées
+// Desc: Ferme toutes les entrÃ©es
 //-----------------------------------------------------------------------------
 
 void Input::close()

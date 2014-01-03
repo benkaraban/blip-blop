@@ -24,7 +24,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirSnorkyMage
+//		DÃ©finition de la classe TirSnorkyMage
 //-----------------------------------------------------------------------------
 
 class TirSnorkyMage : public Tir

@@ -5,7 +5,7 @@
 *		  GenEnnemi.cpp
 *		-----------------
 *
-*		Classe Générateur ennemi
+*		Classe GÃ©nÃ©rateur ennemi
 *
 *
 *		Prosper / LOADED -   5 Aout 2000

@@ -7,7 +7,7 @@
 *
 *		Classe PictureBank
 *
-*		Représente un tableau/une banque d'images.
+*		ReprÃ©sente un tableau/une banque d'images.
 *
 *
 *		Prosper / LOADED -   V 0.2 - 13 Juillet 2000
@@ -32,7 +32,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		PictureBank::PictureBank() - met le pointeur à NULL et NB à 0
+//		PictureBank::PictureBank() - met le pointeur Ã  NULL et NB Ã  0
 //-----------------------------------------------------------------------------
 
 PictureBank::PictureBank() : tab(NULL), nb_pic(0), nom_fic(NULL), flag_fic(0)
@@ -46,7 +46,7 @@ PictureBank::PictureBank() : tab(NULL), nb_pic(0), nom_fic(NULL), flag_fic(0)
 PictureBank::~PictureBank()
 {
 	if (tab != NULL)
-		debug << "PictureBank non désallouée\n";
+		debug << "PictureBank non dÃ©sallouÃ©e\n";
 
 	if (nom_fic != NULL) {
 		delete [] nom_fic;
@@ -55,7 +55,7 @@ PictureBank::~PictureBank()
 }
 
 //-----------------------------------------------------------------------------
-//		PictureBank::loadGFX() - charge un fichier GFX pour créer la banque
+//		PictureBank::loadGFX() - charge un fichier GFX pour crÃ©er la banque
 //-----------------------------------------------------------------------------
 
 bool PictureBank::loadGFX(const char * file, int flag, bool trans)
@@ -79,14 +79,14 @@ bool PictureBank::loadGFX(const char * file, int flag, bool trans)
 	tab = new Picture * [nb_pic];
 
 	if (tab == NULL) {
-		debug << "PictureBank::loadGFX() - Nani? Pas assez de mémoire ???\n";
+		debug << "PictureBank::loadGFX() - Nani? Pas assez de mÃ©moire ???\n";
 		_close(fic);
 		return false;
 	}
 
 	for (int i = 0; i < nb_pic; i++) {
 
-		_read(fic, &xspot, sizeof(xspot));	// Coordonnées du point chaud
+		_read(fic, &xspot, sizeof(xspot));	// CoordonnÃ©es du point chaud
 		_read(fic, &yspot, sizeof(yspot));
 
 		_read(fic, &taille, sizeof(taille));
@@ -112,7 +112,7 @@ bool PictureBank::loadGFX(const char * file, int flag, bool trans)
 
 
 		if (surf == NULL) {
-			debug << "PictureBank::loadGFX() - surface à NULL\n";
+			debug << "PictureBank::loadGFX() - surface Ã  NULL\n";
 			return false;
 		}
 
@@ -184,12 +184,12 @@ bool PictureBank::restoreAll()
 
 
 		for (int i = 0; i < nb_pic; i++) {
-			// Libère l'ancienne surface
+			// LibÃ¨re l'ancienne surface
 			//
 			surf = tab[i]->Surf();
 			surf->Release();
 
-			_read(fic, &xspot, sizeof(xspot));	// Coordonnées du point chaud
+			_read(fic, &xspot, sizeof(xspot));	// CoordonnÃ©es du point chaud
 			_read(fic, &yspot, sizeof(yspot));
 
 			_read(fic, &taille, sizeof(taille));
@@ -215,7 +215,7 @@ bool PictureBank::restoreAll()
 
 
 			if (surf == NULL) {
-				debug << "PictureBank::restoreAll() - surface à NULL\n";
+				debug << "PictureBank::restoreAll() - surface Ã  NULL\n";
 				_close(fic);
 				return false;
 			}

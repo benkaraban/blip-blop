@@ -478,7 +478,7 @@ void EnnemiRayman::onTombe()
 
 	tombe();
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;

@@ -51,7 +51,7 @@ void Sprite::tombe()
 }
 
 //-----------------------------------------------------------------------------
-//		Tombor2 : n'arrête pas la chute (utile pour les sauts)
+//		Tombor2 : n'arrÃªte pas la chute (utile pour les sauts)
 
 void Sprite::tombe2()
 {

@@ -8,7 +8,7 @@
 #include "tir.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirDecoucheChiote
+//		DÃ©finition de la classe TirDecoucheChiote
 //-----------------------------------------------------------------------------
 #define DEBOUCHE_CHIOTE_SPEED      10
 

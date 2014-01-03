@@ -59,7 +59,7 @@
 #define FLAG_NB_GEN			10
 
 //-----------------------------------------------------------------------------
-//		Données sur la configuration
+//		DonnÃ©es sur la configuration
 //-----------------------------------------------------------------------------
 
 extern int			fps_count;
@@ -70,12 +70,12 @@ extern int			fps_current_count;
 //-----------------------------------------------------------------------------
 
 extern IDirectDrawSurface7	*	primSurface;	// Surface primaire
-extern IDirectDrawSurface7	*	backSurface;	// pointeur sur le double buffer supposé
-extern IDirectDrawSurface7  *	systemSurface;	// Pour optimiser les accès SYSTEM/SYSTEM
+extern IDirectDrawSurface7	*	backSurface;	// pointeur sur le double buffer supposÃ©
+extern IDirectDrawSurface7  *	systemSurface;	// Pour optimiser les accÃ¨s SYSTEM/SYSTEM
 extern IDirectDrawSurface7  *	videoA;			// cache video
 
 //-----------------------------------------------------------------------------
-//		Données scroll et positions
+//		DonnÃ©es scroll et positions
 //-----------------------------------------------------------------------------
 
 
@@ -90,7 +90,7 @@ extern int			cond_end_lock;
 extern int			flag_end_lock;
 extern int			val_end_lock;
 
-extern bool			no_scroll1;			// Pour arrêter le scroll quand
+extern bool			no_scroll1;			// Pour arrÃªter le scroll quand
 extern bool			no_scroll2;			// blip ou blop meure
 
 extern bool			okBonus;
@@ -98,15 +98,15 @@ extern bool			cowBombOn;
 extern bool			okLanceFlame;
 
 //-----------------------------------------------------------------------------
-//		Données sur le niveau
+//		DonnÃ©es sur le niveau
 //-----------------------------------------------------------------------------
 
-extern int			scr_level_size;		// taille en écran du niveau
+extern int			scr_level_size;		// taille en Ã©cran du niveau
 extern int			level_size;			// taille en pixels du niveau
-extern int *		num_decor;			// Numéro ecran courant -> surface à utiliser
+extern int *		num_decor;			// NumÃ©ro ecran courant -> surface Ã  utiliser
 
 
-extern int	**		y_plat;				// Plateformes (ordonnées)
+extern int	**		y_plat;				// Plateformes (ordonnÃ©es)
 
 extern bool **		murs_opaques;		// Murs opaques (=true)
 extern bool **		murs_sanglants;		// Murs sanglants (=true)
@@ -155,7 +155,7 @@ extern SuperListe	list_bulles;
 
 
 //-----------------------------------------------------------------------------
-//		Données sur les actions à faire
+//		DonnÃ©es sur les actions Ã  faire
 //-----------------------------------------------------------------------------
 
 extern bool			phase;				// Pour les clignotements
@@ -167,7 +167,7 @@ extern bool			hold_fire;
 extern int			flag_hold_fire;
 extern int			val_hold_fire;
 
-extern int			rpg_to_play;	// Le numéro de la phase RPG à actionner (-1:aucune)
+extern int			rpg_to_play;	// Le numÃ©ro de la phase RPG Ã  actionner (-1:aucune)
 
 extern int			nb_ennemis_created;
 
@@ -185,10 +185,10 @@ extern bool			total_debug;
 //		Les Picture Banks
 //-----------------------------------------------------------------------------
 
-extern PictureBank		pbk_decor;	// pbk des décors
+extern PictureBank		pbk_decor;	// pbk des dÃ©cors
 extern PictureBank		pbk_blip;	// pbk de blip
 extern PictureBank		pbk_blop;
-extern PictureBank		pbk_bb;		// pbk commune à blip et blop
+extern PictureBank		pbk_bb;		// pbk commune Ã  blip et blop
 extern PictureBank		pbk_misc;	// pbk "diverse"
 extern PictureBank		pbk_ennemis;// pbk des ennemis
 extern PictureBank		pbk_niveau;	// pbk du niveau (fonds animes & co)
@@ -200,8 +200,8 @@ extern PictureBank		pbk_inter;	// L'interface
 //		Les Sounds Banks
 //-----------------------------------------------------------------------------
 
-extern SoundBankBB		sbk_bb;		// Sons BB/divers communs à tous les niveaux
-extern SoundBankBB		sbk_rpg;	// Les musiques des scènes RPG
+extern SoundBankBB		sbk_bb;		// Sons BB/divers communs Ã  tous les niveaux
+extern SoundBankBB		sbk_rpg;	// Les musiques des scÃ¨nes RPG
 extern SoundBankBB		sbk_misc;
 extern SoundBankBB		sbk_niveau;
 
@@ -209,11 +209,11 @@ extern MusicBank		mbk_niveau;
 extern MusicBank		mbk_inter;
 extern MusicBank		mbk_interl;
 
-extern char				current_sbk[];			// Nom de la SBK courante pour pouvoir la recharger si on enlève puis remet le son
-extern char				current_sbk_misc[];		// Nom de la SBK courante pour pouvoir la recharger si on enlève puis remet le son
-extern char				current_sbk_niveau[];	// Nom de la SBK courante pour pouvoir la recharger si on enlève puis remet le son
-extern char				current_mbk[];			// Nom de la MBK courante pour pouvoir la recharger si on enlève puis remet le son
-extern int				current_zik;			// Numéro de la zik jouée
+extern char				current_sbk[];			// Nom de la SBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+extern char				current_sbk_misc[];		// Nom de la SBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+extern char				current_sbk_niveau[];	// Nom de la SBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+extern char				current_mbk[];			// Nom de la MBK courante pour pouvoir la recharger si on enlÃ¨ve puis remet le son
+extern int				current_zik;			// NumÃ©ro de la zik jouÃ©e
 
 //-----------------------------------------------------------------------------
 //		Les Fontes
@@ -232,7 +232,7 @@ extern Fonte			fnt_menus;
 //		Les fonctions cool
 //-----------------------------------------------------------------------------
 
-int		plat(int x, int y);	// Retourne l'ordonnée de la plateforme (0 si pas de plat)
+int		plat(int x, int y);	// Retourne l'ordonnÃ©e de la plateforme (0 si pas de plat)
 int		plat2(int x, int y);
 bool	mur_opaque(int x, int y);
 bool	mur_sanglant(int x, int y);

@@ -105,7 +105,7 @@ void CINEPlayer::updateScene()
 {
 	tupdate = LGetTime();
 
-	// Gére le volume
+	// GÃ©re le volume
 	//
 	int vol = delta_vol;
 
@@ -115,7 +115,7 @@ void CINEPlayer::updateScene()
 	if (vol > back_vol)
 		vol = back_vol;
 
-	// Gére l'alpha blending
+	// GÃ©re l'alpha blending
 	//
 	alpha += delta_alpha;
 
@@ -124,7 +124,7 @@ void CINEPlayer::updateScene()
 	else if (alpha < 0)
 		alpha = 0;
 
-	// Gére les objets
+	// GÃ©re les objets
 	//
 	for (int i = 0; i < NB_OBJ; i++) {
 		if (obj[i].show) {
@@ -254,7 +254,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].x = int_arg[1];
 				obj[n].y = int_arg[2];
@@ -263,12 +263,12 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				n2 = int_arg[1];
 
 				if (n2 < 0 || n2 >= pbk.getSize())
-					error("numéro d'image invalide");
+					error("numÃ©ro d'image invalide");
 				else {
 					obj[n].id = OBJ_SPRITE;
 					obj[n].pic = pbk[n2];
@@ -279,7 +279,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].dx = int_arg[1];
 				obj[n].dy = int_arg[2];
@@ -289,7 +289,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].id = OBJ_TEXTE;
 				obj[n].txt = int_arg[1];
@@ -299,7 +299,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].show = false;
 				obj[n].dx = 0;
@@ -332,7 +332,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].speed_anim = int_arg[1];
 				if (int_arg[2])
@@ -355,7 +355,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].x_warp = true;
 				obj[n].x_warp1 = int_arg[1];
@@ -365,7 +365,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].y_warp = true;
 				obj[n].y_warp1 = int_arg[1];
@@ -375,7 +375,7 @@ void CINEPlayer::updateState()
 			n = int_arg[0];
 
 			if (n < 0 || n >= NB_OBJ)
-				error("numéro d'objet invalide");
+				error("numÃ©ro d'objet invalide");
 			else {
 				obj[n].nb_anim = false;
 			}
@@ -386,7 +386,7 @@ void CINEPlayer::updateState()
 			delta_alpha = int_arg[0];
 		} else if (ISCOM("setbackcolor")) {
 			if (int_arg[0] < 0 || int_arg[0] > 1)
-				error("mauvais numéro de calque");
+				error("mauvais numÃ©ro de calque");
 			else {
 				if (int_arg[1] == 0) {
 					color[int_arg[0]] = 0;
@@ -396,7 +396,7 @@ void CINEPlayer::updateState()
 			}
 		} else if (ISCOM("setclipcolor")) {
 			if (int_arg[0] < 0 || int_arg[0] > 1)
-				error("mauvais numéro de calque");
+				error("mauvais numÃ©ro de calque");
 			else {
 				if (int_arg[1] == 0) {
 					clip_color[int_arg[0]] = 0;
@@ -441,7 +441,7 @@ void CINEPlayer::drawScene()
 		back_surf->Blt(&r, videoA, NULL, DDBLT_WAIT, 0);
 	}
 
-	// Clear l'écran en noir
+	// Clear l'Ã©cran en noir
 	//
 	ZeroMemory(&ddfx, sizeof(ddfx));
 	ddfx.dwSize = sizeof(ddfx);
@@ -508,7 +508,7 @@ void CINEPlayer::drawScene()
 			{
 				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
 			}
-			else // Mélange
+			else // MÃ©lange
 			{
 				r.top	= 0;
 				r.left	= 0;
@@ -571,7 +571,7 @@ bool CINEPlayer::getCommand()
 		return false;
 
 
-	// Esquive les lignes commentées et les lignes vides
+	// Esquive les lignes commentÃ©es et les lignes vides
 	//
 	fic.getline(buffer, BUFFER_SIZE);
 	num_ligne += 1;
@@ -589,9 +589,9 @@ bool CINEPlayer::getCommand()
 	// Vire aussi les "
 	//
 	do {
-		c = buffer[i++];// Pour éviter 10.000 fois l'indirections
+		c = buffer[i++];// Pour Ã©viter 10.000 fois l'indirections
 
-		// Si on arrive à la fin de ligne on s'arrête
+		// Si on arrive Ã  la fin de ligne on s'arrÃªte
 		//
 		if (c == ';') {
 			buffer2[j] = '\0';

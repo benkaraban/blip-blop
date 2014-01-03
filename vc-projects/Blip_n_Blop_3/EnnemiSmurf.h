@@ -24,7 +24,7 @@
 #include "enemy.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSmurf
+//		DÃ©finition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurf : public Ennemi

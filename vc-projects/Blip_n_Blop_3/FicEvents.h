@@ -3,7 +3,7 @@
 #define _FICEVENT_
 
 //--------------------------------------------------------------------------
-//	Constantes d'identification des événements
+//	Constantes d'identification des Ã©vÃ©nements
 //--------------------------------------------------------------------------
 
 #define EVENTID_ENNEMI				0
@@ -28,7 +28,7 @@
 
 
 struct FICEVENT {
-	int		event_id;		// Identificateur de l'événement
+	int		event_id;		// Identificateur de l'Ã©vÃ©nement
 	int		x_activation;	// Abscisse d'activation
 
 	int		id;

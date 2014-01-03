@@ -30,7 +30,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirTornade
+//		DÃ©finition de la classe TirTornade
 //-----------------------------------------------------------------------------
 
 class TirTornade : public Tir

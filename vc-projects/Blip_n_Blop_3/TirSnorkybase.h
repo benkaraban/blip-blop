@@ -26,7 +26,7 @@
 #define DELAY_ACCELERATION 20
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Tir
+//		DÃ©finition de la classe Tir
 //-----------------------------------------------------------------------------
 
 class TirSnorkybase : public Tir

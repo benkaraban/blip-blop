@@ -22,7 +22,7 @@
 #define ATTACK_DELAY    10
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiLara
+//		DÃ©finition de la classe EnnemiLara
 //----------------------------------------------------------------------------
 
 class EnnemiLara : public Ennemi

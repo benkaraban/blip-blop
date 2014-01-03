@@ -6,7 +6,7 @@
 *		----------------
 *
 *
-*		Fonction très diverses
+*		Fonction trÃ¨s diverses
 *
 *
 *		Prosper / LOADED -   V 0.2

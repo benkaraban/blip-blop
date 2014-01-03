@@ -30,7 +30,7 @@
 #define HYPORIDER_CHARGE_SPEED   8
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSnorkyBase1
+//		DÃ©finition de la classe EnnemiSnorkyBase1
 //-----------------------------------------------------------------------------
 
 class EnnemiSnorkyHyporider : public Ennemi

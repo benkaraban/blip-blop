@@ -29,7 +29,7 @@
 #define LEM_SPEED		1
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSmurf
+//		DÃ©finition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
 class EnnemiLemmings : public Ennemi

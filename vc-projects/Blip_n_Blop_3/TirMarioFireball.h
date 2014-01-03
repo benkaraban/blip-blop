@@ -26,7 +26,7 @@
 #define DELAY_ACCELERATION 8
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirMarioFireball
+//		DÃ©finition de la classe TirMarioFireball
 //-----------------------------------------------------------------------------
 
 class TirMarioFireball : public Tir

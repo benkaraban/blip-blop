@@ -28,7 +28,7 @@
 #define DIABOLO_GRAVITE_MAX     8
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiDiabolo
+//		DÃ©finition de la classe EnnemiDiabolo
 //-----------------------------------------------------------------------------
 
 class EnnemiDiabolo : public Ennemi

@@ -5,7 +5,7 @@
 *		EnnemiSmurfFrileux.h
 *		-----------------------
 *		Schtroumph de base.
-*		Spécificité : Mouvements tremblotants et semi-aléatoires.
+*		SpÃ©cificitÃ© : Mouvements tremblotants et semi-alÃ©atoires.
 *					  Encaisse moins du fait de sa constitution
 *					  fragile :-)
 *		Mortimus / LOADED -   V 0.1 - 26 Octobre 2000
@@ -24,7 +24,7 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe
+//		DÃ©finition de la classe
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfFrileux : public EnnemiSmurf

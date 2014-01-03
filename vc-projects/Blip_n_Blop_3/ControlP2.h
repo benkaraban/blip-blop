@@ -7,7 +7,7 @@
 *
 *		Classe ControlorP2
 *
-*		Sert d'intermédiaire entre Blip/Blop et le joueur 1
+*		Sert d'intermÃ©diaire entre Blip/Blop et le joueur 1
 *
 *
 *		Prosper / LOADED -   V 0.1
@@ -28,7 +28,7 @@
 #include "ControlAlias.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe ControlP2
+//		DÃ©finition de la classe ControlP2
 //-----------------------------------------------------------------------------
 
 class ControlP2 : public Controlor

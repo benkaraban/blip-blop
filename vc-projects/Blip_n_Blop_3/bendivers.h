@@ -6,7 +6,7 @@
 *		----------------
 *
 *
-*		Fonction très diverses
+*		Fonction trÃ¨s diverses
 *
 *
 *		Prosper / LOADED -   V 0.2
@@ -23,7 +23,7 @@ extern bool app_killed;
 extern bool want_to_kill_app;
 
 //
-// Gère les messages. Eh oui, Windows pue du cul
+// GÃ¨re les messages. Eh oui, Windows pue du cul
 //
 int manageMsg();
 

@@ -5,7 +5,7 @@
 *		EnnemiSmurfParesseux.h
 *		-----------------------
 *		Schtroumph de base.
-*		Spécificité : Saute un peu moins haut.
+*		SpÃ©cificitÃ© : Saute un peu moins haut.
 *
 *		Mortimus / LOADED -   V 0.1 - 26 Octobre 2000
 *
@@ -23,7 +23,7 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe
+//		DÃ©finition de la classe
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfParesseux : public EnnemiSmurf

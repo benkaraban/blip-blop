@@ -112,7 +112,7 @@ int MenuGame::update()
 	}
 
 	//////////////////////////////////////////////////
-	//	Touche entrée
+	//	Touche entrÃ©e
 	//////////////////////////////////////////////////
 
 	if (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE)) {
@@ -289,7 +289,7 @@ void MenuGame::draw(IDirectDrawSurface7 * surf)
 	int		y  = 240 - ys;
 	int		tmp;
 
-	// Trouve la taille du schnuff à assombrir
+	// Trouve la taille du schnuff Ã  assombrir
 	//
 	int largeur = 0;
 
@@ -308,10 +308,10 @@ void MenuGame::draw(IDirectDrawSurface7 * surf)
 	else if (largeur > 320)
 		largeur = 320;
 
-	// Réinitialise le cache systeme si le menu a changé
-	// ou si on dépasse sur les cotés
+	// RÃ©initialise le cache systeme si le menu a changÃ©
+	// ou si on dÃ©passe sur les cotÃ©s
 	//
-	tmp = (320 - largeur) - rec.left; // tmp = différence de largeur
+	tmp = (320 - largeur) - rec.left; // tmp = diffÃ©rence de largeur
 
 
 	if (current_menu != old_menu || tmp > 20 || tmp < -20) {
@@ -329,7 +329,7 @@ void MenuGame::draw(IDirectDrawSurface7 * surf)
 		old_menu = current_menu;
 	}
 
-	// Copie la surface déjà colorisée
+	// Copie la surface dÃ©jÃ  colorisÃ©e
 	//
 	surf->BltFast(0, 0, systemSurface, NULL, DDBLTFAST_NOCOLORKEY | DDBLTFAST_WAIT);
 

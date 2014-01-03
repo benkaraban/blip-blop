@@ -20,7 +20,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiPic
+//		DÃ©finition de la classe EnnemiPic
 //----------------------------------------------------------------------------
 
 class EnnemiPic : public Ennemi

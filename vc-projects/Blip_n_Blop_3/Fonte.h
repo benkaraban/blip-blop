@@ -27,7 +27,7 @@
 #include "DD_gfx.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Fonte
+//		DÃ©finition de la classe Fonte
 //-----------------------------------------------------------------------------
 
 class Fonte
@@ -54,12 +54,12 @@ public:
 	void print(IDirectDrawSurface7 * surf, int x, int y, const char * txt);
 
 
-	// Affiche texte justifié à droite
+	// Affiche texte justifiÃ© Ã  droite
 	//
 	void printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt);
 
 
-	// Affiche texte centré
+	// Affiche texte centrÃ©
 	//
 	void printC(IDirectDrawSurface7 * surf, int xtaille, int y, const char * txt);
 
@@ -74,7 +74,7 @@ public:
 	void printMW(IDirectDrawSurface7 * surf, int x, int y, const char * txt, int ym);
 
 
-	// Renvoie la longueur en pixels d'un texte donné
+	// Renvoie la longueur en pixels d'un texte donnÃ©
 	//
 	int width(const char * txt);
 

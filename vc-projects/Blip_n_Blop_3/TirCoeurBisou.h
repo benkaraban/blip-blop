@@ -23,7 +23,7 @@
 #include "tir.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Tir
+//		DÃ©finition de la classe Tir
 //-----------------------------------------------------------------------------
 
 class TirCoeurBisou : public Tir

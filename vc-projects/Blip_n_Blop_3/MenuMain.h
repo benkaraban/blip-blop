@@ -14,18 +14,18 @@
 class MenuMain
 {
 public:
-	int		current_menu;		// Numéro du menu courant
-	int		focus;				// Numéro du menu EN ROUGE
+	int		current_menu;		// NumÃ©ro du menu courant
+	int		focus;				// NumÃ©ro du menu EN ROUGE
 	int		nb_focus;			// Nombre de choix du menu actuel
 	char ** menu_txt;
-	int		redefine;			// Numéro du schnuff à redéfinir
+	int		redefine;			// NumÃ©ro du schnuff Ã  redÃ©finir
 	int		old_menu;
 	bool	up;
 
 	RECT	rec;
 
-	bool	start_sound_on;		// Ces deux booléens permettent de savoir si on a changé
-	bool	start_music_on;		// l'état de sound_on/music_on pour recharger le tout à la fin du menu
+	bool	start_sound_on;		// Ces deux boolÃ©ens permettent de savoir si on a changÃ©
+	bool	start_music_on;		// l'Ã©tat de sound_on/music_on pour recharger le tout Ã  la fin du menu
 
 	MenuMain();
 	void start();

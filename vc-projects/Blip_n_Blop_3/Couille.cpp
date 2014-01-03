@@ -38,14 +38,14 @@ const int anim_blip_saute_gauche [] = { 11, 11, 11, 10, 10, 9, 9, 3, 3, 3, 3 };
 const int anime_sautille [] = { 0, 2, 4, 2 };
 
 
-//----- Animations des détonations -------------------------------------------
+//----- Animations des dÃ©tonations -------------------------------------------
 
 const int anim_m16_deto[] = { 0, 1, 2, 1, 0 };
 const int anim_pm_deto [] = { 0, 1, 2, 1, 0 };
 const int anim_fusil_deto [] = { 0, 1, 2, 1, 0 };
 
 
-//----- Coordonnées des armes -------------------------------------------------
+//----- CoordonnÃ©es des armes -------------------------------------------------
 
 const int dx_m16 [] = { 3, 6, 0, 2, 7, -7, -2, 0, -6, -3 };
 const int dy_m16 [] = { -15, -9, -12, -10, -10, -10, -10, -12, -9, -15 };
@@ -69,7 +69,7 @@ const int dx_truc_laser [] = { -2, -1, 0, 3, -1, 1, -3, 0, 0, 2 };
 const int dy_truc_laser [] = { -6, -5, -8, -13, -15, -15, -13, -8, -5, -5 };
 
 
-//----- Coordonnées des détonation --------------------------------------------
+//----- CoordonnÃ©es des dÃ©tonation --------------------------------------------
 
 const int dx_m16_deto [] = { -2, 20, 30, 22, -3, 3, -21, -30, -20, 2 };
 const int dy_m16_deto [] = { 24, 20, -9, -31, -49, -49, -31, -9, 20, 24 };
@@ -87,7 +87,7 @@ const int dx_laser_deto [] = { -3, 24, 37, 29, -1, 0, -29, -37, -24, 2 };
 const int dy_laser_deto [] = { 32, 21, -8, -39, -53, -53, -39, -8, 21, 32 };
 
 
-//----- Coordonnées des tirs -------------------------------------------------
+//----- CoordonnÃ©es des tirs -------------------------------------------------
 
 const int dx_tir_m16 [] = { -2, 25, 35, 27, -3, 3, -26, -30, -25, 2 };
 const int dy_tir_m16 [] = { 29, 25, -9, -36, -54, -54, -36, -9, 25, 29 };
@@ -243,7 +243,7 @@ void Couille::afficheNormal()
 
 void Couille::afficheArme(int xtmp, int ytmp)
 {
-	// Affiche l'arme elle même
+	// Affiche l'arme elle mÃªme
 	//
 	int d_arme = dir_arme / 2;
 
@@ -316,7 +316,7 @@ void Couille::afficheArme(int xtmp, int ytmp)
 			break;
 	}
 
-	// Affiche la détonation
+	// Affiche la dÃ©tonation
 	//
 	if (tire) {
 		int d_arme2 = d_arme;
@@ -367,7 +367,7 @@ void Couille::afficheArme(int xtmp, int ytmp)
 
 void Couille::afficheOeil(int xtmp, int ytmp)
 {
-	int		base;	// Oeil de base (enervé & co)
+	int		base;	// Oeil de base (enervÃ© & co)
 	int		delta;	// Selon dir
 
 	// Prend le bon style d'oeil
@@ -379,7 +379,7 @@ void Couille::afficheOeil(int xtmp, int ytmp)
 			draw(xtmp - 12, ytmp - 14, pbk_own[23]);
 	} else {
 		if (tire)
-			base = 6;	// Oeil méchant
+			base = 6;	// Oeil mÃ©chant
 		else
 			base = 0;	// Oeil normal
 
@@ -519,7 +519,7 @@ void Couille::update()
 	}
 
 
-	// Poussé par le scroll
+	// PoussÃ© par le scroll
 	//
 	if (x < offset + 20 && !ctrl->droite() && !mur_opaque(x + 2, y)) {
 		x += 2;
@@ -533,7 +533,7 @@ void Couille::update()
 	if (yp != 0)
 		y = yp;
 
-	// Meure si ecrasé
+	// Meure si ecrasÃ©
 	//
 	if (x < offset - 30) {
 		no_scroll1 = true;
@@ -546,7 +546,7 @@ void Couille::update()
 
 		etat = ETAT_COME_BACK;
 
-		// Cherche un endroit où atterir
+		// Cherche un endroit oÃ¹ atterir
 		//
 		x = offset + 320;
 		int i = 0;
@@ -573,7 +573,7 @@ void Couille::update()
 		tire = false;
 	}
 
-	// Retire l'invincibilité
+	// Retire l'invincibilitÃ©
 	//
 	if (invincible > 0) {
 		invincible -= 1;
@@ -581,19 +581,19 @@ void Couille::update()
 		inv_cow = false;
 	}
 
-	// Rouvre l'oeil fermé
+	// Rouvre l'oeil fermÃ©
 	//
 	if (a_mal > 0)
 		a_mal -= 1;
 
-	// Gère le sautillement permanent de Blip et Blop
+	// GÃ¨re le sautillement permanent de Blip et Blop
 	//
 	if (ss_etape == 0) {
 		sauti++;
 		sauti %= 4;
 	}
 
-	// Gère le "deux fois en bas vite fait"
+	// GÃ¨re le "deux fois en bas vite fait"
 	//
 	if (ctrl->bas()) {
 		if (time_down > 0 && time_down < 10 && etat == ETAT_NORMAL)
@@ -705,7 +705,7 @@ void Couille::update()
 void Couille::onNormal()
 {
 
-	// Deux fois en bas très vite
+	// Deux fois en bas trÃ¨s vite
 	//
 	if (time_down == -1 && !mur_opaque(x, y + 5) && !mur_opaque(x, y + 10) && !mur_opaque(x, y + 15) && !mur_opaque(x, y + 20) && !mur_opaque(x, y + 25)) {
 		y += 10;
@@ -719,12 +719,12 @@ void Couille::onNormal()
 	}
 
 
-	// Si on appuie sur SAUT on saute ('tain c'est pas con ça!)
+	// Si on appuie sur SAUT on saute ('tain c'est pas con Ã§a!)
 	//
 	if (ctrl->saut() && !mur_opaque(x, y - 5)) {
 		etat = ETAT_SAUTE;
 		dy = -5;
-		lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+		lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 
 		dx_saut = dx_glisse;
 
@@ -739,7 +739,7 @@ void Couille::onNormal()
 	}
 
 
-	// Si on va à gauche ou à droite on passe dans l'etat AVANCE
+	// Si on va Ã  gauche ou Ã  droite on passe dans l'etat AVANCE
 	//
 	if (ctrl->gauche() || ctrl->droite() || dx_glisse != 0) {
 		etat = ETAT_AVANCE;
@@ -781,12 +781,12 @@ void Couille::onNormal()
 void Couille::onAvance()
 {
 
-	// Si on appuie sur SAUT on saute ('tain c'est pas con ça!)
+	// Si on appuie sur SAUT on saute ('tain c'est pas con Ã§a!)
 	//
 	if (ctrl->saut() && !mur_opaque(x, y - 5)) {
 		etat = ETAT_SAUTE;
 		dy = -5;
-		lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+		lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 
 		dx_saut = dx_glisse;
 
@@ -859,7 +859,7 @@ void Couille::onSaute()
 	int		yp;
 
 
-	// Pour gérer le saleto
+	// Pour gÃ©rer le saleto
 	//
 	if (!ctrl->saut())
 		jump_released = true;
@@ -891,7 +891,7 @@ void Couille::onSaute()
 	}
 
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;
@@ -902,7 +902,7 @@ void Couille::onSaute()
 		return;
 	}
 
-	// Même en tombant on peut se diriger à droite/gauche
+	// MÃªme en tombant on peut se diriger Ã  droite/gauche
 	//
 	if (!ctrl->inertia() || (!ctrl->bas() && !ctrl->haut())) {
 		if (ctrl->droite() && dx_saut < 2)
@@ -932,7 +932,7 @@ void Couille::onSaute()
 
 void Couille::manageDirection()
 {
-	// Gere la direction désirée (pas de diagonales pour le laser)
+	// Gere la direction dÃ©sirÃ©e (pas de diagonales pour le laser)
 	//
 	if (ctrl->haut()) {
 		if (ctrl->droite())
@@ -960,14 +960,14 @@ void Couille::manageDirection()
 		dir = BBDIR_DROITE;
 	} else if (ctrl->gauche()) {
 		dir = BBDIR_GAUCHE;
-	} else {	// Aucune direction -> on retourne à l'horizontale
+	} else {	// Aucune direction -> on retourne Ã  l'horizontale
 		if (dir <= BBLIM_DROITE)
 			dir = BBDIR_DROITE;
 		else
 			dir = BBDIR_GAUCHE;
 	}
 
-	// Gére la direction de l'arme
+	// GÃ©re la direction de l'arme
 	//
 	if (dir <= BBLIM_DROITE && dir_arme > BBLIM_DROITE)
 		dir_arme = BBDIR_BAS_B_G - dir_arme;
@@ -1009,7 +1009,7 @@ void Couille::updateArme()
 	}
 
 
-	// Gere les détonations
+	// Gere les dÃ©tonations
 	//
 	if (tire) {
 		ss_etape_arme += 1;
@@ -1052,13 +1052,13 @@ void Couille::updateArme()
 		pruno = cadence_arme - 1;
 	}
 
-	// Gère le recul
+	// GÃ¨re le recul
 	//
 	etape_recul += 1;
 	etape_recul %= 5;
 
 
-	// Gère les balles
+	// GÃ¨re les balles
 	//
 	pruno += 1;
 	pruno %= cadence_arme;
@@ -1360,7 +1360,7 @@ void Couille::onSaleto()
 	//
 	tombe2();
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;
@@ -1371,7 +1371,7 @@ void Couille::onSaleto()
 		return;
 	}
 
-	// Même en tombant on peut se diriger à droite/gauche
+	// MÃªme en tombant on peut se diriger Ã  droite/gauche
 	//
 	if (ctrl->droite() && dx_saut < 2)
 		dx_saut = 2;

@@ -105,7 +105,7 @@ void EnnemiMariotapette::onAvance()
 				dy = (int)(-9 + speed * 0.25);
 				//debug<<"dy: "<<dy<<" speed: "<<speed<<" dif_x: "<<dif_x<<" dif_y: "<<dif_y<<"\n";
 				etat = ETAT_SAUTE;
-				lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+				lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 				onSaute();
 				return;
 			} else if ((dir == SENS_GAUCHE) && (dif_y < 0) && (dif_x < 0) && (dif_y - dif_x < 0)) {
@@ -117,7 +117,7 @@ void EnnemiMariotapette::onAvance()
 				dy = (int)(-9 + speed * 0.25);
 				//debug<<"dy: "<<dy<<" speed: "<<speed<<" dif_x: "<<dif_x<<" dif_y: "<<dif_y<<"\n";
 				etat = ETAT_SAUTE;
-				lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+				lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 				onSaute();
 				return;
 			}
@@ -388,7 +388,7 @@ void EnnemiMariotapette::onSaute()
 		speed = 1;
 	}
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;

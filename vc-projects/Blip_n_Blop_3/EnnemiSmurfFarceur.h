@@ -31,7 +31,7 @@
 #define ETAT_DEGAINE			11
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSmurf
+//		DÃ©finition de la classe EnnemiSmurf
 //-----------------------------------------------------------------------------
 
 const int anim_smurf_marche_droite[] = { 0, 1, 2, 3, 4, 3, 2, 1 };

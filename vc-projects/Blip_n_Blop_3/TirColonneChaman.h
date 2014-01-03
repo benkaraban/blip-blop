@@ -23,7 +23,7 @@
 #include "Tir.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Tir
+//		DÃ©finition de la classe Tir
 //-----------------------------------------------------------------------------
 
 class TirColonneChaman : public Tir

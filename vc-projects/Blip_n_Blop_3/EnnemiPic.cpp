@@ -55,7 +55,7 @@ void EnnemiPic::update()
 			y += 1;
 			y_origine += 1;
 		} else {
-			//les pics sont rentrés donc on peut les detruires....
+			//les pics sont rentrÃ©s donc on peut les detruires....
 			for (int i = 28; i <= 55; i++)
 				murs_opaques[i][108] = false;
 

@@ -86,7 +86,7 @@ void EnnemiKnukles::onAvance()
 			speed = 0;
 			etape = 0;
 			ss_etape = 0;
-			lat_grav = 0;	// Sinon les sauts diffèrent par leur hauteur
+			lat_grav = 0;	// Sinon les sauts diffÃ¨rent par leur hauteur
 			dy = 0;
 			sbk_niveau.play(7);
 			onSaute();
@@ -217,7 +217,7 @@ void EnnemiKnukles::onSaute()
 	//{
 
 	int		yp;
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if ((dy > 0 && (yp = plat(x, y + dy)) != 0) && etape > 0) {
 		etat = ETAT_NORMAL;
@@ -301,7 +301,7 @@ void EnnemiKnukles::onTombe()
 
 	tombe();
 
-	// Et si on arrêtait de tomber ?
+	// Et si on arrÃªtait de tomber ?
 	//
 	if (dy > 0 && (yp = plat(x, y + dy)) != 0) {
 		etat = ETAT_NORMAL;

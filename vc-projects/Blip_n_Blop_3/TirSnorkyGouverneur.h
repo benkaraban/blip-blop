@@ -29,7 +29,7 @@
 #define TIME_MAX    100
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe TirSnorkyGouverneur
+//		DÃ©finition de la classe TirSnorkyGouverneur
 //-----------------------------------------------------------------------------
 
 class TirSnorkyGouverneur : public Tir

@@ -29,7 +29,7 @@ void EnnemiLemmings::update()
 	if (blood != 0)
 		blood -= 1;
 
-	// Si 200+ lemmings tués, ils se suicident et arrêtent les générateurs
+	// Si 200+ lemmings tuÃ©s, ils se suicident et arrÃªtent les gÃ©nÃ©rateurs
 	//
 	if (game_flag[FLAG_NB_KILL] >= 200 && etat != ETAT_MEURE && etat != ETAT_CARBONISE) {
 		suicide = true;
@@ -123,7 +123,7 @@ void EnnemiLemmings::onMeure()
 	if (ss_etape == 0)
 		etape += 1;
 
-	// Explosion abrégée si plus de plateforme
+	// Explosion abrÃ©gÃ©e si plus de plateforme
 	//
 	if (etape >= 6 && (plat(x - 80, y) == 0 || plat(x + 80, y) == 0))
 		a_detruire = true;

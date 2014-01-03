@@ -46,7 +46,7 @@
 #include "fondlampe2.h"
 #include "fondeau.h"
 
-//Fonds Jeux Vidéos
+//Fonds Jeux VidÃ©os
 //
 #include "fondCube.h"
 #include "fondPiece.h"
@@ -352,7 +352,7 @@ void EventFondAnime::doEvent()
 		else
 			list_fonds_animes.ajoute((void*) s);
 	} else {
-		debug << "Erreur : identité de fond animé inconnue (" << id_fond << ")\n";
+		debug << "Erreur : identitÃ© de fond animÃ© inconnue (" << id_fond << ")\n";
 	}
 
 }

@@ -38,7 +38,7 @@
 #define ETAT_MONTE				102
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiSmurfSauvage
+//		DÃ©finition de la classe EnnemiSmurfSauvage
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfSauvage : public Ennemi

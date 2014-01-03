@@ -20,10 +20,10 @@
 #define _DEBUG_
 
 //-----------------------------------------------------------------------------
-//		Constantes pour le débugage
+//		Constantes pour le dÃ©bugage
 //-----------------------------------------------------------------------------
 
-#define FILE_LOG	"BlipBlop.log"			// Nom du fichier utilisé
+#define FILE_LOG	"BlipBlop.log"			// Nom du fichier utilisÃ©
 #define MSG_MAX		50000					// Nombre de messages maximum
 
 //-----------------------------------------------------------------------------
@@ -35,7 +35,7 @@
 using namespace std;
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe Debug
+//		DÃ©finition de la classe Debug
 //-----------------------------------------------------------------------------
 
 class Debug
@@ -59,7 +59,7 @@ public:
 };
 
 //-----------------------------------------------------------------------------
-//		Déclaration d'un objet 'debug' global
+//		DÃ©claration d'un objet 'debug' global
 //-----------------------------------------------------------------------------
 
 #ifndef DEBUG_CPP_FILE

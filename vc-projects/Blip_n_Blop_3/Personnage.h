@@ -48,7 +48,7 @@
 #define SENS_DROITE		1
 #endif
 //-----------------------------------------------------------------------------
-//		Définition de la classe Personnage
+//		DÃ©finition de la classe Personnage
 //-----------------------------------------------------------------------------
 
 class Personnage : public Sprite

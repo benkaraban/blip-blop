@@ -24,7 +24,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiYoshiDCA
+//		DÃ©finition de la classe EnnemiYoshiDCA
 //----------------------------------------------------------------------------
 
 class EnnemiYoshiDCA : public Ennemi

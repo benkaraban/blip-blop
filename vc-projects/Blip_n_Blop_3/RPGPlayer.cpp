@@ -172,7 +172,7 @@ bool RPGPlayer::drawScene(IDirectDrawSurface7 * surf)
 		LGXpaker.halfTone(surf, &r);
 	}
 
-	// Affiche les têtes de con
+	// Affiche les tÃªtes de con
 	//
 	if (pic_tab[0] != NULL &&  nimage[0] >= 0 && nimage[0] < (*pic_tab[0]).getSize())
 		(*pic_tab[0])[nimage[0]]->PasteTo(surf, 0, 120);
@@ -225,7 +225,7 @@ bool RPGPlayer::updateScene()
 					while (read() && strcmp(buffer1, "endif") != 0);
 				}
 			} else if (strcmp(buffer1, "focus") == 0) {
-				// Gère le focus
+				// GÃ¨re le focus
 
 				if (strcmp(buffer2, "haut") == 0)
 					focus = 0;
@@ -234,7 +234,7 @@ bool RPGPlayer::updateScene()
 				else
 					error(buffer2);
 			} else if (strcmp(buffer1, "id") == 0) {
-				// Gère l'identité de la PBK de la case
+				// GÃ¨re l'identitÃ© de la PBK de la case
 
 				if (strcmp(buffer2, "joueur") == 0) {
 					pic_tab[focus] = &pbk_rpg_bb;
@@ -256,7 +256,7 @@ bool RPGPlayer::updateScene()
 
 				ntxt[focus] = atoi(buffer2);
 			} else if (strcmp(buffer1, "affiche") == 0) {
-				// Près pour l'affichage
+				// PrÃ¨s pour l'affichage
 
 				initial_time = timeGetTime();
 				wait_goal = timeGetTime() + atoi(buffer2);

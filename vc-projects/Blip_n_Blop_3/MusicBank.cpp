@@ -22,7 +22,7 @@ MusicBank::MusicBank() : nb_musiques(0), type(NULL), playing(NULL),
 MusicBank::~MusicBank()
 {
 	if (nb_musiques > 0) {
-		debug << "MusicBank non desallouée\n";
+		debug << "MusicBank non desallouÃ©e\n";
 		close();
 	}
 }
@@ -192,7 +192,7 @@ void MusicBank::play(int n)
 		return;
 
 	if (n < 0 || n >= nb_musiques) {
-		debug << "MusicBank::play() -> Tentative de jouer une musique non chargée : " << n << "\n";
+		debug << "MusicBank::play() -> Tentative de jouer une musique non chargÃ©e : " << n << "\n";
 		return;
 	}
 
@@ -213,7 +213,7 @@ void MusicBank::stop(int n)
 		return;
 
 	if (n < 0 || n >= nb_musiques) {
-		debug << "MusicBank::stop() -> Tentative de stoper une musique non chargée : " << n << "\n";
+		debug << "MusicBank::stop() -> Tentative de stoper une musique non chargÃ©e : " << n << "\n";
 		return;
 	}
 

@@ -22,7 +22,7 @@
 #define NB_CLIGNO 4
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiMarioHologramme
+//		DÃ©finition de la classe EnnemiMarioHologramme
 //----------------------------------------------------------------------------
 
 class EnnemiMarioHologramme : public Ennemi

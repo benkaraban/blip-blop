@@ -20,7 +20,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiTeteRayman
+//		DÃ©finition de la classe EnnemiTeteRayman
 //----------------------------------------------------------------------------
 
 class EnnemiTeteRayman : public Ennemi

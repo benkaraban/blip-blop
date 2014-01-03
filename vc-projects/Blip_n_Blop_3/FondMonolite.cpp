@@ -49,7 +49,7 @@ void FondMonolite::update()
 	else if ( y >= 387)
 		dy = -1;*/
 
-	// Si un joueur est sur la plateforme, on le déplace
+	// Si un joueur est sur la plateforme, on le dÃ©place
 	//
 	Sprite * joueur;
 	Sprite * ennemis;
@@ -93,7 +93,7 @@ void FondMonolite::update()
 		list_ennemis.suivant();
 	}
 
-	// Déplace la plateforme
+	// DÃ©place la plateforme
 	//
 	//y += dy;
 	if (etape_levitation <= 22) {

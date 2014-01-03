@@ -25,7 +25,7 @@
 
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe GoreGiclure
+//		DÃ©finition de la classe GoreGiclure
 //-----------------------------------------------------------------------------
 
 class GoreGiclure : public Sprite

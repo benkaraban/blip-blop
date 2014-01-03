@@ -102,7 +102,7 @@ protected:
 	int		back_vol;
 
 
-	// Méthodes
+	// MÃ©thodes
 	//
 	bool getCommand();
 	void initPlayer();
@@ -110,7 +110,7 @@ protected:
 	bool error();
 	bool error(const char * er);
 
-	// Execute toutes les commandes jusqu'à un affichage
+	// Execute toutes les commandes jusqu'Ã  un affichage
 	//
 	void updateState();
 

@@ -5,7 +5,7 @@
 *		EnnemiSmurfALunettes.h
 *		-----------------------
 *		Schtroump de base.
-*		Spécificité : Saute plus loin.
+*		SpÃ©cificitÃ© : Saute plus loin.
 *
 *		Mortimus / LOADED -   V 0.1 - 26 Octobre 2000
 *
@@ -23,7 +23,7 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe
+//		DÃ©finition de la classe
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfALunettes : public EnnemiSmurf

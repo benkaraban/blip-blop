@@ -8,7 +8,7 @@ int makeb_current_mode = 0;
 
 int bonus_list[][BONUS_SEED] = {
 
-	// Num 0 : 10 PM, 10 fusils (idéal pour niveaux bonus)
+	// Num 0 : 10 PM, 10 fusils (idÃ©al pour niveaux bonus)
 	{ BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL, BPM, BFUSIL },
 
 	// Num 1 : 10 PM, 10 fusils (idem num 0)
@@ -32,7 +32,7 @@ int bonus_list[][BONUS_SEED] = {
 	// Num 7 : 4 Lasers, 8 fusils, 8 PMs
 	{ BPM, BFUSIL, BPM, BFUSIL, BLASER, BPM, BFUSIL, BFUSIL, BFUSIL, BLASER, BPM, BFUSIL, BFUSIL, BFUSIL, BLASER, BPM, BFUSIL, BPM, BFUSIL, BLASER },
 
-	// Num 8 : 9 PM, 8 FUSILs, 1 bières, 1 tonneau, 1 invincibilité
+	// Num 8 : 9 PM, 8 FUSILs, 1 biÃ¨res, 1 tonneau, 1 invincibilitÃ©
 	{ BPM, BFUSIL, BPM, BPM, BFUSIL, BBEER, BPM, BFUSIL, BFUSIL, BPM, BFUSIL, BPM, BTONNO, BPM, BFUSIL, BPM, BFUSIL, BINV, BFUSIL, BPM },
 };
 

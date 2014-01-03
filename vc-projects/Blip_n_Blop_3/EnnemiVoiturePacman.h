@@ -23,7 +23,7 @@
 #define GRAVITE_MAX_VOITURE			8
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe EnnemiVoiturePacman
+//		DÃ©finition de la classe EnnemiVoiturePacman
 //----------------------------------------------------------------------------
 
 class EnnemiVoiturePacman : public Ennemi

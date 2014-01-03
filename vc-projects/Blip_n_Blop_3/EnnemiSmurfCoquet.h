@@ -5,8 +5,8 @@
 *		EnnemiSmurfCoquet.h
 *		-----------------------
 *		Schtroumph de base.
-*		Spécificité : Saute (beaucoup !) plus haut.
-*					  Vitesse tirée aléatoirement à la création.
+*		SpÃ©cificitÃ© : Saute (beaucoup !) plus haut.
+*					  Vitesse tirÃ©e alÃ©atoirement Ã  la crÃ©ation.
 *
 *		Mortimus / LOADED -   V 0.1 - 26 Octobre 2000
 *
@@ -24,7 +24,7 @@
 #include "EnnemiSmurf.h"
 
 //-----------------------------------------------------------------------------
-//		Définition de la classe
+//		DÃ©finition de la classe
 //-----------------------------------------------------------------------------
 
 class EnnemiSmurfCoquet : public EnnemiSmurf

@@ -58,7 +58,7 @@ void EnnemiBisouBoom::onAvance()
 		pic = pbk_ennemis[162 + etape];
 	}
 
-	// Si assez prêt du joueur -> kamikaze!
+	// Si assez prÃªt du joueur -> kamikaze!
 	//
 	if (tete_turc != NULL) {
 		int ddx = x - tete_turc->x;

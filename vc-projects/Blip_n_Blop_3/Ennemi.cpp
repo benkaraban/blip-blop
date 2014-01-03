@@ -5,7 +5,7 @@
 *		    Ennemi.cpp
 *		-----------------
 *
-*		Classe mère de tous les ennemis
+*		Classe mÃ¨re de tous les ennemis
 *
 *
 *		Prosper / LOADED -   V 0.1 - 3 Aout 2000
@@ -77,7 +77,7 @@ void Ennemi::estTouche(Tir * tir)
 				wait_for_bonus = 0;
 			}
 
-			// Incrémente le compteur
+			// IncrÃ©mente le compteur
 			game_flag[FLAG_NB_KILL] += 1;
 		}
 	}

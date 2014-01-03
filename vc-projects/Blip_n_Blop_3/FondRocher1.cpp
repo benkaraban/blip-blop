@@ -50,7 +50,7 @@ void FondRocher1::update()
 	else if ( y >= 387)
 		dy = -1;*/
 
-	// Si un joueur est sur la plateforme, on le déplace
+	// Si un joueur est sur la plateforme, on le dÃ©place
 	//
 	Sprite * joueur;
 
@@ -73,7 +73,7 @@ void FondRocher1::update()
 		list_joueurs.suivant();
 	}
 
-	// Déplace la plateforme
+	// DÃ©place la plateforme
 	//
 	//y += dy;
 	if (etape_levitation <= 13) {

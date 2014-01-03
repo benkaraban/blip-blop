@@ -6,8 +6,8 @@
 *		----------------
 *
 *
-*		Liste de pointeurs (void*) doublement chaînée
-*		MAIS à sens unique
+*		Liste de pointeurs (void*) doublement chaÃ®nÃ©e
+*		MAIS Ã  sens unique
 *
 *
 *		Prosper / LOADED -   V 1.0 - 28 Juin 2000
@@ -39,7 +39,7 @@ class SuperListe
 protected:
 	CELLULE *	tete;		// Tete de la liste
 	CELLULE *	obs;		// Observateur
-	int			nb_elem;	// Nombre d'élements
+	int			nb_elem;	// Nombre d'Ã©lements
 public:
 	static CELLULE *trash;
 	static int		nb_lists;
@@ -54,7 +54,7 @@ public:
 	~SuperListe();
 
 
-	// Met l'observateur sur la tête
+	// Met l'observateur sur la tÃªte
 	//
 	inline void 	start()
 	{
@@ -70,12 +70,12 @@ public:
 	};
 
 
-	// Rajoute une cellule en tête de liste
+	// Rajoute une cellule en tÃªte de liste
 	//
 	void	ajoute(void * nouvo);
 
 
-	// Supprime la cellule observée
+	// Supprime la cellule observÃ©e
 	//
 	// ! ATTENTION !
 	//
@@ -84,7 +84,7 @@ public:
 	void	supprime();
 
 
-	// Supprime la cellule observée, mais pas la valeur contenue
+	// Supprime la cellule observÃ©e, mais pas la valeur contenue
 	//
 	void *	supprimePorc();
 
@@ -95,7 +95,7 @@ public:
 	void	vide_porc();
 
 
-	// Renvoit le nombre d'éléments contenus
+	// Renvoit le nombre d'Ã©lÃ©ments contenus
 	//
 	inline int	taille() const
 	{
@@ -103,7 +103,7 @@ public:
 	};
 
 
-	// Indique si la fin de la liste a été atteinte
+	// Indique si la fin de la liste a Ã©tÃ© atteinte
 	//
 	inline bool	fin() const
 	{
@@ -119,7 +119,7 @@ public:
 	};
 
 
-	// Renvoit la valeur de la cellule observée
+	// Renvoit la valeur de la cellule observÃ©e
 	//
 	inline void *	info() const
 	{
@@ -130,7 +130,7 @@ public:
 	};
 
 
-	// Trie la liste selon la fonction donnée en paramètre
+	// Trie la liste selon la fonction donnÃ©e en paramÃ¨tre
 	//
 	void	(trier(int (*fonc)(const void *, const void*)));
 };
