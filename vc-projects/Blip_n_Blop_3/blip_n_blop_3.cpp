@@ -606,6 +606,16 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
  *   WinMain
  */
 
+#ifndef _WIN32
+int main()
+{
+	if (!InitApp(0, 0))
+		return -1;
+
+	game.go();
+	return 0;
+}
+#else
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow)
 {
@@ -659,3 +669,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	return 0;
 
 } // WinMain ------------------------
+#endif

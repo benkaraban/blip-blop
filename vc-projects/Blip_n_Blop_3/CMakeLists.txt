@@ -4,7 +4,8 @@ project(blipblop)
 
 include_directories(Engine)
 aux_source_directory(. SRC)
-add_executable(blipblop ${SRC})
+aux_source_directory(Engine ENGINE_SRC)
+add_executable(blipblop ${SRC} ${ENGINE_SRC})
 
 add_custom_target(astyle COMMAND
     astyle --indent=tab --indent-preprocessor --style=kr
