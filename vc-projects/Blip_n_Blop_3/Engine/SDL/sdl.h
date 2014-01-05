@@ -1,6 +1,7 @@
-#include <SDL_main.h>
+#include <SDL.h>
 
 #include "sdl_surface.h"
+#include "sdl_texture.h"
 
 namespace SDL
 {
@@ -12,16 +13,16 @@ public:
 	bool					SetCooperativeLevel(HWND wh, int flags);
 	bool					SetGfxMode(int x, int y, int d);
 	void					Close();
-	SDL::Surface *	CreatePrimary();
-	SDL::Surface *	CreatePrimary(SDL::Surface * & back);
-	SDL::Surface *	CreateSurface(int x, int y);
-	SDL::Surface *	CreateSurface(int x, int y, int flags);
-	SDL::Surface *	LoadBMP(char * file);
-	SDL::Surface *	LoadBMP(char * file, int flags);
-	HRESULT					CopyBMP(SDL::Surface *surf, HBITMAP hbm);
+	SDL::Texture *	CreatePrimary();
+	SDL::Texture *	CreatePrimary(SDL::Texture * & back);
+	SDL::Texture *	CreateSurface(int x, int y);
+	SDL::Texture *	CreateSurface(int x, int y, int flags);
+	SDL::Texture *	LoadBMP(char * file);
+	SDL::Texture *	LoadBMP(char * file, int flags);
+	HRESULT					CopyBMP(SDL::Texture *surf, HBITMAP hbm);
 	IDirectDrawPalette *	LoadPalette(char * file);
-	DWORD					FindColor(SDL::Surface *surf, COLORREF rgb);
-	HRESULT					SetColorKey(SDL::Surface *surf, COLORREF rgb);
+	DWORD					FindColor(SDL::Texture *surf, COLORREF rgb);
+	HRESULT					SetColorKey(SDL::Texture *surf, COLORREF rgb);
 	void					Flip();
 	void					FlipV();
 
