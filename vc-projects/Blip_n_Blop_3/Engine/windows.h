@@ -7,9 +7,11 @@ using namespace std;
 
 #define CALLBACK
 #define WINAPI
+#define __cdecl
 
 #define TRUE true
 #define FALSE false
+#define MAX_PATH 260
 
 typedef unsigned short WORD;
 typedef WORD ATOM;
@@ -34,6 +36,8 @@ typedef unsigned int UINT_PTR;
 typedef UINT_PTR WPARAM;
 typedef long LONG_PTR;
 typedef unsigned long ULONG_PTR;
+typedef long long LONGLONG;
+typedef ULONG_PTR DWORD_PTR;
 typedef LONG_PTR LPARAM;
 typedef LONG_PTR LRESULT;
 typedef HANDLE HINSTANCE;
@@ -45,6 +49,18 @@ typedef HINSTANCE HMODULE;
 typedef HANDLE HGDIOBJ;
 typedef HANDLE HRSRC;
 typedef HANDLE HGLOBAL;
+typedef void* LPUNKNOWN;
+typedef int64_t __int64;
+
+typedef struct {
+	unsigned long Data1;
+	unsigned short Data2;
+	unsigned short Data3;
+	BYTE Data4[8];
+} GUID, UUID, *PGUID;
+typedef GUID IID;
+typedef IID* REFIID;
+typedef GUID* REFGUID;
 
 #ifdef UNICODE
 typedef WCHAR TCHAR;
@@ -53,6 +69,18 @@ typedef LPCWSTR LPCTSTR;
 typedef char TCHAR;
 typedef LPCSTR LPCTSTR;
 #endif
+
+typedef union _LARGE_INTEGER {
+	struct {
+		DWORD LowPart;
+		LONG  HighPart;
+	};
+	struct {
+		DWORD LowPart;
+		LONG  HighPart;
+	} u;
+	LONGLONG QuadPart;
+} LARGE_INTEGER, *PLARGE_INTEGER;
 
 #define CS_HREDRAW 0x1
 #define CS_VREDRAW 0x2
@@ -250,7 +278,7 @@ typedef struct tagPALETTEENTRY {
 	BYTE peGreen;
 	BYTE peBlue;
 	BYTE peFlags;
-} PALETTEENTRY;
+} PALETTEENTRY, *LPPALETTEENTRY;
 
 #define RT_BITMAP "BITMAP?"
 
@@ -263,7 +291,7 @@ HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType);
 #define FILE_SHARE_READ 0x2
 #define OPEN_EXISTING 0x4
 #define FILE_ATTRIBUTE_NORMAL 0x8
-#define INVALID_HANDLE_VALUE 0x16
+#define INVALID_HANDLE_VALUE NULL
 
 typedef struct _OVERLAPPED {
 	ULONG_PTR Internal;
@@ -281,5 +309,29 @@ typedef struct _OVERLAPPED {
 HANDLE WINAPI CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void* unused, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
 BOOL WINAPI ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);
 BOOL WINAPI CloseHandle(HANDLE hObject);
+long _filelength(int fd);
+DWORD timeGetTime(void);
+BOOL WINAPI QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency);
+BOOL WINAPI QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount);
+
+#define PM_NOREMOVE 0x1
+typedef struct tagPOINT {
+	LONG x;
+	LONG y;
+} POINT, *PPOINT;
+typedef struct tagMSG {
+	HWND   hwnd;
+	UINT   message;
+	WPARAM wParam;
+	LPARAM lParam;
+	DWORD  time;
+	POINT  pt;
+} MSG, *PMSG, *LPMSG;
+BOOL WINAPI PeekMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
+LRESULT WINAPI DispatchMessage(const MSG *lpmsg);
+BOOL WINAPI TranslateMessage(const MSG *lpMsg);
+BOOL WINAPI GetMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+
+char* _itoa(int value, char* str, int base);
 
 #endif

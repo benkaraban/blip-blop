@@ -6,13 +6,85 @@
 #define DISCL_NONEXCLUSIVE 0x1
 #define DISCL_FOREGROUND 0x2
 #define DISCL_NOWINKEY 0x4
+#define DISCL_EXCLUSIVE 0x8
+
+#define DIRECTINPUT_VERSION 0x1
+
+#define DI_OK 0x1
+#define GUID_SysKeyboard 0x1
+#define DI8DEVTYPE_GAMEPAD 0x1
+#define DIEDFL_ATTACHEDONLY 0x1
+#define DIJOFS_X 0x1
+#define DIJOFS_Y 0x2
+#define DIPROP_RANGE 0x2
+#define DIPROP_DEADZONE 0x4
+#define DIENUM_CONTINUE 0x1
+#define DIENUM_STOP 0x2
+#define DIPH_BYOFFSET 0x1
+typedef struct DIPROPHEADER {
+	DWORD dwSize;
+	DWORD dwHeaderSize;
+	DWORD dwObj;
+	DWORD dwHow;
+} DIPROPHEADER, *LPDIPROPHEADER;
+typedef const DIPROPHEADER* LPCDIPROPHEADER;
+typedef struct DIPROPRANGE {
+	DIPROPHEADER diph;
+	LONG lMin;
+	LONG lMax;
+} DIPROPRANGE, *LPDIPROPRANGE;
+typedef struct DIPROPDWORD {
+	DIPROPHEADER diph;
+	DWORD dwData;
+} DIPROPDWORD, *LPDIPROPDWORD;
+
+typedef struct {
+} CDIDATAFORMAT, *LPCDIDATAFORMAT;
+extern CDIDATAFORMAT c_dfDIKeyboard, c_dfDIJoystick;
 
 struct IDirectInput;
 struct IDirectInput7;
 struct IDirectInputDevice7;
 struct DIDEVICEINSTANCE;
-struct IDirectInput8;
-struct IDirectInputDevice8;
+struct IDirectInputDevice8 {
+	HRESULT SetDataFormat(LPCDIDATAFORMAT lpdf);
+	HRESULT SetCooperativeLevel(HWND hwnd,DWORD dwFlags);
+
+	HRESULT Acquire();
+	HRESULT Unacquire();
+	HRESULT SetProperty(/*REFGUID*/int rguidProp,LPCDIPROPHEADER pdiph);
+	HRESULT GetDeviceState(DWORD cbData,LPVOID lpvData);
+	HRESULT Poll();
+
+	void Release();
+};
+
+typedef struct DIDEVICEINSTANCE {
+	DWORD dwSize;
+	/*GUID*/int guidInstance;
+	GUID guidProduct;
+	DWORD dwDevType;
+	TCHAR tszInstanceName[MAX_PATH];
+	TCHAR tszProductName[MAX_PATH];
+	GUID guidFFDriver;
+	WORD wUsagePage;
+	WORD wUsage;
+} DIDEVICEINSTANCE, *LPDIDEVICEINSTANCE;
+typedef const DIDEVICEINSTANCE * LPCDIDEVICEINSTANCE;
+typedef BOOL(*LPDIENUMDEVICESCALLBACK)(LPCDIDEVICEINSTANCE lpddi,LPVOID pvRef);
+typedef struct IDirectInput8 LPDIRECTINPUTDEVICE8A;
+typedef struct IDirectInput8 LPDIRECTINPUTDEVICE8;
+typedef struct IDirectInput8 LPDIRECTINPUTDEVICE;
+struct IDirectInput8 {
+	HRESULT CreateDevice(/*REFGUID*/int rguid,LPDIRECTINPUTDEVICE * lplpDirectInputDevice,LPUNKNOWN pUnkOuter);
+	HRESULT EnumDevices(DWORD dwDevType, LPDIENUMDEVICESCALLBACK lpCallback,LPVOID pvRef,DWORD dwFlags);
+	void Release();
+};
+
+#define IID_IDirectInput8 0
+HRESULT DirectInput8Create(HINSTANCE hinst,DWORD dwVersion,/*REFIID*/int riidltf,LPVOID * ppvOut, void* unused);
+
+BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* pContext);
 
 typedef struct {
 	LONG lX;

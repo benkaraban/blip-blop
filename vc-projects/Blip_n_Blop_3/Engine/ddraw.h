@@ -125,6 +125,7 @@ typedef struct _DDSURFACEDESC2 : DDSURFACEDESC {
 #define DDSD_WIDTH 0x4
 #define DDSD_CAPS 0x8
 #define DDSD_BACKBUFFERCOUNT 0x16
+#define DDPCAPS_8BIT 0x8
 #define DD_OK 0x0
 
 #define DDBLT_WAIT 0x1
@@ -133,6 +134,9 @@ typedef struct _DDSURFACEDESC2 : DDSURFACEDESC {
 #define DDBLTFAST_SRCCOLORKEY 0x2
 #define DDBLTFAST_NOCOLORKEY 0x4
 #define DDFLIP_WAIT 0x1
+#define DDFLIP_NOVSYNC 0x2
+#define DDSD_PIXELFORMAT 0x1
+#define DDPF_RGB 0x1
 
 struct IDirectDrawSurface7;
 typedef IDirectDrawSurface7* LPDIRECTDRAWSURFACE7;
@@ -186,8 +190,13 @@ typedef struct _DDBLTFX {
 
 #define DDLOCK_SURFACEMEMORYPTR 0x1
 #define DDLOCK_WAIT 0x2
+#define DDLOCK_WRITEONLY 0x4
 #define DDERR_WASSTILLDRAWING 0x1
 #define DDCKEY_SRCBLT 0x1
+
+struct IDirectDrawPalette {
+};
+typedef struct IDirectDrawPalette    FAR *LPDIRECTDRAWPALETTE;
 
 struct IDirectDraw7 {
 	void RestoreAllSurfaces();
@@ -196,6 +205,7 @@ struct IDirectDraw7 {
 	HRESULT SetCooperativeLevel(HWND hWnd, DWORD dwFlags);
 	HRESULT SetDisplayMode(DWORD dwWidth,  DWORD dwHeiight, DWORD dwBPP, DWORD dwRefreshRate,  DWORD dwFlags);
 	HRESULT CreateSurface(LPDDSURFACEDESC2 lpDDSurfaceDesc2, LPDIRECTDRAWSURFACE7 FAR *lplpDDSurface, void* unused);
+	HRESULT CreatePalette(DWORD dwFlags,LPPALETTEENTRY lpDDColorArray,LPDIRECTDRAWPALETTE FAR *lplpDDPalette,void FAR *pUnkOuter);
 };
 struct IDirectDrawSurface7 {
 	void BltFast(int x, int y, IDirectDrawSurface7* surf, RECT*, int flags);
@@ -211,6 +221,7 @@ struct IDirectDrawSurface7 {
 	HRESULT Lock(LPRECT lpDestRect, LPDDSURFACEDESC2 lpDDSurfaceDesc, DWORD dwFlags, HANDLE hEvent);
 	HRESULT Unlock(LPRECT lpRect);
 	HRESULT SetColorKey(DWORD dwFlags, LPDDCOLORKEY lpDDColorKey);
+	HRESULT GetPixelFormat(LPDDPIXELFORMAT lpDDPixelFormat);
 };
 
 #define IID_IDirectDraw7 0
