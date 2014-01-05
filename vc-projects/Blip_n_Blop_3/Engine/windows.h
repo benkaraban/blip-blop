@@ -209,7 +209,7 @@ void ZeroMemory(PVOID Destination, SIZE_T Length);
 LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags);
 int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType);
 
-void SetCursor(bool);
+void SetCursor(void*);
 WORD HIWORD(DWORD dwValue);
 VOID WINAPI PostQuitMessage(int nExitCode);
 LRESULT WINAPI DefWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
