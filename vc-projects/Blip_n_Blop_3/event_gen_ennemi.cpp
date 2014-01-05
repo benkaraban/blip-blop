@@ -16,9 +16,9 @@
 *
 ******************************************************************/
 
-#include "EventGenennemi.h"
+#include "event_gen_ennemi.h"
 #include "gen_ennemi_tmp.h"
-#include "Genennemi.h"
+#include "gen_ennemi.h"
 
 void EventGenEnnemi::doEvent()
 {

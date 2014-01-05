@@ -24,6 +24,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <cstdlib>
 #include "super_liste.h"
 #include "ben_debug.h"
 

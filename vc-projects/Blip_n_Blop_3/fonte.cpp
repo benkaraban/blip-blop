@@ -148,7 +148,7 @@ void Fonte::print(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
 	curx = x;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
-		c = unsigned char(txt[i]);
+		c = (unsigned char) txt[i];
 		if (c == ' ') {
 			curx += spc;
 		} else if (pictab[c] != NULL) {
@@ -176,7 +176,7 @@ void Fonte::printM(IDirectDrawSurface7 * surf, int x, int y, const char * txt, i
 
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
-		c = unsigned char(txt[i]);
+		c = (unsigned char) txt[i];
 
 		if (c == ' ') {
 			curx += spc;
@@ -209,7 +209,7 @@ void Fonte::printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
 	int		c;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
-		c = unsigned char(txt[i]);
+		c = (unsigned char) txt[i];
 
 		if (c == ' ')
 			l += spc;
@@ -232,7 +232,7 @@ void Fonte::printC(IDirectDrawSurface7 * surf, int xtaille, int y, const char * 
 	int		c;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
-		c = unsigned char(txt[i]);
+		c = (unsigned char) txt[i];
 
 		if (c == ' ')
 			l += spc;
@@ -325,7 +325,7 @@ int Fonte::width(const char * txt)
 	int		c;
 
 	for (unsigned int i = 0; i < strlen(txt); i++) {
-		c = unsigned char(txt[i]);
+		c = (unsigned char) txt[i];
 
 		if (c == ' ')
 			l += spc;

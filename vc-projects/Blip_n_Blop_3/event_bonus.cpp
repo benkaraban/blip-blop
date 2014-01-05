@@ -1,5 +1,5 @@
 
-#include "eventbonus.h"
+#include "event_bonus.h"
 #include "bonus_pm.h"
 #include "bonus_fusil.h"
 #include "bonus_laser.h"

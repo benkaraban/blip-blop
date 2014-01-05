@@ -17,7 +17,7 @@
 #ifndef _GenEnnemiTMP_
 #define _GenEnnemiTMP_
 
-#include "genennemi.h"
+#include "gen_ennemi.h"
 
 class GenEnnemiTMP : public GenEnnemi
 {

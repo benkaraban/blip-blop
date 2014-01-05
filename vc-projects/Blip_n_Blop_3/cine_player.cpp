@@ -1,5 +1,5 @@
-
-#include <ctype.h>
+#include <cctype>
+#include <cstring>
 //#include <fcntl.h>
 #include "cine_player.h"
 #include "ben_divers.h"

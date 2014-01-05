@@ -16,7 +16,7 @@
 *
 ******************************************************************/
 
-#include "Eventennemi.h"
+#include "event_ennemi.h"
 #include "enemy.h"
 
 #include "ennemi_smurf.h"

@@ -14,7 +14,8 @@
 ******************************************************************/
 
 #include <fstream>
-#include <stdio.h>
+#include <cstdio>
+#include <cstring>
 #include "lgx_packer.h"
 #include "rpg_player.h"
 #include "globals.h"

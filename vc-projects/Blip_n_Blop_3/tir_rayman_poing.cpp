@@ -3,7 +3,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <Math.h>
+#include <cmath>
 #include "tir_rayman_poing.h"
 #include "ben_debug.h"
 
