@@ -351,7 +351,7 @@ int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr)
 		taille++;		// 1 mot inscrit
 
 
-		*((unsigned short*)ptrd) = unsigned short((rval << LGX_RDECAL_0) | (gval << LGX_GDECAL_0) | (bval << LGX_BDECAL_0));
+		*((unsigned short*)ptrd) = (unsigned short)((rval << LGX_RDECAL_0) | (gval << LGX_GDECAL_0) | (bval << LGX_BDECAL_0));
 		ptrd += 2;
 
 		x++;
@@ -416,7 +416,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 		gval = (((pixval >> 8) & 0xFF) * LGX_GMAX_1) / 0xFF;
 		bval = (((pixval >> 16) & 0xFF) * LGX_BMAX_1) / 0xFF;
 
-		LGXpixval = unsigned short((rval << LGX_RDECAL_1) | (gval << LGX_GDECAL_1) | (bval << LGX_BDECAL_1));
+		LGXpixval = (unsigned short)((rval << LGX_RDECAL_1) | (gval << LGX_GDECAL_1) | (bval << LGX_BDECAL_1));
 
 		cpt = 0;
 
@@ -437,7 +437,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 			gval = (((pixval >> 8) & 0xFF) * LGX_GMAX_1) / 0xFF;
 			bval = (((pixval >> 16) & 0xFF) * LGX_BMAX_1) / 0xFF;
 
-			LGXpixval2 = unsigned short((rval << LGX_RDECAL_1) | (gval << LGX_GDECAL_1) | (bval << LGX_BDECAL_1));
+			LGXpixval2 = (unsigned short)((rval << LGX_RDECAL_1) | (gval << LGX_GDECAL_1) | (bval << LGX_BDECAL_1));
 
 
 		} while (y < ys && LGXpixval == LGXpixval2 && cpt < 0x7FFF);
@@ -446,7 +446,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 
 
 		if (cpt >= 2) {
-			*((unsigned short*)ptrd) = unsigned short(unsigned short(0x8000) | cpt);
+			*((unsigned short*)ptrd) = (unsigned short)((unsigned short)0x8000 | cpt);
 			ptrd += 2;
 			taille += 2;	// 2 mots inscrits
 		} else {

@@ -27,9 +27,10 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <windows.h>
 #include <fstream>
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 #include "ben_debug.h"
 
 //-----------------------------------------------------------------------------
@@ -104,8 +105,7 @@ Debug & Debug::operator << (int nb)
 	char	r[10];
 
 	_itoa(nb, r, 10);				// Base 10 pour les nombres quelconques
-	Msg(r);
-	return *this;
+	Msg(r);	return *this;
 }
 
 
@@ -120,7 +120,7 @@ Debug & Debug::operator << (void * ptr)
 {
 	char	r[10];
 
-	_itoa(int(ptr), r, 16);			// Base 16 pour les adresses
+	_itoa(int(long(ptr)), r, 16);			// Base 16 pour les adresses
 	Msg(r);
 	return *this;
 }

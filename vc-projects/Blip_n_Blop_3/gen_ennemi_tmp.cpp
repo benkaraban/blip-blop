@@ -16,7 +16,7 @@
 
 
 #include "gen_ennemi_tmp.h"
-#include "eventennemi.h"
+#include "event_ennemi.h"
 
 #ifndef SENS_GAUCHE
 #define SENS_GAUCHE		0

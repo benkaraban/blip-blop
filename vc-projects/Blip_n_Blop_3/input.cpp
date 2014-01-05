@@ -210,7 +210,7 @@ unsigned int Input::waitKey()
 			if (scanKey(i))
 				key = i;
 
-		for (i = 0; i < unsigned int(n_joy); i++) {
+		for (i = 0; i < (unsigned int)n_joy; i++) {
 			k = (i + 1) * (1 << 10);
 
 			for (j = 0; j < 14; j++)
@@ -237,7 +237,7 @@ void Input::waitClean()
 		for (i = 0; i < 256; i++)
 			j |= scanKey(i);
 
-		for (i = 0; i < unsigned int(n_joy); i++) {
+		for (i = 0; i < (unsigned int)n_joy; i++) {
 			unsigned int k = (i + 1) * (1 << 10);
 
 			for (int l = 0; l < 14; l++)
@@ -300,7 +300,7 @@ bool Input::anyKeyPressed()
 		if (scanKey(i))
 			key = i;
 
-	for (i = 0; i < unsigned int(n_joy); i++) {
+	for (i = 0; i < (unsigned int)n_joy; i++) {
 		k = (i + 1) * (1 << 10);
 
 		for (j = 0; j < 14; j++)

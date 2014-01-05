@@ -1,7 +1,7 @@
 
 #include "ennemi_luigi.h"
 #include "tir_debouche_chiote.h"
-#include "Goregiclure.h"
+#include "gore_giclure.h"
 #include "ennemi_sonic.h"
 #include "ennemi_voiture_pacman.h"
 #include "event_hold_fire.h"

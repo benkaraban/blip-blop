@@ -17,7 +17,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <Math.h>
+#include <cmath>
 #include "tir_tornade.h"
 
 

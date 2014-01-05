@@ -19,7 +19,7 @@
 //-----------------------------------------------------------------------------
 
 #include "tir_bb_vache.h"
-#include "goregiclure.h"
+#include "gore_giclure.h"
 
 void TirBBVache::update()
 {

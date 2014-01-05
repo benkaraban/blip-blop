@@ -13,9 +13,9 @@
 *
 ******************************************************************/
 
-#include <stdlib.h>
+#include <cstdlib>
 #include "globals.h"
-#include "genbonus.h"
+#include "gen_bonus.h"
 #include "make_bonus.h"
 
 GenBonus::GenBonus() : t(0), a_detruire(false)

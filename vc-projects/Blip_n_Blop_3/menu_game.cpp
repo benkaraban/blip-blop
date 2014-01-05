@@ -1,10 +1,10 @@
-
-#include <stdio.h>
+#include <cstdio>
+#include <cstring>
 #include "lgx_packer.h"
 #include "input.h"
 #include "globals.h"
 #include "config.h"
-#include "menugame.h"
+#include "menu_game.h"
 #include "txt_data.h"
 #include "control_alias.h"
 #include "key_translator.h"

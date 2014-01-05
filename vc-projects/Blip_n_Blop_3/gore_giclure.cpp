@@ -14,7 +14,7 @@
 *
 ******************************************************************/
 
-#include "Goregiclure.h"
+#include "gore_giclure.h"
 
 //implementation de la classe GoreGiclure
 

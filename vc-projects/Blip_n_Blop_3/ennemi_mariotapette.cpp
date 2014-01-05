@@ -1,7 +1,7 @@
 
 #include "ennemi_mariotapette.h"
 #include "ennemi_luigi.h"
-#include "Goregiclure.h"
+#include "gore_giclure.h"
 #include "event_hold_fire.h"
 
 

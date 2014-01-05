@@ -750,6 +750,7 @@ BOOL GetRGBFormat(LPDIRECTDRAWSURFACE7 surf, RGBFORMAT* rgb)
 
 BOOL __cdecl IsMMX(void)
 {
+#ifdef _WIN32
 	SYSTEM_INFO si;
 	int nCPUFeatures = 0;
 	GetSystemInfo(&si);
@@ -786,4 +787,7 @@ BOOL __cdecl IsMMX(void)
 		}
 	}
 	return (nCPUFeatures & 0x00800000) != 0;
+#else
+	return false;
+#endif
 }

@@ -1,5 +1,5 @@
 #include "ennemi_poid.h"
-#include "Goregiclure.h"
+#include "gore_giclure.h"
 
 
 EnnemiPoid::EnnemiPoid(): nb_colision(0)
