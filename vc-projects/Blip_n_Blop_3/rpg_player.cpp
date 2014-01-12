@@ -124,7 +124,7 @@ void RPGPlayer::stopPlay()
 	fic.close();
 }
 
-bool RPGPlayer::drawScene(IDirectDrawSurface7 * surf)
+bool RPGPlayer::drawScene(SDL::Surface * surf)
 {
 	bool	not_finished = true;
 

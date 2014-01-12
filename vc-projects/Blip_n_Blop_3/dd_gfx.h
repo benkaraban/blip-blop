@@ -32,14 +32,14 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
+#include "graphics.h"
 
 //-----------------------------------------------------------------------------
 //		Objet 'ddraw' global (avec protection pour gfxutil.cpp)
 //-----------------------------------------------------------------------------
 
 #ifndef GFX_CPP_FILE
-extern IDirectDraw7 *	ddraw;
+extern Graphics *	graphicInstance;
 #endif
 
 //-----------------------------------------------------------------------------
@@ -51,16 +51,16 @@ bool					DDSetCooperativeLevel(HWND wh);
 bool					DDSetCooperativeLevel(HWND wh, int flags);
 bool					DDSetGfxMode(int x, int y, int d);
 void					DDCloseDirectDraw();
-IDirectDrawSurface7 *	DDCreatePrimary();
-IDirectDrawSurface7 *	DDCreatePrimary(IDirectDrawSurface7 * & back);
-IDirectDrawSurface7 *	DDCreateSurface(int x, int y);
-IDirectDrawSurface7 *	DDCreateSurface(int x, int y, int flags);
-IDirectDrawSurface7 *	DDLoadBMP(char * file);
-IDirectDrawSurface7 *	DDLoadBMP(char * file, int flags);
-HRESULT					DDCopyBMP(IDirectDrawSurface7 *surf, HBITMAP hbm);
-IDirectDrawPalette *	DDLoadPalette(char * file);
-DWORD					DDFindColor(IDirectDrawSurface7 *surf, COLORREF rgb);
-HRESULT					DDSetColorKey(IDirectDrawSurface7 *surf, COLORREF rgb);
+SDL::Surface *	DDCreatePrimary();
+SDL::Surface *	DDCreatePrimary(SDL::Surface * & back);
+SDL::Surface *	DDCreateSurface(int x, int y);
+SDL::Surface *	DDCreateSurface(int x, int y, int flags);
+SDL::Surface *	DDLoadBMP(char * file);
+SDL::Surface *	DDLoadBMP(char * file, int flags);
+HRESULT					DDCopyBMP(SDL::Surface *surf, HBITMAP hbm);
+void *	DDLoadPalette(char * file);
+DWORD					DDFindColor(SDL::Surface *surf, COLORREF rgb);
+HRESULT					DDSetColorKey(SDL::Surface *surf, COLORREF rgb);
 void					DDFlip();
 void					DDFlipV();
 

@@ -33,7 +33,7 @@ void FondAssembleur::affiche()
 {
 	//Sprite::affiche();
 
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 	int						xs;
 	int						ys;
 	RECT					r;

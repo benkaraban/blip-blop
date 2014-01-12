@@ -51,27 +51,27 @@ public:
 
 	// Affiche du texte normal
 	//
-	void print(IDirectDrawSurface7 * surf, int x, int y, const char * txt);
+	void print(SDL::Surface * surf, int x, int y, const char * txt);
 
 
 	// Affiche texte justifié à droite
 	//
-	void printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt);
+	void printR(SDL::Surface * surf, int x, int y, const char * txt);
 
 
 	// Affiche texte centré
 	//
-	void printC(IDirectDrawSurface7 * surf, int xtaille, int y, const char * txt);
+	void printC(SDL::Surface * surf, int xtaille, int y, const char * txt);
 
 
 	// Affiche texte multiligne
 	//
-	void printM(IDirectDrawSurface7 * surf, int x, int y, const char * txt, int ym);
+	void printM(SDL::Surface * surf, int x, int y, const char * txt, int ym);
 
 
 	// Affiche texte multiligne sans couper les mots
 	//
-	void printMW(IDirectDrawSurface7 * surf, int x, int y, const char * txt, int ym);
+	void printMW(SDL::Surface * surf, int x, int y, const char * txt, int ym);
 
 
 	// Renvoie la longueur en pixels d'un texte donné

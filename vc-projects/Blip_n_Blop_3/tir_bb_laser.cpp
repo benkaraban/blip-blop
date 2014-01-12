@@ -119,7 +119,7 @@ void TirBBLaser::update()
 
 void TirBBLaser::affiche()
 {
-	IDirectDrawSurface7 *	surf = pbk_bb[base + etape]->Surf();
+	SDL::Surface *	surf = pbk_bb[base + etape]->Surf();
 	RECT	r;
 	int		xx = x - offset;
 	int		nx = x;

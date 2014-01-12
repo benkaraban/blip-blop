@@ -22,7 +22,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
+#include "graphics.h"
 #include "sprite.h"
 #include "globals.h"
 #include "scroll.h"

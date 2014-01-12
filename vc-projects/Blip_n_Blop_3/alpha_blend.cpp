@@ -1,5 +1,5 @@
 
-#include <ddraw.h>
+#include "graphics.h"
 #include "alpha_blend.h"
 
 BOOL					g_isMMX	= FALSE;
@@ -9,7 +9,7 @@ RGBFORMAT				g_pixelFormat;
 //////////////////////////////////////////////////////////////////////////////////
 // TransAlphaImproved -
 //////////////////////////////////////////////////////////////////////////////////
-HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
+/*HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
                            LONG lDestX, LONG lDestY, RECT srcRect, WORD ALPHA, DWORD ColorKey, WORD BPP)
 {
 	int register i, j;
@@ -337,11 +337,11 @@ HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
 
 	return DD_OK;
 }
-
+*/
 //////////////////////////////////////////////////////////////////////////////////
 // TransAlphaImproved - Sans COLORKEY
 //////////////////////////////////////////////////////////////////////////////////
-HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
+/*HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
                            LONG lDestX, LONG lDestY, RECT srcRect, WORD ALPHA, WORD BPP)
 {
 	int register i, j;
@@ -644,7 +644,7 @@ HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
 }
 
 
-
+*/
 
 ////////////////////////////////////////////////////////////////////////
 //
@@ -653,7 +653,7 @@ HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
 //  Fills out a RGBFORMAT structure.
 //
 ////////////////////////////////////////////////////////////////////////
-
+/*
 BOOL GetRGBFormat(LPDIRECTDRAWSURFACE7 surf, RGBFORMAT* rgb)
 {
 	DDSURFACEDESC2 ddsd;
@@ -739,7 +739,7 @@ BOOL GetRGBFormat(LPDIRECTDRAWSURFACE7 surf, RGBFORMAT* rgb)
 	return TRUE;
 }
 
-
+*/
 ////////////////////////////////////////////////////////////////////////
 //
 //  IsMMX

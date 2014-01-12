@@ -45,7 +45,7 @@ void CINEPlayer::initPlayer()
 //---------------------------------------------------------------------------
 
 
-bool CINEPlayer::playScene(const char * file, IDirectDrawSurface7 * s1, IDirectDrawSurface7 * s2)
+bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * s2)
 {
 	bool	skiped = false;
 	/*
@@ -55,7 +55,7 @@ bool CINEPlayer::playScene(const char * file, IDirectDrawSurface7 * s1, IDirectD
 	*/
 	initPlayer();
 
-	first_surf = s1;
+	/*first_surf = s1;*/
 	back_surf = s2;
 
 	Precache(file);
@@ -423,31 +423,12 @@ void CINEPlayer::updateState()
 
 void CINEPlayer::drawScene()
 {
+	RenderRect ddfx;
 	tdraw = LGetTime();
 
-	DDBLTFX		ddfx;
 	RECT		r;
 
-	//---------------------------
-	//		Surface 1
-	//---------------------------
-
-	if (mustFixGforceBug) {
-		r.top	= 10;
-		r.bottom = 150;
-		r.left	= 200;
-		r.right = 440;
-
-		back_surf->Blt(&r, videoA, NULL, DDBLT_WAIT, 0);
-	}
-
-	// Clear l'écran en noir
-	//
-	ZeroMemory(&ddfx, sizeof(ddfx));
-	ddfx.dwSize = sizeof(ddfx);
-	ddfx.dwFillColor = color[0];
-
-	back_surf->Blt(NULL, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	back_surf->FillRect(0, 0);
 
 
 	// Affiche tous les sprites/scrolls
@@ -470,25 +451,29 @@ void CINEPlayer::drawScene()
 	r.right = clip_x1;
 	r.top	= 0;
 	r.bottom = 480;
-	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	//graphicInstance->Clear(ddfx);
+	back_surf->FillRect(&r,0);
 
 	r.left	= clip_x2;
 	r.right = 640;
 	r.top	= 0;
 	r.bottom = 480;
-	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	//graphicInstance->Clear(ddfx);
+	back_surf->FillRect(&r, 0);
 
 	r.left	= 0;
 	r.right = 640;
 	r.top	= 0;
 	r.bottom = clip_y1;
-	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	//graphicInstance->Clear(ddfx);
+	back_surf->FillRect(&r, 0);
 
 	r.left	= 0;
 	r.right = 640;
 	r.top	= clip_y2;
 	r.bottom = 480;
-	back_surf->Blt(&r, NULL, NULL, DDBLT_COLORFILL | DDBLT_WAIT, &ddfx);
+	//graphicInstance->Clear(ddfx);
+	back_surf->FillRect(&r, 0);
 
 	// Affiche tous les textes
 	//

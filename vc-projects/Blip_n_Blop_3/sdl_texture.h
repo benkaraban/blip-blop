@@ -1,9 +1,8 @@
+#pragma once
 #include <SDL.h>
 
 namespace SDL
 {
-
-public:
 
 	class Texture
 	{

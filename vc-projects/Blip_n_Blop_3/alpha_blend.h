@@ -2,7 +2,7 @@
 #ifndef _AlphaBlend_
 #define _AlphaBlend_
 
-#include <ddraw.h>
+#include "graphics.h"
 
 
 //-----------------------------------------------------------------------------
@@ -27,13 +27,13 @@ typedef struct {
 // Prototypes
 //-----------------------------------------------------------------------------
 
-HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
+/*HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
                            LONG lDestX, LONG lDestY, RECT srcRect, WORD ALPHA, DWORD ColorKey, WORD BPP);
 
 HRESULT TransAlphaImproved(LPDIRECTDRAWSURFACE7 src, LPDIRECTDRAWSURFACE7 dest,
                            LONG lDestX, LONG lDestY, RECT srcRect, WORD ALPHA, WORD BPP);
 
-BOOL GetRGBFormat(LPDIRECTDRAWSURFACE7 surf, RGBFORMAT* rgb);
+BOOL GetRGBFormat(LPDIRECTDRAWSURFACE7 surf, RGBFORMAT* rgb);*/
 
 BOOL __cdecl IsMMX(void);
 

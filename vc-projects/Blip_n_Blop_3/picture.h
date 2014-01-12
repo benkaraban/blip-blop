@@ -44,7 +44,7 @@
 class Picture
 {
 private:
-	IDirectDrawSurface7 *	surf;	// Surface contenant l'image
+	SDL::Surface *	surf;	// Surface contenant l'image
 	int			xsize;				// Largeur de l'image
 	int			ysize;				// Hauteur de l'image
 	int			xspot;				// X du point chaud
@@ -71,22 +71,22 @@ public:
 	{
 		return yspot;
 	};
-	inline IDirectDrawSurface7 * Surf() const
+	inline SDL::Surface * Surf() const
 	{
 		return surf;
 	};
 
 	void SetSpot(int x, int y);
 	void SetColorKey(COLORREF rgb);
-	void SetSurface(IDirectDrawSurface7 * s);
+	void SetSurface(SDL::Surface * s);
 
 	void LoadBMP(char * file);
 	void LoadBMP(char * file, int flags);
 	void LoadBMP(char * file, int xs, int ys);
 	void LoadBMP(char * file, int xs, int ys, int flags);
 	void LoadLGX(char * file, int xs = 0, int ys = 0, int flags = 0);
-	void PasteTo(IDirectDrawSurface7 *s, int x, int y) const;
-	void BlitTo(IDirectDrawSurface7 *s, int x, int y) const;
+	void PasteTo(SDL::Surface *s, int x, int y) const;
+	void BlitTo(SDL::Surface *s, int x, int y) const;
 	void Close();
 
 	~Picture();

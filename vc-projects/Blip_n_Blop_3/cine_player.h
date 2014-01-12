@@ -61,11 +61,11 @@ protected:
 	int		dtime;
 	int		glorf;
 
-	IDirectDrawSurface7 * first_surf;
-	IDirectDrawSurface7 * back_surf;
+	/*SDL::Surface * first_surf;*/
+	SDL::Surface * back_surf;
 	/*
-		IDirectDrawSurface7 * surf1;
-		IDirectDrawSurface7 * surf2;
+		SDL::Surface * surf1;
+		SDL::Surface * surf2;
 	*/
 	RGBFORMAT		rgb;
 
@@ -123,7 +123,7 @@ protected:
 public:
 
 	void loadPBK(const char * f);
-	bool playScene(const char * file, IDirectDrawSurface7 * s1, IDirectDrawSurface7 * s2);
+	bool playScene(const char * file, SDL::Surface * s1, SDL::Surface * s2);
 
 };
 

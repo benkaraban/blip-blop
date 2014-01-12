@@ -68,7 +68,7 @@ LGXpacker::~LGXpacker()
 //		LGXpacker::init() - récupère les capacités de la carte graphique
 //-----------------------------------------------------------------------------
 
-bool LGXpacker::init(IDirectDrawSurface7 * surf)
+bool LGXpacker::init(SDL::Surface * surf)
 {
 	int		mask;
 	int		cpt;
@@ -471,14 +471,14 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 //							   mémoire précisé
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version)
+SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 {
 	if (tab_0 == NULL || tab_1 == NULL) {
 		debug << "LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
 		return NULL;
 	}
 
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 
 	LGX_HEADER *	lh = (LGX_HEADER *) ptr;
 
@@ -638,14 +638,14 @@ IDirectDrawSurface7 * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 //		LGXpacker::loadLGX() - charge une image LGX à partir d'un fichier
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7 * LGXpacker::loadLGX(const char * fic, int flags)
+SDL::Surface * LGXpacker::loadLGX(const char * fic, int flags)
 {
 	if (tab_0 == NULL || tab_1 == NULL) {
 		debug << "LGXpaker::loadLGX() - LGXpaker non initialisé!\n";
 		return NULL;
 	}
 
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 	int		fh;
 	int		taille;
 
@@ -705,7 +705,7 @@ int LGXpacker::findColor(COLORREF rgb)
 // LGXpaker::halfTone()
 //-----------------------------------------------------------------------------
 
-void LGXpacker::halfTone(IDirectDrawSurface7 * surf, RECT * r)
+void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 {
 	DDSURFACEDESC2		ddsd;
 

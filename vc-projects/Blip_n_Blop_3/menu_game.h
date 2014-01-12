@@ -2,7 +2,7 @@
 #ifndef _MenuGame_
 #define _MenuGame_
 
-#include <ddraw.h>
+#include "graphics.h"
 
 class MenuGame
 {
@@ -22,7 +22,7 @@ public:
 	void stop();
 	void updateName();
 	void updateRedefine();
-	void draw(IDirectDrawSurface7 * surf);
+	void draw(SDL::Surface * surf);
 	~MenuGame();
 };
 

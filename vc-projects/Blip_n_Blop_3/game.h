@@ -23,7 +23,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
+#include "graphics.h"
 #include "dd_gfx.h"
 #include "picture.h"
 #include "rpg_player.h"

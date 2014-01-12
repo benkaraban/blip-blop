@@ -60,7 +60,7 @@ PictureBank::~PictureBank()
 
 bool PictureBank::loadGFX(const char * file, int flag, bool trans)
 {
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 	int			fic;
 	int			xspot;
 	int			yspot;
@@ -166,7 +166,7 @@ void PictureBank::close()
 bool PictureBank::restoreAll()
 {
 	if (nom_fic != NULL) {
-		IDirectDrawSurface7 *	surf;
+		SDL::Surface *	surf;
 		int			fic;
 		int			xspot;
 		int			yspot;

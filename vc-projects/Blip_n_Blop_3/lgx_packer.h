@@ -28,7 +28,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
+#include "graphics.h"
 #include "dd_gfx.h"
 
 
@@ -99,7 +99,7 @@ public:
 	LGXpacker();
 	~LGXpacker();
 
-	bool init(IDirectDrawSurface7 * surf);
+	bool init(SDL::Surface * surf);
 
 	bool createLGX_0(HDC hdc, const char * fic, int xs, int ys);
 	bool createLGX_1(HDC hdc, const char * fic, int xs, int ys);
@@ -107,12 +107,12 @@ public:
 	int createLGX_0(HDC hdc, int xs, int ys, void * & ptr);
 	int createLGX_1(HDC hdc, int xs, int ys, void * & ptr);
 
-	IDirectDrawSurface7 * loadLGX(void * ptr, int flag = DDSURF_BEST, int * version = NULL);
-	IDirectDrawSurface7 * loadLGX(const char * fic, int flag = DDSURF_BEST);
+	SDL::Surface * loadLGX(void * ptr, int flag = DDSURF_BEST, int * version = NULL);
+	SDL::Surface * loadLGX(const char * fic, int flag = DDSURF_BEST);
 
 	int	findColor(COLORREF rgb);
 
-	void halfTone(IDirectDrawSurface7 * surf, RECT * r);
+	void halfTone(SDL::Surface * surf, RECT * r);
 
 	void closePaker();
 };

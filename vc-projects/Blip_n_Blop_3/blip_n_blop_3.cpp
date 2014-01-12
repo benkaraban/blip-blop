@@ -20,7 +20,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 
-#include <ddraw.h>
+#include "graphics.h"
 // #include <mmsystem.h> TODO?
 #include <stdio.h>
 #include <string.h>
@@ -57,7 +57,7 @@ static bool safeMode	= false;
  */
 void ReleaseAll(void)
 {
-	if (ddraw != NULL) {
+	if (graphicInstance != NULL) {
 		fnt_menu.close();
 		fnt_menus.close();
 		fnt_cool.close();
@@ -336,7 +336,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	/*
 		// -------- Mode Windows ----------
 
-		ddraw->SetCooperativeLevel(WinHandle, DDSCL_NORMAL);
+		graphicInstance->SetCooperativeLevel(WinHandle, DDSCL_NORMAL);
 
 
 		DDSURFACEDESC2 ddsd;
@@ -346,7 +346,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		ddsd.dwFlags = DDSD_CAPS;
 		ddsd.ddsCaps.dwCaps = DDSCAPS_PRIMARYSURFACE;
 
-		if ( ddraw->CreateSurface( &ddsd, &primSurface, NULL) != DD_OK)
+		if ( graphicInstance->CreateSurface( &ddsd, &primSurface, NULL) != DD_OK)
 		{
 			debug<<"Shit!\n";
 			return false;
@@ -360,7 +360,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		ddsd.dwWidth = 640;  // whatever you want
 		ddsd.dwHeight = 480; // whatever you want
 
-		if ( ddraw->CreateSurface( &ddsd, &backSurface, NULL) != DD_OK)
+		if ( graphicInstance->CreateSurface( &ddsd, &backSurface, NULL) != DD_OK)
 		{
 			debug<<"Shit2!\n";
 			return false;
@@ -419,20 +419,20 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	}
 
 
-	DDSCAPS2		ddscaps2dummy;
+	/*DDSCAPS2		ddscaps2dummy;
 	DWORD			vid_mem1;
 	DWORD			vid_mem2;
 
 	ZeroMemory(&ddscaps2dummy, sizeof(ddscaps2dummy));
 	ddscaps2dummy.dwCaps = DDSCAPS_VIDEOMEMORY;
-	ddraw->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
+	graphicInstance->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
 	debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";
 	mem_flag = DDSURF_BEST;
 	video_buffer_on = true;
 
 	if (vid_mem2 >> 10 >= 20) {
 		mustFixGforceBug = true;
-	}
+	}*/
 
 	//------------------------------------------------------------------
 	//			Direct Draw (suite)
@@ -586,10 +586,10 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	//			Mémoire video restante
 	//------------------------------------------------------------------
 
-	ZeroMemory(&ddscaps2dummy, sizeof(ddscaps2dummy));
+	/*ZeroMemory(&ddscaps2dummy, sizeof(ddscaps2dummy));
 	ddscaps2dummy.dwCaps = DDSCAPS_VIDEOMEMORY;
-	ddraw->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
-	debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";
+	graphicInstance->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
+	debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";*/
 
 	//------------------------------------------------------------------
 	//			Mise en place du TIMER pour obtenir les FPS

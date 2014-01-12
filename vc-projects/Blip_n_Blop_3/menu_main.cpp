@@ -348,7 +348,7 @@ void MenuMain::stop()
 	old_menu = -1;
 }
 
-void MenuMain::draw(IDirectDrawSurface7 * surf)
+void MenuMain::draw(SDL::Surface * surf)
 {
 
 	int		ys = nb_focus * 15;

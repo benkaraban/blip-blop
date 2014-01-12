@@ -47,10 +47,10 @@ int			fps_current_count	= 0;
 //		Surfaces
 //-----------------------------------------------------------------------------
 
-IDirectDrawSurface7	*	primSurface		= NULL;		// Surface primaire
-IDirectDrawSurface7	*	backSurface		= NULL;		// pointeur sur le double buffer supposé
-IDirectDrawSurface7 *	systemSurface	= NULL;		// Pour optimiser les accès SYSTEM/SYSTEM
-IDirectDrawSurface7 *	videoA			= NULL;		// cache video
+SDL::Surface	*	primSurface = NULL;		// Surface primaire
+SDL::Surface	*	backSurface = NULL;		// pointeur sur le double buffer supposé
+SDL::Surface *	systemSurface = NULL;		// Pour optimiser les accès SYSTEM/SYSTEM
+SDL::Surface *	videoA			= NULL;		// cache video
 
 //-----------------------------------------------------------------------------
 //		Données scroll et positions
@@ -273,7 +273,7 @@ bool mur_sanglant(int x, int y)
 	return murs_sanglants[y / 8][x / 8];
 }
 
-inline void clipedBlit(IDirectDrawSurface7 * surf, const Picture * pic, int x, int y, RECT * clip)
+inline void clipedBlit(SDL::Surface * surf, const Picture * pic, int x, int y, RECT * clip)
 {
 	if (pic == NULL)
 		return;

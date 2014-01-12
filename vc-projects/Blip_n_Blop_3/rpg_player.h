@@ -18,7 +18,7 @@
 #define _RPGPlayer_
 
 #include <fstream>
-#include <ddraw.h>
+#include "graphics.h"
 #include "picture_bank.h"
 
 using namespace std;
@@ -54,7 +54,7 @@ public:
 
 	void attachFile(const char * f);
 	bool startPlay(int n);
-	bool drawScene(IDirectDrawSurface7 * surf);
+	bool drawScene(SDL::Surface * surf);
 	bool updateScene();
 	void stopPlay();
 	bool read();

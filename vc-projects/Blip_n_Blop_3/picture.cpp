@@ -26,7 +26,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
+#include "graphics.h"
 #include "picture.h"
 #include "dd_gfx.h"
 #include "ben_debug.h"
@@ -49,7 +49,7 @@ Picture::Picture() : surf(NULL), xspot(0), yspot(0), xsize(0), ysize(0)
 
 void Picture::FindSize()
 {
-	DDSURFACEDESC2	ddsd;
+	/*DDSURFACEDESC2	ddsd;
 
 	ddsd.dwSize = sizeof(ddsd);
 	ddsd.dwFlags = DDSD_HEIGHT | DDSD_WIDTH;
@@ -57,10 +57,10 @@ void Picture::FindSize()
 	if (surf->GetSurfaceDesc(&ddsd) != DD_OK) {
 		debug << "Ne peut pas obtenir la DESC d'une surface! (Picture::FindSize)\n";
 		return;
-	}
+	}*/
 
-	xsize = ddsd.dwWidth;
-	ysize = ddsd.dwHeight;
+	xsize = surf->Get()->w;
+	ysize = surf->Get()->h;
 }
 
 //-----------------------------------------------------------------------------
@@ -96,7 +96,7 @@ void Picture::SetSpot(int x, int y)
 // Desc: Assigne une surface et change les attributs de taille en conséquence
 //-----------------------------------------------------------------------------
 
-void Picture::SetSurface(IDirectDrawSurface7 * s)
+void Picture::SetSurface(SDL::Surface * s)
 {
 	surf = s;
 	FindSize();
@@ -169,7 +169,7 @@ void Picture::LoadBMP(char * file, int xs, int ys, int flags)
 //		 de l'écran (Blt n'affiche rien dans ce cas).
 //-----------------------------------------------------------------------------
 
-void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const
+void Picture::BlitTo(SDL::Surface * s, int x, int y) const
 {
 	x -= xspot;
 	y -= yspot;
@@ -205,7 +205,7 @@ void Picture::BlitTo(IDirectDrawSurface7 * s, int x, int y) const
 //		 de l'écran (Blt n'affiche rien dans ce cas).
 //-----------------------------------------------------------------------------
 
-void Picture::PasteTo(IDirectDrawSurface7 * s, int x, int y) const
+void Picture::PasteTo(SDL::Surface * s, int x, int y) const
 {
 	x -= xspot;
 	y -= yspot;

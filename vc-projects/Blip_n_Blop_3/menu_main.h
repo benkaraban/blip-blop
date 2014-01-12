@@ -2,7 +2,7 @@
 #ifndef _MenuMain_
 #define _MenuMain_
 
-#include <ddraw.h>
+#include "graphics.h"
 
 #define RET_CONTINUE	0
 #define RET_START_GAME1	1
@@ -33,7 +33,7 @@ public:
 	void stop();
 	void updateName();
 	void updateRedefine();
-	void draw(IDirectDrawSurface7 * surf);
+	void draw(SDL::Surface * surf);
 	~MenuMain();
 };
 

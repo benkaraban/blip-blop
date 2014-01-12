@@ -282,7 +282,7 @@ int MenuGame::update()
 		return 0;
 }
 
-void MenuGame::draw(IDirectDrawSurface7 * surf)
+void MenuGame::draw(SDL::Surface * surf)
 {
 
 	int		ys = nb_focus * 20;

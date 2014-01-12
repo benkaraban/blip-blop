@@ -20,7 +20,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <ddraw.h>
+#include "graphics.h"
 #include <string.h>
 #include <fstream>
 #include <io.h>
@@ -51,7 +51,7 @@ Fonte::~Fonte()
 
 bool Fonte::load(const char * fic, int flags)
 {
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 
 	int			taille;
 	int			fh;
@@ -137,7 +137,7 @@ bool Fonte::load(const char * fic, int flags)
 
 //-----------------------------------------------------------------------------
 
-void Fonte::print(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
+void Fonte::print(SDL::Surface * surf, int x, int y, const char * txt)
 {
 	if (txt == NULL)
 		return;
@@ -161,7 +161,7 @@ void Fonte::print(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
 
 //-----------------------------------------------------------------------------
 
-void Fonte::printM(IDirectDrawSurface7 * surf, int x, int y, const char * txt, int ym)
+void Fonte::printM(SDL::Surface * surf, int x, int y, const char * txt, int ym)
 {
 	if (txt == NULL)
 		return;
@@ -200,7 +200,7 @@ void Fonte::printM(IDirectDrawSurface7 * surf, int x, int y, const char * txt, i
 
 //-----------------------------------------------------------------------------
 
-void Fonte::printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
+void Fonte::printR(SDL::Surface * surf, int x, int y, const char * txt)
 {
 	if (txt == NULL)
 		return;
@@ -223,7 +223,7 @@ void Fonte::printR(IDirectDrawSurface7 * surf, int x, int y, const char * txt)
 
 //-----------------------------------------------------------------------------
 
-void Fonte::printC(IDirectDrawSurface7 * surf, int xtaille, int y, const char * txt)
+void Fonte::printC(SDL::Surface * surf, int xtaille, int y, const char * txt)
 {
 	if (txt == NULL)
 		return;
@@ -275,7 +275,7 @@ void Fonte::close()
 
 //-----------------------------------------------------------------------------
 
-void Fonte::printMW(IDirectDrawSurface7 * surf, int x, int y, const char * srctxt, int ym)
+void Fonte::printMW(SDL::Surface * surf, int x, int y, const char * srctxt, int ym)
 {
 	static const char delim [] = " ";
 
@@ -343,7 +343,7 @@ bool Fonte::restoreAll()
 	if (nom_fic == NULL)
 		return true;
 
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 
 	int			taille;
 	int			fh;

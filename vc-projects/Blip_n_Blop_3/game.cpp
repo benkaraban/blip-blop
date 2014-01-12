@@ -421,15 +421,15 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 	debug << "Now getting into game loop.\n";
 	debug << "---------------------------------------------------------------\n";
 
-	DDSCAPS2		ddscaps2dummy;
+	/*DDSCAPS2		ddscaps2dummy;
 	DWORD			vid_mem1;
 	DWORD			vid_mem2;
 
 	ZeroMemory(&ddscaps2dummy, sizeof(ddscaps2dummy));
 	ddscaps2dummy.dwCaps = DDSCAPS_VIDEOMEMORY;
-	ddraw->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
+	graphicInstance->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
 
-	debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";
+	debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";*/
 
 	Sleep(2000);
 
@@ -446,7 +446,8 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 		r.top	= 0;
 		r.bottom = 480;
 
-		backSurface->Blt(&r, NULL, NULL, DDBLT_WAIT | DDBLT_COLORFILL, &ddfx);
+		//backSurface->Blt(&r, NULL, NULL, DDBLT_WAIT | DDBLT_COLORFILL, &ddfx);
+		backSurface->FillRect(&r, 0);
 
 		pbk_briefing[0]->PasteTo(backSurface, 0, 0);
 		fnt_rpg.printC(backSurface, 320, 460, "Press a key to start.");
@@ -1164,7 +1165,7 @@ void Game::drawAll(bool flip)
 
 	fps_current_count += 1;
 
-	if (mustFixGforceBug) {
+	/*if (mustFixGforceBug) {
 		RECT	r;
 
 		r.top	= 10;
@@ -1173,7 +1174,7 @@ void Game::drawAll(bool flip)
 		r.right = 440;
 
 		backSurface->Blt(&r, videoA, NULL, DDBLT_WAIT, 0);
-	}
+	}*/
 
 	drawScrolling();
 	drawFondsStatiques();
@@ -1228,7 +1229,7 @@ void Game::drawAll(bool flip)
 		r.top	= 0;
 		r.bottom = 480;
 
-		backSurface->Blt(&r, NULL, NULL, DDBLT_WAIT | DDBLT_COLORFILL, &ddfx);
+		backSurface->/*Blt(&r, NULL, NULL, DDBLT_WAIT | DDBLT_COLORFILL, &ddfx)*/FillRect(&r,0);
 	}
 
 	RECT	r;
@@ -1238,11 +1239,6 @@ void Game::drawAll(bool flip)
 	r.right	 = 640;
 	r.bottom = 480;
 
-//	--- Windows mode ---
-//	primSurface->Blt( &r, backSurface, NULL, DDBLT_WAIT, NULL);
-
-	// Le moment tant attendu! ;)
-	//
 	if (flip) {
 		DDFlip();
 	}

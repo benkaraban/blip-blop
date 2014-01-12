@@ -34,9 +34,10 @@ bool RestoreAll()
 	// Affiche un "LOADING..."
 	//
 	fnt_menu.printC(backSurface, 320, 210, "PLEASE WAIT");
-	primSurface->Flip(NULL, DDFLIP_WAIT);
+	//primSurface->Flip(NULL, DDFLIP_WAIT);
+	graphicInstance->Flip();
 
-	ddraw->RestoreAllSurfaces();
+	graphicInstance->RestoreAllSurfaces();
 
 	n_img = 0;
 	xTex = 0;

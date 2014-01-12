@@ -19,7 +19,7 @@ void FondPokeCiel::affiche()
 {
 	Sprite::affiche();
 
-	IDirectDrawSurface7 *	surf;
+	SDL::Surface *	surf;
 	int						xs;
 	int						decalage = 0;
 	int						ys;

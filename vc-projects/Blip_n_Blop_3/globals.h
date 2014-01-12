@@ -69,10 +69,10 @@ extern int			fps_current_count;
 //		Surfaces
 //-----------------------------------------------------------------------------
 
-extern IDirectDrawSurface7	*	primSurface;	// Surface primaire
-extern IDirectDrawSurface7	*	backSurface;	// pointeur sur le double buffer supposé
-extern IDirectDrawSurface7  *	systemSurface;	// Pour optimiser les accès SYSTEM/SYSTEM
-extern IDirectDrawSurface7  *	videoA;			// cache video
+extern SDL::Surface	*	primSurface;	// Surface primaire
+extern SDL::Surface	*	backSurface;	// pointeur sur le double buffer supposé
+extern SDL::Surface  *	systemSurface;	// Pour optimiser les accès SYSTEM/SYSTEM
+extern SDL::Surface  *	videoA;			// cache video
 
 //-----------------------------------------------------------------------------
 //		Données scroll et positions
