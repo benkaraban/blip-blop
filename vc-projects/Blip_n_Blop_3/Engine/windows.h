@@ -52,6 +52,13 @@ typedef HANDLE HGLOBAL;
 typedef void* LPUNKNOWN;
 typedef int64_t __int64;
 
+typedef struct _RECT {
+	LONG left;
+	LONG top;
+	LONG right;
+	LONG bottom;
+} RECT, *PRECT, *LPRECT;
+
 typedef struct {
 	unsigned long Data1;
 	unsigned short Data2;

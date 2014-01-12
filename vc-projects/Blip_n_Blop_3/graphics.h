@@ -12,7 +12,7 @@
 #define DDBLTFAST_WAIT 0
 #define DDBLTFAST_NOCOLORKEY 0
 #define DDBLTFAST_SRCCOLORKEY 0
-#define DDBLT_WAIT 0
+#define DDBLT_WAIT NULL
 
 #define DD_OK true
 /**/
@@ -34,8 +34,12 @@ typedef RenderRect DDBLTFX;
 
 class Graphics
 {
-	
+private:
+	SDL_Window *window;
+	SDL_Renderer *renderer;
+
 public:
+	Graphics();
 
 	bool					Init();
 	bool					SetCooperativeLevel(HWND wh);

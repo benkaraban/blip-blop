@@ -8,11 +8,11 @@ namespace SDL
 	{
 		private:
 		SDL_Surface *surface;
-		
+
 		public:
 		Surface();
 		Surface(SDL_Surface*);
-		
+
 		inline SDL_Surface *Get(){ return surface; };
 		inline void BltFast(int x, int y, SDL::Surface *surf, RECT *r, int flags=0)
 		{
@@ -35,13 +35,13 @@ namespace SDL
 				SDL_Rect*       dstrect)*/
 				SDL_BlitSurface(surf->Get(), &rect, surface, &position);
 			}
-			
+
 		}
 
 		inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, int flags = 0, void *pad = 0 )
 		{
 			/*
-			TODO: IF flags contains DDBLT_COLORFILL then i must fill the surface with the color of 
+			TODO: IF flags contains DDBLT_COLORFILL then i must fill the surface with the color of
 			*/
 			SDL_Rect *rect=0, *position=0;
 			if (src)
@@ -68,7 +68,7 @@ namespace SDL
 			{
 				SDL_BlitSurface(0, rect, surface, position);
 			}
-			
+
 			/*if (src!=0&&dest!=0)
 			{
 				SDL_Rect rect, position;
@@ -137,8 +137,12 @@ namespace SDL
 				rect.h = r->bottom - r->top;
 				SDL_FillRect(surface, &rect, color);
 			}
-			
+
+		}
+
+		bool IsLost() {
+			return false;
 		}
 	};
-	
+
 };

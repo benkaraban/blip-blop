@@ -5,13 +5,6 @@
 
 struct IDirectDrawPalette;
 
-typedef struct _RECT {
-	LONG left;
-	LONG top;
-	LONG right;
-	LONG bottom;
-} RECT, *PRECT, *LPRECT;
-
 typedef struct _DDCOLORKEY {
 	DWORD dwColorSpaceLowValue;
 	DWORD dwColorSpaceHighValue;
