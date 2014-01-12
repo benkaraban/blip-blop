@@ -12,9 +12,11 @@
 #define DDBLTFAST_WAIT 0
 #define DDBLTFAST_NOCOLORKEY 0
 #define DDBLTFAST_SRCCOLORKEY 0
+#define DDBLT_WAIT 0
 
 #define DD_OK true
 /**/
+#define DDBLT_COLORFILL (0x1<<2)
 
 using namespace std;
 
