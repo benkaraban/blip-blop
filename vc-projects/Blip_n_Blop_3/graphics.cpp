@@ -105,7 +105,7 @@ SDL::Surface *	Graphics::CreateSurface(int x, int y, int flags)
 #endif
 	SDL_Surface* surf = SDL_CreateRGBSurface(0,
 			x, y, 32, rmask, gmask, bmask, amask);
-		return new SDL::Surface(surf);
+	return new SDL::Surface(surf);
 }
 
 SDL::Surface *	Graphics::LoadBMP(char * file)

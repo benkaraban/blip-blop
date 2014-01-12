@@ -82,12 +82,9 @@ bool LGXpacker::init(SDL::Surface * surf)
 
 	// On veut le format des pixels de la surface
 
-	DDPIXELFORMAT	pf;
+	SDL::PixelFormat pf;
 
-	ZeroMemory(&pf, sizeof(pf));
-	pf.dwSize = sizeof(pf);
-
-	if (surf->GetPixelFormat(&pf) != DD_OK) {
+	if (surf->GetPixelFormat(&pf) == false) {
 		debug << "LGXpacker::init() / ne peut pas obtenir le PIXELFORMAT\n";
 		return false;
 	}
@@ -504,10 +501,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 
 	// Maintenant on veut l'adresse de la surface
 
-	DDSURFACEDESC2	ddsd;
-
-	ZeroMemory(&ddsd, sizeof(ddsd));
-	ddsd.dwSize = sizeof(ddsd);
+	SDL::SurfaceInfo	ddsd;
 
 	if (surf->Lock(NULL, &ddsd, DDLOCK_WAIT | DDLOCK_WRITEONLY | DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK) {
 		debug << "LGXpacker::LoadLGX() / Impossible d'obtenir l'adresse de la surface\n";
@@ -707,12 +701,9 @@ int LGXpacker::findColor(COLORREF rgb)
 
 void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 {
-	DDSURFACEDESC2		ddsd;
+	SDL::SurfaceInfo ddsd;
 
-	ZeroMemory(&ddsd, sizeof(ddsd));
-	ddsd.dwSize = sizeof(ddsd);
-
-	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK)
+	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
 	int hauteur = r->bottom - r->top;

@@ -4175,7 +4175,7 @@ void Game::showCredits(bool theEnd)
 			r.left	= 200;
 			r.right = 440;
 
-			backSurface->Blt(&r, videoA, NULL, DDBLT_WAIT, 0);
+			backSurface->Blt(&r, videoA, NULL, DDBLT_WAIT, NULL);
 		}
 
 		{

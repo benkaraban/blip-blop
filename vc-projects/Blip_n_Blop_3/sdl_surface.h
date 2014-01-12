@@ -1,6 +1,15 @@
 #pragma once
 #include <SDL.h>
 
+#include "sdl_pixelformat.h"
+#include "sdl_surfaceinfo.h"
+
+#ifndef DDLOCK_WAIT // not used by SDL
+#define DDLOCK_SURFACEMEMORYPTR 0x1
+#define DDLOCK_WAIT 0x2
+#define DDLOCK_WRITEONLY 0x4
+#endif
+
 namespace SDL
 {
 
@@ -10,8 +19,11 @@ namespace SDL
 		SDL_Surface *surface;
 
 		public:
-		Surface();
-		Surface(SDL_Surface*);
+		//Surface();
+
+		Surface(SDL_Surface* surf) {
+			surface = surf;
+		}
 
 		inline SDL_Surface *Get(){ return surface; };
 		inline void BltFast(int x, int y, SDL::Surface *surf, RECT *r, int flags=0)
@@ -138,6 +150,27 @@ namespace SDL
 				SDL_FillRect(surface, &rect, color);
 			}
 
+		}
+
+		bool GetPixelFormat(SDL::PixelFormat* format)
+		{
+			*format = SDL::PixelFormat(surface->format);
+			return true;
+		}
+
+		bool Lock(RECT* r, SDL::SurfaceInfo* info, int flags, void* unused)
+		{
+			if (SDL_LockSurface(surface) != 0) {
+				return false;
+			}
+			info->lpSurface = surface->pixels;
+			info->lPitch = surface->pitch;
+			return true;
+		}
+
+		void Unlock(RECT* r)
+		{
+			SDL_UnlockSurface(surface);
 		}
 
 		bool IsLost() {
