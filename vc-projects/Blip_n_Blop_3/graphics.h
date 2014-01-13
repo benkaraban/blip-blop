@@ -1,9 +1,24 @@
 #pragma once
 
-#include <SDL.h>
+#include <SDL_main.h>
 
 #include <iostream>
 #include <windows.h>
+
+#include "ben_debug.h"
+
+struct RenderRect
+{
+	int left;
+	int right;
+	int top;
+	int bottom;
+	unsigned int dwFillColor;
+	int dwSize;
+};
+
+
+typedef RenderRect DDBLTFX;
 
 #include "sdl_surface.h"
 #include "sdl_texture.h"
@@ -19,18 +34,6 @@
 #define DDBLT_COLORFILL (0x1<<2)
 
 using namespace std;
-
-struct RenderRect
-{
-	int left;
-	int right;
-	int top;
-	int bottom;
-	unsigned int dwFillColor;
-	int dwSize;
-};
-
-typedef RenderRect DDBLTFX;
 
 class Graphics
 {

@@ -1,4 +1,6 @@
 #pragma once
+
+#include "graphics.h"
 #include <SDL.h>
 
 #include "sdl_pixelformat.h"
@@ -50,7 +52,7 @@ namespace SDL
 
 		}
 
-		inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, int flags = 0, void *pad = 0 )
+		inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, int flags = 0, DDBLTFX *pad = 0)
 		{
 			/*
 			TODO: IF flags contains DDBLT_COLORFILL then i must fill the surface with the color of
@@ -118,11 +120,11 @@ namespace SDL
 			}*/
 		}
 
-		inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, void *pad = 0, int flags = 0)
+		/*inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, DDBLTFX *pad = 0, int flags = 0)
 		{
 			//Call the original function with the last 2 arguments swapped
 			Blt(src, surf, dest, flags,pad);
-		}
+		}*/
 
 		inline void Release()
 		{

@@ -10,8 +10,8 @@ Graphics::Graphics()
 
 bool Graphics::Init()
 {
-	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
-		std::cout << SDL_GetError() << std::endl;
+	if (SDL_Init(SDL_INIT_VIDEO) == -1){
+		debug << SDL_GetError() << "\n";
 		return false;
 	}
 	return true;
@@ -20,12 +20,12 @@ bool Graphics::Init()
 
 bool Graphics::SetCooperativeLevel(HWND wh)
 {
-
+	return true;
 }
 
 bool Graphics::SetCooperativeLevel(HWND wh, int flags)
 {
-
+	return true;
 }
 
 bool Graphics::SetGfxMode(int x, int y, int d)
@@ -154,7 +154,9 @@ DWORD					Graphics::FindColor(SDL::Surface *surf, COLORREF rgb)
 
 HRESULT					Graphics::SetColorKey(SDL::Surface *surf, COLORREF rgb)
 {
-
+	SDL_SetColorKey(surf->Get(), SDL_TRUE, SDL_MapRGB(surf->Get()->format, (rgb & 0xFF), (rgb >> 8 & 0xFF), (rgb >> 16 & 0xFF)));
+	//TODO: set color key
+	return true;
 }
 
 void					Graphics::Flip()

@@ -40,11 +40,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
+    <OutDir>C:\Program Files (x86)\Blip Blop</OutDir>
     <IntDir>.\Debug\</IntDir>
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);C:\Users\Roby\Desktop\blip and blop\blip-blop\vc-projects\Blip_n_Blop_3\deps\SDL2-2.0.1\windows\include;</IncludePath>
     <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);C:\Users\Roby\Desktop\blip and blop\blip-blop\vc-projects\Blip_n_Blop_3\deps\SDL2-2.0.1\windows\lib\x86;</LibraryPath>
+    <TargetName>BB3</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>.\Release\</OutDir>
@@ -86,7 +87,7 @@
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
-      <OutputFile>.\Debug\BB3.exe</OutputFile>
+      <OutputFile>C:\Program Files (x86)\Blip Blop\BB3.exe</OutputFile>
       <AdditionalDependencies>odbc32.lib;odbccp32.lib;dxguid.lib;dinput8.lib;winmm.lib;SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>

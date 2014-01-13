@@ -605,7 +605,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 /************************************
  *   WinMain
  */
-
 #ifndef _WIN32
 int main()
 {
