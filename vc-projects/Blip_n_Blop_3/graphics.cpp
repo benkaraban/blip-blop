@@ -1,6 +1,6 @@
 #include "graphics.h"
 
-extern SDL::Surface	*	primSurface;
+extern SDL::Surface	*	backSurface;
 
 Graphics::Graphics()
 {
@@ -41,7 +41,7 @@ bool Graphics::SetGfxMode(int x, int y, int d)
 		window = 0;
 	}
 
-	window = SDL_CreateWindow("Blip&Blop", 100, 100, x, y, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Blip&Blop", x, y, x, y, SDL_WINDOW_SHOWN);
 	if (window == 0){
 		std::cout << SDL_GetError() << std::endl;
 		return false;
@@ -75,12 +75,20 @@ void Graphics::Close()
 
 SDL::Surface *	Graphics::CreatePrimary()
 {
-	return 0;
+	/**/
+	debug << "CreatePrimary() - Creating a 640 x 480 Surface" << "\n";
+	return CreateSurface(640, 480, 0);
+	//return 0;
 }
 
 SDL::Surface *	Graphics::CreatePrimary(SDL::Surface * & back)
 {
-	return 0;
+	debug << "Graphics::CreatePrimary(SDL::Surface * & back) - Creating a 640x480 surface" << "\n";
+	SDL::Surface * tmp = CreateSurface(640,480);
+	back = CreateSurface(640, 480);
+	tmp->SetBackBuffer(back);
+	return tmp;
+	//return 0;
 }
 
 SDL::Surface *	Graphics::CreateSurface(int x, int y)
@@ -106,6 +114,26 @@ SDL::Surface *	Graphics::CreateSurface(int x, int y, int flags)
 	SDL_Surface* surf = SDL_CreateRGBSurface(0,
 			x, y, 32, rmask, gmask, bmask, amask);
 	return new SDL::Surface(surf);
+}
+
+SDL_Surface *	Graphics::CreateSDLSurface(int x, int y)
+{
+	Uint32 rmask, gmask, bmask, amask;
+
+#if SDL_BYTEORDER == SDL_BIG_ENDIAN
+	rmask = 0xff000000;
+	gmask = 0x00ff0000;
+	bmask = 0x0000ff00;
+	amask = 0x000000ff;
+#else
+	rmask = 0x000000ff;
+	gmask = 0x0000ff00;
+	bmask = 0x00ff0000;
+	amask = 0xff000000;
+#endif
+	SDL_Surface* surf = SDL_CreateRGBSurface(0,
+		x, y, 32, rmask, gmask, bmask, amask);
+	return (surf);
 }
 
 SDL::Surface *	Graphics::LoadBMP(char * file)
@@ -163,7 +191,7 @@ void					Graphics::Flip()
 {
 
 	SDL_Texture *tex = 0;
-	tex = SDL_CreateTextureFromSurface(renderer, primSurface->Get());
+	tex = SDL_CreateTextureFromSurface(renderer, backSurface->Get());
 	SDL_RenderCopy(renderer, tex, NULL, NULL);
 	SDL_RenderPresent(renderer);
 

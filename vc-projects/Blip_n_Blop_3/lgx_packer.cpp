@@ -146,7 +146,7 @@ bool LGXpacker::init(SDL::Surface * surf)
 	// ************************ VERSION 0 ****************************
 	//
 
-	tab_0 = new unsigned short[0x10000];
+	tab_0 = new unsigned long[0x10000];
 	if (tab_0 == NULL) {
 		debug << "Impossible d'allouer la mémoire de décompression\n";
 		return false;
@@ -169,7 +169,7 @@ bool LGXpacker::init(SDL::Surface * surf)
 	// ************************ VERSION 1 ****************************
 	//
 
-	tab_1 = new unsigned short[0x8000];
+	tab_1 = new unsigned long[0x8000];
 	if (tab_1 == NULL) {
 		debug << "Impossible d'allouer la mémoire de décompression\n";
 		delete [] tab_0;
@@ -513,7 +513,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 	unsigned short * data = (unsigned short *)((char *) ptr + sizeof(LGX_HEADER));
 
 	int				i;
-	unsigned short	col;
+	unsigned long	col;
 	unsigned short	d;
 
 	int				dpitch = ddsd.lPitch - 2 * xs;
@@ -534,15 +534,15 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 			while (y < ys) {
 				d = *(data++);
 
-				*((unsigned short*)surfPtr) = tab_0[d];
+				*((unsigned long*)surfPtr) = tab_0[d];
 
-				surfPtr += 2;
+				surfPtr += 4;
 				x++;
 
 				if (x == xs) {
 					x = 0;
 					y++;
-					surfPtr += dpitch;
+					//surfPtr += dpitch;
 				}
 			}
 		} else { // dpitch=0! cool! :)
@@ -576,32 +576,32 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 
 
 					for (i = 0; i < (d & 0x7FFF); i++) {
-						*((unsigned short*)surfPtr) = col;
+						*((unsigned long*)surfPtr) = col;
 
-						surfPtr += 2;
+						surfPtr += 4;
 						x++;
 
 						if (x == xs) {
 							x = 0;
 							y++;
-							surfPtr += dpitch;
+							//surfPtr += dpitch;
 						}
 					}
 				} else {
-					*((unsigned short*)surfPtr) = tab_1[d];
+					*((unsigned long*)surfPtr) = tab_1[d];
 
-					surfPtr += 2;
+					surfPtr += 4;
 					x++;
 
 					if (x == xs) {
 						x = 0;
 						y++;
-						surfPtr += dpitch;
+						//surfPtr += dpitch;
 					}
 				}
 			}
 		} else { // dptich=0! cool! :)
-			unsigned short * surfPtr = (unsigned short*) ddsd.lpSurface;
+			unsigned long * surfPtr = (unsigned long*) ddsd.lpSurface;
 
 			int		t = xs * ys;
 			int		delta = 0;
@@ -621,6 +621,15 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 		}
 	}
 	surf->Unlock(NULL);
+
+
+	static int counter = 0;
+	char buf[128];
+	sprintf(buf, "test/%d.bmp",counter);
+	if (counter >200&&counter<250)
+		SDL_SaveBMP(surf->Get(), buf);
+
+	counter++;
 
 	return surf;
 

@@ -19,12 +19,24 @@ namespace SDL
 	{
 		private:
 		SDL_Surface *surface;
+		Surface *backBuffer;
 
 		public:
 		//Surface();
 
 		Surface(SDL_Surface* surf) {
 			surface = surf;
+			backBuffer = 0;
+		}
+
+		Surface(SDL_Surface* surf, Surface* bb) {
+			surface = surf;
+			backBuffer = bb;
+		}
+
+		inline void SetBackBuffer(Surface* b)
+		{
+			backBuffer = b;
 		}
 
 		inline SDL_Surface *Get(){ return surface; };
@@ -35,7 +47,7 @@ namespace SDL
 			position.y = y;
 			if (r == 0)
 			{
-				SDL_BlitSurface(surf->Get(), 0, surface, &position);
+				SDL_BlitSurface(surface, 0, surf->Get(), &position);
 			}
 			else
 			{
@@ -43,11 +55,13 @@ namespace SDL
 				rect.y = r->top;
 				rect.w = r->right - r->left;
 				rect.h = r->bottom - r->top;
+				position.w = rect.w;
+				position.h = rect.h;
 				/*SDL_BlitSurface(SDL_Surface*    src,
 				const SDL_Rect* srcrect,
 				SDL_Surface*    dst,
 				SDL_Rect*       dstrect)*/
-				SDL_BlitSurface(surf->Get(), &rect, surface, &position);
+				SDL_BlitSurface(surface, &rect, surf->Get(), &position);
 			}
 
 		}
@@ -76,12 +90,24 @@ namespace SDL
 			}
 			if (surf)
 			{
-				SDL_BlitSurface(surf->Get(), rect, surface, position);
+				SDL_BlitSurface(surface, rect, surf->Get(), position);
 			}
 			else
 			{
-				SDL_BlitSurface(0, rect, surface, position);
+				if (pad)
+					SDL_FillRect(surface, rect, pad->dwFillColor);
+				else
+					SDL_FillRect(surface, rect, 0x000000);
 			}
+			if (rect)
+				delete rect;
+			if (position)
+				delete position;
+
+			/*else
+			{
+				SDL_BlitSurface(0, rect, surface, position);
+			}*/
 
 			/*if (src!=0&&dest!=0)
 			{
@@ -128,7 +154,7 @@ namespace SDL
 
 		inline void Release()
 		{
-			delete surface;
+			SDL_FreeSurface(surface);
 			delete this;
 		}
 		inline bool Restore()

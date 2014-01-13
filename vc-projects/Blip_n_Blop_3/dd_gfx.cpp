@@ -91,6 +91,7 @@ bool DDSetCooperativeLevel(HWND wh, int flags)
 
 bool DDSetGfxMode(int x, int y, int d)
 {
+	debug << "DDSetGfxMode (" << x << "," << y << ")" << "\n";
 	return graphicInstance->SetGfxMode(x, y, d);
 }
 
@@ -101,6 +102,7 @@ bool DDSetGfxMode(int x, int y, int d)
 
 SDL::Surface * DDCreateSurface(int x, int y)
 {
+	debug << "DDCreateSurface (" << x << ","<<y<< ")" << "\n";
 	return graphicInstance->CreateSurface(x, y, DDSURF_BEST);
 }
 
@@ -121,6 +123,7 @@ SDL::Surface * DDCreateSurface(int x, int y, int flags)
 
 SDL::Surface * DDCreatePrimary()
 {
+	debug << "DDCreatePrimary ()" << "\n";
 	return graphicInstance->CreatePrimary();
 
 }
@@ -133,6 +136,7 @@ SDL::Surface * DDCreatePrimary()
 
 SDL::Surface * DDCreatePrimary(SDL::Surface * & back)
 {
+	debug << "DDCreatePrimary (back)" << "\n";
 	return graphicInstance->CreatePrimary(back);
 }
 
@@ -144,6 +148,7 @@ SDL::Surface * DDCreatePrimary(SDL::Surface * & back)
 
 SDL::Surface * DDLoadBMP(char * file)
 {
+	debug << "DDLoadBMP ("<<file<<")" << "\n";
 	return graphicInstance->LoadBMP(file, DDSURF_BEST);
 }
 
@@ -155,6 +160,7 @@ SDL::Surface * DDLoadBMP(char * file)
 
 SDL::Surface * DDLoadBMP(char * file, int flags)
 {
+	debug << "DDLoadBMP (" << file << ")" << "\n";
 	return graphicInstance->LoadBMP(file, flags);
 }
 
@@ -166,6 +172,7 @@ SDL::Surface * DDLoadBMP(char * file, int flags)
 
 HRESULT	DDCopyBMP(SDL::Surface *pdds, HBITMAP hbm)
 {
+	debug << "DDCopyBMP ()" << "\n";
 	return graphicInstance->CopyBMP(pdds, hbm);
 }
 
@@ -189,6 +196,7 @@ DWORD DDFindColor(SDL::Surface *pdds, COLORREF rgb)
 
 HRESULT DDSetColorKey(SDL::Surface *surf, COLORREF rgb)
 {
+	debug << "DDSetColorKey ()" << "\n";
 	return graphicInstance->SetColorKey(surf, rgb);
 
 }
@@ -208,10 +216,12 @@ void * DDLoadPalette(char * file)
 
 void DDFlip()
 {
+	debug << "DDFlip ()" << "\n";
 	graphicInstance->Flip();
 }
 
 void DDFlipV()
 {
+	debug << "DDFlipV ()" << "\n";
 	graphicInstance->FlipV();
 }
