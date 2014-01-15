@@ -626,8 +626,8 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 	static int counter = 0;
 	char buf[128];
 	sprintf(buf, "test/%d.bmp",counter);
-	if (counter >200&&counter<250)
-		SDL_SaveBMP(surf->Get(), buf);
+	/*if (counter >200&&counter<250)
+		SDL_SaveBMP(surf->Get(), buf);*/
 
 	counter++;
 
