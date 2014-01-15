@@ -15,8 +15,8 @@
 ******************************************************************/
 
 #define NAME			"Blip'n Blop"
-#define CONFIG_FILE		"data\\bb.cfg"
-#define	HISCORES_FILE	"data\\bb.scr"
+#define CONFIG_FILE		"data/bb.cfg"
+#define	HISCORES_FILE	"data/bb.scr"
 
 #define WIN32_LEAN_AND_MEAN
 
@@ -299,14 +299,14 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	//------------------------------------------------------------------
 
 	if (lang_type == LANG_UK) {
-		if (!loadTxtData("data\\uk.dat")) {
-			Bug("Cannot open the file 'data\\uk.dat'");
+		if (!loadTxtData("data/uk.dat")) {
+			Bug("Cannot open the file 'data/uk.dat'");
 			ReleaseAll();
 			return false;
 		}
 	} else {
-		if (!loadTxtData("data\\fr.dat")) {
-			Bug("Cannot open the file 'data\\fr.dat'");
+		if (!loadTxtData("data/fr.dat")) {
+			Bug("Cannot open the file 'data/fr.dat'");
 			ReleaseAll();
 			return false;
 		}
@@ -523,40 +523,40 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	//			Chargement des fontes
 	//------------------------------------------------------------------
 
-	if (!fnt_menu.load("data\\menu.lft", mem_flag)) {
-		Bug("Cannot open the file data\\menu.lft");
+	if (!fnt_menu.load("data/menu.lft", mem_flag)) {
+		Bug("Cannot open the file data/menu.lft");
 		ReleaseAll();
 		return false;
 	}
 
-	if (!fnt_menus.load("data\\menus.lft", mem_flag)) {
-		Bug("Cannot open the file data\\menus.lft");
+	if (!fnt_menus.load("data/menus.lft", mem_flag)) {
+		Bug("Cannot open the file data/menus.lft");
 		ReleaseAll();
 		return false;
 	}
 
-	if (!fnt_cool.load("data\\cool.lft", mem_flag)) {
-		Bug("Cannot open the file data\\cool.lft");
+	if (!fnt_cool.load("data/cool.lft", mem_flag)) {
+		Bug("Cannot open the file data/cool.lft");
 		ReleaseAll();
 		return false;
 	}
 
-	if (!fnt_rpg.load("data\\rpg.lft", mem_flag)) {
-		Bug("Cannot open the file data\\rpg.lft");
+	if (!fnt_rpg.load("data/rpg.lft", mem_flag)) {
+		Bug("Cannot open the file data/rpg.lft");
 		ReleaseAll();
 		return false;
 	}
 	/*
-		if ( !fnt_score_blip.load( "data\\scorei.lft", mem_flag))
+		if ( !fnt_score_blip.load( "data/scorei.lft", mem_flag))
 		{
-			Bug("Cannot open the file data\\scorei.lft");
+			Bug("Cannot open the file data/scorei.lft");
 			ReleaseAll();
 			return false;
 		}
 
-		if ( !fnt_score_blop.load( "data\\scoreo.lft", mem_flag))
+		if ( !fnt_score_blop.load( "data/scoreo.lft", mem_flag))
 		{
-			Bug("Cannot open the file data\\scoreo.lft");
+			Bug("Cannot open the file data/scoreo.lft");
 			ReleaseAll();
 			return false;
 		}
@@ -565,19 +565,19 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	//			Chargement de l'interface
 	//------------------------------------------------------------------
 
-	if (!pbk_inter.loadGFX("data\\inter.gfx", DDSURF_BEST)) {
+	if (!pbk_inter.loadGFX("data/inter.gfx", DDSURF_BEST)) {
 		debug << "Cannot load interface.\n";
 		return false;
 	} else {
 		debug << "Successfully loaded interface.\n";
 	}
 
-	if (!mbk_inter.open("data\\inter.mbk", false)) {
+	if (!mbk_inter.open("data/inter.mbk", false)) {
 		debug << "Cannot load interface musics.\n";
 		return false;
 	}
 
-	if (!mbk_interl.open("data\\interl.mbk", true)) {
+	if (!mbk_interl.open("data/interl.mbk", true)) {
 		debug << "Cannot load interface musics (p2).\n";
 		return false;
 	}

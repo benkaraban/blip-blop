@@ -175,12 +175,12 @@ void Game::jouePartie(int nbj, int idj)
 		MusicBank	mbk2;
 		PictureBank	pbk;
 
-		pbk.loadGFX("data\\theend.gfx", DDSURF_BEST, false);
-		mbk.open("data\\credits.mbk");
-		mbk2.open("data\\end.mbk", false);
-		cine.loadPBK("data\\end.gfx");
+		pbk.loadGFX("data/theend.gfx", DDSURF_BEST, false);
+		mbk.open("data/credits.mbk");
+		mbk2.open("data/end.mbk", false);
+		cine.loadPBK("data/end.gfx");
 		mbk.play(1);
-		cine.playScene("data\\end.cin", primSurface, backSurface);
+		cine.playScene("data/end.cin", primSurface, backSurface);
 		mbk.stop();
 
 		pbk[1]->PasteTo(backSurface, 0, 0);
@@ -220,7 +220,7 @@ void Game::jouePartie(int nbj, int idj)
 	//
 	releasePartie();
 
-	pbk_inter.loadGFX("data\\inter.gfx", DDSURF_BEST);
+	pbk_inter.loadGFX("data/inter.gfx", DDSURF_BEST);
 
 	if (!skipped && !app_killed) {
 		if (!letsgo) {
@@ -286,7 +286,7 @@ bool Game::joueNiveau(const char * nom_niveau, int type)
 	if (!chargeNiveau(nom_niveau))
 		return false;
 
-	if (strcmp(nom_niveau, "data\\snorkniv.lvl") == 0 || strcmp(nom_niveau, "data\\snorkniv2.lvl") == 0) {
+	if (strcmp(nom_niveau, "data/snorkniv.lvl") == 0 || strcmp(nom_niveau, "data/snorkniv2.lvl") == 0) {
 		okLanceFlame = false;
 	} else {
 		okLanceFlame = true;
@@ -585,7 +585,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	// GFX decors
 	//
 	_read(fic, buffer, 20);
-	strcpy(buffer2, "data\\");
+	strcpy(buffer2, "data/");
 	strcat(buffer2, buffer);
 
 	if (!pbk_decor.loadGFX(buffer2, DDSURF_SYSTEM)) {
@@ -599,7 +599,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	//
 	_read(fic, buffer, 20);
 	if (strlen(buffer) != 0) {
-		strcpy(buffer2, "data\\");
+		strcpy(buffer2, "data/");
 		strcat(buffer2, buffer);
 
 		if (!pbk_niveau.loadGFX(buffer2, mem_flag)) {
@@ -614,7 +614,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	//
 	_read(fic, buffer, 20);
 	if (strlen(buffer) != 0) {
-		strcpy(buffer2, "data\\");
+		strcpy(buffer2, "data/");
 		strcat(buffer2, buffer);
 
 		if (!pbk_ennemis.loadGFX(buffer2, mem_flag)) {
@@ -630,7 +630,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	_read(fic, buffer, 20);
 
 	if (strlen(buffer) != 0) {
-		strcpy(buffer2, "data\\");
+		strcpy(buffer2, "data/");
 		strcat(buffer2, buffer);
 
 		if (!sbk_niveau.loadSFX(buffer2)) {
@@ -645,7 +645,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	//
 	_read(fic, buffer, 20);
 	if (strlen(buffer) != 0) {
-		strcpy(buffer2, "data\\");
+		strcpy(buffer2, "data/");
 		strcat(buffer2, buffer);
 		strcpy(current_mbk, buffer2);
 
@@ -664,7 +664,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	//
 	_read(fic, buffer, 20);
 	if (strlen(buffer) != 0) {
-		strcpy(buffer2, "data\\");
+		strcpy(buffer2, "data/");
 		strcat(buffer2, buffer);
 		rpg.attachFile(buffer2);
 
@@ -680,7 +680,7 @@ bool Game::chargeNiveau(const char * nom_niveau)
 	//
 	_read(fic, buffer, 20);
 	if (strlen(buffer) != 0) {
-		strcpy(buffer2, "data\\");
+		strcpy(buffer2, "data/");
 		strcat(buffer2, buffer);
 
 		if (!pbk_rpg.loadGFX(buffer2, mem_flag)) {
@@ -1333,82 +1333,82 @@ bool Game::chargePartie()
 	debug << "Loading global game files...\n";
 	debug << "---------------------------------------------------------------\n";
 
-	if (!pbk_blip.loadGFX("data\\blip.gfx", mem_flag))
+	if (!pbk_blip.loadGFX("data/blip.gfx", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <blip.gfx>\n";
 
-	if (!pbk_blop.loadGFX("data\\blop.gfx", mem_flag))
+	if (!pbk_blop.loadGFX("data/blop.gfx", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <blop.gfx>\n";
 
 	// Charge BB
 	//
-	if (!pbk_bb.loadGFX("data\\bb.gfx", mem_flag))
+	if (!pbk_bb.loadGFX("data/bb.gfx", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <bb.gfx>\n";
 
 	// Charge Divers
 	//
-	if (!pbk_misc.loadGFX("data\\misc.gfx", mem_flag))
+	if (!pbk_misc.loadGFX("data/misc.gfx", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <misc.gfx>\n";
 
 	// Charge gueules BB
 	//
-	if (!pbk_rpg_bb.loadGFX("data\\rpg_bb.gfx", mem_flag))
+	if (!pbk_rpg_bb.loadGFX("data/rpg_bb.gfx", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <rpg_bb.gfx>\n";
 
 	// Fonte score blip
 	//
-	if (!fnt_score_blip.load("data\\scorei.lft", mem_flag))
+	if (!fnt_score_blip.load("data/scorei.lft", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <scorei.lft>\n";
 
 	// Fonte score blop
 	//
-	if (!fnt_score_blop.load("data\\scoreo.lft", mem_flag))
+	if (!fnt_score_blop.load("data/scoreo.lft", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <scoreo.lft>\n";
 
 	// Fonte munitions
 	//
-	if (!fnt_ammo.load("data\\ammo1.lft", mem_flag))
+	if (!fnt_ammo.load("data/ammo1.lft", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <ammo1.lft>\n";
 
 	// Fonte munitions utilisées
 	//
-	if (!fnt_ammo_used.load("data\\ammo2.lft", mem_flag))
+	if (!fnt_ammo_used.load("data/ammo2.lft", mem_flag))
 		return false;
 
 	debug << "Successfully loaded <ammo2.lft>\n";
 
 	// Sons globaux
 	//
-	if (!sbk_misc.loadSFX("data\\misc.sfx"))
+	if (!sbk_misc.loadSFX("data/misc.sfx"))
 		return false;
 
 	debug << "Successfully loaded <misc.sfx>\n";
 
 	// Sons BB
 	//
-	if (!sbk_bb.loadSFX("data\\bb.sfx"))
+	if (!sbk_bb.loadSFX("data/bb.sfx"))
 		return false;
 
 	debug << "Successfully loaded <bb.sfx>\n";
 
 	// La liste des niveaux
 	//
-	if (!loadList("data\\bb.lst"))
+	if (!loadList("data/bb.lst"))
 		return false;
 
 	debug << "Successfully loaded <bb.lst>\n";
@@ -3756,9 +3756,9 @@ void Game::go()
 
 	CINEPlayer	cine;
 
-	cine.loadPBK("data\\intro.gfx");
+	cine.loadPBK("data/intro.gfx");
 	mbk_interl.play(0);
-	cine.playScene("data\\intro.cin", primSurface, backSurface);
+	cine.playScene("data/intro.cin", primSurface, backSurface);
 
 	menu.start();
 	in.waitClean();
@@ -3798,8 +3798,8 @@ void Game::go()
 
 					case 3:
 					case 7:
-						cine.loadPBK("data\\intro.gfx");
-						cine.playScene("data\\intro.cin", primSurface, backSurface);
+						cine.loadPBK("data/intro.gfx");
+						cine.playScene("data/intro.cin", primSurface, backSurface);
 						break;
 				}
 
@@ -4128,7 +4128,7 @@ void Game::showCredits(bool theEnd)
 
 	if (theEnd) {
 		xcred = 510;
-		pbk_cred.loadGFX("data\\credits.gfx", DDSURF_BEST, false);
+		pbk_cred.loadGFX("data/credits.gfx", DDSURF_BEST, false);
 	}
 
 	time = LGetTime();
