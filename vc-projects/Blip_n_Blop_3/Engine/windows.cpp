@@ -43,7 +43,10 @@ void ZeroMemory(PVOID Destination, SIZE_T Length) {
 }
 
 LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags) {}
-int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType) {}
+int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
+{
+    printf("MessageBox(%s)\n", lpText);
+}
 
 void SetCursor(void*) {}
 WORD HIWORD(DWORD dwValue) {}
