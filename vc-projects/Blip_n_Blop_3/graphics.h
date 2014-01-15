@@ -54,7 +54,7 @@ public:
 	SDL::Surface *	CreatePrimary(SDL::Surface * & back);
 	SDL::Surface *	CreateSurface(int x, int y);
 	SDL::Surface *	CreateSurface(int x, int y, int flags);
-	SDL_Surface *	Graphics::CreateSDLSurface(int x, int y);
+	SDL_Surface *	CreateSDLSurface(int x, int y);
 	SDL::Surface *	LoadBMP(char * file);
 	SDL::Surface *	LoadBMP(char * file, int flags);
 	HRESULT					CopyBMP(SDL::Surface *surf, HBITMAP hbm);
