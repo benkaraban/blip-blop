@@ -47,6 +47,8 @@ namespace SDL
 			position.y = y;
 			if (r == 0)
 			{
+				position.w = surface->w;
+				position.h = surface->h;
 				SDL_BlitSurface(surface, 0, surf->Get(), &position);
 			}
 			else

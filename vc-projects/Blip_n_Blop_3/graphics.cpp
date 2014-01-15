@@ -196,6 +196,8 @@ void					Graphics::Flip()
 	SDL_RenderPresent(renderer);
 
 	SDL_DestroyTexture(tex);
+
+	//SDL_SaveBMP(backSurface->Get(), "test/draw.bmp");
 }
 
 void					Graphics::FlipV()
