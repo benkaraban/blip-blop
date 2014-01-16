@@ -279,6 +279,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		return false;
 	}
 
+	debug << "DI Initialized\n";
+
 	//------------------------------------------------------------------
 	//			Direct Draw (1ère partie)
 	//------------------------------------------------------------------
@@ -288,6 +290,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		ReleaseAll();
 		return false;
 	}
+
+	debug << "DD Initialized\n";
 
 	/*
 		// -------- Mode Windows ----------
@@ -334,6 +338,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		return false;
 	}
 
+	debug << "Exclusive mode set\n";
+
 	static const int BEST_RATE = 85;
 
 	if (safeMode) {
@@ -360,13 +366,13 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		        ChangeDisplaySettings(&dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL) {
 			debug << "Cannot set 640x480x16 at " << BEST_RATE << " Hz.\n";
 			winSet = false;*/
-
+			debug << "Trying to create window\n";
 			if (!DDSetGfxMode(640, 480, 16)) {
 				Bug("Cannot set display mode to 640x480x16. Are you sure your video card meets the requirements ?");
 				ReleaseAll();
 				return false;
 			}
-
+			debug << "Window creation done\n";
 			/*debug << "Using default 640x480x16 refresh rate.\n";
 			vSyncOn = true;
 		} else {
@@ -397,7 +403,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	//------------------------------------------------------------------
 
 	// Crée la surface primaire avec double buffer
-
+	debug << "Creating primSurface\n";
 	primSurface = DDCreatePrimary(backSurface);
 
 	if (primSurface == NULL || backSurface == NULL) {
@@ -405,12 +411,12 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		ReleaseAll();
 		return false;
 	}
-
+	debug << "primSurface created\n";
 
 	//------------------------------------------------------------------
 	//			Surface système
 	//------------------------------------------------------------------
-
+	debug << "Creating systemSurface\n";
 	systemSurface = DDCreateSurface(640, 480, DDSURF_SYSTEM);
 
 	if (systemSurface == NULL) {
@@ -418,19 +424,19 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		ReleaseAll();
 		return false;
 	}
-
+	debug << "systemSurface created\n";
 
 
 	//------------------------------------------------------------------
 	//			LGX paker
 	//------------------------------------------------------------------
-
+	debug << "Initializing LGXpaker\n";
 	if (!LGXpaker.init(primSurface)) {
 		Bug("Cannot initialise LGX paker. Please get the latest drivers for your video card.");
 		ReleaseAll();
 		return false;
 	}
-
+	debug << "LGXpaker initialized\n";
 
 	//------------------------------------------------------------------
 	//			Scroll buffers
