@@ -65,20 +65,18 @@ Input::~Input()
 
 bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
 {
-	if (dinput != NULL) {
+	/*if (dinput != NULL) {
 		debug << "Input::open->DINPUT déjà initialisé!\n";
 		return false;
 	}
 
-	//if ( DirectInputCreateEx( inst, DIRECTINPUT_VERSION, IID_IDirectInput7, (void**)&dinput, NULL) != DI_OK)
 	if (DirectInput8Create(inst, DIRECTINPUT_VERSION, IID_IDirectInput8, (void**)&dinput, NULL) != DI_OK) {
 		debug << "Input::open->Ne peut pas ouvrir DINPUT\n";
 		dinput = NULL;
 		return false;
 	}
 
-	// Associe le clavier
-	//
+
 	if (flags & BINPUT_KEYB) {
 		if (dinput->CreateDevice(GUID_SysKeyboard, (LPDIRECTINPUTDEVICE8A *)&dikeyb, NULL) != DI_OK) {
 			debug << "Input::open->Ne peut pas créer le clavier!\n";
@@ -158,7 +156,7 @@ bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
 				}
 			}
 		}
-	}
+	}*/
 
 	return true;
 }
@@ -180,7 +178,7 @@ IDirectInput8 * Input::di() const
 
 void Input::update()
 {
-	if (dikeyb != NULL)
+	/*if (dikeyb != NULL)
 		dikeyb->GetDeviceState(sizeof(buffer), (void *)&buffer);
 
 	for (int i = 0; i < n_joy; i++) {
@@ -188,7 +186,7 @@ void Input::update()
 			dijoy[i]->Poll();
 			dijoy[i]->GetDeviceState(sizeof(DIJOYSTATE), (void*) &js[i]);
 		}
-	}
+	}*/
 }
 
 //-----------------------------------------------------------------------------
@@ -199,7 +197,7 @@ void Input::update()
 unsigned int Input::waitKey()
 {
 	unsigned int	key = 0;
-	unsigned int	i = 0;
+	/*unsigned int	i = 0;
 	int				j;
 	int				k;
 
@@ -217,7 +215,7 @@ unsigned int Input::waitKey()
 				if (scanKey(k + j))
 					key = k + j;
 		}
-	}
+	}*/
 
 	return key;
 }
@@ -229,7 +227,7 @@ unsigned int Input::waitKey()
 
 void Input::waitClean()
 {
-	unsigned int		i, j = 1;		// Bcoz si j = 0 alors on sort tout de suite!
+	/*unsigned int		i, j = 1;		// Bcoz si j = 0 alors on sort tout de suite!
 
 	while (j) {
 		update();
@@ -243,7 +241,7 @@ void Input::waitClean()
 			for (int l = 0; l < 14; l++)
 				j |= scanKey(k + l);
 		}
-	}
+	}*/
 
 }
 
@@ -263,7 +261,7 @@ void Input::setAlias(int a, unsigned int val)
 
 void Input::close()
 {
-	if (dikeyb != NULL) {
+	/*if (dikeyb != NULL) {
 		dikeyb->Unacquire();
 		dikeyb->Release();
 		dikeyb = NULL;
@@ -281,7 +279,7 @@ void Input::close()
 		}
 	}
 
-	n_joy = 0;
+	n_joy = 0;*/
 }
 
 
@@ -292,7 +290,7 @@ bool Input::anyKeyPressed()
 	unsigned int	i;
 	unsigned int	k;
 	int key = 0;
-	int j;
+	/*int j;
 
 	update();
 
@@ -306,14 +304,14 @@ bool Input::anyKeyPressed()
 		for (j = 0; j < 14; j++)
 			if (scanKey(k + j))
 				key = k + j;
-	}
+	}*/
 
 	return (key != 0);
 }
 
 int Input::scanKey(unsigned int k) const
 {
-	int j = (k >> 10);
+	/*int j = (k >> 10);
 
 	if (j == 0)
 		return buffer[k] & 0x80;
@@ -349,7 +347,8 @@ int Input::scanKey(unsigned int k) const
 		}
 
 		return z;
-	}
+	}*/
+	return 0;
 }
 
 //-----------------------------------------------------------------------------
@@ -359,7 +358,7 @@ int Input::scanKey(unsigned int k) const
 
 bool Input::reAcquire()
 {
-	if (dinput == NULL)
+	/*if (dinput == NULL)
 		return false;
 
 	if (dikeyb != NULL)
@@ -367,14 +366,14 @@ bool Input::reAcquire()
 
 	for (int i = 0; i < MAX_JOY; i++)
 		if (dijoy[i] != NULL)
-			dijoy[i]->Acquire();
+			dijoy[i]->Acquire();*/
 
 	return true;
 }
 
 BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* pContext)
 {
-	Input *	i = (Input*) pContext;
+	/*Input *	i = (Input*) pContext;
 
 	if (i->dinput->CreateDevice(pdidInstance->guidInstance, (LPDIRECTINPUTDEVICE8A *) & (i->dijoy[i->n_joy]), NULL) != DI_OK) {
 		return DIENUM_CONTINUE;
@@ -384,6 +383,6 @@ BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* 
 
 	if (i->n_joy < MAX_JOY)
 		return DIENUM_CONTINUE;
-	else
+	else*/
 		return DIENUM_STOP;
 }

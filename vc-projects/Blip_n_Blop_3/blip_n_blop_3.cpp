@@ -46,7 +46,7 @@
 
 Game	game;
 
-HWND	WinHandle;
+HWND	WinHandle=NULL;
 
 //FSOUND_SAMPLE * samp_test = NULL;
 
@@ -202,50 +202,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	debug << "---------------------------------------------------------------\n";
 
 	//------------------------------------------------------------------
-	//			Crée une fenêtre plein écran
-	//------------------------------------------------------------------
-
-	WinClass.style = CS_HREDRAW | CS_VREDRAW;
-	WinClass.lpfnWndProc = WinProc;
-	WinClass.cbClsExtra = 0;
-	WinClass.cbWndExtra = 0;
-	WinClass.hInstance = hInstance;
-	WinClass.hIcon = 0; //TODO
-	WinClass.hCursor = 0; //TODO
-	WinClass.hbrBackground = 0; //TODO
-	WinClass.lpszMenuName = NAME;
-	WinClass.lpszClassName = NAME;
-	RegisterClass(&WinClass);
-
-	WinHandle = CreateWindowEx(
-	                0,
-	                NAME,
-	                NAME,
-	                WS_POPUP,
-	                0,
-	                0,
-	                GetSystemMetrics(SM_CXSCREEN),
-	                GetSystemMetrics(SM_CYSCREEN),
-	                NULL,
-	                NULL,
-	                hInstance,
-	                NULL);
-
-	if (!WinHandle) {
-		Bug("Cannot open a window. Reboot your system and try again.");
-		ReleaseAll();
-		return false;
-	}
-
-	ShowWindow(WinHandle, nCmdShow);
-	UpdateWindow(WinHandle);
-
-	for (int i = 0; i < 10; i++)
-		manageMsg();
-
-
-
-	//------------------------------------------------------------------
 	//			Precalculs mathématiques
 	//------------------------------------------------------------------
 
@@ -370,6 +326,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 
 	// Mode EXCLUSIF (bourrin quoi...)
 
+	active = true;	//Activate the game loop
+
 	if (!DDSetCooperativeLevel(WinHandle)) {
 		Bug("Cannot get EXCLUSIVE MODE. Close all other applications and launch Blip'n Blop again");
 		ReleaseAll();
@@ -388,7 +346,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 			return false;
 		}
 	} else {
-		DEVMODE dm;
+		/*DEVMODE dm;
 
 		ZeroMemory(&dm, sizeof(dm));
 		dm.dmSize = sizeof(dm);
@@ -401,7 +359,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		if (ChangeDisplaySettings(&dm, CDS_TEST) != DISP_CHANGE_SUCCESSFUL ||
 		        ChangeDisplaySettings(&dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL) {
 			debug << "Cannot set 640x480x16 at " << BEST_RATE << " Hz.\n";
-			winSet = false;
+			winSet = false;*/
 
 			if (!DDSetGfxMode(640, 480, 16)) {
 				Bug("Cannot set display mode to 640x480x16. Are you sure your video card meets the requirements ?");
@@ -409,13 +367,13 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 				return false;
 			}
 
-			debug << "Using default 640x480x16 refresh rate.\n";
+			/*debug << "Using default 640x480x16 refresh rate.\n";
 			vSyncOn = true;
 		} else {
 			debug << "Set 640x480x16 at " << BEST_RATE << " Hz.\n";
 			winSet = true;
 			vSyncOn = true;
-		}
+		}*/
 	}
 
 
