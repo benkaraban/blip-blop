@@ -182,7 +182,7 @@ DWORD					Graphics::FindColor(SDL::Surface *surf, COLORREF rgb)
 
 HRESULT					Graphics::SetColorKey(SDL::Surface *surf, COLORREF rgb)
 {
-	SDL_SetColorKey(surf->Get(), SDL_TRUE, SDL_MapRGB(surf->Get()->format, (rgb & 0xFF), (rgb >> 8 & 0xFF), (rgb >> 16 & 0xFF)));
+	SDL_SetColorKey(surf->Get(), SDL_TRUE, SDL_MapRGB(surf->Get()->format, (rgb & 0xFF), ((rgb >> 8) & 0xFF), ((rgb >> 16) & 0xFF)));
 	//TODO: set color key
 	return true;
 }
@@ -192,10 +192,12 @@ void					Graphics::Flip()
 
 	SDL_Texture *tex = 0;
 	tex = SDL_CreateTextureFromSurface(renderer, backSurface->Get());
+	SDL_RenderClear(renderer);
 	SDL_RenderCopy(renderer, tex, NULL, NULL);
 	SDL_RenderPresent(renderer);
 
 	SDL_DestroyTexture(tex);
+	//SDL_Delay(1);
 
 	//SDL_SaveBMP(backSurface->Get(), "test/draw.bmp");
 }

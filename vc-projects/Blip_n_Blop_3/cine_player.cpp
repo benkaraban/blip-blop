@@ -428,7 +428,7 @@ void CINEPlayer::drawScene()
 
 	RECT		r;
 
-	back_surf->FillRect(0, 0);
+	back_surf->FillRect(0, 0xFF000000);
 
 
 	// Affiche tous les sprites/scrolls

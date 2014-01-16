@@ -196,7 +196,7 @@ DWORD DDFindColor(SDL::Surface *pdds, COLORREF rgb)
 
 HRESULT DDSetColorKey(SDL::Surface *surf, COLORREF rgb)
 {
-	debug << "DDSetColorKey ()" << "\n";
+	//debug << "DDSetColorKey ()" << "\n";
 	return graphicInstance->SetColorKey(surf, rgb);
 
 }
@@ -216,12 +216,12 @@ void * DDLoadPalette(char * file)
 
 void DDFlip()
 {
-	debug << "DDFlip ()" << "\n";
+	//debug << "DDFlip ()" << "\n";
 	graphicInstance->Flip();
 }
 
 void DDFlipV()
 {
-	debug << "DDFlipV ()" << "\n";
+	//debug << "DDFlipV ()" << "\n";
 	graphicInstance->FlipV();
 }

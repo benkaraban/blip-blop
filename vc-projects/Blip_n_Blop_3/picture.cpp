@@ -194,6 +194,13 @@ void Picture::BlitTo(SDL::Surface * s, int x, int y) const
 
 	s->BltFast(x, y, surf, &r, DDBLTFAST_SRCCOLORKEY
 	           | DDBLTFAST_WAIT);
+
+	/*static int test_i = 1;
+	char buf[128];
+	sprintf(buf, "test/%d.bmp", test_i);
+	SDL_SaveBMP(surf->Get(), buf);
+	test_i++;*/
+
 }
 
 //-----------------------------------------------------------------------------

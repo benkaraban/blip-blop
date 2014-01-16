@@ -161,7 +161,8 @@ bool LGXpacker::init(SDL::Surface * surf)
 
 				tab_0[cpt] = (((r * rMax) / LGX_RMAX_0) << rDecal) |
 				             (((g * gMax) / LGX_GMAX_0) << gDecal) |
-				             (((b * bMax) / LGX_BMAX_0) << bDecal);
+				             (((b * bMax) / LGX_BMAX_0) << bDecal) |
+							 pf.dwABitMask;	//Alpha fix
 			}
 
 
@@ -186,7 +187,8 @@ bool LGXpacker::init(SDL::Surface * surf)
 
 				tab_1[cpt] = (((r * rMax) / LGX_RMAX_1) << rDecal) |
 				             (((g * gMax) / LGX_GMAX_1) << gDecal) |
-				             (((b * bMax) / LGX_BMAX_1) << bDecal);
+							 (((b * bMax) / LGX_BMAX_1) << bDecal) |
+							 pf.dwABitMask;	//Alpha fix;
 			}
 
 	//

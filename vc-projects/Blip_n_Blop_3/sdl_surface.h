@@ -25,11 +25,15 @@ namespace SDL
 		//Surface();
 
 		Surface(SDL_Surface* surf) {
+			//SDL_SetSurfaceBlendMode(surf, SDL_BLENDMODE_NONE);
+			SDL_SetSurfaceAlphaMod(surf, 0xff);
 			surface = surf;
 			backBuffer = 0;
 		}
 
 		Surface(SDL_Surface* surf, Surface* bb) {
+			//SDL_SetSurfaceBlendMode(surf, SDL_BLENDMODE_NONE);
+			SDL_SetSurfaceAlphaMod(surf, 0xff);
 			surface = surf;
 			backBuffer = bb;
 		}
@@ -40,16 +44,21 @@ namespace SDL
 		}
 
 		inline SDL_Surface *Get(){ return surface; };
-		inline void BltFast(int x, int y, SDL::Surface *surf, RECT *r, int flags=0)
+		inline void BltFast(int x, int y, SDL::Surface *surf /*This is the Source Surface! Damn, DD!*/, RECT *r, int flags=0)
 		{
+
+			/*static int test_i = 1;
+			char buf[128];
+			sprintf(buf, "test/%d.bmp", test_i);
+			SDL_SaveBMP(surf->Get(), buf);
+			test_i++;*/
+
 			SDL_Rect rect,position;
 			position.x = x;
 			position.y = y;
 			if (r == 0)
 			{
-				position.w = surface->w;
-				position.h = surface->h;
-				SDL_BlitSurface(surface, 0, surf->Get(), &position);
+				SDL_BlitSurface(surf->Get(), 0, surface, &position);
 			}
 			else
 			{
@@ -57,13 +66,23 @@ namespace SDL
 				rect.y = r->top;
 				rect.w = r->right - r->left;
 				rect.h = r->bottom - r->top;
-				position.w = rect.w;
-				position.h = rect.h;
 				/*SDL_BlitSurface(SDL_Surface*    src,
 				const SDL_Rect* srcrect,
 				SDL_Surface*    dst,
 				SDL_Rect*       dstrect)*/
-				SDL_BlitSurface(surface, &rect, surf->Get(), &position);
+				int ret=SDL_BlitSurface(surf->Get(), &rect, surface, &position);
+				unsigned long* px = (unsigned long*)surf->Get()->pixels;
+				if (ret != 0)
+				{
+					debug <<"Errore SDL_BlitSurface in sdl_surface.h - "<< SDL_GetError() << "\n";
+					exit(0);
+				}
+
+				/*static int test_i = 1;
+				char buf[128];
+				sprintf(buf, "test/%d.bmp", test_i);
+				SDL_SaveBMP(surf->Get(), buf);
+				test_i++;*/
 			}
 
 		}
@@ -92,7 +111,7 @@ namespace SDL
 			}
 			if (surf)
 			{
-				SDL_BlitSurface(surface, rect, surf->Get(), position);
+				SDL_BlitSurface(surf->Get(), rect, surface, position);
 			}
 			else
 			{

@@ -123,9 +123,13 @@ bool PictureBank::loadGFX(const char * file, int flag, bool trans)
 
 		if (trans) {
 			if (version == 1)
-				tab[i]->SetColorKey(RGB(250, 206, 152));
+			{
+				tab[i]->SetColorKey(RGB(246, 205, 148));
+			}
 			else
-				tab[i]->SetColorKey(RGB(250, 214, 152));
+			{
+				tab[i]->SetColorKey(RGB(246, 210, 148));
+			}
 		}
 	}
 

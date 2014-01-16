@@ -126,6 +126,13 @@ bool Fonte::load(const char * fic, int flags)
 //		pictab[i]->SetColorKey( RGB( 250, 212, 152));
 //		pictab[i]->SetColorKey(RGB( 246, 205, 148));
 		pictab[i]->SetColorKey(RGB(250, 206, 152));
+
+		/*static int test_i = 1;
+		char buf[128];
+		sprintf(buf, "test/%d.bmp", test_i);
+		SDL_SaveBMP(surf->Get(), buf);
+		test_i++;*/
+
 	}
 
 	nom_fic = new char[strlen(fic) + 1];
