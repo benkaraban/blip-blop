@@ -13,6 +13,7 @@ aux_source_directory(Engine ENGINE_SRC)
 
 add_executable(blipblop ${SRC} ${ENGINE_SRC})
 target_link_libraries(blipblop ${SDL2_LIBRARIES})
+set_target_properties(blipblop PROPERTIES COMPILE_FLAGS "-m32" LINK_FLAGS "-m32")
 
 add_custom_target(astyle COMMAND
     astyle --indent=tab --indent-preprocessor --style=kr
