@@ -10,7 +10,7 @@ Graphics::Graphics()
 
 bool Graphics::Init()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) == -1){
+	if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
 		debug << SDL_GetError() << "\n";
 		return false;
 	}

@@ -171,7 +171,7 @@ void MusicBank::close()
 	}
 
 	if (mp3Data != NULL) {
-		delete [] mp3Data;
+		//delete [] mp3Data;
 		mp3Data = NULL;
 	}
 

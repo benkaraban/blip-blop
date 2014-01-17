@@ -1,5 +1,4 @@
 
-#include <dinput.h>
 #include <string.h>
 #include <stdio.h>
 #include "config.h"
@@ -62,10 +61,10 @@ void DIK_to_string_uk(int n, char * str)
 				KMAP(DIK_L, "L");
 				KMAP(DIK_SEMICOLON, ";");
 				KMAP(DIK_APOSTROPHE, "'");
-				KMAP(DIK_GRAVE, "`");
+				//KMAP(DIK_GRAVE, "`");
 				KMAP(DIK_LSHIFT, "LEFT SHIFT");
 				KMAP(DIK_BACKSLASH, "\\");
-				KMAP(DIK_OEM_102, "\\");
+				//KMAP(DIK_OEM_102, "\\");
 				KMAP(DIK_Z, "Z");
 				KMAP(DIK_X, "X");
 				KMAP(DIK_C, "C");
@@ -109,7 +108,7 @@ void DIK_to_string_uk(int n, char * str)
 				KMAP(DIK_NUMPAD9, "NUM 9");
 				KMAP(DIK_NUMPAD0, "NUM 0");
 				KMAP(DIK_ADD, "NUM +");
-				KMAP(DIK_SUBTRACT, "NUM -");
+				//KMAP(DIK_SUBTRACT, "NUM -");
 				KMAP(DIK_DECIMAL, "NUM .");
 				KMAP(DIK_NUMPADENTER, "NUM ENTER");
 				KMAP(DIK_DIVIDE, "NUM /");
@@ -125,9 +124,9 @@ void DIK_to_string_uk(int n, char * str)
 				KMAP(DIK_LEFT, "LEFT ARROW");
 				KMAP(DIK_RIGHT, "RIGHT ARROW");
 				KMAP(DIK_RCONTROL, "RIGHT CONTROL");
-				KMAP(DIK_LWIN, "LEFT WIN");
+				/*KMAP(DIK_LWIN, "LEFT WIN");
 				KMAP(DIK_RWIN, "RIGHT WIN");
-				KMAP(DIK_APPS, "APPS KEY");
+				KMAP(DIK_APPS, "APPS KEY");*/
 
 			default:
 				strcpy(str, "UNDEFINED");
@@ -174,7 +173,7 @@ void DIK_to_string_fr(int n, char * str)
 				KMAP(DIK_8, "8");
 				KMAP(DIK_9, "9");
 				KMAP(DIK_0, "0");
-				KMAP(DIK_MINUS, ")");
+				//KMAP(DIK_MINUS, ")");
 				KMAP(DIK_EQUALS, "=");
 				KMAP(DIK_BACK, "BACKSPACE");
 				KMAP(DIK_TAB, "TAB");
@@ -203,10 +202,10 @@ void DIK_to_string_fr(int n, char * str)
 				KMAP(DIK_L, "L");
 				KMAP(DIK_SEMICOLON, "M");
 				KMAP(DIK_APOSTROPHE, "ù");
-				KMAP(DIK_GRAVE, "²");
+				//KMAP(DIK_GRAVE, "²");
 				KMAP(DIK_LSHIFT, "SHIFT GAUCHE");
 				KMAP(DIK_BACKSLASH, "*");
-				KMAP(DIK_OEM_102, "<");
+				//KMAP(DIK_OEM_102, "<");
 				KMAP(DIK_Z, "W");
 				KMAP(DIK_X, "X");
 				KMAP(DIK_C, "C");
@@ -266,9 +265,9 @@ void DIK_to_string_fr(int n, char * str)
 				KMAP(DIK_LEFT, "FLECHE GAUCHE");
 				KMAP(DIK_RIGHT, "FLECHE DROITE");
 				KMAP(DIK_RCONTROL, "CONTROL DROITE");
-				KMAP(DIK_LWIN, "WIN GAUCHE");
+				/*KMAP(DIK_LWIN, "WIN GAUCHE");
 				KMAP(DIK_RWIN, "WIN DROITE");
-				KMAP(DIK_APPS, "APPS");
+				KMAP(DIK_APPS, "APPS");*/
 
 			default:
 				strcpy(str, "INDEFINIE");

@@ -27,7 +27,7 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <dinput.h>
+#include "graphics.h"
 #include "input.h"
 #include "ben_debug.h"
 
@@ -42,7 +42,7 @@ Input		in;
 // Desc: Met à NULL les valeurs susceptibles de foirer
 //-----------------------------------------------------------------------------
 
-Input::Input() : dinput(NULL), dikeyb(NULL), n_joy(0)
+Input::Input() : n_joy(0)
 {
 	ZeroMemory(buffer, 256);
 	ZeroMemory(buffer, 256);
@@ -50,10 +50,7 @@ Input::Input() : dinput(NULL), dikeyb(NULL), n_joy(0)
 
 Input::~Input()
 {
-	if (dinput != NULL) {
-		debug << "DInput non désalloué!\n";
-		close();
-	}
+
 }
 
 
@@ -63,8 +60,19 @@ Input::~Input()
 // Desc: Ouvre BINPUT
 //-----------------------------------------------------------------------------
 
-bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
+bool Input::open(HWND wh, HINSTANCE inst, int flags)
 {
+
+	SDL_JoystickEventState(SDL_TRUE);
+
+	this->n_joy = SDL_NumJoysticks();
+
+	for (int i = 0; i < n_joy; i++)
+	{
+		js[i].handle = SDL_JoystickOpen(i);
+		strcpy(this->js[i].name, SDL_JoystickName(js[i].handle));
+	}
+
 	/*if (dinput != NULL) {
 		debug << "Input::open->DINPUT déjà initialisé!\n";
 		return false;
@@ -162,22 +170,42 @@ bool Input::open(HWND wh, HINSTANCE inst, int flags, int cl)
 }
 
 //-----------------------------------------------------------------------------
-// Nom: Input::di()
-// Desc: Renvoie &DINPUT
-//-----------------------------------------------------------------------------
-
-IDirectInput8 * Input::di() const
-{
-	return dinput;
-}
-
-//-----------------------------------------------------------------------------
 // Nom: Input::update()
 // Desc: Met à jour les entrées
 //-----------------------------------------------------------------------------
 
 void Input::update()
 {
+	SDL_Event e;
+	while (SDL_PollEvent(&e)){
+
+		if (e.type == SDL_QUIT)
+		{
+			app_killed = true;
+			exit(0);
+		}	
+
+		if (e.type == SDL_KEYDOWN)
+		{
+			if (e.key.keysym.sym < 255)
+			{
+				buffer[e.key.keysym.sym] = 1;
+			}
+		}
+		if (e.type == SDL_KEYUP)
+		{
+			if (e.key.keysym.sym < 255)
+			{
+				buffer[e.key.keysym.sym] = 0;
+			}
+		}
+
+		if (e.type == SDL_MOUSEBUTTONDOWN)
+		{
+
+		}
+
+	}
 	/*if (dikeyb != NULL)
 		dikeyb->GetDeviceState(sizeof(buffer), (void *)&buffer);
 
@@ -197,6 +225,19 @@ void Input::update()
 unsigned int Input::waitKey()
 {
 	unsigned int	key = 0;
+
+	while (1)
+	{
+		update();
+		for (int i = 0; i < 256; i++)
+		{
+			if (buffer[i] != 0)
+			{
+				return i;
+			}
+		}
+
+	}
 	/*unsigned int	i = 0;
 	int				j;
 	int				k;
@@ -227,6 +268,21 @@ unsigned int Input::waitKey()
 
 void Input::waitClean()
 {
+	//Waits for all keys to be released?
+	while (1)
+	{
+		bool j = false;
+		update();
+		for (int i = 0; i < 256; i++)
+		{
+			if (buffer[i] != 0)
+			{
+				j = true;
+			}
+		}
+		if (j)
+			return;
+	}
 	/*unsigned int		i, j = 1;		// Bcoz si j = 0 alors on sort tout de suite!
 
 	while (j) {
@@ -290,6 +346,18 @@ bool Input::anyKeyPressed()
 	unsigned int	i;
 	unsigned int	k;
 	int key = 0;
+
+	update();
+	for (int i = 0; i < 256; i++)
+	{
+		if (buffer[i] != 0)
+		{
+			return true;
+		}
+	}
+	return false;
+
+
 	/*int j;
 
 	update();
@@ -305,8 +373,6 @@ bool Input::anyKeyPressed()
 			if (scanKey(k + j))
 				key = k + j;
 	}*/
-
-	return (key != 0);
 }
 
 int Input::scanKey(unsigned int k) const
@@ -348,6 +414,9 @@ int Input::scanKey(unsigned int k) const
 
 		return z;
 	}*/
+	if (k<255)
+		return buffer[k];
+
 	return 0;
 }
 
@@ -369,20 +438,4 @@ bool Input::reAcquire()
 			dijoy[i]->Acquire();*/
 
 	return true;
-}
-
-BOOL CALLBACK EnumJoysticksCallback(const DIDEVICEINSTANCE* pdidInstance, VOID* pContext)
-{
-	/*Input *	i = (Input*) pContext;
-
-	if (i->dinput->CreateDevice(pdidInstance->guidInstance, (LPDIRECTINPUTDEVICE8A *) & (i->dijoy[i->n_joy]), NULL) != DI_OK) {
-		return DIENUM_CONTINUE;
-	}
-
-	i->n_joy += 1;
-
-	if (i->n_joy < MAX_JOY)
-		return DIENUM_CONTINUE;
-	else*/
-		return DIENUM_STOP;
 }
