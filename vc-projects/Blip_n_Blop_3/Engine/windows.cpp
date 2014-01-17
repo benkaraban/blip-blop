@@ -4,6 +4,8 @@
 #include <cassert>
 #include <unistd.h>
 
+#include <SDL.h>
+
 #include "windows.h"
 
 HANDLE WINAPI CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void* unused, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
@@ -59,10 +61,17 @@ BOOL WINAPI ShowWindow(HWND hWnd, int nCmdShow) {}
 BOOL UpdateWindow(HWND hWnd) {}
 UINT_PTR WINAPI SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc) {}
 BOOL WINAPI DestroyWindow(HWND hWnd) {}
-void Sleep(int) {}
-DWORD WINAPI GetTickCount(void) {}
+void Sleep(int ms)
+{
+    SDL_Delay(ms);
+}
+DWORD WINAPI GetTickCount(void) {
+    return SDL_GetTicks();
+}
 
-COLORREF RGB(BYTE byRed, BYTE byGreen, BYTE byBlue) {}
+COLORREF RGB(BYTE byRed, BYTE byGreen, BYTE byBlue) {
+    return byRed | (byGreen << 8) | (byBlue << 16);
+}
 
 HMODULE WINAPI GetModuleHandle(LPCTSTR lpModuleName) {}
 
@@ -84,9 +93,17 @@ LPVOID WINAPI LockResource(HGLOBAL hResData) {}
 HGLOBAL WINAPI LoadResource(HMODULE hModule, HRSRC hResInfo) {}
 HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType) {}
 
-DWORD timeGetTime(void) {}
-BOOL WINAPI QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency) {}
-BOOL WINAPI QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount) {}
+DWORD timeGetTime(void) {
+    return SDL_GetTicks();
+}
+BOOL WINAPI QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency) {
+    *lpFrequency = SDL_GetPerformanceFrequency();
+    return true;
+}
+BOOL WINAPI QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount) {
+    *lpPerformanceCount = SDL_GetPerformanceCounter();
+    return true;
+}
 
 BOOL WINAPI PeekMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg) {}
 LRESULT WINAPI DispatchMessage(const MSG *lpmsg) {}

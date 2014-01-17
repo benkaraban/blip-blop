@@ -124,8 +124,8 @@ bool Fonte::load(const char * fic, int flags)
 		pictab[i]->SetSurface(surf);
 		pictab[i]->SetSpot(0, 0);
 //		pictab[i]->SetColorKey( RGB( 250, 212, 152));
-//		pictab[i]->SetColorKey(RGB( 246, 205, 148));
-		pictab[i]->SetColorKey(RGB(250, 206, 152));
+		pictab[i]->SetColorKey(RGB( 246, 205, 148));
+		//pictab[i]->SetColorKey(RGB(250, 206, 152));
 
 		/*static int test_i = 1;
 		char buf[128];
