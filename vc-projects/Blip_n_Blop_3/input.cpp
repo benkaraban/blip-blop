@@ -45,7 +45,7 @@ Input		in;
 Input::Input() : n_joy(0)
 {
 	ZeroMemory(buffer, 256);
-	ZeroMemory(buffer, 256);
+	ZeroMemory(specialsbuffer, 0xFFF);
 }
 
 Input::~Input()
@@ -191,6 +191,8 @@ void Input::update()
 			{
 				buffer[e.key.keysym.sym] = 1;
 			}
+			else
+				specialsbuffer[e.key.keysym.sym & 0xFFF] = 1;
 		}
 		if (e.type == SDL_KEYUP)
 		{
@@ -198,6 +200,8 @@ void Input::update()
 			{
 				buffer[e.key.keysym.sym] = 0;
 			}
+			else
+				specialsbuffer[e.key.keysym.sym & 0xFFF] = 0;
 		}
 
 		if (e.type == SDL_MOUSEBUTTONDOWN)
@@ -236,7 +240,13 @@ unsigned int Input::waitKey()
 				return i;
 			}
 		}
-
+		for (int i = 0; i < 0xFFF; i++)
+		{
+			if (specialsbuffer[i] != 0)
+			{
+				return i | 0x40000000;
+			}
+		}
 	}
 	/*unsigned int	i = 0;
 	int				j;
@@ -276,6 +286,13 @@ void Input::waitClean()
 		for (int i = 0; i < 256; i++)
 		{
 			if (buffer[i] != 0)
+			{
+				j = true;
+			}
+		}
+		for (int i = 0; i < 0xFFF; i++)
+		{
+			if (specialsbuffer[i] != 0)
 			{
 				j = true;
 			}
@@ -355,6 +372,13 @@ bool Input::anyKeyPressed()
 			return true;
 		}
 	}
+	for (int i = 0; i < 0xFFF; i++)
+	{
+		if (specialsbuffer[i] != 0)
+		{
+			return true;
+		}
+	}
 	return false;
 
 
@@ -416,6 +440,8 @@ int Input::scanKey(unsigned int k) const
 	}*/
 	if (k<255)
 		return buffer[k];
+	else 
+		return specialsbuffer[k & 0xFFF];
 
 	return 0;
 }

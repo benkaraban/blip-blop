@@ -178,6 +178,7 @@ private:
 	int				n_joy;
 	DIJOYSTATE		js[MAX_JOY];
 	char 			buffer[256];
+	char			specialsbuffer[0xFFF];
 	unsigned int	aliastab[256];
 
 public:
