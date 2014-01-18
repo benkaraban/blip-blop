@@ -17,9 +17,9 @@ void DIK_to_string(int n, char * str)
 
 void DIK_to_string_uk(int n, char * str)
 {
-	int		j = n >> 10;
+	/*int	j = n >> 10;*/
 
-	if (j == 0) {
+	if (/*j == 0*/true) {
 		switch (n) {
 				KMAP(DIK_ESCAPE, "ESCAPE");
 				KMAP(DIK_1, "1");
@@ -50,6 +50,7 @@ void DIK_to_string_uk(int n, char * str)
 				KMAP(DIK_RBRACKET, "]");
 				KMAP(DIK_RETURN, "RETURN");
 				KMAP(DIK_LCONTROL, "LEFT CONTROL");
+				KMAP(DIK_LALT, "LEFT ALT");
 				KMAP(DIK_A, "A");
 				KMAP(DIK_S, "S");
 				KMAP(DIK_D, "D");
@@ -132,7 +133,7 @@ void DIK_to_string_uk(int n, char * str)
 				strcpy(str, "UNDEFINED");
 				break;
 		}
-	} else {
+	} /*else {
 		int	d = n & 0x3FF;
 
 		switch (d) {
@@ -152,7 +153,7 @@ void DIK_to_string_uk(int n, char * str)
 				sprintf(str, "JOY%d BUTTON%d", j, d + 1);
 				break;
 		}
-	}
+	}*/
 }
 
 

@@ -297,7 +297,7 @@ void Input::waitClean()
 				j = true;
 			}
 		}
-		if (j)
+		if (!j)
 			return;
 	}
 	/*unsigned int		i, j = 1;		// Bcoz si j = 0 alors on sort tout de suite!
