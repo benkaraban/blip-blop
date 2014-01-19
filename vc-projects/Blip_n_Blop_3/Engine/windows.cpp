@@ -8,6 +8,10 @@
 
 #include "windows.h"
 
+#define STUB { \
+    printf("stub %s %d\n", __func__, __LINE__); \
+}
+
 HANDLE WINAPI CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void* unused, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
 {
     assert(dwDesiredAccess == GENERIC_READ);
@@ -44,23 +48,24 @@ void ZeroMemory(PVOID Destination, SIZE_T Length) {
     memset(Destination, 0, Length);
 }
 
-LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags) {}
+LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags) STUB
 int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
 {
     printf("MessageBox(%s)\n", lpText);
 }
 
-void SetCursor(void*) {}
-WORD HIWORD(DWORD dwValue) {}
-VOID WINAPI PostQuitMessage(int nExitCode) {}
-LRESULT WINAPI DefWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) {}
-ATOM WINAPI RegisterClass(const WNDCLASS *lpWndClass) {}
-int WINAPI GetSystemMetrics(int nIndex) {}
-HWND WINAPI CreateWindowEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) {}
-BOOL WINAPI ShowWindow(HWND hWnd, int nCmdShow) {}
-BOOL UpdateWindow(HWND hWnd) {}
-UINT_PTR WINAPI SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc) {}
-BOOL WINAPI DestroyWindow(HWND hWnd) {}
+void SetCursor(void*) STUB
+WORD HIWORD(DWORD dwValue) STUB
+VOID WINAPI PostQuitMessage(int nExitCode) STUB
+LRESULT WINAPI DefWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam) STUB
+ATOM WINAPI RegisterClass(const WNDCLASS *lpWndClass) STUB
+int WINAPI GetSystemMetrics(int nIndex) STUB
+HWND WINAPI CreateWindowEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam) STUB
+BOOL WINAPI ShowWindow(HWND hWnd, int nCmdShow) STUB
+BOOL UpdateWindow(HWND hWnd) {
+}
+UINT_PTR WINAPI SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc) STUB
+BOOL WINAPI DestroyWindow(HWND hWnd) STUB
 void Sleep(int ms)
 {
     SDL_Delay(ms);
@@ -73,25 +78,25 @@ COLORREF RGB(BYTE byRed, BYTE byGreen, BYTE byBlue) {
     return byRed | (byGreen << 8) | (byBlue << 16);
 }
 
-HMODULE WINAPI GetModuleHandle(LPCTSTR lpModuleName) {}
+HMODULE WINAPI GetModuleHandle(LPCTSTR lpModuleName) STUB
 
-HANDLE WINAPI LoadImage(HINSTANCE hinst, LPCTSTR lpszName, UINT uType, int cxDesired, int cyDesired, UINT fuLoad) {}
+HANDLE WINAPI LoadImage(HINSTANCE hinst, LPCTSTR lpszName, UINT uType, int cxDesired, int cyDesired, UINT fuLoad) STUB
 
-int GetObject(HGDIOBJ hgdiobj, int cbBuffer, LPVOID lpvObject) {}
-BOOL DeleteObject(HGDIOBJ hObject) {}
-HDC CreateCompatibleDC(HDC hdc) {}
-HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj) {}
+int GetObject(HGDIOBJ hgdiobj, int cbBuffer, LPVOID lpvObject) STUB
+BOOL DeleteObject(HGDIOBJ hObject) STUB
+HDC CreateCompatibleDC(HDC hdc) STUB
+HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj) STUB
 
-BOOL StretchBlt(HDC hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc, DWORD dwRop) {}
+BOOL StretchBlt(HDC hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc, DWORD dwRop) STUB
 
-COLORREF GetPixel(HDC hdc, int nXPos, int nYPos) {}
-COLORREF SetPixel(HDC hdc, int X, int Y, COLORREF crColor) {}
-BOOL SetPixelV(HDC hdc, int X, int Y, COLORREF crColor) {}
+COLORREF GetPixel(HDC hdc, int nXPos, int nYPos) STUB
+COLORREF SetPixel(HDC hdc, int X, int Y, COLORREF crColor) STUB
+BOOL SetPixelV(HDC hdc, int X, int Y, COLORREF crColor) STUB
 
-BOOL DeleteDC(HDC hdc) {}
-LPVOID WINAPI LockResource(HGLOBAL hResData) {}
-HGLOBAL WINAPI LoadResource(HMODULE hModule, HRSRC hResInfo) {}
-HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType) {}
+BOOL DeleteDC(HDC hdc) STUB
+LPVOID WINAPI LockResource(HGLOBAL hResData) STUB
+HGLOBAL WINAPI LoadResource(HMODULE hModule, HRSRC hResInfo) STUB
+HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType) STUB
 
 DWORD timeGetTime(void) {
     return SDL_GetTicks();
@@ -106,11 +111,13 @@ BOOL WINAPI QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount) {
 }
 
 BOOL WINAPI PeekMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg) {}
-LRESULT WINAPI DispatchMessage(const MSG *lpmsg) {}
-BOOL WINAPI TranslateMessage(const MSG *lpMsg) {}
+LRESULT WINAPI DispatchMessage(const MSG *lpmsg) STUB
+BOOL WINAPI TranslateMessage(const MSG *lpMsg) STUB
 BOOL WINAPI GetMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax) {}
 
-char* _itoa(int value, char* str, int base) {}
+char* _itoa(int value, char* str, int base) {
+    SDL_itoa(value, str, base);
+}
 
 
 extern "C" {
