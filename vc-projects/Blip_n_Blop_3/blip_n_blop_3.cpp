@@ -14,6 +14,12 @@
 *
 ******************************************************************/
 
+/*
+ * Convert data to linux format:
+ * sed -i s/data\\/data\// data/*
+ * dos2unix data/*
+ */
+
 #define NAME			"Blip'n Blop"
 #define CONFIG_FILE		"data/bb.cfg"
 #define	HISCORES_FILE	"data/bb.scr"
@@ -571,18 +577,21 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
  */
 
 #ifndef _WIN32
-int main()
+int main(int argc, const char* argv[])
 {
-	if (!InitApp(0, 0))
-		return -1;
-
-	game.go();
-	return 0;
-}
+	HINSTANCE hInstance = 0;
+	HINSTANCE hPrevInstance = 0;
+	char lpCmdLine[512] = {0};
+	for (int i = 1; i < argc; i++) {
+		strcat(lpCmdLine, argv[i]);
+		strcat(lpCmdLine, " ");
+	}
+	int nCmdShow = 0;
 #else
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine, int nCmdShow)
 {
+#endif
 	//------------------------------------------------------------------
 	//			Safe mode ?
 	//------------------------------------------------------------------
@@ -633,4 +642,3 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	return 0;
 
 } // WinMain ------------------------
-#endif
