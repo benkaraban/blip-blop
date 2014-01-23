@@ -27,6 +27,7 @@
 #include "globals.h"
 #include "scroll.h"
 #include "ben_debug.h"
+#include <SDL.h>
 
 int vbuffer_wide = WANTED_VBUFFER_WIDE;
 int	next_x = 0;
@@ -54,7 +55,17 @@ void drawScrolling()
 	r.top	= 0;
 	r.bottom = 480;
 
+	
+
 	while (n_img < ((offset + vbuffer_wide - 2) / 640) || (n_img < scr_level_size && (next_x != ((x3 + 1) % vbuffer_wide)) && (next_x != ((x3) % vbuffer_wide)))) {
+
+		/*static int counter = 0;
+		char buf[128];
+		sprintf(buf, "test/%d.bmp", counter);
+		if (counter >200 && counter<250)
+			SDL_SaveBMP(videoA->Get(), buf);
+		counter++;*/
+
 		r.left	= xTex;
 		r.right = xTex + 2;
 

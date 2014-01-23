@@ -113,7 +113,12 @@ SDL::Surface *	Graphics::CreateSurface(int x, int y, int flags)
 #endif
 	SDL_Surface* surf = SDL_CreateRGBSurface(0,
 			x, y, 32, rmask, gmask, bmask, amask);
-	return new SDL::Surface(surf);
+
+
+
+	SDL::Surface *tmp= new SDL::Surface(surf);
+	tmp->FillRect(0, 0xFF000000);
+	return tmp;
 }
 
 SDL_Surface *	Graphics::CreateSDLSurface(int x, int y)
