@@ -197,7 +197,7 @@ void SuperListe::vide()
 	while (ptr != NULL) {
 		tete = ptr->next;
 
-		free(ptr->data);
+		//free(ptr->data);
 		delete ptr;
 
 		ptr = tete;

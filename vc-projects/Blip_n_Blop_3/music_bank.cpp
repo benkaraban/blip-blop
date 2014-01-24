@@ -96,11 +96,19 @@ bool MusicBank::open(const char * file, bool loop)
 			fclose(f2);
 
 			if (loop) {
-//				mp3[i] = FSOUND_Sample_Load( FSOUND_FREE, (char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
+				//mp3[i] = FSOUND_Sample_Load( FSOUND_FREE, (char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
+#ifdef _WIN32
 				mp3[i] = FSOUND_Stream_OpenFile((char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
+#else
+				mp3[i] = FSOUND_Stream_OpenFile(buffer, FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
+#endif
 			} else {
-//				mp3[i] = FSOUND_Sample_Load( FSOUND_FREE, (char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
+				//mp3[i] = FSOUND_Sample_Load( FSOUND_FREE, (char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
+#ifdef _WIN32
 				mp3[i] = FSOUND_Stream_OpenFile((char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
+#else
+				mp3[i] = FSOUND_Stream_OpenFile(buffer, FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
+#endif
 			}
 
 			if (mp3[i] == NULL) {
@@ -146,7 +154,7 @@ void MusicBank::close()
 		if (type[i] == TYPE_MOD) {
 			FMUSIC_FreeSong(mod[i]);
 		} else {
-//			FSOUND_Sample_Free( mp3[i]);
+			//FSOUND_Sample_Free(mp3[i]);
 			FSOUND_Stream_Close(mp3[i]);
 			if (mp3Data[i] != NULL)
 				free(mp3Data[i]);
