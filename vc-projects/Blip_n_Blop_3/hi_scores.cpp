@@ -41,7 +41,7 @@ void HiScores::crypte()
 	for (int i = 0; i < HS_NB_SCORES; i++) {
 		scores[i] ^= 0x35674a1f << i;
 
-		long * ptr = (long*) names[i];
+		int * ptr = (int*) names[i];
 
 		for (int j = 0; j < HS_NAME_LENGTH; j += 4) {
 			*(ptr++) ^= 0x35674a1f << i;

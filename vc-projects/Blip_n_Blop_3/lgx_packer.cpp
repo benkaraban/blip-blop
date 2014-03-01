@@ -146,7 +146,7 @@ bool LGXpacker::init(SDL::Surface * surf)
 	// ************************ VERSION 0 ****************************
 	//
 
-	tab_0 = new unsigned long[0x10000];
+	tab_0 = new unsigned int[0x10000];
 	if (tab_0 == NULL) {
 		debug << "Impossible d'allouer la mémoire de décompression\n";
 		return false;
@@ -170,7 +170,7 @@ bool LGXpacker::init(SDL::Surface * surf)
 	// ************************ VERSION 1 ****************************
 	//
 
-	tab_1 = new unsigned long[0x8000];
+	tab_1 = new unsigned int[0x8000];
 	if (tab_1 == NULL) {
 		debug << "Impossible d'allouer la mémoire de décompression\n";
 		delete [] tab_0;
@@ -515,7 +515,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 	unsigned short * data = (unsigned short *)((char *) ptr + sizeof(LGX_HEADER));
 
 	int				i;
-	unsigned long	col;
+	unsigned int	col;
 	unsigned short	d;
 
 	int				dpitch = ddsd.lPitch - 2 * xs;
@@ -536,7 +536,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 			while (y < ys) {
 				d = *(data++);
 
-				*((unsigned long*)surfPtr) = tab_0[d];
+				*((unsigned int*)surfPtr) = tab_0[d];
 
 				surfPtr += 4;
 				x++;
@@ -578,7 +578,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 
 
 					for (i = 0; i < (d & 0x7FFF); i++) {
-						*((unsigned long*)surfPtr) = col;
+						*((unsigned int*)surfPtr) = col;
 
 						surfPtr += 4;
 						x++;
@@ -590,7 +590,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 						}
 					}
 				} else {
-					*((unsigned long*)surfPtr) = tab_1[d];
+					*((unsigned int*)surfPtr) = tab_1[d];
 
 					surfPtr += 4;
 					x++;
@@ -603,7 +603,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 				}
 			}
 		} else { // dptich=0! cool! :)
-			unsigned long * surfPtr = (unsigned long*) ddsd.lpSurface;
+			unsigned int * surfPtr = (unsigned int*) ddsd.lpSurface;
 
 			int		t = xs * ys;
 			int		delta = 0;
@@ -717,7 +717,7 @@ void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
-	unsigned long * ptr = (unsigned long*)ddsd.lpSurface;
+	unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
 	for (int i = 0; i < (surf->Get()->w*surf->Get()->h); i++)
 	{
 		(*ptr) = 0xFF000000 | ((*ptr) & 0xFF) >> 1 | ((((*ptr) & 0xFF00) >> 1) & 0xFF00) | ((((*ptr) & 0xFF0000) >> 1) & 0xFF0000);
