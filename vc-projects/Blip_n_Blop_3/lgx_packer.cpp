@@ -712,9 +712,9 @@ int LGXpacker::findColor(COLORREF rgb)
 
 void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 {
-	//SDL::SurfaceInfo ddsd;
+	SDL::SurfaceInfo ddsd;
 
-	/*if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
+	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
 	unsigned long * ptr = (unsigned long*)ddsd.lpSurface;
@@ -725,6 +725,11 @@ void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 	}
 
 
-	surf->Unlock(r);*/
-	surf->FillRect(0, 0x99000000);
+	surf->Unlock(r);
+	/*
+	Improvement not working (but should)
+	In the menu and pause menu the screen gets darker (OK)
+	In the dialogs, the screen goes black (NOT OK)
+	*/
+	//surf->FillRect(0, 0x88000000);
 }
