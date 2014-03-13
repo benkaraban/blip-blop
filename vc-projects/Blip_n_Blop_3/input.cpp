@@ -71,6 +71,9 @@ bool Input::open(HWND wh, HINSTANCE inst, int flags)
 	{
 		js[i].handle = SDL_JoystickOpen(i);
 		strcpy(this->js[i].name, SDL_JoystickName(js[i].handle));
+
+		memset(this->js[i].buttons, 0, sizeof(this->js[i].buttons));
+		memset(&this->js[i].directions, 0, sizeof(this->js[i].directions));
 	}
 
 	/*if (dinput != NULL) {
@@ -209,6 +212,77 @@ void Input::update()
 
 		}
 
+		if (e.type == SDL_JOYBUTTONDOWN)
+		{
+			js[e.jbutton.which].buttons[e.jbutton.button] = 1;
+		}
+		if (e.type == SDL_JOYBUTTONUP)
+		{
+			js[e.jbutton.which].buttons[e.jbutton.button] = 0;
+		}
+		if (e.type == SDL_JOYHATMOTION)
+		{
+			js[e.jhat.which].directions.down = false;
+			js[e.jhat.which].directions.right = false;
+			js[e.jhat.which].directions.left = false;
+			js[e.jhat.which].directions.up = false;
+
+			if (e.jhat.hat & SDL_HAT_UP)
+				js[e.jhat.which].directions.up = true;
+			if (e.jhat.hat & SDL_HAT_LEFT)
+				js[e.jhat.which].directions.left = true;
+			if (e.jhat.hat & SDL_HAT_RIGHT)
+				js[e.jhat.which].directions.right = true;
+			if (e.jhat.hat & SDL_HAT_DOWN)
+				js[e.jhat.which].directions.down = true;
+		}
+
+		if (e.type == SDL_JOYAXISMOTION)
+		{
+		
+			/* Horizontal movement */
+
+			if (e.jaxis.axis == 0)
+			{
+				if (e.jaxis.value < -DEAD_ZONE)
+				{
+					js[e.jhat.which].directions.left = 1;
+				}
+
+				else if (e.jaxis.value > DEAD_ZONE)
+				{
+					js[e.jhat.which].directions.right = 1;
+				}
+
+				else
+				{
+					js[e.jhat.which].directions.left = 0;
+					js[e.jhat.which].directions.right = 0;
+				}
+			}
+
+			/* Vertical movement */
+
+			if (e.jaxis.axis == 1)
+			{
+				if (e.jaxis.value < -DEAD_ZONE)
+				{
+					js[e.jhat.which].directions.up = 1;
+				}
+
+				else if (e.jaxis.value > DEAD_ZONE)
+				{
+					js[e.jhat.which].directions.down = 1;
+				}
+
+				else
+				{
+					js[e.jhat.which].directions.up = 0;
+					js[e.jhat.which].directions.down = 0;
+				}
+			}
+		}
+
 	}
 	/*if (dikeyb != NULL)
 		dikeyb->GetDeviceState(sizeof(buffer), (void *)&buffer);
@@ -233,7 +307,7 @@ unsigned int Input::waitKey()
 	while (1)
 	{
 		update();
-		for (int i = 0; i < 256; i++)
+		for (int i = 0; i < 255; i++)
 		{
 			if (buffer[i] != 0)
 			{
@@ -246,6 +320,44 @@ unsigned int Input::waitKey()
 			{
 				return i | 0x40000000;
 			}
+		}
+
+		for (int i = 0; i < 128; i++)
+		{
+			for (int k = 0; k < n_joy; k++)
+			{
+				if (js[k].buttons[i] == 1)
+				{
+					int k2 = (k + 1) * (1 << 10) + i;
+					return k2;
+				}
+					//return (js[k].buttons[i] | (0x400));
+			}
+		}
+
+		for (int k = 0; k < n_joy; k++)
+		{
+			if (js[k].directions.down)
+			{
+				int k2 = (k + 1) * (1 << 10) + JOY_DOWN;
+				return k2;
+			}
+			if (js[k].directions.left)
+			{
+				int k2 = (k + 1) * (1 << 10) + JOY_LEFT;
+				return k2;
+			}
+			if (js[k].directions.right)
+			{
+				int k2 = (k + 1) * (1 << 10) + JOY_RIGHT;
+				return k2;
+			}
+			if (js[k].directions.up)
+			{
+				int k2 = (k + 1) * (1 << 10) + JOY_UP;
+				return k2;
+			}
+			//return (js[k].buttons[i] | (0x400));
 		}
 	}
 	/*unsigned int	i = 0;
@@ -283,7 +395,7 @@ void Input::waitClean()
 	{
 		bool j = false;
 		update();
-		for (int i = 0; i < 256; i++)
+		for (int i = 0; i < 255; i++)
 		{
 			if (buffer[i] != 0)
 			{
@@ -297,6 +409,24 @@ void Input::waitClean()
 				j = true;
 			}
 		}
+
+		for (int i = 0; i < 128; i++)
+		{
+			for (int k = 0; k < n_joy; k++)
+			{
+				if (js[k].buttons[i] == 1)
+				{
+					j = true;
+				}
+			}
+		}
+
+		for (int k = 0; k < n_joy; k++)
+		{
+			if (js[k].directions.down || js[k].directions.up || js[k].directions.left || js[k].directions.right)
+			j = true;
+		}
+
 		if (!j)
 			return;
 	}
@@ -365,7 +495,7 @@ bool Input::anyKeyPressed()
 	int key = 0;
 
 	update();
-	for (int i = 0; i < 256; i++)
+	for (int i = 0; i < 255; i++)
 	{
 		if (buffer[i] != 0)
 		{
@@ -379,6 +509,24 @@ bool Input::anyKeyPressed()
 			return true;
 		}
 	}
+
+	for (int i = 0; i < 128; i++)
+	{
+		for (int k = 0; k < n_joy; k++)
+		{
+			if (js[k].buttons[i] == 1)
+			{
+				return true;
+			}
+		}
+	}
+
+	for (int k = 0; k < n_joy; k++)
+	{
+		if (js[k].directions.down || js[k].directions.up || js[k].directions.left || js[k].directions.right)
+			return true;
+	}
+
 	return false;
 
 
@@ -438,7 +586,28 @@ int Input::scanKey(unsigned int k) const
 
 		return z;
 	}*/
-	if (k<255)
+	if ((k >> 10) & 0xFF > 0)
+	{
+		/*
+		REMEMBER
+		That the joystick number starts from 1, but the array starts from 0
+		*/
+		int	j = k >> 10 & 0xFF;
+		int b = k & 0xFF;
+
+		if (b == JOY_UP)
+			return js[j - 1].directions.up;
+		if (b == JOY_DOWN)
+			return js[j - 1].directions.down;
+		if (b == JOY_RIGHT)
+			return js[j - 1].directions.right;
+		if (b == JOY_LEFT)
+			return js[j - 1].directions.left;
+
+		int r = js[j-1].buttons[b];
+		return r;
+	}
+	else if (k<255)
 		return buffer[k];
 	else 
 		return specialsbuffer[k & 0xFFF];

@@ -35,6 +35,9 @@
 //-----------------------------------------------------------------------------
 
 /*SDL KEYS*/
+
+#define DEAD_ZONE 4200  
+
 #define DIK_ESCAPE SDLK_ESCAPE
 #define DIK_UP SDLK_UP
 #define DIK_DOWN SDLK_DOWN
@@ -156,15 +159,20 @@
 
 #define MAX_JOY			5		// Nombre maximal de joystick pouvant être gérés
 
-#define	JOY_UP			10
-#define	JOY_DOWN		11
-#define	JOY_LEFT		12
-#define	JOY_RIGHT		13
+#define	JOY_UP			100
+#define	JOY_DOWN		101
+#define	JOY_LEFT		102
+#define	JOY_RIGHT		103
 
 struct DIJOYSTATE
 {
 	char name[64];
 	SDL_Joystick *handle;
+	unsigned char buttons[128];	//Joypad with more than 187 buttons? (100/101/102/103 is for directions)
+	struct
+	{
+		unsigned char left, right, up, down;
+	} directions;
 };
 
 extern bool app_killed;

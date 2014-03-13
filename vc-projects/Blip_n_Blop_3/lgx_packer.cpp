@@ -712,12 +712,12 @@ int LGXpacker::findColor(COLORREF rgb)
 
 void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 {
-	SDL::SurfaceInfo ddsd;
+	//SDL::SurfaceInfo ddsd;
 
-	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
+	/*if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
-	unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
+	unsigned long * ptr = (unsigned long*)ddsd.lpSurface;
 	for (int i = 0; i < (surf->Get()->w*surf->Get()->h); i++)
 	{
 		(*ptr) = 0xFF000000 | ((*ptr) & 0xFF) >> 1 | ((((*ptr) & 0xFF00) >> 1) & 0xFF00) | ((((*ptr) & 0xFF0000) >> 1) & 0xFF0000);
@@ -725,5 +725,6 @@ void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 	}
 
 
-	surf->Unlock(r);
+	surf->Unlock(r);*/
+	surf->FillRect(0, 0x99000000);
 }

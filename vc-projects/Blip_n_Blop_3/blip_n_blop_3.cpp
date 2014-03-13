@@ -274,19 +274,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 		}
 	}
 
-
-	//------------------------------------------------------------------
-	//			Direct Input
-	//------------------------------------------------------------------
-
-	if (!in.open(WinHandle, hInstance)) {
-		Bug("Cannot initialise DirectInput. Make sure DirectX 7 or better is installed.");
-		ReleaseAll();
-		return false;
-	}
-
-	debug << "DI Initialized\n";
-
 	//------------------------------------------------------------------
 	//			Direct Draw (1ère partie)
 	//------------------------------------------------------------------
@@ -298,6 +285,21 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow)
 	}
 
 	debug << "DD Initialized\n";
+
+
+	//------------------------------------------------------------------
+	//			Input (SDL Events)
+	//------------------------------------------------------------------
+
+	if (!in.open(WinHandle, hInstance)) {
+		Bug("Cannot initialise DirectInput. Make sure DirectX 7 or better is installed.");
+		ReleaseAll();
+		return false;
+	}
+
+	debug << "DI Initialized\n";
+
+	
 
 	/*
 		// -------- Mode Windows ----------

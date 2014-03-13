@@ -17,9 +17,16 @@ void DIK_to_string(int n, char * str)
 
 void DIK_to_string_uk(int n, char * str)
 {
-	/*int	j = n >> 10;*/
+	int	j = n >> 10 & 0xFF ;
 
-	if (/*j == 0*/true) {
+	/*
+	Check if is a joystick.
+	Normal keys go from 0x0 to 0xFF
+	Special keys from 0x40000000 to 0x40000FFF
+	Joypad buttons are from 0x0 to 0xFF and joypad number is shifted 10 bytes to the left
+	*/
+
+	if (j == 0) {
 		switch (n) {
 				KMAP(DIK_ESCAPE, "ESCAPE");
 				KMAP(DIK_1, "1");
@@ -133,7 +140,7 @@ void DIK_to_string_uk(int n, char * str)
 				strcpy(str, "UNDEFINED");
 				break;
 		}
-	} /*else {
+	} else {
 		int	d = n & 0x3FF;
 
 		switch (d) {
@@ -150,10 +157,10 @@ void DIK_to_string_uk(int n, char * str)
 				sprintf(str, "JOY%d RIGHT", j);
 				break;
 			default:
-				sprintf(str, "JOY%d BUTTON%d", j, d + 1);
+				sprintf(str, "JOY%d BUTTON%d", j , d );
 				break;
 		}
-	}*/
+	}
 }
 
 
@@ -279,19 +286,19 @@ void DIK_to_string_fr(int n, char * str)
 
 		switch (d) {
 			case JOY_UP:
-				sprintf(str, "JOY%d HAUT", j);
+				sprintf(str, "JOY%d UP", j);
 				break;
 			case JOY_DOWN:
-				sprintf(str, "JOY%d BAS", j);
+				sprintf(str, "JOY%d DOWN", j);
 				break;
 			case JOY_LEFT:
-				sprintf(str, "JOY%d GAUCHE", j);
+				sprintf(str, "JOY%d LEFT", j);
 				break;
 			case JOY_RIGHT:
-				sprintf(str, "JOY%d DROITE", j);
+				sprintf(str, "JOY%d RIGHT", j);
 				break;
 			default:
-				sprintf(str, "JOY%d BOUTON%d", j, d + 1);
+				sprintf(str, "JOY%d BUTTON%d", j, d + 1);
 				break;
 		}
 	}
