@@ -717,7 +717,7 @@ void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
-	unsigned long * ptr = (unsigned long*)ddsd.lpSurface;
+	unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
 	for (int i = 0; i < (surf->Get()->w*surf->Get()->h); i++)
 	{
 		(*ptr) = 0xFF000000 | ((*ptr) & 0xFF) >> 1 | ((((*ptr) & 0xFF00) >> 1) & 0xFF00) | ((((*ptr) & 0xFF0000) >> 1) & 0xFF0000);
