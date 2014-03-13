@@ -247,11 +247,13 @@ void Input::update()
 				if (e.jaxis.value < -DEAD_ZONE)
 				{
 					js[e.jhat.which].directions.left = 1;
+					js[e.jhat.which].directions.right = 0;
 				}
 
 				else if (e.jaxis.value > DEAD_ZONE)
 				{
 					js[e.jhat.which].directions.right = 1;
+					js[e.jhat.which].directions.left = 0;
 				}
 
 				else
@@ -268,11 +270,13 @@ void Input::update()
 				if (e.jaxis.value < -DEAD_ZONE)
 				{
 					js[e.jhat.which].directions.up = 1;
+					js[e.jhat.which].directions.down = 0;
 				}
 
 				else if (e.jaxis.value > DEAD_ZONE)
 				{
 					js[e.jhat.which].directions.down = 1;
+					js[e.jhat.which].directions.up = 0;
 				}
 
 				else
