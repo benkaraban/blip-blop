@@ -185,7 +185,7 @@ void Input::update()
 		if (e.type == SDL_QUIT)
 		{
 			app_killed = true;
-			exit(0);
+			//exit(0);
 		}	
 
 		if (e.type == SDL_KEYDOWN)
