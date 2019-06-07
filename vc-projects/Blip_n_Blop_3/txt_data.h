@@ -1,28 +1,26 @@
 /******************************************************************
-*
-*
-*		----------------
-*		    TxtData.h
-*		----------------
-*
-*		Permet de charger les textes
-*
-*
-*		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
-*
-*
-*
-******************************************************************/
+ *
+ *
+ *              ----------------
+ *                  TxtData.h
+ *              ----------------
+ *
+ *              Text handling. Loads text banks for i18n
+ *
+ *
+ *              Prosper / LOADED -   V 0.1 - 17 Juillet 2000
+ *
+ *
+ *
+ ******************************************************************/
 
+#pragma once
 
-#ifndef _TxtData_
-#define _TxtData_
+#include <string>
+#include <vector>
 
 #ifndef TXT_DATA_CPP
-extern char **	txt_data;
+extern std::vector<std::string> txt_data;
 #endif
 
-bool loadTxtData(const char * file);
-void freeTxtData();
-
-#endif
+bool loadTxtData(const char* file);

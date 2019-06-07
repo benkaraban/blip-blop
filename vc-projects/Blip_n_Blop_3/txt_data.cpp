@@ -1,73 +1,50 @@
 /******************************************************************
-*
-*
-*		-----------------
-*		   TxtData.cpp
-*		-----------------
-*
-*		Permet de charger les textes
-*
-*
-*		Prosper / LOADED -   V 0.1 - 17 Juillet 2000
-*
-*
-*
-******************************************************************/
+ *
+ *
+ *              -----------------
+ *                 TxtData.cpp
+ *              -----------------
+ *
+ *              Permet de charger les textes
+ *
+ *
+ *              Prosper / LOADED -   V 0.1 - 17 Juillet 2000
+ *
+ *
+ *
+ ******************************************************************/
 
 #define TXT_DATA_CPP
-#define NB_TXT_DATA		1000
 
-#include <fstream>
-#include <string.h>
-#include <stdlib.h>
 #include "txt_data.h"
+
+#include <stdlib.h>
+#include <string.h>
+#include <fstream>
+
 #include "ben_debug.h"
 
-char **	txt_data = NULL;
+std::vector<std::string> txt_data;
 
+bool loadTxtData(const char* file) {
+    ifstream f(file);
+    int num;
 
-bool loadTxtData(const char * file)
-{
-	txt_data = new char * [NB_TXT_DATA];
+    if (!f.is_open()) {
+        return false;
+    }
 
-	if (txt_data == NULL)
-		return false;
+    std::string buffer;
+    while (!f.eof()) {
+        std::getline(f, buffer, '^');
+        num = std::stoi(buffer);
+        std::getline(f, buffer, '\n');
 
-	for (int i = 0; i < NB_TXT_DATA; i++)
-		txt_data[i] = NULL;
+        if (num <= txt_data.size()) {
+            txt_data.resize(num + 1);
+        }
+        txt_data[num] = buffer;
+    }
 
-	ifstream	f;
-	int			num;
-	char		buffer[400];
-
-	f.open(file);
-
-	if (!f.is_open())
-		return false;
-
-	while (!f.eof()) {
-		f.getline(buffer, 400, '^');
-		num = atoi(buffer);
-		f.getline(buffer, 400);
-
-		txt_data[num] = new char[strlen(buffer) + 1];
-		strcpy(txt_data[num], buffer);
-	}
-
-	f.close();
-	return true;
+    return true;
 }
-
-
-void freeTxtData()
-{
-	if (txt_data != NULL) {
-		for (int i = 0; i < NB_TXT_DATA; i++)
-			if (txt_data[i] != NULL)
-				delete [] txt_data[i];
-
-		delete [] txt_data;
-		txt_data = NULL;
-	}
-}
-

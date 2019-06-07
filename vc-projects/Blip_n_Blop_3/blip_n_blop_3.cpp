@@ -64,8 +64,6 @@ void ReleaseAll(void) {
         DDCloseDirectDraw();
     }
 
-    freeTxtData();
-
     mbk_inter.close();
     mbk_interl.close();
 
