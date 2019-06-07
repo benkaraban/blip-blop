@@ -110,26 +110,6 @@ SDL::Surface* DDLoadBMP(char* file, int flags) {
 }
 
 //-----------------------------------------------------------------------------
-// Nom: DDCopyBMP
-// Desc: Copie une image Bitmap dans une surface
-//-----------------------------------------------------------------------------
-
-HRESULT DDCopyBMP(SDL::Surface* pdds, HBITMAP hbm) {
-    debug << "DDCopyBMP ()"
-          << "\n";
-    return graphicInstance->CopyBMP(pdds, hbm);
-}
-
-//-----------------------------------------------------------------------------
-// Nom: DDFindColor
-// Desc: Trouve la couleur correspondant à un RGB
-//-----------------------------------------------------------------------------
-
-DWORD DDFindColor(SDL::Surface* pdds, COLORREF rgb) {
-    return graphicInstance->FindColor(pdds, rgb);
-}
-
-//-----------------------------------------------------------------------------
 // Nom: DDSetColorKey
 // Desc: Règle la couleur transparente d'une surface
 //-----------------------------------------------------------------------------
@@ -138,13 +118,6 @@ HRESULT DDSetColorKey(SDL::Surface* surf, COLORREF rgb) {
     // debug << "DDSetColorKey ()" << "\n";
     return graphicInstance->SetColorKey(surf, rgb);
 }
-
-//-----------------------------------------------------------------------------
-// Nom: DDLoadPalette
-// Desc: Charge une palette d'un fichier
-//-----------------------------------------------------------------------------
-
-void* DDLoadPalette(char* file) { return graphicInstance->LoadPalette(file); }
 
 void DDFlip() {
     // debug << "DDFlip ()" << "\n";
