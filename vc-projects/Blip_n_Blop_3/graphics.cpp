@@ -4,23 +4,26 @@
 
 extern SDL::Surface* backSurface;
 
-bool Graphics::Init() {
+void Graphics::Init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
         throw std::runtime_error(std::string("Can't initialize SDL") +
                                  SDL_GetError());
     }
-    return true;
 }
 
-bool Graphics::SetGfxMode(int x, int y, int d) {
-    window_.reset(SDL_ErrWrap(
-        SDL_CreateWindow("Blip&Blop", x, y, x, y, SDL_WINDOW_SHOWN)));
+void Graphics::SetGfxMode(int x, int y, int d, bool fullscreen) {
+    window_.reset(SDL_ErrWrap(SDL_CreateWindow(
+        "Blip&Blop",
+        x,
+        y,
+        x,
+        y,
+        SDL_WINDOW_SHOWN | (fullscreen * SDL_WINDOW_FULLSCREEN))));
 
     renderer_.reset(SDL_ErrWrap(SDL_CreateRenderer(
         window_.get(),
         -1,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)));
-    return true;
 }
 
 SDL::Surface* Graphics::CreatePrimary() {

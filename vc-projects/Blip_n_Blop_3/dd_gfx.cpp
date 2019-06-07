@@ -39,10 +39,10 @@ void DDCloseDirectDraw() { graphicInstance->~Graphics(); }
 // Desc: Règle la résolution graphique X Y NbBits/Pixel
 //-----------------------------------------------------------------------------
 
-void DDSetGfxMode(int x, int y, int d) {
+void DDSetGfxMode(int x, int y, int d, bool fullscreen) {
     debug << "DDSetGfxMode (" << x << "," << y << ")"
           << "\n";
-    graphicInstance->SetGfxMode(x, y, d);
+    graphicInstance->SetGfxMode(x, y, d, fullscreen);
 }
 
 //-----------------------------------------------------------------------------

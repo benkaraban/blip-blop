@@ -288,7 +288,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         debug << "Safe mode enabled, using default 640x480x16 refresh rate.\n";
         winSet = false;
 
-        DDSetGfxMode(win_size.width, win_size.height, 16);
+        DDSetGfxMode(
+            win_size.width, win_size.height, 16, false /* fullscreen */);
     } else {
         /*DEVMODE dm;
 
@@ -304,7 +305,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         DISP_CHANGE_SUCCESSFUL) { debug << "Cannot set 640x480x16 at " <<
         BEST_RATE << " Hz.\n"; winSet = false;*/
         debug << "Trying to create window\n";
-        DDSetGfxMode(win_size.width, win_size.height, 16);
+        DDSetGfxMode(
+            win_size.width, win_size.height, 16, true /* fullscreen */);
         debug << "Window creation done\n";
         /*debug << "Using default 640x480x16 refresh rate.\n";
         vSyncOn = true;

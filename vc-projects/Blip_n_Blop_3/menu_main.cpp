@@ -18,6 +18,7 @@
 #define TXT_ON			809
 #define TXT_OFF			810
 #define TXT_VSYNC		806
+#define TXT_FULLSCREEN		835
 
 #define TXT_SYNCHRO		806
 #define TXT_DETAIL		807
