@@ -22,8 +22,6 @@
 #define M_PI 3.141592654
 #endif
 
-void preCalcMathsFunctions();
-
 // Angles must be in positive degrees. Computes scale * cos(angle)
 int cosi(int scale, int angle);
 int sini(int scale, int angle);
