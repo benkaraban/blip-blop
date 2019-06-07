@@ -39,7 +39,7 @@
 //-----------------------------------------------------------------------------
 
 #ifndef GFX_CPP_FILE
-extern Graphics *	graphicInstance;
+extern Graphics* graphicInstance;
 #endif
 
 //-----------------------------------------------------------------------------
@@ -47,8 +47,6 @@ extern Graphics *	graphicInstance;
 //-----------------------------------------------------------------------------
 
 bool					DDInitDirectDraw();
-bool					DDSetCooperativeLevel(HWND wh);
-bool					DDSetCooperativeLevel(HWND wh, int flags);
 bool					DDSetGfxMode(int x, int y, int d);
 void					DDCloseDirectDraw();
 SDL::Surface *	DDCreatePrimary();

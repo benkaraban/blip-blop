@@ -36,26 +36,6 @@ bool DDInitDirectDraw() {
 void DDCloseDirectDraw() { graphicInstance->Close(); }
 
 //-----------------------------------------------------------------------------
-// Nom: DDSetCooperativeLevel
-// Desc: Règle la priorité graphique à celle par défaut (GROS BILL)
-//-----------------------------------------------------------------------------
-
-bool DDSetCooperativeLevel(HWND wh) {
-    // FLAGS ARE USELESS. The function just returns true!
-    return graphicInstance->SetCooperativeLevel(
-        wh, /* DDSCL_EXCLUSIVE | DDSCL_FULLSCREEN*/ 0);
-}
-
-//-----------------------------------------------------------------------------
-// Nom: DDSetCooperativeLevel
-// Desc: Règle la priorité graphique
-//-----------------------------------------------------------------------------
-
-bool DDSetCooperativeLevel(HWND wh, int flags) {
-    return graphicInstance->SetCooperativeLevel(wh, flags);
-}
-
-//-----------------------------------------------------------------------------
 // Nom: DDSetGfxMode
 // Desc: Règle la résolution graphique X Y NbBits/Pixel
 //-----------------------------------------------------------------------------

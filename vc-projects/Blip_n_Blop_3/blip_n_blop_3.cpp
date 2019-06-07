@@ -253,8 +253,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     /*
             // -------- Mode Windows ----------
 
-            graphicInstance->SetCooperativeLevel(WinHandle, DDSCL_NORMAL);
-
 
             DDSURFACEDESC2 ddsd;
             ZeroMemory(&ddsd, sizeof(ddsd));
@@ -290,13 +288,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     // Mode EXCLUSIF (bourrin quoi...)
 
     active = true;  // Activate the game loop
-
-    if (!DDSetCooperativeLevel(WinHandle)) {
-        Bug("Cannot get EXCLUSIVE MODE. Close all other applications and "
-            "launch Blip'n Blop again");
-        ReleaseAll();
-        return false;
-    }
 
     debug << "Exclusive mode set\n";
 

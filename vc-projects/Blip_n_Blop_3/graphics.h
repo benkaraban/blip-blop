@@ -42,8 +42,6 @@ class Graphics {
     Graphics();
 
     bool Init();
-    bool SetCooperativeLevel(HWND wh);
-    bool SetCooperativeLevel(HWND wh, int flags);
     bool SetGfxMode(int x, int y, int d);
     void Close();
     SDL::Surface* CreatePrimary();
