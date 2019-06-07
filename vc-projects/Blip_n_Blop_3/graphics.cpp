@@ -4,43 +4,17 @@
 
 extern SDL::Surface* backSurface;
 
-Graphics::Graphics() { renderer = NULL; }
-
-bool Graphics::Init() {
-    if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
-        debug << SDL_GetError() << "\n";
-        return false;
-    }
-    return true;
-}
+bool Graphics::Init() { SDL_ErrWrap(SDL_Init(SDL_INIT_EVERYTHING) == -1); }
 
 bool Graphics::SetGfxMode(int x, int y, int d) {
-    if (renderer != 0) {
-        SDL_DestroyRenderer(renderer);
-        renderer = 0;
-    }
-
     window_.reset(SDL_ErrWrap(
         SDL_CreateWindow("Blip&Blop", x, y, x, y, SDL_WINDOW_SHOWN)));
 
-    renderer = 0;
-    renderer = SDL_CreateRenderer(
+    renderer_.reset(SDL_ErrWrap(SDL_CreateRenderer(
         window_.get(),
         -1,
-        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == 0) {
-        std::cout << SDL_GetError() << std::endl;
-        return false;
-    }
-
+        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)));
     return true;
-}
-
-void Graphics::Close() {
-    if (renderer != 0) {
-        SDL_DestroyRenderer(renderer);
-        renderer = 0;
-    }
 }
 
 SDL::Surface* Graphics::CreatePrimary() {
@@ -157,10 +131,10 @@ HRESULT Graphics::SetColorKey(SDL::Surface* surf, COLORREF rgb) {
 
 void Graphics::Flip() {
     SDL_Texture* tex = 0;
-    tex = SDL_CreateTextureFromSurface(renderer, backSurface->Get());
-    SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, tex, NULL, NULL);
-    SDL_RenderPresent(renderer);
+    tex = SDL_CreateTextureFromSurface(renderer_.get(), backSurface->Get());
+    SDL_RenderClear(renderer_.get());
+    SDL_RenderCopy(renderer_.get(), tex, NULL, NULL);
+    SDL_RenderPresent(renderer_.get());
 
     SDL_DestroyTexture(tex);
     // SDL_Delay(1);
@@ -174,9 +148,9 @@ void Graphics::FlipV() {
 }
 
 void Graphics::Clear(int r, int g, int b) {
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
+    SDL_SetRenderDrawColor(renderer_.get(), r, g, b, 255);
+    SDL_RenderClear(renderer_.get());
+    SDL_RenderPresent(renderer_.get());
 }
 
 void Graphics::Clear(int c) {
@@ -184,9 +158,9 @@ void Graphics::Clear(int c) {
     int g = (c >> 8) & 0xFF;
     int b = (c >> 0) & 0xFF;
 
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
+    SDL_SetRenderDrawColor(renderer_.get(), r, g, b, 255);
+    SDL_RenderClear(renderer_.get());
+    SDL_RenderPresent(renderer_.get());
 }
 
 void Graphics::Clear(RenderRect r2) {
@@ -200,6 +174,6 @@ void Graphics::Clear(RenderRect r2) {
     rect.w = r2.right - r2.left;
     rect.h = r2.bottom - r2.top;
 
-    SDL_SetRenderDrawColor(renderer, r, g, b, 255);
-    SDL_RenderDrawRect(renderer, &rect);
+    SDL_SetRenderDrawColor(renderer_.get(), r, g, b, 255);
+    SDL_RenderDrawRect(renderer_.get(), &rect);
 }

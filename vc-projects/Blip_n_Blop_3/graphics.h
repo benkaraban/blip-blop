@@ -40,16 +40,16 @@ class Graphics {
     struct WindowDeleter {
         void operator()(SDL_Window* ptr) { SDL_DestroyWindow(ptr); }
     };
+    struct RendererDeleter {
+        void operator()(SDL_Renderer* ptr) { SDL_DestroyRenderer(ptr); }
+    };
 
     std::unique_ptr<SDL_Window, WindowDeleter> window_;
-    SDL_Renderer* renderer;
+    std::unique_ptr<SDL_Renderer, RendererDeleter> renderer_;
 
    public:
-    Graphics();
-
     bool Init();
     bool SetGfxMode(int x, int y, int d);
-    void Close();
     SDL::Surface* CreatePrimary();
     SDL::Surface* CreatePrimary(SDL::Surface*& back);
     SDL::Surface* CreateSurface(int x, int y);
