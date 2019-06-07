@@ -109,21 +109,6 @@ SDL::Surface* Graphics::LoadBMP(char* file, int flags) {
     return new SDL::Surface(bmp);
 }
 
-HRESULT Graphics::CopyBMP(SDL::Surface* surf, HBITMAP hbm) {
-    // Seems not used
-    return 0;
-}
-
-void* Graphics::LoadPalette(char* file) {
-    // Seems not used
-    return 0;
-}
-
-DWORD Graphics::FindColor(SDL::Surface* surf, COLORREF rgb) {
-    // Seems not used
-    return 0;
-}
-
 HRESULT Graphics::SetColorKey(SDL::Surface* surf, COLORREF rgb) {
     SDL_SetColorKey(surf->Get(),
                     SDL_TRUE,

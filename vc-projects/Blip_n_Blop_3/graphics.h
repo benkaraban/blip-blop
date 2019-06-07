@@ -57,9 +57,6 @@ class Graphics {
     SDL_Surface* CreateSDLSurface(int x, int y);
     SDL::Surface* LoadBMP(char* file);
     SDL::Surface* LoadBMP(char* file, int flags);
-    HRESULT CopyBMP(SDL::Surface* surf, HBITMAP hbm);
-    void* LoadPalette(char* file);
-    DWORD FindColor(SDL::Surface* surf, COLORREF rgb);
     HRESULT SetColorKey(SDL::Surface* surf, COLORREF rgb);
     void Flip();
     void FlipV();
