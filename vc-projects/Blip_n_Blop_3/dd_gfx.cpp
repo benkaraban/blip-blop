@@ -19,13 +19,12 @@ static int oldRefreshRate = -1;
 // Desc: Ouvre DirectDraw
 //-----------------------------------------------------------------------------
 
-bool DDInitDirectDraw() {
+void DDInitDirectDraw() {
     if (graphicInstance != NULL) {
         debug << "Graphic engine already initialized!\n";
-        return false;
     }
     graphicInstance = new Graphics();
-    return graphicInstance->Init();
+    graphicInstance->Init();
 }
 
 //-----------------------------------------------------------------------------
@@ -40,10 +39,10 @@ void DDCloseDirectDraw() { graphicInstance->~Graphics(); }
 // Desc: Règle la résolution graphique X Y NbBits/Pixel
 //-----------------------------------------------------------------------------
 
-bool DDSetGfxMode(int x, int y, int d) {
+void DDSetGfxMode(int x, int y, int d) {
     debug << "DDSetGfxMode (" << x << "," << y << ")"
           << "\n";
-    return graphicInstance->SetGfxMode(x, y, d);
+    graphicInstance->SetGfxMode(x, y, d);
 }
 
 //-----------------------------------------------------------------------------

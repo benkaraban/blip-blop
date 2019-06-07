@@ -224,16 +224,10 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     }
 
     //------------------------------------------------------------------
-    //                      Direct Draw (1ère partie)
+    //                      SDL 2
     //------------------------------------------------------------------
 
-    if (!DDInitDirectDraw()) {
-        Bug("Cannot initialise DirectDraw. Make sure DirectX 7 or better is "
-            "installed.");
-        return false;
-    }
-
-    debug << "DD Initialized\n";
+    DDInitDirectDraw();
 
     //------------------------------------------------------------------
     //                      Input (SDL Events)
@@ -294,11 +288,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         debug << "Safe mode enabled, using default 640x480x16 refresh rate.\n";
         winSet = false;
 
-        if (!DDSetGfxMode(win_size.width, win_size.height, 16)) {
-            Bug("Cannot set display mode to 640x480x16. Are you sure your "
-                "video card meets the requirements ?");
-            return false;
-        }
+        DDSetGfxMode(win_size.width, win_size.height, 16);
     } else {
         /*DEVMODE dm;
 
@@ -314,11 +304,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         DISP_CHANGE_SUCCESSFUL) { debug << "Cannot set 640x480x16 at " <<
         BEST_RATE << " Hz.\n"; winSet = false;*/
         debug << "Trying to create window\n";
-        if (!DDSetGfxMode(win_size.width, win_size.height, 16)) {
-            Bug("Cannot set display mode to 640x480x16. Are you sure your "
-                "video card meets the requirements ?");
-            return false;
-        }
+        DDSetGfxMode(win_size.width, win_size.height, 16);
         debug << "Window creation done\n";
         /*debug << "Using default 640x480x16 refresh rate.\n";
         vSyncOn = true;

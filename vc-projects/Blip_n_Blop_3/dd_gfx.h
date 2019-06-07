@@ -44,8 +44,8 @@ extern Graphics* graphicInstance;
 //		Prototypes
 //-----------------------------------------------------------------------------
 
-bool DDInitDirectDraw();
-bool DDSetGfxMode(int x, int y, int d);
+void DDInitDirectDraw();
+void DDSetGfxMode(int x, int y, int d);
 void DDCloseDirectDraw();
 SDL::Surface* DDCreatePrimary();
 SDL::Surface* DDCreatePrimary(SDL::Surface*& back);

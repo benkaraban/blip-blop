@@ -48,8 +48,8 @@ class Graphics {
     std::unique_ptr<SDL_Renderer, RendererDeleter> renderer_;
 
    public:
-    bool Init();
-    bool SetGfxMode(int x, int y, int d);
+    void Init();
+    void SetGfxMode(int x, int y, int d, bool fullscreen = true);
     SDL::Surface* CreatePrimary();
     SDL::Surface* CreatePrimary(SDL::Surface*& back);
     SDL::Surface* CreateSurface(int x, int y);
