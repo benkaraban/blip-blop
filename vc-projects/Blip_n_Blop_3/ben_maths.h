@@ -6,11 +6,9 @@
  *               ----------------
  *
  *
- *               Fonctions mathématiques précalculée
- *               Gain approximatif : 2000 à 2500%
+ *               Precomputed cos, sin and sqrt functions for integral values.
+ *               Original comment claims that it brings 2000% to 2500% speedup.
  *               #TODO: HOW TRUE IS THAT IN 2019?
- *
- *               Cf. BenMaths.cpp pour plus d'infos
  *
  *               Prosper / LOADED -   V 0.1
  *
@@ -20,13 +18,9 @@
 
 #pragma once
 
-//-----------------------------------------------------------------------------
-//              Constantes
-//-----------------------------------------------------------------------------
-
-#ifndef PI
-#define PI 3.141592654  // C'est PI, utilisé pour la conversion
-#endif                  // depgrés<->radians
+#ifndef M_PI
+#define M_PI 3.141592654
+#endif
 
 void preCalcMathsFunctions();
 

@@ -9,12 +9,12 @@ static char bSqr[0xFFFF] = {0};
 void preCalcMathsFunctions() {
     // Précalcul des cosinus
     for (int i = 0; i < 360; i++) {
-        bCos[i] = int(1024 * cos(i / (180 / PI)));
+        bCos[i] = int(1024 * cos(i / (180 / M_PI)));
     }
 
     // Précalcul des sinus
     for (int i = 0; i < 360; i++) {
-        bSin[i] = int(1024 * sin(i / (180 / PI)));
+        bSin[i] = int(1024 * sin(i / (180 / M_PI)));
     }
 
     // Précalcul des racines carrées
