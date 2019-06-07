@@ -1,25 +1,3 @@
-/******************************************************************
- *
- *
- *                           LOADED corporation
- *
- *
- *
- *                       (= CONFIDENTIAL DOCUMENT  =)
- *
- *
- *
- *                                  Blip'n Blop 3
- *
- *
- ******************************************************************/
-
-/*
- * Convert data to linux format:
- * sed -i s/data\\/data\// data/*
- * dos2unix data/*
- */
-
 #define NAME "Blip'n Blop"
 #define CONFIG_FILE "data/bb.cfg"
 #define HISCORES_FILE "data/bb.scr"
@@ -33,7 +11,6 @@
 
 #include "ben_debug.h"
 #include "ben_divers.h"
-#include "ben_maths.h"
 #include "config.h"
 #include "dd_gfx.h"
 #include "fmod.h"
@@ -88,7 +65,6 @@ void ReleaseAll(void) {
     }
 
     freeTxtData();
-    freeMathsFunctions();
 
     mbk_inter.close();
     mbk_interl.close();
@@ -174,10 +150,11 @@ static void analyseCmdLine(char* cmd) {
     }
 }
 
-/************************************
- *   Init
- */
 static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
+    struct {
+        int height;
+        int width;
+    } win_size = {480, 640};
     WNDCLASS WinClass;
 
     //------------------------------------------------------------------
@@ -189,12 +166,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     debug << "Blip & Blop - (c) LOADED Studio - " << __DATE__ << "\n";
     debug
         << "---------------------------------------------------------------\n";
-
-    //------------------------------------------------------------------
-    //                      Precalculs mathématiques
-    //------------------------------------------------------------------
-
-    preCalcMathsFunctions();
 
     //------------------------------------------------------------------
     //                      FMOD / Sons
@@ -335,7 +306,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         debug << "Safe mode enabled, using default 640x480x16 refresh rate.\n";
         winSet = false;
 
-        if (!DDSetGfxMode(640, 480, 16)) {
+        if (!DDSetGfxMode(win_size.width, win_size.height, 16)) {
             Bug("Cannot set display mode to 640x480x16. Are you sure your "
                 "video card meets the requirements ?");
             ReleaseAll();
@@ -356,7 +327,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         DISP_CHANGE_SUCCESSFUL) { debug << "Cannot set 640x480x16 at " <<
         BEST_RATE << " Hz.\n"; winSet = false;*/
         debug << "Trying to create window\n";
-        if (!DDSetGfxMode(640, 480, 16)) {
+        if (!DDSetGfxMode(win_size.width, win_size.height, 16)) {
             Bug("Cannot set display mode to 640x480x16. Are you sure your "
                 "video card meets the requirements ?");
             ReleaseAll();
@@ -408,7 +379,8 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     //                      Surface système
     //------------------------------------------------------------------
     debug << "Creating systemSurface\n";
-    systemSurface = DDCreateSurface(640, 480, DDSURF_SYSTEM);
+    systemSurface =
+        DDCreateSurface(win_size.width, win_size.height, DDSURF_SYSTEM);
 
     if (systemSurface == NULL) {
         Bug("Not enough memory. Blip'n Blop needs 32 Mo of free memory. Try to "
@@ -560,12 +532,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     SetTimer(WinHandle, 1, 1000, NULL);
 
     return true;  // C'est fini!
-
-}  // Init ---------------------------
-
-/************************************
- *   WinMain
- */
+}
 
 #ifndef _WIN32
 int main(int argc, const char* argv[]) {
