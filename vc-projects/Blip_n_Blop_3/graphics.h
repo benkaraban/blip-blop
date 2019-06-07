@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #include <windows.h>
 #include <iostream>
 
@@ -35,7 +37,11 @@ using namespace std;
 
 class Graphics {
    private:
-    SDL_Window* window;
+    struct WindowDeleter {
+        void operator()(SDL_Window* ptr) { SDL_DestroyWindow(ptr); }
+    };
+
+    std::unique_ptr<SDL_Window, WindowDeleter> window_;
     SDL_Renderer* renderer;
 
    public:
