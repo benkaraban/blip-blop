@@ -4,7 +4,13 @@
 
 extern SDL::Surface* backSurface;
 
-bool Graphics::Init() { SDL_ErrWrap(SDL_Init(SDL_INIT_EVERYTHING) == -1); }
+bool Graphics::Init() {
+    if (SDL_Init(SDL_INIT_EVERYTHING) == -1) {
+        throw std::runtime_error(std::string("Can't initialize SDL") +
+                                 SDL_GetError());
+    }
+    return true;
+}
 
 bool Graphics::SetGfxMode(int x, int y, int d) {
     window_.reset(SDL_ErrWrap(

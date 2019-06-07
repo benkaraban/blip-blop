@@ -155,6 +155,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         int height;
         int width;
     } win_size = {480, 640};
+
     WNDCLASS WinClass;
 
     //------------------------------------------------------------------
@@ -213,13 +214,11 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     if (lang_type == LANG_UK) {
         if (!loadTxtData("data/uk.dat")) {
             Bug("Cannot open the file 'data/uk.dat'");
-            ReleaseAll();
             return false;
         }
     } else {
         if (!loadTxtData("data/fr.dat")) {
             Bug("Cannot open the file 'data/fr.dat'");
-            ReleaseAll();
             return false;
         }
     }
@@ -231,7 +230,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     if (!DDInitDirectDraw()) {
         Bug("Cannot initialise DirectDraw. Make sure DirectX 7 or better is "
             "installed.");
-        ReleaseAll();
         return false;
     }
 
@@ -244,7 +242,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     if (!in.open(WinHandle, hInstance)) {
         Bug("Cannot initialise DirectInput. Make sure DirectX 7 or better is "
             "installed.");
-        ReleaseAll();
         return false;
     }
 
@@ -300,7 +297,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         if (!DDSetGfxMode(win_size.width, win_size.height, 16)) {
             Bug("Cannot set display mode to 640x480x16. Are you sure your "
                 "video card meets the requirements ?");
-            ReleaseAll();
             return false;
         }
     } else {
@@ -321,7 +317,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         if (!DDSetGfxMode(win_size.width, win_size.height, 16)) {
             Bug("Cannot set display mode to 640x480x16. Are you sure your "
                 "video card meets the requirements ?");
-            ReleaseAll();
             return false;
         }
         debug << "Window creation done\n";
@@ -361,7 +356,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         Bug("Cannot get a primary surface. Please reboot your PC and try to "
             "launch Blip'n Blop again.\nBe sure you have at least 2 Mb of "
             "video memory on your video card.");
-        ReleaseAll();
         return false;
     }
     debug << "primSurface created\n";
@@ -376,7 +370,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     if (systemSurface == NULL) {
         Bug("Not enough memory. Blip'n Blop needs 32 Mo of free memory. Try to "
             "close all other applications and launch Blip'n Blop again.");
-        ReleaseAll();
         return false;
     }
     debug << "systemSurface created\n";
@@ -388,7 +381,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     if (!LGXpaker.init(primSurface)) {
         Bug("Cannot initialise LGX paker. Please get the latest drivers for "
             "your video card.");
-        ReleaseAll();
         return false;
     }
     debug << "LGXpaker initialized\n";
@@ -422,7 +414,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
                     Bug("Not enough memory. Blip'n Blop needs 32 Mo of free "
                         "memory. Try to close all other applications and "
                         "launch Blip'n Blop again.");
-                    ReleaseAll();
                     return false;
                 }
 
@@ -450,39 +441,33 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
 
     if (!fnt_menu.load("data/menu.lft", mem_flag)) {
         Bug("Cannot open the file data/menu.lft");
-        ReleaseAll();
         return false;
     }
 
     if (!fnt_menus.load("data/menus.lft", mem_flag)) {
         Bug("Cannot open the file data/menus.lft");
-        ReleaseAll();
         return false;
     }
 
     if (!fnt_cool.load("data/cool.lft", mem_flag)) {
         Bug("Cannot open the file data/cool.lft");
-        ReleaseAll();
         return false;
     }
 
     if (!fnt_rpg.load("data/rpg.lft", mem_flag)) {
         Bug("Cannot open the file data/rpg.lft");
-        ReleaseAll();
         return false;
     }
     /*
             if ( !fnt_score_blip.load( "data/scorei.lft", mem_flag))
             {
                     Bug("Cannot open the file data/scorei.lft");
-                    ReleaseAll();
                     return false;
             }
 
             if ( !fnt_score_blop.load( "data/scoreo.lft", mem_flag))
             {
                     Bug("Cannot open the file data/scoreo.lft");
-                    ReleaseAll();
                     return false;
             }
     */
@@ -541,6 +526,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    LPSTR lpCmdLine,
                    int nCmdShow) {
 #endif
+    struct ScopeGuard {
+        ~ScopeGuard() { ReleaseAll(); }
+    } scope_guard;
+
     //------------------------------------------------------------------
     //                      Safe mode ?
     //------------------------------------------------------------------
@@ -571,7 +560,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
     // Désalloue tout ce qu'il faut (en théorie)
     //
-    ReleaseAll();
 
     // Sauvegarde les hi-scores
     //
