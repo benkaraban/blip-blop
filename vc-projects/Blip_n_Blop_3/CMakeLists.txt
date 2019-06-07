@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 include(FindPkgConfig)
-pkg_search_module(SDL2 REQUIRED SDL2)
+pkg_search_module(sdl2 REQUIRED sdl2)
 pkg_search_module(SDL2_mixer REQUIRED SDL2_mixer)
 
 project(blipblop)
