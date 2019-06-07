@@ -527,7 +527,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    int nCmdShow) {
 #endif
     struct ScopeGuard {
-        ~ScopeGuard() { ReleaseAll(); }
+        ~ScopeGuard() {
+            ReleaseAll();
+            DestroyWindow(WinHandle);
+        }
     } scope_guard;
 
     //------------------------------------------------------------------
@@ -540,7 +543,9 @@ int WINAPI WinMain(HINSTANCE hInstance,
     //                      Initialise l'application
     //------------------------------------------------------------------
 
-    if (!InitApp(hInstance, nCmdShow)) return -1;
+    if (!InitApp(hInstance, nCmdShow)) {
+        return -1;
+    }
 
     //------------------------------------------------------------------
     //                      Joue la partie
@@ -572,10 +577,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
     // Sauvegarde la configuration
     //
     save_BB3_config(CONFIG_FILE);
-
-    // Détruit la fenêtre
-    //
-    DestroyWindow(WinHandle);
 
     return 0;
 
