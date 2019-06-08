@@ -166,18 +166,119 @@ MainMenuType StartMenu::ProcessEvent() {
     return MainMenuType::Start;
 }
 
-MenuMain::MenuMain() {
-    active_menu_ = &first_menu_;
+OptionsMenu::OptionsMenu() {
+    vsync_on_txt_ = txt_data[TXT_VSYNC] + " " + txt_data[TXT_ON];
+    vsync_off_txt_ = txt_data[TXT_VSYNC] + " " + txt_data[TXT_OFF];
 
-    redefine = -1;
+    items_.AddEntry("VSYNC");
+    items_.AddEntry(txt_data[TXT_P1KEYS]);
+    items_.AddEntry(txt_data[TXT_P2KEYS]);
+    items_.AddEntry(txt_data[TXT_RETURN]);
+    RefreshVsync();
+}
+
+void OptionsMenu::RefreshVsync() {
+    items_.ChangeEntry(0, vSyncOn ? vsync_on_txt_ : vsync_off_txt_);
+}
+
+MainMenuType OptionsMenu::ProcessEvent() {
+    if (in.scanKey(DIK_UP) || in.scanAlias(ALIAS_P1_UP)) {
+        items_.MoveUp();
+    } else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
+        items_.MoveDown();
+    }
+    if (in.scanKey(DIK_RIGHT) || in.scanAlias(ALIAS_P1_RIGHT) ||
+        in.scanKey(DIK_LEFT) || in.scanAlias(ALIAS_P1_LEFT)) {
+        vSyncOn = !vSyncOn;
+        RefreshVsync();
+    }
+    if (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE)) {
+        switch (items_.focused()) {
+            case 0:
+                vSyncOn = !vSyncOn;
+                RefreshVsync();
+                break;
+            case 1:
+                return MainMenuType::Keys_1;
+            case 2:
+                return MainMenuType::Keys_2;
+            case 3:
+                return MainMenuType::Main;
+        }
+    }
+    return MainMenuType::Options;
+}
+
+KeysMenu::KeysMenu(int nb_player) {
+    player_ = nb_player;
+    if (nb_player == 1) {
+        dat_ = {std::make_tuple(0, TXT_UP, ALIAS_P1_UP),
+                std::make_tuple(1, TXT_DOWN, ALIAS_P1_DOWN),
+                std::make_tuple(2, TXT_LEFT, ALIAS_P1_LEFT),
+                std::make_tuple(3, TXT_RIGHT, ALIAS_P1_RIGHT),
+                std::make_tuple(4, TXT_FIRE, ALIAS_P1_FIRE),
+                std::make_tuple(5, TXT_JUMP, ALIAS_P1_JUMP),
+                std::make_tuple(6, TXT_SPECIAL, ALIAS_P1_SUPER)};
+    } else if (nb_player == 2) {
+        dat_ = {std::make_tuple(0, TXT_UP, ALIAS_P2_UP),
+                std::make_tuple(1, TXT_DOWN, ALIAS_P2_DOWN),
+                std::make_tuple(2, TXT_LEFT, ALIAS_P2_LEFT),
+                std::make_tuple(3, TXT_RIGHT, ALIAS_P2_RIGHT),
+                std::make_tuple(4, TXT_FIRE, ALIAS_P2_FIRE),
+                std::make_tuple(5, TXT_JUMP, ALIAS_P2_JUMP),
+                std::make_tuple(6, TXT_SPECIAL, ALIAS_P2_SUPER)};
+    } else {
+        throw std::invalid_argument("nb_player can be only 1 or 2");
+    }
+
+    for (auto& k : dat_) {
+        items_.AddEntry(KeyText(std::get<0>(k)));
+    }
+
+    items_.AddEntry(txt_data[TXT_RETURN]);
+}
+
+std::string KeysMenu::WaitText(int n) const {
+    return txt_data[std::get<1>(dat_[n])] + " = ...";
+}
+std::string KeysMenu::KeyText(int n) const {
+    auto& k = dat_[n];
+    return txt_data[std::get<1>(k)] + " = " +
+           DIK_to_string(in.getAlias(std::get<2>(k)));
+}
+
+void KeysMenu::EditKey() {
+    state_ = State::WaitingKey;
+    items_.ChangeEntry(items_.focused(), WaitText(items_.focused()));
+}
+
+void KeysMenu::SetKey(int key) {
+    state_ = State::Browsing;
+    in.setAlias(std::get<2>(dat_[items_.focused()]), key);
+    items_.ChangeEntry(items_.focused(), KeyText(items_.focused()));
+}
+
+MainMenuType KeysMenu::ProcessEvent() {
+    if (state_ == State::WaitingKey) {
+        int key = in.waitKey();
+        SetKey(key);
+    } else {
+        if (in.scanKey(DIK_UP) || in.scanAlias(ALIAS_P1_UP)) {
+            items_.MoveUp();
+        } else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
+            items_.MoveDown();
+        }
+        if (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE)) {
+            if (items_.focused() == items_.size() - 1) {
+                return MainMenuType::Main;
+            }
+            EditKey();
+        }
+    }
+    return player_ == 1 ? MainMenuType::Keys_1 : MainMenuType::Keys_2;
 }
 
 void MenuMain::start() {
-    current_menu = MENU_MAIN;
-    nb_focus = 3;
-    focus = 0;
-    updateName();
-
     start_music_on = music_on;
     start_sound_on = sound_on;
 }
@@ -185,10 +286,9 @@ void MenuMain::start() {
 int MenuMain::update() {
     in.update();
 
-    updateRedefine();
-    updateName();
-
     MainMenuType next = active_menu_->ProcessEvent();
+    in.waitClean();
+
     switch (next) {
         case MainMenuType::Main:
             active_menu_ = &first_menu_;
@@ -196,150 +296,21 @@ int MenuMain::update() {
         case MainMenuType::Start:
             active_menu_ = &start_menu_;
             break;
+        case MainMenuType::Options:
+            active_menu_ = &options_menu_;
+            break;
+        case MainMenuType::Keys_1:
+            active_menu_ = &p1_menu_;
+            break;
+        case MainMenuType::Keys_2:
+            active_menu_ = &p2_menu_;
+            break;
         case MainMenuType::Game_1:
             return RET_START_GAME1;
         case MainMenuType::Game_2:
             return RET_START_GAME2;
         case MainMenuType::Exit:
             return RET_EXIT;
-    }
-
-    //////////////////////////////////////////////////
-    //	Touche haut
-    //////////////////////////////////////////////////
-
-    if (in.scanKey(DIK_UP) || in.scanAlias(ALIAS_P1_UP)) {
-        focus -= 1;
-
-        if (focus < 0) focus = nb_focus - 1;
-
-        in.waitClean();
-    }
-    //////////////////////////////////////////////////
-    //	Touche bas
-    //////////////////////////////////////////////////
-    else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
-        focus += 1;
-        focus %= nb_focus;
-        in.waitClean();
-    }
-
-    //////////////////////////////////////////////////
-    //	Touche entrée
-    //////////////////////////////////////////////////
-
-    if (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE)) {
-        in.waitClean();
-
-        switch (current_menu) {
-            case MENU_OPTS:
-                switch (focus) {
-                    case 0:
-                        vSyncOn = !vSyncOn;
-                        updateName();
-                        return RET_CONTINUE;
-                        break;
-
-                    case 1:
-                        current_menu = MENU_KEY1;
-                        nb_focus = 8;
-                        focus = 7;
-                        updateName();
-                        return RET_CONTINUE;
-                        break;
-
-                    case 2:
-                        current_menu = MENU_KEY2;
-                        nb_focus = 8;
-                        focus = 7;
-                        updateName();
-                        return RET_CONTINUE;
-                        break;
-
-                    case 3:  // Return
-                        current_menu = MENU_MAIN;
-                        nb_focus = 3;
-                        focus = 1;
-                        updateName();
-                        return RET_CONTINUE;
-                        break;
-                }
-                break;
-
-            case MENU_KEY1:  // Redefinition
-                switch (focus) {
-                    case 7:
-                        current_menu = MENU_OPTS;
-                        nb_focus = 4;
-                        focus = 1;
-                        updateName();
-                        return 0;
-                        break;
-
-                    default:
-                        redefine = focus;
-                        updateName();
-                        return 0;
-                        break;
-                }
-                break;
-
-            case MENU_KEY2:  // Redefinition 2
-                switch (focus) {
-                    case 7:
-                        current_menu = MENU_OPTS;
-                        nb_focus = 4;
-                        focus = 2;
-                        updateName();
-                        return 0;
-                        break;
-
-                    default:
-                        redefine = focus;
-                        updateName();
-                        return 0;
-                        break;
-                }
-                break;
-        }
-    }
-
-    //////////////////////////////////////////////////
-    //	Touche droite
-    //////////////////////////////////////////////////
-
-    if (in.scanKey(DIK_RIGHT) || in.scanAlias(ALIAS_P1_RIGHT)) {
-        in.waitClean();
-
-        switch (current_menu) {
-            case MENU_OPTS:
-                switch (focus) {
-                    case 0:
-                        vSyncOn = !vSyncOn;
-                        updateName();
-                        return RET_CONTINUE;
-                        break;
-                }
-                break;
-        }
-    }
-    //////////////////////////////////////////////////
-    //	Touche gauche
-    //////////////////////////////////////////////////
-    else if (in.scanKey(DIK_LEFT) || in.scanAlias(ALIAS_P1_LEFT)) {
-        in.waitClean();
-
-        switch (current_menu) {
-            case MENU_OPTS:
-                switch (focus) {
-                    case 0:
-                        vSyncOn = !vSyncOn;
-                        updateName();
-                        return RET_CONTINUE;
-                        break;
-                }
-                break;
-        }
     }
 
     return RET_CONTINUE;
@@ -370,131 +341,6 @@ void MenuMain::stop() {
             mbk_niveau.close();
         }
     }
-
-    old_menu = -1;
 }
 
 void MenuMain::draw(SDL::Surface* surf) { active_menu_->Draw(surf); }
-
-void MenuMain::updateRedefine() {
-    if (redefine == -1) return;
-
-    int n = in.waitKey();
-
-    if (current_menu == MENU_KEY1) {
-        switch (redefine) {
-            case 0:
-                in.setAlias(ALIAS_P1_UP, n);
-                break;
-            case 1:
-                in.setAlias(ALIAS_P1_DOWN, n);
-                break;
-            case 2:
-                in.setAlias(ALIAS_P1_LEFT, n);
-                break;
-            case 3:
-                in.setAlias(ALIAS_P1_RIGHT, n);
-                break;
-            case 4:
-                in.setAlias(ALIAS_P1_FIRE, n);
-                break;
-            case 5:
-                in.setAlias(ALIAS_P1_JUMP, n);
-                break;
-            case 6:
-                in.setAlias(ALIAS_P1_SUPER, n);
-                break;
-        }
-    } else {
-        switch (redefine) {
-            case 0:
-                in.setAlias(ALIAS_P2_UP, n);
-                break;
-            case 1:
-                in.setAlias(ALIAS_P2_DOWN, n);
-                break;
-            case 2:
-                in.setAlias(ALIAS_P2_LEFT, n);
-                break;
-            case 3:
-                in.setAlias(ALIAS_P2_RIGHT, n);
-                break;
-            case 4:
-                in.setAlias(ALIAS_P2_FIRE, n);
-                break;
-            case 5:
-                in.setAlias(ALIAS_P2_JUMP, n);
-                break;
-            case 6:
-                in.setAlias(ALIAS_P2_SUPER, n);
-                break;
-        }
-    }
-
-    in.waitClean();
-    redefine = -1;
-}
-
-void MenuMain::updateName() {
-    menu_txt_.clear();
-
-    switch (current_menu) {
-        case MENU_OPTS:
-
-            if (vSyncOn)
-                menu_txt_.push_back(txt_data[TXT_VSYNC] + " " +
-                                    txt_data[TXT_ON]);
-            else
-                menu_txt_.push_back(txt_data[TXT_VSYNC] + " " +
-                                    txt_data[TXT_OFF]);
-
-            menu_txt_.push_back(txt_data[TXT_P1KEYS]);
-            menu_txt_.push_back(txt_data[TXT_P2KEYS]);
-            menu_txt_.push_back(txt_data[TXT_RETURN]);
-            break;
-
-        case MENU_KEY1: {
-            auto keys = {std::make_tuple(0, TXT_UP, ALIAS_P1_UP),
-                         std::make_tuple(1, TXT_DOWN, ALIAS_P1_DOWN),
-                         std::make_tuple(2, TXT_LEFT, ALIAS_P1_LEFT),
-                         std::make_tuple(3, TXT_RIGHT, ALIAS_P1_RIGHT),
-                         std::make_tuple(4, TXT_FIRE, ALIAS_P1_FIRE),
-                         std::make_tuple(5, TXT_JUMP, ALIAS_P1_JUMP),
-                         std::make_tuple(6, TXT_SPECIAL, ALIAS_P1_SUPER)};
-            for (auto& k : keys) {
-                if (redefine == std::get<0>(k)) {
-                    menu_txt_.push_back(txt_data[std::get<1>(k)] + " = ...");
-                } else {
-                    menu_txt_.push_back(
-                        txt_data[std::get<1>(k)] + " = " +
-                        DIK_to_string(in.getAlias(std::get<2>(k))));
-                }
-            }
-
-            menu_txt_.push_back(txt_data[TXT_RETURN]);
-            break;
-        }
-
-        case MENU_KEY2: {
-            auto keys = {std::make_tuple(0, TXT_UP, ALIAS_P2_UP),
-                         std::make_tuple(1, TXT_DOWN, ALIAS_P2_DOWN),
-                         std::make_tuple(2, TXT_LEFT, ALIAS_P2_LEFT),
-                         std::make_tuple(3, TXT_RIGHT, ALIAS_P2_RIGHT),
-                         std::make_tuple(4, TXT_FIRE, ALIAS_P2_FIRE),
-                         std::make_tuple(5, TXT_JUMP, ALIAS_P2_JUMP),
-                         std::make_tuple(6, TXT_SPECIAL, ALIAS_P2_SUPER)};
-            for (auto& k : keys) {
-                if (redefine == std::get<0>(k)) {
-                    menu_txt_.push_back(txt_data[std::get<1>(k)] + " = ...");
-                } else {
-                    menu_txt_.push_back(
-                        txt_data[std::get<1>(k)] + " = " +
-                        DIK_to_string(in.getAlias(std::get<2>(k))));
-                }
-            }
-
-            menu_txt_.push_back(txt_data[TXT_RETURN]);
-            break;
-        }
-    }
-}

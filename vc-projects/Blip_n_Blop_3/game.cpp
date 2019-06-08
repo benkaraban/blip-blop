@@ -3527,7 +3527,7 @@ void Game::showHighScores() {
 //-----------------------------------------------------------------------------
 
 void Game::go() {
-    MenuMain menu;
+    TitleScreen menu;
     int r;
     static int zob = 0;
 
@@ -3609,7 +3609,6 @@ void Game::go() {
 
                 r = menu.update();
                 menu.draw(backSurface);
-                if (menu.up) diff_start = GetTickCount();
 
                 DDFlipV();  // primSurface->Flip(NULL, DDFLIP_WAIT );
             }

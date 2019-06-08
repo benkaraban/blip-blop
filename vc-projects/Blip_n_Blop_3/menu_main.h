@@ -33,7 +33,9 @@ class MenuList {
     int focused() const { return focused_; }
 
     void AddEntry(const std::string& entry) { items_.push_back(entry); }
-    void ChangeEntry(int idx, std::string& entry) { items_[idx] = entry; }
+    void ChangeEntry(int idx, const std::string& entry) { items_[idx] = entry; }
+
+    int size() const { return items_.size(); }
 
    private:
     int ComputeWidth() const;
@@ -43,7 +45,16 @@ class MenuList {
     int focused_ = 0;
 };
 
-enum class MainMenuType { Main, Start, Options, Exit, Game_1, Game_2 };
+enum class MainMenuType {
+    Main,
+    Start,
+    Options,
+    Exit,
+    Keys_1,
+    Keys_2,
+    Game_1,
+    Game_2
+};
 
 class AbstractMenu {
    public:
@@ -51,7 +62,7 @@ class AbstractMenu {
     virtual MainMenuType ProcessEvent() = 0;
 };
 
-class MainMenu2 : public AbstractMenu {
+class MainMenu : public AbstractMenu {
    public:
     MainMenu2();
     void Draw(SDL::Surface* surf) const override { items_.Draw(surf); }
@@ -71,19 +82,49 @@ class StartMenu : public AbstractMenu {
     MenuList items_;
 };
 
-class MenuMain {
-    MainMenu2 first_menu_;
+class OptionsMenu : public AbstractMenu {
+   public:
+    OptionsMenu();
+    void Draw(SDL::Surface* surf) const override { items_.Draw(surf); }
+    MainMenuType ProcessEvent();
+
+   private:
+    void RefreshVsync();
+
+    MenuList items_;
+    std::string vsync_on_txt_;
+    std::string vsync_off_txt_;
+};
+
+class KeysMenu : public AbstractMenu {
+   public:
+    KeysMenu(int num_player);
+    void Draw(SDL::Surface* surf) const override { items_.Draw(surf); }
+    MainMenuType ProcessEvent();
+
+   private:
+    enum class State { WaitingKey, Browsing };
+    void EditKey();
+    void SetKey(int key);
+    std::string WaitText(int n) const;
+    std::string KeyText(int n) const;
+
+    std::array<std::tuple<int, int, int>, 7> dat_;
+    MenuList items_;
+    State state_;
+    int player_;
+};
+
+class TitleScreen {
+    MainMenu first_menu_;
     StartMenu start_menu_;
+    OptionsMenu options_menu_;
+    KeysMenu p1_menu_;
+    KeysMenu p2_menu_;
     AbstractMenu* active_menu_;
 
    public:
-    int current_menu;  // Numéro du menu courant
-    int focus;         // Numéro du menu EN ROUGE
-    int nb_focus;      // Nombre de choix du menu actuel
     std::vector<std::string> menu_txt_;
-    int redefine;  // Numéro du schnuff à redéfinir
-    int old_menu;
-    bool up;
 
     RECT rec;
 
@@ -92,11 +133,9 @@ class MenuMain {
     bool start_music_on;  // l'état de sound_on/music_on pour recharger le
                           // tout à la fin du menu
 
-    MenuMain();
+    MenuMain() : p1_menu_(1), p2_menu_(2), active_menu_(&first_menu_) {}
     void start();
     int update();  // Retour 0=toujours menu  1=retour jeu  2=quitter
     void stop();
-    void updateName();
-    void updateRedefine();
     void draw(SDL::Surface* surf);
 };
