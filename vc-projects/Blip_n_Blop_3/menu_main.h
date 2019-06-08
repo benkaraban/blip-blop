@@ -14,7 +14,7 @@
 
 class MenuList {
    public:
-    void draw(SDL::Surface* surf) const;
+    void Draw(SDL::Surface* surf) const;
 
     void MoveUp() {
         focused_ -= 1;
@@ -43,9 +43,38 @@ class MenuList {
     int focused_ = 0;
 };
 
+enum class MainMenuType { Main, Start, Options, Exit, Game_1, Game_2 };
+
+class AbstractMenu {
+   public:
+    virtual void Draw(SDL::Surface* surf) const = 0;
+    virtual MainMenuType ProcessEvent() = 0;
+};
+
+class MainMenu2 : public AbstractMenu {
+   public:
+    MainMenu2();
+    void Draw(SDL::Surface* surf) const override { items_.Draw(surf); }
+    MainMenuType ProcessEvent();
+
+   private:
+    MenuList items_;
+};
+
+class StartMenu : public AbstractMenu {
+   public:
+    StartMenu();
+    void Draw(SDL::Surface* surf) const override { items_.Draw(surf); }
+    MainMenuType ProcessEvent();
+
+   private:
+    MenuList items_;
+};
+
 class MenuMain {
-    MenuList first_menu_;
-    MenuList start_menu_;
+    MainMenu2 first_menu_;
+    StartMenu start_menu_;
+    AbstractMenu* active_menu_;
 
    public:
     int current_menu;  // Numéro du menu courant

@@ -89,7 +89,7 @@ int MenuList::ComputeWidth() const {
 
 void MenuList::ShadeTextBox(SDL::Surface* surf) const {
     int ys = items_.size() * 15;
-    // Compute the size of the "schnuff" to darken
+    // Compute the size of the "schnuff" (= thing) to darken
     //
     int width = ComputeWidth();
 
@@ -102,7 +102,7 @@ void MenuList::ShadeTextBox(SDL::Surface* surf) const {
     LGXpaker.halfTone(surf, &rec);
 }
 
-void MenuList::draw(SDL::Surface* surf) const {
+void MenuList::Draw(SDL::Surface* surf) const {
     ShadeTextBox(surf);
 
     int y = 240 - items_.size() * 15;
@@ -115,14 +115,59 @@ void MenuList::draw(SDL::Surface* surf) const {
         y += 30;
     }
 }
-MenuMain::MenuMain() {
-    first_menu_.AddEntry(txt_data[TXT_START_GAME]);
-    first_menu_.AddEntry("OPTIONS");
-    first_menu_.AddEntry(txt_data[TXT_EXIT]);
 
-    start_menu_.AddEntry(txt_data[TXT_START_GAME1]);
-    start_menu_.AddEntry(txt_data[TXT_START_GAME2]);
-    start_menu_.AddEntry(txt_data[TXT_RETURN]);
+MainMenu2::MainMenu2() {
+    items_.AddEntry(txt_data[TXT_START_GAME]);
+    items_.AddEntry("OPTIONS");
+    items_.AddEntry(txt_data[TXT_EXIT]);
+}
+
+MainMenuType MainMenu2::ProcessEvent() {
+    if (in.scanKey(DIK_UP) || in.scanAlias(ALIAS_P1_UP)) {
+        items_.MoveUp();
+    } else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
+        items_.MoveDown();
+    }
+    if (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE)) {
+        switch (items_.focused()) {
+            case 0:
+                return MainMenuType::Start;
+            case 1:
+                return MainMenuType::Options;
+            case 2:
+                return MainMenuType::Exit;
+        }
+    }
+    return MainMenuType::Main;
+}
+
+StartMenu::StartMenu() {
+    items_.AddEntry(txt_data[TXT_START_GAME1]);
+    items_.AddEntry(txt_data[TXT_START_GAME2]);
+    items_.AddEntry(txt_data[TXT_RETURN]);
+}
+
+MainMenuType StartMenu::ProcessEvent() {
+    if (in.scanKey(DIK_UP) || in.scanAlias(ALIAS_P1_UP)) {
+        items_.MoveUp();
+    } else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
+        items_.MoveDown();
+    }
+    if (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE)) {
+        switch (items_.focused()) {
+            case 0:
+                return MainMenuType::Game_1;
+            case 1:
+                return MainMenuType::Game_2;
+            case 2:
+                return MainMenuType::Main;
+        }
+    }
+    return MainMenuType::Start;
+}
+
+MenuMain::MenuMain() {
+    active_menu_ = &first_menu_;
 
     redefine = -1;
 }
@@ -140,10 +185,24 @@ void MenuMain::start() {
 int MenuMain::update() {
     in.update();
 
-    up = in.anyKeyPressed();
-
     updateRedefine();
     updateName();
+
+    MainMenuType next = active_menu_->ProcessEvent();
+    switch (next) {
+        case MainMenuType::Main:
+            active_menu_ = &first_menu_;
+            break;
+        case MainMenuType::Start:
+            active_menu_ = &start_menu_;
+            break;
+        case MainMenuType::Game_1:
+            return RET_START_GAME1;
+        case MainMenuType::Game_2:
+            return RET_START_GAME2;
+        case MainMenuType::Exit:
+            return RET_EXIT;
+    }
 
     //////////////////////////////////////////////////
     //	Touche haut
@@ -154,8 +213,6 @@ int MenuMain::update() {
 
         if (focus < 0) focus = nb_focus - 1;
 
-        first_menu_.MoveUp();
-        start_menu_.MoveUp();
         in.waitClean();
     }
     //////////////////////////////////////////////////
@@ -164,8 +221,6 @@ int MenuMain::update() {
     else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
         focus += 1;
         focus %= nb_focus;
-        first_menu_.MoveDown();
-        start_menu_.MoveDown();
         in.waitClean();
     }
 
@@ -177,46 +232,6 @@ int MenuMain::update() {
         in.waitClean();
 
         switch (current_menu) {
-            case MENU_MAIN:
-                switch (first_menu_.focused()) {
-                    case 0:
-                        current_menu = MENU_START;
-                        nb_focus = 3;
-                        focus = 0;
-                        updateName();
-                        return RET_CONTINUE;
-
-                    case 1:
-                        current_menu = MENU_OPTS;
-                        nb_focus = 4;
-                        focus = 3;
-                        updateName();
-                        return RET_CONTINUE;
-
-                    case 2:
-                        return RET_EXIT;
-                }
-                break;
-
-            case MENU_START:
-                switch (focus) {
-                    case 0:
-                        return RET_START_GAME1;
-                        break;
-
-                    case 1:
-                        return RET_START_GAME2;
-                        break;
-
-                    case 2:
-                        current_menu = MENU_MAIN;
-                        nb_focus = 3;
-                        focus = 0;
-                        updateName();
-                        break;
-                }
-                break;
-
             case MENU_OPTS:
                 switch (focus) {
                     case 0:
@@ -359,55 +374,7 @@ void MenuMain::stop() {
     old_menu = -1;
 }
 
-void MenuMain::draw(SDL::Surface* surf) {
-    if (current_menu == MENU_MAIN) {
-        first_menu_.draw(surf);
-        return;
-    }
-    if (current_menu == MENU_START) {
-        start_menu_.draw(surf);
-        return;
-    }
-    int ys = nb_focus * 15;
-    int y = 240 - ys;
-    int tmp;
-
-    // Trouve la taille du schnuff à assombrir
-    //
-    int largeur = 0;
-
-    for (int i = 0; i < nb_focus; i++) {
-        tmp = fnt_menu.width(menu_txt_[i].c_str());
-
-        if (tmp > largeur) {
-            largeur = tmp;
-        }
-    }
-
-    largeur += 60;
-    largeur /= 2;
-
-    if (largeur < 200)
-        largeur = 200;
-    else if (largeur > 320)
-        largeur = 320;
-
-    rec.top = 220 - ys;
-    rec.left = 320 - largeur;
-    rec.bottom = 260 + ys;
-    rec.right = 320 + largeur;
-
-    LGXpaker.halfTone(surf, &rec);
-
-    for (int i = 0; i < nb_focus; i++) {
-        if (focus == i)
-            fnt_menus.printC(surf, 320, y, menu_txt_[i].c_str());
-        else
-            fnt_menu.printC(surf, 320, y, menu_txt_[i].c_str());
-
-        y += 30;
-    }
-}
+void MenuMain::draw(SDL::Surface* surf) { active_menu_->Draw(surf); }
 
 void MenuMain::updateRedefine() {
     if (redefine == -1) return;
