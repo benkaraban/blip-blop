@@ -194,11 +194,7 @@ int MenuMain::update() {
                         return RET_CONTINUE;
 
                     case 2:
-                        current_menu = MENU_EXIT;
-                        nb_focus = 2;
-                        focus = 0;
-                        updateName();
-                        return RET_CONTINUE;
+                        return RET_EXIT;
                 }
                 break;
 
@@ -216,21 +212,6 @@ int MenuMain::update() {
                         current_menu = MENU_MAIN;
                         nb_focus = 3;
                         focus = 0;
-                        updateName();
-                        break;
-                }
-                break;
-
-            case MENU_EXIT:
-                switch (focus) {
-                    case 0:
-                        return RET_EXIT;
-                        break;
-
-                    case 1:
-                        current_menu = MENU_MAIN;
-                        nb_focus = 3;
-                        focus = 2;
                         updateName();
                         break;
                 }
@@ -491,11 +472,6 @@ void MenuMain::updateName() {
     menu_txt_.clear();
 
     switch (current_menu) {
-        case MENU_EXIT:
-            menu_txt_.push_back(txt_data[TXT_EXIT]);
-            menu_txt_.push_back(txt_data[TXT_CANCEL]);
-            break;
-
         case MENU_OPTS:
 
             if (vSyncOn)
