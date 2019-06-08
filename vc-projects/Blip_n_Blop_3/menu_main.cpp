@@ -361,26 +361,12 @@ void MenuMain::draw(SDL::Surface* surf) {
     //
     tmp = (320 - largeur) - rec.left;  // tmp = différence de largeur
 
-    if (current_menu != old_menu || tmp > 20 || tmp < -20) {
-        // Copie le schnuff en cache SYSTEME
-        //
-        systemSurface->BltFast(
-            0, 0, surf, NULL, DDBLTFAST_NOCOLORKEY | DDBLTFAST_WAIT);
+    rec.top = 220 - ys;
+    rec.left = 320 - largeur;
+    rec.bottom = 260 + ys;
+    rec.right = 320 + largeur;
 
-        rec.top = 220 - ys;
-        rec.left = 320 - largeur;
-        rec.bottom = 260 + ys;
-        rec.right = 320 + largeur;
-
-        LGXpaker.halfTone(systemSurface, &rec);
-
-        old_menu = current_menu;
-    }
-
-    // Copie la surface déjà colorisée
-    //
-    surf->BltFast(
-        0, 0, systemSurface, NULL, DDBLTFAST_NOCOLORKEY | DDBLTFAST_WAIT);
+    LGXpaker.halfTone(surf, &rec);
 
     for (int i = 0; i < nb_focus; i++) {
         if (focus == i)
@@ -516,7 +502,8 @@ void MenuMain::updateName() {
                 strcpy(buffer, "...");
             else
                 DIK_to_string(in.getAlias(ALIAS_P1_RIGHT), buffer);
-            sprintf(menu_txt[3], "%s = %s", txt_data[TXT_RIGHT].c_str(), buffer);
+            sprintf(
+                menu_txt[3], "%s = %s", txt_data[TXT_RIGHT].c_str(), buffer);
 
             if (redefine == 4)
                 strcpy(buffer, "...");

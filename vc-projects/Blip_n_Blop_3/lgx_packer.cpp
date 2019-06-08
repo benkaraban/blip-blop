@@ -505,7 +505,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 
 	SDL::SurfaceInfo	ddsd;
 
-	if (surf->Lock(NULL, &ddsd, DDLOCK_WAIT | DDLOCK_WRITEONLY | DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK) {
+	if (surf->Lock(&ddsd, DDLOCK_WAIT | DDLOCK_WRITEONLY | DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK) {
 		debug << "LGXpacker::LoadLGX() / Impossible d'obtenir l'adresse de la surface\n";
 		return surf;
 	}
@@ -622,7 +622,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 			}
 		}
 	}
-	surf->Unlock(NULL);
+	surf->Unlock();
 
 
 	static int counter = 0;
@@ -714,18 +714,23 @@ void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
 {
 	SDL::SurfaceInfo ddsd;
 
-	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
+	if (surf->Lock(&ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
 	unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
-	for (int i = 0; i < (surf->Get()->w*surf->Get()->h); i++)
-	{
-		(*ptr) = 0xFF000000 | ((*ptr) & 0xFF) >> 1 | ((((*ptr) & 0xFF00) >> 1) & 0xFF00) | ((((*ptr) & 0xFF0000) >> 1) & 0xFF0000);
-		ptr++;
-	}
+        ptr += r->top * surf->Get()->w;
+        for (int line = 0; line < r->bottom - r->top; ++line) {
+            unsigned int* ptrl = ptr + r->left;
+            for (int col = 0; col < r->right - r->left; ++col) {
+                (*ptrl) = 0xFF000000 | ((*ptrl) & 0xFF) >> 1 |
+                          ((((*ptrl) & 0xFF00) >> 1) & 0xFF00) |
+                          ((((*ptrl) & 0xFF0000) >> 1) & 0xFF0000);
+                ++ptrl;
+            }
+            ptr += surf->Get()->w;
+        }
 
-
-	surf->Unlock(r);
+        surf->Unlock();
 	/*
 	Improvement not working (but should)
 	In the menu and pause menu the screen gets darker (OK)

@@ -207,7 +207,7 @@ namespace SDL
 			return true;
 		}
 
-		bool Lock(RECT* r, SDL::SurfaceInfo* info, int flags, void* unused)
+		bool Lock(SDL::SurfaceInfo* info, int flags, void* unused)
 		{
 			if (SDL_LockSurface(surface) != 0) {
 				return false;
@@ -217,7 +217,7 @@ namespace SDL
 			return true;
 		}
 
-		void Unlock(RECT* r)
+		void Unlock()
 		{
 			SDL_UnlockSurface(surface);
 		}
