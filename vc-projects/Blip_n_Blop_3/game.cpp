@@ -3362,7 +3362,6 @@ void Game::getHiscore() {
 void Game::getName(Joueur* joueur, int ijoueur) {
     char buff[30];
     char name[21];
-    char tmp[20];
     int i = 0;
     int key = -1;
     int x = 640;
@@ -3394,7 +3393,7 @@ void Game::getName(Joueur* joueur, int ijoueur) {
         in.waitClean();
         key = in.waitKey();
 
-        DIK_to_string(key, tmp);
+        std::string key_tmp = DIK_to_string(key);
 
         if (key == DIK_SPACE && i < 19) {
             name[i++] = ' ';
@@ -3402,8 +3401,8 @@ void Game::getName(Joueur* joueur, int ijoueur) {
         }
         if (key == DIK_BACKSPACE && i > 0) {
             name[--i] = '\0';
-        } else if (strlen(tmp) == 1 && i < 19) {
-            name[i++] = tmp[0];
+        } else if (key_tmp.size() == 1 && i < 19) {
+            name[i++] = key_tmp[0];
             name[i] = '\0';
         }
 

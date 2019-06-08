@@ -1,5 +1,8 @@
 #pragma once
 
+#include <string>
+#include <vector>
+
 #include "graphics.h"
 
 #define RET_CONTINUE 0
@@ -14,7 +17,7 @@ class MenuMain {
     int current_menu;  // Numéro du menu courant
     int focus;         // Numéro du menu EN ROUGE
     int nb_focus;      // Nombre de choix du menu actuel
-    char** menu_txt;
+    std::vector<std::string> menu_txt_;
     int redefine;  // Numéro du schnuff à redéfinir
     int old_menu;
     bool up;
@@ -23,8 +26,8 @@ class MenuMain {
 
     bool start_sound_on;  // Ces deux booléens permettent de savoir si on a
                           // changé
-    bool start_music_on;  // l'état de sound_on/music_on pour recharger le tout
-                          // à la fin du menu
+    bool start_music_on;  // l'état de sound_on/music_on pour recharger le
+                          // tout à la fin du menu
 
     MenuMain();
     void start();
@@ -33,5 +36,4 @@ class MenuMain {
     void updateName();
     void updateRedefine();
     void draw(SDL::Surface* surf);
-    ~MenuMain();
 };

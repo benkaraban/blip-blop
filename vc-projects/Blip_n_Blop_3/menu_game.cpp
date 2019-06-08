@@ -369,97 +369,57 @@ void MenuGame::updateName()
 			strcpy(menu_txt[3], txt_data[TXT_RETURN].c_str());
 			break;
 
-		case MENU_KEY1:
-			if (redefine == 0)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_UP), buffer);
-			sprintf(menu_txt[0], "%s = %s", txt_data[TXT_UP].c_str(), buffer);
+                case MENU_KEY1: {
+                    auto keys = {
+                        std::make_tuple(0, TXT_UP, ALIAS_P1_UP),
+                        std::make_tuple(1, TXT_DOWN, ALIAS_P1_DOWN),
+                        std::make_tuple(2, TXT_LEFT, ALIAS_P1_LEFT),
+                        std::make_tuple(3, TXT_RIGHT, ALIAS_P1_RIGHT),
+                        std::make_tuple(4, TXT_FIRE, ALIAS_P1_FIRE),
+                        std::make_tuple(5, TXT_JUMP, ALIAS_P1_JUMP),
+                        std::make_tuple(6, TXT_SPECIAL, ALIAS_P1_SUPER)};
+                    for (auto& k : keys) {
+                        if (redefine == std::get<0>(k)) {
+                            std::string txt =
+                                txt_data[std::get<1>(k)] + " = ...";
+                            strcpy(menu_txt[std::get<0>(k)], txt.c_str());
+                        } else {
+                            std::string txt =
+                                txt_data[std::get<1>(k)] + " = " +
+                                DIK_to_string(in.getAlias(std::get<2>(k)));
+                            strcpy(menu_txt[std::get<0>(k)], txt.c_str());
+                        }
+                    }
 
-			if (redefine == 1)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_DOWN), buffer);
-			sprintf(menu_txt[1], "%s = %s", txt_data[TXT_DOWN].c_str(), buffer);
+                    strcpy(menu_txt[7], txt_data[TXT_RETURN].c_str());
+                    break;
+                }
 
-			if (redefine == 2)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_LEFT), buffer);
-			sprintf(menu_txt[2], "%s = %s", txt_data[TXT_LEFT].c_str(), buffer);
+                case MENU_KEY2: {
+                    auto keys = {
+                        std::make_tuple(0, TXT_UP, ALIAS_P2_UP),
+                        std::make_tuple(1, TXT_DOWN, ALIAS_P2_DOWN),
+                        std::make_tuple(2, TXT_LEFT, ALIAS_P2_LEFT),
+                        std::make_tuple(3, TXT_RIGHT, ALIAS_P2_RIGHT),
+                        std::make_tuple(4, TXT_FIRE, ALIAS_P2_FIRE),
+                        std::make_tuple(5, TXT_JUMP, ALIAS_P2_JUMP),
+                        std::make_tuple(6, TXT_SPECIAL, ALIAS_P2_SUPER)};
+                    for (auto& k : keys) {
+                        if (redefine == std::get<0>(k)) {
+                            std::string txt =
+                                txt_data[std::get<1>(k)] + " = ...";
+                            strcpy(menu_txt[std::get<0>(k)], txt.c_str());
+                        } else {
+                            std::string txt =
+                                txt_data[std::get<1>(k)] + " = " +
+                                DIK_to_string(in.getAlias(std::get<2>(k)));
+                            strcpy(menu_txt[std::get<0>(k)], txt.c_str());
+                        }
+                    }
 
-			if (redefine == 3)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_RIGHT), buffer);
-			sprintf(menu_txt[3], "%s = %s", txt_data[TXT_RIGHT].c_str(), buffer);
-
-			if (redefine == 4)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_FIRE), buffer);
-			sprintf(menu_txt[4], "%s = %s", txt_data[TXT_FIRE].c_str(), buffer);
-
-			if (redefine == 5)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_JUMP), buffer);
-			sprintf(menu_txt[5], "%s = %s", txt_data[TXT_JUMP].c_str(), buffer);
-
-			if (redefine == 6)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P1_SUPER), buffer);
-			sprintf(menu_txt[6], "%s = %s", txt_data[TXT_SPECIAL].c_str(), buffer);
-
-			strcpy(menu_txt[7], txt_data[TXT_RETURN].c_str());
-			break;
-
-		case MENU_KEY2:
-			if (redefine == 0)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_UP), buffer);
-			sprintf(menu_txt[0], "%s = %s", txt_data[TXT_UP].c_str(), buffer);
-
-			if (redefine == 1)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_DOWN), buffer);
-			sprintf(menu_txt[1], "%s = %s", txt_data[TXT_DOWN].c_str(), buffer);
-
-			if (redefine == 2)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_LEFT), buffer);
-			sprintf(menu_txt[2], "%s = %s", txt_data[TXT_LEFT].c_str(), buffer);
-
-			if (redefine == 3)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_RIGHT), buffer);
-			sprintf(menu_txt[3], "%s = %s", txt_data[TXT_RIGHT].c_str(), buffer);
-
-			if (redefine == 4)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_FIRE), buffer);
-			sprintf(menu_txt[4], "%s = %s", txt_data[TXT_FIRE].c_str(), buffer);
-
-			if (redefine == 5)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_JUMP), buffer);
-			sprintf(menu_txt[5], "%s = %s", txt_data[TXT_JUMP].c_str(), buffer);
-
-			if (redefine == 6)
-				strcpy(buffer, "...");
-			else
-				DIK_to_string(in.getAlias(ALIAS_P2_SUPER), buffer);
-			sprintf(menu_txt[6], "%s = %s", txt_data[TXT_SPECIAL].c_str(), buffer);
-
-			strcpy(menu_txt[7], txt_data[TXT_RETURN].c_str());
-			break;
+                    strcpy(menu_txt[7], txt_data[TXT_RETURN].c_str());
+                    break;
+                }
 	}
 }
 
