@@ -521,7 +521,8 @@ void MenuMain::updateName() {
                 strcpy(buffer, "...");
             else
                 DIK_to_string(in.getAlias(ALIAS_P1_SUPER), buffer);
-            sprintf(menu_txt[6], "%s = %s", txt_data[TXT_SPECIAL].c_str(), buffer);
+            sprintf(
+                menu_txt[6], "%s = %s", txt_data[TXT_SPECIAL].c_str(), buffer);
 
             strcpy(menu_txt[7], txt_data[TXT_RETURN].c_str());
             break;
@@ -549,7 +550,8 @@ void MenuMain::updateName() {
                 strcpy(buffer, "...");
             else
                 DIK_to_string(in.getAlias(ALIAS_P2_RIGHT), buffer);
-            sprintf(menu_txt[3], "%s = %s", txt_data[TXT_RIGHT].c_str(), buffer);
+            sprintf(
+                menu_txt[3], "%s = %s", txt_data[TXT_RIGHT].c_str(), buffer);
 
             if (redefine == 4)
                 strcpy(buffer, "...");
@@ -567,7 +569,8 @@ void MenuMain::updateName() {
                 strcpy(buffer, "...");
             else
                 DIK_to_string(in.getAlias(ALIAS_P2_SUPER), buffer);
-            sprintf(menu_txt[6], "%s = %s", txt_data[TXT_SPECIAL].c_str(), buffer);
+            sprintf(
+                menu_txt[6], "%s = %s", txt_data[TXT_SPECIAL].c_str(), buffer);
 
             strcpy(menu_txt[7], txt_data[TXT_RETURN].c_str());
             break;
