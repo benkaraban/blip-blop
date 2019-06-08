@@ -89,6 +89,8 @@ int MenuList::ComputeWidth() const {
 
 void MenuList::ShadeTextBox(SDL::Surface* surf) const {
     int ys = items_.size() * 15;
+    // Compute the size of the "schnuff" to darken
+    //
     int width = ComputeWidth();
 
     RECT rec;
@@ -113,7 +115,13 @@ void MenuList::draw(SDL::Surface* surf) const {
         y += 30;
     }
 }
-MenuMain::MenuMain() { redefine = -1; }
+MenuMain::MenuMain() {
+    first_menu_.AddEntry(txt_data[TXT_START_GAME]);
+    first_menu_.AddEntry("OPTIONS");
+    first_menu_.AddEntry(txt_data[TXT_EXIT]);
+
+    redefine = -1;
+}
 
 void MenuMain::start() {
     current_menu = MENU_MAIN;
@@ -142,6 +150,7 @@ int MenuMain::update() {
 
         if (focus < 0) focus = nb_focus - 1;
 
+        first_menu_.MoveUp();
         in.waitClean();
     }
     //////////////////////////////////////////////////
@@ -150,6 +159,7 @@ int MenuMain::update() {
     else if (in.scanKey(DIK_DOWN) || in.scanAlias(ALIAS_P1_DOWN)) {
         focus += 1;
         focus %= nb_focus;
+        first_menu_.MoveDown();
         in.waitClean();
     }
 
@@ -162,14 +172,13 @@ int MenuMain::update() {
 
         switch (current_menu) {
             case MENU_MAIN:
-                switch (focus) {
+                switch (first_menu_.focused()) {
                     case 0:
                         current_menu = MENU_START;
                         nb_focus = 3;
                         focus = 0;
                         updateName();
                         return RET_CONTINUE;
-                        break;
 
                     case 1:
                         current_menu = MENU_OPTS;
@@ -177,7 +186,6 @@ int MenuMain::update() {
                         focus = 3;
                         updateName();
                         return RET_CONTINUE;
-                        break;
 
                     case 2:
                         current_menu = MENU_EXIT;
@@ -185,7 +193,6 @@ int MenuMain::update() {
                         focus = 0;
                         updateName();
                         return RET_CONTINUE;
-                        break;
                 }
                 break;
 
@@ -366,6 +373,10 @@ void MenuMain::stop() {
 }
 
 void MenuMain::draw(SDL::Surface* surf) {
+    if (current_menu == MENU_MAIN) {
+        first_menu_.draw(surf);
+        return;
+    }
     int ys = nb_focus * 15;
     int y = 240 - ys;
     int tmp;
@@ -389,11 +400,6 @@ void MenuMain::draw(SDL::Surface* surf) {
         largeur = 200;
     else if (largeur > 320)
         largeur = 320;
-
-    // Réinitialise le cache systeme si le menu a changé
-    // ou si on dépasse sur les cotés
-    //
-    tmp = (320 - largeur) - rec.left;  // tmp = différence de largeur
 
     rec.top = 220 - ys;
     rec.left = 320 - largeur;
@@ -475,12 +481,6 @@ void MenuMain::updateName() {
     menu_txt_.clear();
 
     switch (current_menu) {
-        case MENU_MAIN:
-            menu_txt_.push_back(txt_data[TXT_START_GAME]);
-            menu_txt_.push_back("OPTIONS");
-            menu_txt_.push_back(txt_data[TXT_EXIT]);
-            break;
-
         case MENU_START:
             menu_txt_.push_back(txt_data[TXT_START_GAME1]);
             menu_txt_.push_back(txt_data[TXT_START_GAME2]);
