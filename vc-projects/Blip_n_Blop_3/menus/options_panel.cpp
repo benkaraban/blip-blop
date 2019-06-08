@@ -6,11 +6,14 @@
 #include "../txt_data.h"
 #include "txt_defines.h"
 
+#include "../dd_gfx.h"
+
 OptionsPanel::OptionsPanel() {
     vsync_on_txt_ = txt_data[TXT_VSYNC] + " " + txt_data[TXT_ON];
     vsync_off_txt_ = txt_data[TXT_VSYNC] + " " + txt_data[TXT_OFF];
 
     items_.AddEntry("VSYNC");
+    items_.AddEntry(txt_data[TXT_FULLSCREEN]);
     items_.AddEntry(txt_data[TXT_P1KEYS]);
     items_.AddEntry(txt_data[TXT_P2KEYS]);
     items_.AddEntry(txt_data[TXT_RETURN]);
@@ -39,10 +42,14 @@ int OptionsPanel::ProcessEvent() {
                 RefreshVsync();
                 break;
             case 1:
-                return MenuType::Keys_1;
+                fullscreen = !fullscreen;
+                DDToggleFullscreen();
+                break;
             case 2:
-                return MenuType::Keys_2;
+                return MenuType::Keys_1;
             case 3:
+                return MenuType::Keys_2;
+            case 4:
                 return MenuType::Main;
         }
     }

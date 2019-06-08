@@ -304,7 +304,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         BEST_RATE << " Hz.\n"; winSet = false;*/
         debug << "Trying to create window\n";
         DDSetGfxMode(
-            win_size.width, win_size.height, 16, true /* fullscreen */);
+            win_size.width, win_size.height, 16, fullscreen /* fullscreen */);
         debug << "Window creation done\n";
         /*debug << "Using default 640x480x16 refresh rate.\n";
         vSyncOn = true;

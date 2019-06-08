@@ -1,14 +1,13 @@
 #define TXT_RESUME 800
 #define TXT_OPTIONS 801
 #define TXT_VIDEO 801
-#define TXT_SOUND 802
+#define TXT_FULLSCREEN 802
 #define TXT_CTRL 803
 #define TXT_MISC 804
 #define TXT_EXIT_GAME 805
 #define TXT_ON 809
 #define TXT_OFF 810
 #define TXT_VSYNC 806
-#define TXT_FULLSCREEN 835
 
 #define TXT_SYNCHRO 806
 #define TXT_DETAIL 807

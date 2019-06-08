@@ -11,7 +11,14 @@ void Graphics::Init() {
     }
 }
 
+void Graphics::ToggleFullscreen() {
+    SetGfxMode(x_, y_, d_, !fullscreen_);
+}
 void Graphics::SetGfxMode(int x, int y, int d, bool fullscreen) {
+    x_ = x;
+    y_ = y;
+    d_ = d;
+    fullscreen_ = fullscreen;
     window_.reset(SDL_ErrWrap(SDL_CreateWindow(
         "Blip&Blop",
         x,
