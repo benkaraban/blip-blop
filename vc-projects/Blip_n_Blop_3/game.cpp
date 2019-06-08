@@ -2469,26 +2469,23 @@ void Game::updateMenu() {
         drawAll(false);
         DDFlipV();
 
-        menu.start();
-        menu.draw(backSurface);
+        menu.Draw(backSurface);
         DDFlipV();
         // primSurface->Flip(NULL, DDFLIP_WAIT );
 
         in.waitClean();
 
-        while (!(r = menu.update()) && !app_killed) {
+        while (!(r = menu.Update()) && !app_killed) {
             manageMsg();
             checkRestore();
             drawAll(false);
-            menu.draw(backSurface);
+            menu.Draw(backSurface);
 
             DDFlipV();
             // primSurface->Flip(NULL, DDFLIP_WAIT );
         }
 
         if (r == 2) skipped = true;
-
-        menu.stop();
 
         drawAll(false);
         DDFlipV();

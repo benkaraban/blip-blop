@@ -1,4 +1,5 @@
 #define TXT_RESUME 800
+#define TXT_OPTIONS 801
 #define TXT_VIDEO 801
 #define TXT_SOUND 802
 #define TXT_CTRL 803
@@ -49,6 +50,5 @@
 
 #define MENU_KEY1 5
 #define MENU_KEY2 6
-#define MENU_OPTS 7
 #define MENU_EXIT 8
 #define MENU_START 9
