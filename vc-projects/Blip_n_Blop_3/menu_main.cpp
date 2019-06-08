@@ -120,6 +120,10 @@ MenuMain::MenuMain() {
     first_menu_.AddEntry("OPTIONS");
     first_menu_.AddEntry(txt_data[TXT_EXIT]);
 
+    start_menu_.AddEntry(txt_data[TXT_START_GAME1]);
+    start_menu_.AddEntry(txt_data[TXT_START_GAME2]);
+    start_menu_.AddEntry(txt_data[TXT_RETURN]);
+
     redefine = -1;
 }
 
@@ -151,6 +155,7 @@ int MenuMain::update() {
         if (focus < 0) focus = nb_focus - 1;
 
         first_menu_.MoveUp();
+        start_menu_.MoveUp();
         in.waitClean();
     }
     //////////////////////////////////////////////////
@@ -160,6 +165,7 @@ int MenuMain::update() {
         focus += 1;
         focus %= nb_focus;
         first_menu_.MoveDown();
+        start_menu_.MoveDown();
         in.waitClean();
     }
 
@@ -377,6 +383,10 @@ void MenuMain::draw(SDL::Surface* surf) {
         first_menu_.draw(surf);
         return;
     }
+    if (current_menu == MENU_START) {
+        start_menu_.draw(surf);
+        return;
+    }
     int ys = nb_focus * 15;
     int y = 240 - ys;
     int tmp;
@@ -481,12 +491,6 @@ void MenuMain::updateName() {
     menu_txt_.clear();
 
     switch (current_menu) {
-        case MENU_START:
-            menu_txt_.push_back(txt_data[TXT_START_GAME1]);
-            menu_txt_.push_back(txt_data[TXT_START_GAME2]);
-            menu_txt_.push_back(txt_data[TXT_RETURN]);
-            break;
-
         case MENU_EXIT:
             menu_txt_.push_back(txt_data[TXT_EXIT]);
             menu_txt_.push_back(txt_data[TXT_CANCEL]);

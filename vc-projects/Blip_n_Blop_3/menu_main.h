@@ -43,18 +43,9 @@ class MenuList {
     int focused_ = 0;
 };
 
-class MenuMain2 {
-   public:
-    MenuMain2() {
-        //        items_.AddEntry(
-    }
-
-   private:
-    MenuList items_;
-};
-
 class MenuMain {
     MenuList first_menu_;
+    MenuList start_menu_;
 
    public:
     int current_menu;  // Numéro du menu courant
