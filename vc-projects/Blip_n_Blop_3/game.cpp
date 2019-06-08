@@ -2421,7 +2421,7 @@ void Game::drawTimer() {
     if (game_flag[FLAG_TIMER] > 0) {
         char buffer[10];
 
-        fnt_cool.printC(backSurface, 320, 20, txt_data[TXT_TIME]);
+        fnt_cool.printC(backSurface, 320, 20, txt_data[TXT_TIME].c_str());
         sprintf(buffer, "%d", game_flag[FLAG_TIMER]);
         fnt_cool.printC(backSurface, 320, 50, buffer);
     }

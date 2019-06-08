@@ -532,7 +532,7 @@ void CINEPlayer::drawSprite(int n)
 void CINEPlayer::drawText(int n)
 {
 	if (n < NB_OBJ)
-		fnt_rpg.printC(back_surf, obj[n].x, obj[n].y, txt_data[obj[n].txt]);
+		fnt_rpg.printC(back_surf, obj[n].x, obj[n].y, txt_data[obj[n].txt].c_str());
 }
 
 

@@ -28,19 +28,23 @@ std::vector<std::string> txt_data;
 
 bool loadTxtData(const char* file) {
     ifstream f(file);
-    int num;
 
     if (!f.is_open()) {
         return false;
     }
 
     std::string buffer;
-    while (!f.eof()) {
+    while (true) {
         std::getline(f, buffer, '^');
-        num = std::stoi(buffer);
+
+        if (f.eof()) {
+            break;
+        }
+
+        int num = std::stoi(buffer);
         std::getline(f, buffer, '\n');
 
-        if (num <= txt_data.size()) {
+        if (num >= txt_data.size()) {
             txt_data.resize(num + 1);
         }
         txt_data[num] = buffer;
