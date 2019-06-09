@@ -19,6 +19,9 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <vector>
+#include <memory>
+
 // #include <ddraw.h>
 #include "ben_divers.h"
 #include "control_p1.h"
@@ -95,7 +98,7 @@ ControlP2	ctrlP2;
 //		Les listes
 //-----------------------------------------------------------------------------
 
-SuperListe	list_joueurs;
+std::vector<Couille*> list_joueurs; // FIXME: make it owning?
 SuperListe	list_tirs_bb;
 SuperListe	list_cow;
 SuperListe	list_impacts;

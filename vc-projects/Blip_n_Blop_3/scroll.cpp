@@ -29,6 +29,8 @@
 #include "ben_debug.h"
 #include <SDL.h>
 
+#include "couille.h"
+
 int vbuffer_wide = WANTED_VBUFFER_WIDE;
 int	next_x = 0;
 int	xTex = 0;
@@ -113,19 +115,15 @@ void updateScrolling(bool forceOk)
 			offset = x_lock;
 	} else if (scroll_speed != 0 && forceOk) {
 		offset += scroll_speed;
-	} else if (list_joueurs.taille() > 0) {
+	} else if (list_joueurs.size() > 0) {
 		Sprite *	s;
 		int			x_moy = 0;
 
-		list_joueurs.start();
-
-		while (!list_joueurs.fin()) {
-			s = (Sprite*) list_joueurs.info();
+                for (Couille* s : list_joueurs) {
 			x_moy += s->x;
-			list_joueurs.suivant();
 		}
 
-		x_moy /= list_joueurs.taille();
+		x_moy /= list_joueurs.size();
 		x_moy -= 320;	// Pour centrer (320=640/2)
 
 		if (x_moy > offset) {

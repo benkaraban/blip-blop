@@ -18,6 +18,8 @@
 
 #define GAME_CPP_FILE
 
+#include <algorithm>
+
 //#include <windows.h>
 #include <fcntl.h>
 #include <io.h>
@@ -130,7 +132,7 @@ void Game::jouePartie(int nbj, int idj) {
         player1 = new Blop();
 
     player1->ctrl = &ctrlP1;
-    list_joueurs.ajoute((void*)player1);
+    list_joueurs.push_back(player1);
 
     if (nbj == 2) {
         if (idj == 0)
@@ -139,7 +141,7 @@ void Game::jouePartie(int nbj, int idj) {
             player2 = new Blip();
 
         player2->ctrl = &ctrlP2;
-        list_joueurs.ajoute((void*)player2);
+        list_joueurs.push_back(player2);
     }
 
     // Joue à tous les niveaux
@@ -401,8 +403,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
             next_x = offset % vbuffer_wide;
             next_x = next_x - (next_x & 1);
     */
-    list_joueurs.start();
-    Sprite* s = (Sprite*)list_joueurs.info();
+    Sprite* s = list_joueurs[0];
     offset = s->x;
     offset -= (offset % 640);
 
@@ -499,7 +500,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
         if (player1 != NULL && p1_bringBack) {
             if (player1->a_detruire && p1_life > 0) {
                 player1->a_detruire = false;
-                list_joueurs.ajoute((void*)player1);
+                list_joueurs.push_back(player1);
             }
 
             player1->nb_life = p1_life;
@@ -508,7 +509,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
         if (player2 != NULL && p2_bringBack) {
             if (player2->a_detruire && p2_life > 0) {
                 player2->a_detruire = false;
-                list_joueurs.ajoute((void*)player2);
+                list_joueurs.push_back(player2);
             }
 
             player2->nb_life = p2_life;
@@ -1281,7 +1282,7 @@ void Game::releasePartie() {
     sbk_bb.close();
     sbk_misc.close();
 
-    list_joueurs.vide_porc();
+    list_joueurs.clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -1370,14 +1371,8 @@ bool Game::chargePartie() {
 //-----------------------------------------------------------------------------
 
 void Game::updateJoueurs() {
-    Couille* pl;
-
-    list_joueurs.start();
-
-    while (!list_joueurs.fin()) {
-        pl = (Couille*)list_joueurs.info();
+    for (Couille* pl : list_joueurs) {
         pl->update();
-        list_joueurs.suivant();
     }
 }
 
@@ -1406,14 +1401,8 @@ void Game::updateTirsJoueurs() {
 //-----------------------------------------------------------------------------
 
 void Game::drawJoueurs() {
-    Couille* pl;
-
-    list_joueurs.start();
-
-    while (!list_joueurs.fin()) {
-        pl = (Couille*)list_joueurs.info();
+    for (Couille* pl : list_joueurs) {
         pl->affiche();
-        list_joueurs.suivant();
     }
 }
 
@@ -1436,16 +1425,11 @@ void Game::drawTirsJoueurs() {
 void Game::cleanLists() {
     Sprite* s;
 
-    list_joueurs.start();
-
-    while (!list_joueurs.fin()) {
-        s = (Sprite*)list_joueurs.info();
-
-        if (s->aDetruire())
-            list_joueurs.supprimePorc();
-        else
-            list_joueurs.suivant();
-    }
+    list_joueurs.erase(
+        std::remove_if(list_joueurs.begin(),
+                       list_joueurs.end(),
+                       [](Couille* s) { return s->aDetruire(); }),
+        list_joueurs.end());
 
     list_fonds_statiques.start();
 
@@ -1761,21 +1745,16 @@ void Game::manageCollisions() {
     // Collisions Joueurs / Bonus
     //
     Bonus* bonus;
-    Couille* joueur;
 
     list_bonus.start();
 
     while (!list_bonus.fin()) {
         bonus = (Bonus*)list_bonus.info();
 
-        list_joueurs.start();
-
-        while (!list_joueurs.fin()) {
-            joueur = (Couille*)list_joueurs.info();
-
-            if (bonus->collision(joueur)) bonus->estPris(joueur);
-
-            list_joueurs.suivant();
+        for (Couille* couille : list_joueurs) {
+            if (bonus->collision(couille)) {
+                bonus->estPris(couille);
+            }
         }
 
         list_bonus.suivant();
@@ -1791,15 +1770,9 @@ void Game::manageCollisions() {
         while (!list_ennemis.fin()) {
             ennemis = (Ennemi*)list_ennemis.info();
 
-            list_joueurs.start();
-
-            while (!list_joueurs.fin()) {
-                joueur = (Couille*)list_joueurs.info();
-
+            for (Couille* joueur : list_joueurs) {
                 if (ennemis->collision(joueur))
                     joueur->estTouche(ennemis->degats());
-
-                list_joueurs.suivant();
             }
 
             list_ennemis.suivant();
@@ -1812,14 +1785,8 @@ void Game::manageCollisions() {
         while (!list_tirs_ennemis.fin()) {
             tir = (Tir*)list_tirs_ennemis.info();
 
-            list_joueurs.start();
-
-            while (!list_joueurs.fin()) {
-                joueur = (Couille*)list_joueurs.info();
-
+            for (Couille* joueur : list_joueurs) {
                 if (tir->collision(joueur)) joueur->estTouche(tir->degats());
-
-                list_joueurs.suivant();
             }
 
             list_tirs_ennemis.suivant();
@@ -2277,7 +2244,7 @@ void Game::drawGiclures() {
 void Game::updateTeteTurc() {
     static int ntete_turc = 0;
 
-    if (list_joueurs.taille() == 0) {
+    if (list_joueurs.empty()) {
         dummyPlayer.x = offset + 320;
         dummyPlayer.y = y_plat[0][offset + 320];
         tete_turc = &dummyPlayer;
@@ -2285,20 +2252,8 @@ void Game::updateTeteTurc() {
     }
 
     ntete_turc += 1;
-    ntete_turc %= list_joueurs.taille();
-
-    list_joueurs.start();
-
-    int i = 0;
-
-    list_joueurs.start();
-
-    while (i < ntete_turc && !list_joueurs.fin()) {
-        list_joueurs.suivant();
-        i++;
-    }
-
-    tete_turc = (Personnage*)list_joueurs.info();
+    ntete_turc %= list_joueurs.size();
+    tete_turc = list_joueurs[ntete_turc];
 }
 
 //-----------------------------------------------------------------------------
@@ -2357,7 +2312,7 @@ void Game::updateRPG() {
 void Game::updateVictoryAndDefeat() {
     // Defaite ?
     //
-    if (list_joueurs.estVide()) {
+    if (list_joueurs.empty()) {
         wait_for_death += 1;
 
         if (wait_for_death >= 200) joueurs_morts = true;
@@ -2600,7 +2555,7 @@ void Game::showPE(bool bonus, bool fuckOff) {
 
     mbk_inter.play(0);
 
-    if (list_joueurs.taille() == 2) {
+    if (list_joueurs.size() == 2) {
         showp1 = showp2 = true;
         xbasep1 = 80;
         xbasep2 = 350;
@@ -3129,12 +3084,8 @@ void Game::updateBulles() {
 
     // Crée de nouvelles bulles
     //
-    list_joueurs.start();
-
-    while (!list_joueurs.fin()) {
-        pl = (Sprite*)list_joueurs.info();
+    for (Couille* pl : list_joueurs) {
         creeBulle(pl);
-        list_joueurs.suivant();
     }
 
     list_ennemis.start();

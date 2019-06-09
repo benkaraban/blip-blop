@@ -91,7 +91,7 @@ bool RPGPlayer::startPlay(int n)
 	ntxt[0]			= -1;
 	ntxt[1]			= -1;
 
-	nbjoueurs		= list_joueurs.taille();
+	nbjoueurs		= list_joueurs.size();
 	key_released	= false;
 	skiped			= false;
 	focus			= 0;
@@ -101,17 +101,12 @@ bool RPGPlayer::startPlay(int n)
 	Couille *	c;
 	int			i = 0;
 
-	list_joueurs.start();
-
-	while (!list_joueurs.fin()) {
-		c = (Couille *) list_joueurs.info();
-
+        for (Couille* c : list_joueurs) {
 		if (c->id_couille == ID_BLIP)
 			base_joueur[i] = 0;
 		else
 			base_joueur[i] = 6;
 
-		list_joueurs.suivant();
 		i += 1;
 	}
 

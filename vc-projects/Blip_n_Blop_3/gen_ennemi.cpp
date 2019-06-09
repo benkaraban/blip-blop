@@ -17,6 +17,7 @@
 #include "sprite.h"
 #include "gen_ennemi.h"
 #include "event_ennemi.h"
+#include "couille.h"
 
 #ifndef SENS_GAUCHE
 #define SENS_GAUCHE		0
@@ -39,14 +40,8 @@ void GenEnnemi::update()
 		Sprite *	s;
 		bool		ok = true;
 
-		list_joueurs.start();
-
-		while (!list_joueurs.fin() && ok) {
-			s = (Sprite*) list_joueurs.info();
-
+		for (Couille* s : list_joueurs) {
 			ok = (s->x < x - 100 || s->x > x + 100 || s->y < y - 100 || s->y > y + 100);
-
-			list_joueurs.suivant();
 		}
 
 		if (ok) {

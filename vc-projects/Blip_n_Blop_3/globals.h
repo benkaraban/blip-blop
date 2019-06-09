@@ -15,8 +15,7 @@
 *
 ******************************************************************/
 
-#ifndef _BB_GLOBALS_
-#define _BB_GLOBALS_
+#pragma once
 
 //-----------------------------------------------------------------------------
 //		Headers
@@ -123,7 +122,8 @@ extern ControlP2	ctrlP2;
 //		Les listes
 //-----------------------------------------------------------------------------
 
-extern SuperListe	list_joueurs;
+class Couille;
+extern std::vector<Couille*> list_joueurs; // FIXME: make it owning?
 extern SuperListe	list_tirs_bb;
 extern SuperListe	list_cow;
 extern SuperListe	list_impacts;
@@ -246,5 +246,3 @@ inline void draw(int x, int y, const Picture * pic)
 	if (pic != NULL)
 		pic->BlitTo(backSurface, x - offset, y);
 }
-
-#endif
