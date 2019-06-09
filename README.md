@@ -13,6 +13,46 @@ that I'd rather not translate as they'd break the stupidity that made Blip'n
 Blop famous. I would rather have a separate lexicon for the fellas that can't
 french.
 
+This project is HUGE for two students. Kudos to you guys, it's a LOT of work,
+and even if the quality is, uh, debatable, the game actually works flawlessly
+and you undeniably got the work done. Congrats and thanks!
+
+## Lexicon
+
+- Couille: testicle. That's what the players are, and the code is in
+  couille.{cpp,h}
+- schnuff: "thing". It's not french, it's a made up word, don't look at me like
+  that
+- snuf: Smurf?
+- Tête de turc: a person that gets all the hate. In the game engine, the
+  enemies are fighting one of the two couilles at a time, who is then called
+  "la tête de turc". See `Game::tete_turc`
+
+## When I laughed
+
+- "couille" in the code
+- "schnuff"
+- Tête de turc. That's kinda informal and slang.
+- `SuperListe` (=AwesomeList). And it's actually really not awesome, it's a
+  `void*` based linked list with an embedded STATEFUL iterator. I'm sad I have
+  to remove it to use actual vectors.
+- `SuperListe::vide_porc`: empty (like a?) pork, meaning "in an unclean way".
+  IDK why, the code is exactly the same as the unporked version.
+- `SuperListe::supprime_porc`: removes an element of the list without freeing
+  its memory (ie, it's a non-owning list)
+
+## Significant differences
+
+- The menus were a big pile of switch case in a single class. The pause menu
+  and the title screen menu were just a big copy paste. I cleaned up all that.
+  Take a look at `menus/`. Pause menu and title screen menu are now the same
+  thing
+- Added a "TOGGLE FULLSCREEN" option.
+- Fixed a bug that prevented unix like os from playing. Some level descriptions
+  contained path containing backslashes that failed. Now backslashes are
+  handled.
+- MusicBank 
+
 # Blip'n Blop
 This is the source code of Blip'n Blop, a free video game for the PC released in 2002. Years after the game got released, some enthusiastic programmers asked us to open source it and here we are!
 
