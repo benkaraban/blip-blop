@@ -124,7 +124,8 @@ extern ControlP2	ctrlP2;
 
 class Couille;
 extern std::vector<Couille*> list_joueurs; // FIXME: make it owning?
-extern SuperListe	list_tirs_bb;
+class TirBB;
+extern std::vector<TirBB*> list_tirs_bb;
 extern SuperListe	list_cow;
 extern SuperListe	list_impacts;
 

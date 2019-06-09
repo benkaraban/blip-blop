@@ -99,7 +99,7 @@ ControlP2	ctrlP2;
 //-----------------------------------------------------------------------------
 
 std::vector<Couille*> list_joueurs; // FIXME: make it owning?
-SuperListe	list_tirs_bb;
+std::vector<TirBB*> list_tirs_bb;
 SuperListe	list_cow;
 SuperListe	list_impacts;
 

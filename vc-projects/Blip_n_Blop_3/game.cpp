@@ -1006,7 +1006,7 @@ void Game::releaseNiveau() {
     list_event_endormis.vide();
     list_event.vide();
 
-    list_tirs_bb.vide_porc();
+    list_tirs_bb.clear();
     list_cow.vide();
     list_impacts.vide_porc();
 
@@ -1379,20 +1379,14 @@ void Game::updateJoueurs() {
 //-----------------------------------------------------------------------------
 
 void Game::updateTirsJoueurs() {
-    TirBB* t;
-
-    list_tirs_bb.start();
-
-    while (!list_tirs_bb.fin()) {
-        t = (TirBB*)list_tirs_bb.info();
+    for (TirBB* t : list_tirs_bb) {
         t->update();
-        list_tirs_bb.suivant();
     }
 
     list_cow.start();
 
     while (!list_cow.fin()) {
-        t = (TirBB*)list_cow.info();
+        TirBB* t = (TirBB*)list_cow.info();
         t->update();
         list_cow.suivant();
     }
@@ -1409,14 +1403,8 @@ void Game::drawJoueurs() {
 //-----------------------------------------------------------------------------
 
 void Game::drawTirsJoueurs() {
-    TirBB* t;
-
-    list_tirs_bb.start();
-
-    while (!list_tirs_bb.fin()) {
-        t = (TirBB*)list_tirs_bb.info();
+    for (TirBB* t : list_tirs_bb) {
         t->affiche();
-        list_tirs_bb.suivant();
     }
 }
 
@@ -1442,16 +1430,10 @@ void Game::cleanLists() {
             list_fonds_statiques.suivant();
     }
 
-    list_tirs_bb.start();
-
-    while (!list_tirs_bb.fin()) {
-        s = (Sprite*)list_tirs_bb.info();
-
-        if (s->aDetruire())
-            list_tirs_bb.supprimePorc();
-        else
-            list_tirs_bb.suivant();
-    }
+    list_tirs_bb.erase(std::remove_if(list_tirs_bb.begin(),
+                                      list_tirs_bb.end(),
+                                      [](TirBB* t) { return t->aDetruire(); }),
+                       list_tirs_bb.end());
 
     list_cow.start();
 
@@ -1704,11 +1686,7 @@ void Game::manageCollisions() {
 
     // Collisions TirsBB / Ennemis
     //
-    list_tirs_bb.start();
-
-    while (!list_tirs_bb.fin()) {
-        tir = (Tir*)list_tirs_bb.info();
-
+    for (Tir* tir : list_tirs_bb) {
         list_ennemis.start();
 
         while (!list_ennemis.fin()) {
@@ -1718,8 +1696,6 @@ void Game::manageCollisions() {
 
             list_ennemis.suivant();
         }
-
-        list_tirs_bb.suivant();
     }
 
     // Collisions Vaches / Ennemis
