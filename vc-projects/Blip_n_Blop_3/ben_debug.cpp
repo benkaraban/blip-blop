@@ -70,6 +70,7 @@ void Debug::Msg(const char * msg)
 {
 	nbmsg += 1;
 
+        // TODO KEEP IT OPEN
 	if (nbmsg == MSG_MAX) {
 		f.open(nomfic, ios::app);
 		f << "\nLog file is too long.\n";
@@ -123,4 +124,9 @@ Debug & Debug::operator << (void * ptr)
 	_itoa(int(long(ptr)), r, 16);			// Base 16 pour les adresses
 	Msg(r);
 	return *this;
+}
+
+Debug& Debug::operator<<(const std::string& str) {
+    Msg(str.c_str());
+    return *this;
 }

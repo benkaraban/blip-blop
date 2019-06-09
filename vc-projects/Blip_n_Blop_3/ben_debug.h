@@ -38,6 +38,7 @@ using namespace std;
 //		Définition de la classe Debug
 //-----------------------------------------------------------------------------
 
+// TODO THIS IS JUST A FILESTREAM. NO NEED TO REIMPLEMENT THE WHEEL
 class Debug
 {
 private:
@@ -54,6 +55,7 @@ public:
 	Debug & operator << (const char * msg);
 	Debug & operator << (int nb);
 	Debug & operator << (void * ptr);
+        Debug& operator<<(const std::string& str);
 	~Debug();
 
 };
