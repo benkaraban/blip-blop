@@ -4,6 +4,7 @@ namespace SDL {
 class Surface;
 }
 
+// FIXME: That ontology is pretty bad. Find something better.
 enum MenuType : int {
     Main,
     Start,
