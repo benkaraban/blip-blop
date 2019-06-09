@@ -14,8 +14,7 @@
 
 #define MAX_ZIK		10
 
-MusicBank::MusicBank() : nb_musiques(0), type(NULL), playing(NULL),
-	mp3(NULL), mod(NULL), channel(NULL)
+MusicBank::MusicBank() : nb_musiques(0)
 {
 }
 
@@ -50,21 +49,21 @@ bool MusicBank::open(const char * file, bool loop)
 		return false;
 	}
 
-	type = new int[nb_musiques];
-	playing = new bool [nb_musiques];
+	type_.resize(nb_musiques);
+	playing_.resize(nb_musiques);
 //	mp3 = new FSOUND_SAMPLE * [nb_musiques];
-	mp3 = new FSOUND_STREAM * [nb_musiques];
-	mod = new FMUSIC_MODULE * [nb_musiques];
-	channel = new int [nb_musiques];
-	mp3Data = new void * [nb_musiques];
+	mp3_.resize(nb_musiques);
+	mod_.resize(nb_musiques);
+	channel_.resize(nb_musiques);
+	mp3Data_.resize(nb_musiques);
 
 
 	for (int i = 0; i < nb_musiques; i++) {
-		f >> type[i];
+		f >> type_[i];
 		f >> buffer;
 
-		if (type[i] == TYPE_MOD) {
-			if ((mod[i] = FMUSIC_LoadSong(buffer)) == 0) {
+		if (type_[i] == TYPE_MOD) {
+			if ((mod_[i] = FMUSIC_LoadSong(buffer)) == 0) {
 				f.close();
 				debug << "MusicBank::load() -> Ne peut pas charger le MOD " << buffer << "\n";
 				nb_musiques = i;
@@ -72,7 +71,7 @@ bool MusicBank::open(const char * file, bool loop)
 				return false;
 			}
 		} else { // TYPE_MP3
-			mp3Data[i] = NULL;
+			mp3Data_[i] = NULL;
 
 			FILE * f2 = fopen(buffer, "rb");
 
@@ -88,9 +87,9 @@ bool MusicBank::open(const char * file, bool loop)
 			int size = ftell(f2);
 			fseek(f2, 0, SEEK_SET);
 
-			mp3Data[i] = malloc(size);
+			mp3Data_[i] = malloc(size);
 
-			fread(mp3Data[i], size, 1, f2);
+			fread(mp3Data_[i], size, 1, f2);
 
 			fflush(f2);
 			fclose(f2);
@@ -98,20 +97,20 @@ bool MusicBank::open(const char * file, bool loop)
 			if (loop) {
 				//mp3[i] = FSOUND_Sample_Load( FSOUND_FREE, (char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
 #ifdef _WIN32
-				mp3[i] = FSOUND_Stream_OpenFile((char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
+				mp3_[i] = FSOUND_Stream_OpenFile((char*)mp3Data_[i], FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
 #else
-				mp3[i] = FSOUND_Stream_OpenFile(buffer, FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
+				mp3_[i] = FSOUND_Stream_OpenFile(buffer, FSOUND_LOADMEMORY | FSOUND_LOOP_NORMAL, size);
 #endif
 			} else {
 				//mp3[i] = FSOUND_Sample_Load( FSOUND_FREE, (char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
 #ifdef _WIN32
-				mp3[i] = FSOUND_Stream_OpenFile((char*)mp3Data[i], FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
+				mp3_[i] = FSOUND_Stream_OpenFile((char*)mp3Data_[i], FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
 #else
-				mp3[i] = FSOUND_Stream_OpenFile(buffer, FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
+				mp3_[i] = FSOUND_Stream_OpenFile(buffer, FSOUND_LOADMEMORY | FSOUND_LOOP_OFF, size);
 #endif
 			}
 
-			if (mp3[i] == NULL) {
+			if (mp3_[i] == NULL) {
 				debug << "Cannot stream " << buffer << " FMOD Error :" << FMOD_ErrorString(FSOUND_GetError()) << "\n";
 			}
 
@@ -141,7 +140,7 @@ bool MusicBank::open(const char * file, bool loop)
 			*/
 		}
 
-		playing[i] = false;
+		playing_[i] = false;
 	}
 
 	f.close();
@@ -151,47 +150,23 @@ bool MusicBank::open(const char * file, bool loop)
 void MusicBank::close()
 {
 	for (int i = 0; i < nb_musiques; i++) {
-		if (type[i] == TYPE_MOD) {
-			FMUSIC_FreeSong(mod[i]);
+		if (type_[i] == TYPE_MOD) {
+			FMUSIC_FreeSong(mod_[i]);
 		} else {
 			//FSOUND_Sample_Free(mp3[i]);
-			FSOUND_Stream_Close(mp3[i]);
-			if (mp3Data[i] != NULL)
-				free(mp3Data[i]);
+			FSOUND_Stream_Close(mp3_[i]);
+			if (mp3Data_[i] != NULL)
+				free(mp3Data_[i]);
 		}
 	}
 
 	nb_musiques = 0;
-
-	if (type != NULL) {
-		delete [] type;
-		type = NULL;
-	}
-
-	if (mod != NULL) {
-		delete [] mod;
-		mod = NULL;
-	}
-
-	if (mp3 != NULL) {
-		delete [] mp3;
-		mp3 = NULL;
-	}
-
-	if (mp3Data != NULL) {
-		//delete [] mp3Data;
-		mp3Data = NULL;
-	}
-
-	if (playing != NULL) {
-		delete [] playing;
-		playing = NULL;
-	}
-
-	if (channel != NULL) {
-		delete [] channel;
-		channel = NULL;
-	}
+        type_.clear();
+        mp3_.clear();
+        mod_.clear();
+        mp3Data_.clear();
+        playing_.clear();
+        channel_.clear();
 }
 
 void MusicBank::play(int n)
@@ -204,14 +179,14 @@ void MusicBank::play(int n)
 		return;
 	}
 
-	if (type[n] == TYPE_MOD)
-		FMUSIC_PlaySong(mod[n]);
+	if (type_[n] == TYPE_MOD)
+		FMUSIC_PlaySong(mod_[n]);
 	else {
-//		channel[n] = FSOUND_PlaySound( 0, mp3[n]);
-		channel[n] = FSOUND_Stream_Play(0, mp3[n]);
+//		channel_[n] = FSOUND_PlaySound( 0, mp3[n]);
+		channel_[n] = FSOUND_Stream_Play(0, mp3_[n]);
 	}
 
-	playing[n] = true;
+	playing_[n] = true;
 }
 
 
@@ -225,22 +200,22 @@ void MusicBank::stop(int n)
 		return;
 	}
 
-	if (!playing[n])
+	if (!playing_[n])
 		return;
 
-	if (type[n] == TYPE_MOD)
-		FMUSIC_StopSong(mod[n]);
+	if (type_[n] == TYPE_MOD)
+		FMUSIC_StopSong(mod_[n]);
 	else
-//		FSOUND_StopSound( channel[n]);
-		FSOUND_Stream_Stop(mp3[n]);
+//		FSOUND_StopSound( channel_[n]);
+		FSOUND_Stream_Stop(mp3_[n]);
 
-	playing[n] = false;
+	playing_[n] = false;
 }
 
 void MusicBank::stop()
 {
 	for (int i = 0; i < nb_musiques; i++) {
-		if (playing[i])
+		if (playing_[i])
 			stop(i);
 	}
 }
@@ -251,7 +226,7 @@ void MusicBank::setVol(int v)
 		return;
 
 	for (int i = 0; i < nb_musiques; i++) {
-		if (type[i] == TYPE_MOD)
-			FMUSIC_SetMasterVolume(mod[i], v);
+		if (type_[i] == TYPE_MOD)
+			FMUSIC_SetMasterVolume(mod_[i], v);
 	}
 }

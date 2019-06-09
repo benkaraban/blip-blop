@@ -1,21 +1,23 @@
 #pragma once
 
-#define CHANNEL_NUMBER 32
+#include <vector>
 
 #include "fmod.h"
 
+#define CHANNEL_NUMBER 32
+
 class MusicBank {
    protected:
-    int* type;
+    std::vector<int> type_;
 
     //	FSOUND_SAMPLE **	mp3;
-    FSOUND_STREAM** mp3;
+    std::vector<FSOUND_STREAM*> mp3_;
 
-    FMUSIC_MODULE** mod;
-    void** mp3Data;
+    std::vector<FMUSIC_MODULE*> mod_;
+    std::vector<void*> mp3Data_;
 
-    bool* playing;
-    int* channel;
+    std::vector<bool> playing_;
+    std::vector<int> channel_;
 
     int nb_musiques;
 
