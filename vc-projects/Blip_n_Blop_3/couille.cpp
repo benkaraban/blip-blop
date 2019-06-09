@@ -506,7 +506,7 @@ void Couille::update()
 				ptr->etape = rand() % 8;
 				ptr->joueur = this;
 
-				list_cow.ajoute((void*) ptr);
+				list_cow.push_back(std::unique_ptr<TirBBVache>(ptr));
 			}
 		}
 

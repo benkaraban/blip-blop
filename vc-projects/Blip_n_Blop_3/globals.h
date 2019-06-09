@@ -126,7 +126,8 @@ class Couille;
 extern std::vector<Couille*> list_joueurs; // FIXME: make it owning?
 class TirBB;
 extern std::vector<TirBB*> list_tirs_bb;
-extern SuperListe	list_cow;
+class TirBBVache;
+extern std::vector<std::unique_ptr<TirBBVache>> list_cow;
 extern SuperListe	list_impacts;
 
 extern SuperListe	list_vehicules;

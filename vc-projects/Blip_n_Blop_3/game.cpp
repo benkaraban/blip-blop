@@ -72,6 +72,7 @@
 #include "texte_cool.h"
 #include "tir_bb.h"
 #include "txt_data.h"
+#include "tir_bb_vache.h"
 
 #include "l_timer.h"
 #include "precache.h"
@@ -1007,7 +1008,7 @@ void Game::releaseNiveau() {
     list_event.vide();
 
     list_tirs_bb.clear();
-    list_cow.vide();
+    list_cow.clear();
     list_impacts.vide_porc();
 
     list_vehicules.vide();
@@ -1383,12 +1384,8 @@ void Game::updateTirsJoueurs() {
         t->update();
     }
 
-    list_cow.start();
-
-    while (!list_cow.fin()) {
-        TirBB* t = (TirBB*)list_cow.info();
+    for (auto& t : list_cow) {
         t->update();
-        list_cow.suivant();
     }
 }
 
@@ -1435,16 +1432,10 @@ void Game::cleanLists() {
                                       [](TirBB* t) { return t->aDetruire(); }),
                        list_tirs_bb.end());
 
-    list_cow.start();
-
-    while (!list_cow.fin()) {
-        s = (Sprite*)list_cow.info();
-
-        if (s->aDetruire())
-            list_cow.supprime();
-        else
-            list_cow.suivant();
-    }
+    list_cow.erase(std::remove_if(list_cow.begin(),
+                                  list_cow.end(),
+                                  [](auto& s) { return s->aDetruire(); }),
+                   list_cow.end());
 
     list_bulles.start();
 
@@ -1700,22 +1691,16 @@ void Game::manageCollisions() {
 
     // Collisions Vaches / Ennemis
     //
-    list_cow.start();
-
-    while (!list_cow.fin()) {
-        tir = (Tir*)list_cow.info();
-
+    for (auto& tir : list_cow) {
         list_ennemis.start();
 
         while (!list_ennemis.fin()) {
             ennemi = (Ennemi*)list_ennemis.info();
 
-            if (tir->collision(ennemi)) ennemi->estTouche(tir);
+            if (tir->collision(ennemi)) ennemi->estTouche(tir.get());
 
             list_ennemis.suivant();
         }
-
-        list_cow.suivant();
     }
 
     // Collisions Joueurs / Bonus
@@ -2335,14 +2320,8 @@ void Game::updateFlags() {
 //-----------------------------------------------------------------------------
 
 void Game::drawCow() {
-    Sprite* t;
-
-    list_cow.start();
-
-    while (!list_cow.fin()) {
-        t = (Sprite*)list_cow.info();
+    for (auto& t : list_cow) {
         t->affiche();
-        list_cow.suivant();
     }
 }
 
