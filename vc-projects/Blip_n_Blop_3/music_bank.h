@@ -19,7 +19,7 @@ class MusicBank {
     std::vector<bool> playing_;
     std::vector<int> channel_;
 
-    int nb_musiques;
+    int nb_musiques_;
 
    public:
     MusicBank();
