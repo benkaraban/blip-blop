@@ -232,7 +232,6 @@ void Fonte::printR(SDL::Surface * surf, int x, int y, const char * txt)
 
 void Fonte::printC(SDL::Surface * surf, int xtaille, int y, const char * txt)
 {
-	debug << "Fonte::printC("<<txt<<")" <<"\n";
 	if (txt == NULL)
 		return;
 
