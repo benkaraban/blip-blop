@@ -210,32 +210,17 @@ public:
 	void updateCheat();
 	void manageCollisions();
 
-	void drawFondsStatiques();
+        template <class T>
+        void DrawCollection(const T& xs);
 	void drawTremblements();
 	void drawFlecheGo();
-	void drawMeteo();
-	void drawPlateformesMobiles();
-	void drawFondsAnimes();
-	void drawPremiersPlans();
-	void drawJoueurs();
-	void drawTirsJoueurs();
-	void drawImpacts();
-	void drawCow();
-	void drawEnnemis();
-	void drawTirsEnnemis();
-	void drawBonus();
-	void drawGiclures();
 	void drawHUB();
 	void drawHUBpv(int x, int y, int pv);
 	void drawTimer();
-	void drawTexteCool();
-	void drawGore();
-	void drawVehicules();
 
 	void drawDebugInfos();
 
 	void drawDeformation();
-	void drawBulles();
 
 	void cleanLists();
 	void showPE(bool bonus, bool fuckOff = false);

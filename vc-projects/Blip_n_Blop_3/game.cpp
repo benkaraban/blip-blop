@@ -1154,26 +1154,25 @@ void Game::drawAll(bool flip) {
     }*/
 
     drawScrolling();
-    drawFondsStatiques();
+    DrawCollection(list_fonds_statiques);
+    DrawCollection(list_fonds_animes);
 
-    drawFondsAnimes();
+    if (game_flag[FLAG_BULLES]) {DrawCollection(list_bulles);}
 
-    if (game_flag[FLAG_BULLES]) drawBulles();
+    DrawCollection(list_plateformes_mobiles);
+    DrawCollection(list_impacts);
+    DrawCollection(list_gore);
 
-    drawPlateformesMobiles();
-    drawGiclures();
-    drawGore();
-
-    drawEnnemis();
-    drawTirsEnnemis();
-    drawBonus();
-    drawTirsJoueurs();
-    drawJoueurs();
-    drawVehicules();
-    drawImpacts();
-    drawCow();
-    drawMeteo();
-    drawPremiersPlans();
+    DrawCollection(list_ennemis);
+    DrawCollection(list_tirs_ennemis);
+    DrawCollection(list_bonus);
+    DrawCollection(list_tirs_bb);
+    DrawCollection(list_joueurs);
+    DrawCollection(list_vehicules);
+    DrawCollection(list_impacts);
+    DrawCollection(list_cow);
+    DrawCollection(list_meteo);
+    DrawCollection(list_premiers_plans);
 
     if (type_meteo == METEO_DEFORME && intensite_meteo != 0) drawDeformation();
 
@@ -1181,7 +1180,7 @@ void Game::drawAll(bool flip) {
     drawHUB();
     drawTimer();
     drawFlecheGo();
-    drawTexteCool();
+    DrawCollection(list_txt_cool);
 
     drawDebugInfos();
 
@@ -1393,17 +1392,10 @@ void Game::updateTirsJoueurs() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawJoueurs() {
-    for (Couille* pl : list_joueurs) {
+template <class T>
+void Game::DrawCollection(const T& xs) {
+    for (auto& pl : xs) {
         pl->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawTirsJoueurs() {
-    for (TirBB* t : list_tirs_bb) {
-        t->affiche();
     }
 }
 
@@ -1552,16 +1544,6 @@ void Game::updateEvents() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawEnnemis() {
-    Ennemi* pl;
-
-    for (auto& pl : list_ennemis) {
-        pl->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateEnnemis() {
     Ennemi* pl;
 
@@ -1669,14 +1651,6 @@ void Game::updateHoldFire() {
 void Game::updateBonus() {
     for (auto& t : list_bonus) {
         t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawBonus() {
-    for (auto& pl : list_bonus) {
-        pl->affiche();
     }
 }
 
@@ -1824,25 +1798,9 @@ void Game::updateTexteCool() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawTexteCool() {
-    for (auto& txt : list_txt_cool) {
-        txt->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateFondsAnimes() {
     for (auto& t : list_fonds_animes) {
         t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawFondsAnimes() {
-    for (auto& t : list_fonds_animes) {
-        t->affiche();
     }
 }
 
@@ -1980,25 +1938,9 @@ void Game::updatePremiersPlans() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawPremiersPlans() {
-    for (auto& t : list_premiers_plans) {
-        t->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateGiclures() {
     for (auto& t : list_giclures) {
         t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawGiclures() {
-    for (auto& t : list_giclures) {
-        t->affiche();
     }
 }
 
@@ -2017,16 +1959,6 @@ void Game::updateTeteTurc() {
     ntete_turc += 1;
     ntete_turc %= list_joueurs.size();
     tete_turc = list_joueurs[ntete_turc];
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawTirsEnnemis() {
-    Sprite* t;
-
-    for (auto& t : list_tirs_ennemis) {
-        t->affiche();
-    }
 }
 
 //-----------------------------------------------------------------------------
@@ -2113,14 +2045,6 @@ void Game::updateFlags() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawCow() {
-    for (auto& t : list_cow) {
-        t->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::drawTimer() {
     if (game_flag[FLAG_TIMER] > 0) {
         char buffer[10];
@@ -2136,14 +2060,6 @@ void Game::drawTimer() {
 void Game::updatePlateformesMobiles() {
     for (auto& pl : list_plateformes_mobiles) {
         pl->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawPlateformesMobiles() {
-    for (auto& pl : list_plateformes_mobiles) {
-        pl->affiche();
     }
 }
 
@@ -2643,24 +2559,6 @@ void Game::updateMeteo() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawMeteo() {
-    for (auto& pl : list_meteo) {
-        pl->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawImpacts() {
-    Sprite* pl;
-
-    for (auto& pl : list_impacts) {
-        pl->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateImpacts() {
     Sprite* pl;
 
@@ -2821,14 +2719,6 @@ void Game::updateBulles() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawBulles() {
-    for (auto& pl : list_bulles) {
-        pl->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::creeBulle(Sprite* s) {
     s->wait_bulle += rand() % 10;
 
@@ -2978,14 +2868,6 @@ void Game::drawLoading() {
 void Game::updateGore() {
     for (auto& t : list_gore) {
         t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawGore() {
-    for (auto& t : list_gore) {
-        t->affiche();
     }
 }
 
@@ -3277,16 +3159,6 @@ void Game::go() {
 
 //-----------------------------------------------------------------------------
 
-void Game::drawVehicules() {
-    Sprite* pl;
-
-    for (auto& v : list_vehicules) {
-        v->affiche();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateVehicules() {
     Sprite* pl;
 
@@ -3300,14 +3172,6 @@ void Game::updateVehicules() {
 void Game::updateFondsStatiques() {
     for (auto& pl : list_fonds_statiques) {
         pl->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::drawFondsStatiques() {
-    for (auto& pl : list_fonds_statiques) {
-        pl->affiche();
     }
 }
 
