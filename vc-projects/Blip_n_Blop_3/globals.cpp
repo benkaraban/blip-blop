@@ -136,7 +136,7 @@ std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 std::vector<std::unique_ptr<Sprite>> list_giclures;
 std::vector<std::unique_ptr<Sprite>> list_gore;
 
-SuperListe	list_meteo;
+std::vector<Sprite*> list_meteo;
 SuperListe	list_bulles;
 
 

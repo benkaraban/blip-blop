@@ -1032,7 +1032,7 @@ void Game::releaseNiveau() {
     list_giclures.clear();
     list_gore.clear();
 
-    list_meteo.vide_porc();
+    list_meteo.clear();
     list_bulles.vide();
 }
 
@@ -1499,16 +1499,11 @@ void Game::cleanLists() {
                        [](auto& s) { return s->aDetruire(); }),
         list_tirs_ennemis.end());
 
-    list_meteo.start();
-
-    while (!list_meteo.fin()) {
-        s = (Sprite*)list_meteo.info();
-
-        if (s->aDetruire())
-            list_meteo.supprimePorc();
-        else
-            list_meteo.suivant();
-    }
+    list_meteo.erase(
+        std::remove_if(list_meteo.begin(),
+                       list_meteo.end(),
+                       [](auto& s) { return s->aDetruire(); }),
+        list_meteo.end());
 
     list_gore.erase(std::remove_if(list_gore.begin(),
                                    list_gore.end(),
@@ -2603,17 +2598,11 @@ void Game::showPE(bool bonus, bool fuckOff) {
 void Game::updateMeteo() {
     const static int speed_gouttes[] = {3, 5, 7, 8, 9, 10};
 
-    Sprite* pl;
-
-    list_meteo.start();
-
-    while (!list_meteo.fin()) {
-        pl = (Sprite*)list_meteo.info();
+    for (auto& pl : list_meteo) {
         pl->update();
-        list_meteo.suivant();
     }
 
-    while (list_meteo.taille() < intensite_meteo) {
+    while (list_meteo.size() < intensite_meteo) {
         if (type_meteo == METEO_NEIGE) {
             //			MeteoNeige * flocon = new MeteoNeige();
 
@@ -2637,7 +2626,7 @@ void Game::updateMeteo() {
 
             if (mur_opaque(flocon->xbase, 0)) flocon->y -= 550;
 
-            list_meteo.ajoute((void*)flocon);
+            list_meteo.emplace_back(flocon);
         } else if (type_meteo == METEO_PLUIE) {
             //			MeteoPluie * goutte = new MeteoPluie();
 
@@ -2654,7 +2643,7 @@ void Game::updateMeteo() {
 
             if (mur_opaque(goutte->x, 0)) goutte->y -= 550;
 
-            list_meteo.ajoute((void*)goutte);
+            list_meteo.emplace_back(goutte);
         }
     }
 }
@@ -2662,14 +2651,8 @@ void Game::updateMeteo() {
 //-----------------------------------------------------------------------------
 
 void Game::drawMeteo() {
-    Sprite* pl;
-
-    list_meteo.start();
-
-    while (!list_meteo.fin()) {
-        pl = (Sprite*)list_meteo.info();
+    for (auto& pl : list_meteo) {
         pl->affiche();
-        list_meteo.suivant();
     }
 }
 

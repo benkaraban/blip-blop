@@ -163,9 +163,11 @@ extern std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 // FIXME: should prolly be a list of Giclure, but GoreGiclure doesn't inherit
 // Giclure
 extern std::vector<std::unique_ptr<Sprite>> list_giclures;
+// FIXME all things put insite list_gore don't have a common base aside from
+// Sprite
 extern std::vector<std::unique_ptr<Sprite>> list_gore;
 
-extern SuperListe	list_meteo;
+extern std::vector<Sprite*> list_meteo;
 extern SuperListe	list_bulles;
 
 
