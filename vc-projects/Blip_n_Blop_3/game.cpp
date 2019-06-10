@@ -1019,7 +1019,7 @@ void Game::releaseNiveau() {
     list_tirs_ennemis.clear();
     list_gen_ennemis.clear();
 
-    list_bonus.vide();
+    list_bonus.clear();
     list_gen_bonus.vide();
 
     list_txt_cool.vide();
@@ -1455,26 +1455,15 @@ void Game::cleanLists() {
                                       [](auto& s) { return s->aDetruire(); }),
                        list_impacts.end());
 
-    for (auto& s : list_ennemis) {
-        if (s->aDetruire()) {
-            s.reset(nullptr);
-        }
-    }
     list_ennemis.erase(std::remove_if(list_ennemis.begin(),
                                       list_ennemis.end(),
-                                      [](auto& e) { return !e; }),
+                                      [](auto& e) { return e->aDetruire(); }),
                        list_ennemis.end());
 
-    list_bonus.start();
-
-    while (!list_bonus.fin()) {
-        s = (Sprite*)list_bonus.info();
-
-        if (s->aDetruire())
-            list_bonus.supprime();
-        else
-            list_bonus.suivant();
-    }
+    list_bonus.erase(std::remove_if(list_bonus.begin(),
+                                    list_bonus.end(),
+                                    [](auto& e) { return e->aDetruire(); }),
+                     list_bonus.end());
 
     list_gen_ennemis.erase(
         std::remove_if(list_gen_ennemis.begin(),
@@ -1671,18 +1660,12 @@ void Game::manageCollisions() {
     //
     Bonus* bonus;
 
-    list_bonus.start();
-
-    while (!list_bonus.fin()) {
-        bonus = (Bonus*)list_bonus.info();
-
+    for (auto& bonus : list_bonus) {
         for (Couille* couille : list_joueurs) {
             if (bonus->collision(couille)) {
                 bonus->estPris(couille);
             }
         }
-
-        list_bonus.suivant();
     }
 
     if (wait_for_victory <= 0) {
@@ -1744,28 +1727,16 @@ void Game::updateHoldFire() {
 //-----------------------------------------------------------------------------
 
 void Game::updateBonus() {
-    Bonus* t;
-
-    list_bonus.start();
-
-    while (!list_bonus.fin()) {
-        t = (Bonus*)list_bonus.info();
+    for (auto& t : list_bonus) {
         t->update();
-        list_bonus.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawBonus() {
-    Bonus* pl;
-
-    list_bonus.start();
-
-    while (!list_bonus.fin()) {
-        pl = (Bonus*)list_bonus.info();
+    for (auto& pl : list_bonus) {
         pl->affiche();
-        list_bonus.suivant();
     }
 }
 

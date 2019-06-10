@@ -192,7 +192,7 @@ void EnnemiPrincesse::onMeure()
 			Bonus * bonus = new BonusVache();
 			bonus->x = x;
 			bonus->y = y;
-			list_bonus.ajoute((void*) bonus);
+			list_bonus.emplace_back(bonus);
 		}
 	} else {
 		//if ( !mur_opaque( x + speed, y) && plat( x, y) == 0)

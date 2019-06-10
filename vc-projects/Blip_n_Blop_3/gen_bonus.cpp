@@ -24,7 +24,7 @@ GenBonus::GenBonus() : t(0), a_detruire(false)
 
 void GenBonus::update()
 {
-	if (list_bonus.taille() < 3) {
+	if (list_bonus.size() < 3) {
 		t += 1;
 		t %= periode;
 

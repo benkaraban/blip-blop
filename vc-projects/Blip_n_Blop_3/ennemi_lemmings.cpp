@@ -139,7 +139,7 @@ void EnnemiLemmings::onMeure()
 			bonus->x = 1500;
 			bonus->y = -50;
 
-			list_bonus.ajoute((void*) bonus);
+			list_bonus.emplace_back(bonus);
 			game_flag[0] = 1;
 		}
 	} else {
