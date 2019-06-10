@@ -36,6 +36,7 @@
 #include "fond_statique.h"
 #include "tir_bb_vache.h"
 #include "explosion.h"
+#include "vehicule.h"
 
 #include "ben_debug.h"
 
@@ -105,7 +106,7 @@ std::vector<TirBB*> list_tirs_bb;
 std::vector<std::unique_ptr<TirBBVache>> list_cow;
 std::vector<std::unique_ptr<Explosion>> list_impacts;
 
-SuperListe	list_vehicules;
+std::vector<std::unique_ptr<Vehicule>> list_vehicules;
 
 SuperListe	list_event_endormis;
 SuperListe	list_event;

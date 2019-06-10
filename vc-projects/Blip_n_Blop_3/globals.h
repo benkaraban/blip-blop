@@ -132,7 +132,8 @@ class Explosion;
 // FIXME: should be owning by value but can't, because of circular deps
 extern std::vector<std::unique_ptr<Explosion>> list_impacts; 
 
-extern SuperListe	list_vehicules;
+class Vehicule;
+extern std::vector<std::unique_ptr<Vehicule>> list_vehicules;
 
 extern SuperListe	list_event_endormis;
 extern SuperListe	list_event;

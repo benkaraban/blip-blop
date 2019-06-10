@@ -74,6 +74,7 @@
 #include "tir_bb.h"
 #include "tir_bb_vache.h"
 #include "txt_data.h"
+#include "vehicule.h"
 
 #include "l_timer.h"
 #include "precache.h"
@@ -1012,7 +1013,7 @@ void Game::releaseNiveau() {
     list_cow.clear();
     list_impacts.clear();
 
-    list_vehicules.vide();
+    list_vehicules.clear();
 
     list_ennemis.vide();
     list_tirs_ennemis.vide();
@@ -3528,12 +3529,8 @@ void Game::go() {
 void Game::drawVehicules() {
     Sprite* pl;
 
-    list_vehicules.start();
-
-    while (!list_vehicules.fin()) {
-        pl = (Sprite*)list_vehicules.info();
-        pl->affiche();
-        list_vehicules.suivant();
+    for (auto& v:list_vehicules) {
+        v->affiche();
     }
 }
 
@@ -3542,12 +3539,8 @@ void Game::drawVehicules() {
 void Game::updateVehicules() {
     Sprite* pl;
 
-    list_vehicules.start();
-
-    while (!list_vehicules.fin()) {
-        pl = (Sprite*)list_vehicules.info();
-        pl->update();
-        list_vehicules.suivant();
+    for (auto& v:list_vehicules) {
+        v->update();
     }
 }
 
