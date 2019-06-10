@@ -53,7 +53,7 @@ public:
 			b = !b;
 
 
-			list_fonds_animes.ajoute((void*) ptr);
+			list_fonds_animes.emplace_back(ptr);
 		}
 	};
 

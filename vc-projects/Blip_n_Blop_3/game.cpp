@@ -1024,7 +1024,7 @@ void Game::releaseNiveau() {
 
     list_txt_cool.vide();
 
-    list_fonds_animes.vide();
+    list_fonds_animes.clear();
     list_fonds_statiques.vide();
     list_premiers_plans.vide();
     list_plateformes_mobiles.vide();
@@ -1489,16 +1489,11 @@ void Game::cleanLists() {
             list_txt_cool.suivant();
     }
 
-    list_fonds_animes.start();
-
-    while (!list_fonds_animes.fin()) {
-        s = (Sprite*)list_fonds_animes.info();
-
-        if (s->aDetruire())
-            list_fonds_animes.supprime();
-        else
-            list_fonds_animes.suivant();
-    }
+    list_fonds_animes.erase(
+        std::remove_if(list_fonds_animes.begin(),
+                       list_fonds_animes.end(),
+                       [](auto& e) { return e->aDetruire(); }),
+        list_fonds_animes.end());
 
     list_premiers_plans.start();
 
@@ -1899,28 +1894,16 @@ void Game::drawTexteCool() {
 //-----------------------------------------------------------------------------
 
 void Game::updateFondsAnimes() {
-    Sprite* t;
-
-    list_fonds_animes.start();
-
-    while (!list_fonds_animes.fin()) {
-        t = (Sprite*)list_fonds_animes.info();
+    for (auto& t : list_fonds_animes) {
         t->update();
-        list_fonds_animes.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawFondsAnimes() {
-    Sprite* t;
-
-    list_fonds_animes.start();
-
-    while (!list_fonds_animes.fin()) {
-        t = (Sprite*)list_fonds_animes.info();
+    for (auto& t : list_fonds_animes) {
         t->affiche();
-        list_fonds_animes.suivant();
     }
 }
 

@@ -42,6 +42,7 @@
 #include "gen_ennemi.h"
 #include "bonus.h"
 #include "gen_bonus.h"
+#include "sprite.h"
 
 #include "ben_debug.h"
 
@@ -123,7 +124,7 @@ std::vector<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 std::vector<std::unique_ptr<Bonus>> list_bonus;
 std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
 
-SuperListe	list_fonds_animes;
+std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
 SuperListe	list_fonds_statiques;
 SuperListe	list_premiers_plans;
 SuperListe	list_plateformes_mobiles;
@@ -345,15 +346,9 @@ bool grave(int x, int y, Picture * pic)
 
 	s.colFromPic();
 
-	list_fonds_animes.start();
-
-	while (!list_fonds_animes.fin()) {
-		s2 = (Sprite*) list_fonds_animes.info();
-
-		if (s.collision(s2))
+        for (auto& s2 : list_fonds_animes) {
+		if (s.collision(s2.get()))
 			return false;
-
-		list_fonds_animes.suivant();
 	}
 
 	list_plateformes_mobiles.start();

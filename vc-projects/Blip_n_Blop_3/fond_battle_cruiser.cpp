@@ -66,24 +66,24 @@ void FondBattlecruiser::update()
 			Sprite * s = new TirCruiser((dif_x * TIR_SPEED) / dif_y, TIR_SPEED - (dif_x * TIR_SPEED * 0.25) / dif_y, 8 + attack_etape);
 			s->x = x - 8 * attack_etape;
 			s->y = y + 6;
-			list_fonds_animes.ajoute((void*) s);
+			list_fonds_animes.emplace_back(s);
 
 			s = new TirCruiser(-(dif_x * TIR_SPEED) / dif_y, -TIR_SPEED + (dif_x * TIR_SPEED * 0.25) / dif_y, 7 - attack_etape);
 			s->x = x_adversaire - 8 * attack_etape;
 			s->y = y_adversaire - 6;
-			list_fonds_animes.ajoute((void*) s);
+			list_fonds_animes.emplace_back(s);
 
 			if (attack_etape == -2) {
 				s = new TirCruiserLaser(1, 13 - (dif_x / dif_y));
 				s->x = x  + 16;//+8*rand()%5-16;
 				s->y = y;
-				list_fonds_animes.ajoute((void*) s);
+                                list_fonds_animes.emplace_back(s);
 			}
 			if (attack_etape == 0) {
 				s = new TirCruiserLaser(-1, 17 - (dif_x / dif_y));
 				s->x = x_adversaire - 16;//+8*rand()%5-16;
 				s->y = y_adversaire;
-				list_fonds_animes.ajoute((void*) s);
+                                list_fonds_animes.emplace_back(s);
 			}
 			//	}
 			//}

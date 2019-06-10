@@ -66,7 +66,7 @@ void FondPokeCaisseTombante::update()
 					s->x = x;
 					s->y = y + 150;
 
-					list_fonds_animes.ajoute((void*) s);
+					list_fonds_animes.emplace_back(s);
 
 					//plateforme qui bouge...
 					FondPokeCaissePlateforme2 * s3 = new FondPokeCaissePlateforme2();

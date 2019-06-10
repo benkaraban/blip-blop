@@ -151,7 +151,8 @@ extern std::vector<std::unique_ptr<Bonus>> list_bonus;
 class GenBonus;
 extern std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
 
-extern SuperListe	list_fonds_animes;
+class Sprite;
+extern std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
 extern SuperListe	list_fonds_statiques;
 extern SuperListe	list_premiers_plans;
 extern SuperListe	list_plateformes_mobiles;
