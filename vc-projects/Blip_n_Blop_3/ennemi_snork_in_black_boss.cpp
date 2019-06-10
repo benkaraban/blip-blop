@@ -594,7 +594,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x + 36;
 						tir->y = y - 51;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 
 						break;
 
@@ -604,7 +604,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x + 36;
 						tir->y = y - 51;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 
 						break;
 
@@ -614,7 +614,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x + 52;
 						tir->y = y - 16;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 					case 3:
@@ -623,7 +623,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x + 52;
 						tir->y = y - 16;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 					case 4:
@@ -632,7 +632,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x + 35;
 						tir->y = y + 25;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 					case 5:
@@ -641,7 +641,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x + 35;
 						tir->y = y + 25;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 				}
@@ -655,7 +655,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x - 36;
 						tir->y = y - 51;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 
 						break;
 
@@ -665,7 +665,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x - 36;
 						tir->y = y - 51;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 
 						break;
 
@@ -675,7 +675,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x - 52;
 						tir->y = y - 16;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 					case 3:
@@ -684,7 +684,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x - 52;
 						tir->y = y - 16;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 					case 4:
@@ -693,7 +693,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x - 35;
 						tir->y = y + 25;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 					case 5:
@@ -702,7 +702,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 						tir->x = x - 35;
 						tir->y = y + 25;
 
-						list_tirs_ennemis.ajoute((void*) tir);
+				                list_tirs_ennemis.emplace_back(tir);
 						break;
 
 				}
@@ -731,7 +731,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 				tir->x = x + 77;
 				tir->y = y - 2;
 
-				list_tirs_ennemis.ajoute((void*) tir);
+				list_tirs_ennemis.emplace_back(tir);
 			} else {
 				TirEpine * tir = new TirEpine(423, -14 , 0);
 
@@ -739,7 +739,7 @@ void EnnemiSnorkInBlackBoss::onTire()
 				tir->x = x - 77;
 				tir->y = y - 2;
 
-				list_tirs_ennemis.ajoute((void*) tir);
+				list_tirs_ennemis.emplace_back(tir);
 			}
 
 			etat = ETAT_NORMAL;

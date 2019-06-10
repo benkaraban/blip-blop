@@ -177,12 +177,12 @@ void EnnemiBisouCiel::onAvance()
 				if (dir == SENS_GAUCHE) {
 					if (ddx > 0 && ddx < 90) {
 						sbk_niveau.play(9);
-						Sprite * s = new TirArcCiel();
+						TirArcCiel* s = new TirArcCiel();
 						s->x = x - 15;
 						s->y = y - 25;
 						s->dir = SENS_GAUCHE;
 
-						list_tirs_ennemis.ajoute((void*) s);
+						list_tirs_ennemis.emplace_back(s);
 
 						ss_etape = 0;
 						etat = ETAT_TIRE;
@@ -190,12 +190,12 @@ void EnnemiBisouCiel::onAvance()
 				} else {
 					if (ddx < 0 && ddx > -90) {
 						sbk_niveau.play(9);
-						Sprite * s = new TirArcCiel();
+						TirArcCiel * s = new TirArcCiel();
 						s->x = x + 15;
 						s->y = y - 25;
 						s->dir = SENS_DROITE;
 
-						list_tirs_ennemis.ajoute((void*) s);
+						list_tirs_ennemis.emplace_back(s);
 
 						ss_etape = 0;
 						etat = ETAT_TIRE;

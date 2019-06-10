@@ -371,7 +371,7 @@ void EnnemiMarioHologramme::onTireverticale()
 		}
 		tir->y = y - 38;
 
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 	} else if (attack_etape == 80) {
 		etat = ETAT_AVANCE;
 		etape = 0;
@@ -392,7 +392,7 @@ inline void EnnemiMarioHologramme::boule_de_feu()
 		tir->x = x + 38;
 		tir->y = y - 31;
 
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 	} else {
 		TirMarioFireball *	tir = new TirMarioFireball(-1);
 
@@ -400,7 +400,7 @@ inline void EnnemiMarioHologramme::boule_de_feu()
 		tir->x = x - 38;
 		tir->y = y - 31;
 
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 	}
 }
 

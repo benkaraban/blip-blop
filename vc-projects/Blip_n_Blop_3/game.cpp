@@ -1016,7 +1016,7 @@ void Game::releaseNiveau() {
     list_vehicules.clear();
 
     list_ennemis.clear();
-    list_tirs_ennemis.vide();
+    list_tirs_ennemis.clear();
     list_gen_ennemis.vide();
 
     list_bonus.vide();
@@ -1548,16 +1548,11 @@ void Game::cleanLists() {
             list_giclures.suivant();
     }
 
-    list_tirs_ennemis.start();
-
-    while (!list_tirs_ennemis.fin()) {
-        s = (Sprite*)list_tirs_ennemis.info();
-
-        if (s->aDetruire())
-            list_tirs_ennemis.supprime();
-        else
-            list_tirs_ennemis.suivant();
-    }
+    list_tirs_ennemis.erase(
+        std::remove_if(list_tirs_ennemis.begin(),
+                       list_tirs_ennemis.end(),
+                       [](auto& s) { return s->aDetruire(); }),
+        list_tirs_ennemis.end());
 
     list_meteo.start();
 
@@ -1662,7 +1657,7 @@ void Game::manageCollisions() {
     // Collisions TirsBB / Ennemis
     //
     for (Tir* tir : list_tirs_bb) {
-        for (auto& ennemi: list_ennemis) {
+        for (auto& ennemi : list_ennemis) {
             if (tir->collision(ennemi.get())) {
                 ennemi->estTouche(tir);
             }
@@ -1672,7 +1667,7 @@ void Game::manageCollisions() {
     // Collisions Vaches / Ennemis
     //
     for (auto& tir : list_cow) {
-        for (auto& ennemi: list_ennemis) {
+        for (auto& ennemi : list_ennemis) {
             if (tir->collision(ennemi.get())) {
                 ennemi->estTouche(tir.get());
             }
@@ -1711,16 +1706,12 @@ void Game::manageCollisions() {
 
         // Collisions Joueurs / tirs ennemis
         //
-        list_tirs_ennemis.start();
-
-        while (!list_tirs_ennemis.fin()) {
-            tir = (Tir*)list_tirs_ennemis.info();
-
+        for (auto& tir : list_tirs_ennemis) {
             for (Couille* joueur : list_joueurs) {
-                if (tir->collision(joueur)) joueur->estTouche(tir->degats());
+                if (tir->collision(joueur)) {
+                    joueur->estTouche(tir->degats());
+                }
             }
-
-            list_tirs_ennemis.suivant();
         }
     }
 }
@@ -2192,12 +2183,8 @@ void Game::updateTeteTurc() {
 void Game::drawTirsEnnemis() {
     Sprite* t;
 
-    list_tirs_ennemis.start();
-
-    while (!list_tirs_ennemis.fin()) {
-        t = (Sprite*)list_tirs_ennemis.info();
+    for (auto& t : list_tirs_ennemis) {
         t->affiche();
-        list_tirs_ennemis.suivant();
     }
 }
 
@@ -2206,12 +2193,8 @@ void Game::drawTirsEnnemis() {
 void Game::updateTirsEnnemis() {
     Sprite* t;
 
-    list_tirs_ennemis.start();
-
-    while (!list_tirs_ennemis.fin()) {
-        t = (Sprite*)list_tirs_ennemis.info();
+    for (auto& t : list_tirs_ennemis) {
         t->update();
-        list_tirs_ennemis.suivant();
     }
 }
 

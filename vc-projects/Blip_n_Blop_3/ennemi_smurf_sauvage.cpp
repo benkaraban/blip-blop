@@ -213,7 +213,7 @@ void EnnemiSmurfSauvage::onTire()
 		tir->y = y + tir_position_depart_y[shoot_direction] ;
 		tir->dx = tir_dx[shoot_direction] ;
 		tir->dy = tir_dy[shoot_direction] ;
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 
 		if (nb_shoot == 0)
 			sbk_niveau.play(18);

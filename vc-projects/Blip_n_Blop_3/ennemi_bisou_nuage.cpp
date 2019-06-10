@@ -117,13 +117,13 @@ void EnnemiBisouNuage::onNormal()
 	}
 
 	if (etape_shoot >= wait_shoot && x <= offset + 640) {
-		Sprite * s = new TirNuage();
+		TirNuage * s = new TirNuage();
 
 		s->x = x;
 		s->y = y - 17;
 		s->dir = dir;
 
-		list_tirs_ennemis.ajoute((void*) s);
+		list_tirs_ennemis.emplace_back(s);
 
 		etape_shoot = 0;
 		wait_shoot = 250 + rand() % 250;

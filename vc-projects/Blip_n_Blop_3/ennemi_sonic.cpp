@@ -691,7 +691,7 @@ void EnnemiSonic::onAttackeclair()
 		tir->setDir(dir);
 		tir->x = tete_turc->x;
 		tir->y = 0;
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 		nb_tir += 1;
 	}
 
@@ -777,7 +777,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 23;
 			tir->y = y - 13;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 1:
@@ -785,7 +785,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 23;
 			tir->y = y - 18;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 2:
@@ -793,7 +793,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 18;
 			tir->y = y - 23;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 3:
@@ -801,7 +801,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 13;
 			tir->y = y - 23;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 4:
@@ -809,7 +809,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 0;
 			tir->y = y - 23;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 5:
@@ -817,7 +817,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 13;
 			tir->y = y - 23;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 6:
@@ -825,7 +825,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 18;
 			tir->y = y - 23;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 7:
@@ -833,7 +833,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 23;
 			tir->y = y - 18;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 8:
@@ -841,7 +841,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 23;
 			tir->y = y - 13;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 9:
@@ -849,7 +849,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 23;
 			tir->y = y - 8;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 10:
@@ -857,7 +857,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 18;
 			tir->y = y - 3;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 11:
@@ -865,7 +865,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 13;
 			tir->y = y - 3;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 12:
@@ -873,7 +873,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x - 0;
 			tir->y = y - 0;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 13:
@@ -881,7 +881,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 13;
 			tir->y = y - 3;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 14:
@@ -889,7 +889,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 18;
 			tir->y = y - 8;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 
 		case 15:
@@ -897,7 +897,7 @@ void EnnemiSonic::balance_epines()
 			tir->setDir(dir);
 			tir->x = x + 18;
 			tir->y = y - 13;
-			list_tirs_ennemis.ajoute((void*) tir);
+                        list_tirs_ennemis.emplace_back(tir);
 			break;
 	}
 }

@@ -219,7 +219,7 @@ void EnnemiYoshi::onTire()
 
 		//tirEnCloche( tir->x, tir->y, xcible, ycible, tir->dx, tir->dy);
 
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 
 		etat = ETAT_AVANCE;
 		etape = 0;

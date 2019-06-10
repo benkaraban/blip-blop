@@ -113,7 +113,7 @@ void EnnemiSmurfette::onTire()
 			t->setDir(dir);
 			t->cible = tete_turc;
 
-			list_tirs_ennemis.ajoute((void*) t);
+			list_tirs_ennemis.emplace_back(t);
 		} else if (etape >= 9) {
 			etat = ETAT_AVANCE;
 			etape = ss_etape = etape_shoot = 0;

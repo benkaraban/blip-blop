@@ -172,13 +172,13 @@ void EnnemiBisouEtoile::onAvance()
 	etape_shoot += 1;
 
 	if (etape == 4 && etape_shoot >= wait_shoot && x > offset) {
-		Sprite * s = new TirEtoile();
+		TirEtoile * s = new TirEtoile();
 
 		s->x = x;
 		s->y = y - 30;
 		s->dir = dir;
 
-		list_tirs_ennemis.ajoute((void*) s);
+		list_tirs_ennemis.emplace_back(s);
 
 		ss_etape = 0;
 		etat = ETAT_TIRE;

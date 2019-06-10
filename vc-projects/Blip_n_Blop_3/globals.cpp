@@ -114,7 +114,7 @@ std::vector<std::unique_ptr<Event>> list_event_endormis;
 std::vector<std::unique_ptr<Event>> list_event;
 
 std::vector<std::unique_ptr<Ennemi>> list_ennemis;
-SuperListe	list_tirs_ennemis;
+std::vector<std::unique_ptr<Tir>> list_tirs_ennemis;
 SuperListe	list_gen_ennemis;
 
 SuperListe	list_bonus;

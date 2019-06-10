@@ -165,7 +165,7 @@ void EnnemiSnorkyGouverneur::onTire()
 			tir->x = x;
 			tir->y = y - 71;
 
-			list_tirs_ennemis.ajoute((void*) tir);
+			list_tirs_ennemis.emplace_back(tir);
 			nb_tir++;
 		}
 

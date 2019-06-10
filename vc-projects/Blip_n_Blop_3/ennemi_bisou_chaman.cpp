@@ -268,7 +268,7 @@ void EnnemiBisouChaman::onTire()
 					s->dx = (ddx * 4) / 3;
 					s->dy = (ddy * 4) / 3;
 
-					list_tirs_ennemis.ajoute((void*) s);
+					list_tirs_ennemis.emplace_back(s);
 				} else {
 					TirColonneChaman * s = new TirColonneChaman();
 
@@ -281,7 +281,7 @@ void EnnemiBisouChaman::onTire()
 
 					s->setDir(dir);
 
-					list_tirs_ennemis.ajoute((void*) s);
+					list_tirs_ennemis.emplace_back(s);
 				}
 
 

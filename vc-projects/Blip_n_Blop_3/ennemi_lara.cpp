@@ -173,7 +173,7 @@ void EnnemiLara::onAvance()
 					tir->x = x - 60;
 					tir->y = y - 144;
 					tir->traverse = true;
-					list_tirs_ennemis.ajoute((void*) tir);
+					list_tirs_ennemis.emplace_back(tir);
 
 					numero_image_buste = 150;//127
 					ss_etape = 0;
@@ -199,7 +199,7 @@ void EnnemiLara::onAvance()
 					tir->x = x - 58;
 					tir->y = y - 154;
 					tir->traverse = true;
-					list_tirs_ennemis.ajoute((void*) tir);
+					list_tirs_ennemis.emplace_back(tir);
 					ss_etape = 0;
 					etape = 1;
 					etat = ETAT_TIRE;
@@ -223,7 +223,7 @@ void EnnemiLara::onAvance()
 					tir->x = x - 57;
 					tir->y = y - 165;
 					tir->traverse = true;
-					list_tirs_ennemis.ajoute((void*) tir);
+					list_tirs_ennemis.emplace_back(tir);
 					numero_image_buste = 138;//150
 					ss_etape = 0;
 					etape = 1;
@@ -248,7 +248,7 @@ void EnnemiLara::onAvance()
 					tir->x = x - 53;
 					tir->y = y - 175;
 					tir->traverse = true;
-					list_tirs_ennemis.ajoute((void*) tir);
+					list_tirs_ennemis.emplace_back(tir);
 					ss_etape = 0;
 					etape = 1;
 					etat = ETAT_TIRE;
@@ -275,7 +275,7 @@ void EnnemiLara::onAvance()
 					tir->x = x - 59;
 					tir->y = y - 129;
 					tir->traverse = true;
-					list_tirs_ennemis.ajoute((void*) tir);
+					list_tirs_ennemis.emplace_back(tir);
 					//angle de tir: -10°
 					numero_image_buste = 156;
 
@@ -301,7 +301,7 @@ void EnnemiLara::onAvance()
 					tir->x = x - 60;
 					tir->y = y - 144;
 					tir->traverse = true;
-					list_tirs_ennemis.ajoute((void*) tir);
+					list_tirs_ennemis.emplace_back(tir);
 					numero_image_buste = 150;
 					ss_etape = 0;
 					etape = 1;

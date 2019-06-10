@@ -423,8 +423,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x + 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 
 					break;
 				case 1:
@@ -439,8 +439,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x + 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 2:
 					tir1 = new TirDebouchechiote(17, 10, 2);
@@ -454,8 +454,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x + 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 3:
 					tir1 = new TirDebouchechiote(16, 9, 3);
@@ -469,8 +469,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x + 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 4:
 					tir1 = new TirDebouchechiote(17, 10, 2);
@@ -484,8 +484,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x + 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 5:
 					tir1 = new TirDebouchechiote(18, 11, 1);
@@ -499,8 +499,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x + 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 			}
 
@@ -532,8 +532,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x - 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 
 					break;
 				case 1:
@@ -548,8 +548,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x - 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 2:
 					tir1 = new TirDebouchechiote(24, -10, 2);
@@ -563,8 +563,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x - 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 3:
 					tir1 = new TirDebouchechiote(23, -9, 3);
@@ -578,8 +578,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x - 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 4:
 					tir1 = new TirDebouchechiote(24, -10, 2);
@@ -593,8 +593,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x - 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 				case 5:
 					tir1 = new TirDebouchechiote(25, -11, 1);
@@ -608,8 +608,8 @@ void EnnemiLuigi::onAttack()
 					tir2->x = x - 23;
 					tir2->y = y - 33;
 
-					list_tirs_ennemis.ajoute((void*) tir1);
-					list_tirs_ennemis.ajoute((void*) tir2);
+					list_tirs_ennemis.emplace_back(tir1);
+					list_tirs_ennemis.emplace_back(tir2);
 					break;
 			}
 

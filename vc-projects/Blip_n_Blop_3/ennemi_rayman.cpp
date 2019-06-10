@@ -352,7 +352,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x + 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;
@@ -362,7 +362,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x - 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;
@@ -416,7 +416,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x + 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;
@@ -426,7 +426,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x - 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;

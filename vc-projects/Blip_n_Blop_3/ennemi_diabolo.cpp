@@ -384,7 +384,7 @@ void EnnemiDiabolo::onTornade()
 
 		tornade->setDir(dir);
 		tornade->y = y;
-		list_tirs_ennemis.ajoute((void*) tornade);
+		list_tirs_ennemis.emplace_back(tornade);
 	}
 
 	if (dir == SENS_DROITE) {
