@@ -128,7 +128,9 @@ class TirBB;
 extern std::vector<TirBB*> list_tirs_bb;
 class TirBBVache;
 extern std::vector<std::unique_ptr<TirBBVache>> list_cow;
-extern SuperListe	list_impacts;
+class Explosion;
+// FIXME: should be owning by value but can't, because of circular deps
+extern std::vector<std::unique_ptr<Explosion>> list_impacts; 
 
 extern SuperListe	list_vehicules;
 

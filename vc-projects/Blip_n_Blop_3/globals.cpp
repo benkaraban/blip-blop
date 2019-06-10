@@ -35,6 +35,7 @@
 #include "restore.h"
 #include "fond_statique.h"
 #include "tir_bb_vache.h"
+#include "explosion.h"
 
 #include "ben_debug.h"
 
@@ -102,7 +103,7 @@ ControlP2	ctrlP2;
 std::vector<Couille*> list_joueurs; // FIXME: make it owning?
 std::vector<TirBB*> list_tirs_bb;
 std::vector<std::unique_ptr<TirBBVache>> list_cow;
-SuperListe	list_impacts;
+std::vector<std::unique_ptr<Explosion>> list_impacts;
 
 SuperListe	list_vehicules;
 

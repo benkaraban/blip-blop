@@ -54,6 +54,7 @@
 #include "event_son.h"
 #include "event_texte.h"
 #include "event_vehicule.h"
+#include "explosion.h"
 #include "fic_events.h"
 #include "game.h"
 #include "gen_bonus.h"
@@ -71,8 +72,8 @@
 #include "scroll.h"
 #include "texte_cool.h"
 #include "tir_bb.h"
-#include "txt_data.h"
 #include "tir_bb_vache.h"
+#include "txt_data.h"
 
 #include "l_timer.h"
 #include "precache.h"
@@ -1009,7 +1010,7 @@ void Game::releaseNiveau() {
 
     list_tirs_bb.clear();
     list_cow.clear();
-    list_impacts.vide_porc();
+    list_impacts.clear();
 
     list_vehicules.vide();
 
@@ -1448,16 +1449,10 @@ void Game::cleanLists() {
             list_bulles.suivant();
     }
 
-    list_impacts.start();
-
-    while (!list_impacts.fin()) {
-        s = (Sprite*)list_impacts.info();
-
-        if (s->aDetruire())
-            list_impacts.supprime();
-        else
-            list_impacts.suivant();
-    }
+    list_impacts.erase(std::remove_if(list_impacts.begin(),
+                                      list_impacts.end(),
+                                      [](auto& s) { return s->aDetruire(); }),
+                       list_impacts.end());
 
     list_ennemis.start();
 
@@ -2884,12 +2879,8 @@ void Game::drawMeteo() {
 void Game::drawImpacts() {
     Sprite* pl;
 
-    list_impacts.start();
-
-    while (!list_impacts.fin()) {
-        pl = (Sprite*)list_impacts.info();
+    for (auto& pl : list_impacts) {
         pl->affiche();
-        list_impacts.suivant();
     }
 }
 
@@ -2898,12 +2889,8 @@ void Game::drawImpacts() {
 void Game::updateImpacts() {
     Sprite* pl;
 
-    list_impacts.start();
-
-    while (!list_impacts.fin()) {
-        pl = (Sprite*)list_impacts.info();
+    for (auto& pl : list_impacts) {
         pl->update();
-        list_impacts.suivant();
     }
 }
 
