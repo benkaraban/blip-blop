@@ -87,7 +87,7 @@ void EnnemiPrincesse::onAvance()
 		if (x  > offset + 820) {
 			TexteCool * txt = new TexteCool();
 			txt->ntxt = 517;
-			list_txt_cool.ajoute((void*) txt);
+			list_txt_cool.emplace_back(txt);
 
 			a_detruire  = true;
 		}
@@ -183,7 +183,7 @@ void EnnemiPrincesse::onMeure()
 			grave(x, y, pic);
 			TexteCool * txt = new TexteCool();
 			txt->ntxt = 519;
-			list_txt_cool.ajoute((void*) txt);
+			list_txt_cool.emplace_back(txt);
 			a_detruire = true;
 			if (game_flag[3] > 0) {
 				game_flag[2] = 1;

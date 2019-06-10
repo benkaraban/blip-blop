@@ -1022,7 +1022,7 @@ void Game::releaseNiveau() {
     list_bonus.clear();
     list_gen_bonus.clear();
 
-    list_txt_cool.vide();
+    list_txt_cool.clear();
 
     list_fonds_animes.clear();
     list_fonds_statiques.clear();
@@ -1471,18 +1471,10 @@ void Game::cleanLists() {
                                         [](auto& e) { return e->aDetruire(); }),
                          list_gen_bonus.end());
 
-    TexteCool* txt;
-
-    list_txt_cool.start();
-
-    while (!list_txt_cool.fin()) {
-        txt = (TexteCool*)list_txt_cool.info();
-
-        if (txt->aDetruire())
-            list_txt_cool.supprime();
-        else
-            list_txt_cool.suivant();
-    }
+    list_txt_cool.erase(std::remove_if(list_txt_cool.begin(),
+                                       list_txt_cool.end(),
+                                       [](auto& e) { return e->aDetruire(); }),
+                        list_txt_cool.end());
 
     list_fonds_animes.erase(
         std::remove_if(list_fonds_animes.begin(),
@@ -1849,30 +1841,16 @@ void Game::drawHUBpv(int x, int y, int pv) {
 //-----------------------------------------------------------------------------
 
 void Game::updateTexteCool() {
-    TexteCool* txt;
-
-    list_txt_cool.start();
-
-    while (!list_txt_cool.fin()) {
-        txt = (TexteCool*)list_txt_cool.info();
+    for (auto& txt : list_txt_cool) {
         txt->update();
-
-        list_txt_cool.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawTexteCool() {
-    TexteCool* txt;
-
-    list_txt_cool.start();
-
-    while (!list_txt_cool.fin()) {
-        txt = (TexteCool*)list_txt_cool.info();
+    for (auto& txt : list_txt_cool) {
         txt->affiche();
-
-        list_txt_cool.suivant();
     }
 }
 

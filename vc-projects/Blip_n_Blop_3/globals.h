@@ -157,7 +157,8 @@ extern std::vector<std::unique_ptr<Sprite>> list_fonds_statiques;
 extern std::vector<std::unique_ptr<Sprite>> list_premiers_plans;
 extern std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
-extern SuperListe	list_txt_cool;
+class TexteCool;
+extern std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 
 extern SuperListe	list_giclures;
 extern SuperListe	list_gore;
