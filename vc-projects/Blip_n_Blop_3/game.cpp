@@ -1033,7 +1033,7 @@ void Game::releaseNiveau() {
     list_gore.clear();
 
     list_meteo.clear();
-    list_bulles.vide();
+    list_bulles.clear();
 }
 
 //-----------------------------------------------------------------------------
@@ -1434,16 +1434,10 @@ void Game::cleanLists() {
                                   [](auto& s) { return s->aDetruire(); }),
                    list_cow.end());
 
-    list_bulles.start();
-
-    while (!list_bulles.fin()) {
-        s = (Sprite*)list_bulles.info();
-
-        if (s->aDetruire())
-            list_bulles.supprime();
-        else
-            list_bulles.suivant();
-    }
+    list_bulles.erase(std::remove_if(list_bulles.begin(),
+                                     list_bulles.end(),
+                                     [](auto& s) { return s->aDetruire(); }),
+                      list_bulles.end());
 
     list_impacts.erase(std::remove_if(list_impacts.begin(),
                                       list_impacts.end(),
@@ -1499,11 +1493,10 @@ void Game::cleanLists() {
                        [](auto& s) { return s->aDetruire(); }),
         list_tirs_ennemis.end());
 
-    list_meteo.erase(
-        std::remove_if(list_meteo.begin(),
-                       list_meteo.end(),
-                       [](auto& s) { return s->aDetruire(); }),
-        list_meteo.end());
+    list_meteo.erase(std::remove_if(list_meteo.begin(),
+                                    list_meteo.end(),
+                                    [](auto& s) { return s->aDetruire(); }),
+                     list_meteo.end());
 
     list_gore.erase(std::remove_if(list_gore.begin(),
                                    list_gore.end(),
@@ -2813,7 +2806,7 @@ void Game::updateBulles() {
     }
 
     for (auto& pl : list_ennemis) {
-        if (list_bulles.taille() < 15) {
+        if (list_bulles.size() < 15) {
             break;
         }
         creeBulle(pl.get());
@@ -2821,26 +2814,16 @@ void Game::updateBulles() {
 
     // Update les bulles déjà crées
     //
-    list_bulles.start();
-
-    while (!list_bulles.fin()) {
-        pl = (Sprite*)list_bulles.info();
+    for (auto& pl : list_bulles) {
         pl->update();
-        list_bulles.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawBulles() {
-    Sprite* pl;
-
-    list_bulles.start();
-
-    while (!list_bulles.fin()) {
-        pl = (Sprite*)list_bulles.info();
+    for (auto& pl : list_bulles) {
         pl->affiche();
-        list_bulles.suivant();
     }
 }
 
@@ -2858,7 +2841,7 @@ void Game::creeBulle(Sprite* s) {
         b->dphi = 5 + rand() % 3;
         b->dy = -(2 + rand() % 2);
 
-        list_bulles.ajoute((void*)b);
+        list_bulles.emplace_back(b);
 
         s->wait_bulle = 0;
     }

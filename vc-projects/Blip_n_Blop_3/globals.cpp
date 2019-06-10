@@ -45,6 +45,7 @@
 #include "sprite.h"
 #include "texte_cool.h"
 #include "giclure.h"
+#include "bulle.h"
 
 #include "ben_debug.h"
 
@@ -137,7 +138,7 @@ std::vector<std::unique_ptr<Sprite>> list_giclures;
 std::vector<std::unique_ptr<Sprite>> list_gore;
 
 std::vector<Sprite*> list_meteo;
-SuperListe	list_bulles;
+std::vector<std::unique_ptr<Bulle>> list_bulles;
 
 
 //-----------------------------------------------------------------------------

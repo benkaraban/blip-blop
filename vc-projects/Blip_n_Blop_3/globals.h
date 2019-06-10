@@ -168,7 +168,8 @@ extern std::vector<std::unique_ptr<Sprite>> list_giclures;
 extern std::vector<std::unique_ptr<Sprite>> list_gore;
 
 extern std::vector<Sprite*> list_meteo;
-extern SuperListe	list_bulles;
+class Bulle;
+extern std::vector<std::unique_ptr<Bulle>> list_bulles;
 
 
 //-----------------------------------------------------------------------------
