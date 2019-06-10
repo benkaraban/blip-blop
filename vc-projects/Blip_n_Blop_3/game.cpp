@@ -1026,7 +1026,7 @@ void Game::releaseNiveau() {
 
     list_fonds_animes.clear();
     list_fonds_statiques.clear();
-    list_premiers_plans.vide();
+    list_premiers_plans.clear();
     list_plateformes_mobiles.vide();
 
     list_giclures.vide();
@@ -1490,16 +1490,11 @@ void Game::cleanLists() {
                        [](auto& e) { return e->aDetruire(); }),
         list_fonds_animes.end());
 
-    list_premiers_plans.start();
-
-    while (!list_premiers_plans.fin()) {
-        s = (Sprite*)list_premiers_plans.info();
-
-        if (s->aDetruire())
-            list_premiers_plans.supprime();
-        else
-            list_premiers_plans.suivant();
-    }
+    list_premiers_plans.erase(
+        std::remove_if(list_premiers_plans.begin(),
+                       list_premiers_plans.end(),
+                       [](auto& e) { return e->aDetruire(); }),
+        list_premiers_plans.end());
 
     list_giclures.start();
 
@@ -2029,28 +2024,16 @@ void Game::drawDebugInfos() {
 //-----------------------------------------------------------------------------
 
 void Game::updatePremiersPlans() {
-    Sprite* t;
-
-    list_premiers_plans.start();
-
-    while (!list_premiers_plans.fin()) {
-        t = (Sprite*)list_premiers_plans.info();
+    for (auto& t : list_premiers_plans) {
         t->update();
-        list_premiers_plans.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawPremiersPlans() {
-    Sprite* t;
-
-    list_premiers_plans.start();
-
-    while (!list_premiers_plans.fin()) {
-        t = (Sprite*)list_premiers_plans.info();
+    for (auto& t : list_premiers_plans) {
         t->affiche();
-        list_premiers_plans.suivant();
     }
 }
 

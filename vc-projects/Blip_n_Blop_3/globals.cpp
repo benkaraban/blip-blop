@@ -126,7 +126,7 @@ std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
 
 std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
 std::vector<std::unique_ptr<Sprite>> list_fonds_statiques;
-SuperListe	list_premiers_plans;
+std::vector<std::unique_ptr<Sprite>> list_premiers_plans;
 SuperListe	list_plateformes_mobiles;
 
 SuperListe	list_txt_cool;
