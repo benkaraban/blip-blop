@@ -348,7 +348,7 @@ void EventFondAnime::doEvent()
 		s->y = y;
 
 		if (plat_mobile)
-			list_plateformes_mobiles.ajoute((void*) s);
+			list_plateformes_mobiles.emplace_back(s);
 		else
 			list_fonds_animes.emplace_back(s);
 	} else {

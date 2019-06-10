@@ -127,7 +127,7 @@ std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
 std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
 std::vector<std::unique_ptr<Sprite>> list_fonds_statiques;
 std::vector<std::unique_ptr<Sprite>> list_premiers_plans;
-SuperListe	list_plateformes_mobiles;
+std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
 SuperListe	list_txt_cool;
 
@@ -351,15 +351,9 @@ bool grave(int x, int y, Picture * pic)
 			return false;
 	}
 
-	list_plateformes_mobiles.start();
-
-	while (!list_plateformes_mobiles.fin()) {
-		s2 = (Sprite*) list_plateformes_mobiles.info();
-
-		if (s.collision(s2))
+	for (auto& s2 : list_plateformes_mobiles) {
+		if (s.collision(s2.get()))
 			return false;
-
-		list_plateformes_mobiles.suivant();
 	}
 
 

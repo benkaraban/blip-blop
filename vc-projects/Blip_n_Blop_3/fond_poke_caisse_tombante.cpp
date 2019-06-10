@@ -43,14 +43,14 @@ void FondPokeCaisseTombante::update()
 				s2->x = x - 250;
 				s2->y = -150;
 
-				list_plateformes_mobiles.ajoute((void*) s2);
+				list_plateformes_mobiles.emplace_back(s2);
 
 
 				s2 = new FondPokeCaissePlateforme(180);
 				s2->x = x - 470;
 				s2->y = - 150;
 
-				list_plateformes_mobiles.ajoute((void*) s2);
+				list_plateformes_mobiles.emplace_back(s2);
 			}
 
 			if (etape > UNLOCK_DELAY + 4) {
@@ -73,7 +73,7 @@ void FondPokeCaisseTombante::update()
 					s3->x = x;
 					s3->y = -150;
 
-					list_plateformes_mobiles.ajoute((void*) s3);
+                                        list_plateformes_mobiles.emplace_back(s3);
 				}
 			}
 		}

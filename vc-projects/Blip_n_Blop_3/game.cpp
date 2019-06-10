@@ -1027,7 +1027,7 @@ void Game::releaseNiveau() {
     list_fonds_animes.clear();
     list_fonds_statiques.clear();
     list_premiers_plans.clear();
-    list_plateformes_mobiles.vide();
+    list_plateformes_mobiles.clear();
 
     list_giclures.vide();
     list_gore.vide();
@@ -1535,16 +1535,11 @@ void Game::cleanLists() {
             list_gore.suivant();
     }
 
-    list_plateformes_mobiles.start();
-
-    while (!list_plateformes_mobiles.fin()) {
-        s = (Sprite*)list_plateformes_mobiles.info();
-
-        if (s->aDetruire())
-            list_plateformes_mobiles.supprimePorc();
-        else
-            list_plateformes_mobiles.suivant();
-    }
+    list_plateformes_mobiles.erase(
+        std::remove_if(list_plateformes_mobiles.begin(),
+                       list_plateformes_mobiles.end(),
+                       [](auto& s) { return s->aDetruire(); }),
+        list_plateformes_mobiles.end());
 }
 
 //-----------------------------------------------------------------------------
@@ -2197,28 +2192,16 @@ void Game::drawTimer() {
 //-----------------------------------------------------------------------------
 
 void Game::updatePlateformesMobiles() {
-    Sprite* pl;
-
-    list_plateformes_mobiles.start();
-
-    while (!list_plateformes_mobiles.fin()) {
-        pl = (Sprite*)list_plateformes_mobiles.info();
+    for (auto& pl : list_plateformes_mobiles) {
         pl->update();
-        list_plateformes_mobiles.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawPlateformesMobiles() {
-    Sprite* pl;
-
-    list_plateformes_mobiles.start();
-
-    while (!list_plateformes_mobiles.fin()) {
-        pl = (Sprite*)list_plateformes_mobiles.info();
+    for (auto& pl : list_plateformes_mobiles) {
         pl->affiche();
-        list_plateformes_mobiles.suivant();
     }
 }
 

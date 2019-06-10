@@ -155,7 +155,7 @@ class Sprite;
 extern std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
 extern std::vector<std::unique_ptr<Sprite>> list_fonds_statiques;
 extern std::vector<std::unique_ptr<Sprite>> list_premiers_plans;
-extern SuperListe	list_plateformes_mobiles;
+extern std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
 extern SuperListe	list_txt_cool;
 
