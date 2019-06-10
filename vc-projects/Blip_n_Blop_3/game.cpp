@@ -1087,23 +1087,24 @@ void Game::updateAll() {
 
     if (type_meteo == METEO_PLUIE || type_meteo == METEO_NEIGE) updateMeteo();
 
-    updateFondsStatiques();
-    updateFondsAnimes();
-    updatePlateformesMobiles();
-    updateVehicules();
-    updateJoueurs();
-    updateTirsJoueurs();
-    updateImpacts();
-    updateEnnemis();
-    updateGore();
-    updateTirsEnnemis();
-    updateGiclures();
-    updateBonus();
-    updatePremiersPlans();
+    UpdateCollection(list_fonds_statiques);
+    UpdateCollection(list_fonds_animes);
+    UpdateCollection(list_plateformes_mobiles);
+    UpdateCollection(list_vehicules);
+    UpdateCollection(list_joueurs);
+    UpdateCollection(list_tirs_bb);
+    UpdateCollection(list_cow);
+    UpdateCollection(list_impacts);
+    UpdateCollection(list_ennemis);
+    UpdateCollection(list_gore);
+    UpdateCollection(list_tirs_ennemis);
+    UpdateCollection(list_giclures);
+    UpdateCollection(list_bonus);
+    UpdateCollection(list_premiers_plans);
 
-    updateTexteCool();
-    updateGenEnnemis();
-    updateGenBonus();
+    UpdateCollection(list_txt_cool);
+    UpdateCollection(list_gen_ennemis);
+    UpdateCollection(list_gen_bonus);
     updateLock();
     updateHoldFire();
     updateTeteTurc();
@@ -1157,7 +1158,9 @@ void Game::drawAll(bool flip) {
     DrawCollection(list_fonds_statiques);
     DrawCollection(list_fonds_animes);
 
-    if (game_flag[FLAG_BULLES]) {DrawCollection(list_bulles);}
+    if (game_flag[FLAG_BULLES]) {
+        DrawCollection(list_bulles);
+    }
 
     DrawCollection(list_plateformes_mobiles);
     DrawCollection(list_impacts);
@@ -1372,26 +1375,6 @@ bool Game::chargePartie() {
 
 //-----------------------------------------------------------------------------
 
-void Game::updateJoueurs() {
-    for (Couille* pl : list_joueurs) {
-        pl->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateTirsJoueurs() {
-    for (TirBB* t : list_tirs_bb) {
-        t->update();
-    }
-
-    for (auto& t : list_cow) {
-        t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 template <class T>
 void Game::DrawCollection(const T& xs) {
     for (auto& pl : xs) {
@@ -1401,105 +1384,32 @@ void Game::DrawCollection(const T& xs) {
 
 //-----------------------------------------------------------------------------
 
+template <class T>
+void Game::RemoveDestroyed(T& xs) {
+    xs.erase(std::remove_if(
+                 xs.begin(), xs.end(), [](auto& x) { return x->aDetruire(); }),
+             xs.end());
+}
+
 void Game::cleanLists() {
-    Sprite* s;
-
-    list_joueurs.erase(
-        std::remove_if(list_joueurs.begin(),
-                       list_joueurs.end(),
-                       [](Couille* s) { return s->aDetruire(); }),
-        list_joueurs.end());
-
-    list_fonds_statiques.erase(
-        std::remove_if(list_fonds_statiques.begin(),
-                       list_fonds_statiques.end(),
-                       [](auto& t) { return t->aDetruire(); }),
-        list_fonds_statiques.end());
-
-    list_tirs_bb.erase(std::remove_if(list_tirs_bb.begin(),
-                                      list_tirs_bb.end(),
-                                      [](TirBB* t) { return t->aDetruire(); }),
-                       list_tirs_bb.end());
-
-    list_cow.erase(std::remove_if(list_cow.begin(),
-                                  list_cow.end(),
-                                  [](auto& s) { return s->aDetruire(); }),
-                   list_cow.end());
-
-    list_bulles.erase(std::remove_if(list_bulles.begin(),
-                                     list_bulles.end(),
-                                     [](auto& s) { return s->aDetruire(); }),
-                      list_bulles.end());
-
-    list_impacts.erase(std::remove_if(list_impacts.begin(),
-                                      list_impacts.end(),
-                                      [](auto& s) { return s->aDetruire(); }),
-                       list_impacts.end());
-
-    list_ennemis.erase(std::remove_if(list_ennemis.begin(),
-                                      list_ennemis.end(),
-                                      [](auto& e) { return e->aDetruire(); }),
-                       list_ennemis.end());
-
-    list_bonus.erase(std::remove_if(list_bonus.begin(),
-                                    list_bonus.end(),
-                                    [](auto& e) { return e->aDetruire(); }),
-                     list_bonus.end());
-
-    list_gen_ennemis.erase(
-        std::remove_if(list_gen_ennemis.begin(),
-                       list_gen_ennemis.end(),
-                       [](auto& e) { return e->aDetruire(); }),
-        list_gen_ennemis.end());
-
-    list_gen_bonus.erase(std::remove_if(list_gen_bonus.begin(),
-                                        list_gen_bonus.end(),
-                                        [](auto& e) { return e->aDetruire(); }),
-                         list_gen_bonus.end());
-
-    list_txt_cool.erase(std::remove_if(list_txt_cool.begin(),
-                                       list_txt_cool.end(),
-                                       [](auto& e) { return e->aDetruire(); }),
-                        list_txt_cool.end());
-
-    list_fonds_animes.erase(
-        std::remove_if(list_fonds_animes.begin(),
-                       list_fonds_animes.end(),
-                       [](auto& e) { return e->aDetruire(); }),
-        list_fonds_animes.end());
-
-    list_premiers_plans.erase(
-        std::remove_if(list_premiers_plans.begin(),
-                       list_premiers_plans.end(),
-                       [](auto& e) { return e->aDetruire(); }),
-        list_premiers_plans.end());
-
-    list_giclures.erase(std::remove_if(list_giclures.begin(),
-                                       list_giclures.end(),
-                                       [](auto& e) { return e->aDetruire(); }),
-                        list_giclures.end());
-
-    list_tirs_ennemis.erase(
-        std::remove_if(list_tirs_ennemis.begin(),
-                       list_tirs_ennemis.end(),
-                       [](auto& s) { return s->aDetruire(); }),
-        list_tirs_ennemis.end());
-
-    list_meteo.erase(std::remove_if(list_meteo.begin(),
-                                    list_meteo.end(),
-                                    [](auto& s) { return s->aDetruire(); }),
-                     list_meteo.end());
-
-    list_gore.erase(std::remove_if(list_gore.begin(),
-                                   list_gore.end(),
-                                   [](auto& e) { return e->aDetruire(); }),
-                    list_gore.end());
-
-    list_plateformes_mobiles.erase(
-        std::remove_if(list_plateformes_mobiles.begin(),
-                       list_plateformes_mobiles.end(),
-                       [](auto& s) { return s->aDetruire(); }),
-        list_plateformes_mobiles.end());
+    RemoveDestroyed(list_joueurs);
+    RemoveDestroyed(list_fonds_statiques);
+    RemoveDestroyed(list_tirs_bb);
+    RemoveDestroyed(list_cow);
+    RemoveDestroyed(list_bulles);
+    RemoveDestroyed(list_impacts);
+    RemoveDestroyed(list_ennemis);
+    RemoveDestroyed(list_bonus);
+    RemoveDestroyed(list_gen_ennemis);
+    RemoveDestroyed(list_gen_bonus);
+    RemoveDestroyed(list_txt_cool);
+    RemoveDestroyed(list_fonds_animes);
+    RemoveDestroyed(list_premiers_plans);
+    RemoveDestroyed(list_giclures);
+    RemoveDestroyed(list_tirs_ennemis);
+    RemoveDestroyed(list_meteo);
+    RemoveDestroyed(list_gore);
+    RemoveDestroyed(list_plateformes_mobiles);
 }
 
 //-----------------------------------------------------------------------------
@@ -1540,16 +1450,6 @@ void Game::updateEvents() {
                                     list_event.end(),
                                     [](auto& ev) { return !ev.get(); }),
                      list_event.end());
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateEnnemis() {
-    Ennemi* pl;
-
-    for (auto& pl : list_ennemis) {
-        pl->update();
-    }
 }
 
 //-----------------------------------------------------------------------------
@@ -1616,14 +1516,6 @@ void Game::manageCollisions() {
 
 //-----------------------------------------------------------------------------
 
-void Game::updateGenEnnemis() {
-    for (auto& pl : list_gen_ennemis) {
-        pl->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateLock() {
     if (!scroll_locked) return;
 
@@ -1644,22 +1536,6 @@ void Game::updateHoldFire() {
     if (!hold_fire) return;
 
     if (game_flag[flag_hold_fire] == val_hold_fire) hold_fire = false;
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateBonus() {
-    for (auto& t : list_bonus) {
-        t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateGenBonus() {
-    for (auto& gb : list_gen_bonus) {
-        gb->update();
-    }
 }
 
 //-----------------------------------------------------------------------------
@@ -1790,22 +1666,6 @@ void Game::drawHUBpv(int x, int y, int pv) {
 
 //-----------------------------------------------------------------------------
 
-void Game::updateTexteCool() {
-    for (auto& txt : list_txt_cool) {
-        txt->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateFondsAnimes() {
-    for (auto& t : list_fonds_animes) {
-        t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::drawDebugInfos() {
     char buffer[40];
 
@@ -1930,22 +1790,6 @@ void Game::drawDebugInfos() {
 
 //-----------------------------------------------------------------------------
 
-void Game::updatePremiersPlans() {
-    for (auto& t : list_premiers_plans) {
-        t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateGiclures() {
-    for (auto& t : list_giclures) {
-        t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::updateTeteTurc() {
     static int ntete_turc = 0;
 
@@ -1959,16 +1803,6 @@ void Game::updateTeteTurc() {
     ntete_turc += 1;
     ntete_turc %= list_joueurs.size();
     tete_turc = list_joueurs[ntete_turc];
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateTirsEnnemis() {
-    Sprite* t;
-
-    for (auto& t : list_tirs_ennemis) {
-        t->update();
-    }
 }
 
 //-----------------------------------------------------------------------------
@@ -2052,14 +1886,6 @@ void Game::drawTimer() {
         fnt_cool.printC(backSurface, 320, 20, txt_data[TXT_TIME].c_str());
         sprintf(buffer, "%d", game_flag[FLAG_TIMER]);
         fnt_cool.printC(backSurface, 320, 50, buffer);
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updatePlateformesMobiles() {
-    for (auto& pl : list_plateformes_mobiles) {
-        pl->update();
     }
 }
 
@@ -2559,10 +2385,9 @@ void Game::updateMeteo() {
 
 //-----------------------------------------------------------------------------
 
-void Game::updateImpacts() {
-    Sprite* pl;
-
-    for (auto& pl : list_impacts) {
+template <class T>
+void Game::UpdateCollection(const T& xs) {
+    for (auto& pl : xs) {
         pl->update();
     }
 }
@@ -2865,14 +2690,6 @@ void Game::drawLoading() {
 
 //-----------------------------------------------------------------------------
 
-void Game::updateGore() {
-    for (auto& t : list_gore) {
-        t->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
 void Game::getHiscore() {
     if (player1 != NULL && hi_scores.isGood(player1->getScore()))
         getName(player1, 1);
@@ -3155,24 +2972,6 @@ void Game::go() {
     menu.stop();
 
     mbk_interl.stop();
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateVehicules() {
-    Sprite* pl;
-
-    for (auto& v : list_vehicules) {
-        v->update();
-    }
-}
-
-//-----------------------------------------------------------------------------
-
-void Game::updateFondsStatiques() {
-    for (auto& pl : list_fonds_statiques) {
-        pl->update();
-    }
 }
 
 //-----------------------------------------------------------------------------

@@ -176,30 +176,15 @@ public:
 
 	int selectPlayer();
 
+        template <class T>
+        void UpdateCollection(const T& xs);
 	void updateFlecheGo();
 	void updateMeteo();
-	void updateFondsAnimes();
-	void updateFondsStatiques();
-	void updatePremiersPlans();
-	void updatePlateformesMobiles();
 	void updateEvents();
-	void updateJoueurs();
-	void updateTirsJoueurs();
-	void updateImpacts();
-	void updateEnnemis();
-	void updateTirsEnnemis();
-	void updateBonus();
-	void updateGiclures();
-	void updateTexteCool();
 	void updateDeformation();
 	void updateBulles();
 	void updateTremblements();
-	void updateGore();
 
-	void updateVehicules();
-
-	void updateGenEnnemis();
-	void updateGenBonus();
 	void updateLock();
 	void updateHoldFire();
 	void updateTeteTurc();
@@ -209,6 +194,9 @@ public:
 	void updateMenu();
 	void updateCheat();
 	void manageCollisions();
+
+        template <class T>
+        void RemoveDestroyed(T& xs);
 
         template <class T>
         void DrawCollection(const T& xs);
