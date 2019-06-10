@@ -148,7 +148,8 @@ extern std::vector<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
 class Bonus;
 extern std::vector<std::unique_ptr<Bonus>> list_bonus;
-extern SuperListe	list_gen_bonus;
+class GenBonus;
+extern std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
 
 extern SuperListe	list_fonds_animes;
 extern SuperListe	list_fonds_statiques;

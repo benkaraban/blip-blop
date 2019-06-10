@@ -1020,7 +1020,7 @@ void Game::releaseNiveau() {
     list_gen_ennemis.clear();
 
     list_bonus.clear();
-    list_gen_bonus.vide();
+    list_gen_bonus.clear();
 
     list_txt_cool.vide();
 
@@ -1471,18 +1471,10 @@ void Game::cleanLists() {
                        [](auto& e) { return e->aDetruire(); }),
         list_gen_ennemis.end());
 
-    GenBonus* gbonus;
-
-    list_gen_bonus.start();
-
-    while (!list_gen_bonus.fin()) {
-        gbonus = (GenBonus*)list_gen_bonus.info();
-
-        if (gbonus->aDetruire())
-            list_gen_bonus.supprime();
-        else
-            list_gen_bonus.suivant();
-    }
+    list_gen_bonus.erase(std::remove_if(list_gen_bonus.begin(),
+                                        list_gen_bonus.end(),
+                                        [](auto& e) { return e->aDetruire(); }),
+                         list_gen_bonus.end());
 
     TexteCool* txt;
 
@@ -1743,15 +1735,8 @@ void Game::drawBonus() {
 //-----------------------------------------------------------------------------
 
 void Game::updateGenBonus() {
-    GenBonus* gb;
-
-    list_gen_bonus.start();
-
-    while (!list_gen_bonus.fin()) {
-        gb = (GenBonus*)list_gen_bonus.info();
+    for (auto& gb : list_gen_bonus) {
         gb->update();
-
-        list_gen_bonus.suivant();
     }
 }
 

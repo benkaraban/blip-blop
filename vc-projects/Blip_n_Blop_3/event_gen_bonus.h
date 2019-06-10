@@ -36,7 +36,7 @@ public:
 		gb->type = type;
 		gb->x = x_activation;
 
-		list_gen_bonus.ajoute((void*) gb);
+		list_gen_bonus.emplace_back(gb);
 	};
 };
 

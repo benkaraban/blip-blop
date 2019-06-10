@@ -41,6 +41,7 @@
 #include "enemy.h"
 #include "gen_ennemi.h"
 #include "bonus.h"
+#include "gen_bonus.h"
 
 #include "ben_debug.h"
 
@@ -120,7 +121,7 @@ std::vector<std::unique_ptr<Tir>> list_tirs_ennemis;
 std::vector<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
 std::vector<std::unique_ptr<Bonus>> list_bonus;
-SuperListe	list_gen_bonus;
+std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
 
 SuperListe	list_fonds_animes;
 SuperListe	list_fonds_statiques;
