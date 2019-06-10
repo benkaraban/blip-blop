@@ -139,7 +139,8 @@ class Event;
 extern std::vector<std::unique_ptr<Event>> list_event_endormis;
 extern std::vector<std::unique_ptr<Event>> list_event;
 
-extern SuperListe	list_ennemis;
+class Ennemi;
+extern std::vector<std::unique_ptr<Ennemi>> list_ennemis;
 extern SuperListe	list_tirs_ennemis;
 extern SuperListe	list_gen_ennemis;
 

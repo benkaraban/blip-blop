@@ -299,7 +299,7 @@ void EnnemiMariotapette::onMeure()
 		luigi->x = 1960;
 		luigi->y = y;
 		luigi->dir = SENS_GAUCHE;
-		list_ennemis.ajoute((void*) luigi);
+		list_ennemis.emplace_back(luigi);
 
 		EventHoldFire e;
 

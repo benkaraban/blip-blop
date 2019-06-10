@@ -106,7 +106,7 @@ void EnnemiPrincesse::onAvance()
 				guard->x = offset + 720 - i * 20;
 				guard->y = y - 20;
 				guard->dir = SENS_GAUCHE;
-				list_ennemis.ajoute((void*) guard);
+				list_ennemis.emplace_back(guard);
 
 			}
 			nb_ennemis_created += 3;

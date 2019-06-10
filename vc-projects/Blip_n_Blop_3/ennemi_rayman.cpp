@@ -59,7 +59,7 @@ void EnnemiRayman::onAvance()
 			bulbizarre->x = x - 10;
 			bulbizarre->y = y - 25;
 			bulbizarre->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) bulbizarre);
+			list_ennemis.emplace_back(bulbizarre);
 
 			nb_ennemis_created++;
 
@@ -73,7 +73,7 @@ void EnnemiRayman::onAvance()
 			flameche->x = x - 10;
 			flameche->y = y - 25;
 			flameche->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) flameche);
+			list_ennemis.emplace_back(flameche);
 
 
 			nb_ennemis_created++;
@@ -83,7 +83,7 @@ void EnnemiRayman::onAvance()
 			Com->x = x - 10;
 			Com->y = y - 25;
 			Com->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) Com);
+			list_ennemis.emplace_back(Com);
 
 			dorkemon -= 2;
 
@@ -95,7 +95,7 @@ void EnnemiRayman::onAvance()
 			pika->x = x - 10;
 			pika->y = y - 25;
 			pika->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) pika);
+			list_ennemis.emplace_back(pika);
 			dorkemon --;
 		}
 	} else if ((game_flag[0] <= 2) && (game_flag[1] == 0) /*&& (game_flag[2]>=0*/) {

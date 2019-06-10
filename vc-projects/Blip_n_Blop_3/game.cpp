@@ -1015,7 +1015,7 @@ void Game::releaseNiveau() {
 
     list_vehicules.clear();
 
-    list_ennemis.vide();
+    list_ennemis.clear();
     list_tirs_ennemis.vide();
     list_gen_ennemis.vide();
 
@@ -1455,16 +1455,15 @@ void Game::cleanLists() {
                                       [](auto& s) { return s->aDetruire(); }),
                        list_impacts.end());
 
-    list_ennemis.start();
-
-    while (!list_ennemis.fin()) {
-        s = (Sprite*)list_ennemis.info();
-
-        if (s->aDetruire())
-            list_ennemis.supprime();
-        else
-            list_ennemis.suivant();
+    for (auto& s : list_ennemis) {
+        if (s->aDetruire()) {
+            s.reset(nullptr);
+        }
     }
+    list_ennemis.erase(std::remove_if(list_ennemis.begin(),
+                                      list_ennemis.end(),
+                                      [](auto& e) { return !e; }),
+                       list_ennemis.end());
 
     list_bonus.start();
 
@@ -1639,12 +1638,8 @@ void Game::updateEvents() {
 void Game::drawEnnemis() {
     Ennemi* pl;
 
-    list_ennemis.start();
-
-    while (!list_ennemis.fin()) {
-        pl = (Ennemi*)list_ennemis.info();
+    for (auto& pl : list_ennemis) {
         pl->affiche();
-        list_ennemis.suivant();
     }
 }
 
@@ -1653,12 +1648,8 @@ void Game::drawEnnemis() {
 void Game::updateEnnemis() {
     Ennemi* pl;
 
-    list_ennemis.start();
-
-    while (!list_ennemis.fin()) {
-        pl = (Ennemi*)list_ennemis.info();
+    for (auto& pl : list_ennemis) {
         pl->update();
-        list_ennemis.suivant();
     }
 }
 
@@ -1671,28 +1662,20 @@ void Game::manageCollisions() {
     // Collisions TirsBB / Ennemis
     //
     for (Tir* tir : list_tirs_bb) {
-        list_ennemis.start();
-
-        while (!list_ennemis.fin()) {
-            ennemi = (Ennemi*)list_ennemis.info();
-
-            if (tir->collision(ennemi)) ennemi->estTouche(tir);
-
-            list_ennemis.suivant();
+        for (auto& ennemi: list_ennemis) {
+            if (tir->collision(ennemi.get())) {
+                ennemi->estTouche(tir);
+            }
         }
     }
 
     // Collisions Vaches / Ennemis
     //
     for (auto& tir : list_cow) {
-        list_ennemis.start();
-
-        while (!list_ennemis.fin()) {
-            ennemi = (Ennemi*)list_ennemis.info();
-
-            if (tir->collision(ennemi)) ennemi->estTouche(tir.get());
-
-            list_ennemis.suivant();
+        for (auto& ennemi: list_ennemis) {
+            if (tir->collision(ennemi.get())) {
+                ennemi->estTouche(tir.get());
+            }
         }
     }
 
@@ -1719,17 +1702,11 @@ void Game::manageCollisions() {
         //
         Ennemi* ennemis;
 
-        list_ennemis.start();
-
-        while (!list_ennemis.fin()) {
-            ennemis = (Ennemi*)list_ennemis.info();
-
+        for (auto& ennemi : list_ennemis) {
             for (Couille* joueur : list_joueurs) {
                 if (ennemis->collision(joueur))
                     joueur->estTouche(ennemis->degats());
             }
-
-            list_ennemis.suivant();
         }
 
         // Collisions Joueurs / tirs ennemis
@@ -1767,7 +1744,7 @@ void Game::updateGenEnnemis() {
 void Game::updateLock() {
     if (!scroll_locked) return;
 
-    if ((cond_end_lock == 0 && list_ennemis.estVide()) ||
+    if ((cond_end_lock == 0 && list_ennemis.empty()) ||
         (cond_end_lock == 1 && list_gen_ennemis.estVide()) ||
         (cond_end_lock == 2 && game_flag[flag_end_lock] == val_end_lock) ||
         (cond_end_lock == 3 && game_flag[flag_end_lock] >= val_end_lock)) {
@@ -2293,7 +2270,7 @@ void Game::updateVictoryAndDefeat() {
 
 void Game::updateFlags() {
     game_flag[FLAG_NB_GEN] = list_gen_ennemis.taille();
-    game_flag[FLAG_NB_ENN] = list_ennemis.taille();
+    game_flag[FLAG_NB_ENN] = list_ennemis.size();
     makeb_current_mode = game_flag[FLAG_BONUS];
 
     // Le TIMER
@@ -3028,12 +3005,11 @@ void Game::updateBulles() {
         creeBulle(pl);
     }
 
-    list_ennemis.start();
-
-    while (!list_ennemis.fin() && list_bulles.taille() < 15) {
-        pl = (Sprite*)list_ennemis.info();
-        creeBulle(pl);
-        list_ennemis.suivant();
+    for (auto& pl : list_ennemis) {
+        if (list_bulles.taille() < 15) {
+            break;
+        }
+        creeBulle(pl.get());
     }
 
     // Update les bulles déjà crées

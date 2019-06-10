@@ -38,6 +38,7 @@
 #include "explosion.h"
 #include "vehicule.h"
 #include "event.h"
+#include "enemy.h"
 
 #include "ben_debug.h"
 
@@ -112,7 +113,7 @@ std::vector<std::unique_ptr<Vehicule>> list_vehicules;
 std::vector<std::unique_ptr<Event>> list_event_endormis;
 std::vector<std::unique_ptr<Event>> list_event;
 
-SuperListe	list_ennemis;
+std::vector<std::unique_ptr<Ennemi>> list_ennemis;
 SuperListe	list_tirs_ennemis;
 SuperListe	list_gen_ennemis;
 

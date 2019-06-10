@@ -89,7 +89,7 @@ void EnnemiLara::onAvance()
 				}
 
 				pic->dir = SENS_GAUCHE;
-				list_ennemis.ajoute((void*) pic);
+				list_ennemis.emplace_back(pic);
 //				nb_ennemis_created += 1;
 			}
 		}
@@ -115,7 +115,7 @@ void EnnemiLara::onAvance()
 				tete->y = tete_turc->y - 30;
 				tete->dy = -8;
 				tete->dir = SENS_GAUCHE;
-				list_ennemis.ajoute((void*) tete);
+				list_ennemis.emplace_back(tete);
 				tete_rayman = true;
 			}
 		}

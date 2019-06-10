@@ -17,6 +17,7 @@
 #include "fond_monolite.h"
 
 #include "couille.h"
+#include "enemy.h"
 
 const int monolite_levitation[] = {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 1, 1, 0, 0, 0};
 const int monolite_animation[] = {41, 42, 43, 43, 44, 44, 44, 45, 45, 45, 45, 45, 44, 44, 44, 43, 43, 42, 41, 46, 47, 47, 48, 48, 48, 49, 49, 49, 49, 49, 48, 48, 48, 47, 47, 46};
@@ -67,11 +68,7 @@ void FondMonolite::update()
 	}
 
 
-	list_ennemis.start();
-
-	while (!list_ennemis.fin()) {
-		Sprite* ennemis = (Sprite*) list_ennemis.info();
-
+        for (auto& ennemis : list_ennemis) {
 		xtmp = ennemis->x;
 
 		if (xtmp >= x - 138 && xtmp < x + pic->xSize() - 118 && plat(xtmp, ennemis->y) == y - 20) {
@@ -82,8 +79,6 @@ void FondMonolite::update()
 			}
 		}
 		//	joueur->y += dy;
-
-		list_ennemis.suivant();
 	}
 
 	// Déplace la plateforme

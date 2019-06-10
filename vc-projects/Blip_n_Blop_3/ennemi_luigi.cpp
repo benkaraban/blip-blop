@@ -352,7 +352,7 @@ void EnnemiLuigi::onMeure()
 			sonic->x = 1960;
 			sonic->y = y;
 			sonic->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) sonic);
+			list_ennemis.emplace_back(sonic);
 
 			nb_ennemis_created++;
 
@@ -362,7 +362,7 @@ void EnnemiLuigi::onMeure()
 			sonic->x = 1960;
 			sonic->y = y;
 			sonic->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) sonic);
+			list_ennemis.emplace_back(sonic);
 			a_detruire = true;
 
 		} else {
