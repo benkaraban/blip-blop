@@ -1007,7 +1007,7 @@ void Game::releaseNiveau() {
     pbk_rpg.close();
 
     list_event_endormis.clear();
-    list_event.vide();
+    list_event.clear();
 
     list_tirs_bb.clear();
     list_cow.clear();
@@ -1611,7 +1611,7 @@ void Game::updateEvents() {
         if (!event->aReveiller()) {
             break;
         }
-        list_event.ajoute(event.release());  // FIXME: std::move
+        list_event.push_back(std::move(event));
     }
 
     list_event_endormis.erase(
@@ -1622,20 +1622,16 @@ void Game::updateEvents() {
 
     // Si les évenements "en attente" doivent être activés, on les active
     //
-    if (!list_event.estVide()) {
-        list_event.start();
-
-        while (!list_event.estVide() && !list_event.fin()) {
-            event = (Event*)list_event.info();
-
-            if (event->aActiver()) {
-                event->doEvent();  // Surtout pas l'ordre inverse!
-                list_event
-                    .supprime();  // Sinon on activerait un évenement supprimé!
-            } else
-                list_event.suivant();
+    for (auto& event : list_event) {
+        if (event->aActiver()) {
+            event->doEvent();
+            event.reset(nullptr);
         }
     }
+    list_event.erase(std::remove_if(list_event.begin(),
+                                    list_event.end(),
+                                    [](auto& ev) { return !ev.get(); }),
+                     list_event.end());
 }
 
 //-----------------------------------------------------------------------------

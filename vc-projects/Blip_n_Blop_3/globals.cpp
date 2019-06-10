@@ -110,7 +110,7 @@ std::vector<std::unique_ptr<Explosion>> list_impacts;
 std::vector<std::unique_ptr<Vehicule>> list_vehicules;
 
 std::vector<std::unique_ptr<Event>> list_event_endormis;
-SuperListe	list_event;
+std::vector<std::unique_ptr<Event>> list_event;
 
 SuperListe	list_ennemis;
 SuperListe	list_tirs_ennemis;
