@@ -143,7 +143,8 @@ class Ennemi;
 extern std::vector<std::unique_ptr<Ennemi>> list_ennemis;
 class Tir;
 extern std::vector<std::unique_ptr<Tir>> list_tirs_ennemis;
-extern SuperListe	list_gen_ennemis;
+class GenEnnemi;
+extern std::vector<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
 extern SuperListe	list_bonus;
 extern SuperListe	list_gen_bonus;

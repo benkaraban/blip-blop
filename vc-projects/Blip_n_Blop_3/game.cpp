@@ -1017,7 +1017,7 @@ void Game::releaseNiveau() {
 
     list_ennemis.clear();
     list_tirs_ennemis.clear();
-    list_gen_ennemis.vide();
+    list_gen_ennemis.clear();
 
     list_bonus.vide();
     list_gen_bonus.vide();
@@ -1476,18 +1476,11 @@ void Game::cleanLists() {
             list_bonus.suivant();
     }
 
-    GenEnnemi* gennemi;
-
-    list_gen_ennemis.start();
-
-    while (!list_gen_ennemis.fin()) {
-        gennemi = (GenEnnemi*)list_gen_ennemis.info();
-
-        if (gennemi->aDetruire())
-            list_gen_ennemis.supprime();
-        else
-            list_gen_ennemis.suivant();
-    }
+    list_gen_ennemis.erase(
+        std::remove_if(list_gen_ennemis.begin(),
+                       list_gen_ennemis.end(),
+                       [](auto& e) { return e->aDetruire(); }),
+        list_gen_ennemis.end());
 
     GenBonus* gbonus;
 
@@ -1719,14 +1712,8 @@ void Game::manageCollisions() {
 //-----------------------------------------------------------------------------
 
 void Game::updateGenEnnemis() {
-    GenEnnemi* pl;
-
-    list_gen_ennemis.start();
-
-    while (!list_gen_ennemis.fin()) {
-        pl = (GenEnnemi*)list_gen_ennemis.info();
+    for (auto& pl : list_gen_ennemis) {
         pl->update();
-        list_gen_ennemis.suivant();
     }
 }
 
@@ -1736,7 +1723,7 @@ void Game::updateLock() {
     if (!scroll_locked) return;
 
     if ((cond_end_lock == 0 && list_ennemis.empty()) ||
-        (cond_end_lock == 1 && list_gen_ennemis.estVide()) ||
+        (cond_end_lock == 1 && list_gen_ennemis.empty()) ||
         (cond_end_lock == 2 && game_flag[flag_end_lock] == val_end_lock) ||
         (cond_end_lock == 3 && game_flag[flag_end_lock] >= val_end_lock)) {
         scroll_locked = false;
@@ -2252,7 +2239,7 @@ void Game::updateVictoryAndDefeat() {
 //-----------------------------------------------------------------------------
 
 void Game::updateFlags() {
-    game_flag[FLAG_NB_GEN] = list_gen_ennemis.taille();
+    game_flag[FLAG_NB_GEN] = list_gen_ennemis.size();
     game_flag[FLAG_NB_ENN] = list_ennemis.size();
     makeb_current_mode = game_flag[FLAG_BONUS];
 
