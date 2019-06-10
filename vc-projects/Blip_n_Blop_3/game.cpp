@@ -1025,7 +1025,7 @@ void Game::releaseNiveau() {
     list_txt_cool.vide();
 
     list_fonds_animes.clear();
-    list_fonds_statiques.vide();
+    list_fonds_statiques.clear();
     list_premiers_plans.vide();
     list_plateformes_mobiles.vide();
 
@@ -1418,16 +1418,11 @@ void Game::cleanLists() {
                        [](Couille* s) { return s->aDetruire(); }),
         list_joueurs.end());
 
-    list_fonds_statiques.start();
-
-    while (!list_fonds_statiques.fin()) {
-        s = (Sprite*)list_fonds_statiques.info();
-
-        if (s->aDetruire())
-            list_fonds_statiques.supprime();
-        else
-            list_fonds_statiques.suivant();
-    }
+    list_fonds_statiques.erase(
+        std::remove_if(list_fonds_statiques.begin(),
+                       list_fonds_statiques.end(),
+                       [](auto& t) { return t->aDetruire(); }),
+        list_fonds_statiques.end());
 
     list_tirs_bb.erase(std::remove_if(list_tirs_bb.begin(),
                                       list_tirs_bb.end(),
@@ -3429,28 +3424,16 @@ void Game::updateVehicules() {
 //-----------------------------------------------------------------------------
 
 void Game::updateFondsStatiques() {
-    Sprite* pl;
-
-    list_fonds_statiques.start();
-
-    while (!list_fonds_statiques.fin()) {
-        pl = (Sprite*)list_fonds_statiques.info();
+    for (auto& pl : list_fonds_statiques) {
         pl->update();
-        list_fonds_statiques.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawFondsStatiques() {
-    Sprite* pl;
-
-    list_fonds_statiques.start();
-
-    while (!list_fonds_statiques.fin()) {
-        pl = (Sprite*)list_fonds_statiques.info();
+    for (auto& pl : list_fonds_statiques) {
         pl->affiche();
-        list_fonds_statiques.suivant();
     }
 }
 
