@@ -135,7 +135,8 @@ extern std::vector<std::unique_ptr<Explosion>> list_impacts;
 class Vehicule;
 extern std::vector<std::unique_ptr<Vehicule>> list_vehicules;
 
-extern SuperListe	list_event_endormis;
+class Event;
+extern std::vector<std::unique_ptr<Event>> list_event_endormis;
 extern SuperListe	list_event;
 
 extern SuperListe	list_ennemis;

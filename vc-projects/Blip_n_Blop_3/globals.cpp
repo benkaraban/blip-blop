@@ -37,6 +37,7 @@
 #include "tir_bb_vache.h"
 #include "explosion.h"
 #include "vehicule.h"
+#include "event.h"
 
 #include "ben_debug.h"
 
@@ -108,7 +109,7 @@ std::vector<std::unique_ptr<Explosion>> list_impacts;
 
 std::vector<std::unique_ptr<Vehicule>> list_vehicules;
 
-SuperListe	list_event_endormis;
+std::vector<std::unique_ptr<Event>> list_event_endormis;
 SuperListe	list_event;
 
 SuperListe	list_ennemis;

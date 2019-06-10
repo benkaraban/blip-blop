@@ -751,23 +751,6 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     // Charge les évenements
     //
     FICEVENT ficevent;
-    EventEnnemi* event_ennemi;
-    EventGenEnnemi* event_gennemi;
-    EventLock* event_lock;
-    EventScrollSpeed* event_scroll_speed;
-    EventSetFlag* event_set_flag;
-    EventHoldFire* event_hold_fire;
-    EventGenBonus* event_gen_bonus;
-    EventTexte* event_texte;
-    EventFondAnime* event_fond_anime;
-    EventPremierPlan* event_pplan;
-    EventRPG* event_rpg;
-    EventMusic* event_music;
-    EventMiFond* event_mi_fond;
-    EventMeteo* event_meteo;
-    EventBonus* event_bonus;
-    EventVehicule* event_vehicule;
-    EventSon* event_son;
     int nb_events;
 
     _read(fic, &nb_events, sizeof(nb_events));
@@ -776,8 +759,8 @@ bool Game::chargeNiveau(const char* nom_niveau) {
         _read(fic, &ficevent, sizeof(ficevent));
 
         switch (ficevent.event_id) {
-            case EVENTID_ENNEMI:
-                event_ennemi = new EventEnnemi();
+            case EVENTID_ENNEMI: {
+                auto event_ennemi = std::make_unique<EventEnnemi>();
 
                 event_ennemi->x_activation = ficevent.x_activation;
                 event_ennemi->id_ennemi = ficevent.id;
@@ -785,11 +768,12 @@ bool Game::chargeNiveau(const char* nom_niveau) {
                 event_ennemi->y = ficevent.y;
                 event_ennemi->sens = ficevent.sens;
 
-                list_event_endormis.ajoute((void*)event_ennemi);
+                list_event_endormis.push_back(std::move(event_ennemi));
                 break;
+            }
 
-            case EVENTID_ENNEMI_GENERATOR:
-                event_gennemi = new EventGenEnnemi();
+            case EVENTID_ENNEMI_GENERATOR: {
+                auto event_gennemi = std::make_unique<EventGenEnnemi>();
 
                 event_gennemi->x_activation = ficevent.x_activation;
                 event_gennemi->id_ennemi = ficevent.id;
@@ -800,61 +784,67 @@ bool Game::chargeNiveau(const char* nom_niveau) {
                 event_gennemi->periode = ficevent.periode;
                 event_gennemi->tmp = ficevent.tmp;
 
-                list_event_endormis.ajoute((void*)event_gennemi);
+                list_event_endormis.push_back(std::move(event_gennemi));
                 break;
+            }
 
-            case EVENTID_LOCK:
-                event_lock = new EventLock();
+            case EVENTID_LOCK: {
+                auto event_lock = std::make_unique<EventLock>();
 
                 event_lock->x_activation = ficevent.x_activation;
                 event_lock->cond = ficevent.cond;
                 event_lock->flag = ficevent.flag;
                 event_lock->val = ficevent.val;
 
-                list_event_endormis.ajoute((void*)event_lock);
+                list_event_endormis.push_back(std::move(event_lock));
                 break;
+            }
 
-            case EVENTID_FORCE_SCROLL:
-                event_scroll_speed = new EventScrollSpeed();
+            case EVENTID_FORCE_SCROLL: {
+                auto event_scroll_speed = std::make_unique<EventScrollSpeed>();
 
                 event_scroll_speed->x_activation = ficevent.x_activation;
                 event_scroll_speed->speed = ficevent.speed;
 
-                list_event_endormis.ajoute((void*)event_scroll_speed);
+                list_event_endormis.push_back(std::move(event_scroll_speed));
                 break;
+            }
 
-            case EVENTID_FLAG:
-                event_set_flag = new EventSetFlag();
+            case EVENTID_FLAG: {
+                auto event_set_flag = std::make_unique<EventSetFlag>();
 
                 event_set_flag->x_activation = ficevent.x_activation;
                 event_set_flag->flag = ficevent.flag;
                 event_set_flag->val = ficevent.val;
 
-                list_event_endormis.ajoute((void*)event_set_flag);
+                list_event_endormis.push_back(std::move(event_set_flag));
                 break;
+            }
 
-            case EVENTID_HOLD_FIRE:
-                event_hold_fire = new EventHoldFire();
+            case EVENTID_HOLD_FIRE: {
+                auto event_hold_fire = std::make_unique<EventHoldFire>();
 
                 event_hold_fire->x_activation = ficevent.x_activation;
                 event_hold_fire->flag = ficevent.flag;
                 event_hold_fire->val = ficevent.val;
 
-                list_event_endormis.ajoute((void*)event_hold_fire);
+                list_event_endormis.push_back(std::move(event_hold_fire));
                 break;
+            }
 
-            case EVENTID_BONUS_GENERATOR:
-                event_gen_bonus = new EventGenBonus();
+            case EVENTID_BONUS_GENERATOR: {
+                auto event_gen_bonus = std::make_unique<EventGenBonus>();
 
                 event_gen_bonus->x_activation = ficevent.x_activation;
                 event_gen_bonus->type = ficevent.id;
                 event_gen_bonus->periode = ficevent.periode;
 
-                list_event_endormis.ajoute((void*)event_gen_bonus);
+                list_event_endormis.push_back(std::move(event_gen_bonus));
                 break;
+            }
 
-            case EVENTID_TEXT:
-                event_texte = new EventTexte();
+            case EVENTID_TEXT: {
+                auto event_texte = std::make_unique<EventTexte>();
 
                 event_texte->x_activation = ficevent.x_activation;
                 event_texte->ntxt = ficevent.n_txt;
@@ -862,44 +852,48 @@ bool Game::chargeNiveau(const char* nom_niveau) {
                 event_texte->flag = ficevent.flag;
                 event_texte->val = ficevent.val;
 
-                list_event_endormis.ajoute((void*)event_texte);
+                list_event_endormis.push_back(std::move(event_texte));
                 break;
+            }
 
-            case EVENTID_FOND_ANIME:
-                event_fond_anime = new EventFondAnime();
+            case EVENTID_FOND_ANIME: {
+                auto event_fond_anime = std::make_unique<EventFondAnime>();
 
                 event_fond_anime->x_activation = ficevent.x_activation;
                 event_fond_anime->id_fond = ficevent.id;
                 event_fond_anime->x = ficevent.x;
                 event_fond_anime->y = ficevent.y;
 
-                list_event_endormis.ajoute((void*)event_fond_anime);
+                list_event_endormis.push_back(std::move(event_fond_anime));
                 break;
+            }
 
-            case EVENTID_MIFOND:
-                event_mi_fond = new EventMiFond();
+            case EVENTID_MIFOND: {
+                auto event_mi_fond = std::make_unique<EventMiFond>();
 
                 event_mi_fond->x_activation = ficevent.x_activation;
                 event_mi_fond->id = ficevent.id;
                 event_mi_fond->x = ficevent.x;
                 event_mi_fond->y = ficevent.y;
 
-                list_event_endormis.ajoute((void*)event_mi_fond);
+                list_event_endormis.push_back(std::move(event_mi_fond));
                 break;
+            }
 
-            case EVENTID_PREMIER_PLAN:
-                event_pplan = new EventPremierPlan();
+            case EVENTID_PREMIER_PLAN: {
+                auto event_pplan = std::make_unique<EventPremierPlan>();
 
                 event_pplan->id_fond = ficevent.id;
                 event_pplan->x_activation = ficevent.x_activation;
                 event_pplan->x = ficevent.x;
                 event_pplan->y = ficevent.y;
 
-                list_event_endormis.ajoute((void*)event_pplan);
+                list_event_endormis.push_back(std::move(event_pplan));
                 break;
+            }
 
-            case EVENTID_RPG:
-                event_rpg = new EventRPG();
+            case EVENTID_RPG: {
+                auto event_rpg = std::make_unique<EventRPG>();
 
                 event_rpg->x_activation = ficevent.x_activation;
                 event_rpg->num = ficevent.id;
@@ -907,57 +901,63 @@ bool Game::chargeNiveau(const char* nom_niveau) {
                 event_rpg->flag = ficevent.flag;
                 event_rpg->val = ficevent.val;
 
-                list_event_endormis.ajoute((void*)event_rpg);
+                list_event_endormis.push_back(std::move(event_rpg));
                 break;
+            }
 
-            case EVENTID_MUSIC:
-                event_music = new EventMusic();
+            case EVENTID_MUSIC: {
+                auto event_music = std::make_unique<EventMusic>();
 
                 event_music->x_activation = ficevent.x_activation;
                 event_music->id = ficevent.id;
                 event_music->play = ficevent.play;
 
-                list_event_endormis.ajoute((void*)event_music);
+                list_event_endormis.push_back(std::move(event_music));
                 break;
+            }
 
-            case EVENTID_METEO:
-                event_meteo = new EventMeteo();
+            case EVENTID_METEO: {
+                auto event_meteo = std::make_unique<EventMeteo>();
 
                 event_meteo->x_activation = ficevent.x_activation;
                 event_meteo->intensite = ficevent.intensite;
                 event_meteo->type = ficevent.id;
 
-                list_event_endormis.ajoute((void*)event_meteo);
+                list_event_endormis.push_back(std::move(event_meteo));
                 break;
+            }
 
-            case EVENTID_BONUS:
-                event_bonus = new EventBonus();
+            case EVENTID_BONUS: {
+                auto event_bonus = std::make_unique<EventBonus>();
                 event_bonus->x_activation = ficevent.x_activation;
                 event_bonus->type = ficevent.id;
                 event_bonus->x = ficevent.x;
                 event_bonus->y = ficevent.y;
 
-                list_event_endormis.ajoute((void*)event_bonus);
+                list_event_endormis.push_back(std::move(event_bonus));
                 break;
+            }
 
-            case EVENTID_TURRET:
-                event_vehicule = new EventVehicule();
+            case EVENTID_TURRET: {
+                auto event_vehicule = std::make_unique<EventVehicule>();
                 event_vehicule->x_activation = ficevent.x_activation;
                 event_vehicule->id_vehicule = ficevent.id;
                 event_vehicule->x = ficevent.x;
                 event_vehicule->y = ficevent.y;
                 event_vehicule->dir = ficevent.dir;
 
-                list_event_endormis.ajoute((void*)event_vehicule);
+                list_event_endormis.push_back(std::move(event_vehicule));
                 break;
+            }
 
-            case EVENTID_SON:
-                event_son = new EventSon();
+            case EVENTID_SON: {
+                auto event_son = std::make_unique<EventSon>();
                 event_son->x_activation = ficevent.x_activation;
                 event_son->nsnd = ficevent.id;
 
-                list_event_endormis.ajoute((void*)event_son);
+                list_event_endormis.push_back(std::move(event_son));
                 break;
+            }
         }
     }
 
@@ -1006,7 +1006,7 @@ void Game::releaseNiveau() {
     pbk_niveau.close();
     pbk_rpg.close();
 
-    list_event_endormis.vide();
+    list_event_endormis.clear();
     list_event.vide();
 
     list_tirs_bb.clear();
@@ -1602,22 +1602,23 @@ void Game::updateEvents() {
     // Les évenements de la liste "endormie" sont mis dans la liste "en attente"
     // quand ils sont sur le point d'être activés
     //
-    if (!list_event_endormis.estVide()) {
-        list_event_endormis.start();
-        event = (Event*)list_event_endormis.info();
-
-        while (!list_event_endormis.estVide() && !list_event_endormis.fin() &&
-               event->aReveiller()) {
-            list_event.ajoute((void*)event);
-            list_event_endormis.supprimePorc();  // Porc bcoz l'évenement est
-                                                 // transféré, pas détruit
-
-            if (!list_event_endormis.estVide()) {
-                list_event_endormis.start();
-                event = (Event*)list_event_endormis.info();
-            }
+    // FIXME: These reverse iterators are WEIRD. Why are the events coming
+    // in reverse order? This feels so backward.
+    for (auto it = list_event_endormis.rbegin();
+         it != list_event_endormis.rend();
+         ++it) {
+        auto& event = *it;
+        if (!event->aReveiller()) {
+            break;
         }
+        list_event.ajoute(event.release());  // FIXME: std::move
     }
+
+    list_event_endormis.erase(
+        std::remove_if(list_event_endormis.begin(),
+                       list_event_endormis.end(),
+                       [](auto& ev) { return !ev.get(); }),
+        list_event_endormis.end());
 
     // Si les évenements "en attente" doivent être activés, on les active
     //
@@ -3529,7 +3530,7 @@ void Game::go() {
 void Game::drawVehicules() {
     Sprite* pl;
 
-    for (auto& v:list_vehicules) {
+    for (auto& v : list_vehicules) {
         v->affiche();
     }
 }
@@ -3539,7 +3540,7 @@ void Game::drawVehicules() {
 void Game::updateVehicules() {
     Sprite* pl;
 
-    for (auto& v:list_vehicules) {
+    for (auto& v : list_vehicules) {
         v->update();
     }
 }
