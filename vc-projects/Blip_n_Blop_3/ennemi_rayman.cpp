@@ -151,7 +151,7 @@ void EnnemiRayman::onAvance()
 			} else if ((pv > PV_CRITIQUE) && (x - offset >= 80) && (x - offset <= 600)) {
 
 				if (poing1) {
-					Sprite * s;
+					Sprite* s;
 					//faire gicler le premier poing
 					if (x - offset > 320) {
 						s = new MorceauRayman(230, -1 - rand() % 3, -3 - rand() % 3);

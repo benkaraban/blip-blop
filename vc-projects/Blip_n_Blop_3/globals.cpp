@@ -44,6 +44,7 @@
 #include "gen_bonus.h"
 #include "sprite.h"
 #include "texte_cool.h"
+#include "giclure.h"
 
 #include "ben_debug.h"
 
@@ -133,7 +134,7 @@ std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 
 std::vector<std::unique_ptr<Sprite>> list_giclures;
-SuperListe	list_gore;
+std::vector<std::unique_ptr<Sprite>> list_gore;
 
 SuperListe	list_meteo;
 SuperListe	list_bulles;

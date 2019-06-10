@@ -531,9 +531,8 @@ void EnnemiMariotapette::tombe_mario()
 
 void EnnemiMariotapette::estTouche(Tir * tir)
 {
-	Sprite * s;
-
 	for (int i = 0; i < 4 ; i++) {
+                GoreGiclure* s;
 		if ((tir->dir >= 2) && (tir->dir <= 6)) {
 			s = new GoreGiclure(rand() % 6 , -2 - rand() % 6);
 		} else if ((tir->dir >= 10) && (tir->dir <= 14)) {

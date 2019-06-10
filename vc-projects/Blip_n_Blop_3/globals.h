@@ -160,8 +160,10 @@ extern std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 class TexteCool;
 extern std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 
+// FIXME: should prolly be a list of Giclure, but GoreGiclure doesn't inherit
+// Giclure
 extern std::vector<std::unique_ptr<Sprite>> list_giclures;
-extern SuperListe	list_gore;
+extern std::vector<std::unique_ptr<Sprite>> list_gore;
 
 extern SuperListe	list_meteo;
 extern SuperListe	list_bulles;

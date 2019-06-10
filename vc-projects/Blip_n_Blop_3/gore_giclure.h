@@ -28,6 +28,7 @@
 //		Définition de la classe GoreGiclure
 //-----------------------------------------------------------------------------
 
+// FIXME: shouldn't it inherit Giclure?
 class GoreGiclure : public Sprite
 {
 public:

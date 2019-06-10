@@ -102,7 +102,7 @@ void EnnemiBisouCoeur::onMeure()
 			else
 				tete->x = x - 11;
 
-			list_gore.ajoute((void*) tete);
+			list_gore.emplace_back(tete);
 		}
 	}
 

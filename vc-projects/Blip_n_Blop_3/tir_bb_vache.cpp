@@ -49,7 +49,7 @@ void TirBBVache::update()
 			s = new GoreGiclure(rand() % 11 - 5, -2 - rand() % 6);
 			s->x = x + rand() % 11 - 5;
 			s->y = y - rand() % 30 - 10;
-			list_gore.ajoute((void*) s);
+			list_gore.emplace_back(s);
 		}
 
 		sbk_misc.play(11);

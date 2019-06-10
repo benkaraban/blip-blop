@@ -65,7 +65,7 @@ void EnnemiBisouEtoile::onMeureEntier()
 		pieds->dir = dir;
 		pieds->y = y;
 
-		list_gore.ajoute((void*) pieds);
+		list_gore.emplace_back(pieds);
 
 		y -= 19;
 		dy = 0;

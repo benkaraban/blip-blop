@@ -366,10 +366,9 @@ void EnnemiLuigi::onMeure()
 			a_detruire = true;
 
 		} else {
-			Sprite * s;
 			int i;
 			for (i = 0; i < 16 ; i++) {
-				s = new GoreGiclure(-rand() % 10 - 2, -1 - rand() % 10);
+				Sprite* s = new GoreGiclure(-rand() % 10 - 2, -1 - rand() % 10);
 				s->x = x + rand() % 20 - 10;
 				s->y = y - rand() % 60 - 10;
 				list_giclures.emplace_back(s);

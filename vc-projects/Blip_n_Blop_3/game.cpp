@@ -1030,7 +1030,7 @@ void Game::releaseNiveau() {
     list_plateformes_mobiles.clear();
 
     list_giclures.clear();
-    list_gore.vide();
+    list_gore.clear();
 
     list_meteo.vide_porc();
     list_bulles.vide();
@@ -1510,16 +1510,10 @@ void Game::cleanLists() {
             list_meteo.suivant();
     }
 
-    list_gore.start();
-
-    while (!list_gore.fin()) {
-        s = (Sprite*)list_gore.info();
-
-        if (s->aDetruire())
-            list_gore.supprime();
-        else
-            list_gore.suivant();
-    }
+    list_gore.erase(std::remove_if(list_gore.begin(),
+                                   list_gore.end(),
+                                   [](auto& e) { return e->aDetruire(); }),
+                    list_gore.end());
 
     list_plateformes_mobiles.erase(
         std::remove_if(list_plateformes_mobiles.begin(),
@@ -3016,28 +3010,16 @@ void Game::drawLoading() {
 //-----------------------------------------------------------------------------
 
 void Game::updateGore() {
-    Sprite* t;
-
-    list_gore.start();
-
-    while (!list_gore.fin()) {
-        t = (Sprite*)list_gore.info();
+    for (auto& t : list_gore) {
         t->update();
-        list_gore.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawGore() {
-    Sprite* t;
-
-    list_gore.start();
-
-    while (!list_gore.fin()) {
-        t = (Sprite*)list_gore.info();
+    for (auto& t : list_gore) {
         t->affiche();
-        list_gore.suivant();
     }
 }
 
