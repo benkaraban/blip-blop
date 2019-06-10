@@ -56,7 +56,7 @@ void MorceauSnorkyBaseTeteEntiere::update()
 		s->y = y - 26;
 
 
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 	}
 
 	if (etape == 3 && ss_etape == 0) {
@@ -74,7 +74,7 @@ void MorceauSnorkyBaseTeteEntiere::update()
 		s->y = y + 10;
 
 
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 	}
 
 	if (etape == 6) {

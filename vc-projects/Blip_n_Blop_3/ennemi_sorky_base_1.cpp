@@ -129,7 +129,7 @@ void EnnemiSnorkyBase1::onMeure()
 		s->y = y - 22;
 		s->x = x;
 
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		dy = 0;
 	}

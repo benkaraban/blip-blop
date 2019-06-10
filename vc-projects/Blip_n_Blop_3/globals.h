@@ -160,7 +160,7 @@ extern std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 class TexteCool;
 extern std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 
-extern SuperListe	list_giclures;
+extern std::vector<std::unique_ptr<Sprite>> list_giclures;
 extern SuperListe	list_gore;
 
 extern SuperListe	list_meteo;

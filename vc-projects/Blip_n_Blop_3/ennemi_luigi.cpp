@@ -372,7 +372,7 @@ void EnnemiLuigi::onMeure()
 				s = new GoreGiclure(-rand() % 10 - 2, -1 - rand() % 10);
 				s->x = x + rand() % 20 - 10;
 				s->y = y - rand() % 60 - 10;
-				list_giclures.ajoute((void*) s);
+				list_giclures.emplace_back(s);
 			}
 		}
 	}
@@ -860,7 +860,7 @@ void EnnemiLuigi::estTouche(Tir * tir)
 		s->x = x + rand() % 11 - 5;
 		s->y = y - rand() % 30 - 10;
 
-		list_giclures.ajoute((void*) s);
+                list_giclures.emplace_back(s);
 	}
 
 	if ((tir->dir >= 2) && (tir->dir <= 6)) {

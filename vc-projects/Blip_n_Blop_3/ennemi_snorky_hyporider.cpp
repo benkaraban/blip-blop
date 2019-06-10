@@ -115,7 +115,7 @@ void EnnemiSnorkyHyporider::onMeure()
 		s->y = y;
 		s->x = x;
 
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		sbk_niveau.play(8);
 		dy = 0;

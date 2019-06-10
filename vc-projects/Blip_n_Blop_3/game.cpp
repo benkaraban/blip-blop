@@ -1029,7 +1029,7 @@ void Game::releaseNiveau() {
     list_premiers_plans.clear();
     list_plateformes_mobiles.clear();
 
-    list_giclures.vide();
+    list_giclures.clear();
     list_gore.vide();
 
     list_meteo.vide_porc();
@@ -1488,16 +1488,10 @@ void Game::cleanLists() {
                        [](auto& e) { return e->aDetruire(); }),
         list_premiers_plans.end());
 
-    list_giclures.start();
-
-    while (!list_giclures.fin()) {
-        s = (Sprite*)list_giclures.info();
-
-        if (s->aDetruire())
-            list_giclures.supprime();
-        else
-            list_giclures.suivant();
-    }
+    list_giclures.erase(std::remove_if(list_giclures.begin(),
+                                       list_giclures.end(),
+                                       [](auto& e) { return e->aDetruire(); }),
+                        list_giclures.end());
 
     list_tirs_ennemis.erase(
         std::remove_if(list_tirs_ennemis.begin(),
@@ -2013,28 +2007,16 @@ void Game::drawPremiersPlans() {
 //-----------------------------------------------------------------------------
 
 void Game::updateGiclures() {
-    Sprite* t;
-
-    list_giclures.start();
-
-    while (!list_giclures.fin()) {
-        t = (Sprite*)list_giclures.info();
+    for (auto& t : list_giclures) {
         t->update();
-        list_giclures.suivant();
     }
 }
 
 //-----------------------------------------------------------------------------
 
 void Game::drawGiclures() {
-    Sprite* t;
-
-    list_giclures.start();
-
-    while (!list_giclures.fin()) {
-        t = (Sprite*)list_giclures.info();
+    for (auto& t : list_giclures) {
         t->affiche();
-        list_giclures.suivant();
     }
 }
 

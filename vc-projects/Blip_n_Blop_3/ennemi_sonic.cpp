@@ -728,42 +728,42 @@ void EnnemiSonic::onBalancering()
 		s = new MorceauSonicRing(1 * mx , 10 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(3 * mx , 9 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(4 * mx , 7 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(5 * mx , 6 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(6 * mx , 5 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(7 * mx, 4 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(9 * mx , 3 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 
 		s = new MorceauSonicRing(10 * mx, 1 * my);
 		s->x = x;
 		s->y = y - 40;
-		list_giclures.ajoute((void*) s);
+		list_giclures.emplace_back(s);
 	}
 
 }

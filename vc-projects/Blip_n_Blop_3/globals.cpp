@@ -132,7 +132,7 @@ std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
 std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
 
-SuperListe	list_giclures;
+std::vector<std::unique_ptr<Sprite>> list_giclures;
 SuperListe	list_gore;
 
 SuperListe	list_meteo;
