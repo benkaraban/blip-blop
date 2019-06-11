@@ -1480,8 +1480,6 @@ void Game::manageCollisions() {
 
     // Collisions Joueurs / Bonus
     //
-    Bonus* bonus;
-
     for (auto& bonus : list_bonus) {
         for (Couille* couille : list_joueurs) {
             if (bonus->collision(couille)) {
@@ -1493,12 +1491,10 @@ void Game::manageCollisions() {
     if (wait_for_victory <= 0) {
         // Collisions Joueurs / Ennemis
         //
-        Ennemi* ennemis;
-
         for (auto& ennemi : list_ennemis) {
             for (Couille* joueur : list_joueurs) {
-                if (ennemis->collision(joueur))
-                    joueur->estTouche(ennemis->degats());
+                if (ennemi->collision(joueur))
+                    joueur->estTouche(ennemi->degats());
             }
         }
 
