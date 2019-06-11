@@ -45,10 +45,6 @@ public:
 	{
 		return tab[n];
 	};
-	inline Sound ** getTab(int n) const
-	{
-		return tab;
-	};
 	inline int getSize() const
 	{
 		return nb_snd;

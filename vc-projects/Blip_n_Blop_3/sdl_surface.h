@@ -46,7 +46,7 @@ namespace SDL
 		inline SDL_Surface *Get(){ return surface; };
 		inline void BltFast(int x, int y, SDL::Surface *surf /*This is the Source Surface! Damn, DD!*/, RECT *r, int flags=0)
 		{
-
+                        (void)flags;
 			/*static int test_i = 1;
 			char buf[128];
 			sprintf(buf, "test/%d.bmp", test_i);
@@ -71,7 +71,6 @@ namespace SDL
 				SDL_Surface*    dst,
 				SDL_Rect*       dstrect)*/
 				int ret=SDL_BlitSurface(surf->Get(), &rect, surface, &position);
-				unsigned long* px = (unsigned long*)surf->Get()->pixels;
 				if (ret != 0)
 				{
 					debug <<"Errore SDL_BlitSurface in sdl_surface.h - "<< SDL_GetError() << "\n";
@@ -89,6 +88,7 @@ namespace SDL
 
 		inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, int flags = 0, DDBLTFX *pad = 0)
 		{
+                        (void)flags;
 			/*
 			TODO: IF flags contains DDBLT_COLORFILL then i must fill the surface with the color of
 			*/
@@ -207,8 +207,9 @@ namespace SDL
 			return true;
 		}
 
-		bool Lock(SDL::SurfaceInfo* info, int flags, void* unused)
+		bool Lock(SDL::SurfaceInfo* info, int flags, void*)
 		{
+                        (void)flags;
 			if (SDL_LockSurface(surface) != 0) {
 				return false;
 			}

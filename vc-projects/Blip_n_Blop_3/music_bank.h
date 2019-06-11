@@ -51,7 +51,7 @@ class Mp3Music : public Music {
     ~Mp3Music() override { FSOUND_Stream_Close(mp3_); }
     void Play() const override { FSOUND_Stream_Play(0, mp3_); }
     void Stop() const override { FSOUND_Stream_Stop(mp3_); }
-    void set_volume(int v) { debug << "Mp3Music::set_volume is a noop\n"; }
+    void set_volume(int) { debug << "Mp3Music::set_volume is a noop\n"; }
 
    private:
     FSOUND_STREAM* mp3_;

@@ -20,8 +20,6 @@ class MathsInit {
         }
 
         // Précalcul des racines carrées
-        int nbRoot = 0xFFFF;
-
         for (int i = 0; i < 0xFFFF; i++) {
             bSqr[i] = char(sqrt(i));
         }
