@@ -1177,7 +1177,8 @@ void Game::drawAll(bool flip) {
     DrawCollection(list_meteo);
     DrawCollection(list_premiers_plans);
 
-    if (type_meteo == METEO_DEFORME && intensite_meteo != 0) drawDeformation();
+    // if (type_meteo == METEO_DEFORME && intensite_meteo != 0)
+    // drawDeformation();
 
     // FIXME: Disable it for now as it works unproperly at least on Linux
     // drawTremblements();
