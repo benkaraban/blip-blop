@@ -1179,7 +1179,8 @@ void Game::drawAll(bool flip) {
 
     if (type_meteo == METEO_DEFORME && intensite_meteo != 0) drawDeformation();
 
-    drawTremblements();
+    // FIXME: Disable it for now as it works unproperly at least on Linux
+    // drawTremblements();
     drawHUB();
     drawTimer();
     drawFlecheGo();
