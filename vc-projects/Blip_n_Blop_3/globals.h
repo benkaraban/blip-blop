@@ -17,6 +17,8 @@
 
 #pragma once
 
+#include <list>
+
 //-----------------------------------------------------------------------------
 //		Headers
 //-----------------------------------------------------------------------------
@@ -122,54 +124,56 @@ extern ControlP2	ctrlP2;
 //		Les listes
 //-----------------------------------------------------------------------------
 
+// FIXME: They're all lists instead of ideally vectors because we sometimes
+// append during iterations and relocating is then STRICTLY forbidden
 class Couille;
 extern std::vector<Couille*> list_joueurs; // FIXME: make it owning?
 class TirBB;
-extern std::vector<TirBB*> list_tirs_bb;
+extern std::list<TirBB*> list_tirs_bb;
 class TirBBVache;
-extern std::vector<std::unique_ptr<TirBBVache>> list_cow;
+extern std::list<std::unique_ptr<TirBBVache>> list_cow;
 class Explosion;
 // FIXME: should be owning by value but can't, because of circular deps
-extern std::vector<std::unique_ptr<Explosion>> list_impacts; 
+extern std::list<std::unique_ptr<Explosion>> list_impacts; 
 
 class Vehicule;
-extern std::vector<std::unique_ptr<Vehicule>> list_vehicules;
+extern std::list<std::unique_ptr<Vehicule>> list_vehicules;
 
 class Event;
-extern std::vector<std::unique_ptr<Event>> list_event_endormis;
-extern std::vector<std::unique_ptr<Event>> list_event;
+extern std::list<std::unique_ptr<Event>> list_event_endormis;
+extern std::list<std::unique_ptr<Event>> list_event;
 
 class Ennemi;
-extern std::vector<std::unique_ptr<Ennemi>> list_ennemis;
+extern std::list<std::unique_ptr<Ennemi>> list_ennemis;
 class Tir;
-extern std::vector<std::unique_ptr<Tir>> list_tirs_ennemis;
+extern std::list<std::unique_ptr<Tir>> list_tirs_ennemis;
 class GenEnnemi;
-extern std::vector<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
+extern std::list<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
 class Bonus;
-extern std::vector<std::unique_ptr<Bonus>> list_bonus;
+extern std::list<std::unique_ptr<Bonus>> list_bonus;
 class GenBonus;
-extern std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
+extern std::list<std::unique_ptr<GenBonus>> list_gen_bonus;
 
 class Sprite;
-extern std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
-extern std::vector<std::unique_ptr<Sprite>> list_fonds_statiques;
-extern std::vector<std::unique_ptr<Sprite>> list_premiers_plans;
-extern std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
+extern std::list<std::unique_ptr<Sprite>> list_fonds_animes;
+extern std::list<std::unique_ptr<Sprite>> list_fonds_statiques;
+extern std::list<std::unique_ptr<Sprite>> list_premiers_plans;
+extern std::list<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
 class TexteCool;
-extern std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
+extern std::list<std::unique_ptr<TexteCool>> list_txt_cool;
 
 // FIXME: should prolly be a list of Giclure, but GoreGiclure doesn't inherit
 // Giclure
-extern std::vector<std::unique_ptr<Sprite>> list_giclures;
+extern std::list<std::unique_ptr<Sprite>> list_giclures;
 // FIXME all things put insite list_gore don't have a common base aside from
 // Sprite
-extern std::vector<std::unique_ptr<Sprite>> list_gore;
+extern std::list<std::unique_ptr<Sprite>> list_gore;
 
-extern std::vector<Sprite*> list_meteo;
+extern std::list<Sprite*> list_meteo;
 class Bulle;
-extern std::vector<std::unique_ptr<Bulle>> list_bulles;
+extern std::list<std::unique_ptr<Bulle>> list_bulles;
 
 
 //-----------------------------------------------------------------------------

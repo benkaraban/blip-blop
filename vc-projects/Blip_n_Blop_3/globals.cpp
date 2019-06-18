@@ -20,6 +20,7 @@
 //-----------------------------------------------------------------------------
 
 #include <vector>
+#include <list>
 #include <memory>
 
 // #include <ddraw.h>
@@ -111,34 +112,34 @@ ControlP2	ctrlP2;
 //-----------------------------------------------------------------------------
 
 std::vector<Couille*> list_joueurs; // FIXME: make it owning?
-std::vector<TirBB*> list_tirs_bb;
-std::vector<std::unique_ptr<TirBBVache>> list_cow;
-std::vector<std::unique_ptr<Explosion>> list_impacts;
+std::list<TirBB*> list_tirs_bb;
+std::list<std::unique_ptr<TirBBVache>> list_cow;
+std::list<std::unique_ptr<Explosion>> list_impacts;
 
-std::vector<std::unique_ptr<Vehicule>> list_vehicules;
+std::list<std::unique_ptr<Vehicule>> list_vehicules;
 
-std::vector<std::unique_ptr<Event>> list_event_endormis;
-std::vector<std::unique_ptr<Event>> list_event;
+std::list<std::unique_ptr<Event>> list_event_endormis;
+std::list<std::unique_ptr<Event>> list_event;
 
-std::vector<std::unique_ptr<Ennemi>> list_ennemis;
-std::vector<std::unique_ptr<Tir>> list_tirs_ennemis;
-std::vector<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
+std::list<std::unique_ptr<Ennemi>> list_ennemis;
+std::list<std::unique_ptr<Tir>> list_tirs_ennemis;
+std::list<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
-std::vector<std::unique_ptr<Bonus>> list_bonus;
-std::vector<std::unique_ptr<GenBonus>> list_gen_bonus;
+std::list<std::unique_ptr<Bonus>> list_bonus;
+std::list<std::unique_ptr<GenBonus>> list_gen_bonus;
 
-std::vector<std::unique_ptr<Sprite>> list_fonds_animes;
-std::vector<std::unique_ptr<Sprite>> list_fonds_statiques;
-std::vector<std::unique_ptr<Sprite>> list_premiers_plans;
-std::vector<std::unique_ptr<Sprite>> list_plateformes_mobiles;
+std::list<std::unique_ptr<Sprite>> list_fonds_animes;
+std::list<std::unique_ptr<Sprite>> list_fonds_statiques;
+std::list<std::unique_ptr<Sprite>> list_premiers_plans;
+std::list<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
-std::vector<std::unique_ptr<TexteCool>> list_txt_cool;
+std::list<std::unique_ptr<TexteCool>> list_txt_cool;
 
-std::vector<std::unique_ptr<Sprite>> list_giclures;
-std::vector<std::unique_ptr<Sprite>> list_gore;
+std::list<std::unique_ptr<Sprite>> list_giclures;
+std::list<std::unique_ptr<Sprite>> list_gore;
 
-std::vector<Sprite*> list_meteo;
-std::vector<std::unique_ptr<Bulle>> list_bulles;
+std::list<Sprite*> list_meteo;
+std::list<std::unique_ptr<Bulle>> list_bulles;
 
 
 //-----------------------------------------------------------------------------
