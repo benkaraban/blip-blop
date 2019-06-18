@@ -1177,8 +1177,7 @@ void Game::drawAll(bool flip) {
     DrawCollection(list_meteo);
     DrawCollection(list_premiers_plans);
 
-    // if (type_meteo == METEO_DEFORME && intensite_meteo != 0)
-    // drawDeformation();
+    if (type_meteo == METEO_DEFORME && intensite_meteo != 0) drawDeformation();
 
     // FIXME: Disable it for now as it works unproperly at least on Linux
     // drawTremblements();
@@ -2491,14 +2490,23 @@ void Game::drawDeformation() {
 
         x = xt = sini(5, phi);
 
+        // FIXME: This is absolutely wrong. We are copying a memory location to
+        // another that is overlapping (moving a line a few pixels). Depending
+        // on the order of overlap, we might be (and are) overwriting the data
+        // we're copying from and screwing everything up.  A temp satisfying
+        // fix would involve allocating a third surface to safely copy or doing
+        // it ourselves by locking the surface into host memory. A long term
+        // and much better fix is using pixel shaders.
+
         if (x < 0) {
             r.left = -x;
             r.right = 640;
             x = 0;
-        } else {
+        } /*else {
+            // I'm overwriting my own mem!
             r.left = 0;
             r.right = 640 - x;
-        }
+        }*/
 
         backSurface->BltFast(
             x, y, backSurface, &r, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
