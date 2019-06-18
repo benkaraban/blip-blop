@@ -171,7 +171,8 @@ Couille::Couille() : sauti(0), ctrl(NULL), id_arme(ID_M16), tire(false), etape_r
 	nb_life(5), nb_cow_bomb(0), time_down(0), wait_cow_bomb(0),
 	dx_glisse(0), latence_glisse(0), perfect(true), next_m16(0),
 	next_pm(0), next_fusil(0), next_laser(0), next_lf(0), locked_fire(false),
-	fire_lf(false), locked_dir(false), etape_cli(0), inv_cow(false), mod_life(0)
+	fire_lf(false), locked_dir(false), etape_cli(0), inv_cow(false), mod_life(0),
+        etape_bouge_arme(0), fire_laser(0)
 {
 	dir = BBDIR_DROITE;
 	col_on = true;

@@ -99,7 +99,6 @@ protected:
 	int		clip_color[2];
 
 	int		delta_vol;
-	int		back_vol;
 
 
 	// Méthodes

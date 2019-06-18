@@ -112,9 +112,6 @@ void CINEPlayer::updateScene()
 	if (vol < 0)
 		vol = 0;
 
-	if (vol > back_vol)
-		vol = back_vol;
-
 	// Gére l'alpha blending
 	//
 	alpha += delta_alpha;

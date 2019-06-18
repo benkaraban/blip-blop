@@ -27,7 +27,7 @@ class Bonus : public Sprite {
     int phi;
     bool local_phase;
 
-    Bonus() : phi(0){};
+    Bonus() : phi(0), local_phase(0){};
 
     virtual void estPris(Couille* c) {
         a_detruire = true;
