@@ -480,36 +480,6 @@ void CINEPlayer::drawScene()
 	}
 
 
-	/*
-		// Alpha blending
-		//
-
-		if ( alpha > 0)
-		{
-			if ( alpha == 255) // 100% surface 2
-			{
-				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
-			}
-			else // Mélange
-			{
-				r.top	= 0;
-				r.left	= 0;
-				r.bottom= 480;
-				r.right = 640;
-
-				TransAlphaImproved( back_surf, back_surf, 0, 0, r, alpha, rgb.bpp);
-
-				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
-			}
-		}
-		else // 100% surface 1
-		{
-			back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
-		}
-	*/
-
-
-//	first_surf->Flip(NULL, DDFLIP_WAIT);
 	DDFlip();
 
 	tdraw = LGetTime() - tdraw;

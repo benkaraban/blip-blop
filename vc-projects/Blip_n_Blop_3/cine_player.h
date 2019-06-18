@@ -6,7 +6,6 @@
 #include "music_bank.h"
 #include "picture_bank.h"
 #include "fonte.h"
-#include "alpha_blend.h"
 
 using namespace std;
 
@@ -67,7 +66,6 @@ protected:
 		SDL::Surface * surf1;
 		SDL::Surface * surf2;
 	*/
-	RGBFORMAT		rgb;
 
 	ifstream		fic;
 	char			buffer[BUFFER_SIZE + 1];
