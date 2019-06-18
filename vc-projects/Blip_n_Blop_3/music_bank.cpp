@@ -20,9 +20,7 @@ bool MusicBank::open(const char* file, bool loop) {
     // handled in a proper class instead of a FUCKTON of global variables
     close();
 
-    ifstream f;
-
-    f.open(file, ios::in);
+    std::ifstream f(file, std::ios::in);
 
     if (f.is_open() == 0) {
         debug << "MusicBank::load() -> Impossible d'ouvrir le fichier " << file

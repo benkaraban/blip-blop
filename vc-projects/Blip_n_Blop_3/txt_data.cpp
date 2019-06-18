@@ -27,7 +27,7 @@
 std::vector<std::string> txt_data;
 
 bool loadTxtData(const char* file) {
-    ifstream f(file);
+    std::ifstream f(file);
 
     if (!f.is_open()) {
         return false;
