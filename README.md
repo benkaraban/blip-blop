@@ -5,7 +5,10 @@ features (mainly trying not to lock the game in 640x480, adding a few shaders
 and stuff).
 
 As the code is kinda old, there's a lot of revamping to do, and a lot of
-optimizations done back in the days shouldn't be relevant anymore.
+optimizations done back in the days shouldn't be relevant anymore. The code
+contains a FUCKTON of global variables, to the point where I'm in awe that
+somehow the game works flawlessly. The quantity of global variables declared
+and handled all over the places is truly unmanageable.
 
 As a french, I can work my way through the code, and although I'll be
 translating comments as I skim through it, there are some really funny gems
@@ -40,6 +43,12 @@ and you undeniably got the work done. Congrats and thanks!
   IDK why, the code is exactly the same as the unporked version.
 - `SuperListe::supprime_porc`: removes an element of the list without freeing
   its memory (ie, it's a non-owning list)
+- 'Gère les messages. Eh oui, Windows pue du cul' (Handles messages. Yeah,
+  Windows' ass stinks, nota: Ben Karaban apparently works for MS now)
+- A variable is named 'glorf'.
+- "Gère le scrolling avec le super buffer qui marche bizarrement sur cette
+  merde de GeForce." (Handles scrolling with the awesome buffer that works
+  weirdly on this shitty GeForce)
 
 ## Significant differences
 
@@ -51,7 +60,7 @@ and you undeniably got the work done. Congrats and thanks!
 - Fixed a bug that prevented unix like os from playing. Some level descriptions
   contained path containing backslashes that failed. Now backslashes are
   handled.
-- MusicBank 
+- MusicBank has been reworked a lot
 
 # Blip'n Blop
 This is the source code of Blip'n Blop, a free video game for the PC released in 2002. Years after the game got released, some enthusiastic programmers asked us to open source it and here we are!
