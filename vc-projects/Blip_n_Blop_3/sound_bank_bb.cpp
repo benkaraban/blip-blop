@@ -28,12 +28,12 @@ void SoundBankBB::play(int n, int flags)
 	if (!sound_on)
 		return;
 
-	if (n >= nb_snd) {
+	if (n >= tab_.size()) {
 		debug << "Tentative de jouer son " << n << "\n";
 		return;
 	}
 
-	tab[n]->play(flags);
+	tab_[n]->play(flags);
 }
 
 
@@ -42,7 +42,7 @@ void SoundBankBB::setVolume(int n, int vol)
 	if (!sound_on)
 		return;
 
-	tab[n]->setVolume(vol);
+	tab_[n]->setVolume(vol);
 }
 
 
@@ -51,19 +51,14 @@ void SoundBankBB::stop(int n)
 	if (!sound_on)
 		return;
 
-	tab[n]->stop();
+	tab_[n]->stop();
 }
 
 
 bool SoundBankBB::loadSFX(const char * nom_fic)
 {
 	if (!sound_on) {
-		if (nom_f != NULL)
-			delete [] nom_f;
-
-		nom_f = new char[strlen(nom_fic) + 1];
-		strcpy(nom_f, nom_fic);
-
+		filename_ = nom_fic;
 		return true;
 	}
 

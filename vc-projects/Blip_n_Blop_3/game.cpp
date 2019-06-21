@@ -992,8 +992,6 @@ void Game::releaseNiveau() {
         murs_opaques = NULL;
     }
 
-    sbk_niveau.close();
-
     list_event_endormis.clear();
     list_event.clear();
 
@@ -1266,9 +1264,6 @@ void Game::releasePartie() {
     fnt_score_blop.close();
     fnt_ammo.close();
     fnt_ammo_used.close();
-
-    sbk_bb.close();
-    sbk_misc.close();
 
     list_joueurs.clear();
 }

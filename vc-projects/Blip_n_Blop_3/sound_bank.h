@@ -1,66 +1,44 @@
 /******************************************************************
-*
-*
-*		---------------
-*		  SoundBank.h
-*		---------------
-*
-*		Classe SoundBank
-*
-*		Représente un tableau/une banque de sons (Sound).
-*
-*
-*		Prosper / LOADED -   V 0.1 - 16 Juillet 2000
-*
-*
-*
-******************************************************************/
+ *
+ *
+ *		---------------
+ *		  SoundBank.h
+ *		---------------
+ *
+ *		Classe SoundBank
+ *
+ *		Représente un tableau/une banque de sons (Sound).
+ *
+ *
+ *		Prosper / LOADED -   V 0.1 - 16 Juillet 2000
+ *
+ *
+ *
+ ******************************************************************/
 
-#ifndef _SoundBank_
-#define _SoundBank_
+#pragma once
 
-//-----------------------------------------------------------------------------
-//		Headers
-//-----------------------------------------------------------------------------
+#include <memory>
+#include <string>
+#include <vector>
 
 #include "sound.h"
-
 
 //-----------------------------------------------------------------------------
 //		Définition de la classe SoundBank
 //-----------------------------------------------------------------------------
 
-class SoundBank
-{
-protected:
-	Sound **	tab;
-	int			nb_snd;
-	char *		nom_f;
+class SoundBank {
+   protected:
+    std::vector<std::unique_ptr<Sound>> tab_;
+    std::string filename_;
 
-public:
-	SoundBank();
-	~SoundBank();
+   public:
+    inline Sound* operator[](int n) const { return tab_[n].get(); };
+    inline int getSize() const { return tab_.size(); };
 
-	inline Sound * operator[](int n) const
-	{
-		return tab[n];
-	};
-	inline int getSize() const
-	{
-		return nb_snd;
-	};
+    virtual bool loadSFX(const char* nom_fic);
 
-	virtual bool loadSFX(const char * nom_fic);
-
-	void close();
-	void reload();
-	void reinit();
+    void reload();
+    void reinit();
 };
-
-#endif
-
-
-
-
-
-

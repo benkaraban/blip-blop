@@ -599,7 +599,6 @@ void CINEPlayer::loadPBK(const char * f)
 
 void CINEPlayer::closePlayer()
 {
-	mbk.close();
 	fic.close();
 }
 

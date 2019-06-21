@@ -48,8 +48,6 @@ void TitleScreen::stop() {
     if (sound_on != start_sound_on) {
         if (sound_on) {
             sbk_bb.loadSFX("data\\bb.sfx");
-        } else {
-            sbk_bb.close();
         }
     }
 
@@ -66,7 +64,6 @@ void TitleScreen::stop() {
             }
         } else {
             mbk_niveau.stop();
-            mbk_niveau.close();
         }
     }
 }
