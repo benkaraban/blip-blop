@@ -21,6 +21,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <vector>
+
 #include "controlor.h"
 #include "personnage.h"
 #include "joueur.h"
@@ -84,7 +86,7 @@
 class Couille : public Personnage, public Joueur
 {
 public:
-	Picture **	pbk_own;
+        const PictureBank&	pbk_own;
 	int			id_couille;
 	bool		perfect;
 
@@ -152,7 +154,7 @@ public:
 
 	int			mod_life;
 
-	Couille();
+	Couille(const PictureBank& pbk);
 
 	virtual void rearme() = 0;
 

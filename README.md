@@ -49,6 +49,7 @@ and you undeniably got the work done. Congrats and thanks!
 - "Gère le scrolling avec le super buffer qui marche bizarrement sur cette
   merde de GeForce." (Handles scrolling with the awesome buffer that works
   weirdly on this shitty GeForce)
+- After a failed `new`, in a log message: "Nani? Not enough memory???"
 
 ## Significant differences
 

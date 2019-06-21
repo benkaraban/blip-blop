@@ -42,8 +42,6 @@ void ReleaseAll(void) {
         fnt_cool.close();
         fnt_rpg.close();
 
-        pbk_inter.close();
-
         LGXpaker.closePaker();
 
         if (videoA != NULL) {

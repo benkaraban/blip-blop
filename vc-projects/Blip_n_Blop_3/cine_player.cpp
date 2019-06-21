@@ -233,14 +233,11 @@ void CINEPlayer::updateState()
 
 	while (!fini && !to_draw && getCommand()) {
 		if (ISCOM("endscene")) {
-			pbk.close();
 			fini = true;
 		} else if (ISCOM("loadgfx")) {
-			pbk.close();
 			if (!pbk.loadGFX(str_arg[0], DDSURF_BEST))
 				error("ne peut pas charger le fichier GFX");
 		} else if (ISCOM("loadmbk")) {
-			mbk.close();
 			if (!mbk.open(str_arg[0]))
 				error("ne peut pas charger la MBK");
 		} else if (ISCOM("playmusic")) {
@@ -603,7 +600,6 @@ void CINEPlayer::loadPBK(const char * f)
 void CINEPlayer::closePlayer()
 {
 	mbk.close();
-	pbk.close();
 	fic.close();
 }
 

@@ -32,9 +32,8 @@ class Blip : public Couille
 {
 
 public:
-	Blip()
+	Blip() : Couille(pbk_blip)
 	{
-		pbk_own = pbk_blip.getPix();
 		id_couille = ID_BLIP;
 	}
 

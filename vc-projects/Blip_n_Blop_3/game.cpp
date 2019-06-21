@@ -116,7 +116,6 @@ void Game::jouePartie(int nbj, int idj) {
 
     // Bidon
     //
-    pbk_inter.close();
     mbk_interl.stop();
 
     // Charge Tout
@@ -208,7 +207,6 @@ void Game::jouePartie(int nbj, int idj) {
         pbk[0]->PasteTo(backSurface, 0, 0);
         DDFlip();
 
-        pbk.close();
         in.waitClean();
         in.waitKey();
         in.waitClean();
@@ -457,7 +455,6 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
         mbk_inter.play(2);
         in.waitClean();
         in.waitKey();
-        pbk_briefing.close();
         briefing = false;
     }
 
@@ -1001,11 +998,6 @@ void Game::releaseNiveau() {
 
     sbk_niveau.close();
 
-    pbk_ennemis.close();
-    pbk_decor.close();
-    pbk_niveau.close();
-    pbk_rpg.close();
-
     list_event_endormis.clear();
     list_event.clear();
 
@@ -1274,12 +1266,6 @@ void Game::gameLoop() {
 //-----------------------------------------------------------------------------
 
 void Game::releasePartie() {
-    pbk_blip.close();
-    pbk_blop.close();
-    pbk_bb.close();
-    pbk_misc.close();
-    pbk_rpg_bb.close();
-
     fnt_score_blip.close();
     fnt_score_blop.close();
     fnt_ammo.close();
@@ -3580,10 +3566,6 @@ void Game::showCredits(bool theEnd) {
             ttotal = GOOD;
 
         marge[im] = ttotal - GOOD;
-    }
-
-    if (theEnd) {
-        pbk_cred.close();
     }
 }
 
