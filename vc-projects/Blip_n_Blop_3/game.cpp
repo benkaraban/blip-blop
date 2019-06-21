@@ -200,7 +200,6 @@ void Game::jouePartie(int nbj, int idj) {
 
         mbk.play(0);
         showCredits(true);
-        mbk2.close();
 
         pbk[0]->PasteTo(backSurface, 0, 0);
         DDFlip();
@@ -212,7 +211,6 @@ void Game::jouePartie(int nbj, int idj) {
         in.waitClean();
 
         mbk.stop();
-        mbk.close();
 
         showPE(false);
     }
@@ -993,8 +991,6 @@ void Game::releaseNiveau() {
         delete[] murs_opaques;
         murs_opaques = NULL;
     }
-
-    mbk_niveau.close();
 
     sbk_niveau.close();
 

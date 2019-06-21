@@ -16,9 +16,6 @@
 
 bool MusicBank::open(const char* file, bool loop) {
     if (!music_on) return true;
-    // TODO: remove when open() actually happens in the ctor (ie the levels are
-    // handled in a proper class instead of a FUCKTON of global variables
-    close();
 
     std::ifstream f(file, std::ios::in);
 
@@ -57,8 +54,6 @@ bool MusicBank::open(const char* file, bool loop) {
     f.close();
     return true;
 }
-
-void MusicBank::close() { musics_.clear(); }
 
 void MusicBank::play(int n) {
     if (!music_on) return;

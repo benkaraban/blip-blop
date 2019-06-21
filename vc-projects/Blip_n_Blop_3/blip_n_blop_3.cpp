@@ -62,9 +62,6 @@ void ReleaseAll(void) {
         DDCloseDirectDraw();
     }
 
-    mbk_inter.close();
-    mbk_interl.close();
-
     FSOUND_Close();
 
     in.close();

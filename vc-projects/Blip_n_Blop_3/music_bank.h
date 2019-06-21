@@ -64,7 +64,6 @@ class MusicBank {
    public:
     void setVol(int v);
     bool open(const char* file, bool loop = true);
-    void close();
     void play(int n);
     void stop(int n);
     void stop();  // Stoppe TOUTES les musiques
