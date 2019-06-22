@@ -1,0 +1,10 @@
+language: cpp
+dist: bionic
+sudo: required
+compiler: clang
+before_install:
+    - sudo apt-get install -y libsdl2-dev libsdl2-mixer-dev
+
+script:
+    - cd vc-projects/Blip_n_Blop_3/ && mkdir build && cd build && cmake .. && make
+

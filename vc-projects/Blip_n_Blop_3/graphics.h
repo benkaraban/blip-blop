@@ -5,7 +5,7 @@
 #include <windows.h>
 #include <iostream>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "ben_debug.h"
 

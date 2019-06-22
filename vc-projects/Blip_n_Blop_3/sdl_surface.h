@@ -1,7 +1,7 @@
 #pragma once
 
 #include "graphics.h"
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "sdl_pixelformat.h"
 #include "sdl_surfaceinfo.h"

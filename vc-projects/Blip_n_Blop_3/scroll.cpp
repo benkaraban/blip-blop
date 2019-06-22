@@ -27,7 +27,7 @@
 #include "globals.h"
 #include "scroll.h"
 #include "ben_debug.h"
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "couille.h"
 
