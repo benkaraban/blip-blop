@@ -17,7 +17,9 @@
  ******************************************************************/
 
 #include "picture_bank.h"
-#include <fcntl.h>
+
+#include <fstream>
+
 #include <io.h>
 #include <stdio.h>
 #include <string.h>
@@ -29,40 +31,33 @@ PictureBank::PictureBank() : flag_fic(0) {}
 
 bool PictureBank::loadGFX(const char* file, int flag, bool trans) {
     SDL::Surface* surf;
-    int fic;
     int xspot;
     int yspot;
     int version;
-    void* ptr;
 
-    fic = _open(file, _O_BINARY | _O_RDONLY);
-    if (fic == -1) {
+    std::ifstream fic(file, std::ios::binary);
+    if (!fic.good()) {
         debug << "PictureBank::loadGFX() - Impossible de charger le fichier "
               << file << "\n";
         return false;
     }
 
     int nb_pic;
-    _read(fic, &nb_pic, sizeof(nb_pic));
+    fic.read(reinterpret_cast<char*>(&nb_pic), sizeof(nb_pic));
     tab_.resize(nb_pic);
 
     for (int i = 0; i < nb_pic; i++) {
         int size;
-        _read(fic, &xspot, sizeof(xspot));  // Coordonnées du point chaud
-        _read(fic, &yspot, sizeof(yspot));
+        // Coordonnées du point chaud
+        fic.read(reinterpret_cast<char*>(&xspot), sizeof(xspot));
+        fic.read(reinterpret_cast<char*>(&yspot), sizeof(yspot));
 
-        _read(fic, &size, sizeof(size));
+        fic.read(reinterpret_cast<char*>(&size), sizeof(size));
 
+        void* ptr;
         ptr = malloc(size);
 
-        if (ptr == NULL) {
-            debug << "PictureBank::loadGFX() - Impossible d'allouer " << size
-                  << " octets \n";
-            _close(fic);
-            return false;
-        }
-
-        _read(fic, ptr, size);
+        fic.read(static_cast<char*>(ptr), size);
         surf = LGXpaker.loadLGX(ptr, flag, &version);
 
         free(ptr);
@@ -89,7 +84,6 @@ bool PictureBank::loadGFX(const char* file, int flag, bool trans) {
     filename_ = file;
     flag_fic = flag;
     trans_fic = trans;
-    _close(fic);
     return true;
 }
 

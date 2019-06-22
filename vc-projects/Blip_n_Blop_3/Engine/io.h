@@ -1,6 +1,8 @@
 #ifndef IO_H
 #define IO_H
 
+#include <fcntl.h>
+
 #define _O_BINARY 0x0
 #define _O_RDONLY O_RDONLY
 
