@@ -18,7 +18,11 @@ french.
 
 This project is HUGE for two students. Kudos to you guys, it's a LOT of work,
 and even if the quality is, uh, debatable, the game actually works flawlessly
-and you undeniably got the work done. Congrats and thanks!
+and you undeniably got the work done. I can hardly believe every single error
+has been handled, even memory allocation failures, so that the game wouldn't
+crash (some, including me, would say that it's easier for a developper to
+handle a crash, rather than propagating / circumventing silently an error that
+would still disallow the gamer to properly play the game). Congrats and thanks!
 
 ## Lexicon
 
@@ -50,6 +54,7 @@ and you undeniably got the work done. Congrats and thanks!
   merde de GeForce." (Handles scrolling with the awesome buffer that works
   weirdly on this shitty GeForce)
 - After a failed `new`, in a log message: "Nani? Not enough memory???"
+- "Affiche les têtes de con" (Show the fucktard' faces)
 
 ## Significant differences
 
