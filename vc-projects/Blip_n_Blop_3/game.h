@@ -57,7 +57,9 @@
 class Game
 {
 protected:
-
+        // FIXME: This variable's name is so explicit, I have no idea what it's
+        // for.
+        int glorf_;
 	PictureBank	pbk_briefing;
 	bool	briefing;
 

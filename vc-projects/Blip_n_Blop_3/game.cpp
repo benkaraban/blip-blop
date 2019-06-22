@@ -81,7 +81,6 @@
 #include "trace.h"
 
 Personnage dummyPlayer;
-int glorf;
 
 //-----------------------------------------------------------------------------
 
@@ -1230,9 +1229,9 @@ void Game::gameLoop() {
         sum += marge[i];
     }
 
-    glorf = sum / INT_SIZE;
+    glorf_ = sum / INT_SIZE;
 
-    if (glorf >= -MARGE && glorf <= MARGE) {
+    if (glorf_ >= -MARGE && glorf_ <= MARGE) {
         updateAll();
         dtime = 0;
     } else {
@@ -3178,9 +3177,9 @@ void Game::showCredits(bool theEnd) {
             sum += marge[i];
         }
 
-        glorf = sum / INT_SIZE;
+        glorf_ = sum / INT_SIZE;
 
-        if (glorf >= -MARGE && glorf <= MARGE) {
+        if (glorf_ >= -MARGE && glorf_ <= MARGE) {
             ey = (ey + 1) % SSPEED;
             if (ey == 0) y--;
             dtime = 0;

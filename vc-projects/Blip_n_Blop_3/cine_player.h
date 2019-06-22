@@ -58,6 +58,7 @@ protected:
 	int		tupdate;
 	int		tdraw;
 	int		dtime;
+        // FIXME: I sincerely have no idea what a "glorf" is supposed to be.
 	int		glorf;
 
 	/*SDL::Surface * first_surf;*/
