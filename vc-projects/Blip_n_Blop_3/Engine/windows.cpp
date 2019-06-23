@@ -24,7 +24,6 @@ void ZeroMemory(PVOID Destination, SIZE_T Length) {
     memset(Destination, 0, Length);
 }
 
-LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags) STUB
 int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType)
 {
     printf("MessageBox(%s)\n", lpText);
@@ -60,7 +59,6 @@ BOOL DeleteObject(HGDIOBJ hObject) STUB
 HDC CreateCompatibleDC(HDC hdc) STUB
 HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj) STUB
 
-BOOL StretchBlt(HDC hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc, DWORD dwRop) STUB
 
 COLORREF GetPixel(HDC hdc, int nXPos, int nYPos) STUB
 COLORREF SetPixel(HDC hdc, int X, int Y, COLORREF crColor) STUB

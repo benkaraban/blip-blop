@@ -64,8 +64,6 @@ void ReleaseAll(void) {
     FSOUND_Close();
 
     in.close();
-
-    ChangeDisplaySettings(NULL, 0);
 }
 
 void Bug(const char* txt) {
@@ -92,11 +90,6 @@ long WINAPI WinProc(HWND WinHandle, UINT Msg, WPARAM wParam, LPARAM lParam) {
 
         case WM_ACTIVATE:
             active = !((BOOL)HIWORD(wParam));
-
-            if (!active && winSet) {
-                ChangeDisplaySettings(NULL, 0);
-            }
-
             break;
 
         case WM_CLOSE:

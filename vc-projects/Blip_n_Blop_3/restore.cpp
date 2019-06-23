@@ -17,11 +17,6 @@ bool RestoreAll()
 		dm.dmPelsHeight = 480;
 		dm.dmBitsPerPel = 16;
 		dm.dmDisplayFrequency = 85;
-
-		if (ChangeDisplaySettings(&dm, CDS_TEST) != DISP_CHANGE_SUCCESSFUL ||
-		        ChangeDisplaySettings(&dm, CDS_FULLSCREEN) != DISP_CHANGE_SUCCESSFUL) {
-			debug << "Cannot restore display mode.\n";
-		}
 	}
 
 	if (primSurface->Restore() != DD_OK) {

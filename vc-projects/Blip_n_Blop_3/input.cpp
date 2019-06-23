@@ -27,6 +27,8 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <cstring>
+
 #include "graphics.h"
 #include "input.h"
 #include "ben_debug.h"

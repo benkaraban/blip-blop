@@ -48,7 +48,6 @@ typedef HANDLE HGDIOBJ;
 typedef HANDLE HRSRC;
 typedef HANDLE HGLOBAL;
 typedef void* LPUNKNOWN;
-typedef int64_t __int64;
 
 typedef struct _RECT {
 	LONG left;
@@ -212,7 +211,6 @@ enum {
 
 void ZeroMemory(PVOID Destination, SIZE_T Length);
 
-LONG ChangeDisplaySettings(DEVMODE *lpDevMode, DWORD dwflags);
 int MessageBox(HWND hWnd, LPCTSTR lpText, LPCTSTR lpCaption, UINT uType);
 
 void SetCursor(void*);
@@ -249,7 +247,6 @@ HDC CreateCompatibleDC(HDC hdc);
 HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 
 #define SRCCOPY 0x1
-BOOL StretchBlt(HDC hdcDest, int nXOriginDest, int nYOriginDest, int nWidthDest, int nHeightDest, HDC hdcSrc, int nXOriginSrc, int nYOriginSrc, int nWidthSrc, int nHeightSrc, DWORD dwRop);
 
 #define CLR_INVALID 0x1
 COLORREF GetPixel(HDC hdc, int nXPos, int nYPos);
