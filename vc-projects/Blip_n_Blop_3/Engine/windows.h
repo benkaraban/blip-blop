@@ -3,8 +3,6 @@
 
 #include <cstdlib> // so NULL is defined everywhere
 
-using namespace std;
-
 #define CALLBACK
 #define WINAPI
 #define __cdecl
@@ -234,7 +232,6 @@ UINT_PTR WINAPI SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC l
 BOOL WINAPI DestroyWindow(HWND hWnd);
 
 void Sleep(int);
-DWORD WINAPI GetTickCount(void);
 
 COLORREF RGB(BYTE byRed, BYTE byGreen, BYTE byBlue);
 
@@ -314,13 +311,8 @@ typedef struct _OVERLAPPED {
 	HANDLE    hEvent;
 } OVERLAPPED, *LPOVERLAPPED;
 
-HANDLE WINAPI CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void* unused, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
-BOOL WINAPI ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped);
-BOOL WINAPI CloseHandle(HANDLE hObject);
 long _filelength(int fd);
 DWORD timeGetTime(void);
-BOOL WINAPI QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency);
-BOOL WINAPI QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount);
 
 #define PM_NOREMOVE 0x1
 typedef struct tagPOINT {

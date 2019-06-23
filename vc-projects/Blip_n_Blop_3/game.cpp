@@ -76,7 +76,6 @@
 #include "txt_data.h"
 #include "vehicule.h"
 
-#include "l_timer.h"
 #include "precache.h"
 #include "trace.h"
 
@@ -94,9 +93,7 @@ Game::Game()
       next_goutte(0),
       next_flocon(0),
       show_fps(false),
-      show_lists(false),
-      tupdate(0),
-      tdraw(12) {
+      show_lists(false) {
     briefing = false;
 }
 
@@ -462,7 +459,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
 
     // Pour le mode automatique
     //
-    time = LGetTime();
+    time_.Reset();
     dtime = 0;
 
     // Boucle principale
@@ -1029,11 +1026,11 @@ void Game::updateAll() {
                     scroll_speed = 1;
     */
 
-    tupdate = LGetTime();
+    tupdate_.Reset();
 
     manageMsg();  // Fucking windaube!!!
 
-    if (checkRestore()) time = LGetTime();
+    if (checkRestore()) time_.Reset();
 
     phase = !phase;
 
@@ -1107,7 +1104,7 @@ void Game::updateAll() {
 
     updateMenu();
 
-    tupdate = tupdate - LGetTime();
+    tupdate_.Stop();
 
     updateRPG();
 }
@@ -1117,9 +1114,9 @@ void Game::updateAll() {
 void Game::drawAll(bool flip) {
     manageMsg();  // Fucking windaube!!!
 
-    if (checkRestore()) time = LGetTime();
+    if (checkRestore()) time_.Reset();
 
-    tdraw = LGetTime();
+    tdraw_.Reset();
 
     if (!flip) {
         phase = false;
@@ -1204,7 +1201,7 @@ void Game::drawAll(bool flip) {
         DDFlip();
     }
 
-    tdraw = LGetTime() - tdraw;
+    tdraw_.Stop();
 }
 
 //-----------------------------------------------------------------------------
@@ -1220,8 +1217,8 @@ void Game::gameLoop() {
                                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     static int im = 0;
 
-    dtime += LGetTime() - time;
-    time = LGetTime();
+    dtime += time_.elapsed();
+    time_.Reset();
 
     int sum = 0;
 
@@ -1246,7 +1243,7 @@ void Game::gameLoop() {
 
     drawAll();
 
-    DWORD ttotal = tupdate + tdraw;
+    DWORD ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
 
     if (ttotal <= 0)
         ttotal = GOOD;
@@ -1798,7 +1795,7 @@ void Game::updateRPG() {
     rpg.stopPlay();
     in.waitClean();
     rpg_to_play = -1;
-    time = LGetTime();
+    time_.Reset();
 }
 
 //-----------------------------------------------------------------------------
@@ -1899,7 +1896,7 @@ void Game::updateMenu() {
         drawAll(false);
         DDFlipV();
 
-        time = LGetTime();
+        time_.Reset();
     }
 }
 
@@ -2803,10 +2800,9 @@ void Game::showHighScores() {
 
     for (int i = 0; i < HS_NB_SCORES; i++) x[i] = 400 + 160 * i;
 
-    DWORD diff = GetTickCount();
-
+    Chrono scores_timer;
     while (!app_killed && !in.anyKeyPressed() &&
-           (GetTickCount() - diff <= 10000)) {
+           (scores_timer.elapsed() <= 10000)) {
         manageMsg();
         checkRestore();
 
@@ -2876,8 +2872,7 @@ void Game::go() {
     menu.start();
     in.waitClean();
 
-    DWORD diff_start = 0;
-    //	DWORD diff_time;
+    Chrono diff_start;
 
     do {
         r = RET_CONTINUE;
@@ -2889,10 +2884,10 @@ void Game::go() {
             in.update();
 
             if (in.anyKeyPressed()) {
-                diff_start = GetTickCount();
+                diff_start.Reset();
             }
 
-            if (GetTickCount() - diff_start >= 10000) {
+            if (diff_start.elapsed() >= 10000) {
                 switch (zob) {
                     case 0:
                     case 2:
@@ -2924,7 +2919,7 @@ void Game::go() {
                 menu.start();
 
                 if (in.anyKeyPressed()) {
-                    diff_start = GetTickCount();
+                    diff_start.Reset();
                     in.waitClean();
                 }
             } else {
@@ -2946,7 +2941,7 @@ void Game::go() {
             menu.stop();
             menu.start();
             mbk_interl.play(0);
-            diff_start = GetTickCount();
+            diff_start.Reset();
         }
 
     } while (r != RET_EXIT && !app_killed);
@@ -3119,9 +3114,9 @@ int Game::selectPlayer() {
 //-----------------------------------------------------------------------------
 
 void Game::showMainScreen() {
-    DWORD t = GetTickCount();
+    Chrono t;
 
-    while (!in.anyKeyPressed() && !app_killed && GetTickCount() - t <= 5000) {
+    while (!in.anyKeyPressed() && !app_killed && t.elapsed() <= 5000) {
         manageMsg();
         checkRestore();
 
@@ -3152,7 +3147,7 @@ void Game::showCredits(bool theEnd) {
     static const int SSPEED = 2;
 
     int npage = 0;
-    DWORD t = GetTickCount();
+    Chrono t;
     int y = 480;
     int ey = 0;
     int last_y = 100;
@@ -3165,11 +3160,11 @@ void Game::showCredits(bool theEnd) {
         pbk_cred.loadGFX("data/credits.gfx", DDSURF_BEST, false);
     }
 
-    time = LGetTime();
+    time_.Reset();
 
     while (!app_killed && (!in.anyKeyPressed() || theEnd) && last_y > 0) {
-        dtime += LGetTime() - time;
-        time = LGetTime();
+        dtime += time_.elapsed();
+        time_.Reset();
 
         int sum = 0;
 
@@ -3241,8 +3236,10 @@ void Game::showCredits(bool theEnd) {
             backSurface, xcred, y1 + ITITRE + ILIGNE * 0, "Benjamin Karaban");
         fnt_rpg.printC(
             backSurface, xcred, y1 + ITITRE + ILIGNE * 1, "Sylvain Bugat");
-        //		fnt_rpg.printC( backSurface, xcred, y1+ITITRE+ILIGNE*2,
-        //"Didier Colin");
+        fnt_rpg.printC(backSurface,
+                       xcred,
+                       y1 + ITITRE + ILIGNE * 2,
+                       "Guillaume Sanchez (2019 revamp)");
 
         int y2 = y1 + 2 * ILIGNE + IPARTI + ITITRE;
 
@@ -3540,15 +3537,15 @@ void Game::showCredits(bool theEnd) {
 
         last_y = y11 + 2 * ILIGNE;
 
-        if (GetTickCount() - t >= 12500 && theEnd) {
+        if (t.elapsed() >= 12500 && theEnd) {
             npage++;
             npage %= pbk_cred.getSize();
-            t = GetTickCount();
+            t.Reset();
         }
 
         DDFlip();
 
-        DWORD ttotal = LGetTime() - time;
+        DWORD ttotal = time_.elapsed();;
 
         if (ttotal <= 0)
             ttotal = GOOD;

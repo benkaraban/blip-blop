@@ -3,7 +3,6 @@
 #include "ben_debug.h"
 #include "config.h"
 #include "globals.h"
-#include "l_timer.h"
 #include "lgx_packer.h"
 
 //-----------------------------------------------------------------------------

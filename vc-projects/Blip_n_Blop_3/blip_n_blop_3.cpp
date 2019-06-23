@@ -18,7 +18,6 @@
 #include "game.h"
 #include "globals.h"
 #include "input.h"
-#include "l_timer.h"
 #include "lgx_packer.h"
 #include "music_bank.h"
 #include "picture.h"
@@ -174,12 +173,6 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
         //
         FSOUND_SetPriority(0, 255);
     }
-
-    //------------------------------------------------------------------
-    //                      Timer
-    //------------------------------------------------------------------
-
-    LInitTimer();
 
     //------------------------------------------------------------------
     //                      Charge la configuration

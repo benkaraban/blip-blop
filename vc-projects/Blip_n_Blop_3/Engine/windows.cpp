@@ -13,31 +13,6 @@
     printf("stub %s %d\n", __func__, __LINE__); \
 }
 
-HANDLE WINAPI CreateFile(LPCTSTR lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void* unused, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile)
-{
-    assert(dwDesiredAccess == GENERIC_READ);
-    assert(dwCreationDisposition == OPEN_EXISTING);
-    const char* mode = "r";
-    FILE* file = fopen(lpFileName, mode);
-    if (!file) {
-        printf("[PORTAGE] CreateFile can't create %s\n", lpFileName);
-    }
-    return file;
-}
-
-BOOL WINAPI ReadFile(HANDLE hFile, LPVOID lpBuffer, DWORD nNumberOfBytesToRead, LPDWORD lpNumberOfBytesRead, LPOVERLAPPED lpOverlapped)
-{
-    FILE* file = (FILE*) hFile;
-    *lpNumberOfBytesRead = fread(lpBuffer, nNumberOfBytesToRead, 1, file);
-    return *lpNumberOfBytesRead > 0;
-}
-
-BOOL WINAPI CloseHandle(HANDLE hObject)
-{
-    FILE* file = (FILE*) hObject;
-    return fclose(file) == 0;
-}
-
 long _filelength(int fd)
 {
     long size = lseek(fd, 0L, SEEK_END);
@@ -70,9 +45,6 @@ BOOL WINAPI DestroyWindow(HWND hWnd) STUB
 void Sleep(int ms)
 {
     SDL_Delay(ms);
-}
-DWORD WINAPI GetTickCount(void) {
-    return SDL_GetTicks();
 }
 
 COLORREF RGB(BYTE byRed, BYTE byGreen, BYTE byBlue) {

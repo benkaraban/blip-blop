@@ -27,9 +27,4 @@ extern bool want_to_kill_app;
 //
 int manageMsg();
 
-//
-// Attends t millisecondes
-//
-void wait(int t);
-
 #endif

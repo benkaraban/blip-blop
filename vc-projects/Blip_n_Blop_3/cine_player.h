@@ -6,8 +6,7 @@
 #include "music_bank.h"
 #include "picture_bank.h"
 #include "fonte.h"
-
-using namespace std;
+#include "chrono.h"
 
 #define OBJ_SPRITE	0
 #define OBJ_SCROLL	1
@@ -55,8 +54,9 @@ struct OBJECT {
 class CINEPlayer
 {
 protected:
-	int		tupdate;
-	int		tdraw;
+        Chrono tupdate_;
+        Chrono tdraw_;
+        Chrono time_;
 	int		dtime;
         // FIXME: I sincerely have no idea what a "glorf" is supposed to be.
 	int		glorf;
@@ -85,7 +85,6 @@ protected:
 	int		num_ligne;
 	bool	fini;
 	int		frame_to_draw;
-	int		time;
 
 	int		clip_x1;
 	int		clip_x2;

@@ -41,13 +41,3 @@ int manageMsg()
 	return 0;
 }
 
-//-----------------------------------------------------------------------------
-
-void wait(int t)
-{
-	unsigned int i = GetTickCount();
-
-	while (GetTickCount() < (i + t));
-}
-
-

@@ -6,7 +6,6 @@
 #include "ben_debug.h"
 #include "input.h"
 #include "txt_data.h"
-#include "l_timer.h"
 //#include "alphablend.h"
 #include "globals.h"
 #include "config.h"
@@ -72,14 +71,14 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 	while (!fini) {
 		updateState();
-		time = LGetTime();
+		time_.Reset();
 		dtime = 0;
 
 		while (frame_to_draw > 0 && !fini) {
 			manageMsg();
 
 			if (checkRestore())
-				time = LGetTime();
+				time_.Reset();
 
 			in.update();
 
@@ -103,8 +102,6 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 void CINEPlayer::updateScene()
 {
-	tupdate = LGetTime();
-
 	// Gére le volume
 	//
 	int vol = delta_vol;
@@ -163,7 +160,7 @@ void CINEPlayer::updateScene()
 		}
 	}
 
-	tupdate = LGetTime() - tupdate;
+        tupdate_.Stop();
 	frame_to_draw -= 1;
 }
 
@@ -184,8 +181,8 @@ void CINEPlayer::renderLoop()
 	                             };
 	static int	im = 0;
 
-	dtime += LGetTime() - time;
-	time = LGetTime();
+	dtime += time_.elapsed();
+	time_.Reset();
 
 	int sum = 0;
 
@@ -210,7 +207,7 @@ void CINEPlayer::renderLoop()
 
 	drawScene();
 
-	DWORD ttotal = tupdate + tdraw;
+	DWORD ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
 
 	if (ttotal <= 0)
 		ttotal = GOOD;
@@ -226,6 +223,7 @@ void CINEPlayer::renderLoop()
 
 void CINEPlayer::updateState()
 {
+        tupdate_.Reset();
 	bool	to_draw = false;
 	int		n;
 	int		n2;
@@ -418,7 +416,7 @@ void CINEPlayer::updateState()
 void CINEPlayer::drawScene()
 {
 	RenderRect ddfx;
-	tdraw = LGetTime();
+	tdraw_.Reset();
 
 	RECT		r;
 
@@ -479,7 +477,7 @@ void CINEPlayer::drawScene()
 
 	DDFlip();
 
-	tdraw = LGetTime() - tdraw;
+	tdraw_.Stop();
 }
 
 

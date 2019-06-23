@@ -28,6 +28,7 @@
 #include "picture.h"
 #include "rpg_player.h"
 #include "blip.h"
+#include "chrono.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -76,10 +77,10 @@ protected:
 	bool	last_perfect1;
 	bool	last_perfect2;
 
-	int		tupdate;
-	int		tdraw;
-	int		time;			// Pour le mode auto
+        Chrono tupdate_;
+        Chrono tdraw_;
 	int		dtime;
+        Chrono time_; // Pour le mode auto
 	int		nframe;			// Pour la synchronisation
 	int		etape_timer;
 
