@@ -77,7 +77,7 @@ public:
 	};
 
 	void SetSpot(int x, int y);
-	void SetColorKey(COLORREF rgb);
+	void SetColorKey(Pixel rgb);
 	void SetSurface(SDL::Surface * s);
 
 	void LoadBMP(char * file);

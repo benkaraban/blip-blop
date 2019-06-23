@@ -11,9 +11,7 @@ void Graphics::Init() {
     }
 }
 
-void Graphics::ToggleFullscreen() {
-    SetGfxMode(x_, y_, d_, !fullscreen_);
-}
+void Graphics::ToggleFullscreen() { SetGfxMode(x_, y_, d_, !fullscreen_); }
 void Graphics::SetGfxMode(int x, int y, int d, bool fullscreen) {
     x_ = x;
     y_ = y;
@@ -119,7 +117,7 @@ SDL::Surface* Graphics::LoadBMP(char* file, int flags) {
     return new SDL::Surface(bmp);
 }
 
-HRESULT Graphics::SetColorKey(SDL::Surface* surf, COLORREF rgb) {
+bool Graphics::SetColorKey(SDL::Surface* surf, Pixel rgb) {
     SDL_SetColorKey(surf->Get(),
                     SDL_TRUE,
                     SDL_MapRGB(surf->Get()->format,

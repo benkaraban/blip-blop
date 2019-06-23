@@ -46,8 +46,8 @@ Input		in;
 
 Input::Input() : n_joy(0)
 {
-	ZeroMemory(buffer, 256);
-	ZeroMemory(specialsbuffer, 0xFFF);
+	memset(buffer, 0, 256);
+	memset(specialsbuffer, 0, 0xFFF);
 }
 
 Input::~Input()
@@ -62,7 +62,7 @@ Input::~Input()
 // Desc: Ouvre BINPUT
 //-----------------------------------------------------------------------------
 
-bool Input::open(HWND wh, HINSTANCE inst, int flags)
+bool Input::open(int flags)
 {
 
 	SDL_JoystickEventState(SDL_TRUE);

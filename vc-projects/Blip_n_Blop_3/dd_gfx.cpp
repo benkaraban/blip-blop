@@ -113,7 +113,7 @@ SDL::Surface* DDLoadBMP(char* file, int flags) {
 // Desc: Règle la couleur transparente d'une surface
 //-----------------------------------------------------------------------------
 
-HRESULT DDSetColorKey(SDL::Surface* surf, COLORREF rgb) {
+bool DDSetColorKey(SDL::Surface* surf, Pixel rgb) {
     // debug << "DDSetColorKey ()" << "\n";
     return graphicInstance->SetColorKey(surf, rgb);
 }

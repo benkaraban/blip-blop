@@ -59,9 +59,9 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 	Precache(file);
 
-	fic.open(file);
+	fic_.open(file);
 
-	if (fic.is_open() == 0) {
+	if (fic_.is_open() == 0) {
 		debug << "CINEPlayer -> Cannot open file " << file << "\n";
 		return false;
 	}
@@ -207,7 +207,7 @@ void CINEPlayer::renderLoop()
 
 	drawScene();
 
-	DWORD ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
+	int ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
 
 	if (ttotal <= 0)
 		ttotal = GOOD;
@@ -514,21 +514,21 @@ bool CINEPlayer::getCommand()
 
 	// Retourne faux si EOF
 	//
-	if (fic.eof())
+	if (fic_.eof())
 		return false;
 
 
 	// Esquive les lignes commentées et les lignes vides
 	//
-	fic.getline(buffer, BUFFER_SIZE);
+	fic_.getline(buffer, BUFFER_SIZE);
 	num_ligne += 1;
 
-	while (!fic.eof() && (buffer[0] == ';' || buffer[0] == '\0')) {
-		fic.getline(buffer, BUFFER_SIZE);
+	while (!fic_.eof() && (buffer[0] == ';' || buffer[0] == '\0')) {
+		fic_.getline(buffer, BUFFER_SIZE);
 		num_ligne += 1;
 	}
 
-	if (fic.eof() && strlen(buffer) == 0)
+	if (fic_.eof() && strlen(buffer) == 0)
 		return false;
 
 
@@ -597,7 +597,7 @@ void CINEPlayer::loadPBK(const char * f)
 
 void CINEPlayer::closePlayer()
 {
-	fic.close();
+	fic_.close();
 }
 
 //---------------------------------------------------------------------------

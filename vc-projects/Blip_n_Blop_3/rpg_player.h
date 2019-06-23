@@ -20,8 +20,7 @@
 #include <fstream>
 #include "graphics.h"
 #include "picture_bank.h"
-
-using namespace std;
+#include "chrono.h"
 
 #define	ID_JOUEUR	0
 #define ID_ENNEMI	1
@@ -29,7 +28,7 @@ using namespace std;
 class RPGPlayer
 {
 public:
-	ifstream	fic;
+        std::ifstream fic_;
 	char *		fic_name;
 	char *		buffer1;
 	char *		buffer2;
@@ -41,7 +40,8 @@ public:
 	int				focus;
 
 	unsigned int	wait_goal;
-	unsigned int	initial_time;
+        Chrono time_;
+        Countdown wait_;
 	bool			key_released;
 	bool			skiped;
 

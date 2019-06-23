@@ -68,7 +68,7 @@ protected:
 		SDL::Surface * surf2;
 	*/
 
-	ifstream		fic;
+        std::ifstream fic_;
 	char			buffer[BUFFER_SIZE + 1];
 	char			buffer2[BUFFER_SIZE + 1];
 

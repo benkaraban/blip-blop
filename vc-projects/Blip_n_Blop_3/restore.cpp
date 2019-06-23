@@ -1,4 +1,4 @@
-#include "Engine/windows.h"
+#include <cstring>
 
 #include "globals.h"
 #include "config.h"
@@ -7,18 +7,6 @@
 
 bool RestoreAll()
 {
-	if (winSet) {
-		DEVMODE dm;
-
-		ZeroMemory(&dm, sizeof(dm));
-		dm.dmSize = sizeof(dm);
-		dm.dmFields = DM_BITSPERPEL | DM_PELSWIDTH | DM_PELSHEIGHT | DM_DISPLAYFREQUENCY;
-		dm.dmPelsWidth	= 640;
-		dm.dmPelsHeight = 480;
-		dm.dmBitsPerPel = 16;
-		dm.dmDisplayFrequency = 85;
-	}
-
 	if (primSurface->Restore() != DD_OK) {
 		debug << "Cannot restore primary surface.\n";
 		return false;

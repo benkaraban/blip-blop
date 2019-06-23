@@ -101,16 +101,19 @@ public:
 
 	bool init(SDL::Surface * surf);
 
+#if 0
+        // FIXME: RESTORE ME SOON!
 	bool createLGX_0(HDC hdc, const char * fic, int xs, int ys);
 	bool createLGX_1(HDC hdc, const char * fic, int xs, int ys);
 
 	int createLGX_0(HDC hdc, int xs, int ys, void * & ptr);
 	int createLGX_1(HDC hdc, int xs, int ys, void * & ptr);
+#endif
 
 	SDL::Surface * loadLGX(void * ptr, int flag = DDSURF_BEST, int * version = NULL);
 	SDL::Surface * loadLGX(const char * fic, int flag = DDSURF_BEST);
 
-	int	findColor(COLORREF rgb);
+	int	findColor(Pixel rgb);
 
 	void halfTone(SDL::Surface * surf, RECT * r);
 

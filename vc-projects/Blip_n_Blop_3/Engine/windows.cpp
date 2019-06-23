@@ -60,10 +60,6 @@ HDC CreateCompatibleDC(HDC hdc) STUB
 HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj) STUB
 
 
-COLORREF GetPixel(HDC hdc, int nXPos, int nYPos) STUB
-COLORREF SetPixel(HDC hdc, int X, int Y, COLORREF crColor) STUB
-BOOL SetPixelV(HDC hdc, int X, int Y, COLORREF crColor) STUB
-
 BOOL DeleteDC(HDC hdc) STUB
 LPVOID WINAPI LockResource(HGLOBAL hResData) STUB
 HGLOBAL WINAPI LoadResource(HMODULE hModule, HRSRC hResInfo) STUB

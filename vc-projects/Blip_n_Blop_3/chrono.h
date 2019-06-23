@@ -22,3 +22,16 @@ class Chrono {
 
     void Stop() { saved_elapsed_ = elapsed(); }
 };
+
+class Countdown {
+   private:
+    std::uint32_t end_;
+
+   public:
+    Countdown(int duration) : end_(SDL_GetTicks() + duration) {}
+    Countdown() : end_(0) {}
+
+    void Reset(int duration) { end_ = SDL_GetTicks() + duration; }
+
+    bool is_zero() const { return end_ - SDL_GetTicks() < 0; }
+};

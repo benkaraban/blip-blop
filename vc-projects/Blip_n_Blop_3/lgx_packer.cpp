@@ -251,6 +251,8 @@ void LGXpacker::closePaker()
 // LGXpaker::createLGX_0()
 //-----------------------------------------------------------------------------
 
+#if 0
+//FOR NOW, this can't work. windows.h's GetPixel is needed.
 bool LGXpacker::createLGX_0(HDC hdc, const char * fic, int xs, int ys)
 {
 	void *	ptr;
@@ -366,11 +368,13 @@ int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr)
 
 	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
 }
+#endif
 
 //-----------------------------------------------------------------------------
 // LGXpaker::createLGX_1()
 //-----------------------------------------------------------------------------
 
+#if 0
 int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 {
 	unsigned int	pixval;
@@ -464,6 +468,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 
 	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
 }
+#endif
 
 
 
@@ -677,7 +682,7 @@ SDL::Surface * LGXpacker::loadLGX(const char * fic, int flags)
 // LGXpaker::fincColor()
 //-----------------------------------------------------------------------------
 
-int LGXpacker::findColor(COLORREF rgb)
+int LGXpacker::findColor(Pixel rgb)
 {
 	int red =  rgb & 0x000000FF;
 	int gre = (rgb & 0x0000FF00) >> 8;

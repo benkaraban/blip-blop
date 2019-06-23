@@ -6,8 +6,16 @@
 
 #include <SDL2/SDL.h>
 
-#include "Engine/windows.h"
 #include "ben_debug.h"
+
+typedef struct {
+    int left;
+    int top;
+    int right;
+    int bottom;
+} RECT;
+
+typedef uint32_t Pixel;
 
 struct RenderRect {
     int left;
@@ -19,6 +27,13 @@ struct RenderRect {
 };
 
 typedef RenderRect DDBLTFX;
+
+constexpr int RGB(uint8_t r, uint8_t g, uint8_t b) {
+    return r | (g << 8) | (b << 16);
+}
+constexpr int RGBA(uint8_t r, uint8_t g, uint8_t b, uint8_t a) {
+    return r | (g << 8) | (b << 16) | (a << 24);
+}
 
 #include "sdl_surface.h"
 #include "sdl_texture.h"
@@ -32,8 +47,6 @@ typedef RenderRect DDBLTFX;
 #define DD_OK true
 /**/
 #define DDBLT_COLORFILL (0x1 << 2)
-
-using namespace std;
 
 class Graphics {
    private:
@@ -62,7 +75,7 @@ class Graphics {
     SDL_Surface* CreateSDLSurface(int x, int y);
     SDL::Surface* LoadBMP(char* file);
     SDL::Surface* LoadBMP(char* file, int flags);
-    HRESULT SetColorKey(SDL::Surface* surf, COLORREF rgb);
+    bool SetColorKey(SDL::Surface* surf, Pixel rgb);
     void Flip();
     void FlipV();
 

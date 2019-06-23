@@ -28,7 +28,9 @@
 
 Game game;
 
+#if _WIN32
 HWND WinHandle = NULL;
+#endif
 
 // FSOUND_SAMPLE * samp_test = NULL;
 
@@ -67,20 +69,24 @@ void ReleaseAll(void) {
 }
 
 void Bug(const char* txt) {
+#if _WIN32
     MessageBox(
         WinHandle, txt, "Blip'n Blop : Error reporting", MB_OK | MB_ICONERROR);
+#else
+    std::cerr << txt << "n";
+#endif
 }
 
 void Warning(const char* txt) {
+#if _WIN32
     MessageBox(WinHandle, txt, "Blip'n Blop : Warning", MB_OK | MB_ICONWARNING);
+#else
+    std::cerr << txt << "\n";
+#endif
 }
 
-bool Question(const char* txt) {
-    return (
-        MessageBox(WinHandle, txt, "Blip'n Blop", MB_YESNO | MB_ICONQUESTION) ==
-        IDYES);
-}
-
+#if 0
+// FIXME: Can you still work properly under Windows without this?
 long WINAPI WinProc(HWND WinHandle, UINT Msg, WPARAM wParam, LPARAM lParam) {
     switch (Msg) {
         case WM_SETCURSOR:  // CURSEUR --------
@@ -111,6 +117,7 @@ long WINAPI WinProc(HWND WinHandle, UINT Msg, WPARAM wParam, LPARAM lParam) {
 
     return DefWindowProc(WinHandle, Msg, wParam, lParam);
 }
+#endif
 
 static void analyseCmdLine(char* cmd) {
     static const char sep[] = " ";
@@ -135,13 +142,11 @@ static void analyseCmdLine(char* cmd) {
     }
 }
 
-static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
+static bool InitApp(int nCmdShow) {
     struct {
         int height;
         int width;
     } win_size = {480, 640};
-
-    WNDCLASS WinClass;
 
     //------------------------------------------------------------------
     //                      Histoire d'avoir un joli fichier log
@@ -158,7 +163,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     //------------------------------------------------------------------
 
     if (!FSOUND_Init(44100, CHANNEL_NUMBER, 0)) {
-        Warning("Cannot initialise FMOD. Sound will be turned off.");
+        Warning("Cannot initialise FMOD. Sound will be turned off");
         sound_on = false;
         music_on = false;
     } else {
@@ -212,7 +217,7 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     //                      Input (SDL Events)
     //------------------------------------------------------------------
 
-    if (!in.open(WinHandle, hInstance)) {
+    if (!in.open()) {
         Bug("Cannot initialise DirectInput. Make sure DirectX 7 or better is "
             "installed.");
         return false;
@@ -455,19 +460,11 @@ static bool InitApp(HINSTANCE hInstance, int nCmdShow) {
     graphicInstance->GetAvailableVidMem(&ddscaps2dummy, &vid_mem1, &vid_mem2);
     debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";*/
 
-    //------------------------------------------------------------------
-    //                      Mise en place du TIMER pour obtenir les FPS
-    //------------------------------------------------------------------
-
-    SetTimer(WinHandle, 1, 1000, NULL);
-
     return true;  // C'est fini!
 }
 
 #ifndef _WIN32
 int main(int argc, const char* argv[]) {
-    HINSTANCE hInstance = 0;
-    HINSTANCE hPrevInstance = 0;
     char lpCmdLine[512] = {0};
     for (int i = 1; i < argc; i++) {
         strcat(lpCmdLine, argv[i]);
@@ -479,13 +476,13 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
                    LPSTR lpCmdLine,
                    int nCmdShow) {
-#endif
     struct ScopeGuard {
         ~ScopeGuard() {
             ReleaseAll();
             DestroyWindow(WinHandle);
         }
     } scope_guard;
+#endif
 
     //------------------------------------------------------------------
     //                      Safe mode ?
@@ -497,7 +494,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
     //                      Initialise l'application
     //------------------------------------------------------------------
 
-    if (!InitApp(hInstance, nCmdShow)) {
+    if (!InitApp(nCmdShow)) {
         return -1;
     }
 

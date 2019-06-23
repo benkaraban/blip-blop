@@ -68,7 +68,7 @@ void Picture::FindSize()
 // Desc: Règle la couleur transparente de l'image
 //-----------------------------------------------------------------------------
 
-void Picture::SetColorKey(COLORREF rgb)
+void Picture::SetColorKey(Pixel rgb)
 {
 	if (surf == NULL) {
 		debug << "Picture::SetColorKey() - surface à NULL\n";
@@ -270,7 +270,7 @@ Picture::~Picture()
 
 int loadPBK(char * fic, Picture * & p, int rgb)
 {
-	ifstream	f;
+    std::ifstream f;
 	int			nbpic;
 
 	if (p != NULL) {

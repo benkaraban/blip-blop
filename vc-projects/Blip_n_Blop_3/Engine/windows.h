@@ -1,7 +1,7 @@
 #ifndef WINDOWS_H
 #define WINDOWS_H
 
-#include <cstdlib> // so NULL is defined everywhere
+#include <cstdlib>  // so NULL is defined everywhere
 
 #define CALLBACK
 #define WINAPI
@@ -19,7 +19,7 @@ typedef unsigned char BYTE;
 typedef char CHAR;
 typedef bool BOOL;
 typedef void VOID;
-typedef DWORD *LPDWORD;
+typedef DWORD* LPDWORD;
 typedef unsigned int UINT;
 typedef VOID* PVOID;
 typedef PVOID LPVOID;
@@ -27,7 +27,7 @@ typedef PVOID HANDLE;
 typedef LONG HRESULT;
 typedef size_t SIZE_T;
 #define CONST const
-typedef CONST CHAR *LPCSTR;
+typedef CONST CHAR* LPCSTR;
 typedef HANDLE HDC;
 typedef HANDLE HWND;
 typedef unsigned int UINT_PTR;
@@ -40,7 +40,7 @@ typedef LONG_PTR LPARAM;
 typedef LONG_PTR LRESULT;
 typedef HANDLE HINSTANCE;
 typedef HANDLE HBITMAP;
-typedef CHAR *LPSTR;
+typedef CHAR* LPSTR;
 typedef HANDLE HMENU;
 typedef DWORD COLORREF;
 typedef HINSTANCE HMODULE;
@@ -49,18 +49,11 @@ typedef HANDLE HRSRC;
 typedef HANDLE HGLOBAL;
 typedef void* LPUNKNOWN;
 
-typedef struct _RECT {
-	LONG left;
-	LONG top;
-	LONG right;
-	LONG bottom;
-} RECT, *PRECT, *LPRECT;
-
 typedef struct {
-	unsigned long Data1;
-	unsigned short Data2;
-	unsigned short Data3;
-	BYTE Data4[8];
+    unsigned long Data1;
+    unsigned short Data2;
+    unsigned short Data3;
+    BYTE Data4[8];
 } GUID, UUID, *PGUID;
 typedef GUID IID;
 typedef IID* REFIID;
@@ -76,98 +69,97 @@ typedef LPCSTR LPCTSTR;
 
 #define CS_HREDRAW 0x1
 #define CS_VREDRAW 0x2
-typedef long(*WNDPROC)(HWND, UINT, WPARAM, LPARAM);
+typedef long (*WNDPROC)(HWND, UINT, WPARAM, LPARAM);
 
 typedef struct tagBITMAP {
-	LONG   bmType;
-	LONG   bmWidth;
-	LONG   bmHeight;
-	LONG   bmWidthBytes;
-	WORD   bmPlanes;
-	WORD   bmBitsPixel;
-	LPVOID bmBits;
+    LONG bmType;
+    LONG bmWidth;
+    LONG bmHeight;
+    LONG bmWidthBytes;
+    WORD bmPlanes;
+    WORD bmBitsPixel;
+    LPVOID bmBits;
 } BITMAP, *PBITMAP;
 
-
 typedef struct tagWNDCLASS {
-	UINT      style;
-	WNDPROC   lpfnWndProc;
-	int       cbClsExtra;
-	int       cbWndExtra;
-	HINSTANCE hInstance;
-	int     hIcon; //TODO
-	int   hCursor; //TODO
-	int    hbrBackground; //TODO
-	LPCTSTR   lpszMenuName;
-	LPCTSTR   lpszClassName;
+    UINT style;
+    WNDPROC lpfnWndProc;
+    int cbClsExtra;
+    int cbWndExtra;
+    HINSTANCE hInstance;
+    int hIcon;          // TODO
+    int hCursor;        // TODO
+    int hbrBackground;  // TODO
+    LPCTSTR lpszMenuName;
+    LPCTSTR lpszClassName;
 } WNDCLASS, *PWNDCLASS;
 
 #define DUMMYUNIONNAMEN(x)
 
 typedef struct _POINTL {
-	LONG x;
-	LONG y;
+    LONG x;
+    LONG y;
 } POINTL, *PPOINTL;
 #define CCHDEVICENAME 32
 #define CCHFORMNAME 32
 typedef struct _devicemode {
-	TCHAR dmDeviceName[CCHDEVICENAME];
-	WORD  dmSpecVersion;
-	WORD  dmDriverVersion;
-	WORD  dmSize;
-	WORD  dmDriverExtra;
-	DWORD dmFields;
-	union {
-		struct {
-			short dmOrientation;
-			short dmPaperSize;
-			short dmPaperLength;
-			short dmPaperWidth;
-			short dmScale;
-			short dmCopies;
-			short dmDefaultSource;
-			short dmPrintQuality;
-		};
-		struct {
-			POINTL dmPosition;
-			DWORD  dmDisplayOrientation;
-			DWORD  dmDisplayFixedOutput;
-		};
-	};
-	short dmColor;
-	short dmDuplex;
-	short dmYResolution;
-	short dmTTOption;
-	short dmCollate;
-	TCHAR dmFormName[CCHFORMNAME];
-	WORD  dmLogPixels;
-	DWORD dmBitsPerPel;
-	DWORD dmPelsWidth;
-	DWORD dmPelsHeight;
-	union {
-		DWORD dmDisplayFlags;
-		DWORD dmNup;
-	};
-	DWORD dmDisplayFrequency;
+    TCHAR dmDeviceName[CCHDEVICENAME];
+    WORD dmSpecVersion;
+    WORD dmDriverVersion;
+    WORD dmSize;
+    WORD dmDriverExtra;
+    DWORD dmFields;
+    union {
+        struct {
+            short dmOrientation;
+            short dmPaperSize;
+            short dmPaperLength;
+            short dmPaperWidth;
+            short dmScale;
+            short dmCopies;
+            short dmDefaultSource;
+            short dmPrintQuality;
+        };
+        struct {
+            POINTL dmPosition;
+            DWORD dmDisplayOrientation;
+            DWORD dmDisplayFixedOutput;
+        };
+    };
+    short dmColor;
+    short dmDuplex;
+    short dmYResolution;
+    short dmTTOption;
+    short dmCollate;
+    TCHAR dmFormName[CCHFORMNAME];
+    WORD dmLogPixels;
+    DWORD dmBitsPerPel;
+    DWORD dmPelsWidth;
+    DWORD dmPelsHeight;
+    union {
+        DWORD dmDisplayFlags;
+        DWORD dmNup;
+    };
+    DWORD dmDisplayFrequency;
 #if (WINVER >= 0x0400)
-	DWORD dmICMMethod;
-	DWORD dmICMIntent;
-	DWORD dmMediaType;
-	DWORD dmDitherType;
-	DWORD dmReserved1;
-	DWORD dmReserved2;
+    DWORD dmICMMethod;
+    DWORD dmICMIntent;
+    DWORD dmMediaType;
+    DWORD dmDitherType;
+    DWORD dmReserved1;
+    DWORD dmReserved2;
 #if (WINVER >= 0x0500) || (_WIN32_WINNT >= 0x0400)
-	DWORD dmPanningWidth;
-	DWORD dmPanningHeight;
+    DWORD dmPanningWidth;
+    DWORD dmPanningHeight;
 #endif
 #endif
 } DEVMODE, *PDEVMODE, *LPDEVMODE;
 
 typedef struct tagRGBQUAD {
-	BYTE rgbBlue;
-	BYTE rgbGreen;
-	BYTE rgbRed;
-	BYTE rgbReserved;
+    BYTE rgbBlue;
+    BYTE rgbGreen;
+    BYTE rgbRed;
+    BYTE rgbReserved;
 } RGBQUAD;
 #define DM_BITSPERPEL 0x1
 #define DM_PELSWIDTH 0x2
@@ -189,11 +181,11 @@ typedef struct tagRGBQUAD {
 #define NEAR
 
 enum {
-	WM_SETCURSOR,
-	WM_ACTIVATE,
-	WM_CLOSE,
-	WM_DESTROY,
-	WM_TIMER,
+    WM_SETCURSOR,
+    WM_ACTIVATE,
+    WM_CLOSE,
+    WM_DESTROY,
+    WM_TIMER,
 };
 
 void ZeroMemory(PVOID Destination, SIZE_T Length);
@@ -204,16 +196,30 @@ void SetCursor(void*);
 WORD HIWORD(DWORD dwValue);
 VOID WINAPI PostQuitMessage(int nExitCode);
 LRESULT WINAPI DefWindowProc(HWND hWnd, UINT Msg, WPARAM wParam, LPARAM lParam);
-ATOM WINAPI RegisterClass(const WNDCLASS *lpWndClass);
+ATOM WINAPI RegisterClass(const WNDCLASS* lpWndClass);
 #define SM_CXSCREEN 0x1
 #define SM_CYSCREEN 0x2
 int WINAPI GetSystemMetrics(int nIndex);
-HWND WINAPI CreateWindowEx(DWORD dwExStyle, LPCTSTR lpClassName, LPCTSTR lpWindowName, DWORD dwStyle, int x, int y, int nWidth, int nHeight, HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam);
+HWND WINAPI CreateWindowEx(DWORD dwExStyle,
+                           LPCTSTR lpClassName,
+                           LPCTSTR lpWindowName,
+                           DWORD dwStyle,
+                           int x,
+                           int y,
+                           int nWidth,
+                           int nHeight,
+                           HWND hWndParent,
+                           HMENU hMenu,
+                           HINSTANCE hInstance,
+                           LPVOID lpParam);
 BOOL WINAPI ShowWindow(HWND hWnd, int nCmdShow);
 BOOL UpdateWindow(HWND hWnd);
 
-typedef VOID(*TIMERPROC)(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime);
-UINT_PTR WINAPI SetTimer(HWND hWnd, UINT_PTR nIDEvent, UINT uElapse, TIMERPROC lpTimerFunc);
+typedef VOID (*TIMERPROC)(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime);
+UINT_PTR WINAPI SetTimer(HWND hWnd,
+                         UINT_PTR nIDEvent,
+                         UINT uElapse,
+                         TIMERPROC lpTimerFunc);
 BOOL WINAPI DestroyWindow(HWND hWnd);
 
 void Sleep(int);
@@ -225,7 +231,12 @@ HMODULE WINAPI GetModuleHandle(LPCTSTR lpModuleName);
 #define IMAGE_BITMAP 0x1
 #define LR_CREATEDIBSECTION 0x1
 #define LR_LOADFROMFILE 0x2
-HANDLE WINAPI LoadImage(HINSTANCE hinst, LPCTSTR lpszName, UINT uType, int cxDesired, int cyDesired, UINT fuLoad);
+HANDLE WINAPI LoadImage(HINSTANCE hinst,
+                        LPCTSTR lpszName,
+                        UINT uType,
+                        int cxDesired,
+                        int cyDesired,
+                        UINT fuLoad);
 
 #define E_FAIL 0x1
 int GetObject(HGDIOBJ hgdiobj, int cbBuffer, LPVOID lpvObject);
@@ -236,37 +247,35 @@ HGDIOBJ SelectObject(HDC hdc, HGDIOBJ hgdiobj);
 #define SRCCOPY 0x1
 
 #define CLR_INVALID 0x1
-COLORREF GetPixel(HDC hdc, int nXPos, int nYPos);
-COLORREF SetPixel(HDC hdc, int X, int Y, COLORREF crColor);
 BOOL SetPixelV(HDC hdc, int X, int Y, COLORREF crColor);
 
 typedef struct tagBITMAPINFOHEADER {
-	DWORD biSize;
-	LONG  biWidth;
-	LONG  biHeight;
-	WORD  biPlanes;
-	WORD  biBitCount;
-	DWORD biCompression;
-	DWORD biSizeImage;
-	LONG  biXPelsPerMeter;
-	LONG  biYPelsPerMeter;
-	DWORD biClrUsed;
-	DWORD biClrImportant;
+    DWORD biSize;
+    LONG biWidth;
+    LONG biHeight;
+    WORD biPlanes;
+    WORD biBitCount;
+    DWORD biCompression;
+    DWORD biSizeImage;
+    LONG biXPelsPerMeter;
+    LONG biYPelsPerMeter;
+    DWORD biClrUsed;
+    DWORD biClrImportant;
 } BITMAPINFOHEADER, *PBITMAPINFOHEADER;
 typedef PBITMAPINFOHEADER LPBITMAPINFOHEADER;
 typedef struct tagBITMAPFILEHEADER {
-	WORD bfType;
-	DWORD bfSize;
-	WORD bfReserved1;
-	WORD bfReserved2;
-	DWORD bfOffBits;
+    WORD bfType;
+    DWORD bfSize;
+    WORD bfReserved1;
+    WORD bfReserved2;
+    DWORD bfOffBits;
 } BITMAPFILEHEADER;
 
 typedef struct tagPALETTEENTRY {
-	BYTE peRed;
-	BYTE peGreen;
-	BYTE peBlue;
-	BYTE peFlags;
+    BYTE peRed;
+    BYTE peGreen;
+    BYTE peBlue;
+    BYTE peFlags;
 } PALETTEENTRY, *LPPALETTEENTRY;
 
 #define RT_BITMAP "BITMAP?"
@@ -283,16 +292,16 @@ HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType);
 #define INVALID_HANDLE_VALUE NULL
 
 typedef struct _OVERLAPPED {
-	ULONG_PTR Internal;
-	ULONG_PTR InternalHigh;
-	union {
-		struct {
-			DWORD Offset;
-			DWORD OffsetHigh;
-		};
-		PVOID  Pointer;
-	};
-	HANDLE    hEvent;
+    ULONG_PTR Internal;
+    ULONG_PTR InternalHigh;
+    union {
+        struct {
+            DWORD Offset;
+            DWORD OffsetHigh;
+        };
+        PVOID Pointer;
+    };
+    HANDLE hEvent;
 } OVERLAPPED, *LPOVERLAPPED;
 
 long _filelength(int fd);
@@ -300,21 +309,28 @@ DWORD timeGetTime(void);
 
 #define PM_NOREMOVE 0x1
 typedef struct tagPOINT {
-	LONG x;
-	LONG y;
+    LONG x;
+    LONG y;
 } POINT, *PPOINT;
 typedef struct tagMSG {
-	HWND   hwnd;
-	UINT   message;
-	WPARAM wParam;
-	LPARAM lParam;
-	DWORD  time;
-	POINT  pt;
+    HWND hwnd;
+    UINT message;
+    WPARAM wParam;
+    LPARAM lParam;
+    DWORD time;
+    POINT pt;
 } MSG, *PMSG, *LPMSG;
-BOOL WINAPI PeekMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg);
-LRESULT WINAPI DispatchMessage(const MSG *lpmsg);
-BOOL WINAPI TranslateMessage(const MSG *lpMsg);
-BOOL WINAPI GetMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax);
+BOOL WINAPI PeekMessage(LPMSG lpMsg,
+                        HWND hWnd,
+                        UINT wMsgFilterMin,
+                        UINT wMsgFilterMax,
+                        UINT wRemoveMsg);
+LRESULT WINAPI DispatchMessage(const MSG* lpmsg);
+BOOL WINAPI TranslateMessage(const MSG* lpMsg);
+BOOL WINAPI GetMessage(LPMSG lpMsg,
+                       HWND hWnd,
+                       UINT wMsgFilterMin,
+                       UINT wMsgFilterMax);
 
 char* _itoa(int value, char* str, int base);
 

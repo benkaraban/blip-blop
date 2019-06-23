@@ -26,7 +26,7 @@
 
 #define	BUFFER_LENGTH	200
 
-RPGPlayer::RPGPlayer() : fic_name(NULL), focus(0), wait_goal(0), key_released(false), skiped(false)
+RPGPlayer::RPGPlayer() : fic_name(NULL), focus(0), key_released(false), skiped(false)
 {
 	pic_tab[0] = NULL;
 	pic_tab[1] = NULL;
@@ -68,20 +68,20 @@ void RPGPlayer::attachFile(const char * f)
 
 bool RPGPlayer::startPlay(int n)
 {
-	fic.open(fic_name);
+	fic_.open(fic_name);
 
-	if (fic.is_open() == 0) {
+	if (fic_.is_open() == 0) {
 		debug << "RPGPlayer::startPlay() -> Cannot open " << fic_name << "\n";
 		return false;
 	}
 
 	sprintf(buffer1, "rpg=%d", n);
-	fic.getline(buffer2, BUFFER_LENGTH);
+	fic_.getline(buffer2, BUFFER_LENGTH);
 
-	while (!fic.eof() && strcmp(buffer1, buffer2) != 0)
-		fic.getline(buffer2, BUFFER_LENGTH);
+	while (!fic_.eof() && strcmp(buffer1, buffer2) != 0)
+		fic_.getline(buffer2, BUFFER_LENGTH);
 
-	if (fic.eof()) {
+	if (fic_.eof()) {
 		debug << "RPGPlayer::startPlay() -> Ne trouve pas la scene " << n << "\n";
 		return false;
 	}
@@ -96,7 +96,7 @@ bool RPGPlayer::startPlay(int n)
 	skiped			= false;
 	focus			= 0;
 	cur_joueur		= 0;
-	wait_goal		= 0;
+        wait_.Reset(0);
 
 	Couille *	c;
 	int			i = 0;
@@ -116,7 +116,7 @@ bool RPGPlayer::startPlay(int n)
 
 void RPGPlayer::stopPlay()
 {
-	fic.close();
+	fic_.close();
 }
 
 bool RPGPlayer::drawScene(SDL::Surface * surf)
@@ -134,7 +134,7 @@ bool RPGPlayer::drawScene(SDL::Surface * surf)
 			return false;
 		}
 
-		if (key_released && ((timeGetTime() - initial_time) >= 750)) {
+		if (key_released && (time_.elapsed() >= 750)) {
 			wait_goal = 0;
 			key_released = false;
 		}
@@ -143,7 +143,7 @@ bool RPGPlayer::drawScene(SDL::Surface * surf)
 	}
 
 
-	if (timeGetTime() > wait_goal)
+	if (wait_.is_zero())
 		not_finished = updateScene();
 
 	// Assombrissement
@@ -254,8 +254,8 @@ bool RPGPlayer::updateScene()
 			} else if (strcmp(buffer1, "affiche") == 0) {
 				// Près pour l'affichage
 
-				initial_time = timeGetTime();
-				wait_goal = timeGetTime() + atoi(buffer2);
+				time_.Reset();
+				wait_.Reset(atoi(buffer2));
 				ready_to_draw = true;
 			} else if (strcmp(buffer1, "flag") == 0) {
 				// Flag
@@ -278,17 +278,14 @@ bool RPGPlayer::updateScene()
 
 bool RPGPlayer::read()
 {
-	fic.getline(buffer1, BUFFER_LENGTH);
+	fic_.getline(buffer1, BUFFER_LENGTH);
 
 	// Skip les commentaires
 	//
-	while (!fic.eof() && buffer1[0] == ';')
-		fic.getline(buffer1, BUFFER_LENGTH);
+	while (!fic_.eof() && buffer1[0] == ';')
+		fic_.getline(buffer1, BUFFER_LENGTH);
 
-	if (fic.eof())
-		return false;
-	else
-		return true;
+        return !fic_.eof();
 }
 
 

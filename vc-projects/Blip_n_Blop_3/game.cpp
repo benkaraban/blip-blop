@@ -422,13 +422,13 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
 
     debug << "Available video memory : " << (vid_mem2 >> 10) << " Ko\n";*/
 
-    Sleep(2000);
+    SDL_Delay(2000);
 
     if (briefing) {
         DDBLTFX ddfx;
         RECT r;
 
-        ZeroMemory(&ddfx, sizeof(ddfx));
+        memset(&ddfx, 0, sizeof(ddfx));
         ddfx.dwSize = sizeof(ddfx);
         ddfx.dwFillColor = 0;  // Noir
 
@@ -1175,7 +1175,7 @@ void Game::drawAll(bool flip) {
         DDBLTFX ddfx;
         RECT r;
 
-        ZeroMemory(&ddfx, sizeof(ddfx));
+        memset(&ddfx, 0, sizeof(ddfx));
         ddfx.dwSize = sizeof(ddfx);
         ddfx.dwFillColor = 0;  // Noir
 
@@ -1242,7 +1242,7 @@ void Game::gameLoop() {
 
     drawAll();
 
-    DWORD ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
+    int ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
 
     if (ttotal <= 0)
         ttotal = GOOD;
@@ -2446,7 +2446,7 @@ void Game::drawDeformation() {
     int x;
     int xt;
 
-    ZeroMemory(&ddfx, sizeof(ddfx));
+    memset(&ddfx, 0, sizeof(ddfx));
     ddfx.dwSize = sizeof(ddfx);
     ddfx.dwFillColor = 0;  // Noir
 
@@ -2595,7 +2595,7 @@ void Game::drawTremblements() {
 
     DDBLTFX ddfx;
 
-    ZeroMemory(&ddfx, sizeof(ddfx));
+    memset(&ddfx, 0, sizeof(ddfx));
     ddfx.dwSize = sizeof(ddfx);
     ddfx.dwFillColor = 0;
 
@@ -2605,7 +2605,7 @@ void Game::drawTremblements() {
 //-----------------------------------------------------------------------------
 
 bool Game::loadList(const char* fic) {
-    ifstream f;
+    std::ifstream f;
     int n;
 
     f.open(fic);
@@ -2854,7 +2854,7 @@ void Game::go() {
     {
         DDBLTFX ddfx;
 
-        ZeroMemory(&ddfx, sizeof(ddfx));
+        memset(&ddfx, 0, sizeof(ddfx));
         ddfx.dwSize = sizeof(ddfx);
         ddfx.dwFillColor = 0;
 
@@ -2960,7 +2960,7 @@ void Game::showBriefing(char* fn) {
     DDBLTFX ddfx;
     RECT r;
 
-    ZeroMemory(&ddfx, sizeof(ddfx));
+    memset(&ddfx, 0, sizeof(ddfx));
     ddfx.dwSize = sizeof(ddfx);
     ddfx.dwFillColor = 0;  // Noir
 
@@ -3207,7 +3207,7 @@ void Game::showCredits(bool theEnd) {
             DDBLTFX ddfx;
             RECT r;
 
-            ZeroMemory(&ddfx, sizeof(ddfx));
+            memset(&ddfx, 0, sizeof(ddfx));
             ddfx.dwSize = sizeof(ddfx);
             ddfx.dwFillColor = 0;  // Noir
 
@@ -3544,8 +3544,7 @@ void Game::showCredits(bool theEnd) {
 
         DDFlip();
 
-        DWORD ttotal = time_.elapsed();
-        ;
+        int ttotal = time_.elapsed();
 
         if (ttotal <= 0)
             ttotal = GOOD;

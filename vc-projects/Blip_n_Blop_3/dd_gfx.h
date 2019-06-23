@@ -54,10 +54,8 @@ SDL::Surface* DDCreateSurface(int x, int y);
 SDL::Surface* DDCreateSurface(int x, int y, int flags);
 SDL::Surface* DDLoadBMP(char* file);
 SDL::Surface* DDLoadBMP(char* file, int flags);
-HRESULT DDCopyBMP(SDL::Surface* surf, HBITMAP hbm);
 void* DDLoadPalette(char* file);
-DWORD DDFindColor(SDL::Surface* surf, COLORREF rgb);
-HRESULT DDSetColorKey(SDL::Surface* surf, COLORREF rgb);
+bool DDSetColorKey(SDL::Surface* surf, Pixel rgb);
 void DDFlip();
 void DDFlipV();
 
