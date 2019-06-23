@@ -40,6 +40,7 @@ signed char FSOUND_Sample_SetLoopMode(FSOUND_SAMPLE* sptr,
     } else {
         sptr->loop = 0;
     }
+    return true;
 }
 
 signed char FSOUND_StopSound(int channel) { Mix_HaltChannel(channel); }
@@ -61,10 +62,15 @@ FSOUND_STREAM* FSOUND_Stream_OpenFile(const char* filename,
 }
 int FSOUND_Stream_Play(int channel, FSOUND_STREAM* stream) {
     Mix_PlayMusic(stream->music, 0);
+    return true;
 }
-signed char FSOUND_Stream_Stop(FSOUND_STREAM* stream) { Mix_HaltMusic(); }
+signed char FSOUND_Stream_Stop(FSOUND_STREAM* stream) {
+    Mix_HaltMusic();
+    return true;
+}
 signed char FSOUND_Stream_Close(FSOUND_STREAM* stream) {
     Mix_FreeMusic(stream->music);
+    return true;
 }
 
 signed char FSOUND_Init(int mixrate,
@@ -88,11 +94,13 @@ void FSOUND_Close() {
     Mix_CloseAudio();
     while (Mix_Init(0)) Mix_Quit();
 }
-int FSOUND_GetError() {}
-signed char FMUSIC_PlaySong(FMUSIC_MODULE* mod) {}
-FMUSIC_MODULE* FMUSIC_LoadSong(const char* name) {}
-signed char FMUSIC_SetMasterVolume(FMUSIC_MODULE* mod, int volume) {}
-signed char FMUSIC_StopSong(FMUSIC_MODULE* mod) {}
-signed char FMUSIC_FreeSong(FMUSIC_MODULE* mod) {}
-signed char FSOUND_SetPriority(int channel, int priority) {}
+int FSOUND_GetError() { return true; }
+signed char FMUSIC_PlaySong(FMUSIC_MODULE* mod) { return true; }
+FMUSIC_MODULE* FMUSIC_LoadSong(const char* name) { return true; }
+signed char FMUSIC_SetMasterVolume(FMUSIC_MODULE* mod, int volume) {
+    return true;
+}
+signed char FMUSIC_StopSong(FMUSIC_MODULE* mod) { return true; }
+signed char FMUSIC_FreeSong(FMUSIC_MODULE* mod) { return true; }
+signed char FSOUND_SetPriority(int channel, int priority) { return true; }
 }
