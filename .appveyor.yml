@@ -1,13 +1,17 @@
 version: '{branch}.{build}'
 os: Visual Studio 2015
+platform: x64
 clone_depth: 1
 before_build:
-    - nuget install sdl2
     - |-
+        vcpkg integrate install
+        vcpkg install sdl2:x64-windows
+        vcpkg install sdl2-image:x64-windows
+        vcpkg install sdl2-mixer:x64-windows
         cd vc-projects/Blip_n_Blop_3/
         mkdir build
         cd build
-        cmake .. -G "Visual Studio 14 2015 Win64"
+        cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_TOOLCHAIN_FILE=C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 build:
     project:
