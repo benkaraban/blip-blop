@@ -181,7 +181,7 @@ void CINEPlayer::renderLoop()
 	                             };
 	static int	im = 0;
 
-	dtime += time_.elapsed();
+	dtime += time_.elapsed() * 10;
 	time_.Reset();
 
 	int sum = 0;
@@ -207,7 +207,7 @@ void CINEPlayer::renderLoop()
 
 	drawScene();
 
-	int ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
+	int ttotal = tupdate_.saved_elapsed() * 10 + tdraw_.saved_elapsed() * 10;
 
 	if (ttotal <= 0)
 		ttotal = GOOD;

@@ -39,7 +39,6 @@ public:
 	int				id[2];
 	int				focus;
 
-	unsigned int	wait_goal;
         Chrono time_;
         Countdown wait_;
 	bool			key_released;

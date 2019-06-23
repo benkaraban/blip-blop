@@ -135,7 +135,7 @@ bool RPGPlayer::drawScene(SDL::Surface * surf)
 		}
 
 		if (key_released && (time_.elapsed() >= 750)) {
-			wait_goal = 0;
+			wait_.Reset(0);
 			key_released = false;
 		}
 	} else {
@@ -143,8 +143,9 @@ bool RPGPlayer::drawScene(SDL::Surface * surf)
 	}
 
 
-	if (wait_.is_zero())
+	if (wait_.is_zero()) {
 		not_finished = updateScene();
+        }
 
 	// Assombrissement
 	//

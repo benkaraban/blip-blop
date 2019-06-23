@@ -33,5 +33,5 @@ class Countdown {
 
     void Reset(int duration) { end_ = SDL_GetTicks() + duration; }
 
-    bool is_zero() const { return end_ - SDL_GetTicks() < 0; }
+    bool is_zero() const { return int(end_) - int(SDL_GetTicks()) < 0; }
 };

@@ -1216,7 +1216,11 @@ void Game::gameLoop() {
                                   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     static int im = 0;
 
-    dtime += time_.elapsed();
+    // FIXME: Understand what's going on with this margin and "glorf". The game
+    // used a timer that was roughly 10 times faster than this one, hence the
+    // multiplication, but it would be cleaner to downscale the hardcoded
+    // number depending on in
+    dtime += time_.elapsed() * 10;
     time_.Reset();
 
     int sum = 0;
@@ -1242,7 +1246,7 @@ void Game::gameLoop() {
 
     drawAll();
 
-    int ttotal = tupdate_.saved_elapsed() + tdraw_.saved_elapsed();
+    int ttotal = tupdate_.saved_elapsed() * 10 + tdraw_.saved_elapsed() * 10;
 
     if (ttotal <= 0)
         ttotal = GOOD;
@@ -3162,7 +3166,11 @@ void Game::showCredits(bool theEnd) {
     time_.Reset();
 
     while (!app_killed && (!in.anyKeyPressed() || theEnd) && last_y > 0) {
-        dtime += time_.elapsed();
+        // FIXME: Understand what's going on with this margin and "glorf". The
+        // game used a timer that was roughly 10 times faster than this one,
+        // hence the multiplication, but it would be cleaner to downscale the
+        // hardcoded number depending on in
+        dtime += time_.elapsed() * 10;
         time_.Reset();
 
         int sum = 0;
@@ -3544,7 +3552,7 @@ void Game::showCredits(bool theEnd) {
 
         DDFlip();
 
-        int ttotal = time_.elapsed();
+        int ttotal = time_.elapsed() * 10;
 
         if (ttotal <= 0)
             ttotal = GOOD;
