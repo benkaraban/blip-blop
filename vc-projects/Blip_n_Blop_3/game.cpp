@@ -21,11 +21,11 @@
 #include <algorithm>
 
 #include <fcntl.h>
-#include <io.h>
 #include <malloc.h>
 #include <cstdio>
 #include <cstring>
 
+#include "Engine/io.h"
 #include "ben_debug.h"
 #include "ben_divers.h"
 #include "blip.h"
@@ -3544,7 +3544,8 @@ void Game::showCredits(bool theEnd) {
 
         DDFlip();
 
-        DWORD ttotal = time_.elapsed();;
+        DWORD ttotal = time_.elapsed();
+        ;
 
         if (ttotal <= 0)
             ttotal = GOOD;

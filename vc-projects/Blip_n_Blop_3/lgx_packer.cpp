@@ -32,8 +32,9 @@
 //-----------------------------------------------------------------------------
 
 #include <fcntl.h>
-#include <io.h>
 #include <stdio.h>
+
+#include "Engine/io.h"
 #include "ben_debug.h"
 #include "dd_gfx.h"
 #include "lgx_packer.h"

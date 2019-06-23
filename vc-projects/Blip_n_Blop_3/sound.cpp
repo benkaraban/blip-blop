@@ -26,7 +26,6 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <io.h>
 #include <fcntl.h>
 #include "ben_debug.h"
 #include "sound.h"

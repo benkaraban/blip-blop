@@ -23,9 +23,10 @@
 #include "graphics.h"
 #include <string.h>
 #include <fstream>
-#include <io.h>
 #include <fcntl.h>
 #include <stdio.h>
+
+#include "Engine/io.h"
 #include "lgx_packer.h"
 #include "ben_debug.h"
 #include "fonte.h"

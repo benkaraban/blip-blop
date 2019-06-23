@@ -74,19 +74,6 @@ typedef char TCHAR;
 typedef LPCSTR LPCTSTR;
 #endif
 
-//typedef union _LARGE_INTEGER {
-//	struct {
-//		DWORD LowPart;
-//		LONG  HighPart;
-//	};
-//	struct {
-//		DWORD LowPart;
-//		LONG  HighPart;
-//	} u;
-//	LONGLONG QuadPart;
-//} LARGE_INTEGER, *PLARGE_INTEGER;
-typedef int64_t LARGE_INTEGER;
-
 #define CS_HREDRAW 0x1
 #define CS_VREDRAW 0x2
 typedef long(*WNDPROC)(HWND, UINT, WPARAM, LPARAM);

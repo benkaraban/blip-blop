@@ -72,14 +72,6 @@ HRSRC WINAPI FindResource(HMODULE hModule, LPCTSTR lpName, LPCTSTR lpType) STUB
 DWORD timeGetTime(void) {
     return SDL_GetTicks();
 }
-BOOL WINAPI QueryPerformanceFrequency(LARGE_INTEGER *lpFrequency) {
-    *lpFrequency = SDL_GetPerformanceFrequency();
-    return true;
-}
-BOOL WINAPI QueryPerformanceCounter(LARGE_INTEGER *lpPerformanceCount) {
-    *lpPerformanceCount = SDL_GetPerformanceCounter();
-    return true;
-}
 
 BOOL WINAPI PeekMessage(LPMSG lpMsg,HWND hWnd,UINT wMsgFilterMin,UINT wMsgFilterMax,UINT wRemoveMsg) {}
 LRESULT WINAPI DispatchMessage(const MSG *lpmsg) STUB

@@ -5,7 +5,6 @@ project(blipblop)
 find_package(SDL2 REQUIRED)
 find_path(SDL2_INCLUDE_DIRS SDL2/SDL.h)
 
-include_directories(Engine)
 #include_directories(${SDL2_INCLUDE_DIRS})
 #include_directories(${SDL2_mixer_INCLUDE_DIRS})
 

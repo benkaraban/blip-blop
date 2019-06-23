@@ -33,7 +33,7 @@ class PictureBank {
 
    public:
     inline Picture* operator[](int n) const { return tab_[n].get(); };
-    inline int getSize() const { return tab_.size(); };
+    inline size_t getSize() const { return tab_.size(); };
 
     PictureBank();
     bool loadGFX(const char* file, int flag = DDSURF_BEST, bool trans = true);
