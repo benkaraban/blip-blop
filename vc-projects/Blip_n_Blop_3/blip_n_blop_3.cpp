@@ -29,6 +29,7 @@
 Game game;
 
 #if _WIN32
+#include <windows.h>
 HWND WinHandle = NULL;
 #endif
 
