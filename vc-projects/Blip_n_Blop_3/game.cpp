@@ -92,7 +92,8 @@ Game::Game()
       next_goutte(0),
       next_flocon(0),
       show_fps(false),
-      show_lists(false) {
+      show_lists(false),
+      frame_spare_time_(50) {
     briefing = false;
 }
 
@@ -1025,8 +1026,6 @@ void Game::updateAll() {
                     scroll_speed = 1;
     */
 
-    tupdate_.Reset();
-
     manageMsg();  // Fucking windaube!!!
 
     if (checkRestore()) time_.Reset();
@@ -1102,8 +1101,6 @@ void Game::updateAll() {
     cleanLists();
 
     updateMenu();
-
-    tupdate_.Stop();
 
     updateRPG();
 }
@@ -1206,32 +1203,21 @@ void Game::drawAll(bool flip) {
 //-----------------------------------------------------------------------------
 
 void Game::gameLoop() {
-    static const int GOOD = 118;
-    static const int INT_SIZE = 50;
-    static const int MARGE = 10;
+    static const int GOOD = 11;
+    static const int MARGE = 2;
 
-    static int marge[INT_SIZE] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    static int im = 0;
 
     // FIXME: Understand what's going on with this margin and "glorf". The game
     // used a timer that was roughly 10 times faster than this one, hence the
     // multiplication, but it would be cleaner to downscale the hardcoded
     // number depending on in
-    dtime += time_.elapsed() * 10;
+    dtime += time_.elapsed();
     time_.Reset();
 
-    int sum = 0;
+    int mean_frame_time = frame_spare_time_.average();
 
-    for (int i = 0; i < INT_SIZE; i++) {
-        sum += marge[i];
-    }
-
-    glorf_ = sum / INT_SIZE;
-
-    if (glorf_ >= -MARGE && glorf_ <= MARGE) {
+    tupdate_.Reset();
+    if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
         updateAll();
         dtime = 0;
     } else {
@@ -1240,20 +1226,18 @@ void Game::gameLoop() {
             dtime -= GOOD;
         }
     }
-
-    im += 1;
-    im %= INT_SIZE;
+    tupdate_.Stop();
 
     drawAll();
 
-    int ttotal = tupdate_.saved_elapsed() * 10 + tdraw_.saved_elapsed() * 10;
+    int ttotal = tupdate_.saved_elapsed() * 1 + tdraw_.saved_elapsed() * 1;
 
     if (ttotal <= 0)
         ttotal = GOOD;
     else if (ttotal >= 5000)
         ttotal = GOOD;
 
-    marge[im] = ttotal - GOOD;
+    frame_spare_time_.Add(ttotal - GOOD);
 }
 
 //-----------------------------------------------------------------------------
@@ -3179,9 +3163,9 @@ void Game::showCredits(bool theEnd) {
             sum += marge[i];
         }
 
-        glorf_ = sum / INT_SIZE;
+        int mean_frame_time = sum / INT_SIZE;
 
-        if (glorf_ >= -MARGE && glorf_ <= MARGE) {
+        if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
             ey = (ey + 1) % SSPEED;
             if (ey == 0) y--;
             dtime = 0;

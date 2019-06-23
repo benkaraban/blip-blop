@@ -70,6 +70,12 @@ would still disallow the gamer to properly play the game). Congrats and thanks!
   contained path containing backslashes that failed. Now backslashes are
   handled.
 - MusicBank has been reworked a lot
+- For some reasons, there were (and still are) too many nonsensical bridges in
+  this code. There's a Direct3D simulated API implented in SDL, a FMOD fake API
+  implemented in SDL mixer, and a windows API implemented with Linux syscalls.
+  I guess those came from the first revamping of the code in 2014; the
+  developper must have thought that implementing a bridge would be easier than
+  manipulating the code.
 
 # Blip'n Blop
 This is the source code of Blip'n Blop, a free video game for the PC released in 2002. Years after the game got released, some enthusiastic programmers asked us to open source it and here we are!

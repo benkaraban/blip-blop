@@ -173,12 +173,7 @@ void CINEPlayer::renderLoop()
 	static const int INT_SIZE = 50;
 	static const int MARGE = 10;
 
-	static int	marge[INT_SIZE] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	                             };
+	static int	marge[INT_SIZE] = { 0 };
 	static int	im = 0;
 
 	dtime += time_.elapsed() * 10;
@@ -190,9 +185,9 @@ void CINEPlayer::renderLoop()
 		sum += marge[i];
 	}
 
-	glorf = sum / INT_SIZE;
+        int mean_frame_time = sum / INT_SIZE;
 
-	if (glorf >= -MARGE && glorf <= MARGE) {
+	if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
 		updateScene();
 		dtime = 0;
 	} else {

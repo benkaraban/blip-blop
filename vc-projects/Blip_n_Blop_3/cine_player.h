@@ -58,8 +58,6 @@ protected:
         Chrono tdraw_;
         Chrono time_;
 	int		dtime;
-        // FIXME: I sincerely have no idea what a "glorf" is supposed to be.
-	int		glorf;
 
 	/*SDL::Surface * first_surf;*/
 	SDL::Surface * back_surf;

@@ -29,6 +29,7 @@
 #include "rpg_player.h"
 #include "blip.h"
 #include "chrono.h"
+#include "moving_average.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -58,9 +59,7 @@
 class Game
 {
 protected:
-        // FIXME: This variable's name is so explicit, I have no idea what it's
-        // for.
-        int glorf_;
+        MovingAverage<int> frame_spare_time_;
 	PictureBank	pbk_briefing;
 	bool	briefing;
 
