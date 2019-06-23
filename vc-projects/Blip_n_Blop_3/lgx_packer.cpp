@@ -31,10 +31,11 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <fstream>
+
 #include <fcntl.h>
 #include <stdio.h>
 
-#include "Engine/io.h"
 #include "ben_debug.h"
 #include "dd_gfx.h"
 #include "lgx_packer.h"
@@ -652,25 +653,19 @@ SDL::Surface * LGXpacker::loadLGX(const char * fic, int flags)
 	}
 
 	SDL::Surface *	surf;
-	int		fh;
-	int		taille;
+        std::ifstream fh(fic, std::ios::binary);
 
-	if ((fh = _open(fic, _O_BINARY | _O_RDONLY)) == -1) {
+	if (!fh.good()) {
 		debug << "LGXpacker::loadLGX() / Ne peut pas ouvrir le fichier " << fic << "\n";
 		return NULL;
 	}
 
-	taille = _filelength(fh);
-	void * ptr = malloc(taille);
+        fh.seekg(0, std::ios::end);
+        int size = fh.tellg();
+        fh.seekg(0, std::ios::beg);
+        void * ptr = malloc(size);
 
-	if (ptr == NULL) {
-		debug << "LGXpaker::loadLGX() -> Mémoire insuffisante - (" << taille << ")\n";
-		_close(fh);
-		return NULL;
-	}
-
-	_read(fh, ptr, taille);
-	_close(fh);
+        fh.read(reinterpret_cast<char*>(ptr), size);
 
 	surf = loadLGX(ptr, flags);
 

@@ -22,7 +22,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "Engine/io.h"
 #include "ben_debug.h"
 #include "dd_gfx.h"
 #include "lgx_packer.h"
@@ -92,15 +91,14 @@ bool PictureBank::restoreAll() {
         return true;
     }
     SDL::Surface* surf;
-    int fic;
     int xspot;
     int yspot;
     int taille;
     int version;
     void* ptr;
 
-    fic = _open(filename_.c_str(), _O_BINARY | _O_RDONLY);
-    if (fic == -1) {
+    std::ifstream fic(filename_.c_str(), std::ios::binary);
+    if (!fic.good()) {
         debug << "PictureBank::restoreAll() - Impossible de charger le "
                  "fichier "
               << filename_ << "\n";
@@ -108,7 +106,7 @@ bool PictureBank::restoreAll() {
     }
 
     int nb_pic;
-    _read(fic, &nb_pic, sizeof(nb_pic));
+    fic.read(reinterpret_cast<char*>(&nb_pic), sizeof(nb_pic));
 
     for (int i = 0; i < nb_pic; i++) {
         // Libère l'ancienne surface
@@ -116,28 +114,27 @@ bool PictureBank::restoreAll() {
         surf = tab_[i]->Surf();
         surf->Release();
 
-        _read(fic, &xspot, sizeof(xspot));  // Coordonnées du point chaud
-        _read(fic, &yspot, sizeof(yspot));
+        fic.read(reinterpret_cast<char*>(&xspot),
+                 sizeof(xspot));  // Coordonnées du point chaud
+        fic.read(reinterpret_cast<char*>(&yspot), sizeof(yspot));
 
-        _read(fic, &taille, sizeof(taille));
+        fic.read(reinterpret_cast<char*>(&taille), sizeof(taille));
 
         ptr = malloc(taille);
 
         if (ptr == NULL) {
             debug << "PictureBank::restoreAll() - Impossible d'allouer "
                   << taille << " octets \n";
-            _close(fic);
             return false;
         }
 
-        _read(fic, ptr, taille);
+        fic.read(reinterpret_cast<char*>(ptr), taille);
         surf = LGXpaker.loadLGX(ptr, flag_fic, &version);
 
         free(ptr);
 
         if (surf == NULL) {
             debug << "PictureBank::restoreAll() - surface à NULL\n";
-            _close(fic);
             return false;
         }
 
@@ -151,8 +148,6 @@ bool PictureBank::restoreAll() {
                 tab_[i]->SetColorKey(RGB(250, 214, 152));
         }
     }
-
-    _close(fic);
 
     return true;
 }

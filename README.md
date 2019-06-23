@@ -1,5 +1,5 @@
 Linux: ![linux](https://travis-ci.org/Vermeille/blip-blop.svg?branch=master)
-Windows: ![Windows](https://ci.appveyor.com/api/projects/status/github/vermeille/blipblop?svg=true&branch=master)
+Windows: [![Build status](https://ci.appveyor.com/api/projects/status/n8rv6hstgmlx4j0a/branch/master?svg=true)](https://ci.appveyor.com/project/Vermeille/blip-blop/branch/master)
 
 # Forker's notes
 

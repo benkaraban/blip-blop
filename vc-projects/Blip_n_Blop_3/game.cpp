@@ -24,8 +24,8 @@
 #include <malloc.h>
 #include <cstdio>
 #include <cstring>
+#include <fstream>
 
-#include "Engine/io.h"
 #include "ben_debug.h"
 #include "ben_divers.h"
 #include "blip.h"
@@ -550,13 +550,12 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
 //-----------------------------------------------------------------------------
 
 bool Game::chargeNiveau(const char* nom_niveau) {
-    int fic;
     char buffer[20];
     char buffer2[70];
 
-    fic = _open(nom_niveau, _O_RDONLY | _O_BINARY);
+    std::ifstream fic(nom_niveau, std::ios::binary);
 
-    if (fic == -1) {
+    if (!fic.good()) {
         debug << "Game::chargeNiveau() -> Cannot load <" << nom_niveau << ">\n";
         return false;
     }
@@ -569,7 +568,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // GFX decors
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
     strcpy(buffer2, "data/");
     strcat(buffer2, buffer);
 
@@ -583,7 +582,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // GFX niveau (fonds animés & co)
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
@@ -599,7 +598,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // GFX ennemis
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
@@ -615,7 +614,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // SBK ennemis
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
 
     if (strlen(buffer) != 0) {
         strcpy(buffer2, "data/");
@@ -632,7 +631,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // Fichier MBK
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
@@ -651,7 +650,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // Fichier RPG itself
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
@@ -666,7 +665,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // GFX rpg
     //
-    _read(fic, buffer, 20);
+    fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
@@ -682,29 +681,29 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     // Taille du niveau
     //
-    _read(fic, &scr_level_size, sizeof(scr_level_size));
+    fic.read(reinterpret_cast<char*>(&scr_level_size), sizeof(scr_level_size));
     level_size = scr_level_size * 640;
 
     // Numéros des écrans à afficher (comme des tiles)
     //
     num_decor = new int[scr_level_size];
     for (int i = 0; i < scr_level_size; i++)
-        _read(fic, &num_decor[i], sizeof(int));
+        fic.read(reinterpret_cast<char*>(&num_decor[i]), sizeof(int));
 
     // Coordonnées de départ des joueurs
     //
-    _read(fic, &xstart1, sizeof(xstart1));
-    _read(fic, &ystart1, sizeof(ystart1));
-    _read(fic, &xstart2, sizeof(xstart2));
-    _read(fic, &ystart2, sizeof(ystart2));
+    fic.read(reinterpret_cast<char*>(&xstart1), sizeof(xstart1));
+    fic.read(reinterpret_cast<char*>(&ystart1), sizeof(ystart1));
+    fic.read(reinterpret_cast<char*>(&xstart2), sizeof(xstart2));
+    fic.read(reinterpret_cast<char*>(&ystart2), sizeof(ystart2));
 
     // Conditions de victoire
     //
-    _read(fic, &vic_x, sizeof(vic_x));
-    _read(fic, &vic_flag1, sizeof(vic_flag1));
-    _read(fic, &vic_val1, sizeof(vic_val1));
-    _read(fic, &vic_flag2, sizeof(vic_flag2));
-    _read(fic, &vic_val2, sizeof(vic_val2));
+    fic.read(reinterpret_cast<char*>(&vic_x), sizeof(vic_x));
+    fic.read(reinterpret_cast<char*>(&vic_flag1), sizeof(vic_flag1));
+    fic.read(reinterpret_cast<char*>(&vic_val1), sizeof(vic_val1));
+    fic.read(reinterpret_cast<char*>(&vic_flag2), sizeof(vic_flag2));
+    fic.read(reinterpret_cast<char*>(&vic_val2), sizeof(vic_val2));
 
     //
     // Plateformes
@@ -713,7 +712,8 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     for (int i = 0; i < NB_MAX_PLAT; i++) {
         y_plat[i] = new int[level_size];
-        _read(fic, y_plat[i], (level_size) * sizeof(int));
+        fic.read(reinterpret_cast<char*>(y_plat[i]),
+                 (level_size) * sizeof(int));
     }
 
     //
@@ -724,7 +724,8 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     for (int i = 0; i < 60; i++) {
         murs_opaques[i] = new bool[level_size_8];
-        _read(fic, murs_opaques[i], (level_size_8) * sizeof(bool));
+        fic.read(reinterpret_cast<char*>(murs_opaques[i]),
+                 (level_size_8) * sizeof(bool));
     }
 
     //
@@ -734,7 +735,8 @@ bool Game::chargeNiveau(const char* nom_niveau) {
 
     for (int i = 0; i < 60; i++) {
         murs_sanglants[i] = new bool[level_size_8];
-        _read(fic, murs_sanglants[i], (level_size_8) * sizeof(bool));
+        fic.read(reinterpret_cast<char*>(murs_sanglants[i]),
+                 (level_size_8) * sizeof(bool));
     }
 
     //
@@ -743,10 +745,10 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     FICEVENT ficevent;
     int nb_events;
 
-    _read(fic, &nb_events, sizeof(nb_events));
+    fic.read(reinterpret_cast<char*>(&nb_events), sizeof(nb_events));
 
     for (int i = 0; i < nb_events; i++) {
-        _read(fic, &ficevent, sizeof(ficevent));
+        fic.read(reinterpret_cast<char*>(&ficevent), sizeof(ficevent));
 
         switch (ficevent.event_id) {
             case EVENTID_ENNEMI: {
@@ -950,8 +952,6 @@ bool Game::chargeNiveau(const char* nom_niveau) {
             }
         }
     }
-
-    _close(fic);
 
     debug << "Successfully loaded all level files\n";
 
