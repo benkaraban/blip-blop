@@ -1,5 +1,8 @@
 #pragma once
 
+#include <array>
+#include <tuple>
+
 #include "abstract_menu.h"
 #include "menu_list.h"
 

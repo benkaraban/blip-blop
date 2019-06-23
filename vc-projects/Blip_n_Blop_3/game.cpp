@@ -1216,7 +1216,7 @@ void Game::gameLoop() {
 
     int mean_frame_time = frame_spare_time_.average();
 
-    tupdate_.Reset();
+    Chrono tframe;
     if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
         updateAll();
         dtime = 0;
@@ -1226,11 +1226,10 @@ void Game::gameLoop() {
             dtime -= GOOD;
         }
     }
-    tupdate_.Stop();
 
     drawAll();
 
-    int ttotal = tupdate_.saved_elapsed() * 1 + tdraw_.saved_elapsed() * 1;
+    int ttotal = tframe.elapsed();
 
     if (ttotal <= 0)
         ttotal = GOOD;
