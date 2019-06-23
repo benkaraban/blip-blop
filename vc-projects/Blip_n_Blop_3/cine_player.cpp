@@ -413,7 +413,7 @@ void CINEPlayer::drawScene()
 	RenderRect ddfx;
 	tdraw_.Reset();
 
-	RECT		r;
+	Rect		r;
 
 	back_surf->FillRect(0, 0xFF000000);
 

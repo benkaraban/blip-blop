@@ -711,7 +711,7 @@ int LGXpacker::findColor(Pixel rgb)
 // LGXpaker::halfTone()
 //-----------------------------------------------------------------------------
 
-void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
+void LGXpacker::halfTone(SDL::Surface * surf, Rect * r)
 {
 	SDL::SurfaceInfo ddsd;
 

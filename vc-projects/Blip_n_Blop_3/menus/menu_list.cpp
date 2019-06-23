@@ -30,7 +30,7 @@ void MenuList::ShadeTextBox(SDL::Surface* surf) const {
     //
     int width = ComputeWidth();
 
-    RECT rec;
+    Rect rec;
     rec.top = 220 - ys;
     rec.left = 320 - width;
     rec.bottom = 260 + ys;

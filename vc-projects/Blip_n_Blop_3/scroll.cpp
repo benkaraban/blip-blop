@@ -41,7 +41,7 @@ int n_cache = 0;
 
 void drawScrolling()
 {
-	RECT		r;
+	Rect		r;
 
 	// Pour éviter les mauvaises surprises
 	//

@@ -115,7 +115,7 @@ public:
 
 	int	findColor(Pixel rgb);
 
-	void halfTone(SDL::Surface * surf, RECT * r);
+	void halfTone(SDL::Surface * surf, Rect * r);
 
 	void closePaker();
 };

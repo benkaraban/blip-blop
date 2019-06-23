@@ -289,12 +289,12 @@ bool mur_sanglant(int x, int y)
 	return murs_sanglants[y / 8][x / 8];
 }
 
-inline void clipedBlit(SDL::Surface * surf, const Picture * pic, int x, int y, RECT * clip)
+inline void clipedBlit(SDL::Surface * surf, const Picture * pic, int x, int y, Rect * clip)
 {
 	if (pic == NULL)
 		return;
 
-	RECT	r;
+	Rect	r;
 	int		x1;
 	int		y1;
 	int		x2;
@@ -361,7 +361,7 @@ bool grave(int x, int y, Picture * pic)
 	}
 
 
-	RECT	r;
+	Rect	r;
 	int		ni = x / /*640;*/vbuffer_wide;
 //	int		no = offset / vbuffer_wide;
 

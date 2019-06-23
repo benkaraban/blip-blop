@@ -427,7 +427,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
 
     if (briefing) {
         DDBLTFX ddfx;
-        RECT r;
+        Rect r;
 
         memset(&ddfx, 0, sizeof(ddfx));
         ddfx.dwSize = sizeof(ddfx);
@@ -1170,7 +1170,7 @@ void Game::drawAll(bool flip) {
     //
     if (vbuffer_wide == 640) {
         DDBLTFX ddfx;
-        RECT r;
+        Rect r;
 
         memset(&ddfx, 0, sizeof(ddfx));
         ddfx.dwSize = sizeof(ddfx);
@@ -1186,7 +1186,7 @@ void Game::drawAll(bool flip) {
             FillRect(&r, 0);
     }
 
-    RECT r;
+    Rect r;
 
     r.top = 0;
     r.left = 0;
@@ -1205,7 +1205,6 @@ void Game::drawAll(bool flip) {
 void Game::gameLoop() {
     static const int GOOD = 11;
     static const int MARGE = 2;
-
 
     // FIXME: Understand what's going on with this margin and "glorf". The game
     // used a timer that was roughly 10 times faster than this one, hence the
@@ -1979,7 +1978,7 @@ void Game::showPE(bool bonus, bool fuckOff) {
     systemSurface->BltFast(
         0, 0, backSurface, NULL, DDBLTFAST_NOCOLORKEY | DDBLTFAST_WAIT);
 
-    RECT r;
+    Rect r;
 
     r.top = 100;
     r.left = 60;
@@ -2426,7 +2425,7 @@ void Game::updateDeformation() {
 
 void Game::drawDeformation() {
     DDBLTFX ddfx;
-    RECT r;
+    Rect r;
     int pas = 20;
     int phi = phi_deform;
     int dphi = 10;
@@ -2553,8 +2552,8 @@ void Game::drawTremblements() {
     if (amplitude_tremblement == 0 || dy_tremblement == 0) return;
 
     int y;
-    RECT r;
-    RECT r2;
+    Rect r;
+    Rect r2;
 
     r2.left = r.left = 0;
     r2.right = r.right = 640;
@@ -2640,7 +2639,7 @@ bool Game::loadList(const char* fic) {
 //-----------------------------------------------------------------------------
 
 void Game::drawLoading() {
-    RECT r;
+    Rect r;
 
     r.left = 0;
     r.right = 640;
@@ -2945,7 +2944,7 @@ void Game::showBriefing(char* fn) {
     briefing = true;
 
     DDBLTFX ddfx;
-    RECT r;
+    Rect r;
 
     memset(&ddfx, 0, sizeof(ddfx));
     ddfx.dwSize = sizeof(ddfx);
@@ -3184,7 +3183,7 @@ void Game::showCredits(bool theEnd) {
         in.update();
 
         if (mustFixGforceBug) {
-            RECT r;
+            Rect r;
 
             r.top = 10;
             r.bottom = 150;
@@ -3196,7 +3195,7 @@ void Game::showCredits(bool theEnd) {
 
         {
             DDBLTFX ddfx;
-            RECT r;
+            Rect r;
 
             memset(&ddfx, 0, sizeof(ddfx));
             ddfx.dwSize = sizeof(ddfx);

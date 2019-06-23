@@ -149,7 +149,7 @@ bool RPGPlayer::drawScene(SDL::Surface * surf)
 
 	// Assombrissement
 	//
-	RECT	r;
+	Rect	r;
 
 	if (nimage[0] >= 0) {
 		r.left	= 100;

@@ -73,7 +73,7 @@ void EnnemiPic::affiche()
 	SDL::Surface *	surf;
 	int						xs;
 	int						ys;
-	RECT					r;
+	Rect					r;
 	//int						largeur;
 
 

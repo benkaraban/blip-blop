@@ -13,7 +13,7 @@ typedef struct {
     int top;
     int right;
     int bottom;
-} RECT;
+} Rect;
 
 typedef uint32_t Pixel;
 

@@ -44,7 +44,7 @@ namespace SDL
 		}
 
 		inline SDL_Surface *Get(){ return surface; };
-		inline void BltFast(int x, int y, SDL::Surface *surf /*This is the Source Surface! Damn, DD!*/, RECT *r, int flags=0)
+		inline void BltFast(int x, int y, SDL::Surface *surf /*This is the Source Surface! Damn, DD!*/, Rect *r, int flags=0)
 		{
                         (void)flags;
 			/*static int test_i = 1;
@@ -86,7 +86,7 @@ namespace SDL
 
 		}
 
-		inline void Blt(RECT *src, SDL::Surface *surf, RECT *dest, int flags = 0, DDBLTFX *pad = 0)
+		inline void Blt(Rect *src, SDL::Surface *surf, Rect *dest, int flags = 0, DDBLTFX *pad = 0)
 		{
                         (void)flags;
 			/*
@@ -183,7 +183,7 @@ namespace SDL
 			return true;
 		}
 
-		inline void FillRect(RECT *r,unsigned int color)
+		inline void FillRect(Rect *r,unsigned int color)
 		{
 			if (!r)
 			{
