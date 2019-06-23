@@ -1,4 +1,6 @@
-![linux](https://travis-ci.org/Vermeille/blip-blop.svg?branch=master)
+Linux: ![linux](https://travis-ci.org/Vermeille/blip-blop.svg?branch=master)
+Windows: ![Windows](https://ci.appveyor.com/api/projects/status/github/vermeille/blipblop?svg=true&branch=master)
+
 # Forker's notes
 
 I am mainly trying to modernize the code. Both in terms of C++ features, and
