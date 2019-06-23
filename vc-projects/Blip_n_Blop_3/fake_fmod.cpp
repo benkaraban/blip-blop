@@ -43,7 +43,10 @@ signed char FSOUND_Sample_SetLoopMode(FSOUND_SAMPLE* sptr,
     return true;
 }
 
-signed char FSOUND_StopSound(int channel) { Mix_HaltChannel(channel); }
+signed char FSOUND_StopSound(int channel) {
+    Mix_HaltChannel(channel);
+    return true;
+}
 
 void FSOUND_Sample_Free(FSOUND_SAMPLE* sptr) {
     Mix_FreeChunk(sptr->chunk);
@@ -96,7 +99,7 @@ void FSOUND_Close() {
 }
 int FSOUND_GetError() { return true; }
 signed char FMUSIC_PlaySong(FMUSIC_MODULE* mod) { return true; }
-FMUSIC_MODULE* FMUSIC_LoadSong(const char* name) { return true; }
+FMUSIC_MODULE* FMUSIC_LoadSong(const char* name) { return nullptr; }
 signed char FMUSIC_SetMasterVolume(FMUSIC_MODULE* mod, int volume) {
     return true;
 }

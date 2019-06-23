@@ -1,6 +1,7 @@
 #pragma once
 
 #include <fstream>
+#include <string>
 
 #define FILE_LOG "BlipBlop.log"
 
