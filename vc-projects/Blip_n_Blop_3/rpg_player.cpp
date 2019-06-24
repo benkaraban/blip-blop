@@ -24,9 +24,7 @@
 #include "scroll.h"
 
 
-#define	BUFFER_LENGTH	200
-
-RPGPlayer::RPGPlayer() : fic_name(NULL), focus(0), key_released(false), skiped(false)
+RPGPlayer::RPGPlayer() : focus(0), key_released(false), skiped(false)
 {
 	pic_tab[0] = NULL;
 	pic_tab[1] = NULL;
@@ -36,50 +34,29 @@ RPGPlayer::RPGPlayer() : fic_name(NULL), focus(0), key_released(false), skiped(f
 
 	ntxt[0] = 0;
 	ntxt[1] = 0;
-
-	buffer1 = new char[BUFFER_LENGTH];
-	buffer2 = new char[BUFFER_LENGTH];
-}
-
-
-RPGPlayer::~RPGPlayer()
-{
-	if (buffer1 != NULL)
-		delete [] buffer1;
-
-	if (buffer2 != NULL)
-		delete [] buffer2;
-
-	if (fic_name != NULL)
-		delete [] fic_name;
 }
 
 
 void RPGPlayer::attachFile(const char * f)
 {
-	if (fic_name != NULL)
-		delete [] fic_name;
-
-	fic_name = new char[strlen(f) + 1];
-
-	strcpy(fic_name, f);
+    fic_name_ = f;
 }
 
 
 bool RPGPlayer::startPlay(int n)
 {
-	fic_.open(fic_name);
+	fic_.open(fic_name_.c_str());
 
 	if (fic_.is_open() == 0) {
-		debug << "RPGPlayer::startPlay() -> Cannot open " << fic_name << "\n";
+		debug << "RPGPlayer::startPlay() -> Cannot open " << fic_name_ << "\n";
 		return false;
 	}
 
-	sprintf(buffer1, "rpg=%d", n);
-	fic_.getline(buffer2, BUFFER_LENGTH);
+        buffer1_ = "rpg=" + std::to_string(n);
+        std::getline(fic_, buffer2_);
 
-	while (!fic_.eof() && strcmp(buffer1, buffer2) != 0)
-		fic_.getline(buffer2, BUFFER_LENGTH);
+	while (!fic_.eof() && buffer1_ != buffer2_)
+		std::getline(fic_, buffer2_);
 
 	if (fic_.eof()) {
 		debug << "RPGPlayer::startPlay() -> Ne trouve pas la scene " << n << "\n";
@@ -197,78 +174,77 @@ bool RPGPlayer::drawScene(SDL::Surface * surf)
 bool RPGPlayer::updateScene()
 {
 	bool	ready_to_draw = false;
-	char *	pos;
 
-	while (!ready_to_draw && read() && strcmp(buffer1, "stop") != 0) {
+	while (!ready_to_draw && read() && buffer1_ != "stop") {
 
 		// D'abord, on analyse les cas ou on n'a pas besoin de couper
 		//
-		if (strcmp(buffer1, "endif") == 0) {
+		if (buffer1_ == "endif") {
 //			debug<<"endif\n";
-		} else if (strcmp(buffer1, "bbswap") == 0) {
+		} else if (buffer1_ == "bbswap") {
 			cur_joueur += 1;
 			cur_joueur %= nbjoueurs;
 		} else {
 			// Coupe le schnuff en 2 buffer1:txt1 et buffer2:txt2
 			// tel que dans le fichier il y a "txt1=txt2"
 			//
-			pos = strchr(buffer1, '=');
-			strcpy(buffer2, pos + 1);
-			pos[0] = '\0';
+			int pos = buffer1_.find('=');
+			buffer2_ = buffer1_.substr(pos + 1);
+                        buffer1_ = buffer1_.substr(0, pos);
 
-			if (strcmp(buffer1, "ifnbj") == 0) {
-				if (nbjoueurs != atoi(buffer2)) {
+			if (buffer1_ == "ifnbj") {
+				if (nbjoueurs != std::stoi(buffer2_)) {
 					// Si la condition est fausse on skipe le tout
-					while (read() && strcmp(buffer1, "endif") != 0);
+					while (read() && buffer1_ != "endif");
 				}
-			} else if (strcmp(buffer1, "focus") == 0) {
+			} else if (buffer1_ == "focus") {
 				// Gère le focus
 
-				if (strcmp(buffer2, "haut") == 0)
+				if (buffer2_ == "haut")
 					focus = 0;
-				else if (strcmp(buffer2, "bas") == 0)
+				else if (buffer2_ == "bas")
 					focus = 1;
 				else
-					error(buffer2);
-			} else if (strcmp(buffer1, "id") == 0) {
+					error(buffer2_);
+			} else if (buffer1_ == "id") {
 				// Gère l'identité de la PBK de la case
 
-				if (strcmp(buffer2, "joueur") == 0) {
+				if (buffer2_ == "joueur") {
 					pic_tab[focus] = &pbk_rpg_bb;
 					id[focus] = ID_JOUEUR;
-				} else if (strcmp(buffer2, "ennemi") == 0) {
+				} else if (buffer2_ == "ennemi") {
 					pic_tab[focus] = &pbk_rpg;
 					id[focus] = ID_ENNEMI;
 				} else
-					error(buffer2);
-			} else if (strcmp(buffer1, "img") == 0) {
+					error(buffer2_);
+			} else if (buffer1_ == "img") {
 				// Change l'image
 
 				if (id[focus] == ID_JOUEUR)
-					nimage[focus] = atoi(buffer2) + base_joueur[cur_joueur];
+					nimage[focus] = std::stoi(buffer2_) + base_joueur[cur_joueur];
 				else
-					nimage[focus] = atoi(buffer2);
-			} else if (strcmp(buffer1, "txt") == 0) {
+					nimage[focus] = std::stoi(buffer2_);
+			} else if (buffer1_ == "txt") {
 				// Change le texte
 
-				ntxt[focus] = atoi(buffer2);
-			} else if (strcmp(buffer1, "affiche") == 0) {
+				ntxt[focus] = std::stoi(buffer2_);
+			} else if (buffer1_ == "affiche") {
 				// Près pour l'affichage
 
 				time_.Reset();
-				wait_.Reset(atoi(buffer2));
+				wait_.Reset(std::stoi(buffer2_));
 				ready_to_draw = true;
-			} else if (strcmp(buffer1, "flag") == 0) {
+			} else if (buffer1_ == "flag") {
 				// Flag
 
-				pos = strchr(buffer2, '.');
-				int val = atoi(pos + 1);
-				pos[0] = '\0';
+				int pos = buffer2_.find('.');
+				int val = std::stoi(buffer2_.substr(pos + 1));
+                                buffer2_ = buffer2_.substr(0, pos);
 
-				game_flag[atoi(buffer2)] = val;
+				game_flag[std::stoi(buffer2_)] = val;
 //				debug<<"Flag "<<atoi(buffer2)<<"="<<val<<"\n";
 			} else {
-				error(buffer1);
+				error(buffer1_);
 			}
 		}
 	}
@@ -279,19 +255,19 @@ bool RPGPlayer::updateScene()
 
 bool RPGPlayer::read()
 {
-	fic_.getline(buffer1, BUFFER_LENGTH);
+        std::getline(fic_, buffer1_);
 
 	// Skip les commentaires
 	//
-	while (!fic_.eof() && buffer1[0] == ';')
-		fic_.getline(buffer1, BUFFER_LENGTH);
+	while (!fic_.eof() && buffer1_[0] == ';')
+		std::getline(fic_, buffer1_);
 
         return !fic_.eof();
 }
 
 
 
-void RPGPlayer::error(const char * err_msg)
+void RPGPlayer::error(const std::string& err_msg)
 {
 	debug << "RPGPlayer::updateScene() -> Erreur de syntaxe :'" << err_msg << "'\n";
 }
