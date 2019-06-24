@@ -7,6 +7,7 @@
 #include "picture_bank.h"
 #include "fonte.h"
 #include "chrono.h"
+#include "moving_average.h"
 
 #define OBJ_SPRITE	0
 #define OBJ_SCROLL	1
@@ -54,9 +55,8 @@ struct OBJECT {
 class CINEPlayer
 {
 protected:
-        Chrono tupdate_;
-        Chrono tdraw_;
         Chrono time_;
+        MovingAverage<int> frame_spare_time_;
 	int		dtime;
 
 	/*SDL::Surface * first_surf;*/
@@ -116,6 +116,7 @@ protected:
 	void updateScene();
 
 public:
+        CINEPlayer() : frame_spare_time_(50) {}
 
 	void loadPBK(const char * f);
 	bool playScene(const char * file, SDL::Surface * s1, SDL::Surface * s2);

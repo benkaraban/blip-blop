@@ -160,7 +160,6 @@ void CINEPlayer::updateScene()
 		}
 	}
 
-        tupdate_.Stop();
 	frame_to_draw -= 1;
 }
 
@@ -169,24 +168,15 @@ void CINEPlayer::updateScene()
 
 void CINEPlayer::renderLoop()
 {
-	static const int GOOD = 118;
-	static const int INT_SIZE = 50;
-	static const int MARGE = 10;
+	static const int GOOD = 11;
+	static const int MARGE = 2;
 
-	static int	marge[INT_SIZE] = { 0 };
-	static int	im = 0;
-
-	dtime += time_.elapsed() * 10;
+	dtime += time_.elapsed();
 	time_.Reset();
 
-	int sum = 0;
+        int mean_frame_time = frame_spare_time_.average();
 
-	for (int i = 0; i < INT_SIZE; i++) {
-		sum += marge[i];
-	}
-
-        int mean_frame_time = sum / INT_SIZE;
-
+        Chrono frame_time;
 	if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
 		updateScene();
 		dtime = 0;
@@ -197,19 +187,16 @@ void CINEPlayer::renderLoop()
 		}
 	}
 
-	im += 1;
-	im %= INT_SIZE;
-
 	drawScene();
 
-	int ttotal = tupdate_.saved_elapsed() * 10 + tdraw_.saved_elapsed() * 10;
+	int ttotal = frame_time.elapsed();
 
 	if (ttotal <= 0)
 		ttotal = GOOD;
 	else if (ttotal >= 5000)
 		ttotal = GOOD;
 
-	marge[im] = ttotal - GOOD;
+        frame_spare_time_.Add(ttotal - GOOD);
 }
 
 
@@ -218,7 +205,6 @@ void CINEPlayer::renderLoop()
 
 void CINEPlayer::updateState()
 {
-        tupdate_.Reset();
 	bool	to_draw = false;
 	int		n;
 	int		n2;
@@ -411,7 +397,6 @@ void CINEPlayer::updateState()
 void CINEPlayer::drawScene()
 {
 	RenderRect ddfx;
-	tdraw_.Reset();
 
 	Rect		r;
 
@@ -471,8 +456,6 @@ void CINEPlayer::drawScene()
 
 
 	DDFlip();
-
-	tdraw_.Stop();
 }
 
 

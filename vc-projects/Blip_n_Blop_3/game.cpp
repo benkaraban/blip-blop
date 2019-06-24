@@ -1112,8 +1112,6 @@ void Game::drawAll(bool flip) {
 
     if (checkRestore()) time_.Reset();
 
-    tdraw_.Reset();
-
     if (!flip) {
         phase = false;
         slow_phase = false;
@@ -1197,7 +1195,6 @@ void Game::drawAll(bool flip) {
         DDFlip();
     }
 
-    tdraw_.Stop();
 }
 
 //-----------------------------------------------------------------------------
@@ -3115,15 +3112,8 @@ void Game::showMainScreen() {
 //-----------------------------------------------------------------------------
 
 void Game::showCredits(bool theEnd) {
-    static const int GOOD = 118;
-    static const int INT_SIZE = 50;
-    static const int MARGE = 10;
-
-    static int marge[INT_SIZE] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                                  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    static int im = 0;
+    static const int GOOD = 11;
+    static const int MARGE = 2;
 
     static const int NB_PAGE = 6;
     static const int ILIGNE = 20;
@@ -3155,13 +3145,7 @@ void Game::showCredits(bool theEnd) {
         dtime += time_.elapsed() * 10;
         time_.Reset();
 
-        int sum = 0;
-
-        for (int i = 0; i < INT_SIZE; i++) {
-            sum += marge[i];
-        }
-
-        int mean_frame_time = sum / INT_SIZE;
+        int mean_frame_time = frame_spare_time_.average();
 
         if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
             ey = (ey + 1) % SSPEED;
@@ -3174,9 +3158,6 @@ void Game::showCredits(bool theEnd) {
                 dtime -= GOOD;
             }
         }
-
-        im += 1;
-        im %= INT_SIZE;
 
         manageMsg();
         checkRestore();
@@ -3534,14 +3515,14 @@ void Game::showCredits(bool theEnd) {
 
         DDFlip();
 
-        int ttotal = time_.elapsed() * 10;
+        int ttotal = time_.elapsed();
 
         if (ttotal <= 0)
             ttotal = GOOD;
         else if (ttotal >= 5000)
             ttotal = GOOD;
 
-        marge[im] = ttotal - GOOD;
+        frame_spare_time_.Add(ttotal - GOOD);
     }
 }
 

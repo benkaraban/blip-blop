@@ -76,8 +76,6 @@ protected:
 	bool	last_perfect1;
 	bool	last_perfect2;
 
-        Chrono tupdate_;
-        Chrono tdraw_;
 	int		dtime;
         Chrono time_; // Pour le mode auto
 	int		nframe;			// Pour la synchronisation
