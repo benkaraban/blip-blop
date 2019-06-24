@@ -1,7 +1,15 @@
 version: '{branch}.{build}'
 os: Visual Studio 2015
 platform: x64
+configuration: Release
 clone_depth: 1
+
+install:
+- cd C:\Tools\vcpkg
+- git pull
+- .\bootstrap-vcpkg.bat
+- cd %APPVEYOR_BUILD_FOLDER%
+
 before_build:
     - |-
         vcpkg integrate install
@@ -16,3 +24,13 @@ before_build:
 build:
     project:
         vc-projects/Blip_n_Blop_3/build/blipblop.sln
+        
+
+after_build:
+- cmd: '"C:\Program Files (x86)\CMake\bin\cpack.exe"'
+
+artifacts:
+- path: vc-projects/Blip_n_Blop_3/build/Release/*
+  name: all
+- path: vc-projects/Blip_n_Blop_3/build/blipblop-0.1.1-win64.exe
+  name: cpack output

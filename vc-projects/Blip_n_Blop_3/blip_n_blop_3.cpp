@@ -464,26 +464,14 @@ static bool InitApp(int nCmdShow) {
     return true;  // C'est fini!
 }
 
-#ifndef _WIN32
-int main(int argc, const char* argv[]) {
+#undef main
+int main(int argc, char** argv) {
     char lpCmdLine[512] = {0};
     for (int i = 1; i < argc; i++) {
         strcat(lpCmdLine, argv[i]);
         strcat(lpCmdLine, " ");
     }
     int nCmdShow = 0;
-#else
-int WINAPI WinMain(HINSTANCE hInstance,
-                   HINSTANCE hPrevInstance,
-                   LPSTR lpCmdLine,
-                   int nCmdShow) {
-    struct ScopeGuard {
-        ~ScopeGuard() {
-            ReleaseAll();
-            DestroyWindow(WinHandle);
-        }
-    } scope_guard;
-#endif
 
     //------------------------------------------------------------------
     //                      Safe mode ?
