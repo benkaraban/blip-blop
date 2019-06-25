@@ -16,12 +16,10 @@
 *
 ******************************************************************/
 
-#ifndef _Fonte_
-#define _Fonte_
+#pragma once
 
-//-----------------------------------------------------------------------------
-//		Headers
-//-----------------------------------------------------------------------------
+#include <vector>
+#include <memory>
 
 #include "picture.h"
 #include "dd_gfx.h"
@@ -30,10 +28,10 @@
 //		Définition de la classe Fonte
 //-----------------------------------------------------------------------------
 
-class Fonte
+class /* Poele en */ Fonte
 {
 private:
-	Picture **	pictab;		// Tableau de Picture
+        std::vector<std::unique_ptr<Picture>> pictab_;
 	int			spc;		// Largeur d'un espace
 	int			h;			// Hauteur d'un saut de ligne
 	char *		nom_fic;
@@ -41,7 +39,6 @@ private:
 
 public:
 	Fonte();
-	~Fonte();
 
 
 	//	Charge un ficher FNT
@@ -87,5 +84,3 @@ public:
 	//
 	void close();
 };
-
-#endif

@@ -176,7 +176,7 @@ namespace SDL
 		inline void Release()
 		{
 			SDL_FreeSurface(surface);
-			delete this;
+			delete this; // FIXME: OH MY THAT'S DANGEROUS
 		}
 		inline bool Restore()
 		{
