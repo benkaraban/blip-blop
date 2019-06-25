@@ -30,6 +30,7 @@
 #include "blip.h"
 #include "chrono.h"
 #include "update_regulator.h"
+#include "go_arrow.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -99,15 +100,8 @@ protected:
 
 	RPGPlayer	rpg;
 
-	bool	must_stop_go;
-	int		teta_go;
-	int		last_x_go;
-	bool	fleche_go;
-	int		x_fleche_go;
-	int		nb_rebonds_go;
-	int		delai_go;
-	int		etape_fleche_go;
-	int		ss_etape_fleche_go;
+        GoArrow go_;
+        int last_x_go_;
 
 	bool	show_fps;
 	bool	show_lists;

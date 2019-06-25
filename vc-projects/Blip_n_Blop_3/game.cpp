@@ -252,9 +252,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
     wait_for_victory = -1;
 
     etape_timer = 0;
-    teta_go = 0;
-    fleche_go = false;
-    delai_go = 0;
+    go_.Reset();
 
     scroll_locked = false;
     scroll_speed = 0;
@@ -1439,9 +1437,7 @@ void Game::updateLock() {
         (cond_end_lock == 2 && game_flag[flag_end_lock] == val_end_lock) ||
         (cond_end_lock == 3 && game_flag[flag_end_lock] >= val_end_lock)) {
         scroll_locked = false;
-        fleche_go = true;
-        x_fleche_go = -10;
-        nb_rebonds_go = 0;
+        go_.Come();
     }
 }
 
@@ -2310,69 +2306,16 @@ void Game::UpdateCollection(const T& xs) {
 //-----------------------------------------------------------------------------
 
 void Game::updateFlecheGo() {
-    if (last_x_go != offset) {
-        last_x_go = offset;
-        delai_go = 0;
-        must_stop_go = true;
-    } else if (!fleche_go && !scroll_locked && offset < level_size - 640) {
-        delai_go += 1;
-
-        if (delai_go >= 300) {
-            fleche_go = true;
-            x_fleche_go = -10;
-            nb_rebonds_go = 0;
-            must_stop_go = false;
-        }
-    }
-
-    if (fleche_go) {
-        ss_etape_fleche_go += 1;
-        ss_etape_fleche_go %= 4;
-
-        if (ss_etape_fleche_go == 0) {
-            etape_fleche_go += 1;
-            etape_fleche_go %= 5;
-        }
-
-        teta_go += 3;
-        teta_go %= 360;
-
-        if (nb_rebonds_go == 0) {  // La flèche arrive
-            x_fleche_go += 10;
-
-            if (x_fleche_go == 640) {
-                nb_rebonds_go += 1;
-                teta_go = 0;
-            }
-        } else if (nb_rebonds_go != -1) {
-            int x = sini(100, teta_go);
-
-            if (x < 0) x = -x;
-
-            x_fleche_go = 640 - x;
-
-            if (x == 0) {  // rebond
-                nb_rebonds_go += 1;
-
-                if (nb_rebonds_go >= 3 && must_stop_go) nb_rebonds_go = -1;
-            }
-        } else {  // La flèche part vers la droite
-            x_fleche_go += 10;
-
-            if (x_fleche_go > 800) {
-                fleche_go = false;
-                delai_go = 0;
-            }
-        }
+    go_.Update();
+    if (last_x_go_ != offset) {
+        last_x_go_ = offset;
+        go_.Leave();
     }
 }
 
 //-----------------------------------------------------------------------------
 
-void Game::drawFlecheGo() {
-    if (fleche_go)
-        pbk_misc[81 + etape_fleche_go]->BlitTo(backSurface, x_fleche_go, 150);
-}
+void Game::drawFlecheGo() { go_.Draw(); }
 
 //-----------------------------------------------------------------------------
 
