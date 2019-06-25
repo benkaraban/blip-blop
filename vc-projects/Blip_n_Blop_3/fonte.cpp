@@ -37,11 +37,7 @@
 
 bool Fonte::load(const char * fic, int flags)
 {
-	if (!pictab_.empty()) {
-		debug << "Fonte::load->Objet déjà ouvert!\n";
-		return false;
-	}
-
+        pictab_.clear();
         std::ifstream fh(fic, std::ios::binary);
 
 	if (!fh.good()) {

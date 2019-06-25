@@ -120,11 +120,6 @@ public:
 	Game();
 
 
-	// Destructeur -> on est pas des Brujahs...
-	//
-	~Game();
-
-
 	// jouePartie -> Faites chier la vache!
 	//
 	void jouePartie(int nbj, int idj);
