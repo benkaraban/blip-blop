@@ -35,14 +35,6 @@
 
 //-----------------------------------------------------------------------------
 
-Fonte::Fonte() : nom_fic(NULL)
-{
-}
-
-
-
-//-----------------------------------------------------------------------------
-
 bool Fonte::load(const char * fic, int flags)
 {
 	if (!pictab_.empty()) {
@@ -93,10 +85,9 @@ bool Fonte::load(const char * fic, int flags)
 
         }
 
-	nom_fic = new char[strlen(fic) + 1];
-	strcpy(nom_fic, fic);
-	flag_fic = flags;
-	return true;
+        filename_ = fic;
+        flag_fic = flags;
+        return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -207,19 +198,6 @@ void Fonte::printC(SDL::Surface * surf, int xtaille, int y, const char * txt)
 	print(surf, xtaille - (l >> 1), y, txt);
 }
 
-
-//-----------------------------------------------------------------------------
-
-void Fonte::close()
-{
-	if (nom_fic != NULL) {
-		delete [] nom_fic;
-		nom_fic = NULL;
-	}
-}
-
-
-
 //-----------------------------------------------------------------------------
 
 void Fonte::printMW(SDL::Surface * surf, int x, int y, const char * srctxt, int ym)
@@ -287,7 +265,7 @@ int Fonte::width(const char * txt)
 
 bool Fonte::restoreAll()
 {
-	if (nom_fic == NULL)
+	if (filename_.empty())
 		return true;
 
 	SDL::Surface *	surf;
@@ -296,10 +274,10 @@ bool Fonte::restoreAll()
 	void *		ptr;
 
 
-        std::fstream fh(nom_fic, std::ios::binary);
+        std::fstream fh(filename_.c_str(), std::ios::binary);
 
 	if (!fh.good()) {
-		debug << "Fonte::restoreAll()->Ne peut pas ouvrir " << nom_fic << "\n";
+		debug << "Fonte::restoreAll()->Ne peut pas ouvrir " << filename_ << "\n";
 		return false;
 	}
 

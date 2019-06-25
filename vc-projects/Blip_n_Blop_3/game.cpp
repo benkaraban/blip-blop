@@ -1026,8 +1026,7 @@ void Game::updateAll() {
 
     manageMsg();  // Fucking windaube!!!
 
-    if (checkRestore())
-    update_regulator_.Skip();
+    if (checkRestore()) update_regulator_.Skip();
 
     phase = !phase;
 
@@ -1193,7 +1192,6 @@ void Game::drawAll(bool flip) {
     if (flip) {
         DDFlip();
     }
-
 }
 
 //-----------------------------------------------------------------------------
@@ -1209,14 +1207,7 @@ void Game::gameLoop() {
 
 //-----------------------------------------------------------------------------
 
-void Game::releasePartie() {
-    fnt_score_blip.close();
-    fnt_score_blop.close();
-    fnt_ammo.close();
-    fnt_ammo_used.close();
-
-    list_joueurs.clear();
-}
+void Game::releasePartie() { list_joueurs.clear(); }
 
 //-----------------------------------------------------------------------------
 
