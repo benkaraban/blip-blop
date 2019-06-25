@@ -29,7 +29,7 @@
 #include "rpg_player.h"
 #include "blip.h"
 #include "chrono.h"
-#include "moving_average.h"
+#include "update_regulator.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -59,7 +59,7 @@
 class Game
 {
 protected:
-        MovingAverage<int> frame_spare_time_;
+        UpdateRegulator update_regulator_;
 	PictureBank	pbk_briefing;
 	bool	briefing;
 
@@ -76,8 +76,6 @@ protected:
 	bool	last_perfect1;
 	bool	last_perfect2;
 
-	int		dtime;
-        Chrono time_; // Pour le mode auto
 	int		nframe;			// Pour la synchronisation
 	int		etape_timer;
 

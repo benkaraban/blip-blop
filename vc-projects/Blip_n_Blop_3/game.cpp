@@ -92,8 +92,7 @@ Game::Game()
       next_goutte(0),
       next_flocon(0),
       show_fps(false),
-      show_lists(false),
-      frame_spare_time_(50) {
+      show_lists(false) {
     briefing = false;
 }
 
@@ -458,9 +457,8 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
     updateAll();
 
     // Pour le mode automatique
-    //
-    time_.Reset();
-    dtime = 0;
+    // FIXME: what is this auto mode? should that step really be there?
+    update_regulator_.Skip();
 
     // Boucle principale
     //
@@ -1028,7 +1026,8 @@ void Game::updateAll() {
 
     manageMsg();  // Fucking windaube!!!
 
-    if (checkRestore()) time_.Reset();
+    if (checkRestore())
+    update_regulator_.Skip();
 
     phase = !phase;
 
@@ -1110,7 +1109,7 @@ void Game::updateAll() {
 void Game::drawAll(bool flip) {
     manageMsg();  // Fucking windaube!!!
 
-    if (checkRestore()) time_.Reset();
+    if (checkRestore()) update_regulator_.Skip();
 
     if (!flip) {
         phase = false;
@@ -1200,39 +1199,12 @@ void Game::drawAll(bool flip) {
 //-----------------------------------------------------------------------------
 
 void Game::gameLoop() {
-    static const int GOOD = 11;
-    static const int MARGE = 2;
-
-    // FIXME: Understand what's going on with this margin and "glorf". The game
-    // used a timer that was roughly 10 times faster than this one, hence the
-    // multiplication, but it would be cleaner to downscale the hardcoded
-    // number depending on in
-    dtime += time_.elapsed();
-    time_.Reset();
-
-    int mean_frame_time = frame_spare_time_.average();
-
-    Chrono tframe;
-    if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
+    int n_updates = update_regulator_.Step();
+    for (; n_updates > 0; --n_updates) {
         updateAll();
-        dtime = 0;
-    } else {
-        while (dtime >= GOOD) {
-            updateAll();
-            dtime -= GOOD;
-        }
     }
 
     drawAll();
-
-    int ttotal = tframe.elapsed();
-
-    if (ttotal <= 0)
-        ttotal = GOOD;
-    else if (ttotal >= 5000)
-        ttotal = GOOD;
-
-    frame_spare_time_.Add(ttotal - GOOD);
 }
 
 //-----------------------------------------------------------------------------
@@ -1777,7 +1749,7 @@ void Game::updateRPG() {
     rpg.stopPlay();
     in.waitClean();
     rpg_to_play = -1;
-    time_.Reset();
+    update_regulator_.Skip();
 }
 
 //-----------------------------------------------------------------------------
@@ -1878,7 +1850,7 @@ void Game::updateMenu() {
         drawAll(false);
         DDFlipV();
 
-        time_.Reset();
+        update_regulator_.Skip();
     }
 }
 
@@ -3112,9 +3084,6 @@ void Game::showMainScreen() {
 //-----------------------------------------------------------------------------
 
 void Game::showCredits(bool theEnd) {
-    static const int GOOD = 11;
-    static const int MARGE = 2;
-
     static const int NB_PAGE = 6;
     static const int ILIGNE = 20;
     static const int ITITRE = 40;
@@ -3135,27 +3104,14 @@ void Game::showCredits(bool theEnd) {
         pbk_cred.loadGFX("data/credits.gfx", DDSURF_BEST, false);
     }
 
-    time_.Reset();
+    update_regulator_.Skip();
 
     while (!app_killed && (!in.anyKeyPressed() || theEnd) && last_y > 0) {
-        // FIXME: Understand what's going on with this margin and "glorf". The
-        // game used a timer that was roughly 10 times faster than this one,
-        // hence the multiplication, but it would be cleaner to downscale the
-        // hardcoded number depending on in
-        dtime += time_.elapsed() * 10;
-        time_.Reset();
-
-        int mean_frame_time = frame_spare_time_.average();
-
-        if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
+        int n_updates = update_regulator_.Step();
+        for (; n_updates > 0; --n_updates) {
             ey = (ey + 1) % SSPEED;
-            if (ey == 0) y--;
-            dtime = 0;
-        } else {
-            while (dtime >= GOOD) {
-                ey = (ey + 1) % SSPEED;
-                if (ey == 0) y--;
-                dtime -= GOOD;
+            if (ey == 0) {
+                y--;
             }
         }
 
@@ -3514,15 +3470,6 @@ void Game::showCredits(bool theEnd) {
         }
 
         DDFlip();
-
-        int ttotal = time_.elapsed();
-
-        if (ttotal <= 0)
-            ttotal = GOOD;
-        else if (ttotal >= 5000)
-            ttotal = GOOD;
-
-        frame_spare_time_.Add(ttotal - GOOD);
     }
 }
 
