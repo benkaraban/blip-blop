@@ -31,6 +31,7 @@
 #include "chrono.h"
 #include "update_regulator.h"
 #include "go_arrow.h"
+#include "hud.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -60,6 +61,7 @@
 class Game
 {
 protected:
+        HUD hud_;
         UpdateRegulator update_regulator_;
 	PictureBank	pbk_briefing;
 	bool	briefing;
@@ -188,7 +190,6 @@ public:
         template <class T>
         void DrawCollection(const T& xs);
 	void drawTremblements();
-	void drawFlecheGo();
 	void drawHUB();
 	void drawHUBpv(int x, int y, int pv);
 	void drawTimer();

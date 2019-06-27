@@ -1151,7 +1151,7 @@ void Game::drawAll(bool flip) {
     // drawTremblements();
     drawHUB();
     drawTimer();
-    drawFlecheGo();
+    go_.Draw();
     DrawCollection(list_txt_cool);
 
     drawDebugInfos();
@@ -1448,113 +1448,16 @@ void Game::updateHoldFire() {
 //-----------------------------------------------------------------------------
 
 void Game::drawHUB() {
-    Picture* pic;
-    char buffer[20];
-
     if (player1 != NULL && player1->nb_life > 0) {
-        drawHUBpv(20, 20, player1->pv);
-
-        sprintf(buffer, "%07d", player1->getScore());
-
-        if (player1->id_couille == ID_BLIP)
-            fnt_score_blip.printR(backSurface, 190, 20, buffer);
-        else
-            fnt_score_blop.printR(backSurface, 190, 20, buffer);
-
-        if (niveau_bonus) {
-            fnt_rpg.print(backSurface, 4, 5, "Bonus");
-            fnt_rpg.print(backSurface, 4, 20, "Stage");
-        } else {
-            sprintf(buffer, "%d", player1->nb_life);
-            fnt_cool.print(backSurface, 5, 5, buffer);
-        }
-
-        switch (player1->id_arme) {
-            case ID_M16:
-                pic = pbk_misc[14];
-                break;
-            case ID_PM:
-                pic = pbk_misc[8];
-                break;
-            case ID_LF:
-                pic = pbk_misc[11];
-                break;
-            case ID_FUSIL:
-                pic = pbk_misc[9];
-                break;
-            case ID_LASER:
-                pic = pbk_misc[10];
-                break;
-        }
-
-        pic->BlitTo(backSurface, 135, 50);
-
-        if (player1->id_arme == ID_M16) {
-            fnt_ammo.printC(backSurface, 135, 43, "*");
-        } else {
-            sprintf(buffer, "%d", player1->ammo);
-
-            if (player1->tire && phase)
-                fnt_ammo_used.printC(backSurface, 135, 43, buffer);
-            else
-                fnt_ammo.printC(backSurface, 135, 43, buffer);
-        }
-
-        for (int i = 0, dxt = 0; i < player1->nb_cow_bomb; i++, dxt += 23)
-            pbk_misc[49]->BlitTo(backSurface, 90 + dxt, 65);
+        auto color = player1->id_couille == ID_BLIP ? HUD::Color::Blue
+                                                    : HUD::Color::Orange;
+        hud_.Draw(player1, HUD::Location::Left, color, niveau_bonus);
     }
 
     if (player2 != NULL && player2->nb_life > 0) {
-        drawHUBpv(560, 20, player2->pv);
-
-        sprintf(buffer, "%07d", player2->getScore());
-
-        if (player2->id_couille == ID_BLIP)
-            fnt_score_blip.print(backSurface, 450, 20, buffer);
-        else
-            fnt_score_blop.print(backSurface, 450, 20, buffer);
-
-        if (niveau_bonus) {
-            fnt_rpg.printR(backSurface, 635, 5, "Bonus");
-            fnt_rpg.printR(backSurface, 635, 20, "Stage");
-        } else {
-            sprintf(buffer, "%d", player2->nb_life);
-            fnt_cool.printR(backSurface, 635, 5, buffer);
-        }
-
-        switch (player2->id_arme) {
-            case ID_M16:
-                pic = pbk_misc[14];
-                break;
-            case ID_PM:
-                pic = pbk_misc[8];
-                break;
-            case ID_LF:
-                pic = pbk_misc[11];
-                break;
-            case ID_FUSIL:
-                pic = pbk_misc[9];
-                break;
-            case ID_LASER:
-                pic = pbk_misc[10];
-                break;
-        }
-
-        pic->BlitTo(backSurface, 510, 50);
-
-        if (player2->id_arme == ID_M16) {
-            fnt_ammo.printC(backSurface, 505, 43, "*");
-        } else {
-            sprintf(buffer, "%d", player2->ammo);
-
-            if (player2->tire && phase)
-                fnt_ammo_used.printC(backSurface, 505, 43, buffer);
-            else
-                fnt_ammo.printC(backSurface, 505, 43, buffer);
-        }
-
-        for (int i = 0, dxt = 0; i < player2->nb_cow_bomb; i++, dxt += 23)
-            pbk_misc[49]->BlitTo(backSurface, 520 - dxt, 65);
+        auto color = player2->id_couille == ID_BLIP ? HUD::Color::Blue
+                                                    : HUD::Color::Orange;
+        hud_.Draw(player2, HUD::Location::Right, color, niveau_bonus);
     }
 }
 
@@ -2308,10 +2211,6 @@ void Game::updateFlecheGo() {
         go_.Leave();
     }
 }
-
-//-----------------------------------------------------------------------------
-
-void Game::drawFlecheGo() { go_.Draw(); }
 
 //-----------------------------------------------------------------------------
 
