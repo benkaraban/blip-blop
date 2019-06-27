@@ -372,10 +372,7 @@ bool Game::joueNiveau(const char* nom_niveau, int type) {
 
     // Niveau bonus = temps limite
     //
-    if (type == LVL_BONUS)
-        niveau_bonus = true;
-    else
-        niveau_bonus = false;
+    niveau_bonus = type == LVL_BONUS;
 
     // Règle l'offset sur les joueurs
     //
@@ -2991,10 +2988,10 @@ void Game::showCredits(bool theEnd) {
             backSurface, xcred, y1 + ITITRE + ILIGNE * 0, "Benjamin Karaban");
         fnt_rpg.printC(
             backSurface, xcred, y1 + ITITRE + ILIGNE * 1, "Sylvain Bugat");
-        fnt_rpg.printC(backSurface,
-                       xcred,
-                       y1 + ITITRE + ILIGNE * 2,
-                       "Guillaume Sanchez (2019 revamp)");
+        fnt_rpg.printC(
+            backSurface, xcred, y1 + ITITRE + ILIGNE * 3, "2019 REVAMP");
+        fnt_rpg.printC(
+            backSurface, xcred, y1 + ITITRE + ILIGNE * 4, "Guillaume Sanchez");
 
         int y2 = y1 + 2 * ILIGNE + IPARTI + ITITRE;
 
