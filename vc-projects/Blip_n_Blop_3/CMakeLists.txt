@@ -14,7 +14,16 @@ aux_source_directory(menus MENUS_SRC)
 if(WIN32)
     add_executable(blipblop ${SRC} ${ENGINE_SRC} ${MENUS_SRC})
     target_link_libraries(blipblop PUBLIC ${SDL2_LIBRARIES})
+
     target_link_libraries(blipblop PUBLIC ${SDL2MIXER_LIBRARIES})
+
+    #set(CMAKE_FIND_LIBRARY_SUFFIXES .dll)
+    #find_library(MPG123_LIBRARY NAMES libmpg123 mpg123)
+    #find_library(VORBISFILE_LIBRARY vorbisfile)
+    #find_library(VORBIS_LIBRARY vorbis)
+    #find_library(OGG_LIBRARY ogg)
+    #install(FILES ${VORBISFILE_LIBRARY} ${VORBIS_LIBRARY} ${MPG123_LIBRARY} ${OGG_LIBRARY} DESTINATION bin)
+
     target_include_directories(blipblop SYSTEM PUBLIC ${SDL2_INCLUDE_DIRS})
 
     set(CMAKE_INSTALL_UCRT_LIBRARIES true)

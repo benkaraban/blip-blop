@@ -7,6 +7,7 @@ clone_depth: 1
 install:
 - cd C:\Tools\vcpkg
 - git pull
+- git checkout 947e0c6a07e578eb861340b9e4a3a76bdf31239b # FIXME: remove
 - .\bootstrap-vcpkg.bat
 - cd %APPVEYOR_BUILD_FOLDER%
 
@@ -15,7 +16,7 @@ before_build:
         vcpkg integrate install
         vcpkg install sdl2:x64-windows
         vcpkg install sdl2-image:x64-windows
-        vcpkg install sdl2-mixer:x64-windows
+        vcpkg install sdl2-mixer[mpg123,libvorbis]:x64-windows
         cd vc-projects/Blip_n_Blop_3/
         mkdir build
         cd build
@@ -24,7 +25,6 @@ before_build:
 build:
     project:
         vc-projects/Blip_n_Blop_3/build/blipblop.sln
-        
 
 after_build:
 - cmd: '"C:\Program Files (x86)\CMake\bin\cpack.exe"'
