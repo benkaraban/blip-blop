@@ -17,13 +17,6 @@ if(WIN32)
 
     target_link_libraries(blipblop PUBLIC ${SDL2MIXER_LIBRARIES})
 
-    #set(CMAKE_FIND_LIBRARY_SUFFIXES .dll)
-    #find_library(MPG123_LIBRARY NAMES libmpg123 mpg123)
-    #find_library(VORBISFILE_LIBRARY vorbisfile)
-    #find_library(VORBIS_LIBRARY vorbis)
-    #find_library(OGG_LIBRARY ogg)
-    #install(FILES ${VORBISFILE_LIBRARY} ${VORBIS_LIBRARY} ${MPG123_LIBRARY} ${OGG_LIBRARY} DESTINATION bin)
-
     target_include_directories(blipblop SYSTEM PUBLIC ${SDL2_INCLUDE_DIRS})
 
     set(CMAKE_INSTALL_UCRT_LIBRARIES true)
@@ -37,5 +30,18 @@ endif()
 
 install(DIRECTORY ./data DESTINATION bin)
 install(TARGETS blipblop RUNTIME DESTINATION bin)
+
+set(CPACK_PACKAGE_NAME "BlipnBlop")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Blip & Blop revamped")
+set(CPACK_PACKAGE_VENDOR "Loaded Studios")
+set(CPACK_DEBIAN_PACKAGE_NAME "blipnblop")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libSDL2, libSD2-mixer")
+set(CPACK_DEBIAN_PACKAGE_DESCRIPTION "Blip & Blop revamped")
+set(CPACK_PACKAGE_EXECUTABLES "blipblop" "BlipnBlop")
+
+if(WIN32)
+    set(CPACK_NSIS_DISPLAY_NAME "Blip & Blop")
+endif()
+
 include(CPack)
 

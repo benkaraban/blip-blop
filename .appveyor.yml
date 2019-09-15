@@ -30,7 +30,5 @@ after_build:
 - cmd: '"C:\Program Files (x86)\CMake\bin\cpack.exe"'
 
 artifacts:
-- path: vc-projects/Blip_n_Blop_3/build/Release/*
-  name: all
-- path: vc-projects/Blip_n_Blop_3/build/blipblop-0.1.1-win64.exe
+- path: vc-projects/Blip_n_Blop_3/build/BlipnBlop-0.1.1-win64.exe
   name: cpack output
