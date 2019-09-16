@@ -21,15 +21,18 @@ if(WIN32)
 
     set(CMAKE_INSTALL_UCRT_LIBRARIES true)
     include(InstallRequiredSystemLibraries)
-    install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/\${CMAKE_INSTALL_CONFIG_NAME}/" DESTINATION bin FILES_MATCHING PATTERN "*.dll")
+    install(DIRECTORY
+        "${CMAKE_CURRENT_BINARY_DIR}/\${CMAKE_INSTALL_CONFIG_NAME}/"
+        DESTINATION .
+        FILES_MATCHING PATTERN "*.dll")
 else()
     add_executable(blipblop WIN32 ${SRC} ${ENGINE_SRC} ${MENUS_SRC})
     target_link_libraries(blipblop SDL2)
     target_link_libraries(blipblop SDL2_mixer)
 endif()
 
-install(DIRECTORY ./data DESTINATION bin)
-install(TARGETS blipblop RUNTIME DESTINATION bin)
+install(DIRECTORY ./data DESTINATION .)
+install(TARGETS blipblop RUNTIME DESTINATION .)
 
 set(CPACK_PACKAGE_NAME "BlipnBlop")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Blip & Blop revamped")
@@ -41,6 +44,7 @@ set(CPACK_PACKAGE_EXECUTABLES "blipblop" "BlipnBlop")
 
 if(WIN32)
     set(CPACK_NSIS_DISPLAY_NAME "Blip & Blop")
+    set(CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 endif()
 
 include(CPack)
