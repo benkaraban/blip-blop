@@ -7,7 +7,7 @@ clone_depth: 1
 install:
 - cd C:\Tools\vcpkg
 - git pull
-- git checkout 947e0c6a07e578eb861340b9e4a3a76bdf31239b # FIXME: remove
+- git pull https://github.com/LilyWangL/vcpkg.git dev/Lily/FixPR7720 #
 - .\bootstrap-vcpkg.bat
 - cd %APPVEYOR_BUILD_FOLDER%
 
