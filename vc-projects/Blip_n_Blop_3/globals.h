@@ -15,8 +15,9 @@
 *
 ******************************************************************/
 
-#ifndef _BB_GLOBALS_
-#define _BB_GLOBALS_
+#pragma once
+
+#include <list>
 
 //-----------------------------------------------------------------------------
 //		Headers
@@ -123,35 +124,56 @@ extern ControlP2	ctrlP2;
 //		Les listes
 //-----------------------------------------------------------------------------
 
-extern SuperListe	list_joueurs;
-extern SuperListe	list_tirs_bb;
-extern SuperListe	list_cow;
-extern SuperListe	list_impacts;
+// FIXME: They're all lists instead of ideally vectors because we sometimes
+// append during iterations and relocating is then STRICTLY forbidden
+class Couille;
+extern std::vector<Couille*> list_joueurs; // FIXME: make it owning?
+class TirBB;
+extern std::list<TirBB*> list_tirs_bb;
+class TirBBVache;
+extern std::list<std::unique_ptr<TirBBVache>> list_cow;
+class Explosion;
+// FIXME: should be owning by value but can't, because of circular deps
+extern std::list<std::unique_ptr<Explosion>> list_impacts; 
 
-extern SuperListe	list_vehicules;
+class Vehicule;
+extern std::list<std::unique_ptr<Vehicule>> list_vehicules;
 
-extern SuperListe	list_event_endormis;
-extern SuperListe	list_event;
+class Event;
+extern std::list<std::unique_ptr<Event>> list_event_endormis;
+extern std::list<std::unique_ptr<Event>> list_event;
 
-extern SuperListe	list_ennemis;
-extern SuperListe	list_tirs_ennemis;
-extern SuperListe	list_gen_ennemis;
+class Ennemi;
+extern std::list<std::unique_ptr<Ennemi>> list_ennemis;
+class Tir;
+extern std::list<std::unique_ptr<Tir>> list_tirs_ennemis;
+class GenEnnemi;
+extern std::list<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
-extern SuperListe	list_bonus;
-extern SuperListe	list_gen_bonus;
+class Bonus;
+extern std::list<std::unique_ptr<Bonus>> list_bonus;
+class GenBonus;
+extern std::list<std::unique_ptr<GenBonus>> list_gen_bonus;
 
-extern SuperListe	list_fonds_animes;
-extern SuperListe	list_fonds_statiques;
-extern SuperListe	list_premiers_plans;
-extern SuperListe	list_plateformes_mobiles;
+class Sprite;
+extern std::list<std::unique_ptr<Sprite>> list_fonds_animes;
+extern std::list<std::unique_ptr<Sprite>> list_fonds_statiques;
+extern std::list<std::unique_ptr<Sprite>> list_premiers_plans;
+extern std::list<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
-extern SuperListe	list_txt_cool;
+class TexteCool;
+extern std::list<std::unique_ptr<TexteCool>> list_txt_cool;
 
-extern SuperListe	list_giclures;
-extern SuperListe	list_gore;
+// FIXME: should prolly be a list of Giclure, but GoreGiclure doesn't inherit
+// Giclure
+extern std::list<std::unique_ptr<Sprite>> list_giclures;
+// FIXME all things put insite list_gore don't have a common base aside from
+// Sprite
+extern std::list<std::unique_ptr<Sprite>> list_gore;
 
-extern SuperListe	list_meteo;
-extern SuperListe	list_bulles;
+extern std::list<Sprite*> list_meteo;
+class Bulle;
+extern std::list<std::unique_ptr<Bulle>> list_bulles;
 
 
 //-----------------------------------------------------------------------------
@@ -246,5 +268,3 @@ inline void draw(int x, int y, const Picture * pic)
 	if (pic != NULL)
 		pic->BlitTo(backSurface, x - offset, y);
 }
-
-#endif

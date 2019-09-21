@@ -1,148 +1,88 @@
 /******************************************************************
-*
-*
-*		------------------
-*		  SoundBank.cpp
-*		------------------
-*
-*		Classe SoundBank
-*
-*		Représente un tableau/une banque de sons (Sound).
-*
-*
-*		Prosper / LOADED -   V 0.1 - 16 Juillet 2000
-*
-*
-*
-******************************************************************/
+ *
+ *
+ *		------------------
+ *		  SoundBank.cpp
+ *		------------------
+ *
+ *		Classe SoundBank
+ *
+ *		Représente un tableau/une banque de sons (Sound).
+ *
+ *
+ *		Prosper / LOADED -   V 0.1 - 16 Juillet 2000
+ *
+ *
+ *
+ ******************************************************************/
 
 //-----------------------------------------------------------------------------
 //		Headers
 //-----------------------------------------------------------------------------
 
 #include <malloc.h>
-#include <io.h>
-#include <fcntl.h>
 #include <string.h>
+#include <fstream>
+
 #include "ben_debug.h"
-#include "sound_bank.h"
 #include "sound.h"
+#include "sound_bank.h"
 
 //-----------------------------------------------------------------------------
 //		Méthodes
 //-----------------------------------------------------------------------------
 
-SoundBank::SoundBank() : tab(NULL), nb_snd(0), nom_f(NULL)
-{
+void SoundBank::reload() {
+    if (!filename_.empty()) {
+        loadSFX(filename_.c_str());
+    }
 }
 
+bool SoundBank::loadSFX(const char* nom_fic) {
+    int n_buff;  // Nombre de buffers
+    int taille;  // Taille d'un WAV
+    void* ptr;
 
-SoundBank::~SoundBank()
-{
-	if (nom_f != NULL) {
-		delete [] nom_f;
-		nom_f = NULL;
-	}
+    std::ifstream fh(nom_fic, std::ios::binary);
 
-	if (tab != NULL)
-		debug << "SoundBank non desallouée\n";
-}
+    if (!fh.good()) {
+        debug << "SoundBank::loadSFX() -> Impossible d'ouvrir le fichier "
+              << nom_fic << "\n";
+        return false;
+    }
 
+    int nb_snd;
+    fh.read(reinterpret_cast<char*>(&nb_snd), sizeof(nb_snd));
 
+    if (nb_snd < 1) {
+        debug << "SoundBank::loadSFX() -> Fichier " << nom_fic << " corrompu\n";
+        return false;
+    }
+    tab_.resize(nb_snd);
 
-void SoundBank::close()
-{
-	if (tab == NULL)
-		return;
+    for (int i = 0; i < nb_snd; i++) {
+        // Nombre de buffers
+        fh.read(reinterpret_cast<char*>(&n_buff), sizeof(n_buff));
+        fh.read(reinterpret_cast<char*>(&taille), sizeof(taille));  // Taille
 
-	for (int i = 0; i < nb_snd; i++) {
-		delete tab[i];
-	}
+        ptr = malloc(taille);
 
-	delete [] tab;
-	tab = NULL;
-	nb_snd = 0;
-}
+        if (ptr == NULL) {
+            debug << "SoundBank::loadSFX() -> Pas assez de mémoire\n";
+            return false;
+        }
 
+        // Copie le schnuf en mémoire
+        //
+        fh.read(reinterpret_cast<char*>(ptr), taille);
 
-void SoundBank::reload()
-{
-	if (nom_f != NULL) {
-		loadSFX(nom_f);
-	}
-}
+        tab_[i] = std::make_unique<Sound>();
+        tab_[i]->loadFromMem(ptr, taille);
 
-void SoundBank::reinit()
-{
-	if (nom_f != NULL) {
-		delete [] nom_f;
-		nom_f = NULL;
-	}
-}
+        free(ptr);
+    }
 
+    filename_ = nom_fic;
 
-bool SoundBank::loadSFX(const char * nom_fic)
-{
-	int		fh;		// File Handle
-	int		n_buff;	// Nombre de buffers
-	int		taille;	// Taille d'un WAV
-	void *	ptr;
-
-	if (tab != NULL) {
-		debug << "SoundBank::loadSFX() -> SoundBank déjà ouverte!\n";
-		return false;
-	}
-
-	fh = _open(nom_fic, _O_RDONLY | _O_BINARY);
-
-	if (fh == -1) {
-		debug << "SoundBank::loadSFX() -> Impossible d'ouvrir le fichier " << nom_fic << "\n";
-		return false;
-	}
-
-	_read(fh, &nb_snd, sizeof(nb_snd));
-
-	if (nb_snd < 1) {
-		debug << "SoundBank::loadSFX() -> Fichier " << nom_fic << " corrompu\n";
-		_close(fh);
-		return false;
-	}
-
-
-	tab = new Sound * [nb_snd];
-
-
-	for (int i = 0; i < nb_snd; i++) {
-		_read(fh, &n_buff, sizeof(n_buff));	// Nombre de buffers
-		_read(fh, &taille, sizeof(taille));	// Taille
-
-
-		ptr = malloc(taille);
-
-		if (ptr == NULL) {
-			debug << "SoundBank::loadSFX() -> Pas assez de mémoire\n";
-			_close(fh);
-			return false;
-		}
-
-		// Copie le schnuf en mémoire
-		//
-		_read(fh, ptr, taille);
-
-		tab[i] = new Sound;
-		tab[i]->loadFromMem(ptr, taille);
-
-
-		free(ptr);
-	}
-
-	_close(fh);
-
-	if (nom_f != NULL)
-		delete [] nom_f;
-
-	nom_f = new char[strlen(nom_fic) + 1];
-	strcpy(nom_f, nom_fic);
-
-	return true;
+    return true;
 }

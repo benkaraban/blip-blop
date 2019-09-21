@@ -1,0 +1,237 @@
+;
+; Logo
+;
+SetPos( 0, 320, 240)
+SetPic( 0, 1)
+RenderScene( 250)
+;
+; They
+;
+SetPos( 0, 0, 0)
+SetPic( 0, 6)
+SetPos( 1, 0, 54)
+SetPic( 1, 7)
+SetMove( 1, -40, 0, 10000)
+SetXWarp( 1, -640, 640)
+SetPos( 2, 640, 54)
+SetPic( 2, 8)
+SetMove( 2, -40, 0, 10000)
+SetXWarp( 2, -640, 640)
+SetPos( 3, 242, 64)
+SetPic( 3, 9)
+RenderScene( 30)
+;
+; Are
+;
+SetPos( 1, 0, 191)
+SetPos( 2, 640, 191)
+SetPos( 3, 258, 201)
+SetPic( 3, 10)
+RenderScene( 30)
+;
+; Coming
+;
+SetPos( 1, 0, 327)
+SetPos( 2, 640, 327)
+SetPos( 3, 184, 337)
+SetPic( 3, 11)
+RenderScene( 30)
+;
+; Snuff et scare
+;
+ResetAll()
+SetPos( 0, 0, 0)
+SetPic( 0, 12)
+SetMove( 0, 0, -20, 10000)
+SetYWarp( 0, -480, 480)
+SetPos( 1, 0, 480)
+SetPic( 1, 13)
+SetMove( 1, 0, -20, 10000)
+SetYWarp( 1, -480, 480)
+SetPos( 2, 0, 480)
+SetPic( 2, 14)
+SetMove( 2, 0, -20, 22)
+RenderScene( 30)
+SetPos( 3, 640, 480)
+SetPic( 3, 27)
+SetMove( 3, 0, -20, 22)
+RenderScene( 85)
+;
+; Textes
+;
+ResetAll()
+SetPos( 0, 0, 120)
+SetPic( 0, 15)
+SetMove( 0, -10, 0, 10000)
+SetXWarp( 0, -640, 640)
+SetPos( 1, 640, 120)
+SetPic( 1, 16)
+SetMove( 1, -10, 0, 10000)
+SetXWarp( 1, -640, 640)
+SetPos( 2, 450, 160)
+SetPic( 2, 17)
+SetMove( 2, -2, 0, 1000)
+SetPos( 3, 720, 300)
+SetPic( 3, 18)
+SetMove( 3, -3, 0, 1000)
+SetPos( 4, 640, 250)
+SetPic( 4, 19)
+SetMove( 4, -1, 0, 1000)
+SetPos( 5, 260, 270)
+SetPic( 5, 20)
+SetMove( 5, -1, 0, 1000)
+SetPos( 6, 360, 320)
+SetPic( 6, 21)
+SetMove( 6, -2, 0, 1000)
+RenderScene( 110)
+;
+; Flash blanc
+;
+ResetAll()
+SetBackColor( 0, 1)
+RenderScene( 2)
+SetBackColor( 0, 0)
+;
+; Pika attaque
+;
+SetPos( 0, 126, 0)
+SetPic( 0, 22)
+SetMove( 0, 0, -20, 10000)
+SetYWarp( 0, -480, 480)
+SetPos( 1, 126, 480)
+SetPic( 1, 23)
+SetMove( 1, 0, -20, 10000)
+SetYWarp( 1, -480, 480)
+SetPos( 2, 171, 480)
+SetPic( 2, 24)
+SetMove( 2, 0, -5, 92)
+RenderScene( 150)
+;
+; Flash blanc
+;
+ResetAll()
+SetBackColor( 0, 1)
+RenderScene( 2)
+SetBackColor( 0, 0)
+;
+; Snuff doigt
+;
+SetPos( 0, 126, 0)
+SetPic( 0, 25)
+SetMove( 0, 0, 20, 10000)
+SetYWarp( 0, 480, -480)
+SetPos( 1, 126, -480)
+SetPic( 1, 26)
+SetMove( 1, 0, 20, 10000)
+SetYWarp( 1, 480, -480)
+SetPos( 2, 171, 35)
+SetPic( 2, 2)
+RenderScene( 100)
+;
+; Flash blanc
+;
+ResetAll()
+SetBackColor( 0, 1)
+RenderScene( 2)
+SetBackColor( 0, 0)
+;
+; Textes 2
+;
+ResetAll()
+SetPos( 0, 0, 120)
+SetPic( 0, 15)
+SetMove( 0, -10, 0, 10000)
+SetXWarp( 0, -640, 640)
+SetPos( 1, 640, 120)
+SetPic( 1, 16)
+SetMove( 1, -10, 0, 10000)
+SetXWarp( 1, -640, 640)
+SetPos( 2, 450, 160)
+SetPic( 2, 32)
+SetMove( 2, -2, 0, 1000)
+SetPos( 3, 720, 300)
+SetPic( 3, 35)
+SetMove( 3, -3, 0, 1000)
+SetPos( 4, 640, 250)
+SetPic( 4, 34)
+SetMove( 4, -1, 0, 1000)
+SetPos( 5, 260, 270)
+SetPic( 5, 33)
+SetMove( 5, -1, 0, 1000)
+SetPos( 6, 360, 320)
+SetPic( 6, 17)
+SetMove( 6, -2, 0, 1000)
+RenderScene( 110)
+;
+; Lara
+;
+ResetAll()
+SetClip( 0, 80, 640, 400)
+SetPos( 0, 0, 80)
+SetPic( 0, 4)
+RenderScene( 40)
+;
+; Ray arrive
+;
+SetPos( 1, -300, 90)
+SetPic( 1, 0)
+SetMove( 1, 20, 0, 15)
+RenderScene( 20)
+;
+; Luigi arrive
+;
+SetPos( 2, 640, 90)
+SetPic( 2, 3)
+SetMove( 2, -20, 0, 10)
+RenderScene( 60)
+;
+; Dario arrive
+;
+SetPos( 3, 320, 400)
+SetPic( 3, 5)
+SetMove( 3, 0, -10, 32)
+RenderScene( 100)
+SetClip( 0, 0, 640, 480)
+;
+; Flash blanc
+;
+ResetAll()
+SetBackColor( 0, 1)
+RenderScene( 2)
+SetBackColor( 0, 0)
+;
+; Who
+;
+SetPos( 0, 0, 0)
+SetPic( 0, 28)
+SetPos( 1, 0, 54)
+SetPic( 1, 7)
+SetMove( 1, -40, 0, 10000)
+SetXWarp( 1, -640, 640)
+SetPos( 2, 640, 54)
+SetPic( 2, 8)
+SetMove( 2, -40, 0, 10000)
+SetXWarp( 2, -640, 640)
+SetPos( 3, 248, 64)
+SetPic( 3, 29)
+RenderScene( 30)
+;
+; Can
+;
+SetPos( 1, 0, 191)
+SetPos( 2, 640, 191)
+SetPos( 3, 256, 200)
+SetPic( 3, 30)
+RenderScene( 30)
+;
+; Stop them
+;
+SetPos( 1, 0, 329)
+SetPos( 2, 640, 329)
+SetPos( 3, 97, 339)
+SetPic( 3, 31)
+RenderScene( 30)
+;
+; End
+;
+EndScene()

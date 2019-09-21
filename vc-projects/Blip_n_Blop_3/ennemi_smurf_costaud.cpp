@@ -170,7 +170,7 @@ void EnnemiSmurfCostaud::onTireHadoken()
 			t->y = y - 30;
 			t->setDir(dir);
 
-			list_tirs_ennemis.ajoute((void*) t);
+			list_tirs_ennemis.emplace_back(t);
 		}
 
 		if (etape > 7) {

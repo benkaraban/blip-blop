@@ -177,7 +177,7 @@ void EnnemiSnorkInBlack::onTire()
 			tir->x = x + 49;
 			tir->y = y - 15;
 
-			list_tirs_ennemis.ajoute((void*) tir);
+			list_tirs_ennemis.emplace_back(tir);
 		} else {
 			int vx = -5 - rand() % 2;
 			int vy = rand() % 5 - 2;
@@ -188,7 +188,7 @@ void EnnemiSnorkInBlack::onTire()
 			tir->x = x - 49;
 			tir->y = y - 15;
 
-			list_tirs_ennemis.ajoute((void*) tir);
+			list_tirs_ennemis.emplace_back(tir);
 		}
 
 		sbk_niveau.play(24);

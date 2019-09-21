@@ -13,15 +13,14 @@
 *
 ******************************************************************/
 
-
-#ifndef _RPGPlayer_
-#define _RPGPlayer_
+#pragma once
 
 #include <fstream>
+#include <string>
+
 #include "graphics.h"
 #include "picture_bank.h"
-
-using namespace std;
+#include "chrono.h"
 
 #define	ID_JOUEUR	0
 #define ID_ENNEMI	1
@@ -29,10 +28,10 @@ using namespace std;
 class RPGPlayer
 {
 public:
-	ifstream	fic;
-	char *		fic_name;
-	char *		buffer1;
-	char *		buffer2;
+        std::ifstream fic_;
+        std::string fic_name_;
+        std::string buffer1_;
+        std::string buffer2_;
 
 	PictureBank *	pic_tab[2];
 	int				nimage[2];
@@ -40,8 +39,8 @@ public:
 	int				id[2];
 	int				focus;
 
-	unsigned int	wait_goal;
-	unsigned int	initial_time;
+        Chrono time_;
+        Countdown wait_;
 	bool			key_released;
 	bool			skiped;
 
@@ -50,7 +49,6 @@ public:
 	int				base_joueur[2]; // Représente l'image de base du joueur selon qu'il soit Blip ou Blop
 
 	RPGPlayer();
-	~RPGPlayer();
 
 	void attachFile(const char * f);
 	bool startPlay(int n);
@@ -58,7 +56,5 @@ public:
 	bool updateScene();
 	void stopPlay();
 	bool read();
-	void error(const char * err_msg);
+	void error(const std::string& msg);
 };
-
-#endif

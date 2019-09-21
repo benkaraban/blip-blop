@@ -37,11 +37,7 @@ Couille * Vehicule::scanne()
 	int			ddx;
 	int			ddy;
 
-	list_joueurs.start();
-
-	while (!list_joueurs.fin()) {
-		c = (Couille *) list_joueurs.info();
-
+        for (Couille* c: list_joueurs) {
 		ddx = c->x - x;
 		ddy = c->y - y;
 
@@ -49,8 +45,6 @@ Couille * Vehicule::scanne()
 		        && c->etat != ETAT_MEURE && c->etat != ETAT_COME_BACK
 		        && !c->a_detruire && c->etat != ETAT_LOCKEDV)
 			return c;
-
-		list_joueurs.suivant();
 	}
 
 //	debug<<"nothing!\n";

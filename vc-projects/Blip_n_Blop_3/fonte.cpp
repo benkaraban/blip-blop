@@ -20,12 +20,14 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <fstream>
+
 #include "graphics.h"
 #include <string.h>
 #include <fstream>
-#include <io.h>
 #include <fcntl.h>
 #include <stdio.h>
+
 #include "lgx_packer.h"
 #include "ben_debug.h"
 #include "fonte.h"
@@ -54,7 +56,6 @@ bool Fonte::load(const char * fic, int flags)
 	SDL::Surface *	surf;
 
 	int			taille;
-	int			fh;
 	void *		ptr;
 
 	if (pictab != NULL) {
@@ -62,9 +63,9 @@ bool Fonte::load(const char * fic, int flags)
 		return false;
 	}
 
-	fh = _open(fic, _O_RDONLY | _O_BINARY);
+        std::ifstream fh(fic, std::ios::binary);
 
-	if (fh == -1) {
+	if (!fh.good()) {
 		debug << "Fonte::load->Ne peut pas ouvrir " << fic << "\n";
 		return false;
 	}
@@ -72,20 +73,18 @@ bool Fonte::load(const char * fic, int flags)
 	pictab = new Picture * [256];
 	if (pictab == NULL) {
 		debug << "Fonte::load->Pas assez de mémoire pour " << fic << "\n";
-		_close(fh);
 		return false;
 	}
 
 	for (int i = 0; i < 256; i++)
 		pictab[i] = NULL;
 
-	_read(fh, &h, sizeof(h));
-	_read(fh, &spc, sizeof(spc));
+        fh.read(reinterpret_cast<char*>(&h), sizeof(h));
+        fh.read(reinterpret_cast<char*>(&spc), sizeof(spc));
 
 
 	for (int i = 1; i < 256; i++) {
-
-		_read(fh, &taille, sizeof(taille));
+                fh.read(reinterpret_cast<char*>(&taille), sizeof(taille));
 
 		if (taille == 0) {
 			continue;
@@ -95,7 +94,6 @@ bool Fonte::load(const char * fic, int flags)
 
 		if (ptr == NULL) {
 			debug << "Fonte::load() - Impossible d'allouer " << taille << " octets \n";
-			_close(fh);
 			for (int j = 0; j < i; j++)
 				delete pictab[j];
 			delete [] pictab;
@@ -104,7 +102,7 @@ bool Fonte::load(const char * fic, int flags)
 		}
 
 
-		_read(fh, ptr, taille);
+                fh.read(reinterpret_cast<char*>(ptr), taille);
 
 		surf = LGXpaker.loadLGX(ptr, flags);
 
@@ -112,7 +110,6 @@ bool Fonte::load(const char * fic, int flags)
 
 		if (surf == NULL) {
 			debug << "Pas assez de mémoire pour le " << i << " de " << fic << "\n";
-			_close(fh);
 			for (int j = 0; j < i; j++)
 				delete pictab[j];
 			delete [] pictab;
@@ -138,7 +135,6 @@ bool Fonte::load(const char * fic, int flags)
 	nom_fic = new char[strlen(fic) + 1];
 	strcpy(nom_fic, fic);
 	flag_fic = flags;
-	_close(fh);
 	return true;
 }
 
@@ -232,7 +228,6 @@ void Fonte::printR(SDL::Surface * surf, int x, int y, const char * txt)
 
 void Fonte::printC(SDL::Surface * surf, int xtaille, int y, const char * txt)
 {
-	debug << "Fonte::printC("<<txt<<")" <<"\n";
 	if (txt == NULL)
 		return;
 
@@ -354,25 +349,24 @@ bool Fonte::restoreAll()
 	SDL::Surface *	surf;
 
 	int			taille;
-	int			fh;
 	void *		ptr;
 
 
-	fh = _open(nom_fic, _O_RDONLY | _O_BINARY);
+        std::fstream fh(nom_fic, std::ios::binary);
 
-	if (fh == -1) {
+	if (!fh.good()) {
 		debug << "Fonte::restoreAll()->Ne peut pas ouvrir " << nom_fic << "\n";
 		return false;
 	}
 
 
-	_read(fh, &h, sizeof(h));
-	_read(fh, &spc, sizeof(spc));
+        fh.read(reinterpret_cast<char*>(&h), sizeof(h));
+        fh.read(reinterpret_cast<char*>(&spc), sizeof(spc));
 
 
 	for (int i = 1; i < 256; i++) {
 
-		_read(fh, &taille, sizeof(taille));
+                fh.read(reinterpret_cast<char*>(&taille), sizeof(taille));
 
 		if (taille == 0) {
 			continue;
@@ -382,7 +376,6 @@ bool Fonte::restoreAll()
 
 		if (ptr == NULL) {
 			debug << "Fonte::restoreAll() - Impossible d'allouer " << taille << " octets \n";
-			_close(fh);
 			for (int j = 0; j < i; j++)
 				delete pictab[j];
 			delete [] pictab;
@@ -391,7 +384,7 @@ bool Fonte::restoreAll()
 		}
 
 
-		_read(fh, ptr, taille);
+                fh.read(reinterpret_cast<char*>(ptr), taille);
 
 		surf = LGXpaker.loadLGX(ptr, flag_fic);
 
@@ -399,7 +392,6 @@ bool Fonte::restoreAll()
 
 		if (surf == NULL) {
 			debug << "Pas assez de mémoire pour le " << i << " de " << nom_fic << "\n";
-			_close(fh);
 			for (int j = 0; j < i; j++)
 				delete pictab[j];
 			delete [] pictab;
@@ -412,6 +404,5 @@ bool Fonte::restoreAll()
 		pictab[i]->SetColorKey(RGB(250, 206, 152));
 	}
 
-	_close(fh);
 	return true;
 }

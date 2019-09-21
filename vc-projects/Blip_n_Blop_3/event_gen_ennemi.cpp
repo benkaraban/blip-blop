@@ -36,5 +36,5 @@ void EventGenEnnemi::doEvent()
 	gen->periode = periode;
 	gen->capacite = capacite;
 
-	list_gen_ennemis.ajoute((void*) gen);
+	list_gen_ennemis.emplace_back(gen);
 }

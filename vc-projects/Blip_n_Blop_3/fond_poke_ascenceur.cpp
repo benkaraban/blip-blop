@@ -1,6 +1,8 @@
 
 #include "fond_poke_ascenceur.h"
 
+#include "couille.h"
+
 
 FondPokeAscenceur::FondPokeAscenceur()
 {
@@ -22,19 +24,11 @@ void FondPokeAscenceur::update()
 
 		// Si un joueur est sur la plateforme, on le déplace
 		//
-		Sprite * joueur;
-
-		list_joueurs.start();
-
-		while (!list_joueurs.fin()) {
-			joueur = (Sprite*) list_joueurs.info();
-
+                for (Couille* joueur : list_joueurs) {
 			xtmp = joueur->x;
 
 			if (xtmp > x && xtmp < x + pic->xSize() && plat(xtmp, joueur->y) == y + 20)
 				joueur->y += dy;
-
-			list_joueurs.suivant();
 		}
 
 		// Déplace la plateforme

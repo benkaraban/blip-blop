@@ -70,7 +70,7 @@ void EnnemiBisouCoeur::onAvance()
 
 		tir->y = y;
 
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 	}
 
 	colFromPic();
@@ -102,7 +102,7 @@ void EnnemiBisouCoeur::onMeure()
 			else
 				tete->x = x - 11;
 
-			list_gore.ajoute((void*) tete);
+			list_gore.emplace_back(tete);
 		}
 	}
 

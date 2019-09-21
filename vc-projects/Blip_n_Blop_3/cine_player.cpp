@@ -6,7 +6,6 @@
 #include "ben_debug.h"
 #include "input.h"
 #include "txt_data.h"
-#include "l_timer.h"
 //#include "alphablend.h"
 #include "globals.h"
 #include "config.h"
@@ -60,9 +59,9 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 	Precache(file);
 
-	fic.open(file);
+	fic_.open(file);
 
-	if (fic.is_open() == 0) {
+	if (fic_.is_open() == 0) {
 		debug << "CINEPlayer -> Cannot open file " << file << "\n";
 		return false;
 	}
@@ -72,14 +71,14 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 	while (!fini) {
 		updateState();
-		time = LGetTime();
+		time_.Reset();
 		dtime = 0;
 
 		while (frame_to_draw > 0 && !fini) {
 			manageMsg();
 
 			if (checkRestore())
-				time = LGetTime();
+				time_.Reset();
 
 			in.update();
 
@@ -103,17 +102,12 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 void CINEPlayer::updateScene()
 {
-	tupdate = LGetTime();
-
 	// Gére le volume
 	//
 	int vol = delta_vol;
 
 	if (vol < 0)
 		vol = 0;
-
-	if (vol > back_vol)
-		vol = back_vol;
 
 	// Gére l'alpha blending
 	//
@@ -166,7 +160,6 @@ void CINEPlayer::updateScene()
 		}
 	}
 
-	tupdate = LGetTime() - tupdate;
 	frame_to_draw -= 1;
 }
 
@@ -175,30 +168,16 @@ void CINEPlayer::updateScene()
 
 void CINEPlayer::renderLoop()
 {
-	static const int GOOD = 118;
-	static const int INT_SIZE = 50;
-	static const int MARGE = 10;
+	static const int GOOD = 11;
+	static const int MARGE = 2;
 
-	static int	marge[INT_SIZE] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-	                                0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-	                             };
-	static int	im = 0;
+	dtime += time_.elapsed();
+	time_.Reset();
 
-	dtime += LGetTime() - time;
-	time = LGetTime();
+        int mean_frame_time = frame_spare_time_.average();
 
-	int sum = 0;
-
-	for (int i = 0; i < INT_SIZE; i++) {
-		sum += marge[i];
-	}
-
-	glorf = sum / INT_SIZE;
-
-	if (glorf >= -MARGE && glorf <= MARGE) {
+        Chrono frame_time;
+	if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
 		updateScene();
 		dtime = 0;
 	} else {
@@ -208,19 +187,16 @@ void CINEPlayer::renderLoop()
 		}
 	}
 
-	im += 1;
-	im %= INT_SIZE;
-
 	drawScene();
 
-	DWORD ttotal = tupdate + tdraw;
+	int ttotal = frame_time.elapsed();
 
 	if (ttotal <= 0)
 		ttotal = GOOD;
 	else if (ttotal >= 5000)
 		ttotal = GOOD;
 
-	marge[im] = ttotal - GOOD;
+        frame_spare_time_.Add(ttotal - GOOD);
 }
 
 
@@ -236,14 +212,11 @@ void CINEPlayer::updateState()
 
 	while (!fini && !to_draw && getCommand()) {
 		if (ISCOM("endscene")) {
-			pbk.close();
 			fini = true;
 		} else if (ISCOM("loadgfx")) {
-			pbk.close();
 			if (!pbk.loadGFX(str_arg[0], DDSURF_BEST))
 				error("ne peut pas charger le fichier GFX");
 		} else if (ISCOM("loadmbk")) {
-			mbk.close();
 			if (!mbk.open(str_arg[0]))
 				error("ne peut pas charger la MBK");
 		} else if (ISCOM("playmusic")) {
@@ -424,9 +397,8 @@ void CINEPlayer::updateState()
 void CINEPlayer::drawScene()
 {
 	RenderRect ddfx;
-	tdraw = LGetTime();
 
-	RECT		r;
+	Rect		r;
 
 	back_surf->FillRect(0, 0xFF000000);
 
@@ -483,39 +455,7 @@ void CINEPlayer::drawScene()
 	}
 
 
-	/*
-		// Alpha blending
-		//
-
-		if ( alpha > 0)
-		{
-			if ( alpha == 255) // 100% surface 2
-			{
-				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
-			}
-			else // Mélange
-			{
-				r.top	= 0;
-				r.left	= 0;
-				r.bottom= 480;
-				r.right = 640;
-
-				TransAlphaImproved( back_surf, back_surf, 0, 0, r, alpha, rgb.bpp);
-
-				back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
-			}
-		}
-		else // 100% surface 1
-		{
-			back_surf->BltFast( 0, 0, back_surf, NULL, DDBLTFAST_WAIT | DDBLTFAST_NOCOLORKEY);
-		}
-	*/
-
-
-//	first_surf->Flip(NULL, DDFLIP_WAIT);
 	DDFlip();
-
-	tdraw = LGetTime() - tdraw;
 }
 
 
@@ -532,7 +472,7 @@ void CINEPlayer::drawSprite(int n)
 void CINEPlayer::drawText(int n)
 {
 	if (n < NB_OBJ)
-		fnt_rpg.printC(back_surf, obj[n].x, obj[n].y, txt_data[obj[n].txt]);
+		fnt_rpg.printC(back_surf, obj[n].x, obj[n].y, txt_data[obj[n].txt].c_str());
 }
 
 
@@ -552,21 +492,21 @@ bool CINEPlayer::getCommand()
 
 	// Retourne faux si EOF
 	//
-	if (fic.eof())
+	if (fic_.eof())
 		return false;
 
 
 	// Esquive les lignes commentées et les lignes vides
 	//
-	fic.getline(buffer, BUFFER_SIZE);
+	fic_.getline(buffer, BUFFER_SIZE);
 	num_ligne += 1;
 
-	while (!fic.eof() && (buffer[0] == ';' || buffer[0] == '\0')) {
-		fic.getline(buffer, BUFFER_SIZE);
+	while (!fic_.eof() && (buffer[0] == ';' || buffer[0] == '\0')) {
+		fic_.getline(buffer, BUFFER_SIZE);
 		num_ligne += 1;
 	}
 
-	if (fic.eof() && strlen(buffer) == 0)
+	if (fic_.eof() && strlen(buffer) == 0)
 		return false;
 
 
@@ -635,9 +575,7 @@ void CINEPlayer::loadPBK(const char * f)
 
 void CINEPlayer::closePlayer()
 {
-	mbk.close();
-	pbk.close();
-	fic.close();
+	fic_.close();
 }
 
 //---------------------------------------------------------------------------

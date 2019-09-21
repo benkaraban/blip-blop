@@ -32,9 +32,8 @@ class Blop : public Couille
 {
 
 public:
-	Blop()
+	Blop() : Couille(pbk_blop)
 	{
-		pbk_own = pbk_blop.getPix();
 		id_couille = ID_BLOP;
 	};
 

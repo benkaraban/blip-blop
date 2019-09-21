@@ -19,13 +19,15 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
-#include <windows.h>
-
 bool active = false;
 bool app_killed = false;
 bool want_to_kill_app = false;
 
 //-----------------------------------------------------------------------------
+
+#if defined(_WIN32) || defined(__MINGW32__)
+
+#include <windows.h>
 
 int manageMsg()
 {
@@ -40,14 +42,9 @@ int manageMsg()
 
 	return 0;
 }
-
-//-----------------------------------------------------------------------------
-
-void wait(int t)
-{
-	unsigned int i = GetTickCount();
-
-	while (GetTickCount() < (i + t));
+#else
+int manageMsg() {
+    return 0;
 }
-
+#endif
 

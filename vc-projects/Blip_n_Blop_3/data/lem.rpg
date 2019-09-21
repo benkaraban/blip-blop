@@ -1,0 +1,30 @@
+;
+; DEBUT DU TABLEAU 
+;
+rpg=0
+focus=haut
+id=joueur
+img=4
+txt=401
+affiche=5000
+flag=3.1
+stop
+;
+; VICTOIRE
+;
+rpg=1
+focus=haut
+id=joueur
+img=0
+txt=413
+affiche=5000
+ifnbj=2
+focus=bas
+bbswap
+id=joueur
+img=1
+txt=414
+affiche=5000
+endif
+flag=1.1
+stop

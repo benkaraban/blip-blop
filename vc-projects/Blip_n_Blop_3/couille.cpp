@@ -165,13 +165,15 @@ const int y_recul_fusil [][5] = {
 
 //-----------------------------------------------------------------------------
 
-Couille::Couille() : sauti(0), ctrl(NULL), id_arme(ID_M16), tire(false), etape_recul(0),
+Couille::Couille(const PictureBank& pbk) : sauti(0), ctrl(NULL), id_arme(ID_M16),
+        tire(false), etape_recul(0),
 	dir_arme(0), poid_arme(1), cadence_arme(10), ammo(0), dx_saut(0),
 	latence_arme(3), nb_etape_arme(5), invincible(0), a_mal(0),
 	nb_life(5), nb_cow_bomb(0), time_down(0), wait_cow_bomb(0),
 	dx_glisse(0), latence_glisse(0), perfect(true), next_m16(0),
 	next_pm(0), next_fusil(0), next_laser(0), next_lf(0), locked_fire(false),
-	fire_lf(false), locked_dir(false), etape_cli(0), inv_cow(false), mod_life(0)
+	fire_lf(false), locked_dir(false), etape_cli(0), inv_cow(false), mod_life(0),
+        etape_bouge_arme(0), fire_laser(0), pbk_own(pbk)
 {
 	dir = BBDIR_DROITE;
 	col_on = true;
@@ -506,7 +508,7 @@ void Couille::update()
 				ptr->etape = rand() % 8;
 				ptr->joueur = this;
 
-				list_cow.ajoute((void*) ptr);
+				list_cow.push_back(std::unique_ptr<TirBBVache>(ptr));
 			}
 		}
 
@@ -1097,7 +1099,7 @@ void Couille::updateArme()
 					t->dxReferentiel = 0;
 
 				t->setDir(dir);
-				list_tirs_bb.ajoute((void*) t);
+				list_tirs_bb.push_back(t);
 				break;
 
 			case ID_PM:
@@ -1117,7 +1119,7 @@ void Couille::updateArme()
 					t->dxReferentiel = 0;
 
 				t->setDir(dir_arme);
-				list_tirs_bb.ajoute((void*) t);
+				list_tirs_bb.push_back(t);
 				break;
 
 			case ID_FUSIL:
@@ -1141,7 +1143,7 @@ void Couille::updateArme()
 						t->dxReferentiel = 0;
 
 					t->setDir(dir);
-					list_tirs_bb.ajoute((void*) t);
+					list_tirs_bb.push_back(t);
 				}
 				break;
 
@@ -1157,7 +1159,7 @@ void Couille::updateArme()
 				t->y = y + dy_tir_laser[d_arme] + y_recul[d_arme][etape_recul];
 				t->setDir(dir);
 				t->etape = etape_arme;
-				list_tirs_bb.ajoute((void*) t);
+				list_tirs_bb.push_back(t);
 				break;
 
 			case ID_LF:
@@ -1171,7 +1173,7 @@ void Couille::updateArme()
 				t->y = y + dy_tir_lf[d_arme] + y_recul[d_arme][etape_recul];
 				t->setDir(dir_arme);
 
-				list_tirs_bb.ajoute((void*) t);
+				list_tirs_bb.push_back(t);
 
 				next_lf = (next_lf + 1) % NB_TIRS_LF;
 				t = &tirs_lf[next_lf];
@@ -1183,7 +1185,7 @@ void Couille::updateArme()
 				t->y = y + dy_tir_lf[d_arme] + y_recul[d_arme][etape_recul];
 				t->setDir(dir_arme);
 
-				list_tirs_bb.ajoute((void*) t);
+				list_tirs_bb.push_back(t);
 				break;
 		}
 

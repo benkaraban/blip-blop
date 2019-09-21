@@ -120,12 +120,12 @@ void EnnemiBisouAuto::onMeure()
 		pic = pbk_ennemis[anime(anim_gauche, 4, 8)];
 
 	if ((ss_etape % 2) == 0) {
-		Sprite * s = new Explosion();
+		Explosion * s = new Explosion();
 
 		s->x = x - 20 + rand() % 40;
 		s->y = y - 20 + rand() % 40;
 
-		list_impacts.ajoute((void*) s);
+		list_impacts.push_back(std::unique_ptr<Explosion>(s));
 	}
 
 	updateADetruire();

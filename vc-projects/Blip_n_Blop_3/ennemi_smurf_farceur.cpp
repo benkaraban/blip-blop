@@ -104,7 +104,7 @@ void EnnemiSmurfFarceur::onPoseCadeau()
 		else
 			tir->x = x - 26 ;
 		tir->y = y ;
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 
 		// et on réinitialise etape et ss_etape
 		etape = 0 ;
@@ -183,7 +183,7 @@ void EnnemiSmurfFarceur::onMeure()
 		} else {
 			tir->x = x - 26 ;
 		}
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 		onCarbonise() ;
 	} else {
 		ss_etape += 1;

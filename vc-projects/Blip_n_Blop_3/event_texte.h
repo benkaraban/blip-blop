@@ -45,7 +45,7 @@ public:
 
 		txt->ntxt = ntxt;
 
-		list_txt_cool.ajoute((void*) txt);
+		list_txt_cool.emplace_back(txt);
 	};
 };
 

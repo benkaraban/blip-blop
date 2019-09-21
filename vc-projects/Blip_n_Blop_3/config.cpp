@@ -40,6 +40,7 @@ bool	cheat_on = false;
 HiScores	hi_scores;
 
 bool	winSet;
+bool fullscreen = false; // THIS IS UGLY AS FUCK. WAY TOO MANY GLOBALS
 
 
 void load_BB3_config(const char * cfg_file)
@@ -56,6 +57,7 @@ void load_BB3_config(const char * cfg_file)
 		debug << "Using " << cfg_file << " as configuration file.\n";
 
 		fread(&vSyncOn, sizeof(vSyncOn), 1, fic);
+		fread(&fullscreen, sizeof(fullscreen), 1, fic);
 		fread(&lang_type, sizeof(lang_type), 1, fic);
 
 		fread(&a, sizeof(a), 1, fic);
@@ -121,6 +123,7 @@ void save_BB3_config(const char * cfg_file)
 
 
 		fwrite(&vSyncOn, sizeof(vSyncOn), 1, fic);
+		fwrite(&fullscreen, sizeof(fullscreen), 1, fic);
 		fwrite(&lang_type, sizeof(lang_type), 1, fic);
 
 		a = in.getAlias(ALIAS_P1_UP);

@@ -366,7 +366,7 @@ void EventEnnemi::doEvent()
 		enn->y = y;
 		enn->dir = sens;
 
-		list_ennemis.ajoute((void*) enn);
+		list_ennemis.emplace_back(enn);
 
 		if (enn->count())
 			nb_ennemis_created += 1;

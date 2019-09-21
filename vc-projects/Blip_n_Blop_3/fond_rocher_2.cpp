@@ -16,6 +16,8 @@
 
 #include "fond_rocher_2.h"
 
+#include "couille.h"
+
 const int rocher2_levitation[] = {0, 0, 0, 0, 1, 0, 0, 0, 0, 0};
 const int rocher2_animation[] = {57, 58, 58, 59, 59, 59, 60, 60, 60, 60, 60, 59, 59, 59, 58, 58, 57, 61, 61, 62, 62, 62, 63, 63, 63, 63, 63, 62, 62, 62, 61, 61};
 
@@ -52,13 +54,8 @@ void FondRocher2::update()
 
 	// Si un joueur est sur la plateforme, on le déplace
 	//
-	Sprite * joueur;
 
-	list_joueurs.start();
-
-	while (!list_joueurs.fin()) {
-		joueur = (Sprite*) list_joueurs.info();
-
+        for (Couille* joueur:list_joueurs) {
 		xtmp = joueur->x;
 
 		if (xtmp >= x - 45 && xtmp < x + pic->xSize() - 45 && plat(xtmp, joueur->y) == y - 25) {
@@ -69,8 +66,6 @@ void FondRocher2::update()
 			}
 		}
 		//	joueur->y += dy;
-
-		list_joueurs.suivant();
 	}
 
 	// Déplace la plateforme

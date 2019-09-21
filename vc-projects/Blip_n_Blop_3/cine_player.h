@@ -6,9 +6,8 @@
 #include "music_bank.h"
 #include "picture_bank.h"
 #include "fonte.h"
-#include "alpha_blend.h"
-
-using namespace std;
+#include "chrono.h"
+#include "moving_average.h"
 
 #define OBJ_SPRITE	0
 #define OBJ_SCROLL	1
@@ -56,10 +55,9 @@ struct OBJECT {
 class CINEPlayer
 {
 protected:
-	int		tupdate;
-	int		tdraw;
+        Chrono time_;
+        MovingAverage<int> frame_spare_time_;
 	int		dtime;
-	int		glorf;
 
 	/*SDL::Surface * first_surf;*/
 	SDL::Surface * back_surf;
@@ -67,9 +65,8 @@ protected:
 		SDL::Surface * surf1;
 		SDL::Surface * surf2;
 	*/
-	RGBFORMAT		rgb;
 
-	ifstream		fic;
+        std::ifstream fic_;
 	char			buffer[BUFFER_SIZE + 1];
 	char			buffer2[BUFFER_SIZE + 1];
 
@@ -86,7 +83,6 @@ protected:
 	int		num_ligne;
 	bool	fini;
 	int		frame_to_draw;
-	int		time;
 
 	int		clip_x1;
 	int		clip_x2;
@@ -99,7 +95,6 @@ protected:
 	int		clip_color[2];
 
 	int		delta_vol;
-	int		back_vol;
 
 
 	// Méthodes
@@ -121,6 +116,7 @@ protected:
 	void updateScene();
 
 public:
+        CINEPlayer() : frame_spare_time_(50) {}
 
 	void loadPBK(const char * f);
 	bool playScene(const char * file, SDL::Surface * s1, SDL::Surface * s2);

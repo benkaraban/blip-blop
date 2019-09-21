@@ -32,6 +32,6 @@ void EventPremierPlan::doEvent()
 	s->y = y;
 	s->pic = pbk_niveau[id_fond];
 
-	list_premiers_plans.ajoute((void*) s);
+	list_premiers_plans.emplace_back(s);
 
 }

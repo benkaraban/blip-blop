@@ -74,7 +74,7 @@ void FondSnorkSas1::affiche()
 	SDL::Surface *	surf;
 	int						xs;
 	int						ys;
-	RECT					r;
+	Rect					r;
 	int						largeur;
 	int                     decalage = 0;
 
@@ -131,7 +131,7 @@ void FondSnorkSas2::affiche()
 	SDL::Surface *	surf;
 	int						xs;
 	int						ys;
-	RECT					r;
+	Rect					r;
 	int						largeur;
 	int                     decalage = 0;
 

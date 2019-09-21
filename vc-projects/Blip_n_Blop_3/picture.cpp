@@ -68,7 +68,7 @@ void Picture::FindSize()
 // Desc: Règle la couleur transparente de l'image
 //-----------------------------------------------------------------------------
 
-void Picture::SetColorKey(COLORREF rgb)
+void Picture::SetColorKey(Pixel rgb)
 {
 	if (surf == NULL) {
 		debug << "Picture::SetColorKey() - surface à NULL\n";
@@ -182,7 +182,7 @@ void Picture::BlitTo(SDL::Surface * s, int x, int y) const
 	if (x > XPIC_MAX || x2 < 0 || y > YPIC_MAX || y2 < 0)
 		return;
 
-	RECT	r;
+	Rect	r;
 
 	r.left	= (x < 0) ? -x : 0;
 	r.top	= (y < 0) ? -y : 0;
@@ -225,7 +225,7 @@ void Picture::PasteTo(SDL::Surface * s, int x, int y) const
 	if (x > XPIC_MAX || x2 < 0 || y > YPIC_MAX || y2 < 0)
 		return;
 
-	RECT	r;
+	Rect	r;
 
 	r.left	= (x < 0) ? -x : 0;
 	r.top	= (y < 0) ? -y : 0;
@@ -270,7 +270,7 @@ Picture::~Picture()
 
 int loadPBK(char * fic, Picture * & p, int rgb)
 {
-	ifstream	f;
+    std::ifstream f;
 	int			nbpic;
 
 	if (p != NULL) {

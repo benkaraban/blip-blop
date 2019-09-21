@@ -3,27 +3,18 @@
 #define _MenuGame_
 
 #include "graphics.h"
+#include "menus/options_menu.h"
+#include "menus/pause_menu.h"
 
-class MenuGame
-{
-public:
-	int		current_menu;		// Numéro du menu courant
-	int		focus;				// Numéro du menu EN ROUGE
-	int		nb_focus;			// Nombre de choix du menu actuel
-	char ** menu_txt;
-	int		redefine;			// Numéro du schnuff à redéfinir
-	int		old_menu;
+class MenuGame {
+    PauseMenu pause_menu_;
+    OptionsMenu options_menu_;
+    AbstractMenu* active_;
 
-	RECT	rec;
-
-	MenuGame();
-	void start();
-	int update();	// Retour 0=toujours menu  1=retour jeu  2=quitter
-	void stop();
-	void updateName();
-	void updateRedefine();
-	void draw(SDL::Surface * surf);
-	~MenuGame();
+   public:
+    MenuGame() : active_(&pause_menu_) {}
+    int Update();  // Retour 0=toujours menu  1=retour jeu  2=quitter
+    void Draw(SDL::Surface* surf) { active_->Draw(surf); }
 };
 
 #endif

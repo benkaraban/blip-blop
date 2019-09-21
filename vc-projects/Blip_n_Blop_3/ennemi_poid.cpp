@@ -77,7 +77,7 @@ void EnnemiPoid::onMeure()
 				s = new GoreGiclure(rand() % 15 - 7, -1 - rand() % 10);
 				s->x = x + rand() % 80 - 40;
 				s->y = y - rand() % 30 - 10;
-				list_giclures.ajoute((void*) s);
+				list_giclures.emplace_back(s);
 			}
 		} else if (mur_opaque(x, y + dy * 15)) {
 			pic = pbk_ennemis[200];
@@ -87,7 +87,7 @@ void EnnemiPoid::onMeure()
 				s = new GoreGiclure(rand() % 15 - 7, -1 - rand() % 10);
 				s->x = x + rand() % 80 - 40;
 				s->y = y - rand() % 30 - 10;
-				list_giclures.ajoute((void*) s);
+				list_giclures.emplace_back(s);
 			}
 		} else if (mur_opaque(x, y + dy * 20)) {
 			pic = pbk_ennemis[200];
@@ -97,7 +97,7 @@ void EnnemiPoid::onMeure()
 				s = new GoreGiclure(rand() % 15 - 7, -1 - rand() % 10);
 				s->x = x + rand() % 80 - 40;
 				s->y = y - rand() % 30 - 10;
-				list_giclures.ajoute((void*) s);
+				list_giclures.emplace_back(s);
 			}
 		} else if (mur_opaque(x, y + dy * 25)) {
 			game_flag[0] = 6;
@@ -108,7 +108,7 @@ void EnnemiPoid::onMeure()
 				s = new GoreGiclure(rand() % 15 - 7, -1 - rand() % 10);
 				s->x = x + rand() % 80 - 40;
 				s->y = y - rand() % 30 - 10;
-				list_giclures.ajoute((void*) s);
+				list_giclures.emplace_back(s);
 			}
 		} else if (mur_opaque(x, y + dy * 30)) {
 			pic = pbk_ennemis[199];
@@ -118,7 +118,7 @@ void EnnemiPoid::onMeure()
 				s = new GoreGiclure(rand() % 15 - 7, -1 - rand() % 10);
 				s->x = x + rand() % 80 - 40;
 				s->y = y - rand() % 30 - 10;
-				list_giclures.ajoute((void*) s);
+				list_giclures.emplace_back(s);
 			}
 		} else {
 			pic = pbk_ennemis[170];

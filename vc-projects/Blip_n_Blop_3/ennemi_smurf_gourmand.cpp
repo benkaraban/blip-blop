@@ -118,7 +118,7 @@ void EnnemiSmurfGourmand::onTire()
 
 		tirEnCloche(tir->x, tir->y, xcible, ycible, tir->dx, tir->dy);
 
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 
 		etape = 0;
 		etat = ETAT_HOLD;

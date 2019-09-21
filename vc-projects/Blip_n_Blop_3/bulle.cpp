@@ -1,20 +1,16 @@
-
-#include "ben_maths.h"
 #include "bulle.h"
 
-Bulle::Bulle() : phi(0)
-{
-}
+#include "ben_maths.h"
 
-void Bulle::update()
-{
-	phi += dphi;
-	phi %= 360;
+Bulle::Bulle() : phi(0) {}
 
-	y += dy;
+void Bulle::update() {
+    phi += dphi;
+    phi %= 360;
 
-	x = xbase + ((10 * bCos[phi]) >> COSINUS);
+    y += dy;
 
-	if (xbase < offset - 10 || y < -10 || mur_opaque(x, y))
-		a_detruire = true;
+    x = xbase + cosi(10, phi);
+
+    if (xbase < offset - 10 || y < -10 || mur_opaque(x, y)) a_detruire = true;
 }

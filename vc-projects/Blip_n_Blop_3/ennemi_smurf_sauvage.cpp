@@ -213,7 +213,7 @@ void EnnemiSmurfSauvage::onTire()
 		tir->y = y + tir_position_depart_y[shoot_direction] ;
 		tir->dx = tir_dx[shoot_direction] ;
 		tir->dy = tir_dy[shoot_direction] ;
-		list_tirs_ennemis.ajoute((void*) tir);
+		list_tirs_ennemis.emplace_back(tir);
 
 		if (nb_shoot == 0)
 			sbk_niveau.play(18);
@@ -246,17 +246,13 @@ void EnnemiSmurfSauvage::estTouche(Tir * tir)
 void EnnemiSmurfSauvage::onMeure()
 {
 	if (etape >= 5) {
-		Sprite * s;
-		list_fonds_statiques.start();
 		bool ok = true;
 
 		colFromPic();
 		y1 = 0;
 
-		while (!list_fonds_statiques.fin()) {
-			s = (Sprite *) list_fonds_statiques.info();
-			ok = ok && !collision(s);
-			list_fonds_statiques.suivant();
+                for (auto& s : list_fonds_statiques) {
+			ok = ok && !collision(s.get());
 		}
 
 		col_on = false;

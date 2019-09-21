@@ -28,6 +28,8 @@
 #include "picture.h"
 #include "rpg_player.h"
 #include "blip.h"
+#include "chrono.h"
+#include "moving_average.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -57,7 +59,7 @@
 class Game
 {
 protected:
-
+        MovingAverage<int> frame_spare_time_;
 	PictureBank	pbk_briefing;
 	bool	briefing;
 
@@ -74,10 +76,8 @@ protected:
 	bool	last_perfect1;
 	bool	last_perfect2;
 
-	int		tupdate;
-	int		tdraw;
-	int		time;			// Pour le mode auto
 	int		dtime;
+        Chrono time_; // Pour le mode auto
 	int		nframe;			// Pour la synchronisation
 	int		etape_timer;
 
@@ -176,30 +176,15 @@ public:
 
 	int selectPlayer();
 
+        template <class T>
+        void UpdateCollection(const T& xs);
 	void updateFlecheGo();
 	void updateMeteo();
-	void updateFondsAnimes();
-	void updateFondsStatiques();
-	void updatePremiersPlans();
-	void updatePlateformesMobiles();
 	void updateEvents();
-	void updateJoueurs();
-	void updateTirsJoueurs();
-	void updateImpacts();
-	void updateEnnemis();
-	void updateTirsEnnemis();
-	void updateBonus();
-	void updateGiclures();
-	void updateTexteCool();
 	void updateDeformation();
 	void updateBulles();
 	void updateTremblements();
-	void updateGore();
 
-	void updateVehicules();
-
-	void updateGenEnnemis();
-	void updateGenBonus();
 	void updateLock();
 	void updateHoldFire();
 	void updateTeteTurc();
@@ -210,32 +195,20 @@ public:
 	void updateCheat();
 	void manageCollisions();
 
-	void drawFondsStatiques();
+        template <class T>
+        void RemoveDestroyed(T& xs);
+
+        template <class T>
+        void DrawCollection(const T& xs);
 	void drawTremblements();
 	void drawFlecheGo();
-	void drawMeteo();
-	void drawPlateformesMobiles();
-	void drawFondsAnimes();
-	void drawPremiersPlans();
-	void drawJoueurs();
-	void drawTirsJoueurs();
-	void drawImpacts();
-	void drawCow();
-	void drawEnnemis();
-	void drawTirsEnnemis();
-	void drawBonus();
-	void drawGiclures();
 	void drawHUB();
 	void drawHUBpv(int x, int y, int pv);
 	void drawTimer();
-	void drawTexteCool();
-	void drawGore();
-	void drawVehicules();
 
 	void drawDebugInfos();
 
 	void drawDeformation();
-	void drawBulles();
 
 	void cleanLists();
 	void showPE(bool bonus, bool fuckOff = false);

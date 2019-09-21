@@ -55,7 +55,7 @@ void FondBombe::update()
 				}
 				bonus->x = x;
 				bonus->y = 0;
-				list_bonus.ajoute((void*) bonus);
+				list_bonus.emplace_back(bonus);
 
 				sbk_niveau.play(1);
 			}

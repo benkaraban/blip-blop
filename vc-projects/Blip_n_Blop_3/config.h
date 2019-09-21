@@ -21,6 +21,7 @@
 #include "hi_scores.h"
 
 extern bool		vSyncOn;
+extern bool		fullscreen;
 
 extern int		mem_flag;
 extern bool		video_buffer_on;

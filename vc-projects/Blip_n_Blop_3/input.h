@@ -209,7 +209,7 @@ public:
 	{
 		return n_joy;
 	};
-	bool	open(HWND wh, HINSTANCE inst, int flags = BINPUT_KEYB | BINPUT_JOY);
+	bool	open(int flags = BINPUT_KEYB | BINPUT_JOY);
 	void	setAlias(int a, unsigned int val);
 
 	unsigned int		waitKey();

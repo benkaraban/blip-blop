@@ -19,6 +19,10 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <vector>
+#include <list>
+#include <memory>
+
 // #include <ddraw.h>
 #include "ben_divers.h"
 #include "control_p1.h"
@@ -31,6 +35,18 @@
 #include "scroll.h"
 #include "restore.h"
 #include "fond_statique.h"
+#include "tir_bb_vache.h"
+#include "explosion.h"
+#include "vehicule.h"
+#include "event.h"
+#include "enemy.h"
+#include "gen_ennemi.h"
+#include "bonus.h"
+#include "gen_bonus.h"
+#include "sprite.h"
+#include "texte_cool.h"
+#include "giclure.h"
+#include "bulle.h"
 
 #include "ben_debug.h"
 
@@ -95,35 +111,35 @@ ControlP2	ctrlP2;
 //		Les listes
 //-----------------------------------------------------------------------------
 
-SuperListe	list_joueurs;
-SuperListe	list_tirs_bb;
-SuperListe	list_cow;
-SuperListe	list_impacts;
+std::vector<Couille*> list_joueurs; // FIXME: make it owning?
+std::list<TirBB*> list_tirs_bb;
+std::list<std::unique_ptr<TirBBVache>> list_cow;
+std::list<std::unique_ptr<Explosion>> list_impacts;
 
-SuperListe	list_vehicules;
+std::list<std::unique_ptr<Vehicule>> list_vehicules;
 
-SuperListe	list_event_endormis;
-SuperListe	list_event;
+std::list<std::unique_ptr<Event>> list_event_endormis;
+std::list<std::unique_ptr<Event>> list_event;
 
-SuperListe	list_ennemis;
-SuperListe	list_tirs_ennemis;
-SuperListe	list_gen_ennemis;
+std::list<std::unique_ptr<Ennemi>> list_ennemis;
+std::list<std::unique_ptr<Tir>> list_tirs_ennemis;
+std::list<std::unique_ptr<GenEnnemi>> list_gen_ennemis;
 
-SuperListe	list_bonus;
-SuperListe	list_gen_bonus;
+std::list<std::unique_ptr<Bonus>> list_bonus;
+std::list<std::unique_ptr<GenBonus>> list_gen_bonus;
 
-SuperListe	list_fonds_animes;
-SuperListe	list_fonds_statiques;
-SuperListe	list_premiers_plans;
-SuperListe	list_plateformes_mobiles;
+std::list<std::unique_ptr<Sprite>> list_fonds_animes;
+std::list<std::unique_ptr<Sprite>> list_fonds_statiques;
+std::list<std::unique_ptr<Sprite>> list_premiers_plans;
+std::list<std::unique_ptr<Sprite>> list_plateformes_mobiles;
 
-SuperListe	list_txt_cool;
+std::list<std::unique_ptr<TexteCool>> list_txt_cool;
 
-SuperListe	list_giclures;
-SuperListe	list_gore;
+std::list<std::unique_ptr<Sprite>> list_giclures;
+std::list<std::unique_ptr<Sprite>> list_gore;
 
-SuperListe	list_meteo;
-SuperListe	list_bulles;
+std::list<Sprite*> list_meteo;
+std::list<std::unique_ptr<Bulle>> list_bulles;
 
 
 //-----------------------------------------------------------------------------
@@ -273,12 +289,12 @@ bool mur_sanglant(int x, int y)
 	return murs_sanglants[y / 8][x / 8];
 }
 
-inline void clipedBlit(SDL::Surface * surf, const Picture * pic, int x, int y, RECT * clip)
+inline void clipedBlit(SDL::Surface * surf, const Picture * pic, int x, int y, Rect * clip)
 {
 	if (pic == NULL)
 		return;
 
-	RECT	r;
+	Rect	r;
 	int		x1;
 	int		y1;
 	int		x2;
@@ -334,30 +350,18 @@ bool grave(int x, int y, Picture * pic)
 
 	s.colFromPic();
 
-	list_fonds_animes.start();
-
-	while (!list_fonds_animes.fin()) {
-		s2 = (Sprite*) list_fonds_animes.info();
-
-		if (s.collision(s2))
+        for (auto& s2 : list_fonds_animes) {
+		if (s.collision(s2.get()))
 			return false;
-
-		list_fonds_animes.suivant();
 	}
 
-	list_plateformes_mobiles.start();
-
-	while (!list_plateformes_mobiles.fin()) {
-		s2 = (Sprite*) list_plateformes_mobiles.info();
-
-		if (s.collision(s2))
+	for (auto& s2 : list_plateformes_mobiles) {
+		if (s.collision(s2.get()))
 			return false;
-
-		list_plateformes_mobiles.suivant();
 	}
 
 
-	RECT	r;
+	Rect	r;
 	int		ni = x / /*640;*/vbuffer_wide;
 //	int		no = offset / vbuffer_wide;
 

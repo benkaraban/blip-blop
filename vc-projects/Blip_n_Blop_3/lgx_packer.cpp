@@ -31,9 +31,11 @@
 //		Headers
 //-----------------------------------------------------------------------------
 
+#include <fstream>
+
 #include <fcntl.h>
-#include <io.h>
 #include <stdio.h>
+
 #include "ben_debug.h"
 #include "dd_gfx.h"
 #include "lgx_packer.h"
@@ -249,6 +251,8 @@ void LGXpacker::closePaker()
 // LGXpaker::createLGX_0()
 //-----------------------------------------------------------------------------
 
+#if 0
+//FOR NOW, this can't work. windows.h's GetPixel is needed.
 bool LGXpacker::createLGX_0(HDC hdc, const char * fic, int xs, int ys)
 {
 	void *	ptr;
@@ -364,11 +368,13 @@ int LGXpacker::createLGX_0(HDC hdc, int xs, int ys, void * & ptr)
 
 	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
 }
+#endif
 
 //-----------------------------------------------------------------------------
 // LGXpaker::createLGX_1()
 //-----------------------------------------------------------------------------
 
+#if 0
 int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 {
 	unsigned int	pixval;
@@ -462,6 +468,7 @@ int LGXpacker::createLGX_1(HDC hdc, int xs, int ys, void * & ptr)
 
 	return ((taille << 1) + sizeof(LGX_HEADER)); // Il faut * taille par 2 car on a compté les mots
 }
+#endif
 
 
 
@@ -505,7 +512,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 
 	SDL::SurfaceInfo	ddsd;
 
-	if (surf->Lock(NULL, &ddsd, DDLOCK_WAIT | DDLOCK_WRITEONLY | DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK) {
+	if (surf->Lock(&ddsd, DDLOCK_WAIT | DDLOCK_WRITEONLY | DDLOCK_SURFACEMEMORYPTR, NULL) != DD_OK) {
 		debug << "LGXpacker::LoadLGX() / Impossible d'obtenir l'adresse de la surface\n";
 		return surf;
 	}
@@ -622,7 +629,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 			}
 		}
 	}
-	surf->Unlock(NULL);
+	surf->Unlock();
 
 
 	static int counter = 0;
@@ -651,25 +658,19 @@ SDL::Surface * LGXpacker::loadLGX(const char * fic, int flags)
 	}
 
 	SDL::Surface *	surf;
-	int		fh;
-	int		taille;
+        std::ifstream fh(fic, std::ios::binary);
 
-	if ((fh = _open(fic, _O_BINARY | _O_RDONLY)) == -1) {
+	if (!fh.good()) {
 		debug << "LGXpacker::loadLGX() / Ne peut pas ouvrir le fichier " << fic << "\n";
 		return NULL;
 	}
 
-	taille = _filelength(fh);
-	void * ptr = malloc(taille);
+        fh.seekg(0, std::ios::end);
+        int size = fh.tellg();
+        fh.seekg(0, std::ios::beg);
+        void * ptr = malloc(size);
 
-	if (ptr == NULL) {
-		debug << "LGXpaker::loadLGX() -> Mémoire insuffisante - (" << taille << ")\n";
-		_close(fh);
-		return NULL;
-	}
-
-	_read(fh, ptr, taille);
-	_close(fh);
+        fh.read(reinterpret_cast<char*>(ptr), size);
 
 	surf = loadLGX(ptr, flags);
 
@@ -681,7 +682,7 @@ SDL::Surface * LGXpacker::loadLGX(const char * fic, int flags)
 // LGXpaker::fincColor()
 //-----------------------------------------------------------------------------
 
-int LGXpacker::findColor(COLORREF rgb)
+int LGXpacker::findColor(Pixel rgb)
 {
 	int red =  rgb & 0x000000FF;
 	int gre = (rgb & 0x0000FF00) >> 8;
@@ -710,22 +711,27 @@ int LGXpacker::findColor(COLORREF rgb)
 // LGXpaker::halfTone()
 //-----------------------------------------------------------------------------
 
-void LGXpacker::halfTone(SDL::Surface * surf, RECT * r)
+void LGXpacker::halfTone(SDL::Surface * surf, Rect * r)
 {
 	SDL::SurfaceInfo ddsd;
 
-	if (surf->Lock(r, &ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
+	if (surf->Lock(&ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
 	unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
-	for (int i = 0; i < (surf->Get()->w*surf->Get()->h); i++)
-	{
-		(*ptr) = 0xFF000000 | ((*ptr) & 0xFF) >> 1 | ((((*ptr) & 0xFF00) >> 1) & 0xFF00) | ((((*ptr) & 0xFF0000) >> 1) & 0xFF0000);
-		ptr++;
-	}
+        ptr += r->top * surf->Get()->w;
+        for (int line = 0; line < r->bottom - r->top; ++line) {
+            unsigned int* ptrl = ptr + r->left;
+            for (int col = 0; col < r->right - r->left; ++col) {
+                (*ptrl) = 0xFF000000 | ((*ptrl) & 0xFF) >> 1 |
+                          ((((*ptrl) & 0xFF00) >> 1) & 0xFF00) |
+                          ((((*ptrl) & 0xFF0000) >> 1) & 0xFF0000);
+                ++ptrl;
+            }
+            ptr += surf->Get()->w;
+        }
 
-
-	surf->Unlock(r);
+        surf->Unlock();
 	/*
 	Improvement not working (but should)
 	In the menu and pause menu the screen gets darker (OK)

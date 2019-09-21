@@ -23,7 +23,7 @@ void EventVehicule::doEvent()
 		v->y = y;
 		v->dir = dir;
 
-		list_vehicules.ajoute((void*) v);
+		list_vehicules.push_back(std::unique_ptr<Vehicule>(v));
 	} else {
 		debug << "Unknown vehicle ID : " << id_vehicule << "\n";
 	}

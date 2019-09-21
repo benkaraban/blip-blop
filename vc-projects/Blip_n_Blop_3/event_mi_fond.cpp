@@ -11,5 +11,5 @@ void EventMiFond::doEvent()
 	s->y = y;
 	s->pic = pbk_niveau[id];
 
-	list_fonds_statiques.ajoute((void*) s);
+	list_fonds_statiques.emplace_back(s);
 }

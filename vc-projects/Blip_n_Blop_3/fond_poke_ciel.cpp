@@ -23,7 +23,7 @@ void FondPokeCiel::affiche()
 	int						xs;
 	int						decalage = 0;
 	int						ys;
-	RECT					r;
+	Rect					r;
 	int						largeur;
 
 	surf = pbk_niveau[50]->Surf();

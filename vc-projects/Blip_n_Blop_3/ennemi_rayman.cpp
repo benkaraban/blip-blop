@@ -59,7 +59,7 @@ void EnnemiRayman::onAvance()
 			bulbizarre->x = x - 10;
 			bulbizarre->y = y - 25;
 			bulbizarre->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) bulbizarre);
+			list_ennemis.emplace_back(bulbizarre);
 
 			nb_ennemis_created++;
 
@@ -73,7 +73,7 @@ void EnnemiRayman::onAvance()
 			flameche->x = x - 10;
 			flameche->y = y - 25;
 			flameche->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) flameche);
+			list_ennemis.emplace_back(flameche);
 
 
 			nb_ennemis_created++;
@@ -83,7 +83,7 @@ void EnnemiRayman::onAvance()
 			Com->x = x - 10;
 			Com->y = y - 25;
 			Com->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) Com);
+			list_ennemis.emplace_back(Com);
 
 			dorkemon -= 2;
 
@@ -95,7 +95,7 @@ void EnnemiRayman::onAvance()
 			pika->x = x - 10;
 			pika->y = y - 25;
 			pika->dir = SENS_GAUCHE;
-			list_ennemis.ajoute((void*) pika);
+			list_ennemis.emplace_back(pika);
 			dorkemon --;
 		}
 	} else if ((game_flag[0] <= 2) && (game_flag[1] == 0) /*&& (game_flag[2]>=0*/) {
@@ -151,7 +151,7 @@ void EnnemiRayman::onAvance()
 			} else if ((pv > PV_CRITIQUE) && (x - offset >= 80) && (x - offset <= 600)) {
 
 				if (poing1) {
-					Sprite * s;
+					Sprite* s;
 					//faire gicler le premier poing
 					if (x - offset > 320) {
 						s = new MorceauRayman(230, -1 - rand() % 3, -3 - rand() % 3);
@@ -163,7 +163,7 @@ void EnnemiRayman::onAvance()
 					s->y = y - 22;
 					s->x = x;
 
-					list_giclures.ajoute((void*) s);
+					list_giclures.emplace_back(s);
 
 					game_flag[0] = 1;
 					poing1 = 0;
@@ -211,7 +211,7 @@ void EnnemiRayman::onAvance()
 					s->y = y - 22;
 					s->x = x;
 
-					list_giclures.ajoute((void*) s);
+					list_giclures.emplace_back(s);
 					game_flag[0] = 1;
 					poing2 = 0;
 				}
@@ -258,7 +258,7 @@ void EnnemiRayman::onAvance()
 					s->y = y - 22;
 					s->x = x + 10;
 
-					list_giclures.ajoute((void*) s);
+					list_giclures.emplace_back(s);
 
 
 					s = new MorceauRayman(271, -1 - rand() % 3, vy);
@@ -267,7 +267,7 @@ void EnnemiRayman::onAvance()
 					s->y = y - 22;
 					s->x = x - 10;
 
-					list_giclures.ajoute((void*) s);
+					list_giclures.emplace_back(s);
 
 					game_flag[0] = 1;
 					pieds = 0;
@@ -319,7 +319,7 @@ void EnnemiRayman::onMeure()
 		}
 		tete->x = x;
 		tete->y = y - 60;
-		list_giclures.ajoute((void*) tete);
+                list_giclures.emplace_back(tete);
 		game_flag[3] = 2;
 	}
 
@@ -352,7 +352,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x + 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;
@@ -362,7 +362,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x - 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;
@@ -416,7 +416,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x + 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;
@@ -426,7 +426,7 @@ void EnnemiRayman::onTire()
 					tir_poing->setDir(dir);
 					tir_poing->x = x - 13;
 					tir_poing->y = y - 13;
-					list_tirs_ennemis.ajoute((void*) tir_poing);
+					list_tirs_ennemis.emplace_back(tir_poing);
 
 					attack_etape = 1;
 					ss_etape = 0;

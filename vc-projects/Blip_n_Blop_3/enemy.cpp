@@ -98,7 +98,7 @@ void Ennemi::gicle(const Tir * tir, const int * dxg, const int * dyg)
 
 	blood = 20;
 
-	list_giclures.ajoute((void*) gicle);
+	list_giclures.emplace_back(gicle);
 }
 
 

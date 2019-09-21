@@ -36,7 +36,7 @@ void FondAssembleur::affiche()
 	SDL::Surface *	surf;
 	int						xs;
 	int						ys;
-	RECT					r;
+	Rect					r;
 	int						largeur;
 
 	surf = pbk_niveau[53]->Surf();

@@ -1,0 +1,34 @@
+version: '{branch}.{build}'
+os: Visual Studio 2015
+platform: x64
+configuration: Release
+clone_depth: 1
+
+install:
+- cd C:\Tools\vcpkg
+- git pull
+- git pull https://github.com/LilyWangL/vcpkg.git dev/Lily/FixPR7720 #
+- .\bootstrap-vcpkg.bat
+- cd %APPVEYOR_BUILD_FOLDER%
+
+before_build:
+    - |-
+        vcpkg integrate install
+        vcpkg install sdl2:x64-windows
+        vcpkg install sdl2-image:x64-windows
+        vcpkg install sdl2-mixer[mpg123,libvorbis]:x64-windows
+        cd vc-projects/Blip_n_Blop_3/
+        mkdir build
+        cd build
+        cmake .. -G "Visual Studio 14 2015 Win64" -DCMAKE_TOOLCHAIN_FILE=C:/Tools/vcpkg/scripts/buildsystems/vcpkg.cmake
+
+build:
+    project:
+        vc-projects/Blip_n_Blop_3/build/blipblop.sln
+
+after_build:
+- cmd: '"C:\Program Files (x86)\CMake\bin\cpack.exe"'
+
+artifacts:
+- path: vc-projects/Blip_n_Blop_3/build/BlipnBlop-0.1.1-win64.exe
+  name: cpack output

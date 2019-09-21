@@ -98,7 +98,7 @@ void EnnemiBisouBoom::onMeure()
 			s->dy = -(rand() % 4);
 		}
 
-		list_gore.ajoute((void*) s);
+		list_gore.emplace_back(s);
 
 		s = new GoreTeteBisouBoom();
 
@@ -114,7 +114,7 @@ void EnnemiBisouBoom::onMeure()
 			s->dy = -1;
 		}
 
-		list_gore.ajoute((void*) s);
+		list_gore.emplace_back(s);
 	} else if (etape == 8 && ss_etape == 0) {
 		Sprite * s = new GoreBideBisouBoom();
 
@@ -130,7 +130,7 @@ void EnnemiBisouBoom::onMeure()
 			s->dy = 0;
 		}
 
-		list_gore.ajoute((void*) s);
+		list_gore.emplace_back(s);
 	} else if (etape >= 10) {
 		a_detruire = true;
 	} else {

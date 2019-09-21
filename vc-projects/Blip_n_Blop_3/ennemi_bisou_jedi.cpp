@@ -78,7 +78,7 @@ void EnnemiBisouJedi::onAvance()
 		t->lanceur = this;
 		t->cible = tete_turc;
 
-		list_tirs_ennemis.ajoute((void*) t);
+		list_tirs_ennemis.emplace_back(t);
 
 		etape_shoot = 0;
 		wait_shoot = 200 + rand() % 250;
@@ -104,7 +104,7 @@ void EnnemiBisouJedi::onMeure()
 		else
 			t->cible = tete_turc;
 
-		list_tirs_ennemis.ajoute((void*) t);
+		list_tirs_ennemis.emplace_back(t);
 
 		etape_shoot = 0;
 		wait_shoot = 200 + rand() % 250;
@@ -158,7 +158,7 @@ void EnnemiBisouJedi::onCarbonise()
 		else
 			t->cible = tete_turc;
 
-		list_tirs_ennemis.ajoute((void*) t);
+		list_tirs_ennemis.emplace_back(t);
 
 		etape_shoot = 0;
 		wait_shoot = 200 + rand() % 250;
