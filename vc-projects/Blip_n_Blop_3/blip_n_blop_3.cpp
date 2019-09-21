@@ -39,11 +39,6 @@ static bool safeMode = false;
 
 void ReleaseAll(void) {
     if (graphicInstance != NULL) {
-        fnt_menu.close();
-        fnt_menus.close();
-        fnt_cool.close();
-        fnt_rpg.close();
-
         LGXpaker.closePaker();
 
         if (videoA != NULL) {

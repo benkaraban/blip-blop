@@ -29,7 +29,9 @@
 #include "rpg_player.h"
 #include "blip.h"
 #include "chrono.h"
-#include "moving_average.h"
+#include "update_regulator.h"
+#include "go_arrow.h"
+#include "hud.h"
 
 #include "meteo_neige.h"
 #include "meteo_pluie.h"
@@ -59,7 +61,8 @@
 class Game
 {
 protected:
-        MovingAverage<int> frame_spare_time_;
+        HUD hud_;
+        UpdateRegulator update_regulator_;
 	PictureBank	pbk_briefing;
 	bool	briefing;
 
@@ -76,8 +79,6 @@ protected:
 	bool	last_perfect1;
 	bool	last_perfect2;
 
-	int		dtime;
-        Chrono time_; // Pour le mode auto
 	int		nframe;			// Pour la synchronisation
 	int		etape_timer;
 
@@ -101,15 +102,8 @@ protected:
 
 	RPGPlayer	rpg;
 
-	bool	must_stop_go;
-	int		teta_go;
-	int		last_x_go;
-	bool	fleche_go;
-	int		x_fleche_go;
-	int		nb_rebonds_go;
-	int		delai_go;
-	int		etape_fleche_go;
-	int		ss_etape_fleche_go;
+        GoArrow go_;
+        int last_x_go_;
 
 	bool	show_fps;
 	bool	show_lists;
@@ -126,11 +120,6 @@ public:
 	// Constructeur -> met tout à NULL
 	//
 	Game();
-
-
-	// Destructeur -> on est pas des Brujahs...
-	//
-	~Game();
 
 
 	// jouePartie -> Faites chier la vache!
@@ -174,8 +163,6 @@ public:
 
 	void creeBulle(Sprite * s);
 
-	int selectPlayer();
-
         template <class T>
         void UpdateCollection(const T& xs);
 	void updateFlecheGo();
@@ -201,7 +188,6 @@ public:
         template <class T>
         void DrawCollection(const T& xs);
 	void drawTremblements();
-	void drawFlecheGo();
 	void drawHUB();
 	void drawHUBpv(int x, int y, int pv);
 	void drawTimer();

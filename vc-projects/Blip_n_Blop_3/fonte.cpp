@@ -35,34 +35,9 @@
 
 //-----------------------------------------------------------------------------
 
-Fonte::Fonte() : pictab(NULL), nom_fic(NULL)
-{
-}
-
-
-//-----------------------------------------------------------------------------
-
-Fonte::~Fonte()
-{
-	if (pictab != NULL)
-		debug << "Fonte non fermée!\n";
-}
-
-
-//-----------------------------------------------------------------------------
-
 bool Fonte::load(const char * fic, int flags)
 {
-	SDL::Surface *	surf;
-
-	int			taille;
-	void *		ptr;
-
-	if (pictab != NULL) {
-		debug << "Fonte::load->Objet déjà ouvert!\n";
-		return false;
-	}
-
+        pictab_.clear();
         std::ifstream fh(fic, std::ios::binary);
 
 	if (!fh.good()) {
@@ -70,72 +45,45 @@ bool Fonte::load(const char * fic, int flags)
 		return false;
 	}
 
-	pictab = new Picture * [256];
-	if (pictab == NULL) {
-		debug << "Fonte::load->Pas assez de mémoire pour " << fic << "\n";
-		return false;
-	}
-
-	for (int i = 0; i < 256; i++)
-		pictab[i] = NULL;
-
         fh.read(reinterpret_cast<char*>(&h), sizeof(h));
         fh.read(reinterpret_cast<char*>(&spc), sizeof(spc));
 
 
-	for (int i = 1; i < 256; i++) {
-                fh.read(reinterpret_cast<char*>(&taille), sizeof(taille));
+        pictab_.resize(256);
+        for (int i = 1; i < 256; i++) {
+            int taille;
+            fh.read(reinterpret_cast<char*>(&taille), sizeof(taille));
 
-		if (taille == 0) {
-			continue;
-		}
+            if (taille == 0) {
+                continue;
+            }
 
-		ptr = malloc(taille);
+            void* ptr = malloc(taille);
 
-		if (ptr == NULL) {
-			debug << "Fonte::load() - Impossible d'allouer " << taille << " octets \n";
-			for (int j = 0; j < i; j++)
-				delete pictab[j];
-			delete [] pictab;
-			pictab = NULL;
-			return false;
-		}
+            fh.read(reinterpret_cast<char*>(ptr), taille);
 
+            SDL::Surface* surf = LGXpaker.loadLGX(ptr, flags);
 
-                fh.read(reinterpret_cast<char*>(ptr), taille);
+            free(ptr);
 
-		surf = LGXpaker.loadLGX(ptr, flags);
+            pictab_[i] = std::make_unique<Picture>();
+            pictab_[i]->SetSurface(surf);
+            pictab_[i]->SetSpot(0, 0);
+            //		pictab[i]->SetColorKey( RGB( 250, 212, 152));
+            pictab_[i]->SetColorKey(RGB( 246, 205, 148));
+            //pictab[i]->SetColorKey(RGB(250, 206, 152));
 
-		free(ptr);
+            /*static int test_i = 1;
+              char buf[128];
+              sprintf(buf, "test/%d.bmp", test_i);
+              SDL_SaveBMP(surf->Get(), buf);
+              test_i++;*/
 
-		if (surf == NULL) {
-			debug << "Pas assez de mémoire pour le " << i << " de " << fic << "\n";
-			for (int j = 0; j < i; j++)
-				delete pictab[j];
-			delete [] pictab;
-			pictab = NULL;
-			return false;
-		}
+        }
 
-		pictab[i] = new Picture;
-		pictab[i]->SetSurface(surf);
-		pictab[i]->SetSpot(0, 0);
-//		pictab[i]->SetColorKey( RGB( 250, 212, 152));
-		pictab[i]->SetColorKey(RGB( 246, 205, 148));
-		//pictab[i]->SetColorKey(RGB(250, 206, 152));
-
-		/*static int test_i = 1;
-		char buf[128];
-		sprintf(buf, "test/%d.bmp", test_i);
-		SDL_SaveBMP(surf->Get(), buf);
-		test_i++;*/
-
-	}
-
-	nom_fic = new char[strlen(fic) + 1];
-	strcpy(nom_fic, fic);
-	flag_fic = flags;
-	return true;
+        filename_ = fic;
+        flag_fic = flags;
+        return true;
 }
 
 //-----------------------------------------------------------------------------
@@ -154,9 +102,9 @@ void Fonte::print(SDL::Surface * surf, int x, int y, const char * txt)
 		c = (unsigned char) txt[i];
 		if (c == ' ') {
 			curx += spc;
-		} else if (pictab[c] != NULL) {
-			pictab[c]->BlitTo(surf, curx, y);
-			curx += pictab[c]->xSize();
+		} else if (pictab_[c] != NULL) {
+			pictab_[c]->BlitTo(surf, curx, y);
+			curx += pictab_[c]->xSize();
 		}
 	}
 }
@@ -183,17 +131,17 @@ void Fonte::printM(SDL::Surface * surf, int x, int y, const char * txt, int ym)
 
 		if (c == ' ') {
 			curx += spc;
-		} else if (pictab[c] != NULL) {
+		} else if (pictab_[c] != NULL) {
 			// Calcul du X suivant
-			nx = curx + pictab[c]->xSize();
+			nx = curx + pictab_[c]->xSize();
 
 			// Ligne suivante ?
 			if (nx >= ym) {
 				cury += h;
-				pictab[c]->BlitTo(surf, x, cury);
-				curx = x + pictab[c]->xSize();
+				pictab_[c]->BlitTo(surf, x, cury);
+				curx = x + pictab_[c]->xSize();
 			} else {	// Non, on continue..
-				pictab[c]->BlitTo(surf, curx, cury);
+				pictab_[c]->BlitTo(surf, curx, cury);
 				curx = nx;
 			}
 		}
@@ -216,8 +164,8 @@ void Fonte::printR(SDL::Surface * surf, int x, int y, const char * txt)
 
 		if (c == ' ')
 			l += spc;
-		else if (pictab[c] != NULL)
-			l += pictab[c]->xSize();
+		else if (pictab_[c] != NULL)
+			l += pictab_[c]->xSize();
 	}
 
 	print(surf, x - l, y, txt);
@@ -239,42 +187,12 @@ void Fonte::printC(SDL::Surface * surf, int xtaille, int y, const char * txt)
 
 		if (c == ' ')
 			l += spc;
-		else if (pictab[c] != NULL)
-			l += pictab[c]->xSize();
+		else if (pictab_[c] != NULL)
+			l += pictab_[c]->xSize();
 	}
 
 	print(surf, xtaille - (l >> 1), y, txt);
 }
-
-
-//-----------------------------------------------------------------------------
-
-void Fonte::close()
-{
-	if (pictab == NULL)
-		return;
-
-	// Ferme les PICs et détruit les trucs dynamiques...
-	for (int i = 0; i < 256; i++) {
-		if (pictab[i] != 0) {
-			pictab[i]->Close();
-			delete pictab[i];
-			pictab[i] = NULL;
-		}
-	}
-
-	if (pictab != NULL) {
-		delete [] pictab;
-		pictab = NULL;
-	}
-
-	if (nom_fic != NULL) {
-		delete [] nom_fic;
-		nom_fic = NULL;
-	}
-}
-
-
 
 //-----------------------------------------------------------------------------
 
@@ -332,8 +250,8 @@ int Fonte::width(const char * txt)
 
 		if (c == ' ')
 			l += spc;
-		else if (pictab[c] != NULL)
-			l += pictab[c]->xSize();
+		else if (pictab_[c] != NULL)
+			l += pictab_[c]->xSize();
 	}
 
 	return l;
@@ -343,7 +261,7 @@ int Fonte::width(const char * txt)
 
 bool Fonte::restoreAll()
 {
-	if (nom_fic == NULL)
+	if (filename_.empty())
 		return true;
 
 	SDL::Surface *	surf;
@@ -352,10 +270,10 @@ bool Fonte::restoreAll()
 	void *		ptr;
 
 
-        std::fstream fh(nom_fic, std::ios::binary);
+        std::fstream fh(filename_.c_str(), std::ios::binary);
 
 	if (!fh.good()) {
-		debug << "Fonte::restoreAll()->Ne peut pas ouvrir " << nom_fic << "\n";
+		debug << "Fonte::restoreAll()->Ne peut pas ouvrir " << filename_ << "\n";
 		return false;
 	}
 
@@ -374,34 +292,15 @@ bool Fonte::restoreAll()
 
 		ptr = malloc(taille);
 
-		if (ptr == NULL) {
-			debug << "Fonte::restoreAll() - Impossible d'allouer " << taille << " octets \n";
-			for (int j = 0; j < i; j++)
-				delete pictab[j];
-			delete [] pictab;
-			pictab = NULL;
-			return false;
-		}
-
-
                 fh.read(reinterpret_cast<char*>(ptr), taille);
 
 		surf = LGXpaker.loadLGX(ptr, flag_fic);
 
 		free(ptr);
 
-		if (surf == NULL) {
-			debug << "Pas assez de mémoire pour le " << i << " de " << nom_fic << "\n";
-			for (int j = 0; j < i; j++)
-				delete pictab[j];
-			delete [] pictab;
-			pictab = NULL;
-			return false;
-		}
-
-		pictab[i]->SetSurface(surf);
-		pictab[i]->SetSpot(0, 0);
-		pictab[i]->SetColorKey(RGB(250, 206, 152));
+		pictab_[i]->SetSurface(surf);
+		pictab_[i]->SetSpot(0, 0);
+		pictab_[i]->SetColorKey(RGB(250, 206, 152));
 	}
 
 	return true;

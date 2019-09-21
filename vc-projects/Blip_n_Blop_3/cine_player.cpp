@@ -71,14 +71,14 @@ bool CINEPlayer::playScene(const char * file, SDL::Surface * s1, SDL::Surface * 
 
 	while (!fini) {
 		updateState();
-		time_.Reset();
-		dtime = 0;
+                update_regulator_.Skip();
 
 		while (frame_to_draw > 0 && !fini) {
 			manageMsg();
 
-			if (checkRestore())
-				time_.Reset();
+                        if (checkRestore()) {
+                            update_regulator_.Skip();
+                        }
 
 			in.update();
 
@@ -166,37 +166,13 @@ void CINEPlayer::updateScene()
 //---------------------------------------------------------------------------
 
 
-void CINEPlayer::renderLoop()
-{
-	static const int GOOD = 11;
-	static const int MARGE = 2;
+void CINEPlayer::renderLoop() {
+    int n_updates = update_regulator_.Step();
+    for (; n_updates > 0; --n_updates) {
+        updateScene();
+    }
 
-	dtime += time_.elapsed();
-	time_.Reset();
-
-        int mean_frame_time = frame_spare_time_.average();
-
-        Chrono frame_time;
-	if (mean_frame_time >= -MARGE && mean_frame_time <= MARGE) {
-		updateScene();
-		dtime = 0;
-	} else {
-		while (dtime >= GOOD) {
-			updateScene();
-			dtime -= GOOD;
-		}
-	}
-
-	drawScene();
-
-	int ttotal = frame_time.elapsed();
-
-	if (ttotal <= 0)
-		ttotal = GOOD;
-	else if (ttotal >= 5000)
-		ttotal = GOOD;
-
-        frame_spare_time_.Add(ttotal - GOOD);
+    drawScene();
 }
 
 

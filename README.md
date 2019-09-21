@@ -58,6 +58,7 @@ would still disallow the gamer to properly play the game). Congrats and thanks!
   weirdly on this shitty GeForce)
 - After a failed `new`, in a log message: "Nani? Not enough memory???"
 - "Affiche les têtes de con" (Show the fucktard' faces)
+- "Destructeur -> On est pas des Brujahs..."
 
 ## Significant differences
 
