@@ -32,6 +32,7 @@
 #include "blop.h"
 #include "bonus.h"
 #include "bulle.h"
+#include "character_selection.h"
 #include "cine_player.h"
 #include "config.h"
 #include "dd_gfx.h"
@@ -2708,15 +2709,31 @@ void Game::go() {
                 r = menu.update();
                 menu.draw(backSurface);
 
-                DDFlipV();  // primSurface->Flip(NULL, DDFLIP_WAIT );
+                DDFlipV();
             }
         }
 
         if (r == RET_START_GAME1 || r == RET_START_GAME2) {
+            CharacterSelection select;
+
+            auto selected = CharacterSelection::Output::Continue;
+            while (selected == CharacterSelection::Output::Continue &&
+                   !app_killed) {
+                manageMsg();
+                checkRestore();
+                in.update();
+                selected = select.update();
+                select.draw();
+                DDFlipV();
+            }
+
+            drawLoading();
+            DDFlipV();
+
             if (r == RET_START_GAME1)
-                jouePartie(1, selectPlayer());
+                jouePartie(1, int(selected));
             else
-                jouePartie(2, selectPlayer());
+                jouePartie(2, int(selected));
 
             menu.stop();
             menu.start();
@@ -2755,140 +2772,6 @@ void Game::showBriefing(char* fn) {
     pbk_briefing[0]->PasteTo(backSurface, 0, 0);
     fnt_rpg.printC(backSurface, 320, 460, "Loading...");
     DDFlip();
-}
-
-//-----------------------------------------------------------------------------
-
-int Game::selectPlayer() {
-    static const int APPAR_BLIP = 0;
-    static const int FINI_BLIP = 1;
-    static const int APPAR_BLOP = 2;
-    static const int FINI_BLOP = 3;
-
-    int etape = APPAR_BLIP;
-    int et_phase = 0;
-    int id_perso = 0;
-    int x_perso = -300;
-    int y_perso = 255;
-    int x_nom = 1040;
-    int y_nom = 255;
-    int y_select = -50;
-    int pic_select;
-    int x_back1 = 0;
-    int x_back2 = 640;
-
-    if (lang_type == LANG_UK)
-        pic_select = 10;
-    else
-        pic_select = 11;
-
-    while (!app_killed) {
-        manageMsg();
-        checkRestore();
-        in.update();
-
-        et_phase += 1;
-        et_phase %= 10;
-
-        if (et_phase == 0) phase = !phase;
-
-        // Le fond
-        //
-        x_back1 -= 20;
-        x_back2 -= 20;
-
-        if (x_back1 == -640) x_back1 = 640;
-        if (x_back2 == -640) x_back2 = 640;
-
-        pbk_inter[6]->PasteTo(backSurface, x_back1, 0);
-        pbk_inter[7]->PasteTo(backSurface, x_back2, 0);
-
-        // Gestion du texte
-        //
-        if (y_select < 50) y_select += 10;
-
-        pbk_inter[pic_select]->BlitTo(backSurface, 320, y_select);
-
-        // Le perso + le nom
-        //
-        if (etape == APPAR_BLIP) {
-            if (x_perso < 240) {
-                x_perso += 20;
-            } else if (in.scanKey(DIK_RIGHT) || in.scanAlias(ALIAS_P1_RIGHT)) {
-                etape = FINI_BLIP;
-            } else if (phase) {
-                pbk_inter[4]->BlitTo(backSurface, 620, 257);
-            }
-
-            if (x_nom > 500) x_nom -= 20;
-
-            pbk_inter[2]->BlitTo(backSurface, x_perso, y_perso);
-            pbk_inter[8]->BlitTo(backSurface, x_nom, y_nom);
-
-            if (x_perso >= 240 &&
-                (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE))) {
-                drawLoading();
-                DDFlipV();  // primSurface->Flip( 0, NULL);
-                return 0;
-            }
-        } else if (etape == FINI_BLIP) {
-            if (x_perso > -300) {
-                x_perso -= 20;
-            }
-
-            if (x_nom < 1040) x_nom += 20;
-
-            pbk_inter[2]->BlitTo(backSurface, x_perso, y_perso);
-            pbk_inter[8]->BlitTo(backSurface, x_nom, y_nom);
-
-            if (x_perso <= -300) {
-                etape = APPAR_BLOP;
-                x_perso = 930;
-                x_nom = -500;
-                y_perso = 320;
-            }
-        } else if (etape == APPAR_BLOP) {
-            if (x_perso > 310) {
-                x_perso -= 20;
-            } else if (in.scanKey(DIK_LEFT) || in.scanAlias(ALIAS_P1_LEFT)) {
-                etape = FINI_BLOP;
-            } else if (phase) {
-                pbk_inter[5]->BlitTo(backSurface, 20, 254);
-            }
-
-            if (x_nom < 120) x_nom += 20;
-
-            pbk_inter[3]->BlitTo(backSurface, x_perso, y_perso);
-            pbk_inter[9]->BlitTo(backSurface, x_nom, y_nom);
-
-            if (x_perso <= 310 &&
-                (in.scanKey(DIK_RETURN) || in.scanAlias(ALIAS_P1_FIRE))) {
-                drawLoading();
-                DDFlipV();  // primSurface->Flip( 0, NULL);
-                return 1;
-            }
-        } else {
-            if (x_perso < 930) {
-                x_perso += 20;
-            }
-
-            if (x_nom > -500) x_nom -= 20;
-
-            pbk_inter[3]->BlitTo(backSurface, x_perso, y_perso);
-            pbk_inter[9]->BlitTo(backSurface, x_nom, y_nom);
-
-            if (x_perso >= 930) {
-                etape = APPAR_BLIP;
-                x_perso = -300;
-                x_nom = 1040;
-                y_perso = 255;
-            }
-        }
-
-        DDFlipV();  // primSurface->Flip( 0, NULL);
-    }
-
-    return 0;
 }
 
 //-----------------------------------------------------------------------------

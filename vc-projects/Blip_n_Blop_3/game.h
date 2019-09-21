@@ -163,8 +163,6 @@ public:
 
 	void creeBulle(Sprite * s);
 
-	int selectPlayer();
-
         template <class T>
         void UpdateCollection(const T& xs);
 	void updateFlecheGo();
