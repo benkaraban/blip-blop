@@ -560,6 +560,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     // GFX decors
     //
     fic.read(buffer, 20);
+    fixPath(buffer);
     strcpy(buffer2, "data/");
     strcat(buffer2, buffer);
 
@@ -575,6 +576,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -591,6 +593,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -608,6 +611,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     fic.read(buffer, 20);
 
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -624,6 +628,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
         strcpy(current_mbk, buffer2);
@@ -643,6 +648,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
         rpg.attachFile(buffer2);
@@ -658,6 +664,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -1703,6 +1710,9 @@ void Game::updateMenu() {
     // Appelle le menu s'il y a lieu de le faire
     //
     if (in.scanKey(DIK_ESCAPE)) {
+        if (!backSurface) {
+            return;
+        }
         MenuGame menu;
         int r;
 
@@ -2412,10 +2422,12 @@ bool Game::loadList(const char* fic) {
         if (n == PART_CINE || n == PART_BRIEFING) {
             f.getline(fic_names[nb_part], 200, '*');
             f.getline(fic_names[nb_part], 200);
+            fixPath(fic_names[nb_part]);
         } else {
             f >> type_lvl[nb_part];
             f.getline(fic_names[nb_part], 200, '*');
             f.getline(fic_names[nb_part], 200);
+            fixPath(fic_names[nb_part]);
         }
 
         nb_part += 1;

@@ -48,3 +48,11 @@ int manageMsg() {
 }
 #endif
 
+void fixPath(char* path) {
+    if (path == nullptr) return;
+    for (; *path; ++path) {
+        if (*path == '\\') {
+            *path = '/';
+        }
+    }
+}

@@ -26,9 +26,9 @@ if(WIN32)
         DESTINATION .
         FILES_MATCHING PATTERN "*.dll")
 else()
-    add_executable(blipblop WIN32 ${SRC} ${ENGINE_SRC} ${MENUS_SRC})
-    target_link_libraries(blipblop SDL2)
-    target_link_libraries(blipblop SDL2_mixer)
+    add_executable(blipblop ${SRC} ${ENGINE_SRC} ${MENUS_SRC})
+    target_link_libraries(blipblop PUBLIC ${SDL2_LIBRARIES} ${SDL2MIXER_LIBRARIES})
+    target_include_directories(blipblop SYSTEM PUBLIC ${SDL2_INCLUDE_DIRS})
 endif()
 
 install(DIRECTORY ./data DESTINATION .)
