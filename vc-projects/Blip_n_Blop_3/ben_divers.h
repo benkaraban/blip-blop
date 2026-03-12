@@ -27,4 +27,9 @@ extern bool want_to_kill_app;
 //
 int manageMsg();
 
+//
+// Normalize path (replace \ with /)
+//
+void fixPath(char* path);
+
 #endif

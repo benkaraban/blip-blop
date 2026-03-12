@@ -19,16 +19,18 @@ void Graphics::SetGfxMode(int x, int y, int d, bool fullscreen) {
     fullscreen_ = fullscreen;
     window_.reset(SDL_ErrWrap(SDL_CreateWindow(
         "Blip&Blop",
+        SDL_WINDOWPOS_CENTERED,
+        SDL_WINDOWPOS_CENTERED,
         x,
         y,
-        x,
-        y,
-        SDL_WINDOW_SHOWN | (fullscreen * SDL_WINDOW_FULLSCREEN))));
+        SDL_WINDOW_SHOWN | (fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0) | SDL_WINDOW_RESIZABLE)));
 
     renderer_.reset(SDL_ErrWrap(SDL_CreateRenderer(
         window_.get(),
         -1,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)));
+    
+    SDL_RenderSetLogicalSize(renderer_.get(), 640, 480);
 }
 
 SDL::Surface* Graphics::CreatePrimary() {

@@ -575,6 +575,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -591,6 +592,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -608,6 +610,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     fic.read(buffer, 20);
 
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 
@@ -624,6 +627,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
         strcpy(current_mbk, buffer2);
@@ -643,6 +647,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
         rpg.attachFile(buffer2);
@@ -658,6 +663,7 @@ bool Game::chargeNiveau(const char* nom_niveau) {
     //
     fic.read(buffer, 20);
     if (strlen(buffer) != 0) {
+        fixPath(buffer);
         strcpy(buffer2, "data/");
         strcat(buffer2, buffer);
 

@@ -6,6 +6,8 @@ clone_depth: 1
 
 install:
 - cd C:\Tools\vcpkg
+- git config --global user.email "you@example.com"
+- git config --global user.name "Your Name"
 - git pull
 - git pull https://github.com/LilyWangL/vcpkg.git dev/Lily/FixPR7720 #
 - .\bootstrap-vcpkg.bat

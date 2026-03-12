@@ -1,88 +1,48 @@
-Linux: ![linux](https://travis-ci.org/Vermeille/blip-blop.svg?branch=master)
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/n8rv6hstgmlx4j0a/branch/master?svg=true)](https://ci.appveyor.com/project/Vermeille/blip-blop/branch/master)
+# Blip'n Blop - Modernized & Fixed
 
-# Forker's notes
+This repository contains a modernized version of the 2002 classic **Blip'n Blop**. This version has been updated to run on modern Windows and Linux systems, addressing several long-standing issues in the original code and previous ports.
 
-I am mainly trying to modernize the code. Both in terms of C++ features, and
-features (mainly trying not to lock the game in 640x480, adding a few shaders
-and stuff).
+## Significant Corrections & Modernization
 
-As the code is kinda old, there's a lot of revamping to do, and a lot of
-optimizations done back in the days shouldn't be relevant anymore. The code
-contains a FUCKTON of global variables, to the point where I'm in awe that
-somehow the game works flawlessly. The quantity of global variables declared
-and handled all over the places is truly unmanageable.
+### 1. Linux Compatibility & Path Handling
+The original game and its subsequent ports used backslashes (`\`) for asset paths, which are hardcoded into the binary level files (`.lvl`). This caused the game to fail to load levels and assets on Linux and other POSIX-compliant systems.
+- **Fix**: Implemented a `fixPath` utility that dynamically normalizes paths during the level loading process, ensuring compatibility with Linux file systems without needing to modify the binary data files.
 
-As a french, I can work my way through the code, and although I'll be
-translating comments as I skim through it, there are some really funny gems
-that I'd rather not translate as they'd break the stupidity that made Blip'n
-Blop famous. I would rather have a separate lexicon for the fellas that can't
-french.
+### 2. Resolution & Windowing Fixes
+The previous SDL2 port had hardcoded window positioning and fixed small resolutions that didn't play well with modern displays.
+- **Centering**: The game window now uses `SDL_WINDOWPOS_CENTERED` to prevent it from appearing in the corner of the screen or off-screen.
+- **Logical Scaling**: Added `SDL_RenderSetLogicalSize`. The game now maintains its internal 640x480 logic and aspect ratio while allowing the window to be resized. This effectively "unlocks" the game from its original resolution, allowing it to scale beautifully on 4K or ultra-wide monitors.
+- **Modern Fullscreen**: Switched to `SDL_WINDOW_FULLSCREEN_DESKTOP`, providing a smoother transition and better compatibility with modern OS window managers compared to legacy "exclusive" fullscreen modes.
 
-This project is HUGE for two students. Kudos to you guys, it's a LOT of work,
-and even if the quality is, uh, debatable, the game actually works flawlessly
-and you undeniably got the work done. I can hardly believe every single error
-has been handled, even memory allocation failures, so that the game wouldn't
-crash (some, including me, would say that it's easier for a developper to
-handle a crash, rather than propagating / circumventing silently an error that
-would still disallow the gamer to properly play the game). Congrats and thanks!
+### 3. Build System Overhaul (CMake)
+The build system was previously fragmented and contained Windows-specific assumptions that broke the build on Linux.
+- **Improvements**: Updated `CMakeLists.txt` to use standard CMake package finders for SDL2 and SDL2_mixer. Removed hardcoded `WIN32` flags for Linux builds, ensuring a clean compilation process across different platforms.
 
-## Lexicon
+### 4. Continuous Integration (CI) Fixes
+The AppVeyor CI pipeline was broken due to an environment misconfiguration during the `vcpkg` dependency setup.
+- **Fix**: Configured global Git user identity in the CI environment to allow the automated setup of dependencies to proceed without manual intervention.
 
-- Couille: testicle. That's what the players are, and the code is in
-  couille.{cpp,h}
-- schnuff: "thing". It's not french, it's a made up word, don't look at me like
-  that
-- snuf: Smurf?
-- Tête de turc: a person that gets all the hate. In the game engine, the
-  enemies are fighting one of the two couilles at a time, who is then called
-  "la tête de turc". See `Game::tete_turc`
+## Technical Details
 
-## When I laughed
+- **Core**: C++ (Modernized)
+- **Multimedia**: SDL2, SDL2_mixer
+- **Sound Engine Wrapper**: FMOD-to-SDL bridge (Modernized)
+- **Build Tool**: CMake 3.1+
 
-- "couille" in the code
-- "schnuff"
-- Tête de turc. That's kinda informal and slang.
-- `SuperListe` (=AwesomeList). And it's actually really not awesome, it's a
-  `void*` based linked list with an embedded STATEFUL iterator. I'm sad I have
-  to remove it to use actual vectors.
-- `SuperListe::vide_porc`: empty (like a?) pork, meaning "in an unclean way".
-  IDK why, the code is exactly the same as the unporked version.
-- `SuperListe::supprime_porc`: removes an element of the list without freeing
-  its memory (ie, it's a non-owning list)
-- 'Gère les messages. Eh oui, Windows pue du cul' (Handles messages. Yeah,
-  Windows' ass stinks, nota: Ben Karaban apparently works for MS now)
-- A variable is named 'glorf'.
-- "Gère le scrolling avec le super buffer qui marche bizarrement sur cette
-  merde de GeForce." (Handles scrolling with the awesome buffer that works
-  weirdly on this shitty GeForce)
-- After a failed `new`, in a log message: "Nani? Not enough memory???"
-- "Affiche les têtes de con" (Show the fucktard' faces)
-- "Destructeur -> On est pas des Brujahs..."
+## Building the Project
 
-## Significant differences
+### Linux
+1. Install dependencies: `libsdl2-dev`, `libsdl2-mixer-dev`, `cmake`.
+2. Run:
+   ```bash
+   mkdir build && cd build
+   cmake ../vc-projects/Blip_n_Blop_3
+   make
+   ```
 
-- The menus were a big pile of switch case in a single class. The pause menu
-  and the title screen menu were just a big copy paste. I cleaned up all that.
-  Take a look at `menus/`. Pause menu and title screen menu are now the same
-  thing
-- Added a "TOGGLE FULLSCREEN" option.
-- Fixed a bug that prevented unix like os from playing. Some level descriptions
-  contained path containing backslashes that failed. Now backslashes are
-  handled.
-- MusicBank has been reworked a lot
-- For some reasons, there were (and still are) too many nonsensical bridges in
-  this code. There's a Direct3D simulated API implented in SDL, a FMOD fake API
-  implemented in SDL mixer, and a windows API implemented with Linux syscalls.
-  I guess those came from the first revamping of the code in 2014; the
-  developper must have thought that implementing a bridge would be easier than
-  manipulating the code.
+### Windows
+1. Use Visual Studio with CMake support.
+2. Dependencies are managed via `vcpkg` (see [AppVeyor config](.appveyor.yml) for details).
 
-# Blip'n Blop
-This is the source code of Blip'n Blop, a free video game for the PC released in 2002. Years after the game got released, some enthusiastic programmers asked us to open source it and here we are!
-
-A few things to keep in mind:
-- this was writen when we were still students so the code quality and the (lack of) architecture can be disturbing
-- the code is mostly written in a terrible mix of french and english, which should be kind of akward to read for non french speaking people (actually, it's kind of awkward even for french people! :p )
-- the various editors can be quite complicated to get working because they relied on various cryptic INI files
-
+---
+*Kudos to the original creators and the community for keeping this gem alive!*
