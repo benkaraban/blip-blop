@@ -525,7 +525,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 	unsigned int	col;
 	unsigned short	d;
 
-	int				dpitch = ddsd.lPitch - 2 * xs;
+	int				dpitch = ddsd.lPitch - 4 * xs;
 
 	if (version != NULL)
 		*version = lh->version;
@@ -551,11 +551,11 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 				if (x == xs) {
 					x = 0;
 					y++;
-					//surfPtr += dpitch;
+					surfPtr += dpitch;
 				}
 			}
 		} else { // dpitch=0! cool! :)
-			unsigned short * surfPtr = (unsigned short*) ddsd.lpSurface;
+			unsigned int * surfPtr = (unsigned int*) ddsd.lpSurface;
 
 			int		t = xs * ys;
 			int		delta = 0;
@@ -593,7 +593,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 						if (x == xs) {
 							x = 0;
 							y++;
-							//surfPtr += dpitch;
+							surfPtr += dpitch;
 						}
 					}
 				} else {
@@ -605,7 +605,7 @@ SDL::Surface * LGXpacker::loadLGX(void * ptr, int flags, int * version)
 					if (x == xs) {
 						x = 0;
 						y++;
-						//surfPtr += dpitch;
+						surfPtr += dpitch;
 					}
 				}
 			}
@@ -718,18 +718,32 @@ void LGXpacker::halfTone(SDL::Surface * surf, Rect * r)
 	if (surf->Lock(&ddsd, DDLOCK_SURFACEMEMORYPTR, NULL) == false)
 		return;
 
-	unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
-        ptr += r->top * surf->Get()->w;
-        for (int line = 0; line < r->bottom - r->top; ++line) {
-            unsigned int* ptrl = ptr + r->left;
-            for (int col = 0; col < r->right - r->left; ++col) {
-                (*ptrl) = 0xFF000000 | ((*ptrl) & 0xFF) >> 1 |
-                          ((((*ptrl) & 0xFF00) >> 1) & 0xFF00) |
-                          ((((*ptrl) & 0xFF0000) >> 1) & 0xFF0000);
-                ++ptrl;
-            }
-            ptr += surf->Get()->w;
+    unsigned int * ptr = (unsigned int*)ddsd.lpSurface;
+    int pitch = ddsd.lPitch / 4;
+
+    // Bounds check
+    int w = surf->Get()->w;
+    int h = surf->Get()->h;
+
+    int top = std::max(0, r->top);
+    int bottom = std::min(h, r->bottom);
+    int left = std::max(0, r->left);
+    int right = std::min(w, r->right);
+
+    if (top >= bottom || left >= right) {
+        surf->Unlock();
+        return;
+    }
+
+    ptr += top * pitch;
+    for (int line = 0; line < bottom - top; ++line) {
+        unsigned int* ptrl = ptr + left;
+        for (int col = 0; col < right - left; ++col) {
+            (*ptrl) = 0xFF000000 | (((*ptrl) & 0x00FEFEFE) >> 1);
+            ++ptrl;
         }
+        ptr += pitch;
+    }
 
         surf->Unlock();
 	/*

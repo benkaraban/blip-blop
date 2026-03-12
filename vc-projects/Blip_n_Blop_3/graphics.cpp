@@ -28,7 +28,7 @@ void Graphics::SetGfxMode(int x, int y, int d, bool fullscreen) {
     renderer_.reset(SDL_ErrWrap(SDL_CreateRenderer(
         window_.get(),
         -1,
-        SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC)));
+        SDL_RENDERER_SOFTWARE | SDL_RENDERER_PRESENTVSYNC)));
     
     SDL_RenderSetLogicalSize(renderer_.get(), 640, 480);
 }
@@ -131,16 +131,25 @@ bool Graphics::SetColorKey(SDL::Surface* surf, Pixel rgb) {
 }
 
 void Graphics::Flip() {
-    SDL_Texture* tex = 0;
-    tex = SDL_CreateTextureFromSurface(renderer_.get(), backSurface->Get());
+    if (!renderer_ || !backSurface) {
+        return;
+    }
+
+    SDL_Surface* surf = backSurface->Get();
+    if (!surf) {
+        return;
+    }
+
+    SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer_.get(), surf);
+    if (!tex) {
+        return;
+    }
+
     SDL_RenderClear(renderer_.get());
     SDL_RenderCopy(renderer_.get(), tex, NULL, NULL);
     SDL_RenderPresent(renderer_.get());
 
     SDL_DestroyTexture(tex);
-    // SDL_Delay(1);
-
-    // SDL_SaveBMP(backSurface->Get(), "test/draw.bmp");
 }
 
 void Graphics::FlipV() {
