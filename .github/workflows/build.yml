@@ -1,0 +1,120 @@
+name: Build
+
+# Etap 1 scope: configure + build only, on Linux and Windows.
+# No test step is included because the project does not currently have an
+# automated test suite.
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsdl2-dev libsdl2-mixer-dev
+
+      - name: Configure
+        run: cmake -S . -B build
+
+      - name: Build
+        # Capped (rather than unbounded --parallel) to avoid overloading
+        # this shared 2-4 vCPU runner: an unbounded parallel build of this
+        # project's ~170 translation units was observed to get the whole
+        # `make` process tree SIGTERM'd by the runner during Etap 1 CI.
+        run: cmake --build build --parallel 2
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # windows-latest runners ship with vcpkg preinstalled and
+      # VCPKG_INSTALLATION_ROOT pointing to it.
+      #
+      # sdl2-mixer needs the mpg123 feature explicitly - without it the
+      # resulting SDL2_mixer.dll can't decode the .mp3 files under
+      # vc-projects/Blip_n_Blop_3/data, so music would silently fail to
+      # play in the packaged build. .appveyor.yml installs the same feature
+      # (plus libvorbis) for the legacy AppVeyor build, but the current
+      # vcpkg sdl2-mixer port (2.8.2) no longer has a "libvorbis" feature -
+      # libvorbis is now an unconditional core dependency of the port
+      # itself (see its vcpkg.json), so Vorbis/.ogg support is already
+      # always built in and doesn't need to be requested.
+      - name: Install dependencies (vcpkg)
+        run: vcpkg install sdl2:x64-windows "sdl2-mixer[mpg123]:x64-windows"
+
+      - name: Configure
+        run: >
+          cmake -S . -B build -A x64
+          -DCMAKE_TOOLCHAIN_FILE="$env:VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
+
+      - name: Build
+        run: cmake --build build --config Release --parallel
+
+      # This is the actual check for the WIN32-subsystem fix made in Etap 1.
+      # A WIN32 (GUI subsystem) target on MSVC needs an entry point the
+      # linker can resolve. An earlier attempt linked SDL2main to supply
+      # WinMain (relying on SDL2 renaming main to SDL_main), but a CI run
+      # showed that rename doesn't fire in this toolchain, causing a
+      # duplicate `main` plus an unresolved `SDL_main`. The CMakeLists now
+      # instead sets /ENTRY:mainCRTStartup on MSVC so the linker uses the
+      # normal C runtime startup (which calls the existing main()) under
+      # the WINDOWS subsystem. This step still shouldn't be assumed to pass
+      # - it must be confirmed here, not assumed.
+      - name: Verify Windows executable was actually produced
+        shell: pwsh
+        run: |
+          $exe = "build/vc-projects/Blip_n_Blop_3/Release/blipblop.exe"
+          if (-not (Test-Path $exe)) {
+            Write-Error "Expected binary not found at $exe - the WIN32-subsystem build did not produce an executable."
+            exit 1
+          }
+          Write-Host "OK: found $exe"
+
+      - name: Assemble self-contained Windows package
+        # Bundles blipblop.exe with the runtime DLLs it needs (SDL2.dll,
+        # SDL2_mixer.dll, and whatever else vcpkg installed alongside them
+        # for the x64-windows triplet) and the game's data/ directory (this
+        # project ships all its assets - graphics, audio, levels, etc. - as
+        # one flat data/ folder, not separate graphics/sounds/ folders; see
+        # vc-projects/Blip_n_Blop_3/data and the CMakeLists.txt install()
+        # rule for the same directory) into one folder, so the artifact is
+        # ready to run standalone rather than a bare .exe that depends on
+        # DLLs/assets being found some other way.
+        shell: pwsh
+        run: |
+          $pkgDir = "package/blipblop"
+          New-Item -ItemType Directory -Force -Path $pkgDir | Out-Null
+
+          Copy-Item "build/vc-projects/Blip_n_Blop_3/Release/blipblop.exe" $pkgDir
+
+          $vcpkgBin = "$env:VCPKG_INSTALLATION_ROOT/installed/x64-windows/bin"
+          $dlls = Get-ChildItem -Path $vcpkgBin -Filter *.dll
+          if ($dlls.Count -eq 0) {
+            Write-Error "No runtime DLLs found under $vcpkgBin - package would not be self-contained."
+            exit 1
+          }
+          Copy-Item $dlls.FullName $pkgDir
+
+          Copy-Item -Recurse "vc-projects/Blip_n_Blop_3/data" (Join-Path $pkgDir "data")
+
+          Write-Host "Package contents:"
+          Get-ChildItem -Recurse $pkgDir | ForEach-Object { Write-Host "  $($_.FullName)" }
+
+      # actions/upload-artifact always zips whatever `path` points to for
+      # download, so pointing it at the assembled package directory (rather
+      # than a single file) is what turns this into a ready-to-play .zip -
+      # a separate Compress-Archive step first would just produce a
+      # zip-inside-a-zip on download.
+      - name: Upload Windows package
+        uses: actions/upload-artifact@v4
+        with:
+          name: blipblop-windows
+          path: package/blipblop

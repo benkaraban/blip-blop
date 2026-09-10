@@ -1,5 +1,36 @@
-Linux: ![linux](https://travis-ci.org/Vermeille/blip-blop.svg?branch=master)
-Windows: [![Build status](https://ci.appveyor.com/api/projects/status/n8rv6hstgmlx4j0a/branch/master?svg=true)](https://ci.appveyor.com/project/Vermeille/blip-blop/branch/master)
+GitHub Actions (Linux + Windows): [![Build](https://github.com/benkaraban/blip-blop/actions/workflows/build.yml/badge.svg)](https://github.com/benkaraban/blip-blop/actions/workflows/build.yml)
+
+Linux (legacy Travis): ![linux](https://travis-ci.org/Vermeille/blip-blop.svg?branch=master)
+Windows (legacy AppVeyor): [![Build status](https://ci.appveyor.com/api/projects/status/n8rv6hstgmlx4j0a/branch/master?svg=true)](https://ci.appveyor.com/project/Vermeille/blip-blop/branch/master)
+
+## Building
+
+Requires a C++17 compiler and SDL2 + SDL2_mixer.
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
+
+### Windows
+
+* Visual Studio (MSVC), CMake, and [vcpkg](https://github.com/microsoft/vcpkg).
+* Install dependencies: `vcpkg install sdl2:x64-windows sdl2-mixer:x64-windows`
+* Configure with the vcpkg toolchain file, then build:
+
+```bash
+cmake -S . -B build -A x64 -DCMAKE_TOOLCHAIN_FILE=<path-to-vcpkg>/scripts/buildsystems/vcpkg.cmake
+cmake --build build --config Release
+```
+
+### Linux
+
+* GCC or Clang, CMake, `libsdl2-dev`, `libsdl2-mixer-dev` (e.g. `sudo apt-get install libsdl2-dev libsdl2-mixer-dev` on Debian/Ubuntu).
+
+```bash
+cmake -S . -B build
+cmake --build build
+```
 
 # Forker's notes
 

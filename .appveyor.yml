@@ -15,7 +15,6 @@ before_build:
     - |-
         vcpkg integrate install
         vcpkg install sdl2:x64-windows
-        vcpkg install sdl2-image:x64-windows
         vcpkg install sdl2-mixer[mpg123,libvorbis]:x64-windows
         cd vc-projects/Blip_n_Blop_3/
         mkdir build
